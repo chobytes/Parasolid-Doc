@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.115.html#50409907_pgfId-294847", " For details of <B>stack</B> sizes, see Section 5.5, <B>stack</B> sizes , in the Parasolid Installation Notes .", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294829", " Section 115.2.3, Setting the <B>stack</B> size of SMP threads , explains how to", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294906", " 115.2.3 Setting the <B>stack</B> size of SMP threads ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294910", " threads used by Parasolid SMP. Although the default <B>stack</B> size for the system is usually sufficient, this", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294914", " On some systems, the default <B>stack</B> size is too small for complex modelling, leading", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294915", " your application only performs simple operations, reducing the <B>stack</B> size can conserve memory use. ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294919", " functions allow you to set and enquire the <B>stack</B> size of Parasolid SMP threads: ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294932", " Sets the size of the <B>stack</B> allocated to Parasolid SMP threads. ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294940", " Returns the size of the <B>stack</B> allocated to Parasolid SMP threads. ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294942", " a zero value means that the platform default <B>stack</B> size is used. ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-294943", " supported platforms can be found in Section 5.5, <B>stack</B> sizes , of the Installation Notes . ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209712", " thread <B>stack</B> size 1592, 1601 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210204", " thread <B>stack</B> size, SMP 1592, 1601 ", "Functional Description - ZGlossary");
+top.note("headers/pk_session_ask_smp_stacksize.html#description", " Returns the size of the <B>stack</B> allocated to Parasolid SMP threads.", "PK Reference - PK_SESSION_ask_smp_stacksize");
+top.note("headers/pk_session_set_smp_stacksize.html#description", " Set the size of the <B>stack</B> allocated to Parasolid SMP threads.", "PK Reference - PK_SESSION_set_smp_stacksize");
+top.note("headers/pk_thread_ask_function.html#documentation", "position in the call <B>stack</B> starting at 0 for the outermost. If depth", "PK Reference - PK_THREAD_ask_function");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295549", " 5.5 <B>Stack</B> sizes", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295712", " too small, and several platforms where the default <B>stack</B> size for additional threads (which can be different)", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-296369", " Note: A threads <B>stack</B> size cannot be changed once the thread exists:", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295715", " the following option to set the minimum default <B>stack</B> size: ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-351667", " <B>stack</B> space. KID is given 4 MB of <B>stack</B>.", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-351815", " The .NET binding does not impose significant <B>stack</B> space overheads. ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295717", " 5.5.1 Platform default thread <B>stack</B> sizes ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-296982", " The default thread <B>stack</B> sizes for each platform are shown in the", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295732", " 5.5.2 Setting <B>stack</B> sizes for application threads ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295734", "/<B>stack</B> ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295736", " For UNIX, Android and iOS platforms where the <B>stack</B> size is too small, use ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-325371", " it. Create a thread with an appropriate size <B>stack</B> and use that to call Parasolid. ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-314447", " message. Create a thread with an appropriate size <B>stack</B> and use that to call Parasolid. ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295738", " application threads: that PK function only affects the <B>stack</B> sizes of threads created by Parasolid. ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-295740", " 5.5.3 Setting <B>stack</B> sizes for Parasolid internal SMP threads ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.07.html#50520100_pgfId-785945", " Use &#8220;GuardStack&#8221; <B>stack</B> protection, in compliance with the Microsoft SDL. See", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-742445", " Use &#8220;GuardStack&#8221; <B>stack</B> protection, in compliance with the Microsoft SDL. See", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-784212", " Disable <B>stack</B> checking. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-784227", " Use &#8220;GuardStack&#8221; <B>stack</B> protection, in compliance with the Microsoft SDL. See", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-816758", " Provide precise <B>stack</B> unwinding tables. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-816781", " Use improved <B>stack</B> protection. See Section 6.5.8 ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-828218", " Provide precise <B>stack</B> unwinding tables. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-828241", " Use improved <B>stack</B> protection. See Section 6.5.8 ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-749498", " Use improved <B>stack</B> protection. See Section 6.5.8 ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-558382", " Use improved <B>stack</B> protection. See Section 6.5.8 ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-602503", " Use improved <B>stack</B> protection. See Section 6.5.8 . ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-610907", " Use improved <B>stack</B> protection. See Section 6.5.8 . ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-818881", " Use improved <B>stack</B> protection. See Section 6.5.8 . ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-413446", " SMP threads (on relevant platforms). See Section 5.5, &#8220;<B>stack</B> sizes&#8221; , for more details. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-562784", " 6.5.8 <B>Stack</B> protection ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-562772", " platforms on which Parasolid is supported can use &#8220;<B>stack</B> protection&#8221;, also known as &#8220;buffer overflow protection&#8221; or", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-563588", " is freed for use by subsequent functions. The <B>stack</B> is also used to store the &#8220;return address&#8221;", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-566347", " storing more data in a variable on the <B>stack</B> than will fit, then this can overwrite the", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-567321", " the return address has been overwritten, corrupting the <B>stack</B>. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-567897", " The usual response to a <B>stack</B> corruption is to terminate the program. It is", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-563676", " (GuardStack) option, which implements <B>stack</B> protection, in accordance with the Microsoft Security Development", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-563688", " will tell you that there has been a <B>stack</B> buffer overrun. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-762395", " option, which implements <B>stack</B> protection. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-762379", " detects <B>stack</B> corruption, it will output the message &#8220;<B>stack</B> smashing detected&#8221; to standard error. It will then", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-564101", " option, which implements <B>stack</B> protection. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-635417", " If the protection code detects <B>stack</B> or heap corruption, your program will be terminated,", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-662421", " option, which implements <B>stack</B> protection. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-664840", " detects <B>stack</B> corruption, it will add the message &#8220;<B>stack</B> corruption detected&#8221; to the Android log, and send", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-670024", " it has sufficient <B>stack</B> space (see Section 5.5, &#8220;<B>stack</B> sizes&#8221; ). ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-339813", " compiler option) so as to provide <B>stack</B> protection and comply with MS-SDL. We recommend that", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-826502", " <B>stack</B> buffer overflow is detected, see Section 6.5.8, &#8220;<B>stack</B>", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-324375", " SEH support code. This searches through the program&#8217;s <B>stack</B> looking for ", "Installation Notes - Environment");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

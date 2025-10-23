@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_boolean_region_select_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_boolean_region_select_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_boolean_region_select_o_s
+    {
+    int                          o_t_version;       --- version number
+    <A HREF=../headers/pk_boolean_region_t.html>PK_boolean_region_t</A>          select_type;       --- (PK_boolean_include_c)
+    int                          n_region_selectors;--- (0)
+    const <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>            *selectors;         --- (NULL)
+    const <A HREF=../headers/pk_boolean_select_t.html>PK_boolean_select_t</A>   *selector_types;    --- (NULL)
+    int                          n_help_points;     --- (0)
+    const <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>           *help_points;       --- (NULL)
+    const <A HREF=../headers/pk_boolean_region_t.html>PK_boolean_region_t</A>   *region_types;      --- (NULL)
+    };
+typedef struct PK_boolean_region_select_o_s PK_boolean_region_select_o_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is used to identify regions of the tool and/or target
+body to be included or excluded from a boolean.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_boolean_o_t.html>PK_FACE_boolean_o_t</A><br>
+    <A HREF=../headers/pk_face_section_o_t.html>PK_FACE_section_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A region in this context is a boundary faceset which lies wholly inside or
+outside the other body. (Tool faces which intersect the target body have
+been split by the boolean: the resultant faces lie wholly inside or outside
+the target body.  The same is true of the target with respect to the tool.)
+
+Each region is identified by a single face, edge or vertex which is interior
+to it, or a help point in the interior of the region.  A <B>'selectors'</B> entry of
+PK_ENTITY_null may be given, in which case the closest face from the tool
+will be used with the relevant <B>'help_points'</B> entry.
+
+Regions may all be included or excluded as specified by the <B>'select_type'</B>.
+If <B>'select_type'</B> is set to PK_boolean_mixed_selection_c, then the
+<B>'region_types'</B> entries specify include or exclude for each <B>'selectors'</B>
+entry. All <B>'selectors'</B> in the same body must have the same value in
+<B>'region_types'</B>, e.g. all include on the target and exclude on the tool.
+
+Description of fields:
+
+
+
+<B>'select_type'</B>        Indicates whether to include or exclude specified regions,
+                     permitted values are
+
+                     PK_boolean_include_c
+                     PK_boolean_exclude_c
+                     PK_boolean_mixed_selection_c
+
+
+<B>'n_region_selectors'</B> The number of topological entities supplied.
+
+
+<B>'selectors'</B>          Topological entities which each uniquely identify a
+                     region. The array may contain a mixture of faces, edges
+                     or vertices, but no other types.
+                     The first <B>'n_help_points'</B> elements of this array are
+                     associated with the elements of the <B>'help_points'</B> array.
+                     If a help point is to be associated with the closest tool
+                     face, then the appropriate element of this array may
+                     be set to PK_ENTITY_null.
+
+
+
+<B>'selector_types'</B>     Indicates the type of region selection. This array may
+                     be null or contain <B>'n_region_selectors'</B> elements.
+                     If a null array is specified, then a default type of
+                     <A HREF=../headers/pk_boolean_select_t.html>PK_boolean_select_specific_c</A> is assumed.
+
+                     Permitted values are:
+
+                     <A HREF=../headers/pk_boolean_select_t.html>PK_boolean_select_specific_c</A>
+                     <A HREF=../headers/pk_boolean_select_t.html>PK_boolean_select_adjacent_c</A>
+                     <A HREF=../headers/pk_boolean_select_t.html>PK_boolean_select_propagate_c</A>
+
+                     but if <B>'select_type'</B> is PK_boolean_mixed_selection_c, then
+                     only <A HREF=../headers/pk_boolean_select_t.html>PK_boolean_select_specific_c</A> is allowed.
+
+                     The <A HREF=../headers/pk_boolean_select_t.html>PK_boolean_select_propagate_c</A> type is only
+                     valid for faces and edges specified as regions.
+
+
+<B>'n_help_points'</B>      The number of help points (vectors) supplied.
+
+
+<B>'help_points'</B>        Help points (vectors) which, when combined with the
+                     appropriate topological entity from the <B>'selectors'</B>
+                     array, unambiguously identifies a region.
+                     The elements of this array are associated with the
+                     first <B>'n_help_points'</B> of the <B>'selectors'</B> array.
+
+                     Help points may only be associated with a face. If
+                     a help point is associated with PK_ENTITY_null,
+                     then the tool face closest to the help point is
+                     located and used as the face.
+
+
+<B>'region_types'</B>       If <B>'select_type'</B> is PK_boolean_exclude_c or
+                     PK_boolean_include_c, then this array must be NULL.
+                     If <B>'select_type'</B> is PK_boolean_mixed_selection_c, this
+                     array must contain <B>'n_region_selectors'</B> entries of either
+                     PK_boolean_exclude_c or PK_boolean_include_c.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,125 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285693", " <B>PK_CURVE_t</B> parasolid_curve; ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " <B>PK_CURVE_t</B>, PK_SURF_t or PK_FACE_t.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " <B>PK_CURVE_t</B> and an adjacent face", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " <B>PK_CURVE_t</B>, or a member of methods ", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " <B>PK_CURVE_t</B> and an adjacent face", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " <B>PK_CURVE_t</B>, PK_SURF_t or PK_FACE_t.", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("headers/pk_bcurve_fit_chain_t.html#declaration", " <B>PK_CURVE_t</B> *curves_in_chain; --- curves in the chain (NULL)", "PK Reference - PK_BCURVE_fit_chain_t");
+top.note("headers/pk_blend_shape_t.html#declaration", " <B>PK_CURVE_t</B> parameter; --- 3D parameter curve", "PK Reference - PK_blend_shape_t");
+top.note("headers/pk_blendsf_sf_t.html#declaration", " <B>PK_CURVE_t</B> spine; --- blend spine", "PK Reference - PK_BLENDSF_sf_t");
+top.note("headers/pk_body_imprint_curve.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_BODY_imprint_curve");
+top.note("headers/pk_body_imprint_curves_normal.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_BODY_imprint_curves_normal");
+top.note("headers/pk_body_imprint_curves_vector.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_BODY_imprint_curves_vector");
+top.note("headers/pk_body_imprint_cus_normal.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_BODY_imprint_cus_normal");
+top.note("headers/pk_body_imprint_cus_vec.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_BODY_imprint_cus_vec");
+top.note("headers/pk_body_imprint_cus_vector.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_BODY_imprint_cus_vector");
+top.note("headers/pk_body_make_curves_outline.html#declaration", " <B>PK_CURVE_t</B> **const curves, --- boundary curves", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_spun_outline.html#declaration", " <B>PK_CURVE_t</B> **const curves, --- boundary curves", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_change_edge_geom_data_t.html#errors", " <B>PK_CURVE_t</B> , or a member of methods ", "PK Reference - PK_change_edge_geom_data_t");
+top.note("headers/pk_change_edge_geom_data_t.html#documentation", " <B>PK_CURVE_t</B> edges in the corresponding edge array", "PK Reference - PK_change_edge_geom_data_t");
+top.note("headers/pk_curve_array_t.html#description", " This structure contains an array of entities of type <B>PK_CURVE_t</B> ", "PK Reference - PK_CURVE_array_t");
+top.note("headers/pk_curve_array_t.html#documentation", " <B>PK_CURVE_t</B> *array; --- array of CURVEs", "PK Reference - PK_CURVE_array_t");
+top.note("headers/pk_curve_ask_edges.html#declaration", " <B>PK_CURVE_t</B> curve, --- a curve", "PK Reference - PK_CURVE_ask_edges");
+top.note("headers/pk_curve_ask_edges_nmnl.html#declaration", " <B>PK_CURVE_t</B> curve, --- a curve", "PK Reference - PK_CURVE_ask_edges_nmnl");
+top.note("headers/pk_curve_ask_fin.html#declaration", " <B>PK_CURVE_t</B> curve, --- a curve", "PK Reference - PK_CURVE_ask_fin");
+top.note("headers/pk_curve_ask_interval.html#declaration", " <B>PK_CURVE_t</B> curve, --- a curve", "PK Reference - PK_CURVE_ask_interval");
+top.note("headers/pk_curve_ask_param.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_ask_param");
+top.note("headers/pk_curve_ask_parm_different.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_ask_parm_different");
+top.note("headers/pk_curve_ask_part.html#declaration", " <B>PK_CURVE_t</B> curve, --- a curve", "PK Reference - PK_CURVE_ask_part");
+top.note("headers/pk_curve_convert_parm_to_ki.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_convert_parm_to_ki");
+top.note("headers/pk_curve_convert_parm_to_pk.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_convert_parm_to_pk");
+top.note("headers/pk_curve_embed_in_surf.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_embed_in_surf");
+top.note("headers/pk_curve_embed_in_surf_2.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_embed_in_surf_2");
+top.note("headers/pk_curve_eval.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_eval");
+top.note("headers/pk_curve_eval_curvature.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to receive message", "PK Reference - PK_CURVE_eval_curvature");
+top.note("headers/pk_curve_eval_curvature_handed.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to receive message", "PK Reference - PK_CURVE_eval_curvature_handed");
+top.note("headers/pk_curve_eval_handed.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_eval_handed");
+top.note("headers/pk_curve_eval_with_tan_handed.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_eval_with_tan_handed");
+top.note("headers/pk_curve_eval_with_tangent.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_eval_with_tangent");
+top.note("headers/pk_curve_find_box.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to be boxed", "PK Reference - PK_CURVE_find_box");
+top.note("headers/pk_curve_find_degens.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to be checked", "PK Reference - PK_CURVE_find_degens");
+top.note("headers/pk_curve_find_discontinuity.html#declaration", " <B>PK_CURVE_t</B> curve, --- Query curve", "PK Reference - PK_CURVE_find_discontinuity");
+top.note("headers/pk_curve_find_length.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to find length of", "PK Reference - PK_CURVE_find_length");
+top.note("headers/pk_curve_find_min_radius.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_find_min_radius");
+top.note("headers/pk_curve_find_non_aligned_box.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_find_non_aligned_box");
+top.note("headers/pk_curve_find_self_int.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to be checked", "PK Reference - PK_CURVE_find_self_int");
+top.note("headers/pk_curve_find_surfs_common.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_find_surfs_common");
+top.note("headers/pk_curve_find_vector_interval.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_find_vector_interval");
+top.note("headers/pk_curve_find_vectors.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_find_vectors");
+top.note("headers/pk_curve_fix_degens.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to be fixed", "PK Reference - PK_CURVE_fix_degens");
+top.note("headers/pk_curve_fix_degens_cu_t.html#declaration", " <B>PK_CURVE_t</B> res_curve;", "PK Reference - PK_CURVE_fix_degens_cu_t");
+top.note("headers/pk_curve_fix_self_int.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to be checked", "PK Reference - PK_CURVE_fix_self_int");
+top.note("headers/pk_curve_fix_self_int_cu_t.html#declaration", " <B>PK_CURVE_t</B> res_curve;", "PK Reference - PK_CURVE_fix_self_int_cu_t");
+top.note("headers/pk_curve_general_t.html#declaration", " <B>PK_CURVE_t</B> parasolid_curve;", "PK Reference - PK_CURVE_general_t");
+top.note("headers/pk_curve_intersect_curve.html#declaration", " <B>PK_CURVE_t</B> curve_1, --- first curve", "PK Reference - PK_CURVE_intersect_curve");
+top.note("headers/pk_curve_is_isoparam.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to test", "PK Reference - PK_CURVE_is_isoparam");
+top.note("headers/pk_curve_make_approx.html#declaration", " <B>PK_CURVE_t</B> curve, --- Original curve", "PK Reference - PK_CURVE_make_approx");
+top.note("headers/pk_curve_make_bcurve.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_make_bcurve");
+top.note("headers/pk_curve_make_bcurve_2.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_make_bcurve_2");
+top.note("headers/pk_curve_make_bcurve_array.html#declaration", " <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_CURVE_make_bcurve_array");
+top.note("headers/pk_curve_make_curve_reversed.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_make_curve_reversed");
+top.note("headers/pk_curve_make_helical_surf.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_make_helical_surf");
+top.note("headers/pk_curve_make_spcurves.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_make_spcurves");
+top.note("headers/pk_curve_make_spcurves_2.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_make_spcurves_2");
+top.note("headers/pk_curve_make_surf_isocline.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve through which isocline surf passes", "PK Reference - PK_CURVE_make_surf_isocline");
+top.note("headers/pk_curve_make_wire_body.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_make_wire_body");
+top.note("headers/pk_curve_make_wire_body_2.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves to create a wire", "PK Reference - PK_CURVE_make_wire_body_2");
+top.note("headers/pk_curve_output_vectors.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_CURVE_output_vectors");
+top.note("headers/pk_curve_parameterise_vector.html#declaration", " <B>PK_CURVE_t</B> curve, --- a curve", "PK Reference - PK_CURVE_parameterise_vector");
+top.note("headers/pk_curve_project.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- array of tool curves", "PK Reference - PK_CURVE_project");
+top.note("headers/pk_curve_spin.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to spin", "PK Reference - PK_CURVE_spin");
+top.note("headers/pk_curve_spin_2.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to spin", "PK Reference - PK_CURVE_spin_2");
+top.note("headers/pk_curve_sweep.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve to sweep", "PK Reference - PK_CURVE_sweep");
+top.note("headers/pk_edge_ask_curve.html#declaration", " <B>PK_CURVE_t</B> *const curve --- its curve (possibly PK_ENTITY_null)", "PK Reference - PK_EDGE_ask_curve");
+top.note("headers/pk_edge_ask_curve_nmnl.html#declaration", " <B>PK_CURVE_t</B> *const curve --- its curve (possibly PK_ENTITY_null)", "PK Reference - PK_EDGE_ask_curve_nmnl");
+top.note("headers/pk_edge_ask_geometry.html#declaration", " <B>PK_CURVE_t</B> *const curve, --- curve of edge (may be PK_ENTITY_null)", "PK Reference - PK_EDGE_ask_geometry");
+top.note("headers/pk_edge_ask_geometry_nmnl.html#declaration", " <B>PK_CURVE_t</B> *const curve, --- curve of edge (may be PK_ENTITY_null)", "PK Reference - PK_EDGE_ask_geometry_nmnl");
+top.note("headers/pk_edge_ask_oriented_curve.html#declaration", " <B>PK_CURVE_t</B> *const curve, --- the curve (possibly PK_ENTITY_null)", "PK Reference - PK_EDGE_ask_oriented_curve");
+top.note("headers/pk_edge_attach_curve_nmnl.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve of edge", "PK Reference - PK_EDGE_attach_curve_nmnl");
+top.note("headers/pk_edge_attach_curves.html#declaration", "const <B>PK_CURVE_t</B> curves[] --- curves to be attached to edges", "PK Reference - PK_EDGE_attach_curves");
+top.note("headers/pk_edge_attach_curves_2.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves to attach to edges", "PK Reference - PK_EDGE_attach_curves_2");
+top.note("headers/pk_face_imprint_curve.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_FACE_imprint_curve");
+top.note("headers/pk_face_imprint_curves_2.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_FACE_imprint_curves_2");
+top.note("headers/pk_face_imprint_cus_normal.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_FACE_imprint_cus_normal");
+top.note("headers/pk_face_imprint_cus_vec.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_FACE_imprint_cus_vec");
+top.note("headers/pk_face_imprint_cus_vector.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves", "PK Reference - PK_FACE_imprint_cus_vector");
+top.note("headers/pk_face_intersect_curve.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_FACE_intersect_curve");
+top.note("headers/pk_face_intersect_face.html#declaration", " <B>PK_CURVE_t</B> **const curves, --- intersection curves", "PK Reference - PK_FACE_intersect_face");
+top.note("headers/pk_face_intersect_surf.html#declaration", " <B>PK_CURVE_t</B> **const curves, --- intersection curves", "PK Reference - PK_FACE_intersect_surf");
+top.note("headers/pk_fin_ask_curve.html#declaration", " <B>PK_CURVE_t</B> *const curve --- its curve (possibly PK_ENTITY_null)", "PK Reference - PK_FIN_ask_curve");
+top.note("headers/pk_fin_ask_geometry.html#declaration", " <B>PK_CURVE_t</B> *const curve, --- curve of fin (may be PK_ENTITY_null)", "PK Reference - PK_FIN_ask_geometry");
+top.note("headers/pk_fin_ask_oriented_curve.html#declaration", " <B>PK_CURVE_t</B> *const curve, --- the curve (possibly PK_ENTITY_null)", "PK Reference - PK_FIN_ask_oriented_curve");
+top.note("headers/pk_fin_attach_curves.html#declaration", "const <B>PK_CURVE_t</B> curves[], --- curves to be attached to fins", "PK Reference - PK_FIN_attach_curves");
+top.note("headers/pk_geom_t.html#documentation", " - <B>PK_CURVE_t</B> : a curve", "PK Reference - PK_GEOM_t");
+top.note("headers/pk_outline_curve_t.html#declaration", " <B>PK_CURVE_t</B> *curves;", "PK Reference - PK_outline_curve_t");
+top.note("headers/pk_part_ask_construction_curves.html#declaration", " <B>PK_CURVE_t</B> **const con_curves --- construction curves (optional)", "PK Reference - PK_PART_ask_construction_curves");
+top.note("headers/pk_pattern_trim_data_t.html#declaration", " <B>PK_CURVE_t</B> *curves; --- trim curves", "PK Reference - PK_pattern_trim_data_t");
+top.note("headers/pk_point_make_helical_curve.html#declaration", " <B>PK_CURVE_t</B> *const curve --- created bcurve", "PK Reference - PK_POINT_make_helical_curve");
+top.note("headers/pk_region_imprint_curve.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_REGION_imprint_curve");
+top.note("headers/pk_replace_edge_data_t.html#declaration", " const <B>PK_CURVE_t</B> *curves; --- replacement curves (NULL)", "PK Reference - PK_replace_edge_data_t");
+top.note("headers/pk_spcurve_sf_t.html#declaration", " <B>PK_CURVE_t</B> curve; --- curve", "PK Reference - PK_SPCURVE_sf_t");
+top.note("headers/pk_spun_sf_t.html#declaration", " <B>PK_CURVE_t</B> curve; --- curve to spin", "PK Reference - PK_SPUN_sf_t");
+top.note("headers/pk_surf_find_curves_common.html#declaration", " <B>PK_CURVE_t</B> **const curves --- common curves", "PK Reference - PK_SURF_find_curves_common");
+top.note("headers/pk_surf_intersect_curve.html#declaration", " <B>PK_CURVE_t</B> curve, --- curve", "PK Reference - PK_SURF_intersect_curve");
+top.note("headers/pk_surf_intersect_surf.html#declaration", " <B>PK_CURVE_t</B> **const curves, --- intersection basis curves", "PK Reference - PK_SURF_intersect_surf");
+top.note("headers/pk_surf_make_curve_isoparam.html#declaration", " <B>PK_CURVE_t</B> *const curve, --- curve", "PK Reference - PK_SURF_make_curve_isoparam");
+top.note("headers/pk_surf_make_curve_u_isoparam.html#declaration", " <B>PK_CURVE_t</B> *const curve --- analytic or SP curve", "PK Reference - PK_SURF_make_curve_u_isoparam");
+top.note("headers/pk_surf_make_curve_v_isoparam.html#declaration", " <B>PK_CURVE_t</B> *const curve --- analytic or SP curve", "PK Reference - PK_SURF_make_curve_v_isoparam");
+top.note("headers/pk_surf_make_curves_isocline.html#declaration", " <B>PK_CURVE_t</B> **const curves --- isocline curves", "PK Reference - PK_SURF_make_curves_isocline");
+top.note("headers/pk_surf_make_cus_isocline.html#declaration", " <B>PK_CURVE_t</B> **const curves, --- isocline curves", "PK Reference - PK_SURF_make_cus_isocline");
+top.note("headers/pk_surf_trim_data_t.html#declaration", " <B>PK_CURVE_t</B> *spcurves; --- trim curves", "PK Reference - PK_SURF_trim_data_t");
+top.note("headers/pk_swept_sf_t.html#declaration", " <B>PK_CURVE_t</B> curve; --- curve to sweep", "PK Reference - PK_SWEPT_sf_t");
+top.note("headers/pk_trcurve_sf_t.html#declaration", " <B>PK_CURVE_t</B> basis_curve; --- basis curve", "PK Reference - PK_TRCURVE_sf_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

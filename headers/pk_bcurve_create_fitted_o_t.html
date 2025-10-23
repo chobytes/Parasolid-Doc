@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_create_fitted_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_create_fitted_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_create_fitted_o_s
+{
+int                 o_t_version;                 --- option structure version
+                                                 ---  number
+<A HREF=../headers/pk_curve_general_t.html>PK_CURVE_general_t</A>  curve;                       --- curve to be fit
+<A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>       range;                       --- parameter range for
+                                                 --- B-curves (0,1)
+double              tolerance;                   --- distance tolerance
+                                                 ---  (1.0e-6)
+double              angular_tolerance;           --- angular tolerance (0.0)
+int                 n_interpolation_parms;       --- number of parameters at
+                                                 --- which to interpolate
+                                                 ---  input curve (0)
+double             *interpolation_parms;         --- parameters at which to
+                                                 --- interpolate input curve
+                                                 --- (NULL)
+<A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        preserve_parameterisation;   --- whether or not the fitted
+                                                 --- B-curve should have the
+                                                 --- same parameterisation as
+                                                 --- the input curve
+                                                 --- (PK_LOGICAL_true)
+};
+
+typedef struct PK_BCURVE_create_fitted_o_s
+               PK_BCURVE_create_fitted_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for the fitting of a general curve by a B-curve.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+PK_ERROR_bad_interval   the range provided is invalid
+PK_ERROR_bad_tolerance  one of the tolerances provided is invalid
+PK_ERROR_bad_parameter  an interpolation parameter is invalid
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_create_fitted.html>PK_BCURVE_create_fitted</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This structure contains the following fields:
+
+    <B>'curve'</B>                     the curve to be fit. The default value for this
+                                field is
+                                `curve.type' = PK_CURVE_general_curve_c
+                                `curve.curve.parasolid_curve'  = PK_ENTITY_null
+
+    <B>'range'</B>                     the parameter range for the resultant B-curve.
+                                The B-curve will exactly fit the sample points
+                                at the start and end of this range.
+
+    <B>'tolerance'</B>                 the distance tolerance to within which the
+                                B-curve will fit the sample data.
+
+    <B>'angular_tolerance'</B>         if non-zero, the maximum angle between the
+                                tangents of the B-curve and the tangents from
+                                the sample data. Note that this will require
+                                the calculation of first derivatives at all
+                                sample parameters during the fit.
+
+    <B>'n_interpolation_parms'</B>     the number of <B>'interpolation_parms'</B> supplied.
+
+    <B>'interpolation_parms'</B>       a strictly increasing array of length
+                                <B>'n_interpolation_parms'</B> of parameter values
+                                lying within <B>'range'</B>.  The resultant B-curve
+                                will exactly pass through the sample points
+                                at these values.
+    <B>'preserve_parameterisation'</B> This parameter determines whether or not the
+                                resulting B-curve will have the same
+                                parameterisation as the input curve or just
+                                the same shape.
+                                If the value is PK_LOGICAL_true, then if the
+                                fitted B-curve is evaluated at a parameter t,
+                                the evaluated point will be within fitting
+                                tolerance of the point that results when the
+                                input curve is evaluated at t.
+                                If the value is PK_LOGICAL_false, then if the
+                                fitted B-curve is evaluated at a parameter t,
+                                the evaluated point will be within fitting
+                                tolerance of some point on the input curve,
+                                but not necessarily the point that results
+                                when the input curve is evaluated at t.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

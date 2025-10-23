@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_walls_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_walls_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_blend_walls_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_3_face_blend_o_t.html>PK_FACE_make_3_face_blend_o_t</A><br>
+    <A HREF=../headers/pk_face_make_blend_o_t.html>PK_FACE_make_blend_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype is used to control how blend walls are trimmed back to
+blend faces in both face-face blends and three-face blends. It has the values:
+
+    PK_blend_walls_trim_no_c  Do not trim walls.
+                              The walls will not be trimmed.
+                              The blend will not be attached to the walls
+                              but will be created as a separate
+                              sheet body.
+
+    PK_blend_walls_trim_both_c Trim the side walls. These side walls will
+                              be trimmed by the  blend boundaries.
+                              The blend will not be attached to any wall
+                              but will be created as a separate
+                              sheet body. This token is only valid if the
+                              side walls for the blend are from different
+                              bodies. Note that in the case of three-face
+                              blends the centre wall is either left untouched
+                              or completely removed after the operation.
+
+    PK_blend_walls_attach_c   Trim the side walls and attach blend. Only the
+                              side walls will be trimmed by the blend.
+                              The blend will be attached to the side walls.
+                              If the side walls lie in different bodies the
+                              bodies will be combined, with the body
+                              containing the left wall being considered as the
+                              target body. If <B>'left_sense'</B> and <B>'right_sense'</B>
+                              are not the same, the body containing the
+                              right wall will be negated in order to produce
+                              a consistent result.
+                              (default)
+
+    PK_blend_walls_solid_c    Trim the side walls, attach blend and make solid.
+                              As for PK_blend_walls_attach_c, with the
+                              addition that if the result of the blending
+                              operation encloses a volume then a solid
+                              body will be created. Otherwise a sheet body
+                              will be returned.
+
+    PK_blend_walls_preview_c  Do not trim walls.
+                              The walls will not be trimmed.
+                              The blend will not be attached to the walls
+                              but will be created as a separate
+                              sheet body.
+                              This separate sheet body will only be
+                              returned if it could have been attached if
+                              <B>'walls'</B> were set to PK_blend_walls_attach_c.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

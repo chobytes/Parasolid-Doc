@@ -1,0 +1,120 @@
+<HTML>
+<HEAD>
+<TITLE>CRSPTC</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRSPTC</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_make_spcurves.html>PK_CURVE_make_spcurves</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRSPTC ( surf, t_cu, tol, degens, sense, nspc, spc, ifail )
+===========================================================
+
+  Approximate a trimmed curve by an SP-curve.
+
+Receives:
+  KI_tag_surface           *surf           --- surface upon which 't_cu' lies
+  KI_tag_curve             *t_cu           --- trimmed curve to approximate
+  double                   *tol            --- required tolerance
+  KI_cod_logical           *degens         --- create degenerate SP-Curves
+  KI_cod_logical           *sense          --- SP_Curve sense
+
+Returns:
+  KI_int_nitems            *nspc           --- number of SP-curves returned
+  KI_tag_list_curve        *spc            --- SP-curves
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_failed_to_create_sp    failed to create SP_Curve
+  KI_tolerances_too_tight   tolerance too tight
+  KI_bad_precision          tol less than modelling resolution
+
+Description:
+  CRSPTC approximates 't_cu' which lies approximately on 'surf' by an
+  SP_Curve or series of SP_Curves, lying on 'surf'.
+
+  The arguments are
+
+  Basis surface 'surf'.
+
+  . Surface upon which to create SP_Curve(s), 'surf' forms the basis surface
+    of the new SP_curve(s).
+
+  . If 'surf' is construction geometry or is attached to a face, within a
+    body, the SP-curve will be created as construction geometry
+    in that body, and may only be attached to topology within that body.
+
+  Trimmed Curve 't_cu'.
+
+  . Trimmed curve to be approximated by SP_curve(s)
+
+  . Lies approximately on 'surf'. Note that if the trimmed curve is
+    sufficiently long to overhang the ENSUPA range of a limited surface,
+    then the surface may be extended in order to accommodate the SP-curve(s).
+
+  Required tolerance 'tol'
+
+  . The SP_Curve will be created to the distance tolerance 'tol', i.e. it
+    lies within 'tol' of the image of 't_cu' in the surface. The image of
+    't_cu' in this context means the curve formed by the locus of points
+    on 'surf' closest to corresponding points on 't_cu'.
+
+  . If the required tolerance cannot be met then the function will fail with
+    error KI_tolerances_too_tight indicating that a larger tolerance may allow a
+    successful approximation.
+
+  Production of zero length sp_curves 'degen'.
+
+  . Sp_curves may start or end on surface degeneracies, may lie entirely
+    within them, but may not pass through them. A trimmed curve which passes
+    through a surface degeneracy will be approximated by at least two
+    SP_Curves. If 'degens' is true a zero length SP_Curve will be returned
+    which joins the otherwise disjoint SP_Curves in parameter space. Zero
+    length SP_Curves may not be attached to a model.
+
+  SP_curve sense 'sense'
+
+  . If 'sense' is true the created SP_Curve will have the same sense as the
+    trimmed curve in that it starts at the trimmed curve start. If 'sense'
+    is false the SP_Curve will start at the trimmed curve end and end at the
+    trimmed curve start.
+
+
+  The returns are
+
+  List of SP_Curves 'spc' of length 'nspc'.
+
+  Ownership:
+
+  The ownership of the newly created SP_Curve(s) is determined by the ownership
+  of 'surf' as follows
+
+      |____________________|___________________|
+      | 'surf' owner       | SP_Curve owner    |
+      |____________________|___________________|
+      | World              | World             |
+      | Assembly           | Assembly          |
+      | Body               | Body              |
+      | Face               | Body owning face  |
+      _____________________|___________________|
+
+
+</PRE>
+</BODY>
+</HTML>

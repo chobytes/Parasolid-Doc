@@ -1,0 +1,638 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Viewing Environment and Definition</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Viewing Environment and Definition</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.12.html">KID Graphics: Overview</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.14.html">KID Rendering</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.13.html#50475017_pgfId-273839">12.1	Introduction</A>
+<LI> <A HREF="kd_chap.13.html#50475017_pgfId-273877">12.2	Windowing</A>
+<UL>
+<LI> <A HREF="kd_chap.13.html#50475017_pgfId-273884">12.2.1	Using the cursor for redefining the window</A>
+</UL>
+<LI> <A HREF="kd_chap.13.html#50475017_pgfId-273950">12.3	View manipulation</A>
+<LI> <A HREF="kd_chap.13.html#50475017_pgfId-273957">12.4	Selecting a view</A>
+<LI> <A HREF="kd_chap.13.html#50475017_pgfId-273974">12.5	Clearing the screen and drawing the current view</A>
+<LI> <A HREF="kd_chap.13.html#50475017_pgfId-274007">12.6	Use of the drawing list</A>
+<LI> <A HREF="kd_chap.13.html#50475017_pgfId-274023">12.7	Enquiry</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475017_pgfId-273839"></A>12.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475017_pgfId-273843"></A><A NAME="50475017_marker-273840"></A><A NAME="50475017_marker-273841"></A>The viewing environment is held in <A NAME="50475017_marker-273842"></A>properties which are either inherited from the graphics class or are defined locally. Defaults are provided for all graphics classes.</P>
+
+<H4>
+<A NAME="50475017_pgfId-273859"></A><A NAME="50475017_marker-273844"></A><A NAME="50475017_marker-273845"></A><A NAME="50475017_marker-273846"></A>view_to, view_from<A NAME="50475017_marker-273847"></A><A NAME="50475017_marker-273848"></A><A NAME="50475017_marker-273849"></A> view_direction<A NAME="50475017_marker-273850"></A><A NAME="50475017_marker-273851"></A><A NAME="50475017_marker-273852"></A> <A NAME="50475017_marker-273853"></A><A NAME="50475017_marker-273854"></A><A NAME="50475017_marker-273855"></A>view_vertical,  <A NAME="50475017_marker-273856"></A><A NAME="50475017_marker-273857"></A><A NAME="50475017_marker-273858"></A>perspective functions</H4>
+<P>
+<A NAME="50475017_pgfId-273860"></A>These properties allow the user to define how the model is viewed. Examples of the use of these properties, and their default values, are given below:</P>
+<P>
+<A NAME="50475017_pgfId-280207"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280817"></A>&gt; (graphics view_to &acute;( 0 0 0 ) )    -- look at origin</PRE>
+<PRE><A NAME="50475017_pgfId-280818"></A>&gt; (graphics view_from &acute;(3000 1732 1999))
+         -- view from specified point</PRE>
+<PRE><A NAME="50475017_pgfId-280819"></A>&gt; (graphics view_direction &acute;(-0.3 -0.1732 -0.2))
+         -- define specific view direction</PRE>
+<PRE><A NAME="50475017_pgfId-280820"></A>&gt; (graphics view_direction)         
+         -- returns current view direction &acute;-3.0 -0.1732 -0.2&acute;</PRE>
+<PRE><A NAME="50475017_pgfId-280821"></A>&gt; (graphics view_vertical &acute;(0 0 1)) 
+         -- make Z axis vertical in view</PRE>
+<PRE><A NAME="50475017_pgfId-280822"></A>&gt; (graphics perspective nil)        -- switch off perspective</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475017_pgfId-273867"></A>If <CODE>
+graphics perspective</CODE>
+ is <CODE>
+nil</CODE>
+ (the default), then,</P>
+<UL>
+<LI>
+<A NAME="50475017_pgfId-273868"></A><CODE>
+graphics view_direction</CODE>
+ is used instead of <CODE>
+graphics view_from</CODE>
+, and</LI>
+</UL>
+<P>
+<A NAME="50475017_pgfId-273869"></A>If <CODE>
+graphics perspective</CODE>
+ is <CODE>
+t</CODE>
+, then'</P>
+<UL>
+<LI>
+<A NAME="50475017_pgfId-273870"></A>the view direction is the vector from the <CODE>
+view_from</CODE>
+ point to the <CODE>
+view_to</CODE>
+ point.</LI>
+</UL>
+
+
+<H4>
+<A NAME="50475017_pgfId-273874"></A><A NAME="50475017_marker-273871"></A><A NAME="50475017_marker-273872"></A><A NAME="50475017_marker-273873"></A>view function</H4>
+<P>
+<A NAME="50475017_pgfId-273875"></A>The following pre-defined view directions can be set using their associated commands:</P>
+<P>
+<A NAME="50475017_pgfId-280243"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280771"></A>&gt; (graphics view &acute;top)
+&gt; (graphics view &acute;bottom)
+&gt; (graphics view &acute;left)
+&gt; (graphics view &acute;right)
+&gt; (graphics view &acute;front)
+&gt; (graphics view &acute;back)
+&gt; (graphics view &acute;trimetric)
+&gt; (graphics view &acute;isometric)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475017_pgfId-273877"></A>12.2	Windowing
+
+
+</H1>
+
+<H4>
+<A NAME="50475017_pgfId-273881"></A><A NAME="50475017_marker-273878"></A><A NAME="50475017_marker-273879"></A><A NAME="50475017_marker-273880"></A>view_window_xmin/xmax/ymin/ymax</H4>
+<P>
+<A NAME="50475017_pgfId-273882"></A>Windowing defines that area of the model image which is in view. The &quot;view_window_&quot; functions are the most basic ones. There default settings are:</P>
+<P>
+<A NAME="50475017_pgfId-280255"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280737"></A>&gt; (graphics view_window_xmin -100)
+&gt; (graphics view_window_xmax 100)
+&gt; (graphics view_window_ymin -100)
+&gt; (graphics view_window_ymax 100)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475017_pgfId-273884"></A>	12.2.1 	Using the cursor for redefining the window</H2>
+<P>
+<A NAME="50475017_pgfId-273885"></A>The following functions provide an easier way to redefine the window by using the cursor. </P>
+
+<H4>
+<A NAME="50475017_pgfId-273889"></A><A NAME="50475017_marker-273886"></A><A NAME="50475017_marker-273887"></A><A NAME="50475017_marker-273888"></A>pick_window</H4>
+<P>
+<A NAME="50475017_pgfId-273890"></A>When a picture has been drawn, &quot;pick_window&quot; enables the cursor for two picks, to define a window diagonal.</P>
+<P>
+<A NAME="50475017_pgfId-280262"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280721"></A>&gt; (graphics sketch &acute;b0)
+&gt; (graphics pick_window )    -- cursor enabled for two picks
+&gt; (graphics redraw )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475017_pgfId-273895"></A><A NAME="50475017_marker-273892"></A><A NAME="50475017_marker-273893"></A><A NAME="50475017_marker-273894"></A>pick_centre</H4>
+<P>
+<A NAME="50475017_pgfId-273896"></A><CODE>
+pick_centre</CODE>
+ enables the cursor for a pick which defines the centre of the new window. If more detail of the new window centre is required this operation can be followed by a <A HREF="kd_chap.13.html#50475017_25662">&quot;zoom&quot;</A>. Be careful not to use <A HREF="kd_chap.13.html#50475017_35292">&quot;autowindow&quot;</A> immediately after these commands, unless the new window is to be purposely overwritten.</P>
+<P>
+<A NAME="50475017_pgfId-280280"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280713"></A>&gt; (graphics sketch &acute;b0)
+&gt; (graphics pick_centre)
+&gt; (graphics zoom 2)
+&gt; (graphics redraw)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475017_pgfId-273908"></A><A NAME="50475017_marker-273904"></A><A NAME="50475017_marker-273905"></A><A NAME="50475017_marker-273906"></A><A NAME="50475017_35292"></A>autowindow</H4>
+<P>
+<A NAME="50475017_pgfId-273909"></A>It is possible to &quot;autowindow&quot; the view so that the window is set to the smallest size possible for the objects which are currently drawn. </P>
+
+
+<H4>
+<A NAME="50475017_pgfId-273911"></A><A NAME="50475017_41375"></A>redraw</H4>
+<P>
+<A NAME="50475017_pgfId-273912"></A>&quot;redraw&quot; clears the screen and draws the current GRA graphics data structure. This means that if the graphics drawing list is altered, followed by a &quot;redraw&quot;, the GRA graphics data is output, not reflecting the change in the drawing list. </P>
+
+
+<H4>
+<A NAME="50475017_pgfId-273913"></A>ar</H4>
+<P>
+<A NAME="50475017_pgfId-273917"></A>&quot;ar&quot; is the combination of an <A HREF="kd_chap.13.html#50475017_35292">&quot;autowindow&quot;</A> and a <A HREF="kd_chap.13.html#50475017_41375">&quot;redraw&quot;</A>.</P>
+<P>
+<A NAME="50475017_pgfId-280290"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280705"></A>&gt; (graphics sketch &acute;b0)    -- b0 sketched with current view
+&gt; (graphics autowindow)    -- no visible change
+&gt; (graphics redraw) 
+                    -- sketch of b0 with smallest possible window</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475017_pgfId-280859"></A>or</P>
+<P>
+<A NAME="50475017_pgfId-280863"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280862"></A>&gt; (graphics ar)            -- autowindow and redraw
+&gt; (graphics drawing_list &acute;( b0 b1)) -- drawing list changed
+&gt; (graphics redraw)        -- but only b0 will be drawn</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475017_pgfId-280887"></A>Note: Using <A HREF="kd_chap.13.html#50475017_35292">&quot;autowindow&quot;</A> on its own does not have any visible effect, although it does altered the GRA viewing environment. Its effect is only visible after a <A HREF="kd_chap.13.html#50475017_41375">&quot;redraw&quot;</A>.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475017_pgfId-280865"></A><A NAME="50475017_22610"></A>centre</H4>
+<P>
+<A NAME="50475017_pgfId-273933"></A>The &quot;centre&quot; function uses a model space pointer to specify the centre of the current view window. To refresh the view, and therefore see the view in relation to the specified &quot;centre&quot;, it is necessary to do a <A HREF="kd_chap.13.html#50475017_41375">&quot;redraw&quot;</A>.</P>
+<P>
+<A NAME="50475017_pgfId-280627"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280643"></A>&gt; ( graphics ske &acute;b0 )
+&gt; ( graphics centre &acute;( 0 0 10 ); redraw )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475017_pgfId-273939"></A><A NAME="50475017_25662"></A>zoom</H4>
+<P>
+<A NAME="50475017_pgfId-273940"></A>The &quot;zoom&quot; function takes a real number as its argument. It changes the current window sizes so that the image is magnified or reduced about the <A HREF="kd_chap.13.html#50475017_22610">&quot;centre&quot;</A> of the current view window. </P>
+<P>
+<A NAME="50475017_pgfId-273944"></A>A factor greater than 1.0 magnifies the image on the screen.</P>
+<P>
+<A NAME="50475017_pgfId-273945"></A>To see the zoomed image it is necessary to refresh the screen using <A HREF="kd_chap.13.html#50475017_41375">&quot;redraw&quot;</A>.</P>
+<P>
+<A NAME="50475017_pgfId-280309"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280592"></A>&gt; ( graphics zoom &lt;factor&gt; )
+&gt; ( graphics redraw )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475017_pgfId-273950"></A>12.3	View manipulation
+
+
+</H1>
+
+<H4>
+<A NAME="50475017_pgfId-273951"></A>pan_left/right/up/down</H4>
+<P>
+<A NAME="50475017_pgfId-273952"></A>It is possible to change the view definition by altering the properties previously described. However, a number of functions are provided to allow easy manipulation of the view. The pan functions take a real number as their argument. The effect is to move the edges of the window by the given distance in the given direction.</P>
+<P>
+<A NAME="50475017_pgfId-280325"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280564"></A>&gt; (graphics pan_left &lt;distance&gt;)
+&gt; (graphics pan_right &lt;distance&gt;)
+&gt; (graphics pan_up &lt;distance&gt;)
+&gt; (graphics pan_down &lt;distance&gt;)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475017_pgfId-273954"></A>rotate_left/right/up/down</H4>
+<P>
+<A NAME="50475017_pgfId-273955"></A>The rotate functions also take a real number as their argument. They rotate the viewing direction and the 'from point' about the image by the given amount. The angle is specified in degrees.</P>
+<P>
+<A NAME="50475017_pgfId-280344"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280540"></A>&gt; (graphics rotate_left &lt;angle&gt;)
+&gt; (graphics rotate_right &lt;angle&gt;)
+&gt; (graphics rotate_up &lt;angle&gt;)
+&gt; (graphics rotate_down &lt;angle&gt;)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475017_pgfId-273957"></A>12.4	Selecting a view
+
+
+</H1>
+<P>
+<A NAME="50475017_pgfId-273958"></A>Only one view or graphics subclass can be active at a time, and all graphics output are sent to that view until another one is selected. The view must first be defined, then this view can be selected:</P>
+<P>
+<A NAME="50475017_pgfId-273971"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-280934"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-280936"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-280938"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-280954"></A><A NAME="50475017_marker-280951"></A><A NAME="50475017_marker-280952"></A><A NAME="50475017_marker-280953"></A>select</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475017_pgfId-280359"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280524"></A>&gt; (define view_x graphics)
+&gt; (view_x select)</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475017_pgfId-280909"></A>Note: Selecting a view does not clear the screen, or draw the frame and axes.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475017_pgfId-273974"></A>12.5	Clearing the screen and drawing the current view
+
+
+</H1>
+<P>
+<A NAME="50475017_pgfId-273984"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-280975"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-280977"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-280979"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-280992"></A>clear, axes, frame</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475017_pgfId-273986"></A><A NAME="50475017_34721"></A>clear</H4>
+<P>
+<A NAME="50475017_pgfId-273987"></A>The function <CODE>
+clear</CODE>
+ clears the graphics screen of the terminal, and empty the GRA stream(s) used by the current view:</P>
+<P>
+<A NAME="50475017_pgfId-281201"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-281200"></A>&gt; (graphics clear)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475017_pgfId-281205"></A>In addition to the <CODE>
+clear</CODE>
+ function, use of the abbreviated forms of <CODE>
+sketch</CODE>
+ and <CODE>
+hidden</CODE>
+ clear the screen before drawing the entity.</P>
+<P>
+<A NAME="50475017_pgfId-280383"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280496"></A>&gt; (graphics ske &acute;b0)
+&gt; (graphics hid &acute;b0)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475017_pgfId-274003"></A>frame and axes functions<A NAME="50475017_marker-273997"></A><A NAME="50475017_marker-273998"></A><A NAME="50475017_marker-273999"></A><A NAME="50475017_marker-274000"></A><A NAME="50475017_marker-274001"></A><A NAME="50475017_marker-274002"></A></H4>
+<P>
+<A NAME="50475017_pgfId-274004"></A>To display the limits of the current view on the screen, the &quot;frame&quot; function is provided, &quot;axes&quot; draws axes in the current view.</P>
+<P>
+<A NAME="50475017_pgfId-280395"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280473"></A>&gt; (graphics frame [&lt;t or nil&gt;])
+&gt; (graphics axes [&lt;t or nil&gt;])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475017_pgfId-274006"></A>Using these functions without any arguments draws a frame or axes in the view. If an argument is given, this is interpreted as a logical value (t or nil). If the value given is <CODE>
+t</CODE>
+ (i.e. anything but nil) a frame or axes are automatically drawn when ever the view is redrawn.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475017_pgfId-274007"></A>12.6	Use of the drawing list
+
+
+</H1>
+
+<H4>
+<A NAME="50475017_pgfId-274009"></A><A NAME="50475017_41351"></A>drawing_list</H4>
+<P>
+<A NAME="50475017_pgfId-274013"></A><A NAME="50475017_marker-274010"></A><A NAME="50475017_marker-274011"></A><A NAME="50475017_marker-274012"></A>Each view has a drawing list property, e.g. <CODE>
+view_1 drawing_list</CODE>
+. This is used to contain a list of the objects which have been drawn in this particular view. Initially, the drawing list is empty, but when objects are rendered their names are added to this list.</P>
+<P>
+<A NAME="50475017_pgfId-274014"></A>Some functions redraw all the items in the drawing list. If the view has no drawing list itself, they look up the class tree until a non empty drawing list is found. Therefore, one class may be used to hold the drawing list and its subclasses may be views which are used to render the objects.</P>
+<P>
+<A NAME="50475017_pgfId-274015"></A>It is possible to add items to the drawing list without rendering them. This could be used to create a sketch of a number of objects.</P>
+<P>
+<A NAME="50475017_pgfId-280406"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280457"></A>&gt; (define my_view graphics)
+&gt; (my_view select)
+&gt; (my_view drawing_list &acute;(b0 e1 f2))
+&gt; (my_view sketch)   -- objects b0, e1 and f2 will now be drawn</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475017_pgfId-280921"></A>Note: 1) The object which is the argument should be a list of KID objects, which represent kernel items with tags, and it must be quoted (') to avoid it being evaluated.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50475017_pgfId-280925"></A>2) <CODE>
+graphics clear</CODE>
+ does not clear the <CODE>
+drawing_list</CODE>
+ which is used for <A HREF="kd_chap.15.html#50475034_40721">&quot;Picking&quot;</A>. Therefore, it is possible to pick objects from what appears to be a clear display. The <CODE>
+drawing_list</CODE>
+ must be reset independently.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280444"></A>&gt; (graphics drawing_list &acute;(b0))-- drawing_list only contains b0
+&gt; (graphics drawing_list nil)    -- empty the drawing_list</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475017_pgfId-274023"></A>12.7	Enquiry
+
+
+</H1>
+<P>
+<A NAME="50475017_pgfId-274024"></A>It is possible to enquire about a view:</P>
+<P>
+<A NAME="50475017_pgfId-274037"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-281006"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-281008"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-281010"></A><A NAME="50475017_marker-281022"></A><A NAME="50475017_marker-281023"></A><A NAME="50475017_marker-281024"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475017_pgfId-281012"></A>enquiries</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475017_pgfId-280423"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475017_pgfId-280436"></A>&gt; (view_x enquire)   -- prints information about the view</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.12.html">KID Graphics: Overview</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.14.html">KID Rendering</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

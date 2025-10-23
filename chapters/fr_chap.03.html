@@ -1,0 +1,583 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Data To Include In Fault Reports</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Data To Include In Fault Reports</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fr_chap.02.html">Introduction</A></TD>
+  <TD><A HREF="../fr_index.html">Chapters</A></TD>
+  <TD><A HREF="fr_chap.04.html">How To Report A Fault</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-275053">2.1	Introduction</A>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278586">2.2	Debug XML</A>
+<UL>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278644">2.2.1	How to generate Debug XML</A>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278667">2.2.2	How to verify Debug XML</A>
+</UL>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278708">2.3	Additional data</A>
+<UL>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278710">2.3.1	Data for regressions</A>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-283150">2.3.2	Data for callback functions</A>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278781">2.3.3	Data for RTEs in Parasolid</A>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278845">2.3.4	Other useful data</A>
+</UL>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-279798">2.4	Other methods of reporting faults</A>
+<UL>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278543">2.4.1	Session files</A>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278553">2.4.2	Body and API arguments</A>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278564">2.4.3	Bodies and LISP</A>
+<LI> <A HREF="fr_chap.03.html#50462723_pgfId-278571">2.4.4	Reproducing in the application</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-275053"></A>2.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-278611"></A>When reporting a fault (or illustrating an enquiry) the most convenient and useful data is normally debug data in the form of an XML file. This can be generated directly from a Parasolid session, using a format known as Debug XML: see <A HREF="fr_chap.03.html#50462723_40405">Section 2.2, &#8220;Debug XML&#8221;</A>, for instructions on how to do this. </P>
+<P>
+<A NAME="50462723_pgfId-281003"></A>In the vast majority of cases, Debug XML is sufficient for Parasolid Support to reproduce the problem. Sometimes, however, other supporting information is required or desirable for the speedy verification of the problem. <A HREF="fr_chap.03.html#50462723_57588">Section 2.3, &#8220;Additional data&#8221;</A>, describes the types of information you may need to provide. </P>
+<P>
+<A NAME="50462723_pgfId-281082"></A>In a small number of cases, Debug XML cannot be used to reproduce a problem. In these cases, you may be asked to provide other types of information instead. These are described in <A HREF="fr_chap.03.html#50462723_17470">Section 2.4, &#8220;Other methods of reporting faults&#8221;</A>.</P>
+<P>
+<A NAME="50462723_pgfId-288587"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-288648"></A>Note: If you believe you have a problem implementing Foreign Geometry, please contact Parasolid Support before submitting fault data.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-278586"></A>2.2	<A NAME="50462723_40405"></A>Debug XML
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-278639"></A>Debug XML is the standard mechanism for capturing all the information from a Parasolid API call that is required for Parasolid Support to reproduce the problem. Once the problem has been reproduced, this information is also integrated into the Parasolid test and debugging environment, to ensure that the problem never recurs in future releases of Parasolid. </P>
+<P>
+<A NAME="50462723_pgfId-279037"></A>The debug report file contains the following information:</P>
+<UL>
+<LI>
+<A NAME="50462723_pgfId-279038"></A>The version of Parasolid used to generate the file.</LI>
+<LI>
+<A NAME="50462723_pgfId-279039"></A>The values of the current session parameters.</LI>
+<LI>
+<A NAME="50462723_pgfId-279040"></A>All the PK function calls made, including their received and returned arguments </LI>
+<LI>
+<A NAME="50462723_pgfId-279041"></A>The results of any PK functions.</LI>
+<LI>
+<A NAME="50462723_pgfId-279042"></A>Entity arguments for functions, using node identifiers and a reference to a part - this allows the entity to be uniquely identified in a new session.</LI>
+<LI>
+<A NAME="50462723_pgfId-292876"></A>Callback function data (optional: see <A HREF="fr_chap.03.html#50462723_28034">Section 2.3.2, &#8220;Data for callback functions&#8221;</A>, for information)</LI>
+<LI>
+<A NAME="50462723_pgfId-279043"></A>Session information (optional: see <A HREF="fr_chap.03.html#50462723_83777">Section 2.4.1, &#8220;Session files&#8221;</A>, for information).</LI>
+<LI>
+<A NAME="50462723_pgfId-292029"></A>XT parts, in either binary or text format (optional)</LI>
+</UL>
+<P>
+<A NAME="50462723_pgfId-292648"></A>.</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-281196"></A>Note: The Debug XML system is not a true journaling system in that it is intended to capture exactly one modelling call. Debug XML files that contain multiple calls to Parasolid have a reduced chance of capturing useful information for anything other than the first call they contain.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278644"></A>	2.2.1 	How to generate Debug XML</H2>
+<P>
+<A NAME="50462723_pgfId-278645"></A>You can generate Debug XML for a Parasolid API by wrapping the particular API function with calls that start and stop the debug reporting mechanism as follows:</P>
+<P>
+<A NAME="50462723_pgfId-281274"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-281316"></A><A HREF=../headers/pk_debug_report_start.html>PK_DEBUG_report_start</A> ( <EM>key</EM>, <EM>options</EM> );</PRE>
+<PRE><A NAME="50462723_pgfId-281317"></A><EM># Your API call</EM> </PRE>
+<PRE><A NAME="50462723_pgfId-281318"></A><A HREF=../headers/pk_debug_report_stop.html>PK_DEBUG_report_stop</A> ();</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-291102"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-291145"></A>Note: The PK_DEBUG functions are declared in the header file <CODE>
+parasolid_debug.h </CODE>
+so you need an #include preprocessor directive for this file in order to compile calls to PK_DEBUG functions.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-278650"></A>Here is a specific example for a boolean operation (where the input arguments for the boolean have already been set up):</P>
+<P>
+<A NAME="50462723_pgfId-281373"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-281435"></A><A HREF=../headers/pk_session_set_journalling.html>PK_SESSION_set_journalling</A> (PK_LOGICAL_false);</PRE>
+<PRE><A NAME="50462723_pgfId-281436"></A><A HREF=../headers/pk_debug_report_start_o_t.html>PK_DEBUG_report_start_o_t</A> debugRep;</PRE>
+<PRE><A NAME="50462723_pgfId-281437"></A>PK_DEBUG_report_start_o_m (debugRep);</PRE>
+<PRE><A NAME="50462723_pgfId-281438"></A><A HREF=../headers/pk_debug_report_start.html>PK_DEBUG_report_start</A>(&quot;C:&#92;&#92;temp&#92;&#92;debug_xml.xml&quot;, &amp;debugRep);</PRE>
+<PRE><A NAME="50462723_pgfId-281439"></A><A HREF=../headers/pk_body_boolean_2.html>PK_BODY_boolean_2</A> (target, 1, &amp;tool, &amp;opts, &amp;tracking, &amp;results);</PRE>
+<PRE><A NAME="50462723_pgfId-281440"></A><A HREF=../headers/pk_debug_report_stop.html>PK_DEBUG_report_stop</A>();</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-278659"></A>PK_DEBUG_report _start receives the following arguments:</P>
+<P>
+<A NAME="50462723_pgfId-281524"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-281542"></A>Argument</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-281544"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-281546"></A>key</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-281576"></A>A string which identifies the file to which the debug information will be written.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-281550"></A>options</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-281600"></A>A set of options; It is not necessary to alter any of these except in specific circumstances (described throughout this chapter).</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-278664"></A>Journalling must be disabled for Debug XML to be generated: if journaling is enabled in your Parasolid session, you must turn it off by calling <A HREF=../headers/pk_session_set_journalling.html>PK_SESSION_set_journalling</A> before the call to <A HREF=../headers/pk_debug_report_start.html>PK_DEBUG_report_start</A>, as shown in the example above. </P>
+<P>
+<A NAME="50462723_pgfId-281634"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-281660"></A>Note: If your frustrum functions were written to integrate with a version of Parasolid earlier than V13.2, they may need to be modified to support Debug XML output. See <A HREF="fr_chap.06.html#50462725_71366">Appendix A, &#8220;Updating The Frustrum&#8221;</A>.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-281676"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-281686"></A>Warning: <A HREF=../headers/pk_debug_report_start.html>PK_DEBUG_report_start</A> and <A HREF=../headers/pk_debug_report_stop.html>PK_DEBUG_report_stop</A> are debug functions and as such are intended for internal use only. <STRONG>
+Products shipped to customers should not contain calls to either of these functions. </STRONG></ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278667"></A>	2.2.2 	<A NAME="50462723_94145"></A>How to verify Debug XML</H2>
+<P>
+<A NAME="50462723_pgfId-278629"></A>A well-formed Debug XML file will open in a web browser and finish with the end tag:</P>
+<P>
+<A NAME="50462723_pgfId-281744"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-281765"></A>&lt;/ParasolidFaultReport&gt;</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-281755"></A>In some cases the XML may be truncated (particularly if there has been a run-time error or other unhandled error), but the output file is still useful to Parasolid Support. In many cases there is enough information in the XML to reproduce the problem anyway, such as the exact Parasolid build, basic platform information and session settings, input bodies, API details, arguments (including node IDs) and option structure contents, return structures and any error codes. You should ensure, therefore, that you submit any Debug XML that is generated from a Parasolid session to Parasolid Support, whether it is well-formed or not. </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-278708"></A>2.3	<A NAME="50462723_57588"></A>Additional data
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-278709"></A>In addition to Debug XML, other supporting information can often help illustrate a fault report or enquiry. Occasionally this extra information may be required, but in other cases it may still be very useful. </P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278710"></A>	2.3.1 	Data for regressions</H2>
+<P>
+<A NAME="50462723_pgfId-278727"></A>In the case of regressions, it is important that data is provided to show both the &#8220;passing&#8221; and the &#8220;failing&#8221; cases; you need to provide evidence that the function being reported used to work or produced the desired result. Therefore when you report a regression, you should provide two Debug XML files, one for the passing case and one for the failing case. In some circumstances, result bodies may also be requested by Parasolid Support to help with the speedy resolution of the problem.</P>
+<P>
+<A NAME="50462723_pgfId-282024"></A>See also <A HREF="fr_chap.03.html#50462723_87093">Section 2.3.4, &#8220;Other useful data&#8221;</A>.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-283150"></A>	2.3.2 	<A NAME="50462723_28034"></A>Data for callback functions</H2>
+<P>
+<A NAME="50462723_pgfId-283177"></A>If the problem relates to a PK function that lets you specify a callback function definition, then Parasolid can generate debug XML for any calls to that callback function by setting the <CODE>
+report_cb</CODE>
+ option to a non-default value. </P>
+<P>
+<A NAME="50462723_pgfId-292944"></A>Recording callback data in the debug XML is typically useful to Parasolid Support when they attempt to replicate the call made to the relevant PK function.</P>
+<P>
+<A NAME="50462723_pgfId-292922"></A>This option takes the following values:</P>
+<P>
+<A NAME="50462723_pgfId-283221"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-283239"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-283241"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-283243"></A><A HREF=../headers/pk_debug_report_cb_t.html>PK_DEBUG_report_cb_no_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-283245"></A>Do not generate debug information for callback functions. The debug XML contains a pointer to the callback function itself, but no further information. This is the default.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-283293"></A><A HREF=../headers/pk_debug_report_cb_t.html>PK_DEBUG_report_cb_function_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-283249"></A>Generate full debug information for any callback functions that are specific to a particular PK function. </P>
+<ADDRESS>
+<A NAME="50462723_pgfId-283514"></A>Note: Setting this value does not generate debug information for system-wide callbacks, such as those you register using <A HREF=../headers/pk_attdef_register_cb.html>PK_ATTDEF_register_cb</A>.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278781"></A>	2.3.3 	Data for RTEs in Parasolid</H2>
+<P>
+<A NAME="50462723_pgfId-278792"></A>As described in <A HREF="fr_chap.03.html#50462723_94145">Section 2.2.2, &#8220;How to verify Debug XML&#8221;</A>, encountering a run-time error in Parasolid may mean that the Debug XML is not well-formed. In such cases, you might be asked for additional information in order for Parasolid Support to reproduce it.</P>
+<P>
+<A NAME="50462723_pgfId-278794"></A>In particular, if the Debug XML generated is incomplete, and you know that the RTE applies specifically to setting a particular option value, then try generating complete Debug XML by setting the option to a different value. Submit this data to Parasolid Support, but make sure you clearly flag the option value that causes the RTE to Parasolid Support in your incident report. </P>
+<P>
+<A NAME="50462723_pgfId-281901"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-281911"></A>Note: Incomplete Debug XML can be created in circumstances other than an RTE (such as, for example, an infinite loop). In such cases, see <A HREF="fr_chap.03.html#50462723_17470">Section 2.4, &#8220;Other methods of reporting faults&#8221;</A>, for information. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-282040"></A>See also <A HREF="fr_chap.03.html#50462723_87093">Section 2.3.4, &#8220;Other useful data&#8221;</A>.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278845"></A>	2.3.4 	<A NAME="50462723_87093"></A>Other useful data</H2>
+<P>
+<A NAME="50462723_pgfId-281983"></A>In many cases, additional data can be useful for Parasolid Support to speedily verify your issue and to ensure that there is a common understanding of the problem. This section provides a non-exhaustive list of information that can sometimes be useful. </P>
+<P>
+<A NAME="50462723_pgfId-282083"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-282111"></A>Type of issue</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-282113"></A>Notes</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-282115"></A>Platform specific, or SMP specific</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-282165"></A>If you suspect an issue is platform specific or specific to having Symmetric Multi-Processing enabled in Parasolid, then you should mention this in your report. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-282119"></A>Unexpected or undesired results</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-282188"></A>If an operation produces unexpected or undesired results, the following information can be useful:</P>
+<UL>
+<LI>
+<A NAME="50462723_pgfId-282189"></A>A screen shot clearly identifying the problem area.</LI>
+<LI>
+<A NAME="50462723_pgfId-282190"></A>A problem face highlighted using a different color.</LI>
+<LI>
+<A NAME="50462723_pgfId-282191"></A>A mock up of the expected result.</LI>
+</UL>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-282123"></A>Different Parasolid versions producing different results</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462723_pgfId-282230"></A>If two versions of Parasolid produce a different result, useful data could include:</P>
+<UL>
+<LI>
+<A NAME="50462723_pgfId-282231"></A>The result bodies from each version.</LI>
+<LI>
+<A NAME="50462723_pgfId-282232"></A>A clear description of the differences where it is not visually apparent.</LI>
+</UL>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-278871"></A>In all cases, when explaining what area of a part the problem occurs in, you should use Parasolid entity identifiers. An identifier is different from a Parasolid tag in that it is persistent across a save and restore of a model. You can find out the identifier of a given entity by passing the entity tag to <A HREF=../headers/pk_entity_ask_identifier.html>PK_ENTITY_ask_identifier</A>.</P>
+<P>
+<A NAME="50462723_pgfId-279796"></A>Sometimes, Parasolid Support may request further information, such as input or output bodies or details of preceding or subsequent operations. This is usually either to fully re-create the conditions that are required to reproduce the issue, to better understand the overall workflow which may be essential to determine the correct course of action, or to enable a more speedy resolution within Parasolid Development. </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-279798"></A>2.4	<A NAME="50462723_17470"></A>Other methods of reporting faults
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-279799"></A>In rare circumstances, Debug XML is not sufficient for Parasolid Support to reproduce the problem. Usually, these occasions are predictable and include:</P>
+<UL>
+<LI>
+<A NAME="50462723_pgfId-282403"></A>Transmit/receive issues.</LI>
+<LI>
+<A NAME="50462723_pgfId-282422"></A>Problems that occur as a result of data already cached in a Parasolid session.</LI>
+<LI>
+<A NAME="50462723_pgfId-282435"></A>Situations where Debug XML was not properly generated.</LI>
+<LI>
+<A NAME="50462723_pgfId-282449"></A>Cases where it is necessary to replicate more than just a single call to Parasolid (typically in situations where a previous call has changed the Parasolid session in a way that needs to be replicated in order to reproduce the issue).</LI>
+</UL>
+<P>
+<A NAME="50462723_pgfId-282479"></A>This section describes some of the information that can be useful to Parasolid Support in these situations.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278543"></A>	2.4.1 	<A NAME="50462723_83777"></A>Session files</H2>
+<P>
+<A NAME="50462723_pgfId-278922"></A>Sometimes, a session file is required by Parasolid Support. This contains a complete snapshot of a Parasolid session, which can then be read into a new session to restore the internal state of the saved session: the contents of the internal data structures and caches will be exactly as they were before. In this way, certain issues that cannot be reproduced using a standard Debug XML file will become reproducible. </P>
+<P>
+<A NAME="50462723_pgfId-283063"></A>You can create session information from a call to <A HREF=../headers/pk_debug_report_start.html>PK_DEBUG_report_start</A> by setting the <CODE>
+output_session</CODE>
+ option to <A HREF=../headers/pk_debug_output_session_t.html>PK_DEBUG_output_session_bin_c</A>. The resulting session data is included in the output file. </P>
+<P>
+<A NAME="50462723_pgfId-282658"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-282684"></A>Note: Most Parasolid APIs require that any entities specified as arguments are passed in using tags (the unique integer value assigned to all entities in a session). Although they are not persistent between sessions, tags are preserved when the session is saved, so you should record relevant tags immediately before the session file is generated, and include them in your problem report to Parasolid Support. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-283107"></A>After examining this session data, Parasolid Support might subsequently ask you to produce similar information using <A HREF=../headers/pk_session_transmit.html>PK_SESSION_transmit</A>, though this is not normally required. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278553"></A>	2.4.2 	Body and API arguments</H2>
+<P>
+<A NAME="50462723_pgfId-278968"></A>If the Debug XML is truncated (due to an RTE for example) then it is sometimes enough to submit the bodies and API details to Parasolid Support. Bodies should be provided in <CODE>
+x_t</CODE>
+ or <CODE>
+x_b</CODE>
+ format (i.e. using <A HREF=../headers/pk_part_transmit.html>PK_PART_transmit</A>), and saved just before the problem API call, together with the full set of arguments and options passed to the particular API. </P>
+<P>
+<A NAME="50462723_pgfId-282833"></A>If you supply data this way, refer to specific entities using identifiers, not tags. See <A HREF="fr_chap.03.html#50462723_87093">Section 2.3.4, &#8220;Other useful data&#8221;</A>, for more details. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278564"></A>	2.4.3 	Bodies and LISP</H2>
+<P>
+<A NAME="50462723_pgfId-278993"></A>If Debug XML cannot be generated and you are familiar with the Parasolid KID environment, you can submit a LISP test that reproduces the problem. To ensure that the test is reproducible, use identifiers to refer to any entities: see <A HREF="fr_chap.03.html#50462723_87093">Section 2.3.4, &#8220;Other useful data&#8221;</A>.</P>
+<P>
+<A NAME="50462723_pgfId-278983"></A>We do not expect you to use this method unless you are already familiar with the Parasolid KID environment.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462723_pgfId-278571"></A>	2.4.4 	Reproducing in the application</H2>
+<P>
+<A NAME="50462723_pgfId-279015"></A>If it is not possible for Parasolid Support to reproduce an issue using any of the methods already described, then it is likely that we will need to use your application directly.</P>
+<P>
+<A NAME="50462723_pgfId-279017"></A>The minimum information and data required to achieve this is: </P>
+<UL>
+<LI>
+<A NAME="50462723_pgfId-279018"></A>An appropriate copy of the application (and any installers etc.).</LI>
+<LI>
+<A NAME="50462723_pgfId-279019"></A>The relevant application (part) files.</LI>
+<LI>
+<A NAME="50462723_pgfId-279021"></A>Any licenses etc. required to install and run the software.</LI>
+<LI>
+<A NAME="50462723_pgfId-279022"></A>Clear instructions for reproducing the issue.</LI>
+<LI>
+<A NAME="50462723_pgfId-279023"></A>If required, instructions for attaching a suitable debugger to the application.</LI>
+</UL>
+<P>
+<A NAME="50462723_pgfId-282915"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-282928"></A>Note: A secure FTP account can be provided for any large file transfers that might be required in order to submit this information and data. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fr_chap.02.html">Introduction</A></TD>
+  <TD><A HREF="../fr_index.html">Chapters</A></TD>
+  <TD><A HREF="fr_chap.04.html">How To Report A Fault</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

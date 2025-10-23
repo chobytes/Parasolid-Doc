@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_embed_curve_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_embed_curve_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_embed_curve_t;
+</B>
+<A NAME="documentation"></A>
+This type indicates what information is contained in a report record of type
+<A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that is optionally produced by a call to
+<A HREF=../headers/pk_curve_embed_in_surf_2.html>PK_CURVE_embed_in_surf_2</A>.
+
+PK_embed_curve_t has the values:
+
+    PK_embed_curve_failure_c    The report states that the call failed in a
+                                manner for which no further information is
+                                is available.
+
+    PK_embed_curve_success_c    The report contains the distance the returned
+                                SP-curve needed to be moved in order for it to
+                                remain within the limits of the surface.
+
+    PK_embed_curve_limitation_c
+                                The report states that the call failed because
+                                the received SP-curve geometry is such that
+                                <A HREF=../headers/pk_curve_embed_in_surf_2.html>PK_CURVE_embed_in_surf_2</A> is unable to adjust it
+                                to remain within the limits of the surface.
+                                No further information is available.
+
+    PK_embed_curve_adjustment_c
+                                The report contains a low bound on the distance
+                                the received SP-curve will need to be moved in
+                                order for it to remain within the limits of the
+                                surface.
+                                Setting this as the value of the option
+                                <B>'adjustment_limit'</B> will improve the likelihood
+                                of success, but does not guarantee it.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

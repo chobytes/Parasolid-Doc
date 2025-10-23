@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_make_neutral_sheet_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_make_neutral_sheet_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_make_neutral_sheet_o_s
+    {
+    int             o_t_version;    --- version number of option structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    extend_and_fill_holes;
+                                    --- Extend, and fill holes in, multiple
+                                    --- face sheets
+                                    --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    have_tolerance; --- whether tolerance value is provided
+                                    --- (PK_LOGICAL_false)
+    double          tolerance;      --- tolerance on surface offsets
+                                    --- (0.0)
+    int             n_methods;      --- number of construction methods
+                                    --- (0)
+    const <A HREF=../headers/pk_neutral_method_t.html>PK_neutral_method_t</A>
+                   *methods;        --- array of construction methods
+                                    --- (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    make_sheet;     --- whether to create a neutral sheet
+                                    --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_neutral_face_overlap_t.html>PK_neutral_face_overlap_t</A>
+                    overlap;        --- whether to enforce face overlaps
+                                    --- (<A HREF=../headers/pk_neutral_face_overlap_t.html>PK_neutral_face_overlap_no_c</A>)
+    <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_t</A>
+                    update;         --- update flag
+                                    --- (<A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>)
+    };
+
+typedef struct PK_FACE_make_neutral_sheet_o_s PK_FACE_make_neutral_sheet_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This options structure holds optional controls for
+<A HREF=../headers/pk_face_make_neutral_sheet_2.html>PK_FACE_make_neutral_sheet_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_neutral_sheet_2.html>PK_FACE_make_neutral_sheet_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+ Description of fields:
+
+<B>'extend_and_fill_holes'</B> This option controls whether multiple face sheets are
+                        made large enough for trimming purposes against other
+                        neutral sheets and side faces by extending and filling
+                        holes.
+
+<B>'have_tolerance'</B>        Whether a tolerance has been provided. If this is
+                        PK_LOGICAL_true, then <B>'tolerance'</B> is used to determine
+                        whether faces are offsets of each other. If this is
+                        PK_LOGICAL_false, then <B>'tolerance'</B> is ignored and faces
+                        are only considered offsets if their surfaces are
+                        geometrically exact offsets.
+
+<B>'tolerance'</B>             Tolerance for approximate offset classification.
+
+<B>'n_methods'</B>             Number of construction methods to use. Currently this
+                        may only be set to one or zero. If zero, then the
+                        default method <A HREF=../headers/pk_neutral_method_t.html>PK_neutral_method_mid_offset_c</A> will be
+                        used for all face pairs. If <B>'n_methods'</B> is neither zero
+                        nor one, the error PK_ERROR_invalid_methods will be
+                        returned.
+
+<B>'methods'</B>               The construction methods to use. Possible methods are:
+
+                        <A HREF=../headers/pk_neutral_method_t.html>PK_neutral_method_mid_offset_c</A>:
+                            Create neutral surfaces by offsetting between sets
+                            of offset faces. If there are faces that are not
+                            suitable offsets of each other, this method will
+                            fail.
+                        <A HREF=../headers/pk_neutral_method_t.html>PK_neutral_method_offset_left_c</A>:
+                            Create neutral surfaces by offsetting the left set
+                            of faces. Faces from opposite sides need not be
+                            offsets of each other, but must not intersect.
+                        <A HREF=../headers/pk_neutral_method_t.html>PK_neutral_method_medial_c</A>:
+                            Create neutral surfaces that are within tolerance
+                            of the theoretical medial surface. This method is
+                            suitable for face sets that are not tolerant
+                            offsets of each other.
+
+                        Currently only one method may be supplied. If <B>'methods'</B>
+                        contains an array of more than one element, the error
+                        PK_ERROR_invalid_methods will be returned.
+
+<B>'make_sheet'</B>            Whether to create a neutral sheet. If this is
+                        PK_LOGICAL_true, then the function will create a
+                        neutral sheet. If this is PK_LOGICAL_false, then no
+                        neutral sheet will be created, but construction data
+                        will still be reported in the Parasolid Report.
+
+<B>'overlap'</B>               Whether to enforce considering face overlaps when
+                        making neutral sheets. If this is set to the value
+                        <A HREF=../headers/pk_neutral_face_overlap_t.html>PK_neutral_face_overlap_no_c</A> then a neutral sheet may
+                        in some circumstances be created despite the face
+                        sets not overlapping. If this is set to the value
+                        <A HREF=../headers/pk_neutral_face_overlap_t.html>PK_neutral_face_overlap_yes_c</A> then a neutral sheet
+                        will not be created if the face sets do not overlap.
+
+<B>'update'</B>                The default value allows applications to take
+                        advantage of the latest enhancements of the generic
+                        algorithms supporting Parasolid local operations
+                        functions. To maintain consistency when rebuilding
+                        models created in a previous version of Parasolid,
+                        a non-default value should be specified.
+
+                        The default value is <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

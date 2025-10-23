@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.007.html#50409787_pgfId-294753", " This section <B>outlines</B> the frustrum functions that you need to supply", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989731", " 37.3, Creating outline curves, perspective <B>outlines</B>, and spun <B>outlines</B> ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-390153", " 37.3 Creating outline curves, perspective <B>outlines</B>, and spun <B>outlines</B> ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-514469", " from sheet and solid bodies, and PK_BODY_make_spun_outline creates <B>outlines</B> from solid bodies only. ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-657330", " the general body is a cellular body, its <B>outlines</B> will be created from the faces selected by", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-657311", " Parasolid supports the following types of <B>outlines</B>: ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-332939", " Figure 37-4 Creating spun <B>outlines</B> for a body ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308808", " Figure 37-5 Creating spun <B>outlines</B> for two bodies ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-525635", " Both outline curves and spun <B>outlines</B> share a number of properties, as follows: ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308823", " The number of bodies to create <B>outlines</B> for. ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308827", " that contains the bodies to create <B>outlines</B> for. ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308839", " specify a view direction to use for the <B>outlines</B> as shown in ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-532273", " specify an eye position to use for the <B>outlines</B> as shown in ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308840", " specify a spin axis to use for the <B>outlines</B> as shown in ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-513806", " <B>outlines</B> ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-513810", " which <B>outlines</B>. See Section 37.3.7, Differentiating between several <B>outlines</B> for", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308887", "<B>outlines</B> ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-523961", " containing status information and an array of the <B>outlines</B> generated. ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308894", " when creating outline curves, perspective <B>outlines</B>, and spun <B>outlines</B>, using the associated PK_BODY_make_curves_outline_o_t , PK_BODY_make_persp_outline_o_t , and", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-409751", " Whether to create <B>outlines</B> of wire components or sheet components that are", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-410410", " PK_outline_edge_on_none_c - only create <B>outlines</B> from non-edge-on components of the input bodies. ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-410455", " PK_outline_edge_on_all_c - create <B>outlines</B> only if all input bodies contain wire and", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-656852", " wire and edge-on sheets are trimmed using the <B>outlines</B> of the solid and non-edge-on sheet components of", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-753405", " PK_outline_invisible_no_c - do not create invisible <B>outlines</B> ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-753406", " invisible curves. Loops may be open fragments of <B>outlines</B> formed from visible and invisible curves. ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-753410", " PK_outline_invisible_both_c - create invisible <B>outlines</B> and return them within closed loops containing visible", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-753415", " Note: Information on invisible <B>outlines</B> is only returned when ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-798632", " spun outline while creating both visible and invisible <B>outlines</B> is shown in ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-762132", " Figure 37-9 Creating invisible <B>outlines</B> of a body with two blind holes and", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-793876", " Figure 37-10 Creating invisible <B>outlines</B> of a body and excluding multiple sets of", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-516028", " location vector that defines the surface that the <B>outlines</B> are projected onto. Default: (0 0 0). ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-516032", " the axis direction of the cylinder that the <B>outlines</B> are projected onto. ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-842441", " size box) onto a plane where the result <B>outlines</B> would be projected outside of the size box.", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-570894", " lie within the generalised cone formed by the <B>outlines</B> of the ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308951", " Only one body is created per set of <B>outlines</B>; if the generated outline contains multiple loops of", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-309140", " 37.3.7 Differentiating between several <B>outlines</B> ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-309141", " <B>outlines</B> of a body containing holes. When several <B>outlines</B>", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-309175", " Figure 37-20 Returning several <B>outlines</B> from PK_BODY_make_curves_outline or PK_BODY_make_spun_outline ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-309176", " Suppose, for example, that three <B>outlines</B> were returned, consisting of 2, 7, and 2", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-309184", " <B>outlines</B> are returned, the order in which the <B>outlines</B> themselves are returned is undefined, so it is", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-309185", "<B>outlines</B> ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-871862", " PK_REPORT_3_outline_error_c , and any <B>outlines</B> that have been produced will be returned in", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205076", " spun <B>outlines</B> 410 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208358", " <B>outlines</B>, spun 410, 416 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208912", " spun <B>outlines</B> 416 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209816", " spun <B>outlines</B> 416 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209818", " spun <B>outlines</B>, creating 410 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.07.html#50442276_pgfId-277545", " 6.4.4 Outline curves, perspective <B>outlines</B>, spun <B>outlines</B> and shadow curves ", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.07.html#50442276_marker-1078694", " 6-11 . Parasolid also supports the creation of <B>outlines</B> of wire components or sheet components that are", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.07.html#50442276_marker-1075209", " . This functionality also enables you to create <B>outlines</B> of features which are hidden by other portions", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.07.html#50442276_pgfId-277470", " Figure 6-15 Creating spun <B>outlines</B> for two bodies ", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.07.html#50442276_pgfId-1079414", " Figure 6-16 Creating invisible <B>outlines</B> of a body with holes ", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438535", " <B>outlines</B>, spun ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438674", " spun <B>outlines</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438892", " spun <B>outlines</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_outline_edge_on_none_c 25440 No <B>outlines</B> will be generated from wire and edge-on sheet", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_outline_edge_on_all_c 25441 <B>Outlines</B> will be created if the input bodies only contain", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_body_make_curves_outline.html#declaration", "int **const <B>outlines</B>, --- indicates which", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_curves_outline.html#description", " This function outputs one or more <B>outlines</B> of a body or bodies for a given", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_curves_outline.html#documentation", "For general bodies that are cellular, their <B>outlines</B> are created from the faces", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_curves_outline_o_t.html#declaration", " PK_outline_edge_on_t edge_on; --- whether to create <B>outlines</B> from", "PK Reference - PK_BODY_make_curves_outline_o_t");
+top.note("headers/pk_body_make_curves_outline_o_t.html#documentation", " tolerance The accuracy of the <B>outlines</B> generated. The minimum", "PK Reference - PK_BODY_make_curves_outline_o_t");
+top.note("headers/pk_body_make_persp_outline.html#description", " This function produces <B>outlines</B> for viewing bodies of type PK_BODY_type_solid_c", "PK Reference - PK_BODY_make_persp_outline");
+top.note("headers/pk_body_make_persp_outline.html#documentation", "This function produces <B>outlines</B> for viewing solid, sheet, or cellular bodies", "PK Reference - PK_BODY_make_persp_outline");
+top.note("headers/pk_body_make_persp_outline_o_t.html#declaration", " PK_scale_factor_t project_scale; --- scale to shrink the <B>outlines</B>", "PK Reference - PK_BODY_make_persp_outline_o_t");
+top.note("headers/pk_body_make_persp_outline_o_t.html#documentation", " the <B>outlines</B> will be projected.", "PK Reference - PK_BODY_make_persp_outline_o_t");
+top.note("headers/pk_body_make_persp_outline_r_t.html#declaration", " PK_outline_curve_t *<B>outlines</B>;", "PK Reference - PK_BODY_make_persp_outline_r_t");
+top.note("headers/pk_body_make_persp_outline_r_t.html#documentation", " <B>outlines</B> An array of length n_outlines , each element", "PK Reference - PK_BODY_make_persp_outline_r_t");
+top.note("headers/pk_body_make_spun_outline.html#declaration", "int **const <B>outlines</B>, --- indicates which", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_make_spun_outline.html#description", " This function outputs one or more <B>outlines</B> of a body or bodies for a given", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_make_spun_outline.html#documentation", "The <B>outlines</B> of cellular bodies are created from the faces", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_make_spun_outline_o_t.html#declaration", " --- invisible <B>outlines</B>", "PK Reference - PK_BODY_make_spun_outline_o_t");
+top.note("headers/pk_body_make_spun_outline_o_t.html#documentation", " tolerance The accuracy of the <B>outlines</B> generated. The minimum", "PK Reference - PK_BODY_make_spun_outline_o_t");
+top.note("headers/pk_outline_edge_on_t.html#documentation", "PK_outline_edge_on_t controls whether to create <B>outlines</B> of wire components and", "PK Reference - PK_outline_edge_on_t");
+top.note("headers/pk_outline_invisible_t.html#documentation", " datatype specifies whether and how to produce invisible <B>outlines</B> in a", "PK Reference - PK_outline_invisible_t");
+top.note("headers/pk_outline_status_t.html#documentation", " PK_outline_status_non_manifold_c Operation succeeded with <B>outlines</B>", "PK Reference - PK_outline_status_t");
+top.note("headers/pk_persp_outline_t.html#documentation", " PK_persp_outline_non_manifold_c Operation succeeded with <B>outlines</B>", "PK Reference - PK_persp_outline_t");
+top.note("headers/pk_report_3_t.html#documentation", " PK_REPORT_3_outline_result_c Information on <B>outlines</B> produced and their", "PK Reference - PK_REPORT_3_t");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7743324", " You can create <B>outlines</B> from faces of cellular bodies selected by the", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

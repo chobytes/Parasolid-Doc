@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BB_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BB_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+    struct PK_BB_sf_s
+        {
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> create;        --- creation classes
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> deleet;        --- deletion classes
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> copy;          --- copy classes
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> transfer;      --- transfer classes
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> merge;         --- merge classes
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> split;         --- split classes
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> transform;     --- transform classes
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> change_attrib; --- attribute classes
+        <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> change;        --- change classes
+        };
+    typedef struct PK_BB_sf_s PK_BB_sf_t;
+
+</B>
+<A NAME="description"></A>
+<I>This standard form defines a bulletin board.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_class_event_comb   class not allowed for event
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bb_ask.html>PK_BB_ask</A><br>
+    <A HREF=../headers/pk_bb_create.html>PK_BB_create</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The fields determine, for the various possible events, which classes
+of entities will lead to events being recorded in the bulletin board.
+
+The allowed combinations of classes and events are indicated by crosses in
+the following table:
+                                                                       c
+                                                                       h
+                                                                       a
+                                                                       n
+                                                                    t  g
+                                                           t        r  e
+                                                           r        a  _
+                                                  c  d     a        n  a  c
+                                                  r  e     n  m  s  s  t  h
+                                                  e  l  c  s  e  p  f  t  a
+                                                  a  e  o  f  r  l  o  r  n
+                                                  t  e  p  e  g  i  r  i  g
+                                                  e  t  y  r  e  t  m  b  e
+------------------------------------------------|---------------------------|
+                 PK_CLASS_part PK_CLASS_body    | X  X  X     X  X  X  X  X |
+                               PK_CLASS_assembly| X  X  X     X  X  X  X    |
+               ---------------------------------|---------------------------|
+                               PK_CLASS_instance| X  X  X  X  X  X  X  X  X |
+                               PK_CLASS_shell   | X  X  X  X  X  X  X  X  X |
+PK_CLASS_topol                 PK_CLASS_face    | X  X  X  X  X  X  X  X  X |
+                               PK_CLASS_loop    | X  X  X  X  X  X  X  X  X |
+                               PK_CLASS_edge    | X  X  X  X  X  X  X  X  X |
+                               PK_CLASS_vertex  | X  X  X  X  X  X  X  X  X |
+                               PK_CLASS_region  | X  X  X  X  X  X  X  X  X |
+------------------------------------------------|---------------------------|
+                               PK_CLASS_surf    | X  X  X  X        X  X  X |
+PK_CLASS_geom                  PK_CLASS_curve   | X  X  X  X        X  X  X |
+                               PK_CLASS_point   | X  X  X  X        X  X  X |
+------------------------------------------------|---------------------------|
+                               PK_CLASS_group   | X  X  X  X  X  X  X  X  X |
+                               PK_CLASS_transf  | X  X  X  X        X  X  X |
+                               PK_CLASS_attdef  | X                         |
+------------------------------------------------|---------------------------|
+
+A BB standard form given to <A HREF=../headers/pk_bb_create.html>PK_BB_create</A> may specify the superclasses
+PK_CLASS_part, PK_CLASS_topol or PK_CLASS_geom where bulletining is required
+for all of their subclasses and all of those subclasses are allowed for the
+event.  BB standard forms returned by <A HREF=../headers/pk_bb_ask.html>PK_BB_ask</A> do not use these
+superclasses (they are expanded into their subclasses).
+
+Note that the name of the field for delete classes is <B>'deleet'</B>.
+This is because <B>'delete'</B> is a reserved word in C++.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

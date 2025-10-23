@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_EDGE_ask_type_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_EDGE_ask_type_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_EDGE_types_s
+    {
+    <A HREF=../headers/pk_edge_vertex_type_t.html>PK_EDGE_vertex_type_t</A>   vertex_type; --- types of vertices on edge
+    <A HREF=../headers/pk_enclosure_t.html>PK_enclosure_t</A>          enclosure;   --- types of regions surrounding edge
+    <A HREF=../headers/pk_edge_fins_type_t.html>PK_EDGE_fins_type_t</A>     fins_type;   --- number of fins on edge
+    };
+
+typedef struct PK_EDGE_types_s PK_EDGE_ask_type_t;
+
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains classification data for an edge.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_edge_ask_type.html>PK_EDGE_ask_type</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This structure contains data for a given edge that classifies it according
+to whether it is:
+    (a)     open, closed, or a ring.
+    (b)     surrounded by solid regions, by void regions, or by both.
+    (c)     wireframe, laminar, normal, or general.
+
+
+
+vertex_type   Whether the edge is open, closed, or a ring.
+              Values can be:
+                PK_EDGE_type_open_c
+                PK_EDGE_type_closed_c
+                PK_EDGE_type_ring_c
+
+
+enclosure     What types of regions the edge is surrounded by.
+              Values can be:
+                <A HREF=../headers/pk_enclosure_t.html>PK_enclosure_inside_c</A>
+                <A HREF=../headers/pk_enclosure_t.html>PK_enclosure_outside_c</A>
+                <A HREF=../headers/pk_enclosure_t.html>PK_enclosure_on_c</A>
+
+
+fins_type     The type of the edge.
+              Values can be:
+                PK_EDGE_type_wireframe_c
+                PK_EDGE_type_laminar_c
+                PK_EDGE_type_normal_c
+                PK_EDGE_type_general_c
+
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

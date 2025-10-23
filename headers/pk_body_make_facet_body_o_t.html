@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_make_facet_body_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_make_facet_body_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_make_facet_body_o_s
+    {
+    int                o_t_version;        --- Version of option structure.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_max_facet_width;    --- Whether max_facet_width is set.
+                                           --- (PK_LOGICAL_false)
+    double             max_facet_width;    --- Controls the maximum length of
+                                           --- a facet edge.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_distance_tolerance; --- Whether distance_tolerance is
+                                           --- set. (PK_LOGICAL_false)
+    double             distance_tolerance; --- Distance tolerance between
+                                           --- new mesh and model geometry.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_angular_tolerance;  --- Whether angular_tolerance is
+                                           --- set. (PK_LOGICAL_false)
+    double             angular_tolerance;  --- Angular tolerance between new
+                                           --- mesh and model geometry.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_max_chord_length;   --- Whether max_chord_length is
+                                           --- set. (PK_LOGICAL_false)
+    double             max_chord_length;   --- Controls the maximum length of
+                                           --- a facet edge derived from
+                                           --- model geometry.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       retain_attributes;  --- Whether to retain attributes.
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       retain_groups;      --- Whether to retain groups.
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       track_faces;        --- Whether to track faces.
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_track_edges_t.html>PK_track_edges_t</A>   track_edges;        --- Options for tracking edges.
+                                           --- (<A HREF=../headers/pk_track_edges_t.html>PK_track_edges_no_c</A>).
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       return_redundant;   --- Whether to provide a list of
+                                           --- topologies not copied to the
+                                           --- new body. (PK_LOGICAL_false)
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_t</A> partial_conversion; --- Whether to allow partial
+                                           --- conversion to a facet body or
+                                           --- to fail if a full conversion
+                                           --- has not been achieved.
+                                           --- (<A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_any_c</A>)
+    };
+typedef struct PK_BODY_make_facet_body_o_s PK_BODY_make_facet_body_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional arguments for <A HREF=../headers/pk_body_make_facet_body.html>PK_BODY_make_facet_body</A>.
+
+The tessellation options are used to generate replacement meshes and polylines
+for the <B>'body_copy'</B>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_value              <B>'partial_conversion'</B> cannot be set to
+                                    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_no_c</A>.  (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_facet_body.html>PK_BODY_make_facet_body</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+ Tessellation options
+
+
+<B>'is_max_facet_width'</B>    This option controls whether or not the associated
+                        option <B>'max_facet_width'</B> is used.
+
+
+<B>'max_facet_width'</B>       If the option <B>'is_max_facet_width'</B> is set to
+                        PK_LOGICAL_true and <B>'max_facet_width'</B> is set to a
+                        positive value then this value will be used to
+                        control the maximum length of any mfin.
+
+
+<B>'is_distance_tolerance'</B> This option controls whether or not the associated
+                        option <B>'distance_tolerance'</B> is used.
+
+
+<B>'distance_tolerance'</B>    If the option <B>'is_distance_tolerance'</B> is set to
+                        PK_LOGICAL_true and <B>'distance_tolerance'</B> is set to a
+                        positive value then this value will be used to control
+                        the maximum chordal distance between a polyline and
+                        its original edge entity and the maximum distance from
+                        a position on a mesh to the surface of the original
+                        face.
+
+
+<B>'is_angular_tolerance'</B>  This option controls whether or not the associated
+                        option <B>'angular_tolerance'</B> is used.
+
+
+<B>'angular_tolerance'</B>     If the option <B>'is_angular_tolerance'</B> is set to
+                        PK_LOGICAL_true and <B>'angular_tolerance'</B> is set to a
+                        positive value then this value will be used to control
+                        the maximum angle between a facet chord and its
+                        original edge entity, measured as the sum of the two
+                        angles formed between the chord and the curve tangents
+                        at each chord end. It will also control the maximum
+                        angle between the surface normals at any two positions
+                        on the surface which lie within the facet boundary.
+
+
+<B>'is_max_chord_length'</B>   This option controls whether or not the associated
+                        option <B>'max_chord_length'</B> is used.
+
+
+<B>'max_chord_length'</B>      If the option <B>'is_max_chord_length'</B> is set to
+                        PK_LOGICAL_true and <B>'max_chord_length'</B> is set to a
+                        positive value then this value will be used to
+                        control the maximum length of any facet edge which
+                        represents part of an original edge entity.
+
+
+ Associated data and tracking controls
+
+
+<B>'retain_attributes'</B>     Controls whether attributes attached to topology should
+                        should be copied onto the new body.
+
+
+<B>'retain_groups'</B>         Controls whether groups attached to topology should be
+                        copied onto the new body.
+
+
+<B>'track_faces'</B>           Controls whether to return tracking for faces copied
+                        from <B>'body'</B> to <B>'body_copy'</B>.
+
+
+<B>'track_edges'</B>           Controls whether return tracking for edges copied from
+                        <B>'body'</B> to <B>'body_copy'</B>. Options are to track all edges;
+                        just laminar and wire edges; or not to track edges.
+
+
+<B>'return_redundant'</B>      Controls whether to return the list of topologies which
+                        were not copied to the new body. Topologies from the
+                        original body can become redundant in the copied body
+                        if their copied topologies contain no facet geometry
+                        at the given tolerances. For example, a very narrow
+                        face and its surrounding edges may be collapsed down to
+                        a single edge, causing the face from the original body
+                        to be redundant.
+
+
+<B>'partial_conversion'</B>    Controls whether to allow partial conversion to a facet
+                        body.  If all the faces and edges in the resulting
+                        facet body that correspond to faces and edges which had
+                        geometry in the original body have facet geometry
+                        attached, the body is considered to have been fully
+                        converted.  If any (but not all) of these faces and
+                        edges fail to create facet geometry, the part is
+                        considered to be partially converted.
+
+                        It may take the following values:
+
+                        <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_any_c</A>:
+                            The operation will fail with the error
+                            PK_ERROR_failed_to_facet if any faces or edges fail
+                            to facet.
+
+                        <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_all_c</A>:
+                            The operation will only return
+                            PK_ERROR_failed_to_facet if all the faces and edges
+                            of the original body fail to facet.  Otherwise, any
+                            topologies that fail to facet will have no geometry
+                            attached and only partial conversion will be
+                            achieved.
+
+                        In the case of a partial conversion, reports of type
+                        <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_1_c</A> will be returned via the
+                        Parasolid report mechanism.  These records will have a
+                        status of <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cant_get_geom_c</A> and will return
+                        the faces and edges in the result body which have no
+                        geometry attached as a result of failures to facet.
+
+                        Note: Topologies with no geometry in the original body
+                              are not converted and as such are not treated as
+                              having failed to facet and will not appear in the
+                              report.
+                              Vertices are also not treated as being converted.
+
+                        Note: The value <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_no_c</A> is not allowed.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

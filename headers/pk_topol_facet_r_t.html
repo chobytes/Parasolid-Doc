@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_facet_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_facet_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_TOPOL_facet_r_s
+    {
+    int number_of_facets;
+    int number_of_fins;
+    int number_of_vertices;
+    <A HREF=../headers/pk_topol_fctab_facet_fin_t.html>PK_TOPOL_fctab_facet_fin_t</A>      facet_fin;
+    <A HREF=../headers/pk_topol_fctab_fin_fin_t.html>PK_TOPOL_fctab_fin_fin_t</A>        fin_fin;
+    <A HREF=../headers/pk_topol_fctab_fin_vertex_t.html>PK_TOPOL_fctab_fin_vertex_t</A>     fin_vertex;
+    <A HREF=../headers/pk_topol_fctab_vertex_point_t.html>PK_TOPOL_fctab_vertex_point_t</A>   vertex_point;
+    <A HREF=../headers/pk_topol_fctab_vertex_normal_t.html>PK_TOPOL_fctab_vertex_normal_t</A>  vertex_normal;
+    <A HREF=../headers/pk_topol_fctab_vertex_param_t.html>PK_TOPOL_fctab_vertex_param_t</A>   vertex_param;
+    <A HREF=../headers/pk_topol_fctab_point_vec_t.html>PK_TOPOL_fctab_point_vec_t</A>      point_vec;
+    <A HREF=../headers/pk_topol_fctab_normal_vec_t.html>PK_TOPOL_fctab_normal_vec_t</A>     normal_vec;
+    <A HREF=../headers/pk_topol_fctab_param_uv_t.html>PK_TOPOL_fctab_param_uv_t</A>       param_uv;
+    <A HREF=../headers/pk_topol_fctab_param_dp_t.html>PK_TOPOL_fctab_param_dp_t</A>       param_dp;
+    <A HREF=../headers/pk_topol_fctab_param_d2p_t.html>PK_TOPOL_fctab_param_d2p_t</A>      param_d2p;
+    <A HREF=../headers/pk_topol_fctab_facet_face_t.html>PK_TOPOL_fctab_facet_face_t</A>     facet_face;
+    <A HREF=../headers/pk_topol_fctab_facet_occ_t.html>PK_TOPOL_fctab_facet_occ_t</A>      facet_occ;
+    <A HREF=../headers/pk_topol_fctab_edge_fin_t.html>PK_TOPOL_fctab_edge_fin_t</A>       edge_fin;
+    <A HREF=../headers/pk_topol_fctab_edge_occ_t.html>PK_TOPOL_fctab_edge_occ_t</A>       edge_occ;
+    <A HREF=../headers/pk_topol_fctab_error_facet_t.html>PK_TOPOL_fctab_error_facet_t</A>    error_facet;
+    };
+typedef struct PK_TOPOL_facet_r_s PK_TOPOL_facet_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>The PK_TOPOL_facet_r_t structure returns the total number of facets, fins and
+vertices in the facet mesh, with tables representing facet topology, geometry,
+associative and error data as requested in the <A HREF=../headers/pk_topol_facet_choice_o_t.html>PK_TOPOL_facet_choice_o_t</A>
+options structure.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A><br>
+    <A HREF=../headers/pk_topol_facet_r_f.html>PK_TOPOL_facet_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The returned structure always calculates and returns the number of facets,
+fins and vertices in the facet mesh, irrespective of choices selected by
+the <A HREF=../headers/pk_topol_facet_choice_o_t.html>PK_TOPOL_facet_choice_o_t</A> options structure.
+
+Each table is named in the form  PK_TOPOL_fctab_&lt;table&gt;_t &lt;table&gt;
+    where each "&lt;table&gt;" field name corresponds to one of the
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> switch names in <A HREF=../headers/pk_topol_facet_choice_o_t.html>PK_TOPOL_facet_choice_o_t</A>
+
+If a specific table was requested (by setting the corresponding field name
+in <A HREF=../headers/pk_topol_facet_choice_o_t.html>PK_TOPOL_facet_choice_o_t</A> to PK_LOGICAL_true), the table is returned with :
+
+  -  an array pointer
+  -  an integer which contains the number of array items
+
+The array pointer is an address in virtual memory, provided by the memory
+allocator (as registered with <A HREF=../headers/pk_memory_register_callbacks.html>PK_MEMORY_register_callbacks</A>). All such virtual
+memory data must be freed by the application.
+
+If a table was not requested, the table is returned with :
+  -  an array pointer which contains NULL
+  -  an integer length of zero
+
+To free all of the memory allocated for the return tables, the function
+<A HREF=../headers/pk_topol_facet_r_f.html>PK_TOPOL_facet_r_f</A> should be called.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

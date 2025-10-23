@@ -1,0 +1,120 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.026.html#50409768_pgfId-386651", " ( <B>PK_ENTITY_t</B> entity, vector start, vector end) ", "Functional Description - Expressions");
+top.note("chapters/fd_chap.026.html#50409768_pgfId-386721", " ( <B>PK_ENTITY_t</B> entity, vector position) ", "Functional Description - Expressions");
+top.note("chapters/fd_chap.026.html#50409768_pgfId-376260", " ( <B>PK_ENTITY_t</B> entity, vector position, bool ", "Functional Description - Expressions");
+top.note("chapters/fd_chap.026.html#50409768_pgfId-388410", " ( <B>PK_ENTITY_t</B> entity, vector position, bool ", "Functional Description - Expressions");
+top.note("headers/pk_attdef_copy_callback_f_t.html#declaration", " <B>PK_ENTITY_t</B> old_entity, --- pre-existing entity", "PK Reference - PK_ATTDEF_copy_callback_f_t");
+top.note("headers/pk_attdef_delete_callback_f_t.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity to be deleted", "PK Reference - PK_ATTDEF_delete_callback_f_t");
+top.note("headers/pk_attdef_merge_callback_f_t.html#declaration", " <B>PK_ENTITY_t</B> live_entity, --- the entity that will survive the merge", "PK Reference - PK_ATTDEF_merge_callback_f_t");
+top.note("headers/pk_attdef_receive_callback_f_t.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity which has been received", "PK Reference - PK_ATTDEF_receive_callback_f_t");
+top.note("headers/pk_attdef_split_callback_f_t.html#declaration", " <B>PK_ENTITY_t</B> old_entity, --- the pre-existing entity", "PK Reference - PK_ATTDEF_split_callback_f_t");
+top.note("headers/pk_attdef_transmit_callback_f_t.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity to be transmitted", "PK Reference - PK_ATTDEF_transmit_callback_f_t");
+top.note("headers/pk_attrib_ask_owner.html#declaration", " <B>PK_ENTITY_t</B> *const owner --- entity which owns attribute", "PK Reference - PK_ATTRIB_ask_owner");
+top.note("headers/pk_attrib_create_empty.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity to attach to", "PK Reference - PK_ATTRIB_create_empty");
+top.note("headers/pk_bb_output_events.html#declaration", " <B>PK_ENTITY_t</B> **const entities, --- entities (optional)", "PK Reference - PK_BB_output_events");
+top.note("headers/pk_blend_cap_data_t.html#declaration", " const <B>PK_ENTITY_t</B> *caps; --- entities for capping blend (NULL)", "PK Reference - PK_blend_cap_data_t");
+top.note("headers/pk_blend_constraint_t.html#declaration", " const <B>PK_ENTITY_t</B> *caps; --- entities for capping", "PK Reference - PK_blend_constraint_t");
+top.note("headers/pk_blend_delete_cap_data_t.html#declaration", " const <B>PK_ENTITY_t</B> *end_idents; --- topologies", "PK Reference - PK_blend_delete_cap_data_t");
+top.note("headers/pk_body_extend_o_t.html#declaration", " <B>PK_ENTITY_t</B> target; --- target body or surface to define", "PK Reference - PK_BODY_extend_o_t");
+top.note("headers/pk_body_fix_blends.html#declaration", " <B>PK_ENTITY_t</B> *const fault_topol --- topology associated with", "PK Reference - PK_BODY_fix_blends");
+top.note("headers/pk_body_make_persp_outline_r_t.html#declaration", " <B>PK_ENTITY_t</B> *original_error_entities;", "PK Reference - PK_BODY_make_persp_outline_r_t");
+top.note("headers/pk_body_pick_topol_r_t.html#declaration", " <B>PK_ENTITY_t</B> entity;", "PK Reference - PK_BODY_pick_topol_r_t");
+top.note("headers/pk_body_sweep_status_2_r_t.html#declaration", " <B>PK_ENTITY_t</B> *fault_entities;", "PK Reference - PK_BODY_sweep_status_2_r_t");
+top.note("headers/pk_body_sweep_tool_status_r_t.html#declaration", " <B>PK_ENTITY_t</B> *fault_entities;", "PK Reference - PK_BODY_sweep_tool_status_r_t");
+top.note("headers/pk_body_taper.html#declaration", "const <B>PK_ENTITY_t</B> refs_above[], --- reference entities", "PK Reference - PK_BODY_taper");
+top.note("headers/pk_body_taper_o_t.html#declaration", " const <B>PK_ENTITY_t</B> *method_refs; --- reference entities to use", "PK Reference - PK_BODY_taper_o_t");
+top.note("headers/pk_boolean_report_r_t.html#declaration", " <B>PK_ENTITY_t</B> *entities;", "PK Reference - PK_boolean_report_r_t");
+top.note("headers/pk_bound_def_t.html#declaration", " <B>PK_ENTITY_t</B> entity; --- bounding entity", "PK Reference - PK_bound_def_t");
+top.note("headers/pk_change_edge_geom_data_t.html#declaration", " const <B>PK_ENTITY_t</B> *entities; --- array containing the", "PK Reference - PK_change_edge_geom_data_t");
+top.note("headers/pk_check_fault_t.html#declaration", " <B>PK_ENTITY_t</B> entity_1; --- fault entity (always present)", "PK Reference - PK_check_fault_t");
+top.note("headers/pk_curve_project.html#declaration", "const <B>PK_ENTITY_t</B> targets[], --- array of target entities", "PK Reference - PK_CURVE_project");
+top.note("headers/pk_curve_self_int_t.html#declaration", " <B>PK_ENTITY_t</B> *entities;", "PK Reference - PK_CURVE_self_int_t");
+top.note("headers/pk_debug_local_diffs_r_t.html#declaration", " <B>PK_ENTITY_t</B> master_entity;", "PK Reference - PK_DEBUG_local_diffs_r_t");
+top.note("headers/pk_edge_offset_on_body_r_t.html#declaration", " <B>PK_ENTITY_t</B> *fault_entities; --- associated entities", "PK Reference - PK_EDGE_offset_on_body_r_t");
+top.note("headers/pk_entity_array_t.html#description", " This structure contains an array of entities of type <B>PK_ENTITY_t</B> ", "PK Reference - PK_ENTITY_array_t");
+top.note("headers/pk_entity_array_t.html#documentation", " <B>PK_ENTITY_t</B> *array; --- array of ENTITYs", "PK Reference - PK_ENTITY_array_t");
+top.note("headers/pk_entity_ask_attribs.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_ENTITY_ask_attribs");
+top.note("headers/pk_entity_ask_class.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_ENTITY_ask_class");
+top.note("headers/pk_entity_ask_description.html#documentation", " <B>PK_ENTITY_t</B> , PK_MARK_t , PK_PARTITION_t , PK_PMARK_t ", "PK Reference - PK_ENTITY_ask_description");
+top.note("headers/pk_entity_ask_first_attrib.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_ENTITY_ask_first_attrib");
+top.note("headers/pk_entity_ask_identifier.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_ENTITY_ask_identifier");
+top.note("headers/pk_entity_ask_owning_groups.html#declaration", " <B>PK_ENTITY_t</B> entity, --- an entity", "PK Reference - PK_ENTITY_ask_owning_groups");
+top.note("headers/pk_entity_ask_owning_groups_2.html#declaration", " <B>PK_ENTITY_t</B> entity, --- an entity", "PK Reference - PK_ENTITY_ask_owning_groups_2");
+top.note("headers/pk_entity_ask_partition.html#declaration", " <B>PK_ENTITY_t</B> entity, --- an entity", "PK Reference - PK_ENTITY_ask_partition");
+top.note("headers/pk_entity_ask_user_field.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity to receive message", "PK Reference - PK_ENTITY_ask_user_field");
+top.note("headers/pk_entity_check_attribs.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_ENTITY_check_attribs");
+top.note("headers/pk_entity_copy.html#declaration", " <B>PK_ENTITY_t</B> entity, --- an entity", "PK Reference - PK_ENTITY_copy");
+top.note("headers/pk_entity_copy_2.html#declaration", " <B>PK_ENTITY_t</B> entity, --- an entity", "PK Reference - PK_ENTITY_copy_2");
+top.note("headers/pk_entity_delete.html#declaration", "const <B>PK_ENTITY_t</B> *entities --- entities to be deleted", "PK Reference - PK_ENTITY_delete");
+top.note("headers/pk_entity_delete_attribs.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_ENTITY_delete_attribs");
+top.note("headers/pk_entity_find_reparam.html#declaration", " <B>PK_ENTITY_t</B> *entities, --- entities whose", "PK Reference - PK_ENTITY_find_reparam");
+top.note("headers/pk_entity_is_curve.html#declaration", " <B>PK_ENTITY_t</B> entity, --- an entity", "PK Reference - PK_ENTITY_is_curve");
+top.note("headers/pk_entity_is_geom.html#declaration", " <B>PK_ENTITY_t</B> entity, ---an entity", "PK Reference - PK_ENTITY_is_geom");
+top.note("headers/pk_entity_is_part.html#declaration", " <B>PK_ENTITY_t</B> entity, --- an entity", "PK Reference - PK_ENTITY_is_part");
+top.note("headers/pk_entity_is_surf.html#declaration", " <B>PK_ENTITY_t</B> entity, --- an entity", "PK Reference - PK_ENTITY_is_surf");
+top.note("headers/pk_entity_is_topol.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_ENTITY_is_topol");
+top.note("headers/pk_entity_may_own_attdef.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_ENTITY_may_own_attdef");
+top.note("headers/pk_entity_range.html#declaration", "const <B>PK_ENTITY_t</B> entities_1[], --- first entity array", "PK Reference - PK_ENTITY_range");
+top.note("headers/pk_entity_range_end_t.html#declaration", " <B>PK_ENTITY_t</B> entity; --- entity at end of separation", "PK Reference - PK_ENTITY_range_end_t");
+top.note("headers/pk_entity_range_o_t.html#declaration", " <B>PK_ENTITY_t</B> *entities_with_scales;", "PK Reference - PK_ENTITY_range_o_t");
+top.note("headers/pk_entity_range_vector.html#declaration", "const <B>PK_ENTITY_t</B> entities[], --- entity array", "PK Reference - PK_ENTITY_range_vector");
+top.note("headers/pk_entity_range_vector_o_t.html#declaration", " <B>PK_ENTITY_t</B> *entities_with_scales;", "PK Reference - PK_ENTITY_range_vector_o_t");
+top.note("headers/pk_entity_set_user_field.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity to receive message", "PK Reference - PK_ENTITY_set_user_field");
+top.note("headers/pk_entity_track_record_r_t.html#declaration", " <B>PK_ENTITY_t</B> *product_entities;", "PK Reference - PK_ENTITY_track_record_r_t");
+top.note("headers/pk_error_sf_t.html#declaration", " <B>PK_ENTITY_t</B> entity; --- entity to which error applies or", "PK Reference - PK_ERROR_sf_t");
+top.note("headers/pk_expr_value_t.html#declaration", " <B>PK_ENTITY_t</B> entity;", "PK Reference - PK_EXPR_value_t");
+top.note("headers/pk_face_change_blend_o_t.html#declaration", " const <B>PK_ENTITY_t</B> *unders; --- faces used to define the blend", "PK Reference - PK_FACE_change_blend_o_t");
+top.note("headers/pk_face_change_data_bend_t.html#declaration", " <B>PK_ENTITY_t</B> tool_entity; --- entity used to construct", "PK Reference - PK_FACE_change_data_bend_t");
+top.note("headers/pk_face_change_data_taper_t.html#declaration", " const <B>PK_ENTITY_t</B> *references; --- taper reference entities", "PK Reference - PK_FACE_change_data_taper_t");
+top.note("headers/pk_face_change_taper_o_t.html#declaration", " const <B>PK_ENTITY_t</B> *parting_edges; --- parting body step edges (NULL)", "PK Reference - PK_FACE_change_taper_o_t");
+top.note("headers/pk_face_install_surfs_isocline.html#declaration", "const <B>PK_ENTITY_t</B> references[], --- reference entities", "PK Reference - PK_FACE_install_surfs_isocline");
+top.note("headers/pk_face_make_3_face_blend_o_t.html#declaration", " const <B>PK_ENTITY_t</B> *limits; --- entities limiting the blend", "PK Reference - PK_FACE_make_3_face_blend_o_t");
+top.note("headers/pk_face_reparameterise_surf_r_t.html#declaration", " <B>PK_ENTITY_t</B> *missing_entities;", "PK Reference - PK_FACE_reparameterise_surf_r_t");
+top.note("headers/pk_face_replace_surfs_r_t.html#declaration", " <B>PK_ENTITY_t</B> *error_entities;", "PK Reference - PK_FACE_replace_surfs_r_t");
+top.note("headers/pk_face_taper.html#declaration", "const <B>PK_ENTITY_t</B> references[], --- reference entities", "PK Reference - PK_FACE_taper");
+top.note("headers/pk_face_taper_o_t.html#declaration", " const <B>PK_ENTITY_t</B> *parting_edges; --- parting body step edges (NULL)", "PK Reference - PK_FACE_taper_o_t");
+top.note("headers/pk_find_reparam_record_r_t.html#declaration", " <B>PK_ENTITY_t</B> *missing_entities; --- The entities that were not", "PK Reference - PK_find_reparam_record_r_t");
+top.note("headers/pk_frame_ask_owner_r_t.html#declaration", " <B>PK_ENTITY_t</B> owner; --- the entity that owns the frame", "PK Reference - PK_FRAME_ask_owner_r_t");
+top.note("headers/pk_geom_render_o_t.html#declaration", " <B>PK_ENTITY_t</B> *entities_with_scales;--- Array of entities for which a", "PK Reference - PK_GEOM_render_o_t");
+top.note("headers/pk_group_add_entities.html#declaration", "const <B>PK_ENTITY_t</B> entities[] --- entities", "PK Reference - PK_GROUP_add_entities");
+top.note("headers/pk_group_ask_entities.html#declaration", " <B>PK_ENTITY_t</B> **const entities --- entities (optional)", "PK Reference - PK_GROUP_ask_entities");
+top.note("headers/pk_group_ask_entity_label.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity in the group", "PK Reference - PK_GROUP_ask_entity_label");
+top.note("headers/pk_group_contains_entity.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity", "PK Reference - PK_GROUP_contains_entity");
+top.note("headers/pk_group_create_from_entities.html#declaration", "const <B>PK_ENTITY_t</B> entities[], --- entities", "PK Reference - PK_GROUP_create_from_entities");
+top.note("headers/pk_group_create_from_entities_2.html#declaration", "const <B>PK_ENTITY_t</B> entities[], --- entities", "PK Reference - PK_GROUP_create_from_entities_2");
+top.note("headers/pk_group_find_entities.html#declaration", " <B>PK_ENTITY_t</B> **const entities --- entities", "PK Reference - PK_GROUP_find_entities");
+top.note("headers/pk_group_merge_entities.html#declaration", "const <B>PK_ENTITY_t</B> entities[], --- entities", "PK Reference - PK_GROUP_merge_entities");
+top.note("headers/pk_group_remove_entities.html#declaration", "const <B>PK_ENTITY_t</B> entities[], --- entities", "PK Reference - PK_GROUP_remove_entities");
+top.note("headers/pk_group_set_entity_label.html#declaration", " <B>PK_ENTITY_t</B> entity, --- entity in the group", "PK Reference - PK_GROUP_set_entity_label");
+top.note("headers/pk_hole_component_t.html#declaration", " <B>PK_ENTITY_t</B> entity; --- entity associated with component", "PK Reference - PK_hole_component_t");
+top.note("headers/pk_item_t.html#documentation", " - <B>PK_ENTITY_t</B> ", "PK Reference - PK_ITEM_t");
+top.note("headers/pk_lattice_clip_o_t.html#declaration", " const <B>PK_ENTITY_t</B> *clip_entities; --- entities with which to clip the", "PK Reference - PK_LATTICE_clip_o_t");
+top.note("headers/pk_mesh_defect_details_t.html#declaration", " <B>PK_ENTITY_t</B> *entities; --- defect entities", "PK Reference - PK_MESH_defect_details_t");
+top.note("headers/pk_part_ask_attribs_cb.html#declaration", " <B>PK_ENTITY_t</B> **const owners --- owning entities", "PK Reference - PK_PART_ask_attribs_cb");
+top.note("headers/pk_part_find_entity_by_ident.html#declaration", " <B>PK_ENTITY_t</B> *const entity --- entity (may be PK_ENTITY_null)", "PK Reference - PK_PART_find_entity_by_ident");
+top.note("headers/pk_part_receive_meshes.html#declaration", " <B>PK_ENTITY_t</B> **const owners --- owners", "PK Reference - PK_PART_receive_meshes");
+top.note("headers/pk_part_rectify_identifiers.html#declaration", " <B>PK_ENTITY_t</B> **const entities, --- entities with changed idents", "PK Reference - PK_PART_rectify_identifiers");
+top.note("headers/pk_partition_clone_pmark.html#declaration", " <B>PK_ENTITY_t</B> **const new_entities, --- entities created", "PK Reference - PK_PARTITION_clone_pmark");
+top.note("headers/pk_partition_entities_t.html#declaration", " <B>PK_ENTITY_t</B> *new_entities; --- entities created", "PK Reference - PK_PARTITION_entities_t");
+top.note("headers/pk_partition_is_clone.html#declaration", " <B>PK_ENTITY_t</B> **const entities --- different entities", "PK Reference - PK_PARTITION_is_clone");
+top.note("headers/pk_partition_make_pmark_2.html#declaration", " <B>PK_ENTITY_t</B> **const new_entities,", "PK Reference - PK_PARTITION_make_pmark_2");
+top.note("headers/pk_pmark_goto.html#declaration", " <B>PK_ENTITY_t</B> **const new_entities, --- entities created (optional)", "PK Reference - PK_PMARK_goto");
+top.note("headers/pk_pmark_goto_2.html#declaration", " <B>PK_ENTITY_t</B> **const new_entities, --- entities created", "PK Reference - PK_PMARK_goto_2");
+top.note("headers/pk_range_end_t.html#declaration", " <B>PK_ENTITY_t</B> entity; --- entity at end of separation", "PK Reference - PK_range_end_t");
+top.note("headers/pk_section_report_r_t.html#declaration", " <B>PK_ENTITY_t</B> *entities;", "PK Reference - PK_section_report_r_t");
+top.note("headers/pk_surf_self_int_t.html#declaration", " <B>PK_ENTITY_t</B> *entities;", "PK Reference - PK_SURF_self_int_t");
+top.note("headers/pk_topol_ask_entities_by_attdef.html#declaration", " <B>PK_ENTITY_t</B> **const entities --- entities ( optional )", "PK Reference - PK_TOPOL_ask_entities_by_attdef");
+top.note("headers/pk_topol_find_frames_r_t.html#declaration", " <B>PK_ENTITY_t</B> *owners; --- the frame owners", "PK Reference - PK_TOPOL_find_frames_r_t");
+top.note("headers/pk_topol_local_r_t.html#declaration", " <B>PK_ENTITY_t</B> *error_entities;", "PK Reference - PK_TOPOL_local_r_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

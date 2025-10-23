@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Geometric Restrictions</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Geometric Restrictions</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fg_chap.04.html">Modeling using Foreign Geometry</A></TD>
+  <TD><A HREF="../fg_index.html">Chapters</A></TD>
+  <TD><A HREF="fg_chap.06.html">FG Module Interface Functions</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fg_chap.05.html#50462729_pgfId-274045">A.1	Parameter range and derivatives</A>
+<LI> <A HREF="fg_chap.05.html#50462729_pgfId-274056">A.2	Continuity</A>
+<LI> <A HREF="fg_chap.05.html#50462729_pgfId-274062">A.3	Geometric and parametric properties</A>
+</UL>
+<A NAME="endofcontents"></A>
+<P>
+<A NAME="50462729_pgfId-274043"></A>The following assumptions are imposed on Foreign Geometry at the current release of Parasolid.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462729_pgfId-274045"></A>A.1	<A NAME="50462729_marker-274044"></A>Parameter range and derivatives
+
+
+</H1>
+<UL>
+<LI>
+<A NAME="50462729_pgfId-274046"></A>FG curves are assumed to be parametrized over a finite interval [t0, t1] </LI>
+<P>
+<A NAME="50462729_pgfId-274047"></A>(the default interval is [0, 1]).</P>
+<LI>
+<A NAME="50462729_pgfId-285438"></A>FG surfaces are assumed to be parametrized over a finite range [u0, u1] [v0, v1]</LI>
+<P>
+<A NAME="50462729_pgfId-285439"></A>(the default range is [0, 1] [0, 1] ).</P>
+<LI>
+<A NAME="50462729_pgfId-285440"></A>FG evaluators must return evaluations up to and including second derivatives</LI>
+<P>
+<A NAME="50462729_pgfId-274051"></A>Thus for a curve evaluator C(t) where t in [t0, t1] we have:</P>
+</UL>
+<P>
+<A NAME="50462729_pgfId-274052"></A>C, dC/dt, d2C/dt2 : [t0, t1] ! R3</P>
+<UL>
+<P>
+<A NAME="50462729_pgfId-274053"></A>and for a surface evaluator S(u, v) where (u, v) in [u0, u1] [v0, v1] we have:</P>
+</UL>
+<P>
+<A NAME="50462729_pgfId-274054"></A>S, dS/du, dS/dv, d2S/duduv, d2S/du2, d2S/dv2 : [u0, u1] [v0, v1] ! R3</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462729_pgfId-274056"></A>A.2	<A NAME="50462729_marker-274055"></A>Continuity
+
+
+</H1>
+<P>
+<A NAME="50462729_pgfId-274057"></A>A curve is said to be G1 continuous if it has a continuous unit tangent vector, and to be C1 continuous if position and first derivative are both continuous.</P>
+<P>
+<A NAME="50462729_pgfId-274058"></A>A surface is said to be G1 continuous if it has a continuous unit normal vector, and to be C1 continuous if position and first derivatives are all continuous. C1 continuity implies G1 continuity and is the stronger condition.</P>
+<UL>
+<LI>
+<A NAME="50462729_pgfId-274059"></A>FG curves are required to be G1 continuous.</LI>
+<LI>
+<A NAME="50462729_pgfId-274060"></A>FG surfaces are required to be G1 continuous. In addition, Parasolid requires that constant parameter lines on the surface are G1 continuous.</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462729_pgfId-274062"></A>A.3	<A NAME="50462729_marker-274061"></A>Geometric and parametric properties
+
+
+</H1>
+<UL>
+<LI>
+<A NAME="50462729_pgfId-274063"></A>FG curves and surfaces are required to not have periodic parametrization.</LI>
+<LI>
+<A NAME="50462729_pgfId-274064"></A>FG curves and surfaces may not be closed.</LI>
+<LI>
+<A NAME="50462729_pgfId-274065"></A>No degeneracies or singularities on FG curves,</LI>
+<LI>
+<A NAME="50462729_pgfId-274066"></A>The only allowed singularity on an FG surface is the case when, at a corner (i.e. parameter positions (u0, v0), (u0, v1), (u1, v0), (u1, v1) ) first partial derivatives are parallel. Therefore, local to that corner the surface degenerates to a line and the surface normal is not well defined. </LI>
+<LI>
+<A NAME="50462729_pgfId-274067"></A>Edges of an FG surface are allowed to degenerate subject to:</LI>
+<UL>
+<LI>
+<A NAME="50462729_pgfId-274068"></A>the whole edge must degenerate to a point,</LI>
+<LI>
+<A NAME="50462729_pgfId-274069"></A>adjacent edges on an FG surface may not be degenerate (so that there are at most two degenerate edges).</LI>
+</UL>
+</UL>
+<P>
+<A NAME="50462729_pgfId-273605"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fg_chap.04.html">Modeling using Foreign Geometry</A></TD>
+  <TD><A HREF="../fg_index.html">Chapters</A></TD>
+  <TD><A HREF="fg_chap.06.html">FG Module Interface Functions</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

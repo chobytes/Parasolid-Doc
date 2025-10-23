@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>KID Graphics: Overview</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>KID Graphics: Overview</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.11.html">Attributes in KID</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.13.html">Viewing Environment and Definition</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.12.html#50475019_pgfId-273839">11.1	Introduction</A>
+<LI> <A HREF="kd_chap.12.html#50475019_pgfId-273853">11.2	The Class Structure</A>
+<LI> <A HREF="kd_chap.12.html#50475019_pgfId-273874">11.3	Output Devices</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475019_pgfId-273839"></A>11.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475019_pgfId-273840"></A>Within KID there is a graphical support library known as GRA. This module is only contained in KID and not in the PARASOLID kernel library. Calls are made to GRA to define a viewing environment, and then calls may be made to the Parasolid rendering functions. These also call GRA (via the Frustrum) and this results in the appearance of a picture on the screen, or transmission of graphical output to a file.</P>
+
+<H4>
+<A NAME="50475019_pgfId-273841"></A>Opening an Xwindow</H4>
+<P>
+<A NAME="50475019_pgfId-273843"></A><A NAME="50475019_marker-273842"></A>To open an X window for graphical display, type:</P>
+<P>
+<A NAME="50475019_pgfId-279599"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475019_pgfId-279679"></A>&gt; (graphics open_device &acute;x)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475019_pgfId-273845"></A>Re-using an existing graphics window</H4>
+<P>
+<A NAME="50475019_pgfId-273847"></A><A NAME="50475019_marker-273846"></A>To re-use an existing open graphics window, allowing a lisp script to be re-run multiple times without spawning multiple windows, type:</P>
+<P>
+<A NAME="50475019_pgfId-279622"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475019_pgfId-279700"></A>&gt; (graphics reopen_device &acute;x)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475019_pgfId-273849"></A>Using the class structure, which provides inherited functions and properties, the user may define many different views with great ease. A new view may be defined to show the same objects from a different viewpoint (e.g. for orthographic views), or to show different objects from the same view (e.g. for assembly viewing).</P>
+<P>
+<A NAME="50475019_pgfId-273850"></A>For instance, if it is required to zoom in on an area of the picture a new view can be defined as a subclass of the current view. The window sizes can be changed and all other properties are inherited. The picture can then be drawn for the new view without altering the default graphics view. This scrap view can be deleted or kept for later use.</P>
+<P>
+<A NAME="50475019_pgfId-273851"></A>KID only allows one view to be active, although any number can be defined. When KID is started by the command (modeller start), a default view is defined and selected.</P>
+<P>
+<A NAME="50475019_pgfId-273852"></A>Functions are provided which allow the user to easily change the definition of the view, to send output to files or the screen and to pick items from the display.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475019_pgfId-273853"></A>11.2	The Class Structure
+
+
+</H1>
+<P>
+<A NAME="50475019_pgfId-273855"></A><A NAME="50475019_marker-273854"></A>The pre-defined class structure for KID graphics is very simple, see the <A HREF="kd_chap.17.html#50475020_35592" CLASS="XRef">&quot;Graphics substructure&quot;</A> section in <A HREF="kd_chap.17.html#50475020_28490">Appendix A, &quot;KID Class Structure&quot;</A>. All graphics functions and default <A NAME="50475019_marker-273862"></A>view information are held in a class called <CODE>
+xgraphics</CODE>
+. <CODE>
+graphics</CODE>
+ is a subclass of xgraphics and inherits all its properties.</P>
+
+<H4>
+<A NAME="50475019_pgfId-273863"></A>Altering Defaults</H4>
+<P>
+<A NAME="50475019_pgfId-273865"></A><A NAME="50475019_marker-273864"></A>It is possible to alter the defaults which are defined in the <CODE>
+xgraphics</CODE>
+ class directly, but it is preferable to leave these alone. There are two methods that can be used, the first is to work in the subclass <CODE>
+graphics</CODE>
+, so that default values can be restored from <CODE>
+xgraphics</CODE>
+ (or by removing the properties from graphics - which has the same effect). The other method is to define subclasses in which defaults can be changed and restored to the graphics default in the same way.</P>
+<P>
+<A NAME="50475019_pgfId-279632"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475019_pgfId-279735"></A>&gt; ( graphics help)               -- information
+&gt; (graphics view_to &acute;(10 2 5))   -- default value changed
+&gt; (graphics view_to (xgraphics view_to))
+                            -- default retrieved from xgraphics</PRE>
+<PRE><A NAME="50475019_pgfId-279736"></A>&gt; (define my_view graphics) 
+   -- define subclass of graphics with all graphics functions
+&gt; (my_view select)         -- select my_view
+&gt; (my_view help view_to)   -- help on graphics property view_to
+&gt; (my_view view_to &acute;(1 1 1 ))    -- reset view_to
+&gt; (my_view - view_to )           -- removes local setting</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475019_pgfId-279767"></A>Note: In the following KID examples any subclass of the graphics object can be substituted for the graphics object <CODE>
+graphics</CODE>
+.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475019_pgfId-273869"></A>Current View</H4>
+<P>
+<A NAME="50475019_pgfId-273872"></A><A NAME="50475019_marker-273870"></A><A NAME="50475019_marker-273871"></A>KID allows one class to be the current view. All interaction with GRA is in terms of the attributes (local or inherited) of this current view.</P>
+<P>
+<A NAME="50475019_pgfId-279644"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475019_pgfId-279805"></A>&gt; (graphics current_view)
+    --&gt; returns the name of the current view</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475019_pgfId-273874"></A>11.3	Output Devices
+
+
+</H1>
+<P>
+<A NAME="50475019_pgfId-273875"></A>When KID creates and selects the first view (i.e. graphics) it opens a null device to send its output to. It is possible to open and close other devices, and to send output simultaneously to a number of devices. This and other device dependent KID functions are described in <A HREF="kd_chap.22.html#50475026_16883">Appendix F, &quot;Machine Dependency in KID&quot;</A>. </P>
+
+<H4>
+<A NAME="50475019_pgfId-273879"></A>Framemaker, Interleaf, Laser, Plot and Postscript</H4>
+<P>
+<A NAME="50475019_pgfId-273880"></A>These graphics functions are designed to write graphical output to a file in a specified format. Each function takes a text argument which is used for the output filename. The output is equivalent to that which would result from a (graphics redraw) command.</P>
+<P>
+<A NAME="50475019_pgfId-273905"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475019_pgfId-279840"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475019_pgfId-279842"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475019_pgfId-279844"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475019_pgfId-279872"></A><A NAME="50475019_marker-279860"></A><A NAME="50475019_marker-279861"></A><A NAME="50475019_marker-279862"></A>interleaf,<A NAME="50475019_marker-279863"></A><A NAME="50475019_marker-279864"></A><A NAME="50475019_marker-279865"></A> laser, <A NAME="50475019_marker-279866"></A><A NAME="50475019_marker-279867"></A><A NAME="50475019_marker-279868"></A>plot, <A NAME="50475019_marker-279869"></A><A NAME="50475019_marker-279870"></A><A NAME="50475019_marker-279871"></A>postscript, <A NAME="50475019_marker-279873"></A><A NAME="50475019_marker-279874"></A><A NAME="50475019_marker-279875"></A>framemaker</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475019_pgfId-279655"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475019_pgfId-279813"></A>&gt; (define b0 p_block)          -- define a block
+&gt; (b0 create)                  -- create it
+&gt; (graphics sketch &acute;b0; ar)    -- sketch it
+&gt; (graphics laser &quot;block.ln3&quot;) -- output the sketch to the file 
+                                  block as a pixel file
+&gt; (graphics zoom 0.5)          -- expand the view  
+&gt; (graphics postscript &quot;post.pst&quot;) 
+                         -- output the postscript commands for
+                            the expanded view to the file post</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475019_pgfId-273907"></A>The <CODE>
+postscript</CODE>
+ output files are, at least, minimally conforming to the postscript file structuring conventions.</P>
+<P>
+<A NAME="50475019_pgfId-273908"></A>If all output is to be sent to a file then one of the <CODE>
+plotter</CODE>
+, <CODE>
+laser</CODE>
+, <CODE>
+postscript</CODE>
+, <CODE>
+interleaf</CODE>
+ and <CODE>
+framemaker</CODE>
+ devices can be used. These are opened and closed with the commands: </P>
+<P>
+<A NAME="50475019_pgfId-279662"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475019_pgfId-279823"></A>&gt; (graphics open_device &acute;&lt;device_name&gt;)
+&gt; (graphics close_device &acute;&lt;device_name&gt;)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475019_pgfId-273910"></A>Once a device has been opened the graphical output is sent, in addition to any open display devices, to a file (plot_file, pixel_file, postscript_file, interleaf_file and framemaker_file respectively). The default files (which have no extension) may be changed, prior to opening the device, by a command of the form:</P>
+<P>
+<A NAME="50475019_pgfId-279669"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475019_pgfId-279831"></A>&gt; (graphics postscript_file &quot;output.pst&quot;)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475019_pgfId-273912"></A>It is important to close the device before leaving the KID session to ensure that the correct termination commands are appended to the output file. It should also be noted that all images sent to the file are superimposed.</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.11.html">Attributes in KID</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.13.html">Viewing Environment and Definition</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

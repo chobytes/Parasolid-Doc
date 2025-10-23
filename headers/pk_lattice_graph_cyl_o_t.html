@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_LATTICE_graph_cyl_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_LATTICE_graph_cyl_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_LATTICE_graph_cyl_o_s
+    {
+    int                 o_t_version;            --- Version number of options
+                                                --- structure
+    int                 n_lball_positions;      --- Number of lballs in
+                                                --- block.
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>        *lball_positions;        --- Positions of lballs.
+    double             *lball_radii;            --- Radii of lballs (may be
+                                                --- NULL).
+    double             *lball_blend_sizes;      --- Size of lball blends (may
+                                                --- be NULL).
+    int                 n_lrod_indices;         --- Number of lrod indices
+                                                --- in block.
+    int                *lrod_start_indices;     --- Indices of lballs at start
+                                                --- of lrods.
+    int                *lrod_end_indices;       --- Indices of lballs at end
+                                                --- of lrods.
+    double             *lrod_radii;             --- Radii of lrods (may be
+                                                --- NULL).
+    };
+typedef struct PK_LATTICE_graph_cyl_o_s PK_LATTICE_graph_cyl_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains the data for a block of graph describing a lattice,
+with cylinder-shaped lrods, in an indexed form.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_lattice_graph_data_t.html>PK_LATTICE_graph_data_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is the datatype for a graph index block of lattice data. The
+graph indexed format describes each lrod via the start and end lball indices,
+which are absolute to the existing lballs and the <B>'lball_positions'</B> array
+ordering.
+
+Description of fields:
+
+
+<B>'n_lball_positions'</B>     The number of lballs in the array <B>'lball_positions'</B>.
+
+
+<B>'lball_positions'</B>       The positions of the lballs of the lattice in this
+                        block. There cannot be duplicates.
+
+
+<B>'lball_radii'</B>           The radii of the lballs of the lattice in this
+                        block. May be NULL if a global lball radius has been
+                        specified in the options structure
+                        <A HREF=../headers/pk_lattice_create_by_graph_o_t.html>PK_LATTICE_create_by_graph_o_t</A>.
+
+
+<B>'lball_blend_sizes'</B>     The sizes of the lball blends of the lattice in this
+                        block. Any lballs with a blend size of zero are not
+                        blended. This array may be NULL if, in the options
+                        structure <A HREF=../headers/pk_lattice_create_by_graph_o_t.html>PK_LATTICE_create_by_graph_o_t</A>,
+                        <B>'lball_blend_type'</B> is <A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_none_c</A>
+                        (specifying no blends) or <B>'lball_blend_size'</B> is nonzero
+                        (specifying a global blend size).
+
+
+<B>'n_lrod_indices'</B>        The number of lrod indices.
+
+
+<B>'lrod_start_indices'</B>    An array of lball indices at the start of the lrods of
+                        the lattice in this block.
+
+
+<B>'lrod_end_indices'</B>      An array of lball indices at the end of the lrods of
+                        the lattice in this block.
+
+
+<B>'lrod_radii'</B>            The radii of the lrods of the lattice in this block.
+                        May be NULL if the lrod radius inheritance is not
+                        <A HREF=../headers/pk_lrod_inherit_t.html>PK_LROD_inherit_no_c</A> or a global lrod radius has been
+                        specified in the options structure
+                        <A HREF=../headers/pk_lattice_create_by_graph_o_t.html>PK_LATTICE_create_by_graph_o_t</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

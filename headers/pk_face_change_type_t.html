@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_change_type_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_change_type_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_FACE_change_type_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_t.html>PK_FACE_change_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Types of change operations.
+
+Values can be:
+
+   PK_FACE_change_type_none_c       No operation has been specified for this
+                                    face.
+
+   PK_FACE_change_type_offset_c     This operation allows a subset of the
+                                    functionality offered by <A HREF=../headers/pk_face_offset_2.html>PK_FACE_offset_2</A>,
+                                    and will replace the surface of the face
+                                    with one offset by a specified distance
+                                    from the surface of either the original or
+                                    a reference face. A positive offset
+                                    indicates an offset outwards (i.e. in the
+                                    direction of the face normal) and a
+                                    negative offset an offset inwards. Please
+                                    see <A HREF="../chapters/fd_chap.060.html#50409845_pgfId-294719">here</A> for more
+                                    information.
+
+   PK_FACE_change_type_taper_c      The surface of the face will be replaced
+                                    with a taper surface. Please see
+                                    <A HREF=../headers/pk_face_taper.html>PK_FACE_taper</A>, and also
+                                    #here#DOC0141# for more information.
+
+   PK_FACE_change_type_transform_c  This operation transforms the geometry of
+                                    the face by the supplied transformation.
+                                    Please see <A HREF=../headers/pk_face_transform_2.html>PK_FACE_transform_2</A>, and also
+                                    <A HREF="../chapters/fd_chap.072.html#50409858_pgfId-294728">here</A> for more information.
+
+   PK_FACE_change_type_replace_c    The geometry of the face is replaced with
+                                    the supplied surface. Please see
+                                    <A HREF=../headers/pk_face_replace_surfs_3.html>PK_FACE_replace_surfs_3</A>, and also
+                                    <A HREF="../chapters/fd_chap.067.html#50409853_pgfId-294751">here</A> for more information.
+
+   PK_FACE_change_type_blend_c      The geometry of the face is replaced with
+                                    an appropriate blend/chamfer surface.  If
+                                    this operation is being used on a face
+                                    with a blend-like surface the blend may be
+                                    reapplied with the original or modified
+                                    radius, otherwise an appropriate blend/
+                                    chamfer surface is calculated based on the
+                                    options handed into
+                                    <A HREF=../headers/pk_face_change_blend_o_t.html>PK_FACE_change_blend_o_t</A>. Blend faces may
+                                    need to be reconstructed after moving other
+                                    faces in the body. Please see
+                                    <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-305045">here</A> for more information.
+
+   PK_FACE_change_type_bend_c       This operation is intended to bend or
+                                    unbend faces that exist between two groups
+                                    of faces that are being transformed.
+
+                                    The bend faces should consist of pairs of
+                                    faces which are offsets of each other, and
+                                    side faces whose geometry will be ruled
+                                    surfaces between these pairs of faces.
+                                    The former will be indicated with a <B>'type'</B>
+                                    of PK_FACE_change_bend_c, and the latter
+                                    side faces with PK_FACE_change_bend_side_c.
+                                    As the faces are bent or unbent, these
+                                    constraints will remain enforced (ie, the
+                                    pairs of offset faces will remain offsets
+                                    of each other, and the geometry of the
+                                    side faces will be ruled surfaces).
+
+                                    For each pair of faces, a layer is defined
+                                    as being any two-dimensional region which
+                                    is an offset from the surface of either
+                                    face in the pair. Thus, a face whose
+                                    surface is coincident with a layer, along
+                                    with two offset distances, is enough to
+                                    define the geometry of the pair of faces
+                                    and all side faces adjacent to them. This
+                                    face is referred to as a tool face.
+
+                                    For each pair of faces, it is expected that
+                                    the user create a tool face whose surface
+                                    is coincident with the layer after the bend
+                                    operation has taken place. This, together
+                                    with two offset distances, will define the
+                                    geometry of the pair of faces and all side
+                                    faces adjacent to them after the bend
+                                    operation.
+
+                                    Each bend face will in general have a
+                                    different bend operation applied to them.
+                                    Faces of <B>'type'</B> PK_FACE_change_bend_c
+                                    will be supplied with the appropriate tool
+                                    face, and the distance (in the direction of
+                                    the tool face's normal) that the tool
+                                    face's surface must be offset by to obtain
+                                    the surface of the bend face.
+
+                                    Faces of <B>'type'</B> PK_FACE_change_bend_side_c
+                                    will be supplied with an edge belonging to
+                                    a tool face. The ruled surface obtained
+                                    when this edge is offset from the tool face
+                                    gives the geometry of the side face. Two
+                                    distances are required, indicating the
+                                    distances (in the direction of the tool
+                                    face's normal) that the edge must be
+                                    offset by to obtain the surface of the bend
+                                    face.
+
+                                    Please see <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-302569">here</A> for more
+                                    information.
+
+   PK_FACE_change_type_patch_c      The geometry of the face is replaced by
+                                    faces from a given sheet body.
+                                    The following restrictions and limitations
+                                    apply to this function :
+
+                                      o The supplied sheet body must be
+                                        sufficiently large to completely cover
+                                        the faces being replaced without
+                                        extension. If any of these faces are
+                                        affected by other operations, the
+                                        supplied sheet body must then cover
+                                        the faces with the effect of such
+                                        operations. If boundary edges of the
+                                        sheet body are provided as
+                                        <B>'patch_edges'</B>, then the sheet need
+                                        only cover the area of the faces
+                                        within the region enclosed by the
+                                        boundary edges.
+
+                                      o The supplied faces must have no
+                                        laminar edges, unless those faces form
+                                        part of the patch data associated with
+                                        the patch operation.
+
+                                    Please see <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-503185">here</A>.
+
+   PK_FACE_change_type_deform_c     The geometry of the face is deformed
+                                    according to the user evaluator function.
+                                    The evaluator function receives positions
+                                    on the face, and should return the
+                                    corresponding position on the deformed
+                                    face.
+
+                                    The resultant surface will be C2 smooth. If
+                                    the original surface, or the deform
+                                    operator, is non-G2, then this may result
+                                    in a surface of lower quality.  Please see
+                                    <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-303243">here</A> for more information.
+
+   PK_FACE_change_type_radiate_c    The spun geometry of the face is radiated
+                                    by the distance of <B>'radial_displacement'</B>
+                                    from its axis of rotation and optionally
+                                    further moved by <B>'axial_displacement'</B>
+                                    along <B>'axis'</B>.
+
+                                    Please see <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-925047">here</A> for more
+                                    information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

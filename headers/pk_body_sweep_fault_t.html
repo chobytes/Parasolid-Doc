@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_sweep_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_sweep_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_BODY_sweep_fault_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_sweep_status_2_r_t.html>PK_BODY_sweep_status_2_r_t</A><br>
+    <A HREF=../headers/pk_body_sweep_status_r_t.html>PK_BODY_sweep_status_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A status value to be associated with swept bodies. It indicates the type
+of problem encountered during the construction of the body ( may be none at
+all ).
+
+    PK_BODY_sweep_ok_c             Swept body created without problems
+    PK_BODY_sweep_non_c2_c         Swept body was created, but some of the
+                                   geometry is non-c2 even though
+                                   <B>'preferred_continuity'</B> was set to
+                                   <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A> and the path is c2 at
+                                   the corresponding point. The positions
+                                   on the path corresponding to these c2
+                                   discontinuities are returned in the
+                                   <B>'fault_locations'</B> array, and the
+                                   corresponding edges or vertices are
+                                   returned in the <B>'fault_entities'</B> array.
+    PK_BODY_sweep_repaired_c       Swept body was created, and some of the
+                                   swept surfaces have been repaired because
+                                   they would otherwise have been self-
+                                   intersecting. The <B>'fault_entities'</B> array
+                                   will contain the list of faces that have
+                                   been repaired. This value will only ever be
+                                   returned if <A HREF=../headers/pk_body_make_swept_body_2.html>PK_BODY_make_swept_body_2</A> was
+                                   called with <B>'repair'</B> set to
+                                   <A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_report_c</A>. If
+                                   <B>'preferred_continuity'</B> was set to
+                                   <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A>, then any positions where
+                                   the path is c2 but the swept geometry is
+                                   non-c2 will also be returned in the
+                                   <B>'fault_locations'</B> array, with the
+                                   edges or vertices returned in the
+                                   corresponding entries of the
+                                   <B>'fault_entities'</B> array.
+    PK_BODY_sweep_failure_c        Internal algorithm failure
+    PK_BODY_sweep_bad_path_c       Invalid or unsuitable sweep path
+    PK_BODY_sweep_bad_guide_c      Invalid, unsuitable or missing sweep guide
+    PK_BODY_sweep_bad_guide_clamp_c
+                                   Invalid or unsuitable guide clamp
+    PK_BODY_sweep_bad_profile_c    Invalid or unsuitable sweep profile
+    PK_BODY_sweep_small_profile_c  Profile is too small to sweep
+    PK_BODY_sweep_bad_match_c      Unsuitable profile mappings in <B>'matches'</B>,
+                                   or incorrect length of <B>'profile_matches'</B> in
+                                   <B>'guide_controls'</B>
+    PK_BODY_sweep_bad_vertex_c     Invalid or unsuitable vertex supplied
+    PK_BODY_sweep_bad_lock_dir_c   The lock direction is parallel to the path
+                                   at some point
+    PK_BODY_sweep_bad_lock_face_c  Invalid or unsuitable lock face supplied
+    PK_BODY_sweep_bad_trim_point_c Either a trim point has not been supplied
+                                   when required, or the trim point is such
+                                   that a unique set of faces to be trimmed to
+                                   cannot be determined.
+    PK_BODY_sweep_surf_failure_c   Failed to create swept surface
+    PK_BODY_sweep_curve_failure_c  Failed to create profile curve
+    PK_BODY_sweep_non_g1_failure_c Failed to handle non-G1 path
+    PK_BODY_sweep_geom_self_int_c  Swept body has self intersection in at least
+                                   one of its geometries.
+    PK_BODY_sweep_geom_degen_c     Swept body has degeneracy in at least
+                                   one of its geometries.
+    PK_BODY_sweep_topol_self_int_c Swept body has an invalid contact between
+                                   two of its faces, edges, or vertices.
+    PK_BODY_sweep_check_failure_c  Fault detected in generated body
+    PK_BODY_sweep_torsion_failure_c
+                                   Sweep along closed path with torsion
+                                   does not close: end profile rotates such
+                                   that it is not within tolerance of the
+                                   start profile.  Returned body consists of
+                                   profiles at start and end of sweep, instead
+                                   of failed swept body.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

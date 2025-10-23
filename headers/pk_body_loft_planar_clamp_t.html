@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_loft_planar_clamp_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_loft_planar_clamp_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_loft_planar_clamp_s
+    {
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>    normal;
+    double          magnitude;
+    };
+
+typedef struct PK_BODY_loft_planar_clamp_s PK_BODY_loft_planar_clamp_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds the normal vector of plane and magnitude of derivatives
+relative to a default value.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_loft_deriv_conds_t.html>PK_BODY_loft_deriv_conds_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The planar clamp structure has the following fields :
+
+<B>'normal'</B>         The normal vector of the plane for clamping the loft. All
+                 cross-boundary tangents of the loft at the clamped profile or
+                 guide are hence perpendicular to this normal vector.
+                 Negating the normal will have the effect of reversing all
+                 cross-boundary tangents unless the planar clamp is used in
+                 conjuction with a vector clamp, as a composite clamp, in which
+                 case the loft directions will be inferred from the vector
+                 clamp.
+
+<B>'magnitude'</B>      A scalar representing the magnitude of the loft derivative
+                 at the clamped profile or guide relative to a default value.
+                 If magnitude is set to zero, the default value will be used
+                 automatically.
+
+                 When clamping profiles, and there is a guide wire specified
+                 for the loft, the loft derivative along that guide wire is
+                 completely determined. The <B>'magnitude'</B> field must then be set
+                 to either unity or zero to ensure the use of the default value
+                 there.
+
+                 When clamping guide wires, the <B>'magnitude'</B> field must always
+                 be set to either unity or zero, since there will always be
+                 profiles where the loft derivative is completely determined.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_vertex_matches_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_vertex_matches_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_vertex_matches_s
+    {
+    int                     n_mappings;
+    <A HREF=../headers/pk_body_vertex_match_t.html>PK_BODY_vertex_match_t</A> *mappings;
+    };
+
+typedef struct PK_BODY_vertex_matches_s PK_BODY_vertex_matches_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds an array of mappings between bodies in a series, each of
+which describes associations between the vertices of one body and those of
+the body immediately following it in the series.  In lofting, if a profile body
+is repeated, this should be the next distinct body in the series.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_loft_matches_t.html>PK_BODY_loft_matches_t</A><br>
+    <A HREF=../headers/pk_body_make_lofted_body_o_t.html>PK_BODY_make_lofted_body_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_body_2_o_t.html>PK_BODY_make_swept_body_2_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The matching structure has the following fields :
+
+<B>'n_mappings'</B>        The number of mappings held in the structure. When
+                    mappings are provided for the profiles input to lofting
+                    or sweeping, this must be equal to the number of distinct
+                    profiles for a periodic loft/sweep, and one less than
+                    that for a loft/sweep that is not periodic.
+                    A value of zero for this field indicates no mappings are
+                    provided.
+
+<B>'mappings'</B>          An array of mappings, each of which describes
+                    associations between the vertices of a body on the
+                    reference list and those of its immediately following
+                    neighbour.
+
+See <A HREF="../chapters/fd_chap.042.html#50409824_pgfId-296139">Matching</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

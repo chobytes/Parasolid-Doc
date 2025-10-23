@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.019.html#50409800_pgfId-314546", " (the default), curvature-continuous (soft) and reflective, as used by <B>PK_BODY_extend</B> . See Section 49.1.4, Specifying the shape of the", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-294751", " You can use <B>PK_BODY_extend</B> to extend across a set of laminar edges on", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-294752", " <B>PK_BODY_extend</B> receives the following arguments: ", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-294860", " <B>PK_BODY_extend</B> provides the following methods for extending a body: ", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-294872", " This is the default extension method for <B>PK_BODY_extend</B> . The body is extended across each of the", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-294876", " received by <B>PK_BODY_extend</B> until it intersects a target body specified in the", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-295622", " When extending faces in a sheet, <B>PK_BODY_extend</B> follows the shape of any underlying surface as far", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-295754", " field to determine the shape that <B>PK_BODY_extend</B> follows when this is the case. This field takes", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-295785", " and PK_SURF_extend , are not valid for use with <B>PK_BODY_extend</B> . ", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296423", " <B>PK_BODY_extend</B> provides the ", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296427", " By default, <B>PK_BODY_extend</B> creates a precise boundary when extending a sheet. ", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296428", " to PK_extension_boundary_loose_c , <B>PK_BODY_extend</B> creates a loose boundary that is a rough measure", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296507", " <B>PK_BODY_extend</B> returns tracking information for end edges and side edges", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296508", " <B>PK_BODY_extend</B> associates any end edges created by the extend operation", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296566", " By default, <B>PK_BODY_extend</B> associates any laminar side edges created by the extend", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296652", " tracked to a single unique edge. In such cases, <B>PK_BODY_extend</B> associates the new side edge with the vertex that", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-454002", " PK Interface Programming Reference Manual for <B>PK_BODY_extend</B> for more information on the local statuses returned. ", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-322454", " You can use <B>PK_BODY_extend</B> to extend a sheet body along a laminar edge", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317132", " <B>PK_BODY_extend</B> ", "Functional Description - Update Switches");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_wrong_entity 10 <B>PK_BODY_extend</B> unexpected target entity", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_non_manifold 547 <B>PK_BODY_extend</B> boundary edges are not locally manifold or", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_not_in_same_body 1032 <B>PK_BODY_extend</B> all the edges are not in the same body", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_bad_edge 5076 <B>PK_BODY_extend</B> boundary edges are not laminar", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 <B>PK_BODY_extend</B> non-terminal vertex of the chain of", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_cant_extend 5150 <B>PK_BODY_extend</B> failed to extend the body", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_non_manifold 547 <B>PK_BODY_extend</B> boundary edges are not locally manifold or", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_unsuitable_entity 914 <B>PK_BODY_extend</B> body is not a sheet or general body", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " <B>PK_BODY_extend</B> 5145 PK_ERROR_bad_combination non-terminal vertex of the chain of", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_extend.html#declaration", " PK_ERROR_code_t <B>PK_BODY_extend</B>", "PK Reference - PK_BODY_extend");
+top.note("headers/pk_body_extend.html#documentation", "<B>PK_BODY_extend</B> will extend a body across given boundaries of laminar edges.", "PK Reference - PK_BODY_extend");
+top.note("headers/pk_body_extend_o_t.html#description", " This structure contains optional controls for <B>PK_BODY_extend</B> .", "PK Reference - PK_BODY_extend_o_t");
+top.note("headers/pk_body_t.html#description", " <B>PK_BODY_extend</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_debug_shuffle_start.html#documentation", "- <B>PK_BODY_extend</B> track_records ", "PK Reference - PK_DEBUG_shuffle_start");
+top.note("headers/pk_edge_t.html#description", " <B>PK_BODY_extend</B> ", "PK Reference - PK_EDGE_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_BODY_extend</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_topol_local_r_t.html#description", " <B>PK_BODY_extend</B> ", "PK Reference - PK_TOPOL_local_r_t");
+top.note("headers/pk_topol_track_r_t.html#description", " <B>PK_BODY_extend</B> ", "PK Reference - PK_TOPOL_track_r_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

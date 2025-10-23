@@ -1,0 +1,98 @@
+<HTML>
+<HEAD>
+<TITLE>CRKNPA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRKNPA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_find_knit_pattern.html>PK_BODY_find_knit_pattern</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRKNPA ( bods, eds1, eds2, neds, negs, nnegs, over, nover, ifail )
+==================================================================
+
+  Creates a knitting pattern from a list of bodies
+
+Receives:
+  KI_tag_list_body         *bods           --- list of bodies
+
+Returns:
+ &lt;KI_tag_list_edge&gt;        *eds1           --- list of edges forming pattern
+ &lt;KI_tag_list_edge&gt;        *eds2           --- list of edges forming pattern
+ &lt;KI_int_nitems&gt;           *neds           --- number of edge pairs in pattern
+ &lt;KI_tag_list_body&gt;        *negs           --- list of bodies to be negated
+ &lt;KI_int_nitems&gt;           *nnegs          --- number of bodies in 'negs'
+ &lt;KI_tag_list_body&gt;        *over           --- list of bodies with no edges
+                                           --- in the pattern
+ &lt;KI_int_nitems&gt;           *nover          --- number of bodies in 'over'
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_cant_create_pattern    failure to create knitting pattern
+  KI_pattern_invalid        knitting would result in invalid body
+  KI_bodies_dont_knit       no coincident edges exist
+  KI_bad_type               body in list is of incorrect type
+  KI_duplicate_list_item    duplicate item in list
+  KI_general_body           general body
+
+Description:
+  This function creates two lists of edges which form the knitting pattern
+  used as input to KNITEN. Corresponding elements in the lists are
+  coincident edges that will be fused in the resultant knitted body.
+
+  The received body list 'bods' may contain either solid or sheet
+  bodies, not wires. In the case of solids, all edges which the
+  application intends to appear in the knitting pattern must have one
+  adjacent face with a surface attached and one without.  The faces in
+  the solid without surfaces attached will be those which are eventually
+  redundant when the resultant solid body is created using the pattern
+  output by CRKNPA by calling KNITEN.
+
+  'eds1' and 'eds2' are the edge lists that form the knitting pattern and
+  'neds' is the length of each of these lists.
+
+  'negs' is a list of the bodies in the received list 'bods' that should be
+  negated before calling KNITEN. This is done by calling NEGENT. If these
+  bodies are not negated the knitting operation will result in inconsistent
+  face normals within shells of the knitted body.
+
+  'nnegs' is the number of bodies in 'negs'.
+
+  'over' contains a list of leftover bodies, ie bodies which have no edges
+  in the returned knitting pattern.
+  'nover' is the number of bodies in 'over'.
+
+  Negating some of the received bodies may not be sufficient to produce a
+  valid knitted body. For example, knitting could result in a moebius strip.
+  Such cases will be identified and will result in ifail KI_pattern_invalid.
+
+  If none of the edges in the received bodies are coincident, ifail
+  KI_bodies_dont_knit will be returned. If however a subset of bodies in the
+  received list has coincident edges, a knitting pattern will be created and
+  an ifail will not be invoked. The bodies with no edges in the pattern will
+  be returned in 'over'.
+
+  Note that this routine may not preserve the topology of the received bodies:
+  edges may be split in order to produce a 1:1 correspondence between the
+  edges that form the pattern.
+
+  This function is not supported for general bodies.
+
+</PRE>
+</BODY>
+</HTML>

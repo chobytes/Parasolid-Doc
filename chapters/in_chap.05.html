@@ -1,0 +1,660 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Parasolid Release Area</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Parasolid Release Area</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="in_chap.04.html">Installing Parasolid</A></TD>
+  <TD><A HREF="../in_index.html">Chapters</A></TD>
+  <TD><A HREF="in_chap.06.html">Using Parasolid</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="in_chap.05.html#50520098_pgfId-272927">4.1	Contents of the release area</A>
+<UL>
+<LI> <A HREF="in_chap.05.html#50520098_pgfId-272933">4.1.1	Privileges</A>
+<LI> <A HREF="in_chap.05.html#50520098_pgfId-272936">4.1.2	The &#8216;base&#8217; directory</A>
+</UL>
+<LI> <A HREF="in_chap.05.html#50520098_pgfId-273052">4.2	Explanation of files</A>
+<UL>
+<LI> <A HREF="in_chap.05.html#50520098_pgfId-273053">4.2.1	Files in &#8216;base&#8217;</A>
+<LI> <A HREF="in_chap.05.html#50520098_pgfId-273072">4.2.2	The Kernel Interface Driver (KID)</A>
+<LI> <A HREF="in_chap.05.html#50520098_pgfId-273074">4.2.3	Schema files</A>
+<LI> <A HREF="in_chap.05.html#50520098_pgfId-273080">4.2.4	Finding shared libraries</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520098_pgfId-272927"></A>4.1	<A NAME="50520098_14848"></A>Contents of the release area
+
+
+</H1>
+<P>
+<A NAME="50520098_pgfId-272931"></A>The top level of the Parasolid DVD contains a <CODE>
+parasolid</CODE>
+ folder. Inside this folder, there is a sub-folder for each platform available on the DVD. For example, the Parasolid folder contains sub-folders such as <CODE>
+intel_nt</CODE>
+, <CODE>
+intel_linux</CODE>
+, <CODE>
+x64_win</CODE>
+, and <CODE>
+intel_macos</CODE>
+. </P>
+<P>
+<A NAME="50520098_pgfId-305507"></A>Inside each directory is a <CODE>
+base</CODE>
+ directory that contains all the files necessary to install and use Parasolid for that platform. </P>
+<P>
+<A NAME="50520098_pgfId-305509"></A>This chapter describes the contents of these directories in some more detail. Apart from some platform-dependent filenames (noted below), the contents are essentially the same for each platform.</P>
+<P>
+<A NAME="50520098_pgfId-341943"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520098_pgfId-279182"></A>Note: This chapter describes the contents as they are structured on the DVD. Your own installation of Parasolid will not necessarily reflect this structure.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520098_pgfId-341954"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520098_pgfId-341953"></A>Note: An alternative directory name is used for some builds of Parasolid, as shown in the table below. These directories hold files for variant builds of a platform, with the same names as files for the default build. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520098_pgfId-342282"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-342244"></A>Platform and build</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-342246"></A>Directory name</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-345633"></A>Intel Linux, GCC7-compatible build</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-345635"></A>base gcc7compat</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520098_pgfId-272933"></A>	4.1.1 	Privileges</H2>
+<P>
+<A NAME="50520098_pgfId-272934"></A>You must make sure that all Parasolid users are able to read these files once they have been copied from the DVD. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520098_pgfId-272936"></A>	4.1.2 	<A NAME="50520098_35815"></A>The &#8216;base&#8217; directory </H2>
+<P>
+<A NAME="50520098_pgfId-330385"></A>The <CODE>
+base</CODE>
+ directory contains all the files needed to install and use the full Parasolid kernel.</P>
+<P>
+<A NAME="50520098_pgfId-330463"></A>Sample code for foreign geometry, frustrum and testing:</P>
+<P>
+<A NAME="50520098_pgfId-330557"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-315720"></A>File</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-315722"></A>Contents</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-315724"></A>fg.c</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-315726"></A>Foreign Geometry example source code</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-315736"></A>frustrum.c</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-315738"></A>Dummy frustrum source code</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-315740"></A>frustrum_delta.c</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-315742"></A>Example Partitioned Rollback Frustrum code</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-315760"></A>frustrum_test.c</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-315762"></A>Source of Frustrum library acceptance test</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-315799"></A>parasolid_test.c</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-315801"></A>Source of Parasolid library acceptance test</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520098_pgfId-316332"></A>Build scripts, pre-built libraries and LISP test (not supplied for iOS), all of which are sample code:</P>
+<P>
+<A NAME="50520098_pgfId-317902"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-316431"></A>File</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-316433"></A>Contents</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-316439"></A>fg.lib</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-324335"></A>Foreign Geometry example library.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-316443"></A>fg_library.bat, fg_library.com</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-316445"></A>Commands to compile <CODE>
+fg.c</CODE>
+ and create a Foreign Geometry library. The <CODE>
+.com</CODE>
+ extension is used on UNIX.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-316455"></A>frustrum.lib</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-316457"></A>Pre-built dummy frustrum library.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-316459"></A>frustrum_library.bat, frustrum_library.com</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-316461"></A>Commands to compile <CODE>
+frustrum.</CODE>
+c and create the Frustrum library. The <CODE>
+.com</CODE>
+ extension is used on UNIX.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-316463"></A>frustrum_link.bat, frustrum_link.com</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-316465"></A>Commands to compile and link <CODE>
+frustrum_test.c</CODE>
+. The <CODE>
+.com</CODE>
+ extension is used on UNIX.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-316471"></A>kid_test.lsp</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-316473"></A>KID acceptance test.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-316475"></A>parasolid_link.bat, parasolid_link.com</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-316477"></A>Commands to compile and link <CODE>
+parasolid_test.c</CODE>
+. The <CODE>
+.com</CODE>
+ extension is used on UNIX. </P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50520098_pgfId-273036"></A>The &#8216;lispdata&#8217; sub-directory</H4>
+<P>
+<A NAME="50520098_pgfId-273037"></A>This directory contains just one file, not supplied for iOS. This is for use with KID (see below) and is not for redistribution.</P>
+<P>
+<A NAME="50520098_pgfId-273043"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-273040"></A>bbcini.lsp</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-273042"></A>KID LISP initialization start-up file.</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50520098_pgfId-273044"></A>The &#8216;schema&#8217; sub-directory</H4>
+<P>
+<A NAME="50520098_pgfId-273045"></A>This directory contains a number of schema files whose names have the form <CODE>
+sch_XXX.sch_txt</CODE>
+.</P>
+
+
+<H4>
+<A NAME="50520098_pgfId-307403"></A><A NAME="50520098_12640"></A>The &#8216;dll&#8217; sub-directory (Windows)</H4>
+<P>
+<A NAME="50520098_pgfId-307415"></A>This directory contains a Parasolid DLL, its corresponding import libraries, and a KID executable linked against the Parasolid DLL. The following DLLs are available:</P>
+<UL>
+<LI>
+<A NAME="50520098_pgfId-303822"></A><CODE>
+pskernel.dll</CODE>
+ - DLL for Parasolid kernel</LI>
+<LI>
+<A NAME="50520098_pgfId-307505"></A><CODE>
+pskernel_net.dll</CODE>
+ - .NET binding DLL for Parasolid (relevant Windows platforms only). See <A HREF="fd_chap.013.html#18658">Chapter 12, &#8220;Calling Parasolid From .NET Code&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM> manual for more details. </LI>
+</UL>
+
+
+<H4>
+<A NAME="50520098_pgfId-307891"></A><A NAME="50520098_68890"></A>The &#8216;shared_object&#8217; sub-directory (UNIX &amp; Android)</H4>
+<P>
+<A NAME="50520098_pgfId-307899"></A>This contains the Parasolid shared library, a KID linked against it, and some supporting files:</P>
+<UL>
+<LI>
+<A NAME="50520098_pgfId-307901"></A><CODE>
+libpskernel.so</CODE>
+ - Parasolid shared library.</LI>
+<LI>
+<A NAME="50520098_pgfId-307902"></A><CODE>
+libkid_support.so</CODE>
+ - shared library of support functions for KID.</LI>
+</UL>
+<P>
+<A NAME="50520098_pgfId-323872"></A>On MacOS platforms, the filename extension for shared libraries is <CODE>
+.dylib</CODE>
+ rather than <CODE>
+.so</CODE>
+</P>
+
+
+<H4>
+<A NAME="50520098_pgfId-316510"></A>iOS</H4>
+<P>
+<A NAME="50520098_pgfId-316524"></A>No form of shared or dynamic library, nor a KID executable, are supplied for iOS.</P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520098_pgfId-273052"></A>4.2	Explanation of files
+
+
+</H1>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520098_pgfId-273053"></A>	4.2.1 	Files in &#8216;base&#8217;</H2>
+
+<H4>
+<A NAME="50520098_pgfId-273054"></A>Parasolid archive library</H4>
+<P>
+<A NAME="50520098_pgfId-273055"></A>For most purposes, it will be more convenient to use the Parasolid &#8220;shared library&#8221;, found in the &#8216;dll&#8217; subdirectory on Windows platforms, or the &#8216;shared_object&#8217; subdirectory on UNIX and Android. The archive library is supplied for use on iOS platforms, and for customers who need to link their own shared library,</P>
+
+
+<H4>
+<A NAME="50520098_pgfId-273056"></A>PK and KI interface header files</H4>
+<P>
+<A NAME="50520098_pgfId-273057"></A>Interface functions and type declarations for C/C++ applications.</P>
+
+
+<H4>
+<A NAME="50520098_pgfId-273058"></A>Ifails and tokens header files</H4>
+<P>
+<A NAME="50520098_pgfId-273059"></A>These are necessary for an application program to avoid using numeric values for PK arguments. </P>
+
+
+<H4>
+<A NAME="50520098_pgfId-273060"></A>Parasolid test code</H4>
+<P>
+<A NAME="50520098_pgfId-273061"></A>This is included so that you can make a simple test that the library is set up correctly before integrating it with the application program. Parasolid requires a Frustrum - thus a dummy frustrum library is also included. This should only be used for experimentation and learning, any customer Frustrum should be written to suit the application. Parasolid can also use Foreign Geometry functions, and example functions are included, although you should contact Parasolid Support before using them.</P>
+
+
+<H4>
+<A NAME="50520098_pgfId-273062"></A>Frustrum test code</H4>
+<P>
+<A NAME="50520098_pgfId-273063"></A>This tests the dummy frustrum library in isolation from the Parasolid library. It uses the Frustrum tester function (TESTFR), see the Parasolid Downward Interface manual for a full explanation of this. This program can also be used to test your own Frustrum.</P>
+
+
+<H4>
+<A NAME="50520098_pgfId-273064"></A>Frustrum source code and library</H4>
+<P>
+<A NAME="50520098_pgfId-273065"></A>Supplied for building and running the frustrum test code.</P>
+
+
+<H4>
+<A NAME="50520098_pgfId-273066"></A>Frustrum library command file</H4>
+<P>
+<A NAME="50520098_pgfId-273067"></A>Supplied to build a Frustrum library from the source code.</P>
+
+
+<H4>
+<A NAME="50520098_pgfId-273068"></A>Frustrum link and Parasolid link command files</H4>
+<P>
+<A NAME="50520098_pgfId-273069"></A>These are supplied to link the test programs with the libraries.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520098_pgfId-273072"></A>	4.2.2 	The Kernel Interface Driver (KID)</H2>
+<P>
+<A NAME="50520098_pgfId-273073"></A>The KID program provides a LISP front-end to the Parasolid library, which can be used to learn the Kernel, and prototype applications. For a full description see the Parasolid Kernel Interface Driver (KID) Manual. KID loads the LISP initialization file at start-up. The KID test file is supplied as an acceptance test for the KID program.</P>
+<P>
+<A NAME="50520098_pgfId-338765"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520098_pgfId-338764"></A>Note: The KID program is not for redistribution.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520098_pgfId-273074"></A>	4.2.3 	<A NAME="50520098_94084"></A>Schema files</H2>
+<P>
+<A NAME="50520098_pgfId-306698"></A>The content and format of Parasolid part files (either transmit or partition files) is referred to generically as the <EM>
+schema</EM>. The schema needs to be present so that a Parasolid-powered application can</P>
+<UL>
+<LI>
+<A NAME="50520098_pgfId-306702"></A>read part files created using other versions of Parasolid</LI>
+<LI>
+<A NAME="50520098_pgfId-306465"></A>write part files that can be read in other versions of Parasolid</LI>
+</UL>
+<P>
+<A NAME="50520098_pgfId-330609"></A>New schemas are released from time to time with new releases of Parasolid. You can find out what the current schema version is using <A HREF=../headers/pk_session_ask_schema_version.html>PK_SESSION_ask_schema_version</A>.</P>
+<P>
+<A NAME="50520098_pgfId-306608"></A>By default, since Parasolid V14.0, the relevant schema is embedded inside every Parasolid part file. This ensures that Parasolid parts can be received not only by later versions of Parasolid (e.g. you can read a V14.0 part file into Parasolid V15.0), but by earlier versions as well (e.g. you can read a V15.0 part file into Parasolid V14.0).</P>
+<P>
+<A NAME="50520098_pgfId-306650"></A>However, part files saved by versions of Parasolid before V14.0, and part files saved in any version of Parasolid using an explicit transmit version, do not have the relevant schema embedded. In these cases, an external <EM>
+schema file</EM> must be present in order to receive and transmit Parasolid data. </P>
+<P>
+<A NAME="50520098_pgfId-303989"></A>Schema files are platform independent, text based files with a name of the form <CODE>
+sch_</CODE>
+<EM>
+XXX</EM><CODE>
+.sch_txt</CODE>
+ (or <CODE>
+sch_</CODE>
+<EM>
+XXX</EM><CODE>
+.s_t</CODE>
+ for DOS FAT file systems). </P>
+<P>
+<A NAME="50520098_pgfId-303982"></A>The appropriate schema file must be present when receiving a part file created in an older version of Parasolid, or when transmitting a part file using an explicit transmit version. For instance if you are trying to read a V11.0 or V11.1 part file into Parasolid V15.0, the relevant schema file (<CODE>
+sch_11004</CODE>
+, in this case) must be present. </P>
+<UL>
+<LI>
+<A NAME="50520098_pgfId-304008"></A>Parasolid guarantees upward compatibility of part files between major versions of Parasolid. To support this, schema files corresponding to all previous versions of Parasolid are provided with each new release. </LI>
+<LI>
+<A NAME="50520098_pgfId-306769"></A>In Parasolid V14.0 and later, Parasolid guarantees downward compatibility of part files with an embedded schema to at least the previous major version. Thus, a V15.0 part file can be received by Parasolid V14.0.</LI>
+<LI>
+<A NAME="50520098_pgfId-304018"></A>Parasolid also guarantees two-way compatibility within a major version of Parasolid (e.g. a V14.0 file can be read into V14.1 and vice-versa).</LI>
+<LI>
+<A NAME="50520098_pgfId-314921"></A>Caveat: parts and partitions containing facet geometry can be received into Parasolid V28.0, but the facet geometry will not be present. They work normally in Parasolid V28.1 onwards.</LI>
+</UL>
+<P>
+<A NAME="50520098_pgfId-304057"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520098_pgfId-304050"></A>Warning: You should not attempt to &#8220;force&#8221; downward compatibility for part files that do not contain an embedded schema by copying the schema file for a later release into an earlier release of Parasolid. The behavior under these circumstances is not guaranteed or supported by Parasolid. Furthermore, the behavior of downstream operations on such parts is also not guaranteed. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520098_pgfId-273080"></A>	4.2.4 	<A NAME="50520098_28138"></A>Finding shared libraries</H2>
+<P>
+<A NAME="50520098_pgfId-307268"></A>You can link your application(s) against the Parasolid shared library, and then upgrade them with a newer version of Parasolid by simply providing the new shared library file. You must make sure that the new library is a Parasolid version that is compatible with the old one. </P>
+<P>
+<A NAME="50520098_pgfId-273082"></A>If an application needs to check the Parasolid version at run-time, it can use run-time library functions to open the shared library (e.g. dlopen() on some UNIX machines, or LoadLibrary() and GetProcAddress() on Windows platforms) and call <A HREF=../headers/pk_session_ask_kernel_version.html>PK_SESSION_ask_kernel_version</A> to extract the version information.</P>
+<P>
+<A NAME="50520098_pgfId-273083"></A>The KID linked against the Parasolid shared library contains embedded information about where to look for the Parasolid library. This information may need to be overridden, so that the run-time loader will search the directory where the customer has put the libraries:</P>
+
+<H4>
+<A NAME="50520098_pgfId-273084"></A>UNIX</H4>
+<P>
+<A NAME="50520098_pgfId-306107"></A>The KID executable in <CODE>
+base/shared_object/kid.exe</CODE>
+ is built consistently on all UNIX platforms and expects to use a PATH-like environment variable to locate the Parasolid shared library. You need to ensure that the directory containing the Parasolid library is included in the value of this environment variable. The name of the environment variable used varies depending on the platform, as shown below:</P>
+<P>
+<A NAME="50520098_pgfId-306141"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-306147"></A>Platform</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-306149"></A>Variable name</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-307161"></A>Linux</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-307163"></A>LD_LIBRARY_PATH</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520098_pgfId-337870"></A>MacOS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520098_pgfId-337872"></A>DYLD_FALLBACK_LIBRARY_PATH</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520098_pgfId-306133"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520098_pgfId-307216"></A>Note: For MacOS platforms, see <A HREF="in_chap.07.html#50520100_71579">Section 6.6.5</A>, for notes on using <CODE>
+install_name_tool</CODE>
+ to avoid the need to use <CODE>
+DYLD_FALLBACK_LIBRARY_PATH</CODE>
+. This is recommended, because the DYLD family of variables are limited by the System Integrity Protection security system.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520098_pgfId-306105"></A>Further details should be available in the linker and loader documentation for your platform. The <CODE>
+ld</CODE>
+ man page is usually a good starting point. </P>
+
+
+<H4>
+<A NAME="50520098_pgfId-273086"></A>Windows</H4>
+<P>
+<A NAME="50520098_pgfId-273087"></A>The PATH environment variable is also used as the DLL search path. The search path for a DLL is:</P>
+<UL>
+<LI>
+<A NAME="50520098_pgfId-306356"></A>The directory where the executable module for the current process is located.</LI>
+<LI>
+<A NAME="50520098_pgfId-306357"></A>The current directory. </LI>
+<LI>
+<A NAME="50520098_pgfId-306349"></A>The Windows system directory.</LI>
+<LI>
+<A NAME="50520098_pgfId-306350"></A>The Windows directory.</LI>
+<LI>
+<A NAME="50520098_pgfId-308730"></A>The directories listed in the PATH environment variable.</LI>
+</UL>
+<P>
+<A NAME="50520098_pgfId-307586"></A>See <A HREF="in_chap.07.html#50520100_84226">Section 6.6.1, &#8220;Windows run-time libraries&#8221;</A>.</P>
+<P>
+<A NAME="50520098_pgfId-309265"></A>See also <A HREF="in_chap.07.html#50520100_26350">Section 6.9, &#8220;Linking Windows run-time libraries&#8221;</A></P>
+
+
+<H4>
+<A NAME="50520098_pgfId-318764"></A>iOS</H4>
+<P>
+<A NAME="50520098_pgfId-316640"></A>No form of dynamic or shared library is supplied for these platforms, nor is a KID executable. This section is not applicable to these platforms. </P>
+
+
+<H4>
+<A NAME="50520098_pgfId-325652"></A>Android</H4>
+<P>
+<A NAME="50520098_pgfId-325674"></A>The KID executable in <CODE>
+base/shared_object/kid.exe</CODE>
+ is built to run in the ADB shell environment, not on a standalone device. It expects to use the LD_LIBRARY_PATH variable to locate the Parasolid shared library, very much like Linux. You need to ensure that this environment variable is set up, and the directory containing the Parasolid library is included in its value. Parasolid also requires the C++ run-time library from the Android NDK, <CODE>
+libc++shared.so</CODE>
+, which you must copy to the device, and place in a directory that is included in LD_LIBRARY_PATH. See <A HREF="in_chap.07.html#50520100_52598">Section 6.3.8, &#8220;ARM Android&#8221;</A> for more details.</P>
+
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="in_chap.04.html">Installing Parasolid</A></TD>
+  <TD><A HREF="../in_index.html">Chapters</A></TD>
+  <TD><A HREF="in_chap.06.html">Using Parasolid</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_identify_details_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_identify_details_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_identify_details_o_s
+    {
+    int                    o_t_version;       --- version number of opt struct
+    <A HREF=../headers/pk_double_constraint_t.html>PK_double_constraint_t</A> hole_cyl_radius;   --- radius constraint for
+                                              --- cylindrical holes
+                                              --- ( <A HREF=../headers/pk_comparison_t.html>PK_comparison_never_c</A>
+                                              ---   ( 0.0 0.0 )
+                                              --- )
+    <A HREF=../headers/pk_hole_blended_t.html>PK_hole_blended_t</A>      hole_blended;      --- whether to include blend
+                                              --- faces in hole details
+                                              --- ( <A HREF=../headers/pk_hole_blended_t.html>PK_hole_blended_no_c</A> )
+    <A HREF=../headers/pk_double_constraint_t.html>PK_double_constraint_t</A> hole_blend_radius; --- radius constraint for blends
+                                              --- in holes
+                                              --- ( <A HREF=../headers/pk_comparison_t.html>PK_comparison_never_c</A>
+                                              ---   ( 0.0 0.0 )
+                                              --- )
+    <A HREF=../headers/pk_hole_update_t.html>PK_hole_update_t</A>       hole_update;       --- update version
+                                              --- ( <A HREF=../headers/pk_hole_update_t.html>PK_hole_update_default_c</A> )
+    <A HREF=../headers/pk_hole_const_rad_t.html>PK_hole_const_rad_t</A>    hole_const_rad;    --- whether holes must have a
+                                              --- constant radius component
+                                              --- ( <A HREF=../headers/pk_hole_const_rad_t.html>PK_hole_const_rad_no_c</A> )
+    <A HREF=../headers/pk_hole_ortho_t.html>PK_hole_ortho_t</A>        hole_ortho;        --- whether hole components must
+                                              --- be orthogonal to hole axis
+                                              --- ( <A HREF=../headers/pk_hole_ortho_t.html>PK_hole_ortho_no_c</A> )
+    <A HREF=../headers/pk_detail_perforated_t.html>PK_detail_perforated_t</A> hole_perforated;   --- whether holes can be
+                                              --- perforated
+                                              --- ( <A HREF=../headers/pk_detail_perforated_t.html>PK_detail_perforated_no_c</A> )
+    <A HREF=../headers/pk_detail_open_t.html>PK_detail_open_t</A>       hole_open;         --- whether holes can be open
+                                              --- ( <A HREF=../headers/pk_detail_open_t.html>PK_detail_open_no_c</A> )
+    double                 tolerance;         --- distance tolerance
+                                              --- ( 1.0e-8 )
+    double                 angle_tolerance;   --- angle tolerance ( radians )
+                                              --- ( 1.0e-11 )
+    };
+
+typedef struct PK_BODY_identify_details_o_s PK_BODY_identify_details_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure provides options for <A HREF=../headers/pk_body_identify_details.html>PK_BODY_identify_details</A>
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_option_data        'hole_perforated' is set to
+                                    <A HREF=../headers/pk_detail_perforated_t.html>PK_detail_perforated_yes_c</A>
+                                    and 'hole_ortho' is set to
+                                    <A HREF=../headers/pk_hole_ortho_t.html>PK_hole_ortho_no_c</A>, or 'hole_open'
+                                    is set to <A HREF=../headers/pk_detail_open_t.html>PK_detail_open_yes_c</A> and
+                                    'hole_perforated' is set to
+                                    <A HREF=../headers/pk_detail_perforated_t.html>PK_detail_perforated_no_c</A> (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_identify_details.html>PK_BODY_identify_details</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It has the following fields:
+
+<B>'hole_cyl_radius'</B>                  a double constraint specifying which
+                                   cylindrical holes will be identified.
+                                   The default will never identify any.
+
+See <A HREF="../chapters/fd_chap.066.html#50409852_pgfId-295384">Constraining the radius of a cylindrical hole</A> for more
+information.
+
+<B>'hole_blended'</B>                     a token indicating whether blend faces
+                                   may be included in hole details
+
+                                   See <A HREF="../chapters/fd_chap.066.html#50409852_pgfId-295393">Finding holes with blends</A>
+                                   for more information.
+
+<B>'hole_blend_radius'</B>                a double constraint further restricting the
+                                   radii of blends that may be included in
+                                   holes
+
+                                   See <A HREF="../chapters/fd_chap.066.html#50409852_pgfId-295393">Finding holes with blends</A>
+                                   for more information.
+
+<B>'hole_update'</B>                      enables earlier versions of the hole
+                                   identification algorithm if required for
+                                   updating parts created in earlier versions.
+
+<B>'hole_const_rad'</B>                   a token indicating whether or not holes must
+                                   contain at least one constant radius
+                                   component.
+
+<B>'hole_ortho'</B>                       a token indicating whether or not it is a
+                                   requirement that components of holes that do
+                                   not themselves have surfaces which are
+                                   uniquely spun about the hole axis must be
+                                   orthogonal to the hole axis.
+
+<B>'hole_perforated'</B>                  a token indicating whether or not holes
+                                   can be perforated, i.e. contain inner
+                                   boundaries of convex edges. See
+                                   <A HREF="../chapters/fd_chap.066.html#50409852_pgfId-295788">here</A> for more information.
+
+<B>'hole_open'</B>                        a token indicating whether or not holes
+                                   can be open, i.e. contain spun or zero-
+                                   depth facesets that are not closed rings.
+
+<B>'tolerance'</B>                        a 3 space distance tolerance.
+
+<B>'angle_tolerance'</B>                  an angle tolerance in radians.
+
+
+Identification of a cylindrical hole is triggered by a face with the following
+properties:
+
+ - the face has a surface
+ - the surface is a spun surface
+ - the face normal points inwards
+ - the surface is a ruled surface
+ - either the face is bounded by two loops of type PK_LOOP_type_winding_c, or
+   it is bounded by one loop of type PK_LOOP_type_inner_sing_c and one loop of
+   type PK_LOOP_type_outer_c
+ - each loop satisfies the <B>'hole_cyl_radius'</B> constraint
+
+Cylindrical holes may be closed by a face whose surface is any ruled surface
+(in particular a plane or cone).  They may also be closed by a blend face (in
+particular with a spherical surface), provided that it satisfies the
+<B>'hole_blend_radius'</B> constraint.  Cylindrical holes may include other faces
+bounded by two loops whose surfaces are ruled surfaces.  Thus countersinks
+and counterbores can be included in a cylindrical hole.
+
+Hole components with spun surfaces may only be considered to belong to the same
+hole if their axes are co-axial.  To be co-axial, the axes of two components
+must separate by no further than <B>'tolerance'</B> within the hole, and must be
+parallel to within <B>'angle_tolerance'</B>.
+
+For a hole component to be considered to be of constant radius, then the radii
+at each end of it must not differ by more than <B>'tolerance'</B>.
+
+For a hole component to be considered to be orthogonal to the hole axis, the
+component must have a planar surface whose normal is parallel to the hole
+axis to within <B>'angle_tolerance'</B>.
+
+If <B>'hole_perforated'</B> is <A HREF=../headers/pk_detail_perforated_t.html>PK_detail_perforated_yes_c</A> then <B>'hole_ortho'</B> must
+be <A HREF=../headers/pk_hole_ortho_t.html>PK_hole_ortho_yes_c</A>. <A HREF=../headers/pk_body_identify_details.html>PK_BODY_identify_details</A> will then use an alternative
+algorithm that can identify a greater range of holes, but has the restriction
+that there must not be concave edges around the periphery of the hole.
+
+If <B>'hole_open'</B> is <A HREF=../headers/pk_detail_open_t.html>PK_detail_open_yes_c</A> then <B>'hole_perforated'</B> must be
+<A HREF=../headers/pk_detail_perforated_t.html>PK_detail_perforated_yes_c</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

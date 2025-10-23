@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MFACET_find_perimeters_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MFACET_find_perimeters_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MFACET_find_perimeters_o_s
+    {
+    int                      o_t_version;  --- version number
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             want_plines;  --- whether to return
+                                           --- pline(s) and pline_mfins
+                                           --- for each mloop
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_mtopol_track_t.html>PK_MTOPOL_track_t</A>        track_type;   --- type of mfacetset
+                                           --- tracking
+                                           --- (<A HREF=../headers/pk_mtopol_track_t.html>PK_MTOPOL_track_none_c</A>)
+    <A HREF=../headers/pk_mtopol_select_cb_f_t.html>PK_MTOPOL_select_cb_f_t</A>  select_cb;    --- callback function
+                                           --- (NULL)
+    <A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>             select_data;  --- context data for the
+                                           --- callback function
+                                           --- (NULL)
+    <A HREF=../headers/pk_class_t.html>PK_CLASS_t</A>               select_mtopol_class;
+                                           --- class type of the input
+                                           --- mtopol of the callback
+                                           --- (PK_CLASS_mfin)
+    <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_t</A>       select_wire_mfins;
+                                           --- whether to include
+                                           --- wire mfins in the
+                                           --- perimeters
+                                           --- (<A HREF=../headers/pk_selector_type_t.html>PK_selector_type_exclude_c</A>)
+    int                      min_n_mfacets;
+                                           --- only return perimeters and
+                                           --- other data for mfacetsets with
+                                           --- at least this number of mfacets
+                                           --- (1)
+    };
+
+typedef struct PK_MFACET_find_perimeters_o_s PK_MFACET_find_perimeters_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional arguments for <A HREF=../headers/pk_mfacet_find_perimeters.html>PK_MFACET_find_perimeters</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mfacet_find_perimeters.html>PK_MFACET_find_perimeters</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+
+<B>'want_plines'</B>               If set to PK_LOGICAL_true then one or more
+                            polylines will be returned as a <A HREF=../headers/pk_pline_t.html>PK_PLINE_t</A> for
+                            each mloop.
+
+<B>'track_type'</B>                This option allows the application to specify the
+                            type of tracking in <B>'track_mfacetsets'</B> in the
+                            results structure. Currently, this must be set to
+                            the default <A HREF=../headers/pk_mtopol_track_t.html>PK_MTOPOL_track_none_c</A>, otherwise
+                            PK_ERROR_not_implemented is returned.
+
+<B>'select_cb'</B>                 This callback function of type
+                            PK_MTOPOL_select_cb_t determines the criterion for
+                            selecting either the given mfacet, or the mfacet of
+                            the given mfin. If <B>'select_cb'</B> is set to NULL, the
+                            selection of mfacets will be limited to
+                            `mfacets[]'. See <A HREF="../chapters/fd_chap.086.html#50409874_pgfId-391328">here</A> for more
+                            information.
+
+<B>'select_data'</B>               This is a pointer to application data that may be
+                            used to communicate information between the
+                            application and its callback function <B>'select_cb'</B>.
+
+<B>'select_mtopol_class'</B>       This determines the class of mtopol passed to
+                            <B>'select_cb'</B>. If <B>'select_mtopol_class'</B> is
+                            PK_CLASS_mfin, the selected facet will be the
+                            mfacet of the given mfin.
+                            The class PK_CLASS_mvertex is currently not
+                            allowed and returns PK_ERROR_not_implemented. See
+                            <A HREF="../chapters/fd_chap.086.html#50409874_pgfId-391328">here</A> for more information.
+
+<B>'select_wire_mfins'</B>         If set to <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_include_c</A>, the
+                            wire mfin portions of perimeters will
+                            be included in the return structure.
+                            If set to <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_exclude_c</A>,
+                            the wire mfin portions will be omitted.
+                            <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_off_c</A> is not a valid option and
+                            setting <B>'select_wire_mfins'</B> to this value will
+                            return PK_ERROR_not_implemented.
+
+<B>'min_n_mfacets'</B>             If set to a non-negative integer, mfacetsets with
+                            fewer than this number of facets will be ignored.
+                            For example, <B>'num_perimeters'</B> will refer only to
+                            perimeters of mfacetsets with at least this number
+                            of mfacets, and similarly for all other returned
+                            data.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

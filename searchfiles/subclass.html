@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299709", " SURF (PK_CLASS_surf) - a <B>subclass</B> of PK_CLASS_geom ", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299711", " CONE (PK_CLASS_cone) - a <B>subclass</B> of PK_CLASS_surf ", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-294760", " find out whether a given class is a <B>subclass</B> of another class using PK_CLASS_is_subclass . ", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-306506", " Is the first class a <B>subclass</B> of the second? ", "Functional Description - Enquiry And Output Functions");
+top.note("headers/pk_assembly_t.html#documentation", " is a type of part (PK_CLASS_assembly is a <B>subclass</B> of", "PK Reference - PK_ASSEMBLY_t");
+top.note("headers/pk_attdef_t.html#documentation", " is a type of entity (PK_CLASS_attdef is a <B>subclass</B> of", "PK Reference - PK_ATTDEF_t");
+top.note("headers/pk_attrib_t.html#documentation", " is a type of entity (PK_CLASS_attrib is a <B>subclass</B> of", "PK Reference - PK_ATTRIB_t");
+top.note("headers/pk_bcurve_t.html#documentation", " is a type of curve (PK_CLASS_bcurve is a <B>subclass</B> of PK_CLASS_curve).", "PK Reference - PK_BCURVE_t");
+top.note("headers/pk_blendsf_t.html#documentation", " is a type of surface (PK_CLASS_blendsf is a <B>subclass</B> of", "PK Reference - PK_BLENDSF_t");
+top.note("headers/pk_body_extrude.html#documentation", " - any <B>subclass</B> of PK_CLASS_surf: the face is produced from a", "PK Reference - PK_BODY_extrude");
+top.note("headers/pk_body_t.html#documentation", " is a type of part (PK_CLASS_body is a <B>subclass</B> of PK_CLASS_part).", "PK Reference - PK_BODY_t");
+top.note("headers/pk_bsurf_t.html#documentation", " is a type of surface (PK_CLASS_bsurf is a <B>subclass</B> of", "PK Reference - PK_BSURF_t");
+top.note("headers/pk_circle_t.html#documentation", " is a type of curve (PK_CLASS_circle is a <B>subclass</B> of PK_CLASS_curve).", "PK Reference - PK_CIRCLE_t");
+top.note("headers/pk_class_is_subclass.html#declaration", " PK_CLASS_t may_be_subclass,--- a potential <B>subclass</B>", "PK Reference - PK_CLASS_is_subclass");
+top.note("headers/pk_class_is_subclass.html#description", " This function returns whether may_be_subclass is a <B>subclass</B> of class .", "PK Reference - PK_CLASS_is_subclass");
+top.note("headers/pk_class_is_subclass.html#documentation", "PK_CLASS_class is not a <B>subclass</B> of any class. All other classes are", "PK Reference - PK_CLASS_is_subclass");
+top.note("headers/pk_cone_t.html#documentation", " is a type of surface (PK_CLASS_cone is a <B>subclass</B> of PK_CLASS_surf).", "PK Reference - PK_CONE_t");
+top.note("headers/pk_curve_t.html#documentation", " is a type of geometry (PK_CLASS_curve is a <B>subclass</B> of PK_CLASS_geom).", "PK Reference - PK_CURVE_t");
+top.note("headers/pk_cyl_t.html#documentation", " is a type of surface (PK_CLASS_cyl is a <B>subclass</B> of PK_CLASS_surf).", "PK Reference - PK_CYL_t");
+top.note("headers/pk_edge_t.html#documentation", " is a type of topology (PK_CLASS_edge is a <B>subclass</B> of PK_CLASS_topol).", "PK Reference - PK_EDGE_t");
+top.note("headers/pk_ellipse_t.html#documentation", " is a type of curve (PK_CLASS_ellipse is a <B>subclass</B> of", "PK Reference - PK_ELLIPSE_t");
+top.note("headers/pk_face_t.html#documentation", " is a type of topology (PK_CLASS_face is a <B>subclass</B> of PK_CLASS_topol).", "PK Reference - PK_FACE_t");
+top.note("headers/pk_fcurve_t.html#documentation", " is a type of curve (PK_CLASS_fcurve is a <B>subclass</B> of", "PK Reference - PK_FCURVE_t");
+top.note("headers/pk_fin_t.html#documentation", " is a type of topology (PK_CLASS_fin is a <B>subclass</B> of PK_CLASS_topol).", "PK Reference - PK_FIN_t");
+top.note("headers/pk_frame_t.html#documentation", " is a type of topology (PK_CLASS_frame is a <B>subclass</B> of", "PK Reference - PK_FRAME_t");
+top.note("headers/pk_fsurf_t.html#documentation", " is a type of surface (PK_CLASS_fsurf is a <B>subclass</B> of PK_CLASS_surf).", "PK Reference - PK_FSURF_t");
+top.note("headers/pk_geom_t.html#documentation", " is a type of entity (PK_CLASS_geom is a <B>subclass</B> of", "PK Reference - PK_GEOM_t");
+top.note("headers/pk_group_t.html#documentation", " is a type of entity (PK_CLASS_group is a <B>subclass</B> of PK_CLASS_entity).", "PK Reference - PK_GROUP_t");
+top.note("headers/pk_icurve_t.html#documentation", " is a type of curve (PK_CLASS_icurve is a <B>subclass</B> of", "PK Reference - PK_ICURVE_t");
+top.note("headers/pk_instance_t.html#documentation", " is a type of topology (PK_CLASS_instance is a <B>subclass</B> of", "PK Reference - PK_INSTANCE_t");
+top.note("headers/pk_lattice_t.html#documentation", " is a type of geometry (PK_CLASS_lattice is a <B>subclass</B> of", "PK Reference - PK_LATTICE_t");
+top.note("headers/pk_lball_t.html#documentation", " a type of lattice topology (PK_CLASS_lball is a <B>subclass</B> of", "PK Reference - PK_LBALL_t");
+top.note("headers/pk_line_t.html#documentation", " is a type of curve (PK_CLASS_line is a <B>subclass</B> of PK_CLASS_curve).", "PK Reference - PK_LINE_t");
+top.note("headers/pk_loop_t.html#documentation", " is a type of topology (PK_CLASS_loop is a <B>subclass</B> of PK_CLASS_topol).", "PK Reference - PK_LOOP_t");
+top.note("headers/pk_lrod_t.html#documentation", " a type of lattice topology (PK_CLASS_lrod is a <B>subclass</B> of", "PK Reference - PK_LROD_t");
+top.note("headers/pk_mesh_t.html#documentation", " is a type of surface (PK_CLASS_mesh is a <B>subclass</B> of PK_CLASS_surf).", "PK Reference - PK_MESH_t");
+top.note("headers/pk_mfacet_t.html#documentation", " a type of mesh topology (PK_CLASS_mfacet is a <B>subclass</B> of", "PK Reference - PK_MFACET_t");
+top.note("headers/pk_mfin_t.html#documentation", " a type of mesh topology (PK_CLASS_mfin is a <B>subclass</B> of", "PK Reference - PK_MFIN_t");
+top.note("headers/pk_mvertex_t.html#documentation", " a type of mesh topology (PK_CLASS_mvertex is a <B>subclass</B> of", "PK Reference - PK_MVERTEX_t");
+top.note("headers/pk_offset_t.html#documentation", " is a type of surface (PK_CLASS_offset is a <B>subclass</B> of", "PK Reference - PK_OFFSET_t");
+top.note("headers/pk_part_t.html#documentation", " is a type of topology (PK_CLASS_part is a <B>subclass</B> of PK_CLASS_topol).", "PK Reference - PK_PART_t");
+top.note("headers/pk_plane_t.html#documentation", " is a type of surface (PK_CLASS_plane is a <B>subclass</B> of PK_CLASS_surf).", "PK Reference - PK_PLANE_t");
+top.note("headers/pk_pline_t.html#documentation", " is a type of curve (PK_CLASS_pline is a <B>subclass</B> of PK_CLASS_curve).", "PK Reference - PK_PLINE_t");
+top.note("headers/pk_point_t.html#documentation", " is a type of geometry (PK_CLASS_point is a <B>subclass</B> of PK_CLASS_geom).", "PK Reference - PK_POINT_t");
+top.note("headers/pk_region_t.html#documentation", " is a type of topology (PK_CLASS_region is a <B>subclass</B> of", "PK Reference - PK_REGION_t");
+top.note("headers/pk_shell_t.html#documentation", " is a type of topology (PK_CLASS_shell is a <B>subclass</B> of PK_CLASS_topol).", "PK Reference - PK_SHELL_t");
+top.note("headers/pk_spcurve_t.html#documentation", " is a type of curve (PK_CLASS_spcurve is a <B>subclass</B> of", "PK Reference - PK_SPCURVE_t");
+top.note("headers/pk_sphere_t.html#documentation", " is a type of surface (PK_CLASS_sphere is a <B>subclass</B> of PK_CLASS_surf).", "PK Reference - PK_SPHERE_t");
+top.note("headers/pk_spun_t.html#documentation", " is a type of surface (PK_CLASS_spun is a <B>subclass</B> of", "PK Reference - PK_SPUN_t");
+top.note("headers/pk_surf_t.html#documentation", " is a type of geometry (PK_CLASS_surf is a <B>subclass</B> of PK_CLASS_geom).", "PK Reference - PK_SURF_t");
+top.note("headers/pk_swept_t.html#documentation", " is a type of surface (PK_CLASS_swept is a <B>subclass</B> of", "PK Reference - PK_SWEPT_t");
+top.note("headers/pk_topol_t.html#documentation", " is a type of entity (PK_CLASS_topol is a <B>subclass</B> of", "PK Reference - PK_TOPOL_t");
+top.note("headers/pk_torus_t.html#documentation", " is a type of surface (PK_CLASS_torus is a <B>subclass</B> of PK_CLASS_surf).", "PK Reference - PK_TORUS_t");
+top.note("headers/pk_transf_t.html#documentation", " is a type of entity (PK_CLASS_transf is a <B>subclass</B> of", "PK Reference - PK_TRANSF_t");
+top.note("headers/pk_trcurve_t.html#documentation", " a fully supported curve type (PK_CLASS_trcurve is a <B>subclass</B>", "PK Reference - PK_TRCURVE_t");
+top.note("headers/pk_vertex_t.html#documentation", " is a type of topology (PK_CLASS_vertex is a <B>subclass</B> of", "PK Reference - PK_VERTEX_t");
+top.note("chapters/kd_chap.03.html#50475011_marker-274024", " of a class and the function returns the <B>subclass</B> of the one given which leads to the", "KID Manual - LISP in KID");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-274033", "<B>subclass</B> ", "KID Manual - LISP in KID");
+top.note("chapters/kd_chap.06.html#50475013_pgfId-273841", " created, the objects are transferred to an appropriate <B>subclass</B> of entity i.e. assembly, vertex, body, curve or", "KID Manual - Creation of Primitives");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-273850", " a new view can be defined as a <B>subclass</B> of the current view. The window sizes can", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-273855", " is a <B>subclass</B> of xgraphics and inherits all its properties. ", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-273865", " used, the first is to work in the <B>subclass</B> ", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-279736", " -- define <B>subclass</B> of graphics with all graphics functions", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-279767", " Note: In the following KID examples any <B>subclass</B> of the graphics object can be substituted for", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-273958", " Only one view or graphics <B>subclass</B> can be active at a time, and all", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.15.html#50475034_pgfId-273982", " exists as a <B>subclass</B> of primitive. The class has a function pick", "KID Manual - Picking");
+top.note("chapters/kd_chap.17.html#50475020_pgfId-276366", "graphics is a <B>subclass</B> of ", "KID Manual - KID Class Structure");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-36167", " <B>subclass</B> ", "KID Manual - Machine Dependency in KID");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-37400", " <B>Subclass</B> ", "KID Manual - Machine Dependency in KID");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

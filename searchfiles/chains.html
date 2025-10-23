@@ -1,0 +1,97 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.019.html#50409800_pgfId-298817", " the B-curve, thereby allowing you to create smooth <B>chains</B> of B-curves from the data. ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-300654", "<B>chains</B> - connected sets of trimmed curves defined by", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296488", " extension shapes at selected terminal vertices of edge <B>chains</B> in the body. It allows you to override", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296489", " of vertices representing the terminal vertices of edge <B>chains</B> whose behaviour you want to specify. Defaults: 0,", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296491", " Extensions at any terminal vertices of edge <B>chains</B> that are not specified here are controlled according", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-397715", " for deleting either single blend faces or complete <B>chains</B> of blends. The faces supplied must all come", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-322277", " for deleting either single blend faces or complete <B>chains</B> of blends. Sometimes you might just want to", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-322348", "Figure 64-22 shows an example where two blend <B>chains</B> have been applied to a body. Suppose that", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296122", " Whether to limit propagation of blend <B>chains</B> at branch faces to the supplied faces. See", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296132", " Whether to propagate blend <B>chains</B> across sharp edges. See Section 65.5.3, Propagating across", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296139", " be post-processed. See Section 65.5.10, Optimising identified blend <B>chains</B> for subsequent operations , for information. Default: PK_chain_optimise_none_c", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296158", " PK_FACE_identify_blends works by identifying and returning <B>chains</B> of connected blend faces. For each blend face", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296160", " argument of PK_FACE_identify_blends to control how <B>chains</B> of blends are returned, with respect to the", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296169", " Only return <B>chains</B> of blends that are contained in the supplied", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296173", " blends, excluding branch faces. This option looks for <B>chains</B> of blends starting from the supplied faces. If", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296182", " maximal chain of blends. This option makes the <B>chains</B> as long as possible. If a branch face", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296186", " Return <B>chains</B> of blends that are not within the supplied", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296234", " By default, <B>chains</B> are propagated at branch faces to include blend", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296235", " to PK_blend_follow_branch_no_c , <B>chains</B> are only propagated at branch faces if no", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296277", " By default, blend <B>chains</B> propagate across any sharp edges. You can control", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296299", " field in PK_FACE_identify_blends_o_t to ensure that only <B>chains</B> of blends with a particular convexity are returned.", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-436979", " 65.5.10 Optimising identified blend <B>chains</B> for subsequent operations ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296343", " You can control whether blend <B>chains</B> are post-processed using the ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296356", " Blend <B>chains</B> identified and processed to support reblending operations. ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-309826", " <B>Chains</B> of reference entities may be either open or closed", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-309827", " You can supply several disconnected <B>chains</B> of reference entities. ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-309828", " Multiple <B>chains</B> of reference entities can either be independent from", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-304969", " a body are being replaced, while reblending two <B>chains</B> of blends. Both replacement surfaces are variable offsets", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.075.html#50409862_pgfId-310300", " how to add blends to a body along <B>chains</B> of edges or between two or three sheets", "Functional Description - Introduction To Blending");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-642691", " Figure 75-7 Blending <B>chains</B> of mixed edges ", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-584997", " also possible, during the fixing process, that separate <B>chains</B> of blends can overlap and require overflow in", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-295010", " Fixing independent <B>chains</B> of blends that overlap. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-1557452", " control the behaviour of propagation along smoothly connected <B>chains</B> of edges while fixing blends. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299358", " single call to PK_BODY_fix_blends . However, if those <B>chains</B> overlap, then fixing the blends successfully in a", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299362", " following options to control the way that overlapping <B>chains</B> of blends are fixed. In some cases, changing", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299371", " Fix overlapping <B>chains</B> of blends using a smooth overlap. This option", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299373", " allow smooth overlap only if the overlapping blend <B>chains</B> are of different convexity. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299378", " Fix overlapping <B>chains</B> of blends using a notch overlap. This option", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299384", " Specify the order that overlapping <B>chains</B> of blends are applied. This option takes the", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299385", " PK_blend_order_concave_convex_c : apply concave <B>chains</B> of blends first. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299386", " PK_blend_order_convex_concave_c : apply convex <B>chains</B> of blends first. This is the default. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299391", " specifying smooth and notch overlap when fixing two <B>chains</B> of overlapping blends on a body. Parasolid is", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299679", " 76-43 Controlling smooth or notch overlap in overlapping <B>chains</B> of blends ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299938", " Figure 76-44 Controlling blend order in overlapping <B>chains</B> of blends ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-342986", " in the mesh based on the presence of <B>chains</B> of connected laminar fins. ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343300", " returned. See Section 88.3.1, Choosing holes based on <B>chains</B> of mfins , for more information. ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343304", " An array of position data to help locate <B>chains</B> of mfins to return. See Section 88.3.2, Choosing", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343213", " filled. See Section 88.3.1, Choosing holes based on <B>chains</B> of mfins , for more information. ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343016", " 88.3.1 Choosing holes based on <B>chains</B> of mfins ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343017", " a hole. This allows you to exclude large <B>chains</B> of mfins (which might represent, for example, the", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343365", " The function returns <B>chains</B> of laminar mfins with at most ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343371", " All <B>chains</B> of mfins containing fewer than ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343025", ", pass the returned <B>chains</B> to PK_MESH_fill_holes using the ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-294788", " sharp mfin lines - indicate <B>chains</B> of connected sharp mfins on meshes. See Section", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-695299", " set to PK_render_sharp_mfins_yes_c , polylines that run along <B>chains</B> of connected sharp mfins will be rendered for", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-317942", " thread and ends when PK_THREAD_chain_stop is called. Thread <B>chains</B> can be either concurrent or exclusive, as specified", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-295039", " the chain, there can be one or more <B>chains</B> with splits between each one. ", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-295079", " an exclusive chain of length one. If exclusive <B>chains</B> contain concurrent functions, the chain will run as", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-295118", " Figure 114-3 <B>Chains</B> containing concurrent and exclusive functions ", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-295123", " Examples of how <B>chains</B> may be used in applications for performance gain:", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-336578", " Using the consolidated version control mechanism within thread <B>chains</B> ", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-427160", " Using the consolidated version control mechanism within thread <B>chains</B> for more information. ", "Functional Description - Version Controls");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-442747", " Parasolid can propagate blends along <B>chains</B> of tangent edges. You create a blend on", "Overview of Parasolid - Blending");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_blend_identify_exc_chain_c 22241 minimal <B>chains</B> of blends starting within the given face set", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " outwards from supplied branch faces on to all <B>chains</B> adjacent to the branch face ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_blend_follow_branch_t.html#documentation", "This datatype determines how blend <B>chains</B> propagate from branch faces.", "PK Reference - PK_blend_follow_branch_t");
+top.note("headers/pk_blend_identify_t.html#documentation", " of blends includes any branch faces and the <B>chains</B> emanating", "PK Reference - PK_blend_identify_t");
+top.note("headers/pk_chain_optimise_t.html#documentation", "This datatype specifies how the blend <B>chains</B> identified are to be post", "PK Reference - PK_chain_optimise_t");
+top.note("headers/pk_edge_offset_on_body_r_t.html#documentation", " connected <B>chains</B> of edges and any", "PK Reference - PK_EDGE_offset_on_body_r_t");
+top.note("headers/pk_edge_set_blend_chain_o_t.html#documentation", " If an open <B>chains</B> sizes are zero at both ends, at least", "PK Reference - PK_EDGE_set_blend_chain_o_t");
+top.note("headers/pk_extend_side_data_t.html#declaration", " --- edge <B>chains</B> specified", "PK Reference - PK_extend_side_data_t");
+top.note("headers/pk_face_identify_blends.html#documentation", "set of faces specified, all <B>chains</B> of blends starting from the faces in the", "PK Reference - PK_FACE_identify_blends");
+top.note("headers/pk_face_identify_blends_o_t.html#declaration", " --- <B>chains</B>", "PK Reference - PK_FACE_identify_blends_o_t");
+top.note("headers/pk_face_identify_blends_o_t.html#documentation", " optimise_chains This option controls whether blend <B>chains</B> identifed", "PK Reference - PK_FACE_identify_blends_o_t");
+top.note("headers/pk_memory_block_t.html#documentation", "generate <B>chains</B> of blocks, using the PK memory allocators (see", "PK Reference - PK_MEMORY_block_t");
+top.note("headers/pk_mesh_find_defects_o_t.html#documentation", " foldover is formed from <B>chains</B> of folded or laminar mfins which bound", "PK Reference - PK_MESH_find_defects_o_t");
+top.note("headers/pk_mesh_fix_defects_o_t.html#documentation", " foldover is formed from <B>chains</B> of folded or laminar mfins which bound", "PK Reference - PK_MESH_fix_defects_o_t");
+top.note("headers/pk_proj_complete_t.html#documentation", "imprinted edge <B>chains</B> terminate at the desired edges by imprinting additional", "PK Reference - PK_proj_complete_t");
+top.note("headers/pk_thread_chain_start.html#documentation", "<B>Chains</B> can consist of a single link containing all functions or can be split", "PK Reference - PK_THREAD_chain_start");
+top.note("headers/pk_thread_chain_type_t.html#documentation", " datatype is used to specify the behaviour of <B>chains</B> of Parasolid", "PK Reference - PK_THREAD_chain_type_t");
+top.note("headers/pk_thread_is_in_chain.html#documentation", "<B>Chains</B> can consist of a single link containing all functions or can be split", "PK Reference - PK_THREAD_is_in_chain");
+top.note("headers/pk_topol_render_line_o_t.html#documentation", " output polylines running along <B>chains</B> of connected", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("chapters/di_chap.05.html#50511937_pgfId-320744", " to PK_render_sharp_mfins_yes_c then polylines that run along <B>chains</B> of connected sharp mfins will be rendered for", "Downward Interfaces - Graphical Output");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-273853", " Lists are <B>chains</B> of elements bounded by parentheses, where elements are", "KID Manual - LISP in KID");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

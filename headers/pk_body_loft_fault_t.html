@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_loft_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_loft_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_BODY_loft_fault_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_loft_status_r_t.html>PK_BODY_loft_status_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A status value to be associated with lofted bodies. It indicates the type
+of problem encountered during the construction of the body ( may be none at
+all ).
+
+    PK_BODY_loft_ok_c               Lofted body created without problems
+    PK_BODY_loft_failure_c          Internal algorithm failure
+    PK_BODY_loft_bad_profile_c      Invalid loft profile
+    PK_BODY_loft_small_profile_c    Profile is too small to loft
+    PK_BODY_loft_surf_failure_c     Failed to created lofted surface
+    PK_BODY_loft_geom_self_int_c    Lofted body has self intersection in at
+                                    least one of its geometries
+    PK_BODY_loft_geom_degen_c       Lofted body has degeneracy in at least
+                                    one of its geometries
+    PK_BODY_loft_topol_self_int_c   Lofted body has an invalid contact between
+                                    two of its faces, edges, or vertices
+    PK_BODY_loft_check_failure_c    Fault detected in generated body
+    PK_BODY_loft_bad_match_c        Unsuitable profile mappings detected
+    PK_BODY_loft_bad_clamp_c        Unsuitable derivative conditions specified
+                                    on either the profiles or the guides.
+                                    For example, if vector clamps are declared
+                                    on profiles whose vertices and edges touch
+                                    those of an adjacent profile, then
+                                     - the <B>'deriv_mag'</B> option must be set to
+                                       PK_BODY_loft_deriv_mag_smooth_c; and
+                                     - a magnitude must be supplied for each
+                                       vector clamp.
+    PK_BODY_loft_bad_profile_type_c Profile with incorrect body properties
+                                    such as type, closure and orientation
+    PK_BODY_loft_bad_end_conds_c    General fault detected in end conditions
+    PK_BODY_loft_bad_guide_wire_c   Fault detected in a guide wire
+    PK_BODY_loft_bad_guide_match_c  Guide wire vertices do not intersect with
+                                    profile vertices correctly
+    PK_BODY_loft_bad_simplify_c     Simplify option is invalid
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

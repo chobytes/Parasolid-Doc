@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_make_swept_tool_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_make_swept_tool_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_make_swept_tool_o_s
+    {
+    int                    o_t_version;
+    double                 tolerance;      --- tolerance (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           allow_rationals;
+                                           --- allow bodies with rational
+                                           --- surfaces (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           want_edge_tracking;
+                                           --- whether to return tracking
+                                           --- information for edges
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_swept_tool_update_t.html>PK_swept_tool_update_t</A> update;         --- update flag
+                                           --- (PK_swept_tool_update_default_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           have_lock_direction;
+                                           --- whether to lock the direction
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>           lock_direction; --- lock direction
+    <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>            tool_site;      --- vertex on the path corresponding
+                                           --- to the tool <B>'location'</B> at the
+                                           --- beginning of the sweep
+                                           --- (PK_ENTITY_null)
+    int                    n_cap_faces;    --- number of elements in
+                                           --- <B>'cap_faces'</B> (0)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>       *cap_faces;      --- cap faces of the tool for
+                                           --- simpler geometry (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           place_tool_on_path;
+                                           --- whether the tool should be
+                                           --- placed on the path before
+                                           --- sweeping (PK_LOGICAL_true)
+    <A HREF=../headers/pk_sweep_boolean_t.html>PK_sweep_boolean_t</A>     sweep_boolean;  --- which operation to apply to the
+                                           --- swept tool and target
+                                           --- (<A HREF=../headers/pk_sweep_boolean_t.html>PK_sweep_boolean_none_c</A>)
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>              target;         --- target body to use when
+                                           --- specifying a <B>'sweep_boolean'</B>
+                                           --- operation (PK_ENTITY_null)
+    <A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_t</A> corner_type;    --- whether to produce mitred or
+                                           --- spun corners at non-G1 path
+                                           --- discontinuities
+                                           --- (<A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_spin_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           have_turn_axis; --- whether a turn axis is supplied
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_axis1_sf_t.html>PK_AXIS1_sf_t</A>          turn_axis;      --- the supplied turn axis
+    <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>        turn_edges;     --- path edges specified for the
+                                           --- turn axis
+    };
+
+typedef struct PK_BODY_make_swept_tool_o_s PK_BODY_make_swept_tool_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls on the construction of a swept body.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_swept_tool.html>PK_BODY_make_swept_tool</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure for making a swept body has the following fields :
+
+<B>'tolerance'</B>            The tolerance to which the sweeping operation may
+                       approximate entities or assume that entities are
+                       coincident. (1.0e-5)
+
+<B>'allow_rationals'</B>      If set to PK_LOGICAL_false, rational bsurfaces will
+                       never be used in the resultant body. (PK_LOGICAL_true)
+
+<B>'want_edge_tracking'</B>   If set to PK_LOGICAL_true, then the returned
+                       <B>'tracking_info'</B> will contain information about the
+                       edges in the resultant body, as well as the faces. If
+                       set to PK_LOGICAL_false, then only information about
+                       the faces will be returned. (PK_LOGICAL_false)
+
+<B>'update'</B>               The default value allows applications to take advantage
+                       of the latest enhancements to the swept tool algorithm.
+                       To maintain consistency when rebuilding models created
+                       in a previous version of Parasolid, a non-default value
+                       should be specified.
+                       (PK_swept_tool_update_default_c)
+
+<B>'have_lock_direction'</B>  If set to PK_LOGICAL_true, then the sweep direction will
+                       be projected into the plane perpendicular to the
+                       <B>'lock_direction'</B>. (PK_LOGICAL_false)
+
+<B>'lock_direction'</B>       The lock direction, used if <B>'have_lock_direction'</B> is set
+                       to PK_LOGICAL_true. It is an error to supply a direction
+                       that is parallel to the path tangent at any interior
+                       point of a path edge, unless the edge is entirely
+                       parallel to the direction.
+
+<B>'tool_site'</B>            This is a vertex on the path corresponding to the
+                       starting <B>'location'</B> of the <B>'tool_axis'</B>. If
+                       <B>'place_tool_on_path'</B> is set to PK_LOGICAL_true, the tool
+                       will be transformed so that the <B>'location'</B> is at the
+                       <B>'tool_site'</B>. If it is set to PK_LOGICAL_false, the tool
+                       is not moved and this defines the equivalent starting
+                       position of the sweep. In this case, the <B>'location'</B> must
+                       lie in the plane normal to the path. (PK_ENTITY_null)
+
+<B>'n_cap_faces'</B>          The number of cap faces of the tool. (0)
+
+<B>'cap_faces'</B>            The array of cap faces of the tool. (NULL)
+
+<B>'place_tool_on_path'</B>   If set to PK_LOGICAL_false, the <B>'tool_axis'</B> is not moved
+                       onto the path and the tool is instead swept from its
+                       initial position. (PK_LOGICAL_true)
+
+<B>'sweep_boolean'</B>        The Boolean function to employ when specifying a
+                       <B>'target'</B>.  Valid values are <A HREF=../headers/pk_sweep_boolean_t.html>PK_sweep_boolean_subtract_c</A>,
+                       to subtract the swept tool from the <B>'target'</B>,
+                       <A HREF=../headers/pk_sweep_boolean_t.html>PK_sweep_boolean_intersect_c</A>, to intersect the <B>'target'</B>
+                       with the swept tool, and <A HREF=../headers/pk_sweep_boolean_t.html>PK_sweep_boolean_none_c</A>, which
+                       performs no Boolean. (<A HREF=../headers/pk_sweep_boolean_t.html>PK_sweep_boolean_none_c</A>)
+
+<B>'target'</B>               Target body to which to apply the generated swept tool.
+                       (PK_ENTITY_null)
+
+<B>'corner_type'</B>          Which type of corner to produce at non-G1
+                       discontinuities in the path. The default value is
+                       <A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_spin_c</A>. If set to
+                       <A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_mitre_c</A>, the convex side of the
+                       corner is produced by linearly extending each section
+                       of the sweep at each non-G1 vertex. For this, the path
+                       must be planar and lie in a plane orthogonal to the tool
+                       axis and, if a lock_direction is set, it must be
+                       parallel to the tool axis.
+                       (<A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_spin_c</A>)
+
+<B>'have_turn_axis'</B>       If set to PK_LOGICAL_true, then edges of the path when
+                       specified in <B>'turn_edges'</B> will be treated as lying on
+                       a body spun around the <B>'turn_axis'</B>. The motion of the
+                       tool when swept along <B>'turn_edges'</B> will be determined
+                       using <B>'lock_direction'</B> and radial directions from
+                       <B>'turn_axis'</B>. A <B>'lock_direction'</B> must also be supplied
+                       and the axis of <B>'turn_axis'</B> must be equal to the
+                       <B>'lock_direction'</B>.
+
+<B>'turn_axis'</B>            The turn axis, used if <B>'have_turn_axis'</B> is set to
+                       PK_LOGICAL_true.
+
+<B>'turn_edges'</B>           Path edges specified for <B>'turn_axis'</B>. If left empty,
+                       then all edges of the path are specified.
+
+
+Effects of Lock Direction
+If <B>'have_lock_direction'</B> is set to PK_LOGICAL_true, then the sweep direction
+and the tool orientation are both controlled by <B>'lock_direction'</B>.  The sweep
+direction is the path tangent projected into the plane perpendicular to
+<B>'lock_direction'</B>.  The tool orientation is specified by aligning tool axis
+according to <B>'lock_direction'</B>.
+When the <B>'lock_direction'</B> is not the same as the tool axis direction, then
+path is regarded as 3D and a vertex on the path must be supplied through
+<B>'tool_site'</B> in order to place the tool on the path for sweeping. In this case,
+Parasolid imposes a further requirement on the sweep path - each edge of the
+wire body must be defined on a curve of one of the following types: analytic,
+Parasolid helix, or C2 non-rational b-curve. Otherwise, a fault status of
+PK_sweep_tool_path_bad_geom_c is returned with the tag of an offending edge of
+the wire path. The value of <B>'tool_site'</B> is ignored when it is not required.
+
+
+Effects of Cap Faces
+By default, the geometry generated for the returned <B>'swept_tool'</B> is an
+accurate representation (to <B>'tolerance'</B>) of that produced by sweeping the
+spinning <B>'tool'</B> along the path. However, there may be faces on the <B>'tool'</B>
+that generate faces on the <B>'swept_tool'</B> that won't themselves remove material
+in any downstream boolean. The swept geometry of such faces may also be
+self-obscuring or self-intersecting. If you provide these as <B>'cap_faces'</B>,
+Parasolid can create simpler geometry for the swept tool faces generated
+by them.  This can increase the robustness of the sweep, and any downstream
+operations, while maintaining the accuracy of the cut surfaces.
+
+See <A HREF="../chapters/fd_chap.041.html#50409823_pgfId-300248">here</A> for more information.
+
+Result faces produced from <B>'cap_faces'</B> will be returned in the Parasolid
+report stream. Each record will be of type <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> and
+will have a status of <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_sweep_tool_cap_c</A>. It will contain:
+  o A status of <A HREF=../headers/pk_sweep_tool_cap_t.html>PK_sweep_tool_cap_t</A> to indicate if the true swept volume
+    is enclosed or undercut by simplifying the cap geometry.
+  o A set of faces on the tool body specified in the option <B>'cap_faces'</B>
+    for simpler geometry.
+  o The corresponding simpler swept faces on the result body.
+
+
+Effects of Place Tool On Path
+The default behaviour is for the tool to be moved onto the path before being
+swept. Alternatively, if <B>'place_tool_on_path'</B> is PK_LOGICAL_false, the tool
+will be swept from its initial position. In this case, a start vertex for the
+path must be specified using the <B>'tool_site'</B> option and the <B>'tool_axis'</B> must
+intersect the plane perpendicular to the path at this vertex. If a
+<B>'lock_direction'</B> has been specified, this plane is perpendicular to the
+effective sweep direction instead. PK_ERROR_bad_value is returned if this
+condition is not satisfied.
+
+
+Effects of Sweep Boolean
+The default behaviour is for no Boolean to be performed. Specifying a <B>'target'</B>
+but no Boolean function, or vice versa, will result in PK_ERROR_bad_value
+being raised. If <B>'sweep_boolean'</B> is set to <A HREF=../headers/pk_sweep_boolean_t.html>PK_sweep_boolean_subtract_c</A>, the
+result body will be formed by subtracting the swept tool from the <B>'target'</B>. If
+<B>'sweep_boolean'</B> is set to <A HREF=../headers/pk_sweep_boolean_t.html>PK_sweep_boolean_intersect_c</A>, the result body will be
+formed by intersecting the <B>'target'</B> with the swept tool. In both cases, the
+<B>'swept_tool'</B> returned will be the result of that Boolean, that is the <B>'target'</B>
+as altered by the Boolean operation rather than the tool produced by the sweep
+operation.
+
+If the Boolean operation fails, PK_ERROR_boolean_failure will be raised. If
+the tool and the target do not clash, a <A HREF=../headers/pk_sweep_tool_fault_t.html>PK_sweep_tool_fault_t</A> of
+PK_sweep_tool_missed_target_c will be returned. Disjoint results are not
+supported so cases in which the swept tool would split the target body result
+in PK_ERROR_disjoint being raised.
+
+Only solid body targets are supported; any other body type will lead to the
+error PK_ERROR_bad_type.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

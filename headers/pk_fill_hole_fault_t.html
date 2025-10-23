@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_fill_hole_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_fill_hole_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_fill_hole_fault_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_fill_hole.html>PK_BODY_fill_hole</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype is used to return fault types associated with filling a hole.
+In some cases faulty topological entities are also returned.
+It has the following values:
+
+                                  fault_topols
+                                  PK_CLASS_...
+    PK_fill_hole_ok_c                        succeeded without any problems
+    PK_fill_hole_bad_edge_c          edge    an edge has been supplied which is
+                                             not on the boundary of a hole
+    PK_fill_hole_duplicate_c         edge    duplicate edges supplied
+    PK_fill_hole_vertex_c            vertex  more than two edges meet at
+                                             vertex geometry
+    PK_fill_hole_too_many_loops_c            more than one loop of edge
+                                             geometry
+    PK_fill_hole_gap_c                       gap in supplied boundary edges
+    PK_fill_hole_no_edge_on_target_c         none of the supplied edges is an
+                                             edge of the target body
+    PK_fill_hole_cant_match_body_c   body    can't match any edges with a body
+    PK_fill_hole_cant_match_edge_c   edge    can't match edge or portion of
+                                             edge with a face
+    PK_fill_hole_too_small_c         edge    the fill sheet body is too small
+                                             to cover the hole
+    PK_fill_hole_unknown_c                   internal unspecified failure
+    PK_fill_hole_face_c              face(s) succeeded, but invalid face(s)
+                                             have been produced
+    PK_fill_hole_face_face_c         faces   succeeded, but a face-face
+                                             inconsistency has been produced
+    PK_fill_hole_not_smooth_c        vertex  boundary of hole is not smooth
+    PK_fill_hole_didnt_converge_c            failed to converge to a single
+                                             face solution; this status may be
+                                             returned when using either the
+                                             <A HREF=../headers/pk_fill_hole_opt_t.html>PK_fill_hole_opt_perf_c</A> or
+                                             <A HREF=../headers/pk_fill_hole_opt_t.html>PK_fill_hole_opt_quality_c</A>
+                                             <B>'optimise'</B> options
+    PK_fill_hole_supp_not_smooth_c   body    A supplied supporting body does
+                                             not meet the boundary smoothly
+                                             where required.
+    PK_fill_hole_bdry_general_c      edge    the boundary of the hole is
+                                     vertex  non-manifold i.e. a boundary edge
+                                             is general or a boundary vertex is
+                                             non-manifold or has incident
+                                             non-manifold edges.
+    PK_fill_hole_too_complex_c               no suitable fill method exists
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295186", " Three-face blends are created using <B>PK_FACE_make_3_face_blend</B> , which receives and returns the following arguments: ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295836", " the orientation of each wall is PK_blend_orientation_unknown_c (the default), <B>PK_FACE_make_3_face_blend</B> attempts to determine which side of the walls the", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295842", " <B>PK_FACE_make_3_face_blend</B> returns the orientation used by a blend in the", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295851", " <B>PK_FACE_make_3_face_blend</B> contains two optional controls for specifying how tolerances are", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295853", " You can specify a tolerance that <B>PK_FACE_make_3_face_blend</B> uses when propagating general three-face blends. See Section 79.6,", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295918", " Whether or not <B>PK_FACE_make_3_face_blend</B> should propagate the blend across suitably smooth adjoining edges.", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295922", " An angular tolerance (in radians) that <B>PK_FACE_make_3_face_blend</B> uses to determine whether adjoining edges are smooth enough", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296198", " blend is returned as a separate sheet body then <B>PK_FACE_make_3_face_blend</B> can create this body in a separate partition that", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296201", " Note: If <B>PK_FACE_make_3_face_blend</B> returns PK_3_face_blend_sheet_c , the blending operation was only partially", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296224", " structure returned by <B>PK_FACE_make_3_face_blend</B> , any cap faces created are tracked to fins", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296258", " If the data you pass to <B>PK_FACE_make_3_face_blend</B> is ambiguous, it can sometimes be possible to create", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296321", " PK_FACE_make_blend . If no help point information is specified, <B>PK_FACE_make_3_face_blend</B> looks for multiple solutions, but PK_FACE_make_blend creates only a", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296337", " any self-intersecting blend faces created after a call to <B>PK_FACE_make_3_face_blend</B> ; this is similar to the repairing done after", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296355", " repair any self-intersecting surfaces created after a call to <B>PK_FACE_make_3_face_blend</B> . ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296543", " Three-face blending functionality is provided via <B>PK_FACE_make_3_face_blend</B> . This contains optional controls to: ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317059", " <B>PK_FACE_make_3_face_blend</B> ", "Functional Description - Update Switches");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_bad_type 30 <B>PK_FACE_make_3_face_blend</B> Guide is not a wire body (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_general_body 1071 <B>PK_FACE_make_3_face_blend</B> The blend is in a non-manifold area of a", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_failed_to_blend 5137 <B>PK_FACE_make_3_face_blend</B> Could not create blend (SERIOUS)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 <B>PK_FACE_make_3_face_blend</B> User supplied options are incompatible", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_facet_geometry 5237 <B>PK_FACE_make_3_face_blend</B> The faces in one of the walls are from", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_general_body 1071 <B>PK_FACE_make_3_face_blend</B> The blend is in a non-manifold area of a", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>PK_FACE_make_3_face_blend</B> 5145 PK_ERROR_bad_combination User supplied options are incompatible", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_t.html#description", " <B>PK_FACE_make_3_face_blend</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_FACE_make_3_face_blend</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_make_3_face_blend.html#declaration", " PK_ERROR_code_t <B>PK_FACE_make_3_face_blend</B>", "PK Reference - PK_FACE_make_3_face_blend");
+top.note("headers/pk_face_make_3_face_blend.html#documentation", "If <B>PK_FACE_make_3_face_blend</B> has successfully created a blend or has not", "PK Reference - PK_FACE_make_3_face_blend");
+top.note("headers/pk_face_make_3_face_blend_o_t.html#description", " <B>PK_FACE_make_3_face_blend</B> ", "PK Reference - PK_FACE_make_3_face_blend_o_t");
+top.note("headers/pk_face_make_3_face_blend_r_t.html#description", " <B>PK_FACE_make_3_face_blend</B> ", "PK Reference - PK_FACE_make_3_face_blend_r_t");
+top.note("headers/pk_face_t.html#description", " <B>PK_FACE_make_3_face_blend</B> ", "PK Reference - PK_FACE_t");
+top.note("headers/pk_topol_track_r_t.html#description", " <B>PK_FACE_make_3_face_blend</B> ", "PK Reference - PK_TOPOL_track_r_t");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7794239", " PK_CURVE_find_surfs_common , PK_FACE_make_blend , <B>PK_FACE_make_3_face_blend</B> , PK_BODY_fix_blends , PK_SURF_find_curves_common ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

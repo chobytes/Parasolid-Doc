@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_create_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_create_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_create_fault_s
+    {
+    <A HREF=../headers/pk_check_state_t.html>PK_check_state_t</A>    state;
+    int                 n_indices;
+    int                *indices;
+    };
+
+typedef struct PK_create_fault_s
+PK_create_fault_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains information about any faults which occured while
+attempting to create the body.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_create_topology_2_r_t.html>PK_BODY_create_topology_2_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'state'</B>         The fault token associated with the fault.
+
+<B>'n_indices'</B>     The length of the array <B>'indices'</B> (may be zero).
+
+<B>'indices'</B>       If the function can associate any of the items in the
+                <B>'classes'</B> array with the returned fault <B>'state'</B> then their
+                indices are reported in this field.
+
+Every create_fault contains a <B>'state'</B>. Where possible the <B>'state'</B> is associated
+with one or several <B>'indices'</B>. The following table details, for each <B>'state'</B>,
+which entities the accompanying <B>'indices'</B> refer to.
+Note: Normally a PK_&lt;CLASS&gt;_state_&lt;fault&gt;_c would have as its first
+return an entity (or here index to an entity) of type &lt;CLASS&gt;, however as fins
+are an optional input ( none, some or all fins may be specified in the input)
+to <A HREF=../headers/pk_body_create_topology_2.html>PK_BODY_create_topology_2</A> it may in some cases not be possible to follow
+this principle. Any fin which has not been specified in the input is referred
+to by its edge and loop. This is marked with (edge) and (loop) in the table.
+
+-------------------------------------------------------------------------------
+|         <B>'state'</B>                |                 <B>'indices'</B>                  |
+|                                |  <B>'1'</B>  |  <B>'2'</B>  |  <B>'3'</B>  |  <B>'4'</B>  |  <B>'5'</B> | <B>'6'</B> |
+------------------------------------------------------------------------------
+|PK_BODY_state_ok_c              |       |       |       |       |      |     |
+|PK_BODY_state_ok_but_alt_type_c |       |       |       |       |      |     |
+|PK_BODY_state_bad_type_c        | body  |       |       |       |      |     |
+|PK_BODY_state_no_region_c       | body  |       |       |       |      |     |
+|PK_BODY_state_no_shell_c        | body  |       |       |       |      |     |
+|PK_BODY_state_no_solid_reg_c    | body  |       |       |       |      |     |
+|PK_BODY_state_region_1_solid_c  | body  |region |       |       |      |     |
+|PK_BODY_state_shell_not_first_c | body  | shell |       |       |      |     |
+|PK_BODY_state_wrong_ext_reg_c   | body  |region |       |       |      |     |
+|PK_BODY_state_wrong_num_regs_c  | body  |       |       |       |      |     |
+|PK_EDGE_state_bad_fins_c        | edge  |       |       |       |      |     |
+|PK_EDGE_state_fin_bad_ring_c    | edge  | fin   |       |       |      |     |
+|                                | edge  |(edge) |(loop) |       |      |     |
+|PK_EDGE_state_fin_ed_next_pos_c | edge  | fin   | fin   |       |      |     |
+|                                | edge  |(edge) |(loop) | fin   |      |     |
+|                                | edge  | fin   |(edge) |(loop) |      |     |
+|                                | edge  |(edge) |(loop) |(edge) |(loop)|     |
+|PK_EDGE_state_fin_ed_not_ed_c   | edge  | fin   |       |       |      |     |
+|                                | edge  |(edge) |(loop) |       |      |     |
+|PK_EDGE_state_fin_not_pos_c     | edge  | fin   |       |       |      |     |
+|                                | edge  |(edge) |(loop) |       |      |     |
+|PK_EDGE_state_single_vertex_c   | edge  |       |       |       |      |     |
+|PK_EDGE_state_wire_corrupt_c    | edge  |       |       |       |      |     |
+|PK_ENTITY_state_bad_owner_c     |entity |wanted |       |       |      |     |
+|                                |       |owner  |       |       |      |     |
+|PK_ENTITY_state_shared_c        |entity |       |       |       |      |     |
+|PK_FACE_state_diff_sh_same_rg_c | face  |       |       |       |      |     |
+|PK_FACE_state_edge_moebius_c    | face  | edge  |       |       |      |     |
+|PK_FACE_state_wrong_sense_c     | face  |       |       |       |      |     |
+|PK_FIN_state_bad_c              | fin   |       |       |       |      |     |
+|                                |(edge) |(loop) |       |       |      |     |
+|PK_FIN_state_bad_ed_fins_c      | fin   |       |       |       |      |     |
+|                                |(edge) |(loop) |       |       |      |     |
+|PK_FIN_state_corrupt_c          | fin   |       |       |       |      |     |
+|                                |(edge) |(loop) |       |       |      |     |
+|PK_FIN_state_ed_next_is_fin_c   | fin   | fin   |       |       |      |     |
+|                                |(edge) |(loop) | fin   |       |      |     |
+|                                | fin   |(edge) |(loop) |       |      |     |
+|                                |(edge) |(loop  |(edge) |(loop) |      |     |
+|PK_FIN_state_edge_diff_vertex_c | fin   | fin   |       |       |      |     |
+|                                |(edge) |(loop) | fin   |       |      |     |
+|                                | fin   |(edge) |(loop) |       |      |     |
+|                                |(edge) |(loop  |(edge) |(loop) |      |     |
+|PK_FIN_state_no_ed_next_in_sh_c | fin   |       |       |       |      |     |
+|                                |(edge) |(loop) |       |       |      |     |
+|PK_FIN_state_non_zero_ident_c   | fin   |       |       |       |      |     |
+|                                |(edge) |(loop) |       |       |      |     |
+|PK_FIN_state_not_ed_next_prev_c | fin   | fin   | fin   |       |      |     |
+|                                |(edge) |(loop) | fin   | fin   |      |     |
+|                                | fin   |(edge) |(loop) | fin   |      |     |
+|                                | fin   | fin   |(edge) |(loop) |      |     |
+|                                |(edge) |(loop) |(edge) |(loop) | fin  |     |
+|                                |(edge) |(loop) | fin   |(edge) |(loop)|     |
+|                                | fin   |(edge) |(loop) |(edge) |(loop)|     |
+|                                |(edge) |(loop) |(edge) |(loop) |(edge)|(loop)
+|PK_FIN_state_not_lp_next_prev_c | fin   | fin   | fin   |       |      |     |
+|                                |(edge) |(loop) | fin   | fin   |      |     |
+|                                | fin   |(edge) |(loop) | fin   |      |     |
+|                                | fin   | fin   |(edge) |(loop) |      |     |
+|                                |(edge) |(loop) |(edge) |(loop) | fin  |     |
+|                                |(edge) |(loop) | fin   |(edge) |(loop)|     |
+|                                | fin   |(edge) |(loop) |(edge) |(loop)|     |
+|                                |(edge) |(loop) |(edge) |(loop) |(edge)|(loop)
+|PK_FIN_state_vx_not_vx_c        | fin   |vertex |       |       |      |     |
+|                                |(edge) |(loop) |vertex |       |      |     |
+|PK_FIN_state_wrong_vertex_c     | fin   |vertex |vertex |       |      |     |
+|                                |(edge) |(loop) |vertex |vertex |      |     |
+|PK_LOOP_state_not_closed_c      | loop  |       |       |       |      |     |
+|<A HREF=../headers/pk_region_t.html>PK_REGION_state_no_shell_c</A>      |region |       |       |       |      |     |
+|<A HREF=../headers/pk_region_t.html>PK_REGION_state_wrongly_solid_c</A> |region |       |       |       |      |     |
+|PK_SHELL_state_bad_body_c       | shell |       |       |       |      |     |
+|PK_SHELL_state_bad_fa_orient_c  | shell |       |       |       |      |     |
+|PK_SHELL_state_bad_wf_acorn_c   | shell | edge/ |       |       |      |     |
+|                                |       |vertex |       |       |      |     |
+|PK_SHELL_state_bad_wf_c         | shell |       |       |       |      |     |
+|PK_SHELL_state_closed_bad_fa_c  | shell |       |       |       |      |     |
+|PK_SHELL_state_ed_fa_in_acorn_c | shell | edge/ |       |       |      |     |
+|                                |       | face  |       |       |      |     |
+|PK_SHELL_state_eds_fragmented_c | shell | edge/ |       |       |      |     |
+|                                |       | face  |       |       |      |     |
+|PK_SHELL_state_fas_fragmented_c | shell | face  |       |       |      |     |
+|PK_SHELL_state_no_vx_ed_fa_c    | shell |       |       |       |      |     |
+|PK_SHELL_state_not_owning_vx_c  | shell |vertex |owning |       |      |     |
+|                                |       |       | shell |       |      |     |
+|PK_SHELL_state_open_bad_fa_c    | shell |       |       |       |      |     |
+|PK_SHELL_state_reg_meet_at_ed_c | shell | edge  |       |       |      |     |
+|PK_SHELL_state_reg_meet_at_vx_c | shell |vertex |       |       |      |     |
+|PK_SHELL_state_sheet_no_fa_c    | shell |       |       |       |      |     |
+|PK_SHELL_state_too_many_fas_c   | shell |       |       |       |      |     |
+|PK_TOPOL_state_bad_owner_type_c | topol |       |       |       |      |     |
+|PK_TOPOL_state_extra_child_c    | topol |       |       |       |      |     |
+|PK_TOPOL_state_extra_parent_c   | topol |       |       |       |      |     |
+|PK_TOPOL_state_missing_parent_c | topol |       |       |       |      |     |
+|PK_TOPOL_state_wrong_child_c    | topol |       |       |       |      |     |
+|PK_VERTEX_state_bad_fin_c       |vertex | fin   |       |       |      |     |
+|                                |vertex |(edge) |(loop) |       |      |     |
+|PK_VERTEX_state_bad_isolated_c  |vertex |       |       |       |      |     |
+|PK_VERTEX_state_fin_chains_c    |vertex |       |       |       |      |     |
+|PK_VERTEX_state_non_manifold_c  |vertex |       |       |       |      |     |
+|PK_VERTEX_state_not_dep_of_sh_c |vertex |owning |       |       |      |     |
+|                                |       | shell |       |       |      |     |
+|PK_VERTEX_state_owner_not_sh_c  |vertex | owner |       |       |      |     |
+|PK_VERTEX_state_sheet_corrupt_c |vertex |       |       |       |      |     |
+|PK_VERTEX_state_too_many_eds_c  |vertex |       |       |       |      |     |
+|PK_VERTEX_state_wf_ed_bad_sh_c  |vertex | edge  | shell |       |      |     |
+-------------------------------------------------------------------------------
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

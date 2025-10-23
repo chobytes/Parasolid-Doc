@@ -1,0 +1,476 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_LOGICAL_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_LOGICAL_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef unsigned char PK_LOGICAL_t;
+</B>
+<A NAME="description"></A>
+<I>This type represents a logical value.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_appitem_is.html>PK_APPITEM_is</A><br>
+    <A HREF=../headers/pk_attdef_callback_flags_t.html>PK_ATTDEF_callback_flags_t</A><br>
+    <A HREF=../headers/pk_attdef_is_group_closing.html>PK_ATTDEF_is_group_closing</A><br>
+    <A HREF=../headers/pk_attdef_sf_2_t.html>PK_ATTDEF_sf_2_t</A><br>
+    <A HREF=../headers/pk_attrib_ask_no_roll_o_t.html>PK_ATTRIB_ask_no_roll_o_t</A><br>
+    <A HREF=../headers/pk_attrib_cb_f_t.html>PK_ATTRIB_cb_f_t</A><br>
+    <A HREF=../headers/pk_attrib_field_id_t.html>PK_ATTRIB_field_id_t</A><br>
+    <A HREF=../headers/pk_bb_is.html>PK_BB_is</A><br>
+    <A HREF=../headers/pk_bb_is_empty.html>PK_BB_is_empty</A><br>
+    <A HREF=../headers/pk_bb_output_events.html>PK_BB_output_events</A><br>
+    <A HREF=../headers/pk_bcurve_ask_knots_o_t.html>PK_BCURVE_ask_knots_o_t</A><br>
+    <A HREF=../headers/pk_bcurve_create_fitted_o_t.html>PK_BCURVE_create_fitted_o_t</A><br>
+    <A HREF=../headers/pk_bcurve_create_spline_2_o_t.html>PK_BCURVE_create_spline_2_o_t</A><br>
+    <A HREF=../headers/pk_bcurve_create_spline_o_t.html>PK_BCURVE_create_spline_o_t</A><br>
+    <A HREF=../headers/pk_bcurve_fit_data_t.html>PK_BCURVE_fit_data_t</A><br>
+    <A HREF=../headers/pk_bcurve_fit_eval_f_t.html>PK_BCURVE_fit_eval_f_t</A><br>
+    <A HREF=../headers/pk_bcurve_fit_fault_t.html>PK_BCURVE_fit_fault_t</A><br>
+    <A HREF=../headers/pk_bcurve_lower_degree_o_t.html>PK_BCURVE_lower_degree_o_t</A><br>
+    <A HREF=../headers/pk_bcurve_make_bsurf_lofted_o_t.html>PK_BCURVE_make_bsurf_lofted_o_t</A><br>
+    <A HREF=../headers/pk_bcurve_piecewise_sf_t.html>PK_BCURVE_piecewise_sf_t</A><br>
+    <A HREF=../headers/pk_bcurve_remove_knots_o_t.html>PK_BCURVE_remove_knots_o_t</A><br>
+    <A HREF=../headers/pk_bcurve_sf_t.html>PK_BCURVE_sf_t</A><br>
+    <A HREF=../headers/pk_blend_cap_data_t.html>PK_blend_cap_data_t</A><br>
+    <A HREF=../headers/pk_blend_constraint_t.html>PK_blend_constraint_t</A><br>
+    <A HREF=../headers/pk_blend_fix_propagate_t.html>PK_blend_fix_propagate_t</A><br>
+    <A HREF=../headers/pk_blend_properties_t.html>PK_blend_properties_t</A><br>
+    <A HREF=../headers/pk_blend_setback_data_t.html>PK_blend_setback_data_t</A><br>
+    <A HREF=../headers/pk_blend_vx_blend_data_t.html>PK_blend_vx_blend_data_t</A><br>
+    <A HREF=../headers/pk_blend_y_blend_data_t.html>PK_blend_y_blend_data_t</A><br>
+    <A HREF=../headers/pk_body_add_to_compound_o_t.html>PK_BODY_add_to_compound_o_t</A><br>
+    <A HREF=../headers/pk_body_apply_knit_pattern_o_t.html>PK_BODY_apply_knit_pattern_o_t</A><br>
+    <A HREF=../headers/pk_body_ask_topology_o_t.html>PK_BODY_ask_topology_o_t</A><br>
+    <A HREF=../headers/pk_body_blend_propagate_f_t.html>PK_BODY_blend_propagate_f_t</A><br>
+    <A HREF=../headers/pk_body_boolean_o_t.html>PK_BODY_boolean_o_t</A><br>
+    <A HREF=../headers/pk_body_copy_topology_o_t.html>PK_BODY_copy_topology_o_t</A><br>
+    <A HREF=../headers/pk_body_enlarge_o_t.html>PK_BODY_enlarge_o_t</A><br>
+    <A HREF=../headers/pk_body_extend_o_t.html>PK_BODY_extend_o_t</A><br>
+    <A HREF=../headers/pk_body_extrude_o_t.html>PK_BODY_extrude_o_t</A><br>
+    <A HREF=../headers/pk_body_fill_hole_o_t.html>PK_BODY_fill_hole_o_t</A><br>
+    <A HREF=../headers/pk_body_find_facesets_o_t.html>PK_BODY_find_facesets_o_t</A><br>
+    <A HREF=../headers/pk_body_fix_blends_o_t.html>PK_BODY_fix_blends_o_t</A><br>
+    <A HREF=../headers/pk_body_hollow.html>PK_BODY_hollow</A><br>
+    <A HREF=../headers/pk_body_hollow_o_t.html>PK_BODY_hollow_o_t</A><br>
+    <A HREF=../headers/pk_body_identify_facesets_o_t.html>PK_BODY_identify_facesets_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_normal_o_t.html>PK_BODY_imprint_cus_normal_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_shadow_o_t.html>PK_BODY_imprint_cus_shadow_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_vec_o_t.html>PK_BODY_imprint_cus_vec_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_faces_o_t.html>PK_BODY_imprint_faces_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_o_t.html>PK_BODY_imprint_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_plane_o_t.html>PK_BODY_imprint_plane_o_t</A><br>
+    <A HREF=../headers/pk_body_make_compound_o_t.html>PK_BODY_make_compound_o_t</A><br>
+    <A HREF=../headers/pk_body_make_curves_outline_o_t.html>PK_BODY_make_curves_outline_o_t</A><br>
+    <A HREF=../headers/pk_body_make_facet_body_o_t.html>PK_BODY_make_facet_body_o_t</A><br>
+    <A HREF=../headers/pk_body_make_lofted_body_o_t.html>PK_BODY_make_lofted_body_o_t</A><br>
+    <A HREF=../headers/pk_body_make_persp_outline_o_t.html>PK_BODY_make_persp_outline_o_t</A><br>
+    <A HREF=../headers/pk_body_make_section_o_t.html>PK_BODY_make_section_o_t</A><br>
+    <A HREF=../headers/pk_body_make_spun_outline_o_t.html>PK_BODY_make_spun_outline_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_body_2_o_t.html>PK_BODY_make_swept_body_2_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_body_o_t.html>PK_BODY_make_swept_body_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_tool_o_t.html>PK_BODY_make_swept_tool_o_t</A><br>
+    <A HREF=../headers/pk_body_offset.html>PK_BODY_offset</A><br>
+    <A HREF=../headers/pk_body_offset_o_t.html>PK_BODY_offset_o_t</A><br>
+    <A HREF=../headers/pk_body_offset_planar_wire_o_t.html>PK_BODY_offset_planar_wire_o_t</A><br>
+    <A HREF=../headers/pk_body_pick_topols_o_t.html>PK_BODY_pick_topols_o_t</A><br>
+    <A HREF=../headers/pk_body_section_o_t.html>PK_BODY_section_o_t</A><br>
+    <A HREF=../headers/pk_body_sew_bodies_o_t.html>PK_BODY_sew_bodies_o_t</A><br>
+    <A HREF=../headers/pk_body_share_geom.html>PK_BODY_share_geom</A><br>
+    <A HREF=../headers/pk_body_simplify_geom.html>PK_BODY_simplify_geom</A><br>
+    <A HREF=../headers/pk_body_spin.html>PK_BODY_spin</A><br>
+    <A HREF=../headers/pk_body_sweep.html>PK_BODY_sweep</A><br>
+    <A HREF=../headers/pk_body_taper_o_t.html>PK_BODY_taper_o_t</A><br>
+    <A HREF=../headers/pk_body_thicken.html>PK_BODY_thicken</A><br>
+    <A HREF=../headers/pk_body_thicken_o_t.html>PK_BODY_thicken_o_t</A><br>
+    <A HREF=../headers/pk_body_transform.html>PK_BODY_transform</A><br>
+    <A HREF=../headers/pk_body_transform_o_t.html>PK_BODY_transform_o_t</A><br>
+    <A HREF=../headers/pk_body_trim.html>PK_BODY_trim</A><br>
+    <A HREF=../headers/pk_body_trim_neutral_sheets_o_t.html>PK_BODY_trim_neutral_sheets_o_t</A><br>
+    <A HREF=../headers/pk_boolean_config_o_t.html>PK_boolean_config_o_t</A><br>
+    <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A><br>
+    <A HREF=../headers/pk_bound_def_t.html>PK_bound_def_t</A><br>
+    <A HREF=../headers/pk_bsurf_ask_knots_o_t.html>PK_BSURF_ask_knots_o_t</A><br>
+    <A HREF=../headers/pk_bsurf_lower_degree_o_t.html>PK_BSURF_lower_degree_o_t</A><br>
+    <A HREF=../headers/pk_bsurf_piecewise_sf_t.html>PK_BSURF_piecewise_sf_t</A><br>
+    <A HREF=../headers/pk_bsurf_remove_knots_o_t.html>PK_BSURF_remove_knots_o_t</A><br>
+    <A HREF=../headers/pk_bsurf_reparameterise_o_t.html>PK_BSURF_reparameterise_o_t</A><br>
+    <A HREF=../headers/pk_bsurf_sf_t.html>PK_BSURF_sf_t</A><br>
+    <A HREF=../headers/pk_change_edge_geom_data_t.html>PK_change_edge_geom_data_t</A><br>
+    <A HREF=../headers/pk_class_is_subclass.html>PK_CLASS_is_subclass</A><br>
+    <A HREF=../headers/pk_curve_ask_parm_different.html>PK_CURVE_ask_parm_different</A><br>
+    <A HREF=../headers/pk_curve_degen_t.html>PK_CURVE_degen_t</A><br>
+    <A HREF=../headers/pk_curve_embed_in_surf_o_t.html>PK_CURVE_embed_in_surf_o_t</A><br>
+    <A HREF=../headers/pk_curve_find_box_o_t.html>PK_CURVE_find_box_o_t</A><br>
+    <A HREF=../headers/pk_curve_find_discontinuity_o_t.html>PK_CURVE_find_discontinuity_o_t</A><br>
+    <A HREF=../headers/pk_curve_fix_self_int_o_t.html>PK_CURVE_fix_self_int_o_t</A><br>
+    <A HREF=../headers/pk_curve_general_user_t.html>PK_CURVE_general_user_t</A><br>
+    <A HREF=../headers/pk_curve_intersect_curve_o_t.html>PK_CURVE_intersect_curve_o_t</A><br>
+    <A HREF=../headers/pk_curve_is_isoparam_o_t.html>PK_CURVE_is_isoparam_o_t</A><br>
+    <A HREF=../headers/pk_curve_make_approx.html>PK_CURVE_make_approx</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve.html>PK_CURVE_make_bcurve</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve_array.html>PK_CURVE_make_bcurve_array</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve_array_o_t.html>PK_CURVE_make_bcurve_array_o_t</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve_o_t.html>PK_CURVE_make_bcurve_o_t</A><br>
+    <A HREF=../headers/pk_curve_make_spcurves.html>PK_CURVE_make_spcurves</A><br>
+    <A HREF=../headers/pk_curve_make_spcurves_o_t.html>PK_CURVE_make_spcurves_o_t</A><br>
+    <A HREF=../headers/pk_curve_make_wire_body_o_t.html>PK_CURVE_make_wire_body_o_t</A><br>
+    <A HREF=../headers/pk_curve_output_vectors.html>PK_CURVE_output_vectors</A><br>
+    <A HREF=../headers/pk_curve_project_o_t.html>PK_CURVE_project_o_t</A><br>
+    <A HREF=../headers/pk_curve_spin_o_t.html>PK_CURVE_spin_o_t</A><br>
+    <A HREF=../headers/pk_debug_body_compare_o_t.html>PK_DEBUG_BODY_compare_o_t</A><br>
+    <A HREF=../headers/pk_debug_data_t.html>PK_DEBUG_data_t</A><br>
+    <A HREF=../headers/pk_debug_local_diffs_r_t.html>PK_DEBUG_local_diffs_r_t</A><br>
+    <A HREF=../headers/pk_debug_report_start_o_t.html>PK_DEBUG_report_start_o_t</A><br>
+    <A HREF=../headers/pk_debug_try_error_handler_o_t.html>PK_DEBUG_try_error_handler_o_t</A><br>
+    <A HREF=../headers/pk_edge_ask_convexity_o_t.html>PK_EDGE_ask_convexity_o_t</A><br>
+    <A HREF=../headers/pk_edge_ask_geometry.html>PK_EDGE_ask_geometry</A><br>
+    <A HREF=../headers/pk_edge_ask_geometry_nmnl.html>PK_EDGE_ask_geometry_nmnl</A><br>
+    <A HREF=../headers/pk_edge_ask_oriented_curve.html>PK_EDGE_ask_oriented_curve</A><br>
+    <A HREF=../headers/pk_edge_attach_curve_nmnl_o_t.html>PK_EDGE_attach_curve_nmnl_o_t</A><br>
+    <A HREF=../headers/pk_edge_attach_curves_o_t.html>PK_EDGE_attach_curves_o_t</A><br>
+    <A HREF=../headers/pk_edge_euler_delete_make_loop.html>PK_EDGE_euler_delete_make_loop</A><br>
+    <A HREF=../headers/pk_edge_euler_delete_ring_face.html>PK_EDGE_euler_delete_ring_face</A><br>
+    <A HREF=../headers/pk_edge_euler_delete_with_face.html>PK_EDGE_euler_delete_with_face</A><br>
+    <A HREF=../headers/pk_edge_euler_delete_with_loop.html>PK_EDGE_euler_delete_with_loop</A><br>
+    <A HREF=../headers/pk_edge_euler_slit.html>PK_EDGE_euler_slit</A><br>
+    <A HREF=../headers/pk_edge_euler_split.html>PK_EDGE_euler_split</A><br>
+    <A HREF=../headers/pk_edge_find_deviation_o_t.html>PK_EDGE_find_deviation_o_t</A><br>
+    <A HREF=../headers/pk_edge_find_g1_edges.html>PK_EDGE_find_g1_edges</A><br>
+    <A HREF=../headers/pk_edge_is_planar.html>PK_EDGE_is_planar</A><br>
+    <A HREF=../headers/pk_edge_is_smooth.html>PK_EDGE_is_smooth</A><br>
+    <A HREF=../headers/pk_edge_make_faces_from_wire.html>PK_EDGE_make_faces_from_wire</A><br>
+    <A HREF=../headers/pk_edge_make_wire_body_o_t.html>PK_EDGE_make_wire_body_o_t</A><br>
+    <A HREF=../headers/pk_edge_remove_to_bodies_o_t.html>PK_EDGE_remove_to_bodies_o_t</A><br>
+    <A HREF=../headers/pk_edge_repair_o_t.html>PK_EDGE_repair_o_t</A><br>
+    <A HREF=../headers/pk_emboss_overflow_data_t.html>PK_emboss_overflow_data_t</A><br>
+    <A HREF=../headers/pk_entity_ask_owning_groups_o_t.html>PK_ENTITY_ask_owning_groups_o_t</A><br>
+    <A HREF=../headers/pk_entity_check_attribs_o_t.html>PK_ENTITY_check_attribs_o_t</A><br>
+    <A HREF=../headers/pk_entity_copy_o_t.html>PK_ENTITY_copy_o_t</A><br>
+    <A HREF=../headers/pk_entity_find_reparam_o_t.html>PK_ENTITY_find_reparam_o_t</A><br>
+    <A HREF=../headers/pk_entity_is.html>PK_ENTITY_is</A><br>
+    <A HREF=../headers/pk_entity_is_curve.html>PK_ENTITY_is_curve</A><br>
+    <A HREF=../headers/pk_entity_is_geom.html>PK_ENTITY_is_geom</A><br>
+    <A HREF=../headers/pk_entity_is_part.html>PK_ENTITY_is_part</A><br>
+    <A HREF=../headers/pk_entity_is_surf.html>PK_ENTITY_is_surf</A><br>
+    <A HREF=../headers/pk_entity_is_topol.html>PK_ENTITY_is_topol</A><br>
+    <A HREF=../headers/pk_entity_may_own_attdef.html>PK_ENTITY_may_own_attdef</A><br>
+    <A HREF=../headers/pk_error_ask_last.html>PK_ERROR_ask_last</A><br>
+    <A HREF=../headers/pk_error_clear_last.html>PK_ERROR_clear_last</A><br>
+    <A HREF=../headers/pk_error_reraise.html>PK_ERROR_reraise</A><br>
+    <A HREF=../headers/pk_face_ask_faces_adjacent_o_t.html>PK_FACE_ask_faces_adjacent_o_t</A><br>
+    <A HREF=../headers/pk_face_ask_oriented_surf.html>PK_FACE_ask_oriented_surf</A><br>
+    <A HREF=../headers/pk_face_attach_surf_fitting.html>PK_FACE_attach_surf_fitting</A><br>
+    <A HREF=../headers/pk_face_attach_surfs.html>PK_FACE_attach_surfs</A><br>
+    <A HREF=../headers/pk_face_boolean_o_t.html>PK_FACE_boolean_o_t</A><br>
+    <A HREF=../headers/pk_face_change_data_replace_t.html>PK_FACE_change_data_replace_t</A><br>
+    <A HREF=../headers/pk_face_change_deform_eval_f_t.html>PK_FACE_change_deform_eval_f_t</A><br>
+    <A HREF=../headers/pk_face_change_deform_o_t.html>PK_FACE_change_deform_o_t</A><br>
+    <A HREF=../headers/pk_face_change_o_t.html>PK_FACE_change_o_t</A><br>
+    <A HREF=../headers/pk_face_change_offset_o_t.html>PK_FACE_change_offset_o_t</A><br>
+    <A HREF=../headers/pk_face_change_radiate_o_t.html>PK_FACE_change_radiate_o_t</A><br>
+    <A HREF=../headers/pk_face_contains_vectors_o_t.html>PK_FACE_contains_vectors_o_t</A><br>
+    <A HREF=../headers/pk_face_cover_o_t.html>PK_FACE_cover_o_t</A><br>
+    <A HREF=../headers/pk_face_delete.html>PK_FACE_delete</A><br>
+    <A HREF=../headers/pk_face_delete_facesets_o_t.html>PK_FACE_delete_facesets_o_t</A><br>
+    <A HREF=../headers/pk_face_delete_from_sheet_o_t.html>PK_FACE_delete_from_sheet_o_t</A><br>
+    <A HREF=../headers/pk_face_delete_o_t.html>PK_FACE_delete_o_t</A><br>
+    <A HREF=../headers/pk_face_details_hole_o_t.html>PK_FACE_details_hole_o_t</A><br>
+    <A HREF=../headers/pk_face_fix_mesh_defects_o_t.html>PK_FACE_fix_mesh_defects_o_t</A><br>
+    <A HREF=../headers/pk_face_hollow.html>PK_FACE_hollow</A><br>
+    <A HREF=../headers/pk_face_hollow_2.html>PK_FACE_hollow_2</A><br>
+    <A HREF=../headers/pk_face_hollow_o_t.html>PK_FACE_hollow_o_t</A><br>
+    <A HREF=../headers/pk_face_identify_blends_o_t.html>PK_FACE_identify_blends_o_t</A><br>
+    <A HREF=../headers/pk_face_imprint_curves_isocline.html>PK_FACE_imprint_curves_isocline</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_isoclin.html>PK_FACE_imprint_cus_isoclin</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_isoclin_o_t.html>PK_FACE_imprint_cus_isoclin_o_t</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_normal_o_t.html>PK_FACE_imprint_cus_normal_o_t</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_vec_o_t.html>PK_FACE_imprint_cus_vec_o_t</A><br>
+    <A HREF=../headers/pk_face_imprint_faces_o_t.html>PK_FACE_imprint_faces_o_t</A><br>
+    <A HREF=../headers/pk_face_imprint_o_t.html>PK_FACE_imprint_o_t</A><br>
+    <A HREF=../headers/pk_face_install_surfs_isocline.html>PK_FACE_install_surfs_isocline</A><br>
+    <A HREF=../headers/pk_face_instance_bodies_o_t.html>PK_FACE_instance_bodies_o_t</A><br>
+    <A HREF=../headers/pk_face_intersect_face_o_t.html>PK_FACE_intersect_face_o_t</A><br>
+    <A HREF=../headers/pk_face_intersect_surf_o_t.html>PK_FACE_intersect_surf_o_t</A><br>
+    <A HREF=../headers/pk_face_is_uvbox.html>PK_FACE_is_uvbox</A><br>
+    <A HREF=../headers/pk_face_make_3_face_blend_o_t.html>PK_FACE_make_3_face_blend_o_t</A><br>
+    <A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A><br>
+    <A HREF=../headers/pk_face_make_blend_o_t.html>PK_FACE_make_blend_o_t</A><br>
+    <A HREF=../headers/pk_face_make_neutral_sheet_o_t.html>PK_FACE_make_neutral_sheet_o_t</A><br>
+    <A HREF=../headers/pk_face_make_sect_with_sfs_o_t.html>PK_FACE_make_sect_with_sfs_o_t</A><br>
+    <A HREF=../headers/pk_face_make_sheet_bodies_o_t.html>PK_FACE_make_sheet_bodies_o_t</A><br>
+    <A HREF=../headers/pk_face_make_solid_bodies.html>PK_FACE_make_solid_bodies</A><br>
+    <A HREF=../headers/pk_face_offset.html>PK_FACE_offset</A><br>
+    <A HREF=../headers/pk_face_offset_o_t.html>PK_FACE_offset_o_t</A><br>
+    <A HREF=../headers/pk_face_output_surf_trimmed.html>PK_FACE_output_surf_trimmed</A><br>
+    <A HREF=../headers/pk_face_output_surf_trimmed_o_t.html>PK_FACE_output_surf_trimmed_o_t</A><br>
+    <A HREF=../headers/pk_face_overflow_data_o_t.html>PK_FACE_overflow_data_o_t</A><br>
+    <A HREF=../headers/pk_face_remove_to_solid_bodies.html>PK_FACE_remove_to_solid_bodies</A><br>
+    <A HREF=../headers/pk_face_repair_o_t.html>PK_FACE_repair_o_t</A><br>
+    <A HREF=../headers/pk_face_reparameterise_surf_o_t.html>PK_FACE_reparameterise_surf_o_t</A><br>
+    <A HREF=../headers/pk_face_replace_surfs.html>PK_FACE_replace_surfs</A><br>
+    <A HREF=../headers/pk_face_replace_surfs_2.html>PK_FACE_replace_surfs_2</A><br>
+    <A HREF=../headers/pk_face_replace_surfs_3.html>PK_FACE_replace_surfs_3</A><br>
+    <A HREF=../headers/pk_face_section_o_t.html>PK_FACE_section_o_t</A><br>
+    <A HREF=../headers/pk_face_set_pair_t.html>PK_FACE_set_pair_t</A><br>
+    <A HREF=../headers/pk_face_simplify_geom_o_t.html>PK_FACE_simplify_geom_o_t</A><br>
+    <A HREF=../headers/pk_face_spin.html>PK_FACE_spin</A><br>
+    <A HREF=../headers/pk_face_sweep.html>PK_FACE_sweep</A><br>
+    <A HREF=../headers/pk_face_taper_o_t.html>PK_FACE_taper_o_t</A><br>
+    <A HREF=../headers/pk_face_transform.html>PK_FACE_transform</A><br>
+    <A HREF=../headers/pk_face_transform_o_t.html>PK_FACE_transform_o_t</A><br>
+    <A HREF=../headers/pk_fill_hole_clamp_planar_t.html>PK_fill_hole_clamp_planar_t</A><br>
+    <A HREF=../headers/pk_fin_ask_geometry.html>PK_FIN_ask_geometry</A><br>
+    <A HREF=../headers/pk_fin_ask_oriented_curve.html>PK_FIN_ask_oriented_curve</A><br>
+    <A HREF=../headers/pk_fin_euler_glue.html>PK_FIN_euler_glue</A><br>
+    <A HREF=../headers/pk_fin_find_curve_parameter.html>PK_FIN_find_curve_parameter</A><br>
+    <A HREF=../headers/pk_fin_find_mtopols.html>PK_FIN_find_mtopols</A><br>
+    <A HREF=../headers/pk_fin_find_mtopols_o_t.html>PK_FIN_find_mtopols_o_t</A><br>
+    <A HREF=../headers/pk_fin_find_surf_parameters.html>PK_FIN_find_surf_parameters</A><br>
+    <A HREF=../headers/pk_fin_is_positive.html>PK_FIN_is_positive</A><br>
+    <A HREF=../headers/pk_frame_ask_sense.html>PK_FRAME_ask_sense</A><br>
+    <A HREF=../headers/pk_geom_enlarge_o_t.html>PK_GEOM_enlarge_o_t</A><br>
+    <A HREF=../headers/pk_geom_is_coincident.html>PK_GEOM_is_coincident</A><br>
+    <A HREF=../headers/pk_geom_range_array_o_t.html>PK_GEOM_range_array_o_t</A><br>
+    <A HREF=../headers/pk_geom_range_array_vector_o_t.html>PK_GEOM_range_array_vector_o_t</A><br>
+    <A HREF=../headers/pk_geom_range_local_o_t.html>PK_GEOM_range_local_o_t</A><br>
+    <A HREF=../headers/pk_geom_range_local_vector_o_t.html>PK_GEOM_range_local_vector_o_t</A><br>
+    <A HREF=../headers/pk_geom_range_o_t.html>PK_GEOM_range_o_t</A><br>
+    <A HREF=../headers/pk_geom_range_vector_many_o_t.html>PK_GEOM_range_vector_many_o_t</A><br>
+    <A HREF=../headers/pk_geom_range_vector_o_t.html>PK_GEOM_range_vector_o_t</A><br>
+    <A HREF=../headers/pk_geom_render_line_o_t.html>PK_GEOM_render_line_o_t</A><br>
+    <A HREF=../headers/pk_geom_render_o_t.html>PK_GEOM_render_o_t</A><br>
+    <A HREF=../headers/pk_geom_transform.html>PK_GEOM_transform</A><br>
+    <A HREF=../headers/pk_geom_transform_2.html>PK_GEOM_transform_2</A><br>
+    <A HREF=../headers/pk_geom_transform_o_t.html>PK_GEOM_transform_o_t</A><br>
+    <A HREF=../headers/pk_group_ask_closure_o_t.html>PK_GROUP_ask_closure_o_t</A><br>
+    <A HREF=../headers/pk_group_contains_entity.html>PK_GROUP_contains_entity</A><br>
+    <A HREF=../headers/pk_group_find_entities_o_t.html>PK_GROUP_find_entities_o_t</A><br>
+    <A HREF=../headers/pk_lattice_ask_regions_o_t.html>PK_LATTICE_ask_regions_o_t</A><br>
+    <A HREF=../headers/pk_lattice_ask_regions_r_t.html>PK_LATTICE_ask_regions_r_t</A><br>
+    <A HREF=../headers/pk_lattice_clip_o_t.html>PK_LATTICE_clip_o_t</A><br>
+    <A HREF=../headers/pk_lattice_combine_o_t.html>PK_LATTICE_combine_o_t</A><br>
+    <A HREF=../headers/pk_lattice_create_by_graph_o_t.html>PK_LATTICE_create_by_graph_o_t</A><br>
+    <A HREF=../headers/pk_lattice_do_for_all_lballs.html>PK_LATTICE_do_for_all_lballs</A><br>
+    <A HREF=../headers/pk_lattice_do_for_all_lrods.html>PK_LATTICE_do_for_all_lrods</A><br>
+    <A HREF=../headers/pk_lattice_find_nabox_o_t.html>PK_LATTICE_find_nabox_o_t</A><br>
+    <A HREF=../headers/pk_law_sf_t.html>PK_LAW_sf_t</A><br>
+    <A HREF=../headers/pk_lball_ask_lballs_adj_o_t.html>PK_LBALL_ask_lballs_adj_o_t</A><br>
+    <A HREF=../headers/pk_lball_ask_lrods_o_t.html>PK_LBALL_ask_lrods_o_t</A><br>
+    <A HREF=../headers/pk_loop_is_isolated.html>PK_LOOP_is_isolated</A><br>
+    <A HREF=../headers/pk_ltopol_is_r_t.html>PK_LTOPOL_is_r_t</A><br>
+    <A HREF=../headers/pk_mark_ask_forward.html>PK_MARK_ask_forward</A><br>
+    <A HREF=../headers/pk_mark_ask_state.html>PK_MARK_ask_state</A><br>
+    <A HREF=../headers/pk_mark_frustrum_t.html>PK_MARK_frustrum_t</A><br>
+    <A HREF=../headers/pk_mark_is.html>PK_MARK_is</A><br>
+    <A HREF=../headers/pk_mark_is_on.html>PK_MARK_is_on</A><br>
+    <A HREF=../headers/pk_mark_start_o_t.html>PK_MARK_start_o_t</A><br>
+    <A HREF=../headers/pk_mesh_create_from_facets_o_t.html>PK_MESH_create_from_facets_o_t</A><br>
+    <A HREF=../headers/pk_mesh_defect_tolerances_t.html>PK_MESH_defect_tolerances_t</A><br>
+    <A HREF=../headers/pk_mesh_eval_with_mtopol_o_t.html>PK_MESH_eval_with_mtopol_o_t</A><br>
+    <A HREF=../headers/pk_mesh_facet_fan_t.html>PK_MESH_facet_fan_t</A><br>
+    <A HREF=../headers/pk_mesh_facet_index_t.html>PK_MESH_facet_index_t</A><br>
+    <A HREF=../headers/pk_mesh_facet_strip_t.html>PK_MESH_facet_strip_t</A><br>
+    <A HREF=../headers/pk_mesh_find_defects_o_t.html>PK_MESH_find_defects_o_t</A><br>
+    <A HREF=../headers/pk_mesh_find_laminar_mfins_o_t.html>PK_MESH_find_laminar_mfins_o_t</A><br>
+    <A HREF=../headers/pk_mesh_find_sharp_mfins_o_t.html>PK_MESH_find_sharp_mfins_o_t</A><br>
+    <A HREF=../headers/pk_mesh_find_sharp_mvxs_o_t.html>PK_MESH_find_sharp_mvxs_o_t</A><br>
+    <A HREF=../headers/pk_mesh_fix_defects_o_t.html>PK_MESH_fix_defects_o_t</A><br>
+    <A HREF=../headers/pk_mesh_has_unique_normals.html>PK_MESH_has_unique_normals</A><br>
+    <A HREF=../headers/pk_mesh_imprint_vectors_o_t.html>PK_MESH_imprint_vectors_o_t</A><br>
+    <A HREF=../headers/pk_mesh_is_loaded_r_t.html>PK_MESH_is_loaded_r_t</A><br>
+    <A HREF=../headers/pk_mesh_make_bodies_o_t.html>PK_MESH_make_bodies_o_t</A><br>
+    <A HREF=../headers/pk_mesh_make_surf_trimmed.html>PK_MESH_make_surf_trimmed</A><br>
+    <A HREF=../headers/pk_mesh_make_surf_trimmed_o_t.html>PK_MESH_make_surf_trimmed_o_t</A><br>
+    <A HREF=../headers/pk_mesh_store_normals_o_t.html>PK_MESH_store_normals_o_t</A><br>
+    <A HREF=../headers/pk_mfacet_find_perimeters_o_t.html>PK_MFACET_find_perimeters_o_t</A><br>
+    <A HREF=../headers/pk_mfin_is_laminar.html>PK_MFIN_is_laminar</A><br>
+    <A HREF=../headers/pk_mfin_is_same_mfacet.html>PK_MFIN_is_same_mfacet</A><br>
+    <A HREF=../headers/pk_mfin_is_sharp.html>PK_MFIN_is_sharp</A><br>
+    <A HREF=../headers/pk_mfin_is_sharp_o_t.html>PK_MFIN_is_sharp_o_t</A><br>
+    <A HREF=../headers/pk_mtopol_is.html>PK_MTOPOL_is</A><br>
+    <A HREF=../headers/pk_mtopol_make_meshes_o_t.html>PK_MTOPOL_make_meshes_o_t</A><br>
+    <A HREF=../headers/pk_mtopol_select_cb_f_t.html>PK_MTOPOL_select_cb_f_t</A><br>
+    <A HREF=../headers/pk_mvertex_ask_normals_o_t.html>PK_MVERTEX_ask_normals_o_t</A><br>
+    <A HREF=../headers/pk_mvertex_is_laminar.html>PK_MVERTEX_is_laminar</A><br>
+    <A HREF=../headers/pk_param_sf_t.html>PK_PARAM_sf_t</A><br>
+    <A HREF=../headers/pk_part_ask_attribs_cb_o_t.html>PK_PART_ask_attribs_cb_o_t</A><br>
+    <A HREF=../headers/pk_part_ask_groups_o_t.html>PK_PART_ask_groups_o_t</A><br>
+    <A HREF=../headers/pk_part_receive_meshes_o_t.html>PK_PART_receive_meshes_o_t</A><br>
+    <A HREF=../headers/pk_part_receive_o_t.html>PK_PART_receive_o_t</A><br>
+    <A HREF=../headers/pk_part_transmit_o_t.html>PK_PART_transmit_o_t</A><br>
+    <A HREF=../headers/pk_partition_ask_facet_geom_o_t.html>PK_PARTITION_ask_facet_geom_o_t</A><br>
+    <A HREF=../headers/pk_partition_ask_pmark.html>PK_PARTITION_ask_pmark</A><br>
+    <A HREF=../headers/pk_partition_ask_pmarks_2_o_t.html>PK_PARTITION_ask_pmarks_2_o_t</A><br>
+    <A HREF=../headers/pk_partition_ask_r_t.html>PK_PARTITION_ask_r_t</A><br>
+    <A HREF=../headers/pk_partition_clone_pmark_o_t.html>PK_PARTITION_clone_pmark_o_t</A><br>
+    <A HREF=../headers/pk_partition_create_o_t.html>PK_PARTITION_create_o_t</A><br>
+    <A HREF=../headers/pk_partition_delete_o_t.html>PK_PARTITION_delete_o_t</A><br>
+    <A HREF=../headers/pk_partition_has_guard.html>PK_PARTITION_has_guard</A><br>
+    <A HREF=../headers/pk_partition_has_lattices_o_t.html>PK_PARTITION_has_lattices_o_t</A><br>
+    <A HREF=../headers/pk_partition_has_lattices_r_t.html>PK_PARTITION_has_lattices_r_t</A><br>
+    <A HREF=../headers/pk_partition_is.html>PK_PARTITION_is</A><br>
+    <A HREF=../headers/pk_partition_is_clone_o_t.html>PK_PARTITION_is_clone_o_t</A><br>
+    <A HREF=../headers/pk_partition_make_pmark_o_t.html>PK_PARTITION_make_pmark_o_t</A><br>
+    <A HREF=../headers/pk_partition_receive_meshes_o_t.html>PK_PARTITION_receive_meshes_o_t</A><br>
+    <A HREF=../headers/pk_partition_receive_o_t.html>PK_PARTITION_receive_o_t</A><br>
+    <A HREF=../headers/pk_partition_transmit_o_t.html>PK_PARTITION_transmit_o_t</A><br>
+    <A HREF=../headers/pk_pattern_bound_t.html>PK_pattern_bound_t</A><br>
+    <A HREF=../headers/pk_pattern_callback_t.html>PK_pattern_callback_t</A><br>
+    <A HREF=../headers/pk_pline_sf_t.html>PK_PLINE_sf_t</A><br>
+    <A HREF=../headers/pk_pmark_ask_entities_o_t.html>PK_PMARK_ask_entities_o_t</A><br>
+    <A HREF=../headers/pk_pmark_goto_o_t.html>PK_PMARK_goto_o_t</A><br>
+    <A HREF=../headers/pk_pmark_is.html>PK_PMARK_is</A><br>
+    <A HREF=../headers/pk_pmark_is_used_by_mark.html>PK_PMARK_is_used_by_mark</A><br>
+    <A HREF=../headers/pk_range_bound_t.html>PK_range_bound_t</A><br>
+    <A HREF=../headers/pk_range_end_t.html>PK_range_end_t</A><br>
+    <A HREF=../headers/pk_range_param_bound_t.html>PK_range_param_bound_t</A><br>
+    <A HREF=../headers/pk_region_ask_lattices_o_t.html>PK_REGION_ask_lattices_o_t</A><br>
+    <A HREF=../headers/pk_region_ask_lattices_r_t.html>PK_REGION_ask_lattices_r_t</A><br>
+    <A HREF=../headers/pk_region_embed_lattices.html>PK_REGION_embed_lattices</A><br>
+    <A HREF=../headers/pk_region_embed_lattices_o_t.html>PK_REGION_embed_lattices_o_t</A><br>
+    <A HREF=../headers/pk_region_is_solid.html>PK_REGION_is_solid</A><br>
+    <A HREF=../headers/pk_report_is_open.html>PK_REPORT_is_open</A><br>
+    <A HREF=../headers/pk_session_ask_attdefs_o_t.html>PK_SESSION_ask_attdefs_o_t</A><br>
+    <A HREF=../headers/pk_session_ask_check_arguments.html>PK_SESSION_ask_check_arguments</A><br>
+    <A HREF=../headers/pk_session_ask_check_continuity.html>PK_SESSION_ask_check_continuity</A><br>
+    <A HREF=../headers/pk_session_ask_check_self_int.html>PK_SESSION_ask_check_self_int</A><br>
+    <A HREF=../headers/pk_session_ask_close_knots.html>PK_SESSION_ask_close_knots</A><br>
+    <A HREF=../headers/pk_session_ask_fru_o_t.html>PK_SESSION_ask_fru_o_t</A><br>
+    <A HREF=../headers/pk_session_ask_general_topology.html>PK_SESSION_ask_general_topology</A><br>
+    <A HREF=../headers/pk_session_ask_journalling.html>PK_SESSION_ask_journalling</A><br>
+    <A HREF=../headers/pk_session_ask_mark.html>PK_SESSION_ask_mark</A><br>
+    <A HREF=../headers/pk_session_ask_swept_spun_surfs.html>PK_SESSION_ask_swept_spun_surfs</A><br>
+    <A HREF=../headers/pk_session_ask_unicode.html>PK_SESSION_ask_unicode</A><br>
+    <A HREF=../headers/pk_session_is_in_kernel.html>PK_SESSION_is_in_kernel</A><br>
+    <A HREF=../headers/pk_session_is_in_kernel_2.html>PK_SESSION_is_in_kernel_2</A><br>
+    <A HREF=../headers/pk_session_is_roll_forward_on.html>PK_SESSION_is_roll_forward_on</A><br>
+    <A HREF=../headers/pk_session_is_rollback_on.html>PK_SESSION_is_rollback_on</A><br>
+    <A HREF=../headers/pk_session_receive_o_t.html>PK_SESSION_receive_o_t</A><br>
+    <A HREF=../headers/pk_session_register_fru_o_t.html>PK_SESSION_register_fru_o_t</A><br>
+    <A HREF=../headers/pk_session_set_check_arguments.html>PK_SESSION_set_check_arguments</A><br>
+    <A HREF=../headers/pk_session_set_check_continuity.html>PK_SESSION_set_check_continuity</A><br>
+    <A HREF=../headers/pk_session_set_check_self_int.html>PK_SESSION_set_check_self_int</A><br>
+    <A HREF=../headers/pk_session_set_close_knots.html>PK_SESSION_set_close_knots</A><br>
+    <A HREF=../headers/pk_session_set_general_topology.html>PK_SESSION_set_general_topology</A><br>
+    <A HREF=../headers/pk_session_set_journalling.html>PK_SESSION_set_journalling</A><br>
+    <A HREF=../headers/pk_session_set_roll_forward.html>PK_SESSION_set_roll_forward</A><br>
+    <A HREF=../headers/pk_session_set_swept_spun_surfs.html>PK_SESSION_set_swept_spun_surfs</A><br>
+    <A HREF=../headers/pk_session_set_unicode.html>PK_SESSION_set_unicode</A><br>
+    <A HREF=../headers/pk_session_smp_o_t.html>PK_SESSION_smp_o_t</A><br>
+    <A HREF=../headers/pk_session_smp_r_t.html>PK_SESSION_smp_r_t</A><br>
+    <A HREF=../headers/pk_session_transmit_o_t.html>PK_SESSION_transmit_o_t</A><br>
+    <A HREF=../headers/pk_shell_ask_oriented_faces.html>PK_SHELL_ask_oriented_faces</A><br>
+    <A HREF=../headers/pk_surf_create_blend_o_t.html>PK_SURF_create_blend_o_t</A><br>
+    <A HREF=../headers/pk_surf_degen_t.html>PK_SURF_degen_t</A><br>
+    <A HREF=../headers/pk_surf_eval.html>PK_SURF_eval</A><br>
+    <A HREF=../headers/pk_surf_eval_grid.html>PK_SURF_eval_grid</A><br>
+    <A HREF=../headers/pk_surf_eval_handed.html>PK_SURF_eval_handed</A><br>
+    <A HREF=../headers/pk_surf_eval_with_normal.html>PK_SURF_eval_with_normal</A><br>
+    <A HREF=../headers/pk_surf_eval_with_normal_handed.html>PK_SURF_eval_with_normal_handed</A><br>
+    <A HREF=../headers/pk_surf_extend_o_t.html>PK_SURF_extend_o_t</A><br>
+    <A HREF=../headers/pk_surf_find_box_o_t.html>PK_SURF_find_box_o_t</A><br>
+    <A HREF=../headers/pk_surf_find_discontinuity_o_t.html>PK_SURF_find_discontinuity_o_t</A><br>
+    <A HREF=../headers/pk_surf_find_vectors_o_t.html>PK_SURF_find_vectors_o_t</A><br>
+    <A HREF=../headers/pk_surf_fix_self_int_o_t.html>PK_SURF_fix_self_int_o_t</A><br>
+    <A HREF=../headers/pk_surf_general_user_t.html>PK_SURF_general_user_t</A><br>
+    <A HREF=../headers/pk_surf_intersect_curve_o_t.html>PK_SURF_intersect_curve_o_t</A><br>
+    <A HREF=../headers/pk_surf_intersect_surf_o_t.html>PK_SURF_intersect_surf_o_t</A><br>
+    <A HREF=../headers/pk_surf_make_bsurf.html>PK_SURF_make_bsurf</A><br>
+    <A HREF=../headers/pk_surf_make_bsurf_array.html>PK_SURF_make_bsurf_array</A><br>
+    <A HREF=../headers/pk_surf_make_bsurf_array_o_t.html>PK_SURF_make_bsurf_array_o_t</A><br>
+    <A HREF=../headers/pk_surf_make_bsurf_o_t.html>PK_SURF_make_bsurf_o_t</A><br>
+    <A HREF=../headers/pk_surf_make_curve_isoparam_o_t.html>PK_SURF_make_curve_isoparam_o_t</A><br>
+    <A HREF=../headers/pk_surf_make_cus_isocline_o_t.html>PK_SURF_make_cus_isocline_o_t</A><br>
+    <A HREF=../headers/pk_surf_make_sheet_trimmed_o_t.html>PK_SURF_make_sheet_trimmed_o_t</A><br>
+    <A HREF=../headers/pk_thread_ask_exclusion.html>PK_THREAD_ask_exclusion</A><br>
+    <A HREF=../headers/pk_thread_ask_id.html>PK_THREAD_ask_id</A><br>
+    <A HREF=../headers/pk_thread_ask_last_error.html>PK_THREAD_ask_last_error</A><br>
+    <A HREF=../headers/pk_thread_clear_exclusion.html>PK_THREAD_clear_exclusion</A><br>
+    <A HREF=../headers/pk_thread_clear_last_error.html>PK_THREAD_clear_last_error</A><br>
+    <A HREF=../headers/pk_thread_is_in_kernel.html>PK_THREAD_is_in_kernel</A><br>
+    <A HREF=../headers/pk_thread_lock_partitions_o_t.html>PK_THREAD_lock_partitions_o_t</A><br>
+    <A HREF=../headers/pk_topol_ask_entities_by_attdef.html>PK_TOPOL_ask_entities_by_attdef</A><br>
+    <A HREF=../headers/pk_topol_clash_o_t.html>PK_TOPOL_clash_o_t</A><br>
+    <A HREF=../headers/pk_topol_delete_redundant_2_o_t.html>PK_TOPOL_delete_redundant_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_eval_mass_props_o_t.html>PK_TOPOL_eval_mass_props_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_choice_2_o_t.html>PK_TOPOL_facet_choice_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_choice_o_t.html>PK_TOPOL_facet_choice_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_2_o_t.html>PK_TOPOL_facet_mesh_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_o_t.html>PK_TOPOL_facet_mesh_o_t</A><br>
+    <A HREF=../headers/pk_topol_find_box_2_o_t.html>PK_TOPOL_find_box_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_find_frames_o_t.html>PK_TOPOL_find_frames_o_t</A><br>
+    <A HREF=../headers/pk_topol_find_frames_r_t.html>PK_TOPOL_find_frames_r_t</A><br>
+    <A HREF=../headers/pk_topol_find_nabox_o_t.html>PK_TOPOL_find_nabox_o_t</A><br>
+    <A HREF=../headers/pk_topol_identify_redundant_o_t.html>PK_TOPOL_identify_redundant_o_t</A><br>
+    <A HREF=../headers/pk_topol_make_facet_topol_o_t.html>PK_TOPOL_make_facet_topol_o_t</A><br>
+    <A HREF=../headers/pk_topol_range_array_o_t.html>PK_TOPOL_range_array_o_t</A><br>
+    <A HREF=../headers/pk_topol_range_array_vector_o_t.html>PK_TOPOL_range_array_vector_o_t</A><br>
+    <A HREF=../headers/pk_topol_range_geom_array_o_t.html>PK_TOPOL_range_geom_array_o_t</A><br>
+    <A HREF=../headers/pk_topol_range_geom_o_t.html>PK_TOPOL_range_geom_o_t</A><br>
+    <A HREF=../headers/pk_topol_range_local_o_t.html>PK_TOPOL_range_local_o_t</A><br>
+    <A HREF=../headers/pk_topol_range_local_vector_o_t.html>PK_TOPOL_range_local_vector_o_t</A><br>
+    <A HREF=../headers/pk_topol_range_o_t.html>PK_TOPOL_range_o_t</A><br>
+    <A HREF=../headers/pk_topol_range_vector_o_t.html>PK_TOPOL_range_vector_o_t</A><br>
+    <A HREF=../headers/pk_topol_render_line_o_t.html>PK_TOPOL_render_line_o_t</A><br>
+    <A HREF=../headers/pk_topol_render_volume_o_t.html>PK_TOPOL_render_volume_o_t</A><br>
+    <A HREF=../headers/pk_transf_create_view_o_t.html>PK_TRANSF_create_view_o_t</A><br>
+    <A HREF=../headers/pk_transf_enlarge_o_t.html>PK_TRANSF_enlarge_o_t</A><br>
+    <A HREF=../headers/pk_transf_is_equal.html>PK_TRANSF_is_equal</A><br>
+    <A HREF=../headers/pk_transf_transform_o_t.html>PK_TRANSF_transform_o_t</A><br>
+    <A HREF=../headers/pk_ucoprd_f_t.html>PK_UCOPRD_f_t</A><br>
+    <A HREF=../headers/pk_vector_is_equal.html>PK_VECTOR_is_equal</A><br>
+    <A HREF=../headers/pk_vector_is_parallel.html>PK_VECTOR_is_parallel</A><br>
+    <A HREF=../headers/pk_vector_is_zero.html>PK_VECTOR_is_zero</A><br>
+    <A HREF=../headers/pk_vertex_ask_oriented_edges.html>PK_VERTEX_ask_oriented_edges</A><br>
+    <A HREF=../headers/pk_vertex_make_blend.html>PK_VERTEX_make_blend</A><br>
+    <A HREF=../headers/pk_vertex_spin.html>PK_VERTEX_spin</A><br>
+    <A HREF=../headers/pk_vertex_sweep.html>PK_VERTEX_sweep</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It has the two values:
+
+    PK_LOGICAL_true
+    PK_LOGICAL_false
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

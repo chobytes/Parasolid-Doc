@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<TITLE>DELFAS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>DELFAS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_delete.html>PK_FACE_delete</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+DELFAS ( faces, nopts, optdta, bodys, nbodys, sbodys, ifail )
+=============================================================
+
+  Delete faces from body
+
+Receives:
+  KI_tag_list_face         *faces          --- face(s) to be deleted
+ &lt;KI_int_nitems&gt;           *nopts          --- number of actions in 'optdta'
+  KI_cod_sllo               optdta[nopts]  --- type of action to mend wounds
+                                           ---   SLLOCP => cap
+                                           ---   SLLOGR => grow only
+                                           ---   SLLOGS => allow shrinkage
+                                           ---   SLLORB => leave rubber
+                                           ---   SLLOLT => loops together
+                                           ---   SLLOLI => loops independent
+
+Returns:
+  KI_tag_list_body         *bodys          --- remaining body(s)
+  KI_int_nitems            *nbodys         --- number of bodies
+  KI_tag_list_int          *sbodys         --- state(s) of the body(s)
+                                           ---   RTLOOK => Valid
+                                           ---   RTLONG => Negated
+                                           ---   RTLOSX => Self-Intersecting
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wire_body              Unable to delete faces from wire body
+  KI_all_faces_in_body      Cannot delete all faces in body
+  KI_cant_heal_wound        Can't heal wound - impossible geometry
+  KI_non_manifold           Cannot heal wound with non-manifold boundary
+  KI_not_in_same_shell      Faces not all from the same shell
+  KI_not_in_same_part       Faces not all from the same body
+  KI_unsuitable_entity      Mixed body
+  KI_general_body           general body unsuitable for sweep
+
+Description:
+  The faces, which must belong to the same body, are deleted from the body. The
+  faces must not form the shell of a sheet body (in this case DELENT should be
+  used) but may form an inner shell (ie void) of a solid, in which case that
+  shell is deleted. Rubber faces may be deleted from the body but the edges and
+  faces around the wound must have geometry attached.
+
+  Any holes left by deleting the faces are healed according to the action code.
+  If the action is "cap" then for each hole a new face is created and a surface
+  found which fits all the edges of the hole.  If the action is "grow only" the
+  faces around the hole are extended until the hole is covered. Edges of faces
+  adjacent to a wound which do not form part of the loop of edges around the
+  wound, but have a vertex on it, will not be allowed to contract back from that
+  point. If the "shrinkage" option is selected, the faces around the hole will
+  be allowed to contract if a solution which extends the faces is not found
+  first. If the action is "leave rubber" each hole is 'covered' by a rubber
+  face.  One of the actions "cap", "grow only", "shrinkage" or "leave rubber"
+  must be supplied.
+
+  If the option "loops independent" is selected then each closed loop
+  around a face or group of faces is healed independently. The default is to
+  "heal loops together".   Healing loops independently can result in a
+  fragmented body.
+
+  In general this procedure may give rise to self-intersecting object
+  boundaries which could cause unpredictable errors later.
+
+  If local checking is on (see SEINTP and OUINTP), and the action is not leave
+  rubber, consistency checks will be made on newly created topological and
+  geometrical entities, and the state of the body returned. A state of RTLOOK
+  indicates the body is valid. A state of RTLONG indicates that the result body
+  was originally "inside out" but has been negated, and is now "positive" (has
+  positive volume) and valid. A state of RTLOSX indicates the body is
+  self-intersecting and further modelling operations on it may fail. It is the
+  responsibility of the calling routine to make any necessary reparation.
+
+  If the session parameter for local checking is switched off or the action is
+  "leave rubber", the state returned will be RTLOOK regardless.
+
+  A self-intersecting body can be returned even if the ifail is zero.
+
+  This function is not supported for faces on general bodies.
+
+</PRE>
+</BODY>
+</HTML>

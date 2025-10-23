@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B></B>
+<A NAME="description"></A>
+<I>This type represents any TOPOLogical item.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_ask_topology.html>PK_BODY_ask_topology</A><br>
+    <A HREF=../headers/pk_body_contains_vector.html>PK_BODY_contains_vector</A><br>
+    <A HREF=../headers/pk_body_create_minimum_topology.html>PK_BODY_create_minimum_topology</A><br>
+    <A HREF=../headers/pk_body_create_sheet_topology.html>PK_BODY_create_sheet_topology</A><br>
+    <A HREF=../headers/pk_body_create_solid_topology.html>PK_BODY_create_solid_topology</A><br>
+    <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A><br>
+    <A HREF=../headers/pk_body_create_topology_2_r_t.html>PK_BODY_create_topology_2_r_t</A><br>
+    <A HREF=../headers/pk_body_create_wire_topology.html>PK_BODY_create_wire_topology</A><br>
+    <A HREF=../headers/pk_body_fill_hole.html>PK_BODY_fill_hole</A><br>
+    <A HREF=../headers/pk_body_find_extreme.html>PK_BODY_find_extreme</A><br>
+    <A HREF=../headers/pk_body_find_facesets_o_t.html>PK_BODY_find_facesets_o_t</A><br>
+    <A HREF=../headers/pk_body_knit.html>PK_BODY_knit</A><br>
+    <A HREF=../headers/pk_body_loft_status_r_t.html>PK_BODY_loft_status_r_t</A><br>
+    <A HREF=../headers/pk_body_make_curves_outline.html>PK_BODY_make_curves_outline</A><br>
+    <A HREF=../headers/pk_body_make_spun_outline.html>PK_BODY_make_spun_outline</A><br>
+    <A HREF=../headers/pk_body_pick_topols_o_t.html>PK_BODY_pick_topols_o_t</A><br>
+    <A HREF=../headers/pk_body_spin.html>PK_BODY_spin</A><br>
+    <A HREF=../headers/pk_body_sweep.html>PK_BODY_sweep</A><br>
+    <A HREF=../headers/pk_body_sweep_status_r_t.html>PK_BODY_sweep_status_r_t</A><br>
+    <A HREF=../headers/pk_body_thicken.html>PK_BODY_thicken</A><br>
+    <A HREF=../headers/pk_boolean_match_region_o_t.html>PK_boolean_match_region_o_t</A><br>
+    <A HREF=../headers/pk_boolean_region_select_o_t.html>PK_boolean_region_select_o_t</A><br>
+    <A HREF=../headers/pk_boolean_select_topolset_o_t.html>PK_boolean_select_topolset_o_t</A><br>
+    <A HREF=../headers/pk_edge_check_blends.html>PK_EDGE_check_blends</A><br>
+    <A HREF=../headers/pk_edge_contains_vector.html>PK_EDGE_contains_vector</A><br>
+    <A HREF=../headers/pk_edge_find_extreme.html>PK_EDGE_find_extreme</A><br>
+    <A HREF=../headers/pk_face_change_data_patch_t.html>PK_FACE_change_data_patch_t</A><br>
+    <A HREF=../headers/pk_face_contains_vectors.html>PK_FACE_contains_vectors</A><br>
+    <A HREF=../headers/pk_face_find_extreme.html>PK_FACE_find_extreme</A><br>
+    <A HREF=../headers/pk_face_intersect_curve.html>PK_FACE_intersect_curve</A><br>
+    <A HREF=../headers/pk_face_make_3_face_blend_r_t.html>PK_FACE_make_3_face_blend_r_t</A><br>
+    <A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A><br>
+    <A HREF=../headers/pk_face_output_surf_trimmed.html>PK_FACE_output_surf_trimmed</A><br>
+    <A HREF=../headers/pk_face_pattern_2_r_t.html>PK_FACE_pattern_2_r_t</A><br>
+    <A HREF=../headers/pk_face_pattern_data_r_t.html>PK_FACE_pattern_data_r_t</A><br>
+    <A HREF=../headers/pk_face_pattern_instance_r_t.html>PK_FACE_pattern_instance_r_t</A><br>
+    <A HREF=../headers/pk_face_pattern_r_t.html>PK_FACE_pattern_r_t</A><br>
+    <A HREF=../headers/pk_find_reparam_record_r_t.html>PK_find_reparam_record_r_t</A><br>
+    <A HREF=../headers/pk_fxf_error_t.html>PK_fxf_error_t</A><br>
+    <A HREF=../headers/pk_identify_general_r_t.html>PK_identify_general_r_t</A><br>
+    <A HREF=../headers/pk_replace_help_points_t.html>PK_replace_help_points_t</A><br>
+    <A HREF=../headers/pk_topol_ask_entities_by_attdef.html>PK_TOPOL_ask_entities_by_attdef</A><br>
+    <A HREF=../headers/pk_topol_categorise_geom.html>PK_TOPOL_categorise_geom</A><br>
+    <A HREF=../headers/pk_topol_clash.html>PK_TOPOL_clash</A><br>
+    <A HREF=../headers/pk_topol_clash_o_t.html>PK_TOPOL_clash_o_t</A><br>
+    <A HREF=../headers/pk_topol_clash_t.html>PK_TOPOL_clash_t</A><br>
+    <A HREF=../headers/pk_topol_delete_redundant.html>PK_TOPOL_delete_redundant</A><br>
+    <A HREF=../headers/pk_topol_delete_redundant_2.html>PK_TOPOL_delete_redundant_2</A><br>
+    <A HREF=../headers/pk_topol_delete_redundant_2_o_t.html>PK_TOPOL_delete_redundant_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_detach_geom.html>PK_TOPOL_detach_geom</A><br>
+    <A HREF=../headers/pk_topol_eval_mass_props.html>PK_TOPOL_eval_mass_props</A><br>
+    <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A><br>
+    <A HREF=../headers/pk_topol_facet_2.html>PK_TOPOL_facet_2</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_2_o_t.html>PK_TOPOL_facet_mesh_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_o_t.html>PK_TOPOL_facet_mesh_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_tables_cb_f_t.html>PK_TOPOL_facet_tables_cb_f_t</A><br>
+    <A HREF=../headers/pk_topol_fctab_fin_topol_t.html>PK_TOPOL_fctab_fin_topol_t</A><br>
+    <A HREF=../headers/pk_topol_fctab_point_topol_t.html>PK_TOPOL_fctab_point_topol_t</A><br>
+    <A HREF=../headers/pk_topol_find_box.html>PK_TOPOL_find_box</A><br>
+    <A HREF=../headers/pk_topol_find_box_2.html>PK_TOPOL_find_box_2</A><br>
+    <A HREF=../headers/pk_topol_find_frames.html>PK_TOPOL_find_frames</A><br>
+    <A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A><br>
+    <A HREF=../headers/pk_topol_identify_redundant.html>PK_TOPOL_identify_redundant</A><br>
+    <A HREF=../headers/pk_topol_imprint_frames.html>PK_TOPOL_imprint_frames</A><br>
+    <A HREF=../headers/pk_topol_make_facet_topol.html>PK_TOPOL_make_facet_topol</A><br>
+    <A HREF=../headers/pk_topol_make_general_body.html>PK_TOPOL_make_general_body</A><br>
+    <A HREF=../headers/pk_topol_make_new.html>PK_TOPOL_make_new</A><br>
+    <A HREF=../headers/pk_topol_range.html>PK_TOPOL_range</A><br>
+    <A HREF=../headers/pk_topol_range_array.html>PK_TOPOL_range_array</A><br>
+    <A HREF=../headers/pk_topol_range_array_vector.html>PK_TOPOL_range_array_vector</A><br>
+    <A HREF=../headers/pk_topol_range_geom.html>PK_TOPOL_range_geom</A><br>
+    <A HREF=../headers/pk_topol_range_geom_array.html>PK_TOPOL_range_geom_array</A><br>
+    <A HREF=../headers/pk_topol_range_local.html>PK_TOPOL_range_local</A><br>
+    <A HREF=../headers/pk_topol_range_local_vector.html>PK_TOPOL_range_local_vector</A><br>
+    <A HREF=../headers/pk_topol_range_vector.html>PK_TOPOL_range_vector</A><br>
+    <A HREF=../headers/pk_topol_remove_body_component.html>PK_TOPOL_remove_body_component</A><br>
+    <A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A><br>
+    <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A><br>
+    <A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A><br>
+    <A HREF=../headers/pk_topol_track_record_r_t.html>PK_TOPOL_track_record_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A topological item is a type of entity (PK_CLASS_topol is a subclass of
+PK_CLASS_entity).
+
+A topological item may be of one of the types:
+
+ - <A HREF=../headers/pk_part_t.html>PK_PART_t</A>:     a part which may be saved or received
+ - <A HREF=../headers/pk_instance_t.html>PK_INSTANCE_t</A>: an instance which positions and orientates an occurrence of
+                  a part
+ - <A HREF=../headers/pk_region_t.html>PK_REGION_t</A>:   a region which is a connected subset of 3-dimensional space
+ - <A HREF=../headers/pk_shell_t.html>PK_SHELL_t</A>:    a shell which is a connected set of oriented faces
+ - <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>:     a face which is a bounded connected subset of a surface
+ - <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>:     an edge which is a bounded connected subset of a curve
+ - <A HREF=../headers/pk_fin_t.html>PK_FIN_t</A>:      a fin which is the junction between a face and an edge
+ - <A HREF=../headers/pk_loop_t.html>PK_LOOP_t</A>:     a loop which is a closed connected set of fins forming a
+                  face boundary.
+ - <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>:   a vertex which is a single position in  3D space
+ - <A HREF=../headers/pk_frame_t.html>PK_FRAME_t</A>:    a frame which is a boundary that divides its owning
+                  topology.
+
+See <A HREF="../chapters/fd_chap.015.html#50409796_pgfId-294764">Topological entities</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

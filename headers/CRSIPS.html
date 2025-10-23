@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<TITLE>CRSIPS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRSIPS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bcurve_spin.html>PK_BCURVE_spin</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRSIPS ( bc, point, direct, angle, bs, ifail )
+==============================================
+
+  Swing a B-curve into a B-surface
+
+Receives:
+  KI_tag_b_curve           *bc             --- B-curve to swing
+  KI_vec_position           point          --- point on axis of rotation
+  KI_vec_axis               direct         --- direction of axis of rotation
+  KI_dbl_angle             *angle          --- angle of swing (in radians)
+
+Returns:
+  KI_tag_b_surface         *bs             --- result of swing
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_bad_angle              'angle' must not be zero
+                            'angle' must be between -2pi and 2pi
+
+Description:
+  The B-curve is moved along an arc specified by the axis leaving a B-surface
+  in its wake.
+
+  'angle' must not be greater than 2pi or less than -2pi.
+  'angle' must not be zero.
+
+  Returned surface 'bs':
+  . The curve lies along the v = 0 parameter line of the surface.
+  . The surface is rational.
+  . The u order of the surface is the order of the curve.
+  . The v order of the surface is 4.
+  . The surface will be periodic in u if  the curve is periodic.
+  . The surface will be periodic in v if  'angle' is 2pi or -2pi.
+  . For positive angles the curve will be spun anticlockwise when viewed down
+    the axis ( ie. the right hand screw rule applied to the axis gives the spin
+    direction ) and the surface normal will be in the direction of the cross
+    product of the curve tangent and the spin direction.
+
+  In general this procedure may construct a self-intersecting surface.
+
+</PRE>
+</BODY>
+</HTML>

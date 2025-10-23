@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_sew_bodies_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_sew_bodies_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_sew_bodies_o_s
+    {
+    int                   o_t_version;       --- version number of option
+                                             --- structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          set_global_tolerance;
+                                             --- DEPRECATED
+                                             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          allow_disjoint_result;
+                                             --- whether disjoint sheets can be
+                                             --- produced
+                                             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          treat_as_manifold; --- assume result is manifold
+                                             --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_body_sewing_type_t.html>PK_BODY_sewing_type_t</A> prefered_body_type;--- prefered body type of result
+                                             --- (PK_BODY_sewing_any_c)
+    <A HREF=../headers/pk_body_sewing_removal_t.html>PK_BODY_sewing_removal_t</A>
+                          duplicate_removal; --- effort placed in removing
+                                             --- duplications
+                                             --- (PK_BODY_sewing_remove_none_c)
+                                             --- [NF]
+    int                   number_of_iterations;
+                                             --- number of gap width bound
+                                             --- values to iterate over
+                                             --- (1) [NF]
+    double               *iteration_bounds;  --- array of gap width bounds
+                                             --- (NULL)
+    <A HREF=../headers/pk_body_sewing_assy_t.html>PK_BODY_sewing_assy_t</A> assembly_sewing;   --- improve results when sewing
+                                             --- faces from an assembly
+                                             --- (PK_BODY_sewing_assy_no_c)
+    <A HREF=../headers/pk_body_sewing_gen_t.html>PK_BODY_sewing_gen_t</A>  general_sewing;    --- whether to sew general input
+                                             --- bodies together
+                                             --- (PK_BODY_sewing_gen_no_c)
+    <A HREF=../headers/pk_loop_sew_up_t.html>PK_LOOP_sew_up_t</A>      sew_up_inner_loops;--- whether to sew inner loops
+                                             --- (PK_LOOP_sew_up_loop_c)
+    <A HREF=../headers/pk_edge_reduce_tol_t.html>PK_EDGE_reduce_tol_t</A>  reduce_edge_tolerance;
+                                             --- control the tolerance set on
+                                             --- sewn edges
+                                             --- (PK_EDGE_reduce_tol_no_c)
+                                             --- [NF]
+    };
+
+typedef struct PK_BODY_sew_bodies_o_s PK_BODY_sew_bodies_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls on the execution of sewing.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_iteration_count    The requested number of iterations was
+                                    less than one. (MILD)
+
+    PK_ERROR_bad_gap_bound          A bad gap width bound was supplied in
+                                    the option field <B>'iteration_bounds'</B> when
+                                    requesting sewing to make multiple sewing
+                                    attempts. (MILD)
+
+    PK_ERROR_contradictory_request  Bad combination of options. (MILD)
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_sew_bodies.html>PK_BODY_sew_bodies</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure defines options applicable to the sewing together of
+sheet bodies. See <A HREF="../chapters/fd_chap.048.html#50409831_pgfId-295186">here</A> for more information.
+
+The structure has the following user fields.
+
+    allow_disjoint_result:  If true sewing can return several disjoint sheets
+                            produced by sewing. When this is false the only
+                            sheet returned is the one produced by sewing
+                            sheets onto the first one provided in the list
+                            of received bodies.
+                            See <A HREF="../chapters/fd_chap.048.html#50409831_pgfId-404904">Getting the best from sheet sewing</A>
+                            for more information.
+
+    treat_as_manifold:      Assume the result is manifold. If have more than
+                            two edges paired, assume the closest pairing is
+                            the intended one.
+
+    prefered_body_type:     An enum indicating the prefered type of the
+                            result.
+
+    duplicate_removal:      An enum indicating effort to be placed in
+                            removing duplications in the input sheets.
+
+    number_of_iterations:   This specifies the number of gap width bound
+                            values to iterate over while sewing. This must
+                            exceed 0.
+
+                            Where the <B>'number_of_iterations'</B> is 1, the gap
+                            width bound specified in the <B>'gap_width_bound'</B>
+                            argument is used for a single sewing attempt.
+
+                            Where the value of this option field exceeds 1,
+                            sewing will make the specified number of attempts
+                            to complete the sewing operation.
+
+                            If iteration is requested and the array held in
+                            <B>'iteration_bounds'</B> is not NULL, an attempt to sew
+                            the bodies will be carried out at each gap width
+                            bound specified in the array ( assumed to hold
+                            <B>'number_of_iteration'</B> values ). If
+                            <B>'iteration_bounds'</B> are supplied, the value set for
+                            the <B>'gap_width_bound'</B> argument is ignored. The gap
+                            width bounds will be used in the order in which
+                            they appear in the array. It is expected that the
+                            best results will occur when the values are in
+                            ascending order.
+
+                            Iteration may be requested, with the value of
+                            <B>'iteration_bounds'</B> set to NULL. In this case
+                            Parasolid will generate <B>'number_of_iterations'</B>
+                            ascending values terminating in <B>'gap_width_bound'</B>.
+                            The range of values chosen will not exceed two
+                            orders of magnitude, other than that the chosen
+                            values are not specified.
+
+    iteration_bounds:       If the number of iterations exceeds 1 this
+                            array will be used as the source of gap width
+                            bounds for each iteration unless it is set to NULL.
+                            In the latter case Parasolid will generate a
+                            range of gap width bounds based on the value of
+                            the <B>'gap_width_bound'</B> passed to <A HREF=../headers/pk_body_sew_bodies.html>PK_BODY_sew_bodies</A>.
+
+                            Where the number of iterations is one, this option
+                            field is ignored.
+
+    assembly_sewing:        An enum used to indicate that in cases where
+                            more than two edges are matched as candidates for
+                            sewing, it is appropriate to view the multiple
+                            matches as arising from close proximity of piece
+                            parts in an assembly.
+
+                            When using this option it is assumed the input
+                            sheets originate from a valid assembly and,
+                            moreover, that their orientations also reflect
+                            this.
+
+                            This enum is used to indicate what kind of
+                            reasoning about assemblies is to be employed when
+                            selecting the most appropriate match out of
+                            several alternatives.
+
+                            Enabling this option requires <B>'treat_as_manifold'</B>
+                            being set to PK_LOGICAL_true and
+                            <B>'duplicate_removal'</B> being set to
+                            PK_BODY_sewing_remove_none_c.
+
+    general_sewing:         An enum that controls the sewing when general
+                            bodies are present in the input.
+
+                            Enabling this option requires <B>'assembly_sewing'</B>
+                            to be set to PK_BODY_sewing_assy_no_c.
+
+    sew_up_inner_loops:     Whether to allow sewing within inner loops.
+
+                            Note that this option has no effect on facet
+                            geometry.
+
+    reduce_edge_tolerance:  Sewing uses multiple factors to determine the
+                            tolerance of an edge and the gap between the
+                            original edges is just one of these bounds. In
+                            order to limit the size of the tolerance used,
+                            this option, if set to PK_EDGE_reduce_tol_yes_c,
+                            will perform extra checks and attempt to reduce
+                            the tolerance where possible. If tolerance
+                            reduction is not possible, then a report will be
+                            returned in the Parasolid report stream containing
+                            a record of type <A HREF=../headers/pk_report_record_1_t.html>PK_REPORT_record_1_t</A> with status
+                            <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_ed_large_tol_c</A> listing the original
+                            edges.
+
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

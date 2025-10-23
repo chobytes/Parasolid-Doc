@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_sweep_lock_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_sweep_lock_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_sweep_lock_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_swept_body_2_o_t.html>PK_BODY_make_swept_body_2_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype is used to control the behaviour of a lock direction in
+sweeping. These options only have an effect if <B>'have_lock_direction'</B> is set to
+PK_LOGICAL_true.
+
+PK_sweep_lock_t has the values:
+
+    PK_sweep_lock_path_and_dir_c    The sweep direction will be projected into
+                                    the plane perpendicular to the
+                                    <B>'lock_direction'</B>, and the profiles of the
+                                    sweep will maintain a fixed relationship to
+                                    the <B>'lock_direction'</B>. This option may not
+                                    be used if two guides are supplied, and
+                                    <B>'guide_method'</B> is set to
+                                    PK_sweep_guide_curve_c.
+    PK_sweep_lock_path_c            The sweep direction will be projected into
+                                    the plane perpendicular to the
+                                    <B>'lock_direction'</B>. This option may not be
+                                    used if less than two guides are supplied,
+                                    or <B>'guide_method'</B> is set to
+                                    PK_sweep_guide_project_c.
+    PK_sweep_lock_rotation_c        The profiles of the sweep will maintain a
+                                    fixed relationship to the direction that
+                                    equals the <B>'lock_direction'</B> projected into
+                                    the plane perpendicular to the sweep
+                                    direction. This option may not be used if
+                                    two guides are supplied, and <B>'guide_method'</B>
+                                    is set to PK_sweep_guide_curve_c.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

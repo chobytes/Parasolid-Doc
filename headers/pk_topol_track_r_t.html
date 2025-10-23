@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_track_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_track_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_track_r_s
+    {
+    int                         n_track_records;
+    <A HREF=../headers/pk_topol_track_record_r_t.html>PK_TOPOL_track_record_r_t</A>  *track_records;
+
+    int                        *internal_origs;
+    <A HREF=../headers/pk_class_t.html>PK_CLASS_t</A>                 *internal_classes;
+    int                        *internal_prods;
+    };
+typedef struct PK_TOPOL_track_r_s PK_TOPOL_track_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>This data structure contains all the generic topology tracking records for
+the modelling operation.
+
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_boolean_2.html>PK_BODY_boolean_2</A><br>
+    <A HREF=../headers/pk_body_copy_topology.html>PK_BODY_copy_topology</A><br>
+    <A HREF=../headers/pk_body_emboss.html>PK_BODY_emboss</A><br>
+    <A HREF=../headers/pk_body_extend.html>PK_BODY_extend</A><br>
+    <A HREF=../headers/pk_body_extrude.html>PK_BODY_extrude</A><br>
+    <A HREF=../headers/pk_body_fill_hole.html>PK_BODY_fill_hole</A><br>
+    <A HREF=../headers/pk_body_hollow_2.html>PK_BODY_hollow_2</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_normal.html>PK_BODY_imprint_cus_normal</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_vec.html>PK_BODY_imprint_cus_vec</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_vector.html>PK_BODY_imprint_cus_vector</A><br>
+    <A HREF=../headers/pk_body_imprint_faces_2.html>PK_BODY_imprint_faces_2</A><br>
+    <A HREF=../headers/pk_body_imprint_plane_2.html>PK_BODY_imprint_plane_2</A><br>
+    <A HREF=../headers/pk_body_knit.html>PK_BODY_knit</A><br>
+    <A HREF=../headers/pk_body_make_facet_body.html>PK_BODY_make_facet_body</A><br>
+    <A HREF=../headers/pk_body_make_section.html>PK_BODY_make_section</A><br>
+    <A HREF=../headers/pk_body_make_section_with_surfs.html>PK_BODY_make_section_with_surfs</A><br>
+    <A HREF=../headers/pk_body_make_swept_tool.html>PK_BODY_make_swept_tool</A><br>
+    <A HREF=../headers/pk_body_offset_2.html>PK_BODY_offset_2</A><br>
+    <A HREF=../headers/pk_body_offset_planar_wire.html>PK_BODY_offset_planar_wire</A><br>
+    <A HREF=../headers/pk_body_repair_shells.html>PK_BODY_repair_shells</A><br>
+    <A HREF=../headers/pk_body_section_with_sheet_2.html>PK_BODY_section_with_sheet_2</A><br>
+    <A HREF=../headers/pk_body_taper.html>PK_BODY_taper</A><br>
+    <A HREF=../headers/pk_body_thicken_2.html>PK_BODY_thicken_2</A><br>
+    <A HREF=../headers/pk_body_thicken_3.html>PK_BODY_thicken_3</A><br>
+    <A HREF=../headers/pk_body_tracked_loft_r_t.html>PK_BODY_tracked_loft_r_t</A><br>
+    <A HREF=../headers/pk_body_tracked_sweep_2_r_t.html>PK_BODY_tracked_sweep_2_r_t</A><br>
+    <A HREF=../headers/pk_body_tracked_sweep_r_t.html>PK_BODY_tracked_sweep_r_t</A><br>
+    <A HREF=../headers/pk_body_transform_2.html>PK_BODY_transform_2</A><br>
+    <A HREF=../headers/pk_body_trim_neutral_sheets_2.html>PK_BODY_trim_neutral_sheets_2</A><br>
+    <A HREF=../headers/pk_edge_delete.html>PK_EDGE_delete</A><br>
+    <A HREF=../headers/pk_edge_make_wire_body.html>PK_EDGE_make_wire_body</A><br>
+    <A HREF=../headers/pk_edge_offset_on_body.html>PK_EDGE_offset_on_body</A><br>
+    <A HREF=../headers/pk_edge_remove_to_bodies.html>PK_EDGE_remove_to_bodies</A><br>
+    <A HREF=../headers/pk_edge_repair.html>PK_EDGE_repair</A><br>
+    <A HREF=../headers/pk_face_boolean_2.html>PK_FACE_boolean_2</A><br>
+    <A HREF=../headers/pk_face_change.html>PK_FACE_change</A><br>
+    <A HREF=../headers/pk_face_delete_2.html>PK_FACE_delete_2</A><br>
+    <A HREF=../headers/pk_face_delete_blends.html>PK_FACE_delete_blends</A><br>
+    <A HREF=../headers/pk_face_emboss.html>PK_FACE_emboss</A><br>
+    <A HREF=../headers/pk_face_hollow_3.html>PK_FACE_hollow_3</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_normal.html>PK_FACE_imprint_cus_normal</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_vec.html>PK_FACE_imprint_cus_vec</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_vector.html>PK_FACE_imprint_cus_vector</A><br>
+    <A HREF=../headers/pk_face_imprint_faces_2.html>PK_FACE_imprint_faces_2</A><br>
+    <A HREF=../headers/pk_face_instance_bodies.html>PK_FACE_instance_bodies</A><br>
+    <A HREF=../headers/pk_face_make_3_face_blend.html>PK_FACE_make_3_face_blend</A><br>
+    <A HREF=../headers/pk_face_make_neutral_sheet_2.html>PK_FACE_make_neutral_sheet_2</A><br>
+    <A HREF=../headers/pk_face_make_sect_with_sfs.html>PK_FACE_make_sect_with_sfs</A><br>
+    <A HREF=../headers/pk_face_make_sheet_bodies.html>PK_FACE_make_sheet_bodies</A><br>
+    <A HREF=../headers/pk_face_offset_2.html>PK_FACE_offset_2</A><br>
+    <A HREF=../headers/pk_face_repair.html>PK_FACE_repair</A><br>
+    <A HREF=../headers/pk_face_replace_surfs_2.html>PK_FACE_replace_surfs_2</A><br>
+    <A HREF=../headers/pk_face_replace_surfs_3.html>PK_FACE_replace_surfs_3</A><br>
+    <A HREF=../headers/pk_face_replace_with_sheet.html>PK_FACE_replace_with_sheet</A><br>
+    <A HREF=../headers/pk_face_section_with_sheet_2.html>PK_FACE_section_with_sheet_2</A><br>
+    <A HREF=../headers/pk_face_taper.html>PK_FACE_taper</A><br>
+    <A HREF=../headers/pk_face_transform_2.html>PK_FACE_transform_2</A><br>
+    <A HREF=../headers/pk_topol_delete_redundant_2.html>PK_TOPOL_delete_redundant_2</A><br>
+    <A HREF=../headers/pk_topol_make_facet_topol.html>PK_TOPOL_make_facet_topol</A><br>
+    <A HREF=../headers/pk_topol_track_r_f.html>PK_TOPOL_track_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Tracking information will be returned via generic tracking structures. Each
+returned sub-structure will record one item of tracking information. The
+structure will associate one group of "originating" topology with another
+group of "product" topology for a particular tracking "event".
+Originating topology will have the class types recorded separately as in
+some cases these entities will have been deleted and their identifiers
+will refer to a non-existent entity.
+
+Description of fields:
+
+
+
+<B>'n_track_records'</B>   The length of the <B>'track_records'</B> array.
+
+
+<B>'track_records'</B>     The array of tracking information records.
+
+The following fields are for internal use only and are not to be accessed
+by the application.
+
+
+<B>'internal_origs'</B>    Internal use only
+
+
+<B>'internal_classes'</B>  Internal use only
+
+
+<B>'internal_prods'</B>    Internal use only
+
+
+Destroying the returned data structure
+
+When the application wishes to free the memory associated with the
+tracking structure, the function <B>'<A HREF=../headers/pk_topol_track_r_f.html>PK_TOPOL_track_r_f</A>'</B> must be
+used.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

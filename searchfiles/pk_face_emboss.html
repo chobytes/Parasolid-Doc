@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.044.html#50409826_pgfId-294744", " The functions PK_BODY_emboss and <B>PK_FACE_emboss</B> provide you with generic, high-level functionality for adding protruding", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-327815", " <B>PK_FACE_emboss</B> provides local emboss functionality, letting you add emboss features", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295035", " a set of faces from the same body (for <B>PK_FACE_emboss</B> ) that the emboss feature is placed onto ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295062", " <B>PK_FACE_emboss</B> receives a set of faces from the target body", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295287", " specified faces on the target (in the case of <B>PK_FACE_emboss</B> ). See Section 43.2.4, Overflow , for more information.", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295847", " (for PK_BODY_emboss ), or the supplied target faces (for <B>PK_FACE_emboss</B> ) may not provide a complete base for the", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-296053", " profile projection runs outside. This behaviour applies only to <B>PK_FACE_emboss</B> . Default: PK_emboss_overflow_added_c ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-296057", " profile projection runs outside. This behaviour applies to both <B>PK_FACE_emboss</B> and PK_BODY_emboss . Default: PK_emboss_overflow_swept_c ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-296072", " behaviour only applies to local emboss operations performed using <B>PK_FACE_emboss</B> . You should not specify interior overflow behaviour for", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-296111", " each case, the face specified in the call to <B>PK_FACE_emboss</B> is shown in blue. ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-296114", " rather than the faces specified in the call to <B>PK_FACE_emboss</B> . Thus, in ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-297317", " Figure 43-14 Embossed feature returned united or separate by <B>PK_FACE_emboss</B> ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-297321", " positioned above as shown in diagram (a). By default, <B>PK_FACE_emboss</B> returns the embossed attached to the target body. If", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317132", " <B>PK_FACE_emboss</B> ", "Functional Description - Update Switches");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_bad_angle 1 <B>PK_FACE_emboss</B> Specification of different taper angles is", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_non_manifold 547 <B>PK_FACE_emboss</B> Result of the emboss is non-manifold.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_unsuitable_topology 1033 <B>PK_FACE_emboss</B> One of the constraints on topologies", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_not_implemented 5000 <B>PK_FACE_emboss</B> Unavailable functionality is called.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_angle 1 <B>PK_FACE_emboss</B> Specification of different taper angles is", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_non_manifold 547 <B>PK_FACE_emboss</B> Result of the emboss is non-manifold.", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_unsuitable_topology 1033 <B>PK_FACE_emboss</B> One of the constraints on topologies", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>PK_FACE_emboss</B> 1 PK_ERROR_bad_angle Specification of different taper angles is", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_t.html#description", " <B>PK_FACE_emboss</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_FACE_emboss</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_emboss.html#declaration", " PK_ERROR_code_t <B>PK_FACE_emboss</B>", "PK Reference - PK_FACE_emboss");
+top.note("headers/pk_face_emboss.html#documentation", "<B>PK_FACE_emboss</B> enables pad and pocket like features to be added onto the", "PK Reference - PK_FACE_emboss");
+top.note("headers/pk_face_emboss_o_t.html#description", " This structure contains optional controls for <B>PK_FACE_emboss</B> .", "PK Reference - PK_FACE_emboss_o_t");
+top.note("headers/pk_face_t.html#description", " <B>PK_FACE_emboss</B> ", "PK Reference - PK_FACE_t");
+top.note("headers/pk_topol_local_r_t.html#description", " <B>PK_FACE_emboss</B> ", "PK Reference - PK_TOPOL_local_r_t");
+top.note("headers/pk_topol_track_r_t.html#description", " <B>PK_FACE_emboss</B> ", "PK Reference - PK_TOPOL_track_r_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

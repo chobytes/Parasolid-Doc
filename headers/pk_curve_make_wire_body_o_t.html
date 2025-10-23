@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_make_wire_body_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_make_wire_body_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_make_wire_body_o_s
+    {
+    int             o_t_version;    --- version number of option structure
+    double          tolerance;      --- max separation between any two curve
+                                    --- endings that are to be connected
+                                    --- (0.000001)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    allow_disjoint; --- is the wire body allowed to be
+                                    --- disjoint? (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    allow_general;  --- whether a general body is created for
+                                    --- suitable input and setting
+                                    --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    check;          --- check the body for errors?
+                                    --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    want_edges;     --- return the new edges in new_edges?
+                                    --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    want_indices;   --- return the edge indices in edge_index?
+                                    --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_curve_sequential_t.html>PK_CURVE_sequential_t</A>
+                    sequential;     --- whether the curves are supplied in the
+                                    --- correct sequence
+                                    --- (PK_CURVE_sequential_no_c)
+
+    };
+
+typedef struct PK_CURVE_make_wire_body_o_s PK_CURVE_make_wire_body_o_t;
+</B>
+<A NAME="description"></A>
+<I>This options structure holds optional controls for <A HREF=../headers/pk_curve_make_wire_body_2.html>PK_CURVE_make_wire_body_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_make_wire_body_2.html>PK_CURVE_make_wire_body_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+See <A HREF="../chapters/fd_chap.046.html#50409829_pgfId-295201">Specifying options</A> for more information.
+Description of fields:
+
+<B>'o_t_version'</B>           Version number of option structure.
+
+<B>'tolerance'</B>             The maximum separation between any two curve endings
+                        that are to be connected. If more than two curve ends
+                        are within this distance, the two closest will be
+                        joined, if <A HREF=../headers/pk_session_set_general_topology.html>PK_SESSION_set_general_topology</A> is set to
+                        PK_LOGICAL_false.
+
+                        If <A HREF=../headers/pk_session_set_general_topology.html>PK_SESSION_set_general_topology</A> and <B>'allow_general'</B>
+                        are set to PK_LOGICAL_true, more than two
+                        curves will be joined at a vertex if the created body
+                        has a valid configuration. A supplied tolerance
+                        which is smaller than the shortest supplied trimmed
+                        curve will aid in creating a higher
+                        quality general wire body.
+
+                        Curve ends separated by a distance
+                        greater than tolerance will never be connected.
+                        The default is 0.000001.
+
+<B>'allow_disjoint'</B>        If PK_LOGICAL_true, then disjoint bodies can be
+                        created. If PK_LOGICAL_false, and the supplied set of
+                        curves and bounds would result in a disjoint body, then
+                        the function will fail with PK_ERROR_not_connected.
+                        This option must be set to PK_LOGICAL_false if
+                        <B>'sequential'</B> is set to PK_CURVE_sequential_yes_c.
+                        The default is PK_LOGICAL_true.
+
+<B>'allow_general'</B>         If PK_LOGICAL_true and <A HREF=../headers/pk_session_set_general_topology.html>PK_SESSION_set_general_topology</A>
+                        is set to PK_LOGICAL_true, then a general body may be
+                        created. The default value is PK_LOGICAL_false.
+
+<B>'check'</B>                 The created body will be checked for errors.
+                        The default is PK_LOGICAL_true.
+
+<B>'want_edges'</B>            If PK_LOGICAL_true, the edges will be returned in
+                        new_edge.
+                        The default is PK_LOGICAL_false.
+
+<B>'want_indices'</B>          If PK_LOGICAL_true, then edge_index will be filled
+                        with an array of integers, indicating the position in
+                        the array of curves and bounds that refers to the curve
+                        and bounds used to create the corresponding edge in
+                        new_edges.
+                        The default is PK_LOGICAL_false.
+
+<B>'sequential'</B>            If set to PK_CURVE_sequential_yes_c, then this
+                        indicates that the curves are supplied in the sequence
+                        which they should appear in the resultant body. This
+                        means that only consecutive curves will be connected,
+                        with the exception of the first and last curve which
+                        will also be connected if it is possible to form a
+                        closed body. This option may be useful if more than two
+                        curves meet at a position. Setting this option to
+                        PK_CURVE_sequential_yes_c also ensures improved
+                        performance, and so should be used if the supplied
+                        curves are known to be in the correct order. This
+                        option must be set to PK_CURVE_sequential_no_c if
+                        <B>'allow_disjoint'</B> is set to PK_LOGICAL_true.
+                        If <B>'sequential'</B> is PK_CURVE_sequential_yes_c,
+                        then a manifold wire is created regardless of
+                        whether general topology is enabled in the session.
+                        The default is PK_CURVE_sequential_no_c.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

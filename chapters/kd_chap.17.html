@@ -1,0 +1,5641 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>KID Class Structure</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>KID Class Structure</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.16.html">Fault Reporting in KID</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.18.html">Parasolid LISP Functions</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.17.html#50475020_pgfId-274044">A.1	Introduction</A>
+<UL>
+<LI> <A HREF="kd_chap.17.html#50475020_pgfId-274049">A.1.1	Modeller substructure</A>
+<LI> <A HREF="kd_chap.17.html#50475020_pgfId-274283">A.1.2	Entity substructure</A>
+<LI> <A HREF="kd_chap.17.html#50475020_pgfId-275669">A.1.3	Primitive substructure</A>
+<LI> <A HREF="kd_chap.17.html#50475020_pgfId-276365">A.1.4	Graphics substructure</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475020_pgfId-274044"></A>A.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475020_pgfId-274045"></A>This appendix gives the class tree of KID, and the functions which are available for each class. The functions are described in detail elsewhere. The names of all KID classes are <A NAME="50475020_marker-274046"></A>reserved words within KID and should not be overwritten.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475020_pgfId-274049"></A>	A.1.1 	<A NAME="50475020_marker-274047"></A><A NAME="50475020_marker-274048"></A>Modeller substructure</H2>
+<P>
+<A NAME="50475020_pgfId-274050"></A>The class structure for KID, along with the class functions, appears on the following pages. The notation to be adopted is highest order class to the extreme left of the page, class property functions to the extreme right. Modeller is the root class of the tree shown.</P>
+<P>
+<A NAME="50475020_pgfId-274280"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290271"></A>Class</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290273"></A>Function</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290275"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274059"></A>modeller</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274061"></A>start</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274063"></A>start modeller</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274065"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274067"></A>stop</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274069"></A>stop modeller</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274071"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274073"></A>replicate</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274075"></A>copy properties and item</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274077"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274079"></A>rename</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274081"></A>rename object</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274083"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274085"></A>delete</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274087"></A>undefine object, delete item if one</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274089"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274091"></A>enquire</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274093"></A>user help on objects</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274095"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274097"></A>resabs</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274099"></A>returns linear model resolution</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274101"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274103"></A>resang</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274105"></A>returns angular model resolution</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274107"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274109"></A>mark</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274111"></A>sets rollback mark</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274113"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274115"></A>roll</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274117"></A>rolls back kernel to last mark set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274119"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274121"></A>roll_class</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274123"></A>rolling back live KID objects</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274125"></A>option</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274127"></A>bb</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274129"></A>bulletin board use</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274131"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274133"></A>bb_user</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274135"></A>user fields bulletin option</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274137"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274139"></A>bspline_io </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274141"></A>switches output parametrisations from bezier to bspline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274143"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274145"></A>bspline_geometry </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274147"></A>sets B-curve/surface modeling to composite geometry</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274149"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274151"></A>check</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274153"></A>local checking switch</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274155"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274157"></A>continuity_checking</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274159"></A>continuity checking</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274161"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274163"></A>data_checking</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274165"></A>consistency checks for ATTGEO</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274167"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274169"></A>enquire</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274171"></A>information on option settings</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274173"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274175"></A>journal</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274177"></A>file for kernel output</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274179"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274181"></A>logging</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274183"></A>enables rollback</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274185"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274187"></A>parameter_checking</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274189"></A>parameter checking</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274191"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274193"></A>self_checking</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274195"></A>self intersection checking</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274197"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274199"></A>get_snapshot</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274201"></A>binary/text reception of a snapshot</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274203"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274205"></A>save_snapshot</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274207"></A>binary/text saving of a snapshot</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274209"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274211"></A>reset</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274213"></A>sets all options to STAMOD defaults</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274215"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274217"></A>receive</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274219"></A>binary/text reception</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274221"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274223"></A>transmit</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274225"></A>binary/text transmission</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274227"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274229"></A>timing</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274231"></A>controls timing information</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274233"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274235"></A>user_field</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274237"></A>set user field length</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274239"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274241"></A>logging</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274243"></A>set logging type</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274245"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274247"></A>logging_number</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274249"></A>set rollmark limit</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274251"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274253"></A>logging_forward</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274255"></A>set forward logging</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274257"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274259"></A>raise errors </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274261"></A>raise LISP error for Parasolid failures reported through tokens</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274263"></A>entity</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P>
+<A NAME="50475020_pgfId-274265"></A>(see section entity sub-structure)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274269"></A>primitive</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P>
+<A NAME="50475020_pgfId-274271"></A>(see section primitive sub-structure)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-274275"></A>xgraphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P>
+<A NAME="50475020_pgfId-274277"></A>(see section xgraphics sub-structure)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475020_pgfId-274283"></A>	A.1.2 	<A NAME="50475020_marker-274281"></A><A NAME="50475020_marker-274282"></A>Entity substructure  </H2>
+<P>
+<A NAME="50475020_pgfId-274284"></A>The entity sub-structure contains all the topological and geometric attributes which are used in the solid modeller. It contains everything from a single point to an assembly. Functions to modify or remove many of the features are also included in the entity sub-structure.</P>
+<P>
+<A NAME="50475020_pgfId-275666"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="4">
+<P>
+<A NAME="50475020_pgfId-290344"></A>Class</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290352"></A>Function</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290354"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290356"></A>entity</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290358"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290360"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290362"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290364"></A>pick</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290366"></A>picks items from screen</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290368"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290370"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290372"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290374"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290376"></A>pick_from</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290378"></A>picks connected kernel entities</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290380"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290382"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290384"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290386"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290388"></A>pick_using</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290390"></A>logical pick</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290392"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290394"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290396"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290398"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290400"></A>pick_node</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290402"></A>uses node id to pick entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290404"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290406"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290408"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290410"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290412"></A>include</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290414"></A>add entities to object</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290416"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290418"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290420"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290422"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290424"></A>remove</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290426"></A>remove entities from object</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290428"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290430"></A>transformable</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290432"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290434"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290436"></A>move</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290438"></A>translate transformable items</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290440"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290442"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290444"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290446"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290448"></A>rotate</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290450"></A>rotate transformable items</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290452"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290454"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290456"></A>transformation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290458"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290460"></A>apply</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290462"></A>applies transformation to entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290464"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290466"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290468"></A>topology</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290470"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290472"></A>sweep</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290474"></A>sweep item to create new item</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290476"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290478"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290480"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290482"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290484"></A>swing</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290486"></A>swing item to create new item</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290488"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290490"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290492"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290494"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290496"></A>clash</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290498"></A>coordinate/topology clash test</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290500"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290502"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290504"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290506"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290508"></A>sketch </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290510"></A>add sketch of items to selected view</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290512"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290514"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290516"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290518"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290520"></A>box</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290522"></A>box (return box vector) item</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290524"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290526"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290528"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290530"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290532"></A>faces</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290534"></A>faces of entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290536"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290538"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290540"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290542"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290544"></A>edges</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290546"></A>edges of entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290548"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290550"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290552"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290554"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290556"></A>vertices</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290558"></A>vertices of entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290560"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290562"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290564"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290566"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290568"></A>hidden</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290570"></A>hidden line entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290572"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290574"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290576"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290578"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290580"></A>facet</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290582"></A>facet entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290584"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290586"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290588"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290590"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290592"></A>shade</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290594"></A>shade entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290596"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290598"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290600"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290602"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290604"></A>silhouette</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290606"></A>silhouette entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290608"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290610"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290612"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290614"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290616"></A>fillet</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290618"></A>fillet all edges with given radius</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290620"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290622"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290624"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290626"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290628"></A>chamfer </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290630"></A>chamfer all edges with given radius</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290632"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290634"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290636"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290638"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290640"></A>imprint</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290642"></A>imprint tool on entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290644"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290646"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290648"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290650"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290652"></A>min_distance </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290654"></A>closest approach to point or entity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290656"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290658"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290660"></A>instance</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290662"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290664"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290666"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290668"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290670"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290672"></A>part</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290674"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290676"></A>transmit</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290678"></A>transmit part to file</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290680"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290682"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290684"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290686"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290688"></A>receive</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290690"></A>receive part from file</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290692"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290694"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290696"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290698"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290700"></A>state</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290702"></A>part state</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290704"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290706"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290708"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290710"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290712"></A>key</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290714"></A>key of loaded part</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290716"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290718"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290720"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290722"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290724"></A>remove_key</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290726"></A>clear key from loaded part</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290728"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290730"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290732"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290734"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290736"></A>mass</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290738"></A>compute mass of part</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290740"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290742"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290744"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290746"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290748"></A>identify</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290750"></A>look up tag of named part</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290752"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290754"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290756"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290758"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290760"></A>assemble</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290762"></A>creates assembly from parts</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290764"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290766"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290768"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290770"></A>assembly</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290772"></A>disassemble</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290774"></A>break down into bodies</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290776"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290778"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290780"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290782"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290784"></A>bodies</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290786"></A>list first level bodies</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290788"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290790"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290792"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290794"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290796"></A>instances</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290798"></A>list first level instances</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290800"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290802"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290804"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290806"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290808"></A>transforms</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290810"></A>list first level transforms</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290812"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290814"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290816"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290818"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290820"></A>level</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290822"></A>flattens assembly</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290824"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290826"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290828"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290830"></A>body</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290832"></A>check</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290834"></A>consistency check</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290836"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290838"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290840"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290842"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290844"></A>intersect </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290846"></A>intersection of target/tool bodies</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290848"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290850"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290852"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290854"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290856"></A>merge </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290858"></A>remove redundant edges vertices faces</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290860"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290862"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290864"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290866"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290868"></A>section</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290870"></A>section body with surface</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290872"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290874"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290876"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290878"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290880"></A>subtract</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290882"></A>subtract tool from target body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290884"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290886"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290888"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290890"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290892"></A>unite</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290894"></A>unite tool with target body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290896"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290898"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290900"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290902"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290904"></A>blend_fix</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290906"></A>fix unfixed blends in body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290908"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290910"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290912"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290914"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290916"></A>regions</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290918"></A>regions of body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290920"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290922"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290924"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290926"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290928"></A>volume</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290930"></A>volume of body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290932"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290934"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290936"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290938"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290940"></A>cofg</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290942"></A>centre of gravity of body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290944"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290946"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290948"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290950"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290952"></A>area</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290954"></A>surface area of body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290956"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290958"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290960"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290962"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290964"></A>halve</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290966"></A>section through cofg along axis</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290968"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290970"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290972"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290974"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290976"></A>quarter</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290978"></A>two sections</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290980"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290982"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290984"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290986"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290988"></A>reflect</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290990"></A>reflect body in planar surface</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290992"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290994"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290996"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-290998"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291000"></A>mirror</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291002"></A>unite with mirror image</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291004"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291006"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291008"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291010"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291012"></A>magnify</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291014"></A>scale body by factor</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291016"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291018"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291020"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291022"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291024"></A>offset</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291026"></A>offset body distance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291028"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291030"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291032"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291034"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291036"></A>hollow</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291038"></A>hollow to given thickness</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291040"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291042"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291044"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291046"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291048"></A>sew</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291050"></A>sew a collection of sheet bodies</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291052"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291054"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291056"></A>multiply</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291058"></A>shell</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291060"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291062"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291064"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291066"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291068"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291070"></A>feature</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291072"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291074"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291076"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291078"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291080"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291082"></A>loo </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291084"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291086"></A>loop (loop is LISP reserved word)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291088"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291090"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291092"></A>single </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291094"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291096"></A>merge </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291098"></A>remove redundant faces,edges and vertices</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291100"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291102"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291104"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291106"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291108"></A>unfix </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291110"></A>detach geometry from faces, edges or vertices</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291112"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291114"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291116"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291118"></A>region</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291120"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291122"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291124"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291126"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291128"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291130"></A>vertex</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291132"></A>fillet</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291134"></A>blend at vertices with given radii</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291136"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291138"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291140"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291142"></A>face</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291144"></A>check</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291146"></A>consistency check</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291148"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291150"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291152"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291154"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291156"></A>delete_faces</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291158"></A>delete face from body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291160"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291162"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291164"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291166"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291168"></A>create_solid </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291170"></A>create new body with copied faces</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291172"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291174"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291176"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291178"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291180"></A>create_sheet</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291182"></A>create new sheet body from face</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291184"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291186"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291188"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291190"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291192"></A>remove_faces </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291194"></A>remove face(s) and create new body</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291196"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291198"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291200"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291202"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291204"></A>move</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291206"></A>move face(s)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291208"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291210"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291212"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291214"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291216"></A>rotate</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291218"></A>rotate face(s)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291220"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291222"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291224"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291226"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291228"></A>taper </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291230"></A>draft planar, cylindrical, conical face(s)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291232"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291234"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291236"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291238"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291240"></A>tweak </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291242"></A>modify face surface to given surface</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291244"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291246"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291248"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291250"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291252"></A>ntweak </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291254"></A>modify face surface to reversed surface</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291256"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291258"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291260"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291262"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291264"></A>twefac</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291266"></A>modify faces by given transforms</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291268"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291270"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291272"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291274"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291276"></A>fix</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291278"></A>fit a surface to a face</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291280"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291282"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291284"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291286"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291288"></A>hatch_enq</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291290"></A>enquire hatching attribute</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291292"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291294"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291296"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291298"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291300"></A>planar_hatch</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291302"></A>get/set planar hatching</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291304"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291306"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291308"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291310"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291312"></A>radial_hatch</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291314"></A>get/set radial hatching</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291316"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291318"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291320"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291322"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291324"></A>para_hatch</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291326"></A>get/set parametric hatch</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291328"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291330"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291332"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291334"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291336"></A>cofg</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291338"></A>centre of gravity of face</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291340"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291342"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291344"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291346"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291348"></A>area</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291350"></A>surface area of face</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291352"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291354"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291356"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291358"></A>edge</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291360"></A>blend_check</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291362"></A>check blends</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291364"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291366"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291368"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291370"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291372"></A>blend_enquire</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291374"></A>blend information</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291376"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291378"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291380"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291382"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291384"></A>blend_remove</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291386"></A>remove unfixed blends</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291388"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291390"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291392"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291394"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291396"></A>pick_blends</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291398"></A>picks edges with unfixed blends</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291400"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291402"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291404"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291406"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291408"></A>length</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291410"></A>arc length of edge</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291412"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291414"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291416"></A>geometry</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291418"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291420"></A>check</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291422"></A>consistency check</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291424"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291426"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291428"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291430"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291432"></A>make_body</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291434"></A>create body from geometry</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291436"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291438"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291440"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291442"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291444"></A>part</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291446"></A>part to which geometry is attached</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291448"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291450"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291452"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291454"></A>surface</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291456"></A>intersect</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291458"></A>intersects with supplied surface</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291460"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291462"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291464"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291466"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291468"></A>parameterise</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291470"></A>parameters at position</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291472"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291474"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291476"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291478"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291480"></A>deparameterise</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291482"></A>position at parameters</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291484"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291486"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291488"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291490"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291492"></A>faces</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291494"></A>faces to which surface is attached</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291496"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291498"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291500"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291502"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291504"></A>uvbox</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291506"></A>surface parameter uvbox</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291508"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291510"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291512"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291514"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291516"></A>nabx</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291518"></A>non-aligned box</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291520"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291522"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291524"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291526"></A>curve</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291528"></A>parameterise</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291530"></A>parameter at position</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291532"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291534"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291536"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291538"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291540"></A>deparameterise</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291542"></A>position at parameter</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291544"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291546"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291548"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291550"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291552"></A>march</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291554"></A>list of points on the curve</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291556"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291558"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291560"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291562"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291564"></A>edges</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291566"></A>edges to which curve is attached</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291568"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291570"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291572"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291574"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291576"></A>fin</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291578"></A>fin to which curve is attached</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291580"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291582"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291584"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291586"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291588"></A>interval</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291590"></A>curve parameter interval</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291592"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291594"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291596"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291598"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291600"></A>nabx</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291602"></A>non-aligned box</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291604"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291606"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291608"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291610"></A>point</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291612"></A>vertex</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291614"></A>vertex to which point is attached</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291616"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291618"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291620"></A>associated</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291622"></A>attribute</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291624"></A>system_attribute</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291626"></A>name</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291628"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291630"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291632"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291634"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291636"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291638"></A>blend_v5</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291640"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291642"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291644"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291646"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291648"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291650"></A>translucency</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291652"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291654"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291656"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291658"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291660"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291662"></A>reflectivity</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291664"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291666"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291668"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291670"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291672"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291674"></A>phull</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291676"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291678"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291680"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291682"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291684"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291686"></A>plines</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291688"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291690"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291692"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291694"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291696"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291698"></A>density</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291700"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291702"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291704"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291706"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291708"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291710"></A>hatching</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291712"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291714"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291716"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291718"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291720"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291722"></A>blend</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291724"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291726"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291728"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291730"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291732"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291734"></A>colour</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475020_pgfId-275669"></A>	A.1.3 	<A NAME="50475020_marker-275667"></A><A NAME="50475020_marker-275668"></A>Primitive substructure</H2>
+<P>
+<A NAME="50475020_pgfId-275670"></A>The primitive sub-structure contains all the functions which are required to create anything in KID, from single points, surfaces, solid objects, through to assemblies.</P>
+<P>
+<A NAME="50475020_pgfId-275671"></A>The create functions create primitive solids, curves, surfaces, assemblies and instances.</P>
+<P>
+<A NAME="50475020_pgfId-276361"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="6">
+<P>
+<A NAME="50475020_pgfId-292442"></A>Class</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292454"></A>Function</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292456"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291746"></A>primitive</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291748"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291750"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291752"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291754"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291756"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291758"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291760"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291762"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291764"></A>p_transformable</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291766"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291768"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291770"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291772"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291774"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291776"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291778"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291780"></A>p_geometry</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291782"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291784"></A>p_vector</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291786"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291788"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291790"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291792"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291794"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291796"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291798"></A>p_surface</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291800"></A>p_offset</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291802"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291804"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291806"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291808"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291810"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291812"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291814"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291816"></A>p_spun</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291818"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291820"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291822"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291824"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291826"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291828"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291830"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291832"></A>p_swept</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291834"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291836"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291838"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291840"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291842"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291844"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291846"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291848"></A>p_toroidal</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291850"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291852"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291854"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291856"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291858"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291860"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291862"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291864"></A>p_spherical</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291866"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291868"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291870"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291872"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291874"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291876"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291878"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291880"></A>p_planar</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291882"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291884"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291886"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291888"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291890"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291892"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291894"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291896"></A>p_cylindrical</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291898"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291900"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291902"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291904"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291906"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291908"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291910"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291912"></A>p_conical</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291914"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291916"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291918"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291920"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291922"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291924"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291926"></A>p_unbounded_curve</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291928"></A>p_line</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291930"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291932"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291934"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291936"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291938"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291940"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291942"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291944"></A>p_ellipse</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291946"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291948"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291950"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291952"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291954"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291956"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291958"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291960"></A>p_circle</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291962"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291964"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291966"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291968"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291970"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291972"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291974"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291976"></A>p_intersection</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291978"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291980"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291982"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291984"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291986"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291988"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291990"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291992"></A>p_points </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291994"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291996"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-291998"></A>pick </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292000"></A>picks point sequence<BR>
+in image plane</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292002"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292004"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292006"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292008"></A>p_point</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292010"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292012"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292014"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292016"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292018"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292020"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292022"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292024"></A>p_bounded_curve </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292026"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292028"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292030"></A>scribe </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292032"></A>inscribes bounded<BR>
+curve on face</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292034"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292036"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292038"></A>p_transformation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292040"></A>p_general_transformation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292042"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292044"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292046"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292048"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292050"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292052"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292054"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292056"></A>p_translation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292058"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292060"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292062"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292064"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292066"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292068"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292070"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292072"></A>p_rotation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292074"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292076"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292078"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292080"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292082"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292084"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292086"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292088"></A>p_reflection</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292090"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292092"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292094"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292096"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292098"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292100"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292102"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292104"></A>p_equal_scaling</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292106"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292108"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292110"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292112"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292114"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292116"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292118"></A>p_topology</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292120"></A>p_body</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292122"></A>p_sheet</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292124"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292126"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292128"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292130"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292132"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292134"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292136"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292138"></A>p_wire</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292140"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292142"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292144"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292146"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292148"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292150"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292152"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292154"></A>p_profile</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292156"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292158"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292160"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292162"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292164"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292166"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292168"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292170"></A>p_parasurf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292172"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292174"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292176"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292178"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292180"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292182"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292184"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292186"></A>p_paracurve</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292188"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292190"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292192"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292194"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292196"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292198"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292200"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292202"></A>p_pyramid</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292204"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292206"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292208"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292210"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292212"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292214"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292216"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292218"></A>p_cylinder</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292220"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292222"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292224"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292226"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292228"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292230"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292232"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292234"></A>p_sphere</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292236"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292238"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292240"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292242"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292244"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292246"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292248"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292250"></A>p_torus</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292252"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292254"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292256"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292258"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292260"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292262"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292264"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292266"></A>p_prism</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292268"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292270"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292272"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292274"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292276"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292278"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292280"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292282"></A>p_cone</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292284"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292286"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292288"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292290"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292292"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292294"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292296"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292298"></A>p_block</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292300"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292302"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292304"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292306"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292308"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292310"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292312"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292314"></A>p_acorn</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292316"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292318"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292320"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292322"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292324"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292326"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292328"></A>p_instance</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292330"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292332"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292334"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292336"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292338"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292340"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292342"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292344"></A>p_assembly</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292346"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292348"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292350"></A>create</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292352"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292354"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292356"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292358"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292360"></A>p_feature</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292362"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292364"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292366"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292368"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292370"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292372"></A>p_associated </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292374"></A>p_attribute </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292376"></A>p_system_attribute </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292378"></A>p_blend </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292380"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292382"></A>apply </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292384"></A>apply blend to edge</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292386"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292388"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292390"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292392"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292394"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292396"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292398"></A>extract </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292400"></A>extracts blend info<BR>
+from edge</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292402"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292404"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292406"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292408"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292410"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292412"></A>p_fillet</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292414"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292416"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292418"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292420"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292422"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292424"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292426"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292428"></A>p_chamfer</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292430"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292432"></A>&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475020_pgfId-276365"></A>	A.1.4 	<A NAME="50475020_marker-276362"></A><A NAME="50475020_marker-276363"></A><A NAME="50475020_35592"></A>Graphics substructure</H2>
+<P>
+<A NAME="50475020_pgfId-276366"></A>The class <STRONG>
+graphics</STRONG> is a subclass of <STRONG>
+xgraphics</STRONG>, so that if default values are changed in graphics they can be retrieved from xgraphics.</P>
+<P>
+<A NAME="50475020_pgfId-276578"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292483"></A>Class</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292485"></A>Function</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-292487"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276375"></A>xgraphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276377"></A>autowindow</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276379"></A>set window to minimum</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276381"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276383"></A>clear</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276385"></A>clear current view</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276387"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276389"></A>invisible</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276391"></A>switch for hidden lines</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276393"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276395"></A>redraw</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276397"></A>redraw current view</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276399"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276401"></A>ar</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276403"></A>autowindow and redraw</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276405"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276407"></A>axes</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276409"></A>draw axes</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276411"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276413"></A>frame</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276415"></A>draw frame</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276417"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276419"></A>enquire</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276421"></A>graphics properties information</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276423"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276425"></A>select</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276427"></A>select a view</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276429"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276431"></A>sketch</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276433"></A>sketch all items in drawing list</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276435"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276437"></A>blend</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276439"></A>draw unfixed blends</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276441"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276443"></A>hidden</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276445"></A>hidden line view</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276447"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276449"></A>silhouette</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276451"></A>draw silhouette curves</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276453"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276455"></A>smooth</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276457"></A>blanks smooth edges</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276459"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276461"></A>planar_hatch</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276463"></A>planar hatching</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276465"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276467"></A>radial_hatch</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276469"></A>radial hatching</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276471"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276473"></A>para_hatch</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276475"></A>parametric surface hatching</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276477"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276479"></A>perspective</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276481"></A>perspective view</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276483"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276485"></A>zoom</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276487"></A>magnify by factor</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276489"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276491"></A>pan_down</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276493"></A>view manipulation functions</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276495"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276497"></A>pan_up</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276499"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276501"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276503"></A>pan_left</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276505"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276507"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276509"></A>pan_right</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276511"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276513"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276515"></A>view_direction</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276517"></A>view direction</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276519"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276521"></A>view_from</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276523"></A>eye point</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276525"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276527"></A>view_to</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276529"></A>view point</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276531"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276533"></A>view_vertical</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276535"></A>define vector as vertical in view</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276537"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276539"></A>view_window_xmax </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276541"></A>functions to manipulate image extremes</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276543"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276545"></A>view_window_ymax</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276547"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276549"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276551"></A>view_window_xmin</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276553"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276555"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276557"></A>view_window_ymin</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276559"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276561"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276563"></A>pick_window</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276565"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276567"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276569"></A>pick_centre</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276571"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276573"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276575"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475020_pgfId-276577"></A>&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475020_pgfId-273605"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.16.html">Fault Reporting in KID</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.18.html">Parasolid LISP Functions</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SESSION_start_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SESSION_start_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_SESSION_start_o_s
+    {
+    int     o_t_version;  --- version number of this option structure
+    char   *journal_file; --- name of journal file (NULL)
+    int     user_field;   --- size of user fields in integers (0)
+    int     reserved;     --- for future use (1)
+    };
+typedef struct PK_SESSION_start_o_s PK_SESSION_start_o_t;
+</B>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_filename          journal_file is not a valid file name
+    PK_ERROR_bad_user_field_size   user field length is negative or longer
+                                   than the maximum
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_start.html>PK_SESSION_start</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is the option structure for <A HREF=../headers/pk_session_start.html>PK_SESSION_start</A>.  Its fields are as follows:
+
+  journal_file - the name of the required journal file.  If this is set to a
+                 non-empty string, then journalling is enabled to a file of
+                 the given name.  If it is set to NULL or the empty string
+                 then journalling is not enabled.
+  user_field   - the size of user fields in integers.  The maximum length is
+                 16.  If it is set to zero then no user fields will be
+                 allocated.  Note that in order to receive an archived part
+                 with its user fields, it is necessary that the user field
+                 length for the current session is the same as that for the
+                 session when the part was archived.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

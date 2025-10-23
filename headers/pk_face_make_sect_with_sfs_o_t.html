@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_make_sect_with_sfs_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_make_sect_with_sfs_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_make_sect_with_sfs_o_s
+    {
+    int                     o_t_version;      --- Version number
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            tracking;         --- Whether the tracking
+                                              --- information is returned
+                                              --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            allow_disjoint;   --- Whether a disjoint body
+                                              --- may be returned
+                                              --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            extend_face_list; --- Whether to use additional
+                                              --- target faces
+                                              --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_body_keep_as_facet_t.html>PK_BODY_keep_as_facet_t</A> keep_as_facet;    --- whether to keep the result
+                                              --- bodies as a facet body
+                                              --- when the target is purely
+                                              --- facet
+                                              --- (PK_BODY_keep_as_facet_yes_c)
+    };
+typedef struct PK_FACE_make_sect_with_sfs_o_s
+            PK_FACE_make_sect_with_sfs_o_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is supplied to a section operation for bodies.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_sect_with_sfs.html>PK_FACE_make_sect_with_sfs</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'tracking'</B>               If this option is set to PK_LOGICAL_true, tracking
+                         information for all edges of the resultant wire
+                         bodies is returned.
+
+
+<B>'allow_disjoint'</B>         If this option is set to PK_LOGICAL_false, each
+                         resultant body will contain a single connected
+                         component. If this option is set to PK_LOGICAL_true,
+                         the resultant bodies may contain disjoint manifold
+                         components.
+
+
+
+<B>'extend_face_list'</B>       If this option is set to PK_LOGICAL_true, then
+                         additional target faces will be used to complete
+                         incomplete loops of imprinted edges. If this option
+                         is set to PK_LOGICAL_false, the provided face list
+                         will only be used for sectioning.
+
+
+
+<B>'keep_as_facet'</B>          This option controls whether the result bodies are to
+                         contain only facet geometry.
+                         Note: this option is ignored if the
+                         target bodies contain any classic geometry.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

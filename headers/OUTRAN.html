@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<TITLE>OUTRAN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUTRAN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_transf_ask.html>PK_TRANSF_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUTRAN ( transf, matrix, ifail )
+================================
+
+  Output transformation.
+
+Receives:
+  KI_tag_transform         *transf         --- transformation to be output
+
+Returns:
+  double                    matrix[16]     --- transformation matrix array
+  KI_cod_error             *ifail          --- failure code
+
+
+Description:
+
+  The current value of the transformation matrix is output in a linear
+  array.
+
+  The matrix operates as a post-multiplier on row vectors containing
+  homogenous coordinates thus:
+
+  (x',y',z',s') = (x,y,z,s) T
+
+  where the conventional 3-d coordinates are
+
+  (x/s,y/s,z/s).
+
+  The matrix thus consists of
+
+      (             , 0 )
+      (      R      , 0 )
+      (             , 0 )
+      ( Tx, Ty, Tz,   S )
+
+  R = a rotation/reflection matrix
+  T = a translation vector
+  S = a scaling factor
+
+  The matrix is filled as follows:
+
+           Positions in array         Contents
+           ------------------        ----------
+             0 through 2,           rotation/reflection elements r    r    r
+                                                                  11   21   31
+
+             4 through 6,                   "              "     r    r    r
+                                                                  12   22   32
+
+         and 8 through 10                   "              "     r    r    r
+                                                                  13   23   33
+             3,7, and 11            translation vector
+            12 through 14           0.0
+                 15                 scale
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,94 @@
+<HTML>
+<HEAD>
+<TITLE>CREATT</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CREATT</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_attrib_create_empty.html>PK_ATTRIB_create_empty</A><BR>
+<A HREF=../headers/pk_attrib_set_axes.html>PK_ATTRIB_set_axes</A><BR>
+<A HREF=../headers/pk_attrib_set_doubles.html>PK_ATTRIB_set_doubles</A><BR>
+<A HREF=../headers/pk_attrib_set_ints.html>PK_ATTRIB_set_ints</A><BR>
+<A HREF=../headers/pk_attrib_set_string.html>PK_ATTRIB_set_string</A><BR>
+<A HREF=../headers/pk_attrib_set_vectors.html>PK_ATTRIB_set_vectors</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CREATT ( owners, type, nints, ivals, nreals, rvals, nstrng, slens, nchars, 
+===========================================================================
+         chars, ifail )
+         ==============
+
+  Create an attribute.
+
+Receives:
+  KI_tag_list_entity       *owners         --- entity or list of entities to
+                                           --- which the attribute is to be
+                                           --- attached
+  KI_tag_attrib_def        *type           --- type of attribute
+ &lt;KI_int_nitems&gt;           *nints          --- number of integer values
+  int                       ivals[nints]   --- array of integer values
+ &lt;KI_int_nitems&gt;           *nreals         --- number of real values
+  double                    rvals[nreals]  --- array of real values
+ &lt;KI_int_nitems&gt;           *nstrng         --- number of strings
+ &lt;KI_int_nitems&gt;            slens[nstrng]  --- array of string lengths
+ &lt;KI_int_nitems&gt;           *nchars         --- number of characters
+  KI_chr_string             chars[nchars]  --- array of data for string fields
+
+Returns:
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_wrong_entity_in_list   entity in list cannot own given attribute
+  KI_system_error           no attribute
+  KI_attr_type_not_defined  not a valid attribute definition
+  KI_attr_mismatch          insufficient data for an attribute of this type
+  KI_buffer_overflow        array 'chars' is too small
+
+Description:
+   An attribute of the given type is created, loaded with the given data
+  and attached to each entity in the list 'owners'.
+
+   The entities in 'owners' must be of types specified as legal owners for
+  attributes of the given 'type'.  The legal owners of a type can be
+  determined by calling OUATDF.
+
+   The values to go into the fields are supplied in three arrays. Each
+  field is filled in turn by taking the next value from the array of the
+  appropriate type.
+
+   Thus the number of real values supplied, 'nreals', is the number of real
+  fields plus three times the number of direction, vector and co-ordinate
+  fields plus six times the number of axis fields.
+
+   If there are any character string fields in the attribute their values
+  are supplied, concatenated, in the array ('chars'). The number of strings
+  is passed in 'nstrng' and the array 'slens' contains the string lengths.
+
+   If 'nchars' is not greater than or equal to the sum of the values in the
+  array 'slens', KI_buffer_overflow is returned in 'ifail' and no attributes
+  are created.
+
+   If an attribute of the given type is already attached to an entity in
+  'owners', the old attribute is replaced by one containing the given data,
+  for attributes of classes RQAC01 to RQAC05. For attributes of class RQAC06
+  and RQAC07, the list of attribute values is extended to contain the new value.
+
+
+</PRE>
+</BODY>
+</HTML>

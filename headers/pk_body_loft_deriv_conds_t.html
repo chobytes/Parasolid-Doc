@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_loft_deriv_conds_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_loft_deriv_conds_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_loft_deriv_conds_s
+    {
+    <A HREF=../headers/pk_body_loft_curvature_t.html>PK_BODY_loft_curvature_t</A>          curvature_condition;
+    <A HREF=../headers/pk_body_loft_clamp_type_t.html>PK_BODY_loft_clamp_type_t</A>         type;
+    <A HREF=../headers/pk_body_loft_vector_clamp_t.html>PK_BODY_loft_vector_clamp_t</A>       vector_clamp;
+    <A HREF=../headers/pk_body_loft_face_clamp_t.html>PK_BODY_loft_face_clamp_t</A>         face_clamp;
+    <A HREF=../headers/pk_body_loft_planar_clamp_t.html>PK_BODY_loft_planar_clamp_t</A>       planar_clamp;
+    };
+
+typedef struct PK_BODY_loft_deriv_conds_s PK_BODY_loft_deriv_conds_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds controls on the behaviour of the derivatives of the
+lofted surfaces in the loft direction at a profile, or the profile direction at
+a guide wire (which one is determined by context).  Note that derivative
+conditions cannot be applied to either occurrence of a repeated profile.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_loft_end_conds_t.html>PK_BODY_loft_end_conds_t</A><br>
+    <A HREF=../headers/pk_body_make_lofted_body_o_t.html>PK_BODY_make_lofted_body_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The derivative conditions structure has the following fields.
+
+<B>'curvature_condition'</B>       Specifies the type of constraint to be applied
+                            to curvature across the profile or guide.
+
+                            For PK_BODY_loft_natural_c zero curvature is
+                            implied and hence the natural loft end condition
+                            is applied there. No further clamp conditions are
+                            allowed. You cannot use natural curvature on
+                            intermediate profiles, periodic lofts or on guide
+                            wires.
+
+                            For PK_BODY_loft_unconstrained_c (the default)
+                            no condition is imposed explicitly on the
+                            curvature. Subsequent clamp conditions are then
+                            examined.
+
+                            For PK_BODY_loft_clamped_c, the curvature is
+                            constrained according to the clamp conditions. This
+                            may only be used if <B>'type'</B> is
+                            PK_BODY_loft_clamp_face_c or
+                            PK_BODY_loft_clamp_vec_face_c.
+
+<B>'type'</B>                      Indicates the type of clamp conditions to be
+                            applied to the derivatives of the loft surface
+                            across the profile or guide. The selection of
+                            clamp condition indicates which of the following
+                            fields actually holds the description of
+                            constraint.
+
+                            For PK_BODY_loft_clamp_vector_c the <B>'vector_clamp'</B>
+                            field is examined for the description.
+
+                            For PK_BODY_loft_clamp_face_c the <B>'face_clamp'</B>
+                            field is examined for the description.
+
+                            For PK_BODY_loft_clamp_planar_c the <B>'planar_clamp'</B>
+                            field is examined for the description.
+
+                            For PK_BODY_loft_clamp_vec_face_c both the
+                            <B>'vector_clamp'</B> and <B>'face_clamp'</B> fields are examined
+                            for the description.
+
+                            For PK_BODY_loft_clamp_vec_planar_c both the
+                            <B>'vector_clamp'</B> and <B>'planar_clamp'</B> fields are
+                            examined for the description.
+
+                            For PK_BODY_loft_clamp_no_c (the default)
+                            no field is examined for the description. This is
+                            the only allowed value when <B>'curvature_condition'</B>
+                            is set to PK_BODY_loft_natural_c or if the profile
+                            the clamp is to be applied to is repeated.
+
+<B>'vector_clamp'</B>              Holds the first derivative constraint as a
+                            collections of derivatives to be matched at each of
+                            the vertices of the profile or guide.
+
+<B>'face_clamp'</B>                Specifies a set of faces neighbouring the profile
+                            or guide whose derivatives at their boundary, and
+                            across the profile or along the guide, must be
+                            matched by the loft surface.
+
+<B>'planar_clamp'</B>              Specifies a normal vector that defines a plane
+                            for clamping the loft, and a magnitude that
+                            controls the size of the clamped derivatives.
+
+See <A HREF="../chapters/fd_chap.042.html#50409824_pgfId-534212">Specifying derivative conditions</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

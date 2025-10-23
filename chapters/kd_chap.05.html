@@ -1,0 +1,851 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Calling the KI/PK Using KID (FLICK)</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Calling the KI/PK Using KID (FLICK)</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.04.html">Object-Oriented KID</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.06.html">Creation of Primitives</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.05.html#50475010_pgfId-273840">4.1	Introduction</A>
+<LI> <A HREF="kd_chap.05.html#50475010_pgfId-273842">4.2	Functional low-level interface to the C-kernel (FLICK)</A>
+<LI> <A HREF="kd_chap.05.html#50475010_pgfId-273866">4.3	Calling KI routines</A>
+<LI> <A HREF="kd_chap.05.html#50475010_pgfId-273884">4.4	Calling PK functions</A>
+<LI> <A HREF="kd_chap.05.html#50475010_pgfId-273974">4.5	Using the quote (</A><CODE CLASS="Code">
+<LI> <A HREF="kd_chap.05.html#50475010_pgfId-273984">4.6	KI ifail checking</A>
+<LI> <A HREF="kd_chap.05.html#50475010_pgfId-274010">4.7	PK error checking</A>
+<LI> <A HREF="kd_chap.05.html#50475010_pgfId-274022">4.8	Timing</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475010_pgfId-273840"></A>4.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475010_pgfId-273841"></A>It is possible to use the <A HREF=../kd_index.html>Kernel Interface Driver</A> (KID) to call the functions in the PARASOLID kernel interface in two different ways. This chapter describes how to do this. It is assumed that the reader is familiar with LISP and with object oriented LISP. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475010_pgfId-273842"></A>4.2	Functional low-level interface to the C-kernel (FLICK)
+
+
+</H1>
+<P>
+<A NAME="50475010_pgfId-273844"></A><A NAME="50475010_marker-273843"></A>FLICK is a subsystem within KID which provides functions to interface directly with the KI/PK. It consists of a small number of support functions and a large number of functions to call the KI/PK; 2 per KI routine and 1 per PK function.</P>
+<P>
+<A NAME="50475010_pgfId-273845"></A>A typical KID user need not refer to any of these functions since the higher levels of KID provides access to much of the KI/PK indirectly anyway. Those who wish to use the FLICK routines have a choice of two modes of use:</P>
+
+<H4>
+<A NAME="50475010_pgfId-273846"></A>Using upper case Parasolid KI routines</H4>
+<P>
+<A NAME="50475010_pgfId-273848"></A><A NAME="50475010_marker-273847"></A>Upper case routine names (STAMOD, CRSOFA ...) map directly onto the KI routines argument by argument. These routines merely pass simple data values between FLICK and the KI/PK with no interpretation or simplification. They are therefore rather unhelpful to use and require several calls to additional support functions to interpret the results. They are made available to enable the user to overcome any restrictions imposed by the more convenient FLICK routines.</P>
+<P>
+<A NAME="50475010_pgfId-280582"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280806"></A>&gt; ( STAMOD 1 3 &quot;KID&quot; 0 )               --&gt; ( 1 600382 0 )</PRE>
+<PRE><A NAME="50475010_pgfId-280816"></A>&gt; ( CRBXSO &acute;( 0 0 0 ) &acute;( 0 0 1 ) 5 5 5 ) --&gt; ( 7 0 )</PRE>
+<PRE><A NAME="50475010_pgfId-280817"></A>&gt; ( IDCOEN 7 ( token &acute;TYTOFA ))        --&gt; ( 69 6 0 )</PRE>
+<PRE><A NAME="50475010_pgfId-280818"></A>&gt; ( setq workspace ( alloc 6 ))        --&gt; @12303420</PRE>
+<PRE><A NAME="50475010_pgfId-280810"></A>&gt; ( GTTGLI 69 1 6 workspace )          --&gt; ( 0 )</PRE>
+<PRE><A NAME="50475010_pgfId-280811"></A>&gt; ( empty 6 int workspace )            --&gt; ( 9 23 37 48 55 72 )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273855"></A>Details of the support functions available can be found in <A HREF="ki_chap.06.html#0_18360">Appendix D, &quot;Flick Function Descriptions&quot;</A>, of the Parasolid <A HREF=../ki_index.html>KI Reference</A> Manual.</P>
+
+<H4>
+<A NAME="50475010_pgfId-273859"></A>Using lower case Parasolid KI routines</H4>
+<P>
+<A NAME="50475010_pgfId-273861"></A><A NAME="50475010_marker-273860"></A>Lower case KI routine names (stamod, crsofa ...) and PK functions (pk_body_ask_faces, ... ), while primarily providing access to the equivalent KI/PK function, go to greater lengths to provide convenient output in LISP data formats. They convert integers to symbolic tokens where possible, expand arrays and KI lists as LISP lists, suppress unused arguments and ifails, and sometimes provide optional arguments with defaults.</P>
+<P>
+<A NAME="50475010_pgfId-280559"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475010_pgfId-280567"></A>Note: Since only KI routines and PK function are supported, FLICK in isolation does not support graphics devices, windows or view ports. It must be used in conjunction with KID to access these facilities.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-280593"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280826"></A>&gt; ( stamod )                            --&gt;V6.00.382</PRE>
+<PRE><A NAME="50475010_pgfId-280827"></A>&gt; ( crbxso &acute;( 0 0 0) &acute;( 0 0 1 ) 5 5 5 ) --&gt;7</PRE>
+<PRE><A NAME="50475010_pgfId-280828"></A>&gt; ( idcoen 7 &acute;tytofa )                  --&gt;( 9 23 37 48 55 72 )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475010_pgfId-273866"></A>4.3	Calling KI routines
+
+
+</H1>
+<P>
+<A NAME="50475010_pgfId-273867"></A>All the LISP KI routines are documented individually in <A HREF="ki_chap.06.html#0_18360">Appendix D, &quot;Flick Function Descriptions&quot;</A>, of the Parasolid <A HREF=../ki_index.html>KI Reference</A> Manual.</P>
+<H4>
+<A NAME="50475010_pgfId-273871"></A>Option lists</H4>
+<P>
+<A NAME="50475010_pgfId-273872"></A>Option lists in FLICK, including associated data, are passed as an argument to the routine in a list.</P>
+
+
+<H4>
+<A NAME="50475010_pgfId-273873"></A>Option tokens</H4>
+<P>
+<A NAME="50475010_pgfId-273874"></A>A simple list of option tokens can be passed in either of these formats:</P>
+<P>
+<A NAME="50475010_pgfId-280600"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280839"></A>( token token token ... )
+
+( ( token ) ( token ) ( token ) ... )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273876"></A>Note that simple tokens in a list must either all be bracketed or all be unbracketed, these forms cannot be mixed.</P>
+
+
+<H4>
+<A NAME="50475010_pgfId-273877"></A>Option tokens with associated data</H4>
+<P>
+<A NAME="50475010_pgfId-273878"></A>Associated data is passed in a sublist with the relevant token:</P>
+<P>
+<A NAME="50475010_pgfId-280610"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280850"></A>( ( token real real ... ) ( token tag ... ) ( token vector ...)
+ ... )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273880"></A>- the list can include either bracketed or unbracketed simple tokens:</P>
+<P>
+<A NAME="50475010_pgfId-280617"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280858"></A>( token ( token real ... ) token ( token tag ... ) )
+
+( ( token ) ( token real ... ) ( token ) ( token tag ... ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273882"></A>&quot;options&quot; arguments passed as lists of lists where each sub-list contains an option token together with any associated data:</P>
+<P>
+<A NAME="50475010_pgfId-280624"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280869"></A>&gt; ( rrvdep &acute;(( RROPCT 0.000259873 1000.0 3.0 )
+                ( RROPSI )
+                ( RROPTR ) )
+                ( b0 tag ) nil view_matrix )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475010_pgfId-273884"></A>4.4	Calling PK functions
+
+
+</H1>
+<P>
+<A NAME="50475010_pgfId-273885"></A>The documentation of the PK functions in the Parasolid <A HREF=../pk_index.html>PK Interface Programming Reference</A> manual should be referred to when calling PK functions in KID.</P>
+<P>
+<A NAME="50475010_pgfId-273886"></A>In general, there is a LISP function for every PK function:</P>
+<UL>
+<LI>
+<A NAME="50475010_pgfId-273887"></A>The name of the LISP function is the same as the PK function <STRONG>
+except that all characters are lower case</STRONG>. For example, the PK function <A HREF=../headers/pk_topol_find_box.html>PK_TOPOL_find_box</A> is called from LISP as pk_topol_find_box.</LI>
+<LI>
+<A NAME="50475010_pgfId-273888"></A>The arguments to the LISP function are the received arguments of the PK function.</LI>
+<LI>
+<A NAME="50475010_pgfId-273889"></A>Arrays are represented as a list of their elements. When a PK function passes an array as an integer length and an array as separate arguments, the LISP function just uses a list.</LI>
+</UL>
+
+<H4>
+<A NAME="50475010_pgfId-273890"></A>Options argument</H4>
+<P>
+<A NAME="50475010_pgfId-273891"></A>Options are passed to PK functions as options structures, and these are represented in LISP as a list of dotted pairs. The elements of each dotted pair are the name of a field of an options structure and the value it is to be given. For example:</P>
+<P>
+<A NAME="50475010_pgfId-281302"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281321"></A>&gt; (pk_face_contains_vectors ( f0 tag )
+       &acute;(( n_vectors . 3 )
+         ( vectors . (( 0 0 0 ) ( 0 4 0 ) ( 0 5 0 )) )) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475010_pgfId-273893"></A>Each time a PK function with an options structure is called from LISP, the options macro is called to set all the defaults before the LISP argument is processed to possibly change some of them.</LI>
+<LI>
+<A NAME="50475010_pgfId-273894"></A>The option names for each field in the options structures are documented in the Parasolid <A HREF=../pk_index.html>PK Interface Reference</A> Manual.</LI>
+</UL>
+<P>
+<A NAME="50475010_pgfId-273895"></A>The two following examples contain valid option structures:</P>
+<P>
+<A NAME="50475010_pgfId-280638"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280882"></A>&gt; (setq *vectors &acute;((0 0 0)(10 0 0)(0 10 0)))
+&gt; (pk_face_contains_vectors (f0 tag)
+      (list
+          (cons &acute;n_vectors (abs *vectors))
+          (cons &acute;vectors *vectors)
+      )
+  )</PRE>
+<PRE><A NAME="50475010_pgfId-280883"></A>&gt; (pk_face_contains_vectors (f0 tag)
+      (list
+          (cons &acute;n_vectors 3)
+          (cons &acute;vectors &acute;((0 0 0)(10 0 0)(0 10 0)))
+      )
+  )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273898"></A>However, these two examples do not:</P>
+<P>
+<A NAME="50475010_pgfId-280650"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280904"></A>&gt; (pk_face_contains_vectors (f0 tag)
+      (list
+          (cons &acute;n_vectors 3)
+          (list &acute;vectors &acute;((0 0 0)(10 0 0)(0 10 0)))
+      )
+  )</PRE>
+<PRE><A NAME="50475010_pgfId-280905"></A>&gt; (pk_face_contains_vectors (f0 tag)
+      (list
+          (list &acute;n_vectors 3)
+          (cons &acute;vectors &acute;((0 0 0)(10 0 0)(0 10 0)))
+      )
+  )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475010_pgfId-273901"></A>Optional received arguments</H4>
+<P>
+<A NAME="50475010_pgfId-273902"></A>For all the PK_BODY_create_... functions, the last received argument is a pointer to a <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A> function which defines the local coordinate system. This may be NULL, indicating that the local and world coordinates are the same. This is indicated in LISP by leaving out the argument.</P>
+<P>
+<A NAME="50475010_pgfId-280657"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280931"></A>&gt; (pk_body_create_solid_block 30 20 10 
+     &acute;((100 0 0)(0.8 0.6 0)(0 0 1)))
+             --- solid block defined in local coordinate system</PRE>
+<PRE><A NAME="50475010_pgfId-280923"></A>&gt; (pk_body_create_solid_block 30 20 10)
+             --- solid block defined in world coordinate system</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475010_pgfId-273905"></A>Optional returned arguments</H4>
+<P>
+<A NAME="50475010_pgfId-273906"></A>Many PK functions have return arguments of the form:</P>
+<P>
+<A NAME="50475010_pgfId-280668"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280942"></A>int          *const n_things   --- number of things
+PK_THING_t  **const things     --- things (optional)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273908"></A>meaning that <CODE>
+things</CODE>
+ can be set to NULL by an application if it does not want the array of things returned.</P>
+<P>
+<A NAME="50475010_pgfId-281460"></A>Any PK function that has such optional returns has a corresponding LISP function with optional logical arguments saying whether the array is to be returned or not. These arguments default to <CODE>
+t</CODE>
+, meaning the array is returned. However, if the argument is supplied as nil, then only the number of <CODE>
+things</CODE>
+ - the length of the array - is returned:</P>
+<P>
+<A NAME="50475010_pgfId-280683"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280957"></A>&gt; (pk_body_ask_faces (b0 tag)) --- returns a LISP list of faces
+&gt; (pk_body_ask_faces (b0 tag) nil)
+                           --- just returns the number of faces</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273911"></A>Where there are several optional returns, the optional logical arguments to the LISP function are in the same order as the optional returns from the PK function. To supply an optional logical argument as nil, any others preceding it must be explicitly supplied as t or nil:</P>
+<P>
+<A NAME="50475010_pgfId-280702"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-280989"></A>&gt; (pk_shell_ask_oriented_faces (sh0 tag) t nil)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273913"></A>In the journal file, optional logical arguments supplied as NULL or nil are journalled as @0.</P>
+
+
+<H4>
+<A NAME="50475010_pgfId-273914"></A>Structures</H4>
+<P>
+<A NAME="50475010_pgfId-273915"></A>Structures are represented as a list of their fields. This means that each struct adds another pair of brackets. Note the following examples:</P>
+<P>
+<A NAME="50475010_pgfId-273929"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-280995"></A>Structure</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-280997"></A>Example</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-273918"></A><A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-273920"></A>&acute;((0 0 0)(0 0 1)(1 0 0))</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-273922"></A><A HREF=../headers/pk_circle_sf_t.html>PK_CIRCLE_sf_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-273924"></A>&acute;(((0 0 0)(0 0 1)(1 0 0)) 10)</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-273926"></A><A HREF=../headers/pk_point_sf_t.html>PK_POINT_sf_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-273928"></A>&acute;((10 20 30)) 
+    --- a struct containing a <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A></PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475010_pgfId-273930"></A>Primitives</H4>
+<P>
+<A NAME="50475010_pgfId-273931"></A>The following primitives are used by the LISP PK functions:</P>
+<P>
+<A NAME="50475010_pgfId-273973"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281028"></A>PK</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281030"></A>LISP</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281032"></A><CODE>
+int</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281034"></A>numeric atom without decimal point</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281036"></A><CODE>
+double</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281038"></A>numeric atom with or without decimal point</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281040"></A><CODE>
+char*</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281042"></A><CODE>
+'abcd</CODE>
+ or <CODE>
+&quot;abcd&quot;</CODE>
+ or <CODE>
+(quote abcd)</CODE>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281044"></A><A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281046"></A><CODE>
+t</CODE>
+ or <CODE>
+nil</CODE>
+ (strictly: if it's not <CODE>
+nil</CODE>
+ it's <CODE>
+t</CODE>
+)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281048"></A><A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281050"></A>(list x_comp y_comp z_comp)</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281052"></A><A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281054"></A>(list low high) </PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281056"></A><A HREF=../headers/pk_box_t.html>PK_BOX_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281058"></A>(list x_low y_low z_low x_high y_high z_high)</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281060"></A><A HREF=../headers/pk_uv_t.html>PK_UV_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281062"></A>(list u v)</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475010_pgfId-281064"></A><A HREF=../headers/pk_uvbox_t.html>PK_UVBOX_t</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281066"></A>(list u_low v_low u_high v_high)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475010_pgfId-273974"></A>4.5	Using the quote (<CODE>
+'</CODE>
+)
+
+
+</H1>
+
+<H4>
+<A NAME="50475010_pgfId-273975"></A>Passing lists directly to the KI/PK</H4>
+<P>
+<A NAME="50475010_pgfId-273976"></A>As for s-expressions, lists which are to be passed directly to the PK/KI (without first being evaluated by LISP) should be preceded by a quote.</P>
+<P>
+<A NAME="50475010_pgfId-280709"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281105"></A>&gt; ( crknpa &acute;( 20 22 24 ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273978"></A>Therefore, the quote must be omitted when elements are to be evaluated.</P>
+<P>
+<A NAME="50475010_pgfId-280720"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281113"></A>&gt; ( crknpa ( list ( b0 tag ) ( b1 tag ) ( b2 tag ) ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-273980"></A>Examples of calls which do <EM>
+not</EM> work because of misuse of the quote are:</P>
+<P>
+<A NAME="50475010_pgfId-280730"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281121"></A>&gt; ( crknpa ( 20 22 24 ) )</PRE>
+<PRE><A NAME="50475010_pgfId-281122"></A>&gt; ( crknpa ( ( b0 tag ) ( b1 tag ) ( b2 tag ) ) )</PRE>
+<PRE><A NAME="50475010_pgfId-281123"></A>&gt; ( crknpa &acute;( ( b0 tag ) ( b1 tag ) ( b2 tag ) ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475010_pgfId-273984"></A>4.6	KI ifail checking
+
+
+</H1>
+<P>
+<A NAME="50475010_pgfId-273987"></A><A NAME="50475010_marker-273985"></A><A NAME="50475010_marker-273986"></A>Like KID, FLICK performs ifail checking and raises a LISP error if a returned ifail is considered invalid. Currently this mechanism is quite different from and independent of the KID ifail processing, which is rather limited. Just which ifails are allowed may be adjusted using the support function allow_ifails. A simple example of which is:</P>
+<P>
+<A NAME="50475010_pgfId-280737"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281131"></A>( allow_ifails ( KI_missing_geom ) ( IDSOFF 99 ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475010_pgfId-273989"></A>allow_ifails function</H4>
+<P>
+<A NAME="50475010_pgfId-273993"></A><A NAME="50475010_marker-273990"></A><A NAME="50475010_marker-273991"></A><A NAME="50475010_marker-273992"></A>The function allow_ifails takes any number of arguments. The first is a specification of the ifails which are valid while the remainder, which should be LISP expressions, are evaluated. The function returns the value obtained by evaluating the last argument.</P>
+<P>
+<A NAME="50475010_pgfId-273994"></A>Initially the only valid ifail is KI_no_errors (i.e. zero), any other ifail returned generate a LISP error. The set of valid ifails can be extended by including those which are to be allowed in the valid ifail specification either for all KI calls or - if a KI function name is given as the first element of the valid ifail list - only for that named KI function. Calls to <CODE>
+allow_ifails</CODE>
+ can be nested. Once an ifail has been made valid it cannot subsequently be disallowed.</P>
+<UL>
+<LI>
+<A NAME="50475010_pgfId-273995"></A>To allow all ifails the (pseudo) token KI_all_ifails is provided. </LI>
+<LI>
+<A NAME="50475010_pgfId-273996"></A>To indicate all but specified ifails use a negative sign<BR>
+(e.g. - KI_not_a_tag).</LI>
+<LI>
+<A NAME="50475010_pgfId-273997"></A>Any KI call which returns an ifail returns all its other arguments as nulls and zeros. </LI>
+</UL>
+<P>
+<A NAME="50475010_pgfId-280744"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281203"></A>&gt; ( allow_ifails ( KI_missing_geom ) ( IDSOFF 99 ))
+                        -- call IDSOFF but don&acute;t produce an 
+                            error if the face lacks geometry </PRE>
+<PRE><A NAME="50475010_pgfId-281159"></A>&gt; ( allow_ifails ( STOMOD KI_modeller_not_started ) ( STOMOD ))
+   -- stop the modeller but don&acute;t complain if it isn&acute;t started.</PRE>
+<PRE><A NAME="50475010_pgfId-281160"></A>&gt; ( allow_ifails ( KI_roll_is_off ) ( my_strict_programme ))
+                -- allow KI_roll_is_off errors, but no others</PRE>
+<PRE><A NAME="50475010_pgfId-281161"></A>&gt; ( allow_ifails ( - KI_corrupt_file ) ( my_liberal_programme))
+                -- allow all errors except KI_corrupt_file</PRE>
+<PRE><A NAME="50475010_pgfId-281162"></A>&gt; ( allow_ifails ( KI_all_ifails ) ( my_careless_programme ))
+                -- don&acute;t complain about anything</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-274003"></A>For greater flexibility of use the valid ifail specification may be a list of valid ifail specifications, as in this example.</P>
+<P>
+<A NAME="50475010_pgfId-280751"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281216"></A>&gt; ( allow_ifails		(( IDSOFF KI_missing_geom KI_not_a_tag )
+         ( IDCOEN KI_missing_geom KI_not_a_tag ))
+         ( setq v1 ( IDSOFF 99 ))
+         ( setq v2 ( IDCOEN 100 (token &acute;TYTOFA) )))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-274005"></A>Some lower case FLICK functions declare ifails valid like this. For example stamod permits the ifail KI_modeller_not_stopped.</P>
+
+<H4>
+<A NAME="50475010_pgfId-274006"></A>PK Errors</H4>
+<P>
+<A NAME="50475010_pgfId-274007"></A><CODE>
+valid_ifails</CODE>
+ tries to take PK errors and KI ifails and convert the ifails into PK errors where possible, this is to try and ensure that code which uses KID functionality has similar behavior when KID calls the KI and the PK.</P>
+<P>
+<A NAME="50475010_pgfId-280758"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281227"></A>((define b0 p_block) x -10)
+(valid_ifails &acute;(KI_distance_le_0) &acute;(b0 create))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-274009"></A>should trap the distance_le_0 error whether (b0 create) tries to use CRBXSO or <A HREF=../headers/pk_body_create_solid_block.html>PK_BODY_create_solid_block</A>.</P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475010_pgfId-274010"></A>4.7	PK error checking
+
+
+</H1>
+<P>
+<A NAME="50475010_pgfId-274011"></A>The function <CODE>
+valid_pk_errors</CODE>
+ is similar to <CODE>
+valid_ifails</CODE>
+. It raises and reports the number of the first LISP error which occurs within the supplied test code:</P>
+<P>
+<A NAME="50475010_pgfId-280765"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281238"></A>(valid_pk_errors &acute;(PK_ERROR_wrong_entity) &acute;(pk_curve_ask_interval 12))</PRE>
+<PRE><A NAME="50475010_pgfId-281239"></A>(valid_pk_errors &acute;(PK_ERROR_wrong_entity) &acute;(car 1))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-274014"></A>Other types of error are not trapped, for example this still raises an error:</P>
+<P>
+<A NAME="50475010_pgfId-280772"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281250"></A>(valid_pk_errors &acute;(PK_ERROR_wrong_entity) &acute;(pk_curve_ask_interval s))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-274016"></A>For multi s-expression code, use progn to prevent evaluation of the returns:</P>
+<P>
+<A NAME="50475010_pgfId-280779"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281261"></A>(valid_pk_errors &acute;(PK_ERROR_wrong_entity)
+  &acute;(
+  progn
+  (define b0 p_block) create)
+  (pk_curve_ask_interval (b0 tag))
+  )
+)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-274018"></A>However, this raises an error because the PK error is PK_ERROR_not_an_entity, not PK_ERROR_wrong_entity:</P>
+<P>
+<A NAME="50475010_pgfId-280793"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281272"></A>(valid_pk_errors &acute;(PK_ERROR_wrong_entity)
+  &acute;(
+  progn
+  (undefine b0)
+  ((define b0 p_block) create)
+  (pk_curve_ask_interval (plus (b0 tag) 2000))
+  )
+)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475010_pgfId-274020"></A>To allow both KI ifails and PK errors wrap the code in a valid_ifails function:</P>
+<P>
+<A NAME="50475010_pgfId-280800"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475010_pgfId-281285"></A>(valid_ifails &acute;(KI_not_a_tag)
+  &acute;(valid_pk_errors &acute;(PK_ERROR_wrong_entity)
+    &acute;(
+    progn
+    (undefine b0 l0)
+    ((define b0 p_block) create)
+    (chcken (plus (b0 tag) 2000))
+    (pk_curve_ask_interval (b0 tag))
+    )
+  )
+)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475010_pgfId-274022"></A>4.8	Timing
+
+
+</H1>
+<P>
+<A NAME="50475010_pgfId-274023"></A>Like KID, FLICK also generates a timing_line message to track each KI routine or PK function called. Some, none or all KI routine or PK functions can be traced.</P>
+<P>
+<A NAME="50475010_pgfId-274026"></A>The function <A NAME="50475010_marker-274024"></A><A NAME="50475010_marker-274025"></A>timing controls the output of timing data for KI routine and PK function calls. It takes one argument, the timing level and returns the new level.</P>
+<UL>
+<LI>
+<A NAME="50475010_pgfId-274027"></A>The lowest level, 0 or nil, causes no timing data at all to be printed.</LI>
+<LI>
+<A NAME="50475010_pgfId-274028"></A>The highest level, 2 or t, causes timing data to be printed for all KI routines and PK functions.</LI>
+<LI>
+<A NAME="50475010_pgfId-274029"></A>Level 1 (the initial default level) results in statistics being printed for important KI routines and PK functions, but not for ancillary ones such as KI list handling routines. </LI>
+</UL>
+<P>
+<A NAME="50475010_pgfId-274030"></A>With no argument the current level is returned unchanged. </P>
+<P>
+<A NAME="50475010_pgfId-110680"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.04.html">Object-Oriented KID</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.06.html">Creation of Primitives</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

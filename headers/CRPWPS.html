@@ -1,0 +1,217 @@
+<HTML>
+<HEAD>
+<TITLE>CRPWPS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRPWPS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bsurf_create_piecewise.html>PK_BSURF_create_piecewise</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRPWPS ( dim, uorder, vorder, ncol, nrow, coeffs, basis, bs, ifail )
+====================================================================
+
+  Create B-surface from piecewise data
+
+Receives:
+  KI_int_dimension         *dim            --- dimension of defining vectors
+  KI_int_order             *uorder         --- order of surface in u
+  KI_int_order             *vorder         --- order of surface in v
+  KI_int_nitems            *ncol           --- number of columns of patches
+  KI_int_nitems            *nrow           --- number of rows of patches
+  KI_dbl_coefficients       coeffs[dim * uorder * vorder * ncol * nrow]
+                                           --- vectors defining the surface
+  KI_cod_slba              *basis          --- representation method
+
+Returns:
+  KI_tag_b_surface         *bs             --- B-surface
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_discontinuous_surface  adjacent patches must meet
+  KI_weight_le_0            weights must be greater than zero
+  KI_bad_order              'order' must be four for Hermite basis
+
+Description:
+  This function creates a B-surface from piecewise data. The following
+  methods of representing the data are available:
+
+   o Bezier                   ('basis' = SLBABZ)
+   o Polynomial               ('basis' = SLBAPY)
+   o Hermite (cubic only)     ('basis' = SLBAHE)
+   o Taylor series            ('basis' = SLBATA)
+
+  Dimension of coefficient vectors 'dim':
+  . For rational surfaces 'dim'=4.
+  . For non-rational surfaces 'dim'=3.
+
+  Order of each patch of the surface in u 'uorder', and in v, 'vorder':
+  . The order of the surface = degree + 1.
+  . The minimum order is 2.
+  . If the Hermite basis is used ('basis' = SLBAHE) then the surface has
+    to be bicubic ('uorder' = 'vorder' = 4).
+
+  Number of columns 'ncol':
+  . There must be at least one column.
+
+  Number of rows 'nrow':
+  . There must be at least one row.
+
+  Coefficient data 'coeffs':
+  . Contains ('uorder' * 'vorder' * 'ncol' * 'nrow') vectors of dimension 'dim'.
+    If 'dim'=3, then the vectors are 3-D vectors giving the x, y and z
+    components. If 'dim'=4, then each vector has a weight (w) associated with
+    it, and x, y, z and w components are supplied for each vector. The weights
+    supplied must be greater than zero.
+  . The data is supplied patch by patch, row by row.
+  . The interpretation of the patch data depends on the representation method
+    chosen; this is determined by the value of the argument 'basis'.
+  . Adjacent patches (in the u and v directions) must meet all along the
+    corresponding boundary; i.e. the surface must be continuous.
+
+  Representation method 'basis'
+    The expressions for each patch of the B-surface P(u,v) in the
+    various representations are given below. For generality, the rational
+    form is given. The simplification to the non-rational form can be
+    obtained by setting both the weights and the denominator equal to 1.0.
+
+  . Bezier vertices SLBABZ:
+
+    The equation of a rational Bezier surface patch is:
+
+                       nu  nv                         nu nv
+                       --  --                       / -- --
+          P(u,v)   =   >   >   b (u) b (v) w  V    /  >  >  b (u) b (v) w
+                       --  --   i     j     ij ij /   -- --  i     j     ij
+                      i=0 j=0                        i=0 j=0
+
+          where nu  = 'uorder'-1, nv = 'vorder'-1
+                V   = Bezier vertex
+                 ij
+                w   = weight for V
+                 ij               ij
+                b (u), b (v) = Bezier coefficients.
+                 i      j
+    For the rational form the Bezier vertices and weights are supplied:
+    V  ,w  ,V  ,w  ,...,V  ,w  ,V  ,w  ,...,V  ,w  ,...,V  ,w  ,...,V  ,w  .
+     00  00  10  10      m0  m0  01  01      m1  m1      0n  0n      mn  mn
+    For the non-rational form the w's are missed out.
+
+  . Polynomial coefficients SLBAPY:
+
+    The surface equation is given by a rational bipolynomial of orders
+    'uorder', 'vorder':
+
+                       nu  nv                    nu nv
+                       --  --           i   j  / -- --      i  j
+          P(u,v)   =   >   >   w   A   u   v  /  >  >  w   u  v
+                       --  --   ij  ij       /   -- --  ij
+                      i=0 j=0                   i=0 j=0
+
+          where nu = 'uorder'-1, nv = 'vorder'-1
+
+    For the rational form the polynomial coefficients Aij are supplied:
+    A  ,w  ,A  ,w  ,...,A  ,w  ,A  ,w  ,...,A  ,w  ,...,A  ,w  ,...,A  ,w
+     00  00  10  10      m0  m0  01  01      m1  m1      0n  0n      mn  mn
+    starting with the constant term and ending with the term of highest degree.
+    For the non-rational form the w's are missed out.
+
+  . Hermite coefficients SLBAHE
+
+    This method can only be used for bicubics.
+    The Hermite equation for the patch in matrix form is:
+
+                          2  3       T       2 3  T
+                   ( 1 u u  u ) M A M ( 1 v v v )
+          P(u,v) = --------------------------------
+                          2  3       T       2 3  T
+                   ( 1 u u  u ) M W M ( 1 v v v )
+
+          where M = (  1  0  0  0  )
+                    (  0  0  1  0  )
+                    ( -3  3 -2 -1  )
+                    (  2 -2  1  1  )
+
+
+
+
+                A = ( w00*P00   w01*P01   wv00*Pv00   wv01*Pv01  )
+                    ( w10*P10   w11*P11   wv10*Pv10   wv11*Pv11  )
+                    ( wu00*Pu00 wu01*Pu01 wuv00*Puv00 wuv01*Puv01 )
+                    ( wu10*Pu10 wu11*Pu11 wuv10*Puv10 wuv11*Puv11 )
+
+                W = ( w00  w01  wv00  wv01 )
+                    ( w10  w11  wv10  wv11 )
+                    ( wu00 wu01 wuv00 wuv01 )
+                    ( wu10 wu11 wuv10 wuv11 )
+
+                and the superscript T denotes the transpose.
+
+    In the matrices A and W, the coefficients P, Pu, Pv and Puv
+    are the points at the corners and their derivatives. The w's are the
+    corresponding weights and their derivatives. P00 denotes P(0,0), etc.
+
+    For the rational form the coefficients are supplied:
+
+    P00,   w00,   P10,   w10,   P01,   w01,   P11,   w11
+    Pu00,  wu00,  Pu10,  wu10,  Pu01,  wu01,  Pu11,  wu11
+    Pv00,  wv00,  Pv10,  wv10,  Pv01,  wv01,  Pv11,  wv11
+    Puv00, wuv00, Puv10, wuv10, Puv01, wuv01, Puv11, wuw11
+
+    For the non-rational form, the w's are missed out.
+
+  . Taylor series SLBATA:
+
+    This method stores the derivatives evaluated u=0, v=0 corner of each patch,
+    allowing the surface to be reconstructed as a Taylor series:
+
+                       nu    nv
+                       --    --    (i)(j)  (i)(j)  i  j   /
+                       >     >    w       P       u  v   /  i! j!
+                       --    --
+                       i=0   j=0
+          P(u,v)   =   ------------------------------------------
+                       nu    nv
+                       --    --     (i)(j)  i  j   /
+                       >     >     w       u  v   /  i! j!
+                       --    --
+                       i=0  j=0
+
+          where nu = 'uorder'-1, nv = 'vorder'-1
+
+                            i+j
+                 (i)(j)    d   P
+                P       =  ------ (0,0)
+                             i  j
+                           du dv
+
+                            i+j
+                 (i)(j)    d   w
+                w       =  ------ (0,0)
+                             i  j
+                           du dv
+
+    The point is supplied first, followed by the U derivatives in order and
+    ending with the derivative of order 'uorder'-1 in U, 'vorder'-1 in V.
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,441 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Updating The Frustrum</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Updating The Frustrum</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fr_chap.05.html">Downloading Full and Patch Releases</A></TD>
+  <TD><A HREF="../fr_index.html">Chapters</A></TD>
+  
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fr_chap.06.html#50462725_pgfId-280477">A.1	Introduction</A>
+<UL>
+<LI> <A HREF="fr_chap.06.html#50462725_pgfId-275484">A.1.1	guise_string (modified)</A>
+<LI> <A HREF="fr_chap.06.html#50462725_pgfId-275517">A.1.2	filetype_guise_string (modified)</A>
+<LI> <A HREF="fr_chap.06.html#50462725_pgfId-275558">A.1.3	write_xml_header (new)</A>
+<LI> <A HREF="fr_chap.06.html#50462725_pgfId-275574">A.1.4	OpenWriteFrustrumFile (modified)</A>
+<LI> <A HREF="fr_chap.06.html#50462725_pgfId-275644">A.1.5	WriteToFrustrumFile (modified)</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462725_pgfId-280477"></A>A.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50462725_pgfId-275468"></A>If you use <A HREF=../headers/pk_debug_report_start.html>PK_DEBUG_report_start</A> to create Debug XML with the <CODE>
+output_as_journal</CODE>
+ option set to PK_LOGICAL_false (the default value) then the debug information is output to a new file with guise type FFCDBG. This guise type was introduced at Parasolid V13.2. If your frustrum implementation is older than this, you need to update a number of frustrum functions to support this guise type. </P>
+<P>
+<A NAME="50462725_pgfId-275469"></A>The following functions need to be modified or created, as indicated: </P>
+<P>
+<A NAME="50462725_pgfId-280559"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462725_pgfId-276383"></A>Function</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462725_pgfId-276385"></A>Notes</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-276387"></A>guise_string</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462725_pgfId-276389"></A>Modified</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-276391"></A>filetype_guise_string</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462725_pgfId-276393"></A>Modified</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-276395"></A>write_xml_header</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462725_pgfId-276397"></A>New</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-280539"></A>OpenWriteFrustrumFile</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462725_pgfId-280541"></A>Modified</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-276399"></A>WriteToFrustrumFile</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462725_pgfId-276401"></A>Modified</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462725_pgfId-275481"></A>This appendix contains example source code for each of these functions.</P>
+<P>
+<A NAME="50462725_pgfId-276444"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462725_pgfId-276464"></A>Note: The following examples are based on the frustrum implementation used in the C++ Example Application contained in the file <CODE>
+frustrum.cpp</CODE>
+. The exact details for your frustrum may vary. </P>
+</TD>
+</TR>
+</TABLE>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-275484"></A>	A.1.1 	<A NAME="50462725_guise_string"></A>guise_string (modified)</H2>
+<P>
+<A NAME="50462725_pgfId-275485"></A>Returns a pointer to a lowercase string which declares the file guise (that is rollback, snapshot, journal, transmit, schema, license and debug report).</P>
+<P>
+<A NAME="50462725_pgfId-275894"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-275929"></A>static char* guise_string( int guise )</PRE>
+<PRE><A NAME="50462725_pgfId-275930"></A>       {</PRE>
+<PRE><A NAME="50462725_pgfId-275931"></A>       static char ffcrol[] = &quot;rollback&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275932"></A>       static char ffcsnp[] = &quot;snapshot&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275933"></A>       static char ffcjnl[] = &quot;journal&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275934"></A>       static char ffcxmt[] = &quot;transmit&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275935"></A>       static char ffcxmo[] = &quot;old_transmit&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275936"></A>       static char ffcsch[] = &quot;schema&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275937"></A>       static char ffclnc[] = &quot;licence&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275938"></A>       static char ffcxmp[] = &quot;transmit_partition&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275939"></A>       static char ffcxmd[] = &quot;transmit_deltas&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275940"></A>       static char ffcdbg[] = &quot;debug_report&quot;;       </PRE>
+<PRE><A NAME="50462725_pgfId-275941"></A> switch ( guise )</PRE>
+<PRE><A NAME="50462725_pgfId-275942"></A>         {</PRE>
+<PRE><A NAME="50462725_pgfId-275943"></A>         case FFCROL: return ffcrol;</PRE>
+<PRE><A NAME="50462725_pgfId-275944"></A>         case FFCSNP: return ffcsnp;</PRE>
+<PRE><A NAME="50462725_pgfId-275945"></A>         case FFCJNL: return ffcjnl;</PRE>
+<PRE><A NAME="50462725_pgfId-275946"></A>         case FFCXMT: return ffcxmt;</PRE>
+<PRE><A NAME="50462725_pgfId-275947"></A>         case FFCSCH: return ffcsch;</PRE>
+<PRE><A NAME="50462725_pgfId-275948"></A>         case FFCLNC: return ffclnc;</PRE>
+<PRE><A NAME="50462725_pgfId-275949"></A>         case FFCXMP: return ffcxmp;</PRE>
+<PRE><A NAME="50462725_pgfId-275950"></A>         case FFCXMD: return ffcxmd;</PRE>
+<PRE><A NAME="50462725_pgfId-275951"></A>         case FFCDBG: return ffcdbg;</PRE>
+<PRE><A NAME="50462725_pgfId-275952"></A>         }</PRE>
+<PRE><A NAME="50462725_pgfId-275953"></A>         return g_unknown_value;</PRE>
+<PRE><A NAME="50462725_pgfId-275954"></A>         }</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-275517"></A>	A.1.2 	<A NAME="50462725_filetype_guise_string"></A>filetype_guise_string (modified)</H2>
+<P>
+<A NAME="50462725_pgfId-275518"></A>Returns a pointer to a filetype string for the specified guise.</P>
+<P>
+<A NAME="50462725_pgfId-275977"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-275995"></A>static char* filetype_guise_string( int guise )</PRE>
+<PRE><A NAME="50462725_pgfId-275996"></A>       {</PRE>
+<PRE><A NAME="50462725_pgfId-275997"></A>       // Here we are assuming 3 character extensions</PRE>
+<PRE><A NAME="50462725_pgfId-275998"></A>       static char ffcsnp[] = &quot;.N&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-275999"></A>       static char ffcjnl[] = &quot;.J&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-276000"></A>       static char ffcxmt[] = &quot;.X&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-276001"></A>       static char ffcsch[] = &quot;.S&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-276002"></A>       static char ffclnc[] = &quot;.L&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-276003"></A>       static char ffcxmo[] = &quot;.XMT&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-276004"></A>       static char ffcxmp[] = &quot;.P&quot;;</PRE>
+<PRE><A NAME="50462725_pgfId-276005"></A>       static char ffcxmd[] = &quot;.D&quot;; </PRE>
+<PRE><A NAME="50462725_pgfId-276006"></A>       static char ffcdbg[] = &quot;.XML&quot;;       </PRE>
+<PRE><A NAME="50462725_pgfId-276007"></A>         switch( guise )</PRE>
+<PRE><A NAME="50462725_pgfId-276008"></A>         {</PRE>
+<PRE><A NAME="50462725_pgfId-276009"></A>         case FFCSNP:</PRE>
+<PRE><A NAME="50462725_pgfId-276010"></A>         return ffcsnp;</PRE>
+<PRE><A NAME="50462725_pgfId-276011"></A>         case FFCJNL:</PRE>
+<PRE><A NAME="50462725_pgfId-276012"></A>         return ffcjnl;</PRE>
+<PRE><A NAME="50462725_pgfId-276013"></A>         case FFCXMT:</PRE>
+<PRE><A NAME="50462725_pgfId-276014"></A>         return ffcxmt;</PRE>
+<PRE><A NAME="50462725_pgfId-276015"></A>         case FFCSCH:</PRE>
+<PRE><A NAME="50462725_pgfId-276016"></A>         return ffcsch;</PRE>
+<PRE><A NAME="50462725_pgfId-276017"></A>         case FFCLNC:</PRE>
+<PRE><A NAME="50462725_pgfId-276018"></A>         return ffclnc;</PRE>
+<PRE><A NAME="50462725_pgfId-276019"></A>         case FFCXMO:</PRE>
+<PRE><A NAME="50462725_pgfId-276020"></A>         return ffcxmo;</PRE>
+<PRE><A NAME="50462725_pgfId-276021"></A>         case FFCXMP:</PRE>
+<PRE><A NAME="50462725_pgfId-276022"></A>         return ffcxmp;</PRE>
+<PRE><A NAME="50462725_pgfId-276023"></A>         case FFCXMD:</PRE>
+<PRE><A NAME="50462725_pgfId-276024"></A>         return ffcxmd;</PRE>
+<PRE><A NAME="50462725_pgfId-276025"></A>         case FFCDBG:</PRE>
+<PRE><A NAME="50462725_pgfId-276026"></A>         return ffcdbg;</PRE>
+<PRE><A NAME="50462725_pgfId-276027"></A>         }</PRE>
+<PRE><A NAME="50462725_pgfId-276028"></A> return end_of_string_s;}</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-275558"></A>	A.1.3 	<A NAME="50462725_write_xml_header"></A>write_xml_header (new)</H2>
+<P>
+<A NAME="50462725_pgfId-275559"></A>Writes the standard XML header to the file. </P>
+<P>
+<A NAME="50462725_pgfId-276068"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-276111"></A>static void write_xml_header( file_p file_ptr, const char* pd2hdr, int pd2len,</PRE>
+<PRE><A NAME="50462725_pgfId-276112"></A>         int* ifail)</PRE>
+<PRE><A NAME="50462725_pgfId-276113"></A>         {</PRE>
+<PRE><A NAME="50462725_pgfId-276114"></A>         char buffer[max_header_line];</PRE>
+<PRE><A NAME="50462725_pgfId-276115"></A>         // &lt;?xml version</PRE>
+<PRE><A NAME="50462725_pgfId-276116"></A>         strcpy( buffer, &quot;&lt;?xml version=&#92;&quot;1.0&#92;&quot; ?&gt;&quot; );</PRE>
+<PRE><A NAME="50462725_pgfId-276117"></A>         write_to_file( file_ptr, buffer, 1, strlen( buffer ), ifail );</PRE>
+<PRE><A NAME="50462725_pgfId-276118"></A>         if ( *ifail != FR_no_errors ) return;</PRE>
+<PRE><A NAME="50462725_pgfId-276119"></A>         }</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-275574"></A>	A.1.4 	<A NAME="50462725_OpenWriteFrustrumFile"></A>OpenWriteFrustrumFile (modified)</H2>
+<P>
+<A NAME="50462725_pgfId-275575"></A>Opens file to be written and writes to it the standard file header.</P>
+<P>
+<A NAME="50462725_pgfId-276521"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-276541"></A>void OpenWriteFrustrumFile( const int* guise, const int* format, </PRE>
+<PRE><A NAME="50462725_pgfId-276720"></A>                            const char* name,</PRE>
+<PRE><A NAME="50462725_pgfId-276542"></A>         const int* namlen, const char* pd2hdr, const int *pd2len,</PRE>
+<PRE><A NAME="50462725_pgfId-276543"></A>         int *strid, int *ifail )</PRE>
+<PRE><A NAME="50462725_pgfId-276544"></A>         {</PRE>
+<PRE><A NAME="50462725_pgfId-276545"></A>         char keyname[max_namelen+1]; /* holds key + null char */</PRE>
+<PRE><A NAME="50462725_pgfId-276546"></A>         char filename[max_namelen+1]; /* holds key + extension */</PRE>
+<PRE><A NAME="50462725_pgfId-276547"></A>         FILE *stream;</PRE>
+<PRE><A NAME="50462725_pgfId-276548"></A>         file_p file_ptr;         </PRE>
+<PRE><A NAME="50462725_pgfId-276549"></A> *ifail = FR_unspecified;</PRE>
+<PRE><A NAME="50462725_pgfId-276550"></A>           *strid = null_strid;</PRE>
+<PRE><A NAME="50462725_pgfId-276551"></A> if (file_count == max_open_files)</PRE>
+<PRE><A NAME="50462725_pgfId-276552"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-276553"></A>           *ifail = FR_open_fail;</PRE>
+<PRE><A NAME="50462725_pgfId-276554"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-276555"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-276556"></A> strncpy( keyname, name, *namlen );</PRE>
+<PRE><A NAME="50462725_pgfId-276557"></A>           keyname[*namlen] = end_of_string_c;</PRE>
+<PRE><A NAME="50462725_pgfId-276558"></A> strncpy( filename, name, *namlen );</PRE>
+<PRE><A NAME="50462725_pgfId-276559"></A>           filename[*namlen] = end_of_string_c;</PRE>
+<PRE><A NAME="50462725_pgfId-276560"></A> if ( *guise == FFCSCH )</PRE>
+<PRE><A NAME="50462725_pgfId-276561"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-276562"></A>           // add (and decode) a prefix to the filename </PRE>
+<PRE><A NAME="50462725_pgfId-276563"></A>           extend_schema_filename(filename);</PRE>
+<PRE><A NAME="50462725_pgfId-276564"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-276565"></A> {</PRE>
+<PRE><A NAME="50462725_pgfId-276566"></A>           /* add the file extension */</PRE>
+<PRE><A NAME="50462725_pgfId-276567"></A>           char *gui = filetype_guise_string( *guise );</PRE>
+<PRE><A NAME="50462725_pgfId-276568"></A>           strcat( filename, gui );</PRE>
+<PRE><A NAME="50462725_pgfId-276569"></A>           if( *guise != FFCXMO &amp;&amp; *guise != FFCDBG )</PRE>
+<PRE><A NAME="50462725_pgfId-276570"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-276571"></A>           char *fmt = filetype_format_string( *format );</PRE>
+<PRE><A NAME="50462725_pgfId-276572"></A>           strcat( filename, fmt );</PRE>
+<PRE><A NAME="50462725_pgfId-276573"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-276574"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-276575"></A> check_valid_filename( filename, ifail );</PRE>
+<PRE><A NAME="50462725_pgfId-276576"></A>           if ( *ifail != FR_no_errors )</PRE>
+<PRE><A NAME="50462725_pgfId-276577"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-276578"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-276579"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-276580"></A> /* open file for writing */</PRE>
+<PRE><A NAME="50462725_pgfId-276581"></A>           stream = fopen( filename, g_fopen_mode_write );</PRE>
+<PRE><A NAME="50462725_pgfId-276582"></A>           if (stream == 0 ) </PRE>
+<PRE><A NAME="50462725_pgfId-276583"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-276584"></A>           //*ifail = FR_already_exists;</PRE>
+<PRE><A NAME="50462725_pgfId-276585"></A>           *ifail = FR_open_fail;</PRE>
+<PRE><A NAME="50462725_pgfId-276586"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-276587"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-276610"></A>&nbsp;</PRE>
+<PRE><A NAME="50462725_pgfId-276631"></A>/* Continued ... */</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462725_pgfId-276152"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-276235"></A>/* ... Continued */</PRE>
+<PRE><A NAME="50462725_pgfId-276639"></A>new_open_file( stream, *guise, *format, write_access,</PRE>
+<PRE><A NAME="50462725_pgfId-276640"></A>           filename, keyname, &amp;file_ptr, ifail );</PRE>
+<PRE><A NAME="50462725_pgfId-276641"></A>           if ( *ifail != FR_no_errors )</PRE>
+<PRE><A NAME="50462725_pgfId-276642"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-276643"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-276644"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-276621"></A>&nbsp;</PRE>
+<PRE><A NAME="50462725_pgfId-276656"></A> if ( *guise == FFCDBG )</PRE>
+<PRE><A NAME="50462725_pgfId-276236"></A>           write_xml_header( file_ptr, pd2hdr, *pd2len, ifail );</PRE>
+<PRE><A NAME="50462725_pgfId-276237"></A> else</PRE>
+<PRE><A NAME="50462725_pgfId-276238"></A>           write_header( file_ptr, pd2hdr, *pd2len, ifail );</PRE>
+<PRE><A NAME="50462725_pgfId-276239"></A> if ( *ifail != FR_no_errors )</PRE>
+<PRE><A NAME="50462725_pgfId-276240"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-276241"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-276242"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-276243"></A> *strid = file_ptr-&gt;strid;</PRE>
+<PRE><A NAME="50462725_pgfId-276244"></A>           *ifail = FR_no_errors;}</PRE>
+<PRE><A NAME="50462725_pgfId-276166"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-275644"></A>	A.1.5 	<A NAME="50462725_WriteToFrustrumFile"></A>WriteToFrustrumFile (modified)</H2>
+<P>
+<A NAME="50462725_pgfId-275645"></A>Write buffer to open file</P>
+<P>
+<A NAME="50462725_pgfId-275687"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462725_pgfId-275648"></A>void WriteToFrustrumFile( const int* guise, const int* strid, const int* nchars,</PRE>
+<PRE><A NAME="50462725_pgfId-275649"></A>                   const char* buffer, int* ifail)</PRE>
+<PRE><A NAME="50462725_pgfId-275650"></A>    {</PRE>
+<PRE><A NAME="50462725_pgfId-275651"></A>    file_p file_ptr;</PRE>
+<PRE><A NAME="50462725_pgfId-275652"></A>    *ifail = FR_unspecified;</PRE>
+<PRE><A NAME="50462725_pgfId-275653"></A> /* find the file info for this stream-id */</PRE>
+<PRE><A NAME="50462725_pgfId-275654"></A>           for ( file_ptr = open_files; file_ptr != NULL; file_ptr = file_ptr-&gt;next            )</PRE>
+<PRE><A NAME="50462725_pgfId-275655"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-275656"></A>           if (file_ptr-&gt;strid == *strid) break;</PRE>
+<PRE><A NAME="50462725_pgfId-275657"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-275658"></A> if (file_ptr == NULL)</PRE>
+<PRE><A NAME="50462725_pgfId-275659"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-275660"></A>           *ifail = FR_internal_error;</PRE>
+<PRE><A NAME="50462725_pgfId-275661"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-275662"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-275663"></A>           /* check file guise */</PRE>
+<PRE><A NAME="50462725_pgfId-275664"></A>           if (*guise != file_ptr-&gt;guise)</PRE>
+<PRE><A NAME="50462725_pgfId-275665"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-275666"></A>           *ifail = FR_unspecified;</PRE>
+<PRE><A NAME="50462725_pgfId-275667"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-275668"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-275669"></A> /* check access */</PRE>
+<PRE><A NAME="50462725_pgfId-275670"></A>           if (file_ptr-&gt;access != write_access &amp;&amp;</PRE>
+<PRE><A NAME="50462725_pgfId-275671"></A>           file_ptr-&gt;access != read_write_access)</PRE>
+<PRE><A NAME="50462725_pgfId-275672"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-275673"></A>           *ifail = FR_unspecified;</PRE>
+<PRE><A NAME="50462725_pgfId-275674"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-275675"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-275676"></A>           write_to_file( file_ptr, buffer, 0, *nchars, ifail );</PRE>
+<PRE><A NAME="50462725_pgfId-275677"></A>           if ( *ifail != FR_no_errors )</PRE>
+<PRE><A NAME="50462725_pgfId-275678"></A>           {</PRE>
+<PRE><A NAME="50462725_pgfId-275679"></A>           return;</PRE>
+<PRE><A NAME="50462725_pgfId-275680"></A>           }</PRE>
+<PRE><A NAME="50462725_pgfId-275681"></A> /* If we are writing a journal or debug report file then flush the</PRE>
+<PRE><A NAME="50462725_pgfId-275682"></A>    buffer - this to ensure that in the event of crash as much data is preserved</PRE>
+<PRE><A NAME="50462725_pgfId-275683"></A>    as possible */</PRE>
+<PRE><A NAME="50462725_pgfId-275684"></A> if (*guise == FFCJNL || *guise == FFCDBG) </PRE>
+<PRE><A NAME="50462725_pgfId-275685"></A>           fflush( file_ptr-&gt;stream );</PRE>
+<PRE><A NAME="50462725_pgfId-275686"></A> *ifail = FR_no_errors;</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462725_pgfId-276837"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fr_chap.05.html">Downloading Full and Patch Releases</A></TD>
+  <TD><A HREF="../fr_index.html">Chapters</A></TD>
+
+</TR></TABLE>
+
+</BODY>
+</HTML>

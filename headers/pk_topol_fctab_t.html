@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_fctab_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_fctab_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_TOPOL_fctab_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_table_t.html>PK_TOPOL_facet_table_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This field can take any one of the following values.
+    PK_TOPOL_fctab_facet_fin_c       : facet_fin table
+    PK_TOPOL_fctab_strip_boundary_c  : strip_boundary table
+    PK_TOPOL_fctab_strip_zigzag_c    : strip_zigzag table
+    PK_TOPOL_fctab_fin_fin_c         : fin_fin table
+    PK_TOPOL_fctab_fin_data_c        : fin_data table
+    PK_TOPOL_fctab_data_point_c      : data_point_idx table
+    PK_TOPOL_fctab_data_normal_c     : data_normal_idx table
+    PK_TOPOL_fctab_data_param_c      : data_param_idx table
+    PK_TOPOL_fctab_data_deriv_c      : data_deriv_idx table
+    PK_TOPOL_fctab_data_curv_c       : data_curv_idx table
+    PK_TOPOL_fctab_point_vec_c       : point_vec table
+    PK_TOPOL_fctab_normal_vec_c      : normal_vec table
+    PK_TOPOL_fctab_param_uv_c        : param_uv table
+    PK_TOPOL_fctab_deriv_dp_c        : deriv_dp table
+    PK_TOPOL_fctab_deriv_d2p_c       : deriv_d2p table
+    PK_TOPOL_fctab_curv_dirs_c       : curve_dirs table
+    PK_TOPOL_fctab_facet_face_c      : facet_face table
+    PK_TOPOL_fctab_strip_face_c      : strip_face table
+    PK_TOPOL_fctab_fin_edge_c        : fin_edge table
+    PK_TOPOL_fctab_point_topol_c     : point_topol table
+    PK_TOPOL_fctab_fin_topol_c       : fin_topol table
+    PK_TOPOL_fctab_error_object_c    : error_object table
+    PK_TOPOL_fctab_incr_faces_c      : incr_faces table
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_EXPR_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_EXPR_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_EXPR_sf_s
+    {
+    const char      *root_expr;      --- root expression definition (NULL)
+    int              n_sub_exprs;    --- number of sub-expressions (0)
+    const char     **sub_expr_names; --- sub-expression names (NULL)
+    const char     **sub_expr_defs;  --- sub-expression definitions (NULL)
+    int              n_consts;       --- number of application constants (0)
+    const char     **const_names;    --- constant names (NULL)
+    <A HREF=../headers/pk_expr_value_t.html>PK_EXPR_value_t</A> *const_values;   --- constant values (NULL)
+    };
+typedef struct PK_EXPR_sf_s PK_EXPR_sf_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains an expression to be evaluated.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_expr            A supplied root expression or sub-expression
+                                 is invalid. (MILD)
+
+    PK_ERROR_evaluator_failed    Failed to evaluate the expression, for example
+                                 a function call within the expression failing
+                                 to evaluate. (SERIOUS)
+
+    PK_ERROR_bad_name            The expression contains a sub-expression or
+                                 constant with a name that is not allowed.
+                                 This includes having the same name as an input
+                                 variable to the expression. (MILD)
+
+    PK_ERROR_expr_dupl_defn      The expression contains duplicate names used
+                                 for sub-expressions and/or constants. (MILD)
+
+    PK_ERROR_expr_undef_symb     The root expression or sub-expressions contain
+                                 undefined symbols. (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_deform_o_t.html>PK_FACE_change_deform_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The expressions language allows an application to supply a formula to evaluate,
+in the form of one or more strings.
+
+See <A HREF="../chapters/fd_chap.026.html#50409768_pgfId-382376">here</A> for more information.
+
+Description of fields:
+
+<B>'root_expr'</B>         The expression to evaluate.
+
+<B>'n_sub_exprs'</B>       The number of sub-expressions.
+
+<B>'sub_expr_names'</B>    An array of length <B>'n_sub_exprs'</B>, containing the name of
+                    each sub-expression. Sub-expressions are optional, and
+                    referenced by name by the root_expr. For example, if one
+                    had a sub-expression named "sbx_my_sub_expr", then
+                    referencing "sbx_my_sub_expr" in the <B>'root_expr'</B> would
+                    evaluate the expression definition corresponding to
+                    "sbx_my_sub_expr".
+
+<B>'sub_expr_defs'</B>     A parallel array containing the sub-expressions.
+
+<B>'n_consts'</B>          The number of application constants. Constants are
+                    optional, and if supplied may be referenced by expressions
+                    (either the root expression, or sub-expressions).
+
+<B>'const_names'</B>       An array of length <B>'n_consts'</B>, containing the name of each
+                    constant.
+
+<B>'const_values'</B>      A parallel array containing the value of each constant.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

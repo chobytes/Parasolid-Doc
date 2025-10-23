@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+<TITLE>KNITEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>KNITEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_apply_knit_pattern.html>PK_BODY_apply_knit_pattern</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+KNITEN ( type, target, eds1, eds2, shchk, state, fldeds, nfld, ifail )
+======================================================================
+
+  "Knits together" bodies by fusing coincident edges.
+
+Receives:
+  KI_cod_byty              *type           --- type of result body (solid/sheet)
+  KI_tag_body              *target         --- desired result body
+  KI_tag_list_edge         *eds1           --- edges to be knitted which survive
+  KI_tag_list_edge         *eds2           --- and those which are destroyed
+  KI_cod_logical           *shchk          --- KI_true if a shell connectivity
+                                           --- check required on result body
+
+Returns:
+  KI_cod_rtkn              *state          --- ok (RTKNOK) / incomplete (RTKNIN)
+ &lt;KI_tag_list_edge&gt;        *fldeds         --- list of unknitted edges
+ &lt;KI_int_nitems&gt;           *nfld           --- number in above list
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_corrupt_body           corrupted target body
+  KI_bad_type               bad type
+  KI_wire_body              edges in pattern from a wire body
+  KI_no_eds_from_target     no edges from target body
+  KI_instanced_tools        an edge is from an instanced (non-target) body
+  KI_duplicate_list_item    same edge appears in both lists
+                            duplicate edge in list
+  KI_not_same_length        mismatch in list lengths of knitting pattern
+  KI_not_in_same_partition  Edges are not all in the same partition
+  KI_general_body           general body
+
+Description:
+  This function joins a number of faces or bodies together by fusing coincident
+  edge topology. This process is henceforth referred to simply as "knitting"; it
+  should be noted that it is a purely topological operation which will NOT
+  perform any geometric checks whatsoever.
+
+  'target' is the body the application wishes to hold the final result of the
+  knitting operation. All the other body topology to be joined onto 'target' is
+  supplied indirectly in the two lists 'eds1' and 'eds2'.'target' must be a
+  solid or sheet body, and all edges in 'eds1' and 'eds2' must be edges of
+  solids and/or sheets. All bodies except 'target' involved in the knit will
+  be destroyed. The edges in 'eds1' will survive the knit while those in 'eds2'
+  will be destroyed. The outer shell of 'target' will also be the outer shell
+  of the result.
+
+  The two edge lists, collectively referred to as a "knitting pattern", specify
+  matching edge pairs to be fused together. These lists must be the same length,
+  and must not contain duplicate entries. In addition, at least one edge from
+  'target' must appear in the pattern and any edges not in 'target' must not come
+  from an instanced body.
+
+  Pairs of edges in corresponding positions in 'eds1' and 'eds2' will be knitted
+  together, provided that these corresponding edges satisfy the following:
+
+      (1) they match up 1:1, i.e. every edge in 'eds1' has ONE partner in 'eds2'
+      (2) they have the same number of distinct vertices.
+      (3) an edge in sheet body has only one adjacent face and a face in
+          a solid body has one adjacent face with a surface attached and
+          one without.
+
+  The 1:1 matching is done automatically by other routines in the most common
+  uses of KNITEN. In Partial Booleans the pattern edge lists are made up by
+  IMPRNT and then further filtered by IDFSEN. CRKNPA can also be used to infer
+  the connectivity of an assemblage of sheets. The application can, of course,
+  create a knitting pattern itself, though it then runs the risk of creating an
+  inconsistent body if geometric tolerance requirements were not met.
+
+  The return list 'fldeds' will contain all those edges of 'eds1' which
+  did not knit together because of a failure to meet the conditions
+  described above.  In the case where a solid body was required ('type'
+  BYTYSO) 'fldeds' will in addition contain all edges in the result body
+  which have only one adjacent face with a surface attached. The presence
+  of such edges in a knitted solid is a consequence of the input
+  knitting pattern being incomplete (i.e. edges were omitted from the
+  knitting pattern which were necessary in order to successfully enclose
+  a volume).
+
+  The return code 'state' will be set in RTKNIN (knit incomplete) in such cases,
+  though all edges not in 'fldeds' will still have been knitted successfully.
+  'State' will normally be set to RTKNOK on a successful knit. Note that the
+  ifail KI_corrupt_body should never be returned in normal operation, and
+  indicates either an internal failure or a corrupt input body.
+
+  Argument 'type' enables the application to force the type (BYTYSO or BYTYSH)
+  of the result body. If the token BYTYSS is supplied then a solid will be
+  created if possible (i.e. if the knitting oeration encloses a volume) and a
+  sheet will be created otherwise.
+
+  Argument 'shchk' enables the application to control whether KNITEN attempts
+  to sort the resulting faces into their respective shells. This operation
+  will not need to be done when KNITEN is used within a partial Boolean.
+
+
+  This function is not supported for general bodies.
+
+</PRE>
+</BODY>
+</HTML>

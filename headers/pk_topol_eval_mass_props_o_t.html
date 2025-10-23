@@ -1,0 +1,416 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_eval_mass_props_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_eval_mass_props_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_eval_mass_props_o_s
+    {
+    int                 o_t_version;    --- version number of option structure
+    <A HREF=../headers/pk_mass_t.html>PK_mass_t</A>           mass;           --- required mass properties
+                                        --- (<A HREF=../headers/pk_mass_t.html>PK_mass_m_of_i_c</A>)
+    <A HREF=../headers/pk_mass_periphery_t.html>PK_mass_periphery_t</A> periphery;      --- periphery required
+                                        --- (<A HREF=../headers/pk_mass_periphery_t.html>PK_mass_periphery_yes_c</A>)
+    <A HREF=../headers/pk_mass_bound_t.html>PK_mass_bound_t</A>     bound;          --- bounds on results required
+                                        --- (<A HREF=../headers/pk_mass_bound_t.html>PK_mass_bound_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        single;         --- whether to treat topols as
+                                        --- single solid (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        use_facets;     --- whether to use alternative facetted
+                                        --- method (PK_LOGICAL_false)
+    double              facet_tol;      --- chordal tolerance to use for facets
+                                        --- 0.0 requests the internal default
+    <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_t</A>
+                        same_dim_density;
+                                        --- behaviour when dealing with local
+                                        --- density attributes belonging to
+                                        --- topologies of same dimension as
+                                        --- <B>'topols'</B>
+                                        --- (<A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_unset_c</A>)
+    <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_t</A>
+                        lower_dim_density;
+                                        --- behaviour when dealing with local
+                                        --- density attributes belonging to
+                                        --- topologies of lower dimension than
+                                        --- <B>'topols'</B>
+                                        --- (<A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_unset_c</A>)
+    int                 n_transfs;      --- number of transformations (0)
+    const <A HREF=../headers/pk_transf_t.html>PK_TRANSF_t</A>  *transfs;        --- array of transformations (NULL)
+    <A HREF=../headers/pk_mass_eq_0_t.html>PK_mass_eq_0_t</A>      mass_eq_0;      --- behaviour when encountering a
+                                        --- topology with zero mass
+                                        --- (<A HREF=../headers/pk_mass_eq_0_t.html>PK_mass_eq_0_fail_c</A>)
+    int                 n_parts_with_scales;
+                                        --- number of parts for which a
+                                        --- scale factor is specified
+                                        --- (0)
+    <A HREF=../headers/pk_part_t.html>PK_PART_t</A>          *parts_with_scales;
+                                        --- array of parts for which a
+                                        --- scale factor is specified
+                                        --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>  *scale_factors;
+                                        --- scale factor associated with the
+                                        --- corresponding part in
+                                        --- <B>'parts_with_scales'</B>
+                                        --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>   output_scale_factor;
+                                        --- Scale by which to shrink the
+                                        --- resulting mass properties
+                                        --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    };
+
+typedef struct PK_TOPOL_eval_mass_props_o_s PK_TOPOL_eval_mass_props_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for evaluating the mass properties of a given set of
+topological entities.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_option_data (MILD)     The illegal value of
+                                        <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_override_c</A>
+                                        for the option <B>'lower_dim_density'</B>,
+                                        exactly one set and one unset density
+                                        option, a bad combination of density
+                                        options with the <B>'single'</B> option or
+                                        invalid value of <B>'n_transfs'</B> has
+                                        been supplied.
+     PK_ERROR_wrong_transf   (MILD)     A transformation supplied in the
+                                        <B>'transfs'</B> array is not a rigid motion
+                                        and not a reflection.
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_eval_mass_props.html>PK_TOPOL_eval_mass_props</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure defines options applicable to evaluating the mass
+properties of a given set of topological entities.
+
+Description of fields:
+
+
+<B>'mass'</B>                  The main mass properties form a hierarchy in that the
+                        mass is needed to find the centre of gravity, and the
+                        centre of gravity is needed to find the inertia.  One
+                        token of type <A HREF=../headers/pk_mass_t.html>PK_mass_t</A> controls the level to which
+                        calculations are done.
+
+                        Possible values are:
+                          <A HREF=../headers/pk_mass_t.html>PK_mass_no_c</A>:
+                            No data in this hierarchy is to be found.
+                          <A HREF=../headers/pk_mass_t.html>PK_mass_mass_c</A>:
+                            Finds the amount and mass of the entities only.
+                          <A HREF=../headers/pk_mass_t.html>PK_mass_c_of_g_c</A>:
+                            Finds the centre of gravity as well.
+                          <A HREF=../headers/pk_mass_t.html>PK_mass_m_of_i_c</A>:
+                            Finds the moment of inertia as well.
+
+                        The default value is <A HREF=../headers/pk_mass_t.html>PK_mass_m_of_i_c</A>.
+
+
+<B>'periphery'</B>             Sets the level of periphery required.
+
+                        Possible values are:
+                          <A HREF=../headers/pk_mass_periphery_t.html>PK_mass_periphery_no_c</A>:
+                            No periphery data calculated.
+                          <A HREF=../headers/pk_mass_periphery_t.html>PK_mass_periphery_yes_c</A>:
+                            Calculates the periphery of the entities.
+
+                        The default value is <A HREF=../headers/pk_mass_periphery_t.html>PK_mass_periphery_yes_c</A>.
+
+
+<B>'bound'</B>                 For each returned array, the initial entries give the
+                        calculated value, and subsequent entries give the
+                        associated bounds. This option controls the type of
+                        bounds output.
+
+                        Possible values are:
+                          <A HREF=../headers/pk_mass_bound_t.html>PK_mass_bound_no_c</A>:
+                            No errors are given.
+                          <A HREF=../headers/pk_mass_bound_t.html>PK_mass_bound_modulus_c</A>:
+                            Range is given by value +/- a single modulus.
+                          <A HREF=../headers/pk_mass_bound_t.html>PK_mass_bound_interval_c</A>:
+                            Range is given as the value and an interval
+                            bracketing the value.
+
+                        In the latter two cases, the centre of gravity would
+                        correspond to a sphere centred on the answer vector and
+                        a box containing it respectively.
+
+                        No error bounds are currently supported for the
+                        facetted method.
+
+                        The default value is <A HREF=../headers/pk_mass_bound_t.html>PK_mass_bound_no_c</A>.
+
+
+<B>'single'</B>                If this flag is set to PK_LOGICAL_true, and the
+                        supplied topologies are an array of faces or an array
+                        of sheet bodies, they will be considered as forming
+                        the boundary of a single solid.
+
+                        Under this option the mass will not be returned, as
+                        there is currently no way of unambiguously specifiying
+                        a density for the calculation. The Moment of Inertia
+                        will be returned, but will be calculated without
+                        reference to any density attributes attached to the
+                        supplied entities, effectively assuming a density of
+                        one for the solid of which they form the boundary.
+
+                        No checking is done that the faces or sheets provided
+                        do form a valid solid boundary. If they do not, the
+                        returned results are likely to be meaningless.
+
+                        If this option is set, the options <B>'same_dim_density'</B>
+                        and <B>'lower_dim_density'</B> must both be unset, or both
+                        set to <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_ignore_c</A>.  Failure to
+                        provide them as such will result in a
+                        PK_ERROR_bad_option_data error being returned.
+
+                        The default value is PK_LOGICAL_false.
+
+
+<B>'use_facets'</B>            If this flag is set to PK_LOGICAL_true, then mass
+                        properties of dimension 2 and 3 will be calculated by
+                        generating a facet mesh for each face referenced and
+                        then combining the contributions for each facet.  This
+                        is intended to provide verification of the main
+                        parameter space based method.
+
+                        The user has the option of supplying a chordal
+                        tolerance to use for the facetting; this is equivalent
+                        to the <B>'curve_chord_tol'</B> and <B>'surface_plane_tol'</B> passed
+                        to <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A>.  If 0.0 is supplied, an internal
+                        default will be used, taking into account the
+                        <B>'accuracy'</B> parameter supplied to
+                        <A HREF=../headers/pk_topol_eval_mass_props.html>PK_TOPOL_eval_mass_props</A>.
+
+                        Note that this is a backup method and will be slow and
+                        memory hungry if large numbers of facets are generated;
+                        a careful choice of facet tolerance is recommended.
+
+                        The default value is PK_LOGICAL_false.
+
+
+<B>'facet_tol'</B>             The chordal tolerance to use for facets, in conjunction
+                        with the <B>'use_facets'</B> option.
+
+                        A value of 0.0 requests the internal default.
+
+
+<B>'same_dim_density'</B>      Specifies the behaviour to be used when encountering
+                        'local densities' (region, face, edge and vertex
+                        specific densities) attached to topologies with the
+                        same topological dimension as the maximum of the
+                        topologies passed in as <B>'topols'</B>.
+
+                        Possible values are:
+                          <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_override_c</A>:
+                            When present, local densities are used
+                            exclusively in mass property calculations. If
+                            local density is absent, body density is used (or
+                            1.0 if body density is also absent).
+                          <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_additive_c</A>:
+                            Topologies with local density attached have an
+                            equivalent density of the sum of their local
+                            density and the body density (or 1.0 if body
+                            density is absent).
+                          <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_ignore_c</A>:
+                            Even if topology has a local density attached,
+                            body density is used exclusively (or 1.0 if body
+                            density is absent).
+                          <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_unset_c</A>:
+                            Same-dimensional local density behaviour is not
+                            specified, and will be as legacy behaviour.
+
+                        The default value is <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_unset_c</A>.
+
+
+<B>'lower_dim_density'</B>     Specifies the behaviour to be used when encountering
+                        'local densities' (region, face, edge and vertex
+                        specific densities) attached to topologies with lower
+                        topological dimension than the maximum of the
+                        topologies passed in as <B>'topols'</B>.
+
+                        Possible values are:
+                          <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_additive_c</A>:
+                            Topologies with local density attached make an
+                            additive contribution to the overall mass
+                            property calculation, using that local density
+                            value.  If no local density is present, the
+                            topology makes no contribution to mass properties.
+                          <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_ignore_c</A>:
+                            Lower-dimensional topologies will make no
+                            contribution to mass property calculations, even if
+                            they have attached local density attributes.
+                          <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_unset_c</A>:
+                            Lower-dimensional local density behaviour is not
+                            specified, and will be as legacy behaviour.
+
+                        A value of <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_override_c</A> is not
+                        permitted for this option, and will cause an error
+                        PK_ERROR_bad_option_data if received.
+
+                        The default value is <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_unset_c</A>.
+
+
+The following table gives the values of the <B>'same_dim_density'</B> and
+<B>'lower_dim_density'</B> options which give the same mass property behaviour as
+the default, unset values;
+
+         <B>'topols'</B>        | <B>'same_dim_density'</B> | <B>'lower_dim_density'</B>
+        -----------------|--------------------|---------------------
+         Solid Bodies    | override_c         | additive_c
+         Sheet Bodies    | override_c         | additive_c
+         Wire Bodies     | override_c         | additive_c
+         Assemblies      | override_c         | additive_c
+         Regions         | ignore_c           | ignore_c
+         Faces (*)       | ignore_c           | ignore_c
+         Edges (*)       | ignore_c           | ignore_c
+
+(*) It should be noted that in the case of faces and edges, any existing
+body density attributes attached to the owning body will also need to be
+removed or set equal to 1.0 for the duration of the calculation if identical
+behaviour to unset options is desired.
+
+
+<B>'n_transfs'</B>             Specifies the number of transformations supplied to be
+                        used to transform input topologies passed in as
+                        <B>'topols'</B>. <B>'n_transfs'</B> must either be equal to
+                        <B>'n_topols'</B> or 1, or if <B>'transfs'</B> is NULL it must be 0.
+
+                        The default value is 0.
+
+
+<B>'transfs'</B>               An array of length equal to <B>'n_transfs'</B> specifying
+                        transformations to be used to transform input
+                        topologies passed in as <B>'topols'</B> for the purposes of
+                        the mass properties calculation.
+
+                        Each transformation must be a rigid motion, a
+                        reflection, or PK_ENTITY_null (in which case it is
+                        treated as the identity transformation).
+
+                        If <B>'n_transfs'</B> is equal to <B>'n_topols'</B> then each
+                        topology will be transformed by the corresponding
+                        transformation. If <B>'n_transfs'</B> is equal to 1 then each
+                        topology will be transformed by the single input
+                        transformation. If <B>'n_transfs'</B> is equal to zero then no
+                        topologies will be transformed.
+
+                        The default value is NULL.
+
+
+<B>'mass_eq_0'</B>             Specifies the behaviour to be used when at least one of
+                        the supplied topologies is found to have zero mass.
+
+                        Possible values are:
+                          <A HREF=../headers/pk_mass_eq_0_t.html>PK_mass_eq_0_fail_c</A>:
+                            The function will stop at the first topology for
+                            which mass is found to be zero and will return an
+                            error PK_ERROR_mass_eq_0.
+                          <A HREF=../headers/pk_mass_eq_0_t.html>PK_mass_eq_0_report_c</A>:
+                            The function will finish calculations for all
+                            <B>'topols'</B> and will return the total mass of all
+                            topologies whose mass is greater than zero. A
+                            report will be produced in the Parasolid report
+                            stream containing a record of type
+                            <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A>. This record will have a
+                            status of <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_mass_eq_0_c</A> and will list all
+                            topologies which were found to have zero mass. If
+                            all topologies in <B>'topols'</B> are found to have zero
+                            mass, the function will return an error
+                            PK_ERROR_mass_eq_0.
+
+                        The default value is <A HREF=../headers/pk_mass_eq_0_t.html>PK_mass_eq_0_fail_c</A>.
+
+
+Scaling options
+<B>'n_parts_with_scales'</B>   Specifies the number of parts which
+                        are supplied with a scale factor.
+                        The default value is 0.
+
+<B>'parts_with_scales'</B>     This array, of length <B>'n_parts_with_scales'</B>, contains
+                        unique parts which are to be considered at the scale
+                        factors provided in <B>'scale_factors'</B>. If this array
+                        is NULL, no scale factors are applied.
+                        The default value is NULL.
+
+<B>'scale_factors'</B>         This array should match the length of
+                        <B>'parts_with_scales'</B>. Each element of the array should
+                        be a <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A> corresponding to each part
+                        specified in <B>'parts_with_scales'</B>.
+                        The default value is NULL.
+
+<B>'output_scale_factors'</B>  This is a specified scale factor used to shrink the
+                        resulting mass properties, where the origin is used as
+                        the centre of scaling. No scaling is applied when the
+                        value is set to <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+                        The default value is <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+
+SCALE FACTORS 
+In order to supply scale factors for parts it is necessary to fill in the
+following fields: <B>'n_parts_with_scales'</B>, <B>'parts_with_scales'</B> and
+<B>'scale_factors'</B>. If scale factors are supplied, the <B>'topols'</B> array must only
+contain bodies or assemblies.
+
+Bodies are scaled about the origin by the supplied scale factor. A part's
+transformation, if given in <B>'transfs'</B>, is applied after the owner part has
+been scaled. When a scale factor is provided for an assembly, it will be
+applied only to the translation component of the transforms of the assembly's
+constituent instances.  The scale factor will not apply to the parts contained
+within these instances.  Optionally scale factors can be supplied within
+<B>'parts_with_scales'</B> and <B>'scale_factors'</B> for any part referenced within the
+assembly structure. In which case, these parts will be scaled by the provided
+scale factor. In this way, scale factors can be supplied to nested assembly
+structures, scaling bodies or other assemblies contained within instances
+inside a parent assembly.
+
+If scale factors are supplied the <B>'single'</B> option is not supported.
+
+If scale factors are supplied with parts where lower dimensional (face, edge,
+vertex) or region densities are attached, the options <B>'same_dim_density'</B> and
+<B>'lower_dim_density'</B> must be set to <A HREF=../headers/pk_mass_local_density_t.html>PK_mass_local_density_ignore_c</A>. All other
+values are unsupported.
+
+See #here#DOCxxxx# for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

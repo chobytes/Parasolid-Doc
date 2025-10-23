@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_clip_lattice_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_clip_lattice_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_clip_lattice_r_s
+    {
+    <A HREF=../headers/pk_clip_status_t.html>PK_clip_status_t</A>     status;           --- status of clipped lattice
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_t</A>         lattice;          --- lattice created by clipping
+    int                  n_error_ltopols;  --- number of error ltopols
+    <A HREF=../headers/pk_ltopol_t.html>PK_LTOPOL_t</A>         *error_ltopols;    --- error ltopols
+    int                  n_clipped_lballs; --- number of clipped lballs
+    <A HREF=../headers/pk_lball_t.html>PK_LBALL_t</A>          *clipped_lballs;   --- lballs affected by clipping
+    <A HREF=../headers/pk_lball_clipped_t.html>PK_LBALL_clipped_t</A>  *lball_clip_types; --- how each <B>'clipped_lball'</B> was
+                                           --- affected by the clip
+    };
+typedef struct PK_clip_lattice_r_s PK_clip_lattice_r_t;
+</B>
+<A NAME="description"></A>
+<I>A structure packaging a lattice created by clipping and associated information.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_lattice_clip_r_t.html>PK_LATTICE_clip_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The structure has the following fields:
+
+<B>'status'</B>           The status of the lattice.
+
+<B>'lattice'</B>          The lattice created by the clipping operation.
+
+<B>'n_error_ltopols'</B>  The length of the <B>'error_ltopols'</B> array.
+
+<B>'error_ltopols'</B>    This array may contain lattice topologies related to the
+                   clip status.
+
+<B>'n_clipped_lballs'</B> If requested, the length of the <B>'clipped_lballs'</B> and
+                   <B>'lball_clip_types'</B> arrays, otherwise zero.
+
+<B>'clipped_lballs'</B>   The lballs that have been created by the clipping operation
+                   or that were touched by one of the clipping entities. This
+                   will be set to NULL if <B>'want_clipped_lballs'</B> was set to
+                   PK_LOGICAL_false.
+
+<B>'lball_clip_types'</B> Whether each <B>'clipped_lball'</B> was created at a clipped lrod
+                   or touched by a clipping entity. This will be set to NULL if
+                   <B>'want_clipped_lballs'</B> was set to PK_LOGICAL_false.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

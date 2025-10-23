@@ -1,0 +1,173 @@
+<HTML>
+<HEAD>
+<TITLE>MENDEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>MENDEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+MENDEN ( topol, repopt, fixeds, fixvxs, ftyeds, ftyvxs, edtoks, vxtoks, 
+========================================================================
+         oldgeo, nfixed, nfixvx, nftyed, nftyvx, nold, retcod, ifail )
+         =============================================================
+
+  Mend a model.
+
+Receives:
+  KI_tag_list_topology     *topol          --- body or list of edges
+  KI_cod_logical           *repopt         --- option to replace all geometry
+
+Returns:
+ &lt;KI_tag_list_edge&gt;        *fixeds         --- list of fixed edges
+ &lt;KI_tag_list_vertex&gt;      *fixvxs         --- list of fixed vertices
+ &lt;KI_tag_list_edge&gt;        *ftyeds         --- list of faulty edges
+ &lt;KI_tag_list_vertex&gt;      *ftyvxs         --- list of faulty vertices
+ &lt;KI_tag_list_int&gt;         *edtoks         --- token list for faulty edges
+ &lt;KI_tag_list_int&gt;         *vxtoks         --- token list for faulty vertices
+ &lt;KI_tag_list_geometry&gt;    *oldgeo         --- list of discarded geometry
+ &lt;KI_int_nitems&gt;           *nfixed         --- number of fixed edges
+ &lt;KI_int_nitems&gt;           *nfixvx         --- number of fixed vertices
+ &lt;KI_int_nitems&gt;           *nftyed         --- number of faulty edges
+ &lt;KI_int_nitems&gt;           *nftyvx         --- number of faulty vertices
+ &lt;KI_int_nitems&gt;           *nold           --- number of discarded geometries
+  KI_cod_rtmd              *retcod         --- final state of body
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_general_body           general body
+  KI_missing_geom           body has missing geometry
+  KI_duplicate_list_item    edge appears twice in argument list
+  KI_not_in_same_body       edges are not all from the same body
+  KI_wrong_entity           wrong entity in list
+
+Description:
+
+  MENDEN attempts to mend a model so that it conforms to Parasolid's
+  requirements for accuracy and consistency between geometry and
+  topology. Such a model might arise for example by attaching geometry to
+  topology created with CRTOBY, or by the creation of a knitted body. Either
+  a whole body or a list of edges from a body may be supplied for mending.
+
+  The body to be mended ( or the body from which a list of edges is to be
+  mended ) may contain rubber faces. An edge may only be rubber provided
+  that at least one of its fins has a curve attached. A vertex may only be
+  rubber provided that at least one fin meeting at it has a curve attached.
+  If these conditions are not satisfied ifail KI_missing_geom will be
+  returned.
+
+  The mending operation will check that edge and vertex geometry conforms to
+  Parasolid's requirements for accuracy and consistency, and if it does not,
+  will replace the faulty geometry where possible. If the replacement option
+  'repopt' is set to true, original geometry will be replaced wherever a
+  Parasolid replacement can be calculated, even if the original geometry
+  satisfies the accuracy requirements. Some limited merging may also be
+  performed, in which case the topology of the body will alter and geometric
+  items attached to merged topology will be deleted.
+
+  If 'repopt' is set to false, original geometry will only be replaced where
+  necessary, and no merging will take place. Setting the replacement option to
+  true will increase the chances of success, though the resulting body will not
+  be so close to the original.
+
+
+  MENDEN returns lists to indicate which edges and vertices have been
+  successfully fixed, and which have not, together with the reasons for
+  failure.
+
+  'fixeds' contains the list of edges that have been mended successfully and
+  will have 'nfixed' elements.
+  'fixvxs' contains the list of vertices that have been mended successfully and
+  will have'nfixvx' elements.
+  'ftyeds' contains the list of edges which failed to mend and will have
+  'nftyed' elements.
+  'ftyvxs' contains the list of vertices which failed to mend and this will have
+  'nftyvx' elements.
+
+  'edtoks' is a list of tokens indicating the reason that each edge in list
+  'ftyeds' failed to mend. Each edge in 'ftyeds' has a corresponding token
+  in 'edtoks'. Each token will be one of the following:
+
+
+    Token    Meaning
+    ----------------------------------------------------------------------------
+
+    MDFARF   Mend failed because one or more adjacent faces lack
+             geometry.
+
+    MDFACS   Mend failed because adjacent faces have coincident surfaces
+             preventing calculation of replacement curve.
+
+    MDFANS   Mend failed because adjacent surfaces do not intersect.
+
+    MDFAFM   Mend failed during calculation of replacement geometry.
+
+
+  'vxtoks' is a list of tokens indicating the reason that each vertex in list
+  'ftyvxs' failed to mend. Each vertex in 'ftyvxs' has a corresponding token
+  in 'vxtoks'. Each token will be one of the following:
+
+
+    Token    Meaning
+    ----------------------------------------------------------------------------
+
+    MDFANI   Mend failed because there is no common intersection
+             between adjacent geometry. ( Intersection points do not lie
+             on all incoming edge curves and underlying face surfaces ).
+
+    MDFAFE   Mend failed because one or more incoming edges is faulty.
+
+    MDFAFM   Mend failed during calculation of replacement geometry.
+
+
+  Original geometry that is replaced during the mending operation is returned
+  in list 'oldgeo'. The length of this list is returned in 'nold'.
+
+  'retcod' contains a token which indicates the final state of the body. It
+  will be one of:
+
+
+    Token   Meaning
+    ----------------------------------------------------------------------------
+
+    RTMDMS  Mending was successful - the body now conforms to Parasolid
+            accuracy.
+
+    RTMDMF  Mending failed - the body is still invalid.
+
+
+  It is important to note that even when mending is successful, it is still
+  possible for the resultant body to be invalid. A call to MENDEN should
+  therefore always be accompanied by a call to CHCKEN.
+
+  Mending also has certain limitations. Since only edge and vertex geometry
+  is recalculated, mending may not succeed at tangent edges if the adjacent
+  surfaces do not meet in a curve. Similarly difficulties may arise at
+  vertices with more than three edges. Edges of sheet bodies can also fail
+  to mend due to complications which arise when projecting edge curves onto
+  surfaces.
+
+  Note also that mending will only be completely successful in those cases
+  where the final mended body lies entirely within the size box.
+
+  General bodies are not supported.
+
+
+</PRE>
+</BODY>
+</HTML>

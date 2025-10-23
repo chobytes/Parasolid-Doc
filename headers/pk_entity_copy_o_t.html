@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ENTITY_copy_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ENTITY_copy_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_ENTITY_copy_o_s
+    {
+    int                 o_t_version;      --- version number
+    <A HREF=../headers/pk_item_t.html>PK_ITEM_t</A>           destination;      --- destination for copies
+                                          --- (PK_ITEM_null)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        want_user_fields; --- copy user fields
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        want_attribs;     --- copy attributes
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        want_groups;      --- copy groups
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        want_tracking;    --- create tracking information
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A>    track_classes;    --- classes to track
+    };
+typedef struct PK_ENTITY_copy_o_s PK_ENTITY_copy_o_t;
+</B>
+<A NAME="description"></A>
+<I>This option structure controls the destination, copying of user fields,
+attributes, groups and the creation of tracking information when using
+<A HREF=../headers/pk_entity_copy_2.html>PK_ENTITY_copy_2</A>.
+
+If tracking information is requested, records of type PK_ENTITY_track_create_c
+will be returned for entities of those classes specified.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_entity_copy_2.html>PK_ENTITY_copy_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'o_t_version'</B>            The version of the structure.
+
+
+<B>'destination'</B>            Destination for copies (see below).
+                         The default is PK_ITEM_null.
+
+
+<B>'want_user_fields'</B>       Whether user fields should be copied.
+                         The default is PK_LOGICAL_false.
+
+
+<B>'want_attribs'</B>           Whether attributes should be copied.
+                         The default is PK_LOGICAL_false.
+
+
+<B>'want_groups'</B>            Whether groups should be copied.
+                         Only valid when <B>'entity'</B> is a body or assembly.
+                         The default is PK_LOGICAL_false.
+
+
+<B>'want_tracking'</B>          Whether tracking information should be
+                         generated.
+                         The default is PK_LOGICAL_false.
+
+
+<B>'track_classes'</B>          If <B>'want_tracking'</B> is set to PK_LOGICAL_true then this
+                         options controls for which classes of entities
+                         tracking information should be created. If it is not
+                         set the default will be PK_CLASS_entity, so tracking
+                         information will be returned for all entities.
+
+
+destination
+-----------
+<B>'destination'</B> can take a partition, <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A>, or a part, <A HREF=../headers/pk_part_t.html>PK_PART_t</A>, but
+no other <A HREF=../headers/pk_item_t.html>PK_ITEM_t</A>. Alternatively <B>'destination'</B> may be set to PK_ITEM_null,
+in which case <B>'entity_copy'</B> will be created in the same partition as <B>'entity'</B>
+and if appropriate in the same part.
+
+
+
+-------------------------------------------------------------------------------
+| entity class   | <B>'destination'</B>  | notes                                     |
+-------------------------------------------------------------------------------
+| assembly       | PK_ITEM_null   | Copy will be uninstanced. Instances will  |
+|                |                | be copied but not their parts.            |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A> | As above, restricted to original partition|
+|                |                | of <B>'entity'</B>                               |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_part_t.html>PK_PART_t</A>      | Not permitted                             |
+|                |                |                                           |
+-------------------------------------------------------------------------------
+| instance       | PK_ITEM_null   | New instance in the original assembly.    |
+|                |                | Instance transforms are copied but not the|
+|                |                | reference part                            |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A> | Not permitted                             |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_part_t.html>PK_PART_t</A>      |                                           |
+|                |                |                                           |
+|                |     assembly   | Instance transforms are copied but not the|
+|                |                | reference part                            |
+|                |                |                                           |
+|                |     body       | Not permitted                             |
+|                |                |                                           |
+-------------------------------------------------------------------------------
+| body           | PK_ITEM_null   | Uninstanced copy created in the same      |
+|                |                | partition as <B>'entity'</B> [1]                 |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A> | Uninstanced copy created in partition [1] |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_part_t.html>PK_PART_t</A>      | Not permitted                             |
+|                |                |                                           |
+-------------------------------------------------------------------------------
+| geom           | PK_ITEM_null   | Principal geometry to orphaned geometry   |
+|                |                | Construction geometry to construction     |
+|                |                | geometry in the original part.            |
+|                |                | Orphaned to orphaned geometry [2]         |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A> | Orphaned in partition [2]                 |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_part_t.html>PK_PART_t</A>      | Construction geometry in part [2][3]      |
+|                |                |                                           |
+-------------------------------------------------------------------------------
+| transf         | PK_ITEM_null   | Orphaned copy                             |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A> | Orphaned copy                             |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_part_t.html>PK_PART_t</A>      | Not permitted                             |
+|                |                |                                           |
+-------------------------------------------------------------------------------
+| group          | PK_ITEM_null   | <B>'copy_entity'</B> created in original part    |
+|                |                | with the same group members as <B>'entity'</B>   |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A> | As above, restricted to partition of      |
+|                |                | original part of <B>'entity'</B>                 |
+|                |                |                                           |
+|                | <A HREF=../headers/pk_part_t.html>PK_PART_t</A>      | As above, restricted to original part of  |
+|                |                | <B>'entity'</B>                                  |
+|                |                |                                           |
+-------------------------------------------------------------------------------
+
+  Note [1]: <B>'entity'</B> and <B>'entity_copy'</B> have the same identifiers.
+
+  Note [2]: <B>'entity_copy'</B> will be a copy of <B>'entity'</B> plus any geometric
+  dependents. Geometric dependents will not be shared. For example, copying
+  4 sp-curves which share the same dependent surface results in 4 copies of
+  the surface.
+
+  Note [3]: if <B>'destination'</B> is a classic body then only surfaces, curves, and
+  points can be copied. Otherwise if <B>'destination'</B> is a facet body then
+  only meshes, polylines and points can be copied.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

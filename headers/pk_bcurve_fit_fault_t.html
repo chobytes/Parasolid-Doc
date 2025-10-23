@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_fit_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_fit_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_fit_fault_s
+    {
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>     no_faults;          --- true if the fit succeeded
+    <A HREF=../headers/pk_bcurve_fit_t.html>PK_BCURVE_fit_t</A> *status;             --- status for each bcurve
+    double          *distance_errors;    --- final maximum distance errors
+    double          *angular_errors;     --- final maximum angular errors
+    double          *error_parameters;   --- parameters at which the
+                                         --- algorithm failed
+    };
+
+typedef struct PK_BCURVE_fit_fault_s PK_BCURVE_fit_fault_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure returns fitting statuses and related data.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_create_by_fitting.html>PK_BCURVE_create_by_fitting</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This structure has four fields that are arrays.  The length of each of these
+arrays is equal to the <B>'n_curves'</B> field of the received
+<B>'<A HREF=../headers/pk_bcurve_create_by_fitting_o_t.html>PK_BCURVE_create_by_fitting_o_t</A>'</B> option structure.
+
+The structure's fields are:
+
+<B>'no_faults'</B>         this will have the value <B>'PK_LOGICAL_true'</B> if the fitting
+                    completed as requested i.e. all bcurves have been created,
+                    are valid and are within the tolerance(s) provided.
+
+<B>'status'</B>            an array of length <B>'n_curves'</B> specifying the final
+                    status of the attempt to fit each bcurve.
+
+<B>'distance_errors'</B>   an array of length <B>'n_curves'</B> containing the maximum
+                    distance error for each bcurve fitted.  In a successful
+                    fitting these distances will be less than the <B>'tolerance'</B>
+                    supplied.  If fitting failed these values may be
+                    undefined, depending on the <B>'status'</B> for the bcurve.
+
+<B>'angular_errors'</B>    an array of length <B>'n_curves'</B> containing the maximum
+                    angular error for each bcurve fitted, if a non-zero
+                    angular tolerance was provided.  If no angular tolerance
+                    was supplied these values will be zero. If fitting failed
+                    these values may be undefined, depending on the <B>'status'</B>
+                    for the bcurve.
+
+<B>'error_parameters'</B>  an array of length <B>'n_curves'</B> containing the parameter(s)
+                    on the bcurves at which the fitting algorithm has failed,
+                    if such a failure has occurred. Error parameters will only
+                    be returned for certain <B>'status'</B> values and should be
+                    interpreted accordingly.
+
+The <B>'status'</B> values which return bcurves and associated <B>'distance_errors'</B> and
+<B>'angular_errors'</B> are:
+
+    <B>'PK_BCURVE_fit_success_c'</B>
+    <B>'PK_BCURVE_fit_other_failed_c'</B>
+    <B>'PK_BCURVE_fit_eval_failure_c'</B>
+
+The <B>'status'</B> values which return associated <B>'error_parameters'</B> and the
+appropriate interpretations are:
+
+    <B>'PK_BCURVE_fit_eval_failure_c'</B>      the parameter at which the
+                                        evaluator failed
+    <B>'PK_BCURVE_fit_other_failed_c'</B>      the parameter at which the other
+                                        bcurve failed
+    <B>'PK_BCURVE_fit_bad_break_parm_c'</B>    the bad break parameter
+    <B>'PK_BCURVE_fit_bad_fit_parm_c'</B>      the bad fit parameter
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.079.html#50409866_pgfId-297547", " Face-face blends are created using <B>PK_FACE_make_blend</B> , which takes the following arguments: ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-1361520", " options in <B>PK_FACE_make_blend</B> . For a definition of apex-range chamfer, see ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-305285", " of the blend by passing a depth curve to <B>PK_FACE_make_blend</B> as well. See Section 78.5.5.1 for more information. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-305305", " in the call to <B>PK_FACE_make_blend</B> . This defines the positions of the deepest points", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-305603", " supplying depth and skew information in the call to <B>PK_FACE_make_blend</B> . ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-305784", " by supplying a softness value in the call to <B>PK_FACE_make_blend</B> . This value lets you control how quickly the", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-307154", " have the blend returned as a separate sheet body, <B>PK_FACE_make_blend</B> can create this body in a separate partition that", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-307157", " Note: If <B>PK_FACE_make_blend</B> returns PK_fxf_fault_sheet_c , the blending operation was only partially", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-308294", " structure returned by <B>PK_FACE_make_blend</B> , any cap faces created are tracked to fins", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-821973", " In some cases, the data you pass to <B>PK_FACE_make_blend</B> may contain ambiguous information. Depending on the nature of", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311337", " A 3-space vector that represents a help point that <B>PK_FACE_make_blend</B> can use to resolve any ambiguity in the supplied", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-822130", " can create both blends in a single call to <B>PK_FACE_make_blend</B> . Leaving ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311453", " How ribs are returned by <B>PK_FACE_make_blend</B> (see Section 78.12.2 ) ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311523", " field ( PK_blend_rib_r_t ) of <B>PK_FACE_make_blend</B> . This contains the following fields: ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-312000", " any self-intersecting blend faces created after a call to <B>PK_FACE_make_blend</B> ; this is similar to the repairing done after", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296198", " As for <B>PK_FACE_make_blend</B> , if the blend is returned as a separate", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296321", " information is specified, PK_FACE_make_3_face_blend looks for multiple solutions, but <B>PK_FACE_make_blend</B> creates only a single solution (and does not guarantee", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.082.html#50409869_pgfId-305548", " the event of an error, information is returned by <B>PK_FACE_make_blend</B> in the structure PK_fxf_error_t , which contains the following", "Functional Description - Interpreting Face-Face Blending Error Codes");
+top.note("chapters/fd_chap.082.html#50409869_pgfId-305591", " This token is only returned if <B>PK_FACE_make_blend</B> was called with ", "Functional Description - Interpreting Face-Face Blending Error Codes");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317059", " <B>PK_FACE_make_blend</B> ", "Functional Description - Update Switches");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " have been created. This token is only returned if <B>PK_FACE_make_blend</B> was called with walls set to PK_blend_walls_both_c or PK_blend_walls_attach_c", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " have been created. This token is only returned if <B>PK_FACE_make_blend</B> was called with walls set to PK_blend_walls_both_c or PK_blend_walls_attach_c", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_general_body 1071 <B>PK_FACE_make_blend</B> the blend is in a non-manifold area of a", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_bad_partition 5163 <B>PK_FACE_make_blend</B> user supplied partition is invalid (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_partition 5163 <B>PK_FACE_make_blend</B> user supplied partition is invalid (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_facet_geometry 5237 <B>PK_FACE_make_blend</B> the faces in one of the walls are from", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_general_body 1071 <B>PK_FACE_make_blend</B> the blend is in a non-manifold area of a", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>PK_FACE_make_blend</B> 5163 PK_ERROR_bad_partition user supplied partition is invalid (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_blend_rib_r_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_blend_rib_r_t");
+top.note("headers/pk_body_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_debug_shuffle_start.html#documentation", "- <B>PK_FACE_make_blend</B> sheet_bodies , blend_topols , unders ", "PK Reference - PK_DEBUG_shuffle_start");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_change.html#description", " PK_FACE_transform_2 , PK_FACE_replace_surfs_3 and some of <B>PK_FACE_make_blend</B> .", "PK Reference - PK_FACE_change");
+top.note("headers/pk_face_make_blend.html#declaration", " PK_ERROR_code_t <B>PK_FACE_make_blend</B>", "PK Reference - PK_FACE_make_blend");
+top.note("headers/pk_face_make_blend.html#documentation", " right_wall_faces (or both), then <B>PK_FACE_make_blend</B> will fail.", "PK Reference - PK_FACE_make_blend");
+top.note("headers/pk_face_make_blend_o_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_FACE_make_blend_o_t");
+top.note("headers/pk_face_make_blend_o_t.html#documentation", " of these conditions is not satisfied, the call to <B>PK_FACE_make_blend</B> ", "PK Reference - PK_FACE_make_blend_o_t");
+top.note("headers/pk_face_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_FACE_t");
+top.note("headers/pk_fxf_error_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_fxf_error_t");
+top.note("headers/pk_fxf_fault_t.html#documentation", " <B>PK_FACE_make_blend</B> was called with walls set to", "PK Reference - PK_fxf_fault_t");
+top.note("headers/pk_logical_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_LOGICAL_t");
+top.note("headers/pk_topol_array_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_TOPOL_array_t");
+top.note("headers/pk_topol_t.html#description", " <B>PK_FACE_make_blend</B> ", "PK Reference - PK_TOPOL_t");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7794239", " PK_CURVE_find_surfs_common , <B>PK_FACE_make_blend</B> , PK_FACE_make_3_face_blend , PK_BODY_fix_blends , PK_SURF_find_curves_common ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

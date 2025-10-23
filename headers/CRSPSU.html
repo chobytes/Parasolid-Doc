@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>CRSPSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRSPSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_sphere_create.html>PK_SPHERE_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRSPSU ( centre, radius, sphere, ifail )
+========================================
+
+  Create a spherical surface.
+
+Receives:
+  KI_vec_centre             centre         --- centre position
+  KI_dbl_radius            *radius         --- radius of sphere
+
+Returns:
+  KI_tag_surface           *sphere         --- new spherical surface
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_radius_too_large       radius too large
+
+Description:
+  A new spherical surface is created with centre 'centre' and radius
+  'radius'. The surface normal points away from the centre position.
+
+</PRE>
+</BODY>
+</HTML>

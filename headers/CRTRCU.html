@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<TITLE>CRTRCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRTRCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRTRCU ( basis_curve, parm_1, parm_2, trimmed_curve, ifail )
+============================================================
+
+  Creates a trimmed curve
+
+Receives:
+  KI_tag_curve             *basis_curve    --- underlying basis curve
+  KI_dbl_parameter         *parm_1         --- start parameter
+  KI_dbl_parameter         *parm_2         --- end parameter
+
+Returns:
+  KI_tag_curve             *trimmed_curve   --- trimmed basis curve
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_curve_too_short        trimmed curve is shorter than linear resolution
+  KI_bad_parameter          parameter 'parm_2' is out of range
+                            parameter 'parm_1' is out of range
+                            parm_2 is less than parm_1 on non-periodic
+  KI_unsuitable_entity      trimmed polylines not allowed
+                            b curve is referenced
+
+Description:
+  Creates a trimmed curve from a curve and two bound parameters defining points
+  on the curve.
+
+  The arguments are:
+
+  The curve 'basis_curve' of the trimmed curve:
+  . If the basis curve is already owned by a part, then the trimmed curve will
+    also be owned by that part.
+  . If the curve supplied is already a trimmed curve then its start and end
+    points will be changed to be 'parm_1' and 'parm_2' repectively. This allows
+    re-trimming of trimmed curves. The trimmed curve returned will have the same
+    tag as that supplied.
+
+  Parameter 'parm_1':
+  . The parameter of the start point of the trimmed curve.
+
+  Parameter 'parm_2':
+  . The parameter of the end point of the trimmed curve.
+
+  If the basis curve is not periodic, the parameters must be valid for the curve
+  (i.e. in the range returned by ENCUPA) and the corresponding points must be
+  more than linear resolution apart. Furthermore 'parm_1' must be less than
+  'parm_2'.
+
+  If the basis curve is periodic, 'parm_1' and 'parm_2' can be in any range.
+  If the points corresponding to 'parm_1' and 'parm_2' are less than linear
+  resolution apart, then a trimmed curve is made from the whole basis curve.
+
+  If the basis curve is closed but not periodic, then a trimmed curve is made
+  from the whole basis curve if the points corresponding to parm_1 and parm_2
+  are within linear resolution of the ends of the curve and within linear
+  resolution of each other.
+
+
+</PRE>
+</BODY>
+</HTML>

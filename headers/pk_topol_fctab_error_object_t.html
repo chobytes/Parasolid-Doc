@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_fctab_error_object_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_fctab_error_object_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_fcstr_error_object_s
+       {
+       <A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_t</A>     error;
+       int                  object;
+       };
+typedef struct PK_TOPOL_fcstr_error_object_s
+               PK_TOPOL_fcstr_error_object_t;
+struct PK_TOPOL_fctab_error_object_s
+    {
+    PK_TOPOL_fcstr_error_object_t  *data;
+    int                             length;
+    };
+typedef struct PK_TOPOL_fctab_error_object_s
+               PK_TOPOL_fctab_error_object_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_table_t.html>PK_TOPOL_facet_table_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is a support structure for <A HREF=../headers/pk_topol_facet_r_t.html>PK_TOPOL_facet_r_t</A>. It is a lookup table which
+'groups' faults detected during facetting with the object for which the fault
+occurred.  If the table is returned empty, this denotes that no faults were
+found.
+
+
+first column integer value     second column integer value
+---------------------------    ----------------------------
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_body_c</A>          The specified <A HREF=../headers/pk_body_t.html>PK_BODY_t</A> entity could not be
+                               facetted using the specified mesh controls due
+                               to an invalidity in the body (for example, if
+                               the body is not entirely contained within the
+                               Parasolid size box).  It implies that no facet
+                               mesh has been generated for this body.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_face_c</A>          The specified <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> entity could not be
+                               facetted using the specified mesh controls (for
+                               example, if faces on the part being facetted
+                               are invalid).  It implies that part of the
+                               generated facet mesh is missing.
+                               Where possible the application should inform
+                               the user that an error has occurred rather than
+                               simply ignoring missing faces.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_facet_c</A>         The specified facet (whose index is given) is
+                               disconnected from some neighbouring facets due
+                               to fin-fin matching failing on the face. The
+                               topology of the generated facet mesh is valid
+                               but may contain superfluous 'slit edges' around
+                               the specified facet.
+                               This warning is only relevant in cases where an
+                               application walks the returned facet mesh.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_data_normal_c</A>   The facet function was unable to calculate an
+                               accurate surface normal value at the position
+                               of the facet data (whose index is given).
+                               The vector referenced by this data's
+                               <B>'data_normal_idx'</B> table should not be used.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_data_param_c</A>    The facet function was unable to calculate
+                               accurate parameter values at the position
+                               of the facet data (whose index is given).
+                               The uv parameter values referenced by this
+                               data's <B>'data_param_idx'</B> table should not be
+                               used.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_topol_param_c</A>   The facet function was unable to return
+                               parameters for the specified body or face.  The
+                               uv parameter values referenced by this entity
+                               should not be used.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_data_deriv_c</A>    The facet function was unable to calculate
+                               accurate parameter values at the position
+                               of the facet data (whose index is given).
+                               The dp and/or the dp2 parameter values
+                               referenced by this data's <B>'data_deriv_idx'</B> table
+                               should not be used.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_topol_deriv_c</A>   The facet function was unable to return
+                               derivatives for the specified body or face.  The
+                               dp and/or d2p values referenced by this entity
+                               should not be used.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_data_curv_c</A>     The facet function was unable to calculate
+                               accurate curvatures at the position of the facet
+                               data (whose index is given).
+                               The curvature values referenced by this data's
+                               <B>'data_curv_idx'</B> table should not be used.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_thin_face_c</A>     No facets were output for the specified
+                               <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> entity because the face is very thin.
+                               Although a facet may not be output for a given
+                               face, this is not an indication that facetting
+                               has failed.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_mangled_facet_c</A> The facet mesh, in the region of the specified
+                               facet (whose index is given), may not satisfy
+                               the facetting tolerances, or may be
+                               self-intersecting, or is severely creased.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_mangled_strip_c</A> The facet mesh, in the region of the specified
+                               strip (whose index is given), may not satisfy
+                               the facetting tolerances, or may be
+                               self-intersecting, or is severely creased.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_missing_face_c</A>  The specified <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> entity failed to
+                               incrementally facet as it did not have a defined
+                               facetted perimeter; additional faces need to be
+                               facetted.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_refinement_c</A>    The specified <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> entity cannot be
+                               incrementally facetted and satisfy the facetting
+                               controls - geometry matching may be lost.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_added_missing_c</A> The specified <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> entity is required in
+                               order to define a facetted perimeter for
+                               incremental facetting.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_added_refine_c</A>  The specified <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> entity needs to be
+                               refacetted in order to satisfy the facetting
+                               controls due to an adjacent face that is being
+                               facetted requiring refinement.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_incr_facet_c</A>    The specified <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> entity has failed to
+                               facet due to an unspecified error during
+                               incremental facetting.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_pt_off_edge_0_c</A> The facet point associated with the specified
+                               point_index lies off the model edge.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_pt_off_edge_1_c</A> The facet point associated with the specified
+                               point_index lies off the model edge because
+                               moving it or a nearby facet point to lie on the
+                               model edge would produce a self-intersecting
+                               or folded facet.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_pt_off_edge_2_c</A> The facet point associated with the specified
+                               point_index lies off the model edge because
+                               this point lies on a region of the model where
+                               the facet topology and model topology are no
+                               longer equivalent, typically when a region of
+                               the model between two edges is extremely thin.
+
+<A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_pt_off_face_c</A>   The facet point associated with the specified
+                               point_index lies off the model face that it is
+                               associated with.  If parameters are being
+                               returned, then the evaluation of those
+                               parameters on the associated face's surface will
+                               give a different position to the point.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

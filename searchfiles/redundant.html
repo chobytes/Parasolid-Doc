@@ -1,0 +1,132 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.004.html#50409783_pgfId-301527", " topology can be manipulated, including support for deleting <B>redundant</B> topology, and for splitting topological entities. See Chapter", "Functional Description - Overview Of This Manual");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295470", " Face <B>redundant</B> ", "Functional Description - Checking");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295473", " The face created is <B>redundant</B> with respect to tolerances. This could arise as", "Functional Description - Checking");
+top.note("chapters/fd_chap.033.html#50409814_pgfId-310264", " with Euler operations, how to identify and delete <B>redundant</B> topology, and how to split topology. ", "Functional Description - Introduction To Manipulating Topology");
+top.note("chapters/fd_chap.033.html#50409814_pgfId-309449", " Chapter 34, Controlling <B>Redundant</B> Topology describes how to control topology that is not", "Functional Description - Introduction To Manipulating Topology");
+top.note("chapters/fd_chap.033.html#50409814_pgfId-316716", " Figure 32-1 Euler operations and deleting <B>redundant</B> topology ", "Functional Description - Introduction To Manipulating Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-337798", "<B>redundant</B> topology, and may include: ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-357699", " your application does not consider <B>redundant</B>). Dealing with <B>redundant</B> topology is often required before exporting data to", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-357700", " You can use the following functions to manage <B>redundant</B> topology in a body: ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-357709", " result of the deletion. See Section 34.2, Deleting <B>redundant</B> topology . ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-357718", " body that are <B>redundant</B>. See Section 34.3, Identifying <B>redundant</B> topology . ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-337843", " Figure 34-1 <B>Redundant</B> topology in a body ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324590", " 34.2 Deleting <B>redundant</B> topology ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324591", " deletes any topologies that are found to be <B>redundant</B>, and merges remaining topologies that become mergable as", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324600", " of the topology. For instance, to remove only <B>redundant</B> vertices from a body, set ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-358542", " to be considered <B>redundant</B>. See Section 34.2.2, Controlling <B>redundant</B> topologies on facet geometry for more information. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-358560", " has been supplied. See Section 34.2.2, Controlling <B>redundant</B> topologies on facet geometry for more information. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-358830", " be considered for redundancy. See Section 34.2.2, Controlling <B>redundant</B> topologies on facet geometry for more information. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324614", " a sheet body comprising three faces, containing several <B>redundant</B> edges and vertices. In the call to PK_TOPOL_redundant_2,", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324624", " All <B>redundant</B> topologies internal to the specified ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324625", " <B>Redundant</B> vertices on the laminar boundaries are removed. In this", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324626", " The <B>redundant</B> vertices on the non-laminar boundaries are not removed", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324631", " All <B>redundant</B> topologies internal to the specified ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324632", " All <B>redundant</B> vertices on the laminar boundaries are removed. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324633", " <B>Redundant</B> vertices on the non-laminar boundaries are also removed, and", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324639", " All <B>redundant</B> topologies internal to the specified ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324640", " All <B>redundant</B> vertices on the laminar boundaries are removed. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324641", " All <B>redundant</B> vertices on the non-laminar boundaries are removed. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324642", " <B>Redundant</B> non-laminar boundaries are removed and the faces merged. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324679", " Figure 34-2 Specifying the scope when deleting <B>redundant</B> topologies ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-358360", " 34.2.2 Controlling <B>redundant</B> topologies on facet geometry ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-364149", " 2 can be also be used to optimise <B>redundant</B> topology on facet bodies, but you are recommended", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-372478", " curves are considered <B>redundant</B> unless more than two non-<B>redundant</B> edges meet at", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-366589", " Edges on a facet body are considered <B>redundant</B> if the mvertices lying on the edge will", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324681", " 34.3 Identifying <B>redundant</B> topology ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324682", " want to take some action other than deleting <B>redundant</B> topologies, use PK_TOPOL_identify_redundant . This function receives an", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324683", " an attribute to all topologies found to be <B>redundant</B> in a body, for later processing. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324695", " topologies to be identified. See Section 34.2, Deleting <B>redundant</B> topology for details. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324707", " topologies. If PK_LOGICAL_false, then only the number of <B>redundant</B> topologies is returned. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324711", " themselves <B>redundant</B>, but would become <B>redundant</B> if other <B>redundant</B> topologies", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324715", " itself <B>redundant</B>, but would become so if the <B>redundant</B> edges", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324716", " this vertex is returned in the list of <B>redundant</B> topologies. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-359839", " use with facet geometry. See Section 34.2.2, Controlling <B>redundant</B> topologies on facet geometry for more information. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-359846", " has been supplied. See Section 34.2.2, Controlling <B>redundant</B> topologies on facet geometry for more information. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-359853", " use with facet geometry. See Section 34.2.2, Controlling <B>redundant</B> topologies on facet geometry for more information. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324724", " Figure 34-3 Identifying dependent <B>redundant</B> topologies ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-879590", " See Section 54.3, Merging <B>redundant</B> topology for more information. ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-883059", " See Section 54.3, Merging <B>redundant</B> topology for more information. ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-454091", " faces in the result body which were not <B>redundant</B> in the tool or target bodies. Default: PK_LOGICAL_false.", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-454095", " See Section 54.3, Merging <B>redundant</B> topology for more information. ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-454121", " edges in the result body which were not <B>redundant</B> in the tool or target bodies. ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.054.html#50409838_pgfId-918783", " during general boolean operations, see Section 54.3, Merging <B>redundant</B> topology . ", "Functional Description - Manifold Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294756", " (see Section 54.3, Merging <B>redundant</B> topology ), some <B>redundant</B> topologies may be removed from the result. ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294767", " remain in the result (see Section 54.3, Merging <B>redundant</B> topology ). ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294775", " remain in the result (see Section 54.3, Merging <B>redundant</B> topology ). ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294875", " to merge <B>redundant</B> topology: see Section 54.3, Merging <B>redundant</B> topology ,", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294923", " 54.3 Merging <B>redundant</B> topology ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294924", " for example. You may decide that keeping this <B>redundant</B> topology in the result body is useful, or", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294927", " be used for general boolean operations. To merge <B>redundant</B> topology in manifold bodies, use the ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294940", " Whether to merge out any <B>redundant</B> vertices on edges in the result body which", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294944", " Whether to merge out any <B>redundant</B> topologies in faces of the result body which", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294955", " PK_TOPOL_dimension_any_c: merge out all <B>redundant</B> topologies from faces. This is the default, and", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294963", " PK_TOPOL_dimension_any_c: merge out all <B>redundant</B> topologies from solids. This is the default, and", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-294965", " are set such that all newly <B>redundant</B> topologies are merged out of faces and solids", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-460627", " the solid regions of the target are considered <B>redundant</B> and deleted as illustrated in ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-460631", " solid regions of the tool bodies are considered <B>redundant</B> and deleted as illustrated in ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-461227", " material of any other tool body are considered <B>redundant</B> and deleted as illustrated in ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.055.html#50409839_pgfId-295278", " use the options described in Section 54.3, Merging <B>redundant</B> topology . ", "Functional Description - General Booleans");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321390", " PK_EDGE_delete as an alternative to PK_TOPOL_delete_redundant_2 for removing <B>redundant</B> or mergeable edges, in which case it also", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295226", " You should delete any <B>redundant</B> topology before calling this function, using PK_TOPOL_delete_redundant_2 .", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-713582", " can be successfully identified, even if they contain <B>redundant</B> internal edges. ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-475426", " records containing all topological entities that were made <B>redundant</B> or merged out by the operation. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-302672", " 92.2 Controlling <B>redundant</B> topology ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-325884", " for information on how Parasolid identifies and deletes <B>redundant</B> topology. ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295174", " between them, or two edges by removing a <B>redundant</B> vertex. ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378429", " Merging <B>redundant</B> edges and vertices in local operations ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413861", " of illustration. In particular, Parasolid does not create <B>redundant</B> vertices in the manner suggested here. ", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413789", " This has then been extruded and created a <B>redundant</B> edge. ", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413793", " that the user has decided to use the <B>redundant</B> edge created in Part A as the basis", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413795", " later Parasolid release improves behaviour such that the <B>redundant</B> vertex seen in Part A of ", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413797", " the same extruded profile, but, as expected, no <B>redundant</B> topology is present because the part has been", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413799", " shows the hollowed, blended model, again without any <B>redundant</B> topology. ", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413801", " body for the section operation, but because the <B>redundant</B> edge no longer exists in the part, it", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413815", " later Parasolid release that no longer creates the <B>redundant</B> vertex. ", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413823", " the part, and in particular ensures that the <B>redundant</B> vertex is present in the initial profile (Part", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/ov_chap.14.html#50442249_pgfId-304780", " <B>Redundant</B> topology ", "Overview of Parasolid - Enquiring Model Data and Identifying Details");
+top.note("chapters/ov_chap.14.html#50442249_pgfId-304782", " on split rings on a body. Delete this <B>redundant</B> topology and merge together any remaining topologies that", "Overview of Parasolid - Enquiring Model Data and Identifying Details");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_FACE_state_redundant_c 16402 face <B>redundant</B> with respect to tolerances ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_FACE_state_redundant_c 16402 face <B>redundant</B> with respect to tolerances ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " <B>redundant</B>", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " <B>redundant</B>", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>redundant</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_boolean_o_t.html#declaration", " PK_LOGICAL_t merge_in_face; --- whether any <B>redundant</B>", "PK Reference - PK_BODY_boolean_o_t");
+top.note("headers/pk_body_boolean_o_t.html#documentation", " merge_in_face This determines whether any <B>redundant</B> vertices or", "PK Reference - PK_BODY_boolean_o_t");
+top.note("headers/pk_body_find_knit_pattern.html#documentation", " attached will be those which are eventually <B>redundant</B> when the resultant", "PK Reference - PK_BODY_find_knit_pattern");
+top.note("headers/pk_body_make_facet_body_o_t.html#documentation", " original body can become <B>redundant</B> in the copied body", "PK Reference - PK_BODY_make_facet_body_o_t");
+top.note("headers/pk_check_state_t.html#documentation", " PK_FACE_state_redundant_c face <B>redundant</B> with respect to tolerances", "PK Reference - PK_check_state_t");
+top.note("headers/pk_edge_delete.html#errors", " <B>redundant</B>", "PK Reference - PK_EDGE_delete");
+top.note("headers/pk_edge_delete.html#documentation", "The edges should be laminar, wire, or <B>redundant</B>, and must all be from the same", "PK Reference - PK_EDGE_delete");
+top.note("headers/pk_mtopol_merge_t.html#documentation", " to be considered as <B>redundant</B>", "PK Reference - PK_MTOPOL_merge_t");
+top.note("headers/pk_redundant_merge_t.html#documentation", "This datatype defines the scope of identifying/removing <B>redundant</B> topologies", "PK Reference - PK_redundant_merge_t");
+top.note("headers/pk_surf_make_sheet_trimmed.html#documentation", "PK_FACE_state_redundant_c : Face is <B>redundant</B> with respect to the", "PK Reference - PK_SURF_make_sheet_trimmed");
+top.note("headers/pk_topol_delete_redundant.html#description", " This function removes <B>redundant</B> topology from the given topol .", "PK Reference - PK_TOPOL_delete_redundant");
+top.note("headers/pk_topol_delete_redundant.html#documentation", "<B>Redundant</B> (mergeable) edges and vertices are removed from the given", "PK Reference - PK_TOPOL_delete_redundant");
+top.note("headers/pk_topol_delete_redundant_2.html#description", " This function removes <B>redundant</B> topology or sub-topology from the given list", "PK Reference - PK_TOPOL_delete_redundant_2");
+top.note("headers/pk_topol_delete_redundant_2.html#documentation", "<B>Redundant</B> topologies are removed from the given array of topols, which may be", "PK Reference - PK_TOPOL_delete_redundant_2");
+top.note("headers/pk_topol_delete_redundant_2_o_t.html#declaration", " --- may be regarded as <B>redundant</B>", "PK Reference - PK_TOPOL_delete_redundant_2_o_t");
+top.note("headers/pk_topol_delete_redundant_2_o_t.html#description", " Holds optional controls for removing <B>redundant</B> topologies.", "PK Reference - PK_TOPOL_delete_redundant_2_o_t");
+top.note("headers/pk_topol_delete_redundant_2_o_t.html#documentation", " <B>redundant</B> unless there are more than two", "PK Reference - PK_TOPOL_delete_redundant_2_o_t");
+top.note("headers/pk_topol_identify_redundant.html#description", " This function identifies <B>redundant</B> topology or subtopology from the given", "PK Reference - PK_TOPOL_identify_redundant");
+top.note("headers/pk_topol_identify_redundant.html#documentation", "<B>Redundant</B> topologies are identified from the given array of topols, which may", "PK Reference - PK_TOPOL_identify_redundant");
+top.note("headers/pk_topol_identify_redundant_o_t.html#declaration", " --- may be regarded as <B>redundant</B>", "PK Reference - PK_TOPOL_identify_redundant_o_t");
+top.note("headers/pk_topol_identify_redundant_o_t.html#description", " Holds optional controls for identifying <B>redundant</B> topologies.", "PK Reference - PK_TOPOL_identify_redundant_o_t");
+top.note("headers/pk_topol_identify_redundant_o_t.html#documentation", "want_redundant_topols : Specifies whether <B>redundant</B> topologies are returned.", "PK Reference - PK_TOPOL_identify_redundant_o_t");
+top.note("headers/pk_topol_make_facet_topol_o_t.html#documentation", " made <B>redundant</B> by the conversion operation.", "PK Reference - PK_TOPOL_make_facet_topol_o_t");
+top.note("chapters/kd_chap.07.html#50475033_marker-273926", " removes <B>redundant</B> faces, edges and vertices. ", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.09.html#50475023_pgfId-273904", " and unites with the mirror image, merging out <B>redundant</B> topology. ", "KID Manual - Miscellaneous Useful Functions");
+top.note("chapters/kd_chap.17.html#50475020_pgfId-290858", " remove <B>redundant</B> edges vertices faces ", "KID Manual - KID Class Structure");
+top.note("chapters/kd_chap.17.html#50475020_pgfId-291098", " remove <B>redundant</B> faces,edges and vertices ", "KID Manual - KID Class Structure");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

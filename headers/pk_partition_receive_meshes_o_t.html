@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_PARTITION_receive_meshes_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_PARTITION_receive_meshes_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_PARTITION_receive_meshes_o_s
+    {
+    int             o_t_version;        --- Version number of option structure
+
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    want_owners;        --- Whether function should
+                                        --- return a list of entities
+                                        --- and partitions for which
+                                        --- mesh data was updated. Only
+                                        --- entities visible under the cellular
+                                        --- guise will be returned.
+                                        --- (PK_LOGICAL_false)
+
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    stop_on_failure;    --- Whether the operation
+                                        --- should abort if any
+                                        --- mesh data fails to be
+                                        --- received
+                                        --- (PK_LOGICAL_false)
+
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    report_mesh_errors; --- Whether a report with token
+                                        --- <A HREF=../headers/pk_report_4_t.html>PK_REPORT_4_receive_meshes_c</A>
+                                        --- should be produced, listing
+                                        --- mesh data receive errors for
+                                        --- individual meshes
+                                        --- (PK_LOGICAL_false)
+    };
+
+typedef struct PK_PARTITION_receive_meshes_o_s PK_PARTITION_receive_meshes_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional arguments for <A HREF=../headers/pk_partition_receive_meshes.html>PK_PARTITION_receive_meshes</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_partition_receive_meshes.html>PK_PARTITION_receive_meshes</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'want_owners'</B>         PK_LOGICAL_true if the optional array <B>'owners'</B> should be
+                      returned. For each mesh for which the mesh data was
+                      updated, <B>'owners'</B> will contain the entity to which
+                      the mesh is attached or, in the case of an orphan mesh,
+                      the partition to which it belongs.
+
+<B>'stop_on_failure'</B>     PK_LOGICAL_true if the operation should abort if
+                      any of the meshes fails to be received.
+
+<B>'report_mesh_errors'</B>  PK_LOGICAL_true if a report should be produced
+                      listing all meshes whose mesh data failed to be
+                      received, the specific PK error that occured and the
+                      key of the unloaded mesh. If <B>'stop_on_failure'</B> is set to
+                      PK_LOGICAL_true, then this report will only contain
+                      information for the first mesh which failed to load.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

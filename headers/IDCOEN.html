@@ -1,0 +1,239 @@
+<HTML>
+<HEAD>
+<TITLE>IDCOEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>IDCOEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_assembly_ask_instances.html>PK_ASSEMBLY_ask_instances</A><BR>
+<A HREF=../headers/pk_assembly_ask_parts.html>PK_ASSEMBLY_ask_parts</A><BR>
+<A HREF=../headers/pk_assembly_ask_parts_transfs.html>PK_ASSEMBLY_ask_parts_transfs</A><BR>
+<A HREF=../headers/pk_body_ask_edges.html>PK_BODY_ask_edges</A><BR>
+<A HREF=../headers/pk_body_ask_faces.html>PK_BODY_ask_faces</A><BR>
+<A HREF=../headers/pk_body_ask_fins.html>PK_BODY_ask_fins</A><BR>
+<A HREF=../headers/pk_body_ask_first_edge.html>PK_BODY_ask_first_edge</A><BR>
+<A HREF=../headers/pk_body_ask_first_face.html>PK_BODY_ask_first_face</A><BR>
+<A HREF=../headers/pk_body_ask_loops.html>PK_BODY_ask_loops</A><BR>
+<A HREF=../headers/pk_body_ask_regions.html>PK_BODY_ask_regions</A><BR>
+<A HREF=../headers/pk_body_ask_shells.html>PK_BODY_ask_shells</A><BR>
+<A HREF=../headers/pk_body_ask_vertices.html>PK_BODY_ask_vertices</A><BR>
+<A HREF=../headers/pk_curve_ask_edges.html>PK_CURVE_ask_edges</A><BR>
+<A HREF=../headers/pk_curve_ask_fin.html>PK_CURVE_ask_fin</A><BR>
+<A HREF=../headers/pk_curve_ask_part.html>PK_CURVE_ask_part</A><BR>
+<A HREF=../headers/pk_edge_ask_body.html>PK_EDGE_ask_body</A><BR>
+<A HREF=../headers/pk_edge_ask_curve.html>PK_EDGE_ask_curve</A><BR>
+<A HREF=../headers/pk_edge_ask_faces.html>PK_EDGE_ask_faces</A><BR>
+<A HREF=../headers/pk_edge_ask_fins.html>PK_EDGE_ask_fins</A><BR>
+<A HREF=../headers/pk_edge_ask_first_fin.html>PK_EDGE_ask_first_fin</A><BR>
+<A HREF=../headers/pk_edge_ask_next_in_body.html>PK_EDGE_ask_next_in_body</A><BR>
+<A HREF=../headers/pk_edge_ask_shells.html>PK_EDGE_ask_shells</A><BR>
+<A HREF=../headers/pk_edge_ask_vertices.html>PK_EDGE_ask_vertices</A><BR>
+<A HREF=../headers/pk_entity_ask_owning_groups.html>PK_ENTITY_ask_owning_groups</A><BR>
+<A HREF=../headers/pk_face_ask_body.html>PK_FACE_ask_body</A><BR>
+<A HREF=../headers/pk_face_ask_edges.html>PK_FACE_ask_edges</A><BR>
+<A HREF=../headers/pk_face_ask_first_loop.html>PK_FACE_ask_first_loop</A><BR>
+<A HREF=../headers/pk_face_ask_loops.html>PK_FACE_ask_loops</A><BR>
+<A HREF=../headers/pk_face_ask_next_in_body.html>PK_FACE_ask_next_in_body</A><BR>
+<A HREF=../headers/pk_face_ask_shells.html>PK_FACE_ask_shells</A><BR>
+<A HREF=../headers/pk_face_ask_vertices.html>PK_FACE_ask_vertices</A><BR>
+<A HREF=../headers/pk_fin_ask_body.html>PK_FIN_ask_body</A><BR>
+<A HREF=../headers/pk_fin_ask_curve.html>PK_FIN_ask_curve</A><BR>
+<A HREF=../headers/pk_fin_ask_edge.html>PK_FIN_ask_edge</A><BR>
+<A HREF=../headers/pk_fin_ask_loop.html>PK_FIN_ask_loop</A><BR>
+<A HREF=../headers/pk_fin_ask_next_in_loop.html>PK_FIN_ask_next_in_loop</A><BR>
+<A HREF=../headers/pk_fin_ask_next_of_edge.html>PK_FIN_ask_next_of_edge</A><BR>
+<A HREF=../headers/pk_fin_ask_oriented_curve.html>PK_FIN_ask_oriented_curve</A><BR>
+<A HREF=../headers/pk_fin_ask_previous_in_loop.html>PK_FIN_ask_previous_in_loop</A><BR>
+<A HREF=../headers/pk_fin_ask_previous_of_edge.html>PK_FIN_ask_previous_of_edge</A><BR>
+<A HREF=../headers/pk_group_ask_part.html>PK_GROUP_ask_part</A><BR>
+<A HREF=../headers/pk_loop_ask_body.html>PK_LOOP_ask_body</A><BR>
+<A HREF=../headers/pk_loop_ask_face.html>PK_LOOP_ask_face</A><BR>
+<A HREF=../headers/pk_loop_ask_fins.html>PK_LOOP_ask_fins</A><BR>
+<A HREF=../headers/pk_loop_ask_first_fin.html>PK_LOOP_ask_first_fin</A><BR>
+<A HREF=../headers/pk_loop_ask_next_in_face.html>PK_LOOP_ask_next_in_face</A><BR>
+<A HREF=../headers/pk_loop_ask_vertices.html>PK_LOOP_ask_vertices</A><BR>
+<A HREF=../headers/pk_instance_ask.html>PK_INSTANCE_ask</A><BR>
+<A HREF=../headers/pk_part_ask_construction_curves.html>PK_PART_ask_construction_curves</A><BR>
+<A HREF=../headers/pk_part_ask_construction_points.html>PK_PART_ask_construction_points</A><BR>
+<A HREF=../headers/pk_part_ask_construction_surfs.html>PK_PART_ask_construction_surfs</A><BR>
+<A HREF=../headers/pk_part_ask_geoms.html>PK_PART_ask_geoms</A><BR>
+<A HREF=../headers/pk_part_ask_groups.html>PK_PART_ask_groups</A><BR>
+<A HREF=../headers/pk_part_ask_ref_instances.html>PK_PART_ask_ref_instances</A><BR>
+<A HREF=../headers/pk_point_ask_part.html>PK_POINT_ask_part</A><BR>
+<A HREF=../headers/pk_point_ask_vertex.html>PK_POINT_ask_vertex</A><BR>
+<A HREF=../headers/pk_region_ask_body.html>PK_REGION_ask_body</A><BR>
+<A HREF=../headers/pk_region_ask_shells.html>PK_REGION_ask_shells</A><BR>
+<A HREF=../headers/pk_session_ask_parts.html>PK_SESSION_ask_parts</A><BR>
+<A HREF=../headers/pk_shell_ask_acorn_vertex.html>PK_SHELL_ask_acorn_vertex</A><BR>
+<A HREF=../headers/pk_shell_ask_body.html>PK_SHELL_ask_body</A><BR>
+<A HREF=../headers/pk_shell_ask_oriented_faces.html>PK_SHELL_ask_oriented_faces</A><BR>
+<A HREF=../headers/pk_shell_ask_region.html>PK_SHELL_ask_region</A><BR>
+<A HREF=../headers/pk_shell_ask_wireframe_edges.html>PK_SHELL_ask_wireframe_edges</A><BR>
+<A HREF=../headers/pk_surf_ask_faces.html>PK_SURF_ask_faces</A><BR>
+<A HREF=../headers/pk_surf_ask_part.html>PK_SURF_ask_part</A><BR>
+<A HREF=../headers/pk_vertex_ask_body.html>PK_VERTEX_ask_body</A><BR>
+<A HREF=../headers/pk_vertex_ask_faces.html>PK_VERTEX_ask_faces</A><BR>
+<A HREF=../headers/pk_vertex_ask_isolated_loops.html>PK_VERTEX_ask_isolated_loops</A><BR>
+<A HREF=../headers/pk_vertex_ask_oriented_edges.html>PK_VERTEX_ask_oriented_edges</A><BR>
+<A HREF=../headers/pk_vertex_ask_shells.html>PK_VERTEX_ask_shells</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+IDCOEN ( entity, contyp, entys, nentys, ifail )
+===============================================
+
+  Identify connected entities.
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_entity            *entity         --- entity to look in
+  KI_cod_ty                *contyp         --- type of desired entities
+
+Returns:
+  KI_tag_list_&lt;entity&gt;     *entys          --- connected entities found
+ &lt;KI_int_nitems&gt;           *nentys         --- number found
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_type_combn         bad type combination
+  KI_general_body           general body
+  KI_not_a_tag              not an entity
+
+Description:
+  IDCOEN creates a list of the entities of type 'contyp' connected to 'entity'.
+
+  The input entity may not be from a general body. These enquiries for general
+  bodies are supported in the PK interface.
+
+  The following table indicates the valid combinations of the type 'entity'
+  and 'contyp':
+
+                                  CONTYP
+
+                |           TYTO..         |   TYGE..  |   TYAD..  |TYOWNR
+                |AS IN BY SH FA LO FN ED VX|SU CU PT TF|AD AT LI FE|
+                |                          |           |           |
+             WO |n     n                   |n  n  n  n |n     n    |
+             AS |n  n  n                   |n  n  n    |   n  n  n |  n
+             IN |1*    1*                  |         1*|   n     n |  1
+             BY |n  n     N  n  n  n  n  n |n  n  n    |   n  n  n |
+          E  SH |      1     n  n  n  n  n |           |   n       |
+          N  FA |      1  1     n  n  n  n |1*         |   n     n |
+          T  LO |      1  1  1     n  n+ n+|           |   n     n |
+          I  FN |      1  1  1  1     1  2*|   1*      |           |
+          I  ED |      1  1  2! 2! 2?    2*|   1*      |   n     n |
+          T  VX |      1  1  n  n  n  n+   |      1*   |   n     n |
+          Y  SU |1*    1*    n             |           |   n     n |  1*
+             CU |1*    1*          1* n    |           |   n     n |  1*
+             PT |1*    1*                1*|           |   n     n |  1*
+             TF |   1*                     |           |           |
+             AT |1* 1* 1* 1* 1* 1*    1* 1*|1* 1* 1*   |         1*|  1
+             LI |1*    1*                  |           |           |  1*
+             FE |1* n  1*    n  n     n  n |n  n  n    |   n       |  1
+                |
+                |AS IN BY SH FA LO FN ED VX|SU CU PT TF|AD AT LI FE|
+                |           TYTO..         |   TYGE..  |   TYAD..  |TYOWNR
+
+  The blank cells indicate an invalid combination and the other symbols
+  indicate how many connected entities may be returned as follows:
+
+          1  => Exactly one
+          1* => Zero or one
+          2  => Exactly two
+          2- => One or two
+          2* => Zero, one or two
+          2! => Exactly two; duplicates possible; either or both may be NULTAG
+          2? => Exactly two; no duplicates except either or both may be NULTAG
+          n  => Zero, one or more
+          n+ => Zero, one or more; duplicates possible
+          N  => One or more
+
+  When the loops or faces of an edge are sought, the left hand loop or face is
+  returned first. Left and right are determined with respect to the direction
+  of the edge. If the edge has the same loop or face on both sides, the two
+  entries in the return list will be the same. If the edge is on the boundary
+  of a sheet body, one of the entries in the returned list will be NULTAG. If the
+  edge is from a wire body, both the entries will be NULTAG.
+
+  When the fins of an edge are requested, the left fin of the edge is
+  returned first. The left fin is always in the direction of the edge.
+  If the edge is on the boundary of a sheet body, one of the entries in
+  the returned list will be NULTAG.
+
+  If the vertices of an edge or fin are requested, and there are two, the
+  start vertex is returned first and followed by the end vertex.
+
+  The edges of a vertex are returned in anti-clockwise order looking at the
+  vertex from outside the body (or inside the void if the vertex is in an
+  interior shell). Any edge which starts and ends at the given vertex will
+  occur twice in the returned list. If the vertex is on the boundary of a
+  sheet body, the first and last edges in the list will themselves be boundary
+  edges of the sheet.
+
+  The fins of a vertex are also returned in anti-clockwise order looking
+  at the vertex from outside the body (or inside the void if the vertex is
+  in an interior shell). Only those fins for which the vertex is the end
+  vertex will appear in the list.
+
+  Similarly the edges and fins of a loop are returned in anticlockwise
+  order. Edges with the loop on both sides (e.g. wire edges) will occur
+  twice in the list.
+
+  The list of vertices of a loop is the list of end vertices of the edges of
+  the loop (in the same order). The only exception to this rule is a loop
+  composed of a single ring edge; such a loop will return a single edge and no
+  vertices.
+
+  When the shells of a body are requested the first shell returned is always
+  the exterior shell of the body.
+
+  In other cases the order of the returned items is not significant and there
+  will be no duplicated items or NULTAGs in the list.
+
+  If 'contyp' is TYGESU, TYGECU or TYGEPT and 'entity' is a body or assembly
+  IDCOEN returns only the appropriate construction geometry attached to
+  'entity'.
+
+  TYOWNR may be used in two kinds of case:
+
+    1) TYTOIN from an assembly will give the instances IN the assembly;
+       use TYOWNR to get instances OF the assembly. Similarly TYTOAS from an
+       instance will give the assembly (if any) referenced by the instance;
+       use TYOWNR to get the owning assembly.
+
+       This problem does not arise with bodies; TYTOIN and TYTOAS both go
+       upwards to the referencing instances and their owning assemblies.
+
+    2) Construction geometry, attributes, features and lists may be attached
+       to various types of entity. Use TYOWNR to find the owner irrespective
+       of its type.
+
+  If IDCOEN completes without error, it will always return a list in 'entys',
+  even if the list has no entries.
+
+  It is now possible to represent edges with either a single curve or two fin
+  curves. For the fin curve case, no curve is associated directly with the edge
+  and so no curve is returned. The relevant curves can be accessed via the fins.
+
+  If the given type combination matches a blank cell in the table above,
+  KI_bad_type_combn will be returned in 'ifail'.
+
+
+</PRE>
+</BODY>
+</HTML>

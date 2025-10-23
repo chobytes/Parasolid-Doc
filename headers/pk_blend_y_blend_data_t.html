@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_y_blend_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_y_blend_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_blend_y_blend_data_s
+    {
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>         y_blend;      --- whether to y blend
+                                       --- (PK_LOGICAL_false)
+    int                  n_vertices;   --- number of vertices (0)
+    const <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>   *vertices;     --- array of vertices to blend (NULL)
+    };
+typedef struct PK_blend_y_blend_data_s PK_blend_y_blend_data_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains information specifying whether or not y-shaped
+vertex blends are required, and a list of vertices specifying where to apply
+them.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_fix_blends_o_t.html>PK_BODY_fix_blends_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+When two blends on adjacent edges of opposite convexity meet at
+a three, or more, edge vertex and the default shape of the blend
+is to roll one blend over the other, a y-shaped vertex blend offers
+an alternative shape of the blend at the vertex.
+
+<B>'y_blend'</B>         when set to PK_LOGICAL_true switches y-shaped vertex
+                  blending on.
+                  The default is PK_LOGICAL_false.
+
+<B>'vertices'</B>        is an array of length <B>'n_vertices'</B> specifying on
+                  which vertices to apply y-shaped vertex blends.
+
+If y-shaped vertex blending is switched on and no vertices are supplied then a
+y-shaped vertex blend will be applied to all suitable vertices.
+
+See <A HREF="../chapters/fd_chap.077.html#50409864_pgfId-295415">Creating Y-shaped blends</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

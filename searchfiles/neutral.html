@@ -1,0 +1,127 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295017", " <B>Neutral</B> binary (recommended) ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.045.html#50409828_pgfId-325917", " also provides information on how to work with <B>neutral</B> sheets as well as sheet and surface extension.", "Functional Description - Introduction To Sheets and Wires");
+top.note("chapters/fd_chap.045.html#50409828_pgfId-324633", " Generation describes how to create and work with <B>neutral</B> sheets ", "Functional Description - Introduction To Sheets and Wires");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358673", "mid-surface generation refers to the creation of <B>neutral</B> sheets from faces of a solid body, or", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358674", " <B>Neutral</B> sheets are generally used to perform finite element analysis", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358675", " You can think of creating <B>neutral</B> sheets from a solid body as the opposite", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358676", " There are two stages involved in creating <B>neutral</B> sheets: ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358678", " or other methods described in Section 48.2, Creating <B>neutral</B> sheets , for more information. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358683", " (or more) sheets meet. See Section 48.3, Trimming <B>neutral</B> sheets , for more information. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358696", " 48.2 Creating <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358698", " you can use to create a set of <B>neutral</B> sheets for a solid body or for sheet", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358701", " PK_FACE_make_neutral_sheet_2 creates a <B>neutral</B> sheet between two arrays of faces, ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358705", " that describes the exact position of the resulting <B>neutral</B> sheets between the ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358712", " 48-1 shows a trivial example in which a <B>neutral</B> sheet is created mid-way between two cylindrical surfaces.", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358752", " slightly more complex example in which a single <B>neutral</B> sheet is created from ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358758", " Figure 48-2 Creating a <B>neutral</B> sheet from two arrays of faces ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358759", " not all share the same surface, then a <B>neutral</B> sheet that contains multiple faces may be created.", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358768", " Figure 48-3 Creating a multiple face <B>neutral</B> sheet from two arrays of faces ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358769", " In practice, however, you will want to create <B>neutral</B> sheets for an entire body or for sheet", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358833", " Figure 48-4 Creating <B>neutral</B> sheets for a body ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358836", " is important in order to create these <B>neutral</B> sheets. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358838", " to perform this task; see Section 48.3, Trimming <B>neutral</B> sheets . ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358843", " a <B>neutral</B> sheet is created. If PK_LOGICAL_false, no <B>neutral</B> sheet is created but the construction data is", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-397097", " control the face pair detection stage of the <B>neutral</B> sheet creation algorithm. It allows you to specify", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-395813", " If the faces sets do not overlap then <B>neutral</B> sheets are not created. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-396887", " since they do not overlap and therefore a <B>neutral</B> sheet is not created. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-638285", " this case Parasolid will attempt to create a <B>neutral</B> sheet using the reported face sets in the", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-397073", " 48.2.2 Supplying construction methods to create <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358849", " You can optionally choose to construct <B>neutral</B> sheets using the ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358862", " of construction methods that are used to construct <B>neutral</B> sheets. This can be one of: ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358863", " and creates a <B>neutral</B> sheet between them. This sheet is an offset", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-410374", " faces and uses this value to create a <B>neutral</B> sheet in the direction of the normal that", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-407620", " PK_neutral_method_medial_c : creates a <B>neutral</B> sheet that is an average mid-surface between the", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358906", " Figure 48-6 Construction methods for generating <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358938", " any holes and extends gaps in the resulting <B>neutral</B> sheets to make them large enough for trimming", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358986", " whether to extend and fill holes when creating <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358992", " use this functionality to attempt to create a <B>neutral</B> sheet from two distinctly different faces. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358997", " 48.3 Trimming <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358998", " limits of the <B>neutral</B> sheet or where two <B>neutral</B> sheets meet each other. Once all the edges", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358999", " An edge can be created on a <B>neutral</B> sheet for one of three reasons: ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359000", " Where two (or more) <B>neutral</B> sheets meet, an edge is created on each", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359001", " a side face or because it meets another <B>neutral</B> sheet. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359002", " the normal to the <B>neutral</B> surface onto the <B>neutral</B> sheet. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359006", " untrimmed <B>neutral</B> sheets are shown, together with the <B>neutral</B> sheets", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359016", " the boss has been projected onto the corresponding <B>neutral</B> sheet. ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359026", " and one for the tab. Notice that the <B>neutral</B> sheet of the base plate has an edge", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359032", " Figure 48-10 <B>Neutral</B> sheets for a solid plate with a tab ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359033", " 48.3.1 Ignoring small faces when trimming <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359034", " as blend faces and sliver faces. The supplied <B>neutral</B> sheets are trimmed so as to maintain the", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359038", " default, these blend faces are ignored, and the <B>neutral</B> sheets are trimmed so as to form a", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359044", " Figure 48-11 Ignoring small faces when trimming <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359045", " 48.3.2 Controlling overlapping faces when trimming <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359046", " This is particularly true if you are creating <B>neutral</B> sheets from models that do not have a", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359121", " Figure 48-12 Repairing overlapping faces when trimming <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359122", " 48.3.3 Controlling the method used to trim <B>neutral</B> sheets ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359123", " in some configurations, this means that the resulting <B>neutral</B> sheets are bigger than they should be, extending", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359127", " to PK_neutral_trim_method_sides_c , the <B>neutral</B> sheets are trimmed to the side faces of", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359163", " Figure 48-13 Controlling how to trim <B>neutral</B> sheets with more than one surface ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359167", " when trimming <B>neutral</B> sheets. See Section 48.2, Creating <B>neutral</B> sheets , for more information on this option.", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359178", " Each face on a <B>neutral</B> sheet has usually arisen from the projection of", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-387911", " target which project onto this face on the <B>neutral</B> sheet. There is usually one target face for", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-294776", " <B>neutral</B> binary ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295078", " format may be text, machine-dependent binary, machine-independent binary, <B>neutral</B> binary, applio (calls application-registered functions), or indexed (calls", "Functional Description - Archives");
+top.note("chapters/fd_chap.117.html#50409909_pgfId-294823", " <B>neutral</B> binary ", "Functional Description - Session Support");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204260", " <B>neutral</B> sheet, creating 617 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205042", " <B>neutral</B> sheet bodies 617 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206181", " face pairs for <B>neutral</B> sheets 618 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208071", " <B>neutral</B> sheet bodies ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209540", " creating <B>neutral</B> 617 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209601", " face pairs for <B>neutral</B> 618 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209611", " trimming <B>neutral</B> 626 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210449", " <B>neutral</B> sheets 626 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.07.html#50442276_pgfId-494166", " You can create a set of <B>neutral</B> (mid-surface) sheets from a solid body, as shown", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.07.html#50442276_pgfId-494191", " Figure 6-1 Creating <B>neutral</B> sheets from a solid body ", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " 3800 No problems were detected and a trimmed <B>neutral</B> sheet has been returned. ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " An error occurred while trying to extend the <B>neutral</B> sheet. ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_disjoint 5134 PK_FACE_make_neutral_sheet_2 (MILD) <B>neutral</B> sheet would be disjoint", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_disjoint 5134 PK_FACE_make_neutral_sheet_2 (MILD) <B>neutral</B> sheet would be disjoint", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " PK_FACE_make_neutral_sheet_2 5134 PK_ERROR_disjoint (MILD) <B>neutral</B> sheet would be disjoint", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_trim_neutral_sheets.html#declaration", " PK_BODY_t neutral_sheets[], --- <B>neutral</B> sheets", "PK Reference - PK_BODY_trim_neutral_sheets");
+top.note("headers/pk_body_trim_neutral_sheets.html#description", " This function trims the <B>neutral</B> sheets in accordance with their pairs", "PK Reference - PK_BODY_trim_neutral_sheets");
+top.note("headers/pk_body_trim_neutral_sheets.html#documentation", "This function trims some <B>neutral</B> sheets as specified by", "PK Reference - PK_BODY_trim_neutral_sheets");
+top.note("headers/pk_body_trim_neutral_sheets_2.html#declaration", " PK_BODY_t neutral_sheets[], --- <B>neutral</B> sheets", "PK Reference - PK_BODY_trim_neutral_sheets_2");
+top.note("headers/pk_body_trim_neutral_sheets_2.html#description", " This function trims the <B>neutral</B> sheets in accordance with their pairs", "PK Reference - PK_BODY_trim_neutral_sheets_2");
+top.note("headers/pk_body_trim_neutral_sheets_2.html#documentation", "This function trims some <B>neutral</B> sheets as specified by", "PK Reference - PK_BODY_trim_neutral_sheets_2");
+top.note("headers/pk_body_trim_neutral_sheets_o_t.html#declaration", " PK_neutral_trim_method_t trim_method; --- method of trimming <B>neutral</B>", "PK Reference - PK_BODY_trim_neutral_sheets_o_t");
+top.note("headers/pk_body_trim_neutral_sheets_o_t.html#documentation", " trim_method Controls how <B>neutral</B> sheets with more than one surface are", "PK Reference - PK_BODY_trim_neutral_sheets_o_t");
+top.note("headers/pk_face_make_neutral_sheet.html#declaration", " PK_BODY_t *const neutral_sheet --- <B>neutral</B> sheet", "PK Reference - PK_FACE_make_neutral_sheet");
+top.note("headers/pk_face_make_neutral_sheet.html#description", " This function creates the <B>neutral</B> surface defined by the surfaces on the", "PK Reference - PK_FACE_make_neutral_sheet");
+top.note("headers/pk_face_make_neutral_sheet.html#documentation", " of placement will be used to create a <B>neutral</B> surface", "PK Reference - PK_FACE_make_neutral_sheet");
+top.note("headers/pk_face_make_neutral_sheet_2.html#description", " This function creates the <B>neutral</B> sheet defined by the surfaces on the", "PK Reference - PK_FACE_make_neutral_sheet_2");
+top.note("headers/pk_face_make_neutral_sheet_2.html#errors", " PK_ERROR_disjoint (MILD) <B>neutral</B> sheet would be disjoint", "PK Reference - PK_FACE_make_neutral_sheet_2");
+top.note("headers/pk_face_make_neutral_sheet_2.html#documentation", " receives two sets of faces and constructs a <B>neutral</B> sheet between", "PK Reference - PK_FACE_make_neutral_sheet_2");
+top.note("headers/pk_face_make_neutral_sheet_o_t.html#declaration", " PK_LOGICAL_t make_sheet; --- whether to create a <B>neutral</B> sheet", "PK Reference - PK_FACE_make_neutral_sheet_o_t");
+top.note("headers/pk_face_make_neutral_sheet_o_t.html#documentation", " <B>neutral</B> sheets and side faces by extending and filling", "PK Reference - PK_FACE_make_neutral_sheet_o_t");
+top.note("headers/pk_face_neutral_causes_array_t.html#declaration", " --- (equal to number of faces in <B>neutral</B> sheet)", "PK Reference - PK_FACE_neutral_causes_array_t");
+top.note("headers/pk_face_neutral_causes_array_t.html#documentation", "face of the corresponding <B>neutral</B> sheet. The length of the array is", "PK Reference - PK_FACE_neutral_causes_array_t");
+top.note("headers/pk_face_neutral_causes_t.html#declaration", " PK_FACE_t neutral_face; --- Face in <B>neutral</B> sheet.", "PK Reference - PK_FACE_neutral_causes_t");
+top.note("headers/pk_face_neutral_causes_t.html#description", "<B>neutral</B> sheet.", "PK Reference - PK_FACE_neutral_causes_t");
+top.note("headers/pk_face_neutral_causes_t.html#documentation", "A face on a <B>neutral</B> sheet is usually the result of intersecting the", "PK Reference - PK_FACE_neutral_causes_t");
+top.note("headers/pk_face_set_pair_t.html#description", "corresponding <B>neutral</B> sheet.", "PK Reference - PK_FACE_set_pair_t");
+top.note("headers/pk_face_set_pair_t.html#documentation", " faces1 and faces2 will specify the way the <B>neutral</B> sheet body", "PK Reference - PK_FACE_set_pair_t");
+top.note("headers/pk_neutral_error_t.html#documentation", "operation on a <B>neutral</B> sheet.", "PK Reference - PK_neutral_error_t");
+top.note("headers/pk_neutral_face_overlap_t.html#documentation", "when making <B>neutral</B> sheets.", "PK Reference - PK_neutral_face_overlap_t");
+top.note("headers/pk_neutral_ignore_fa_t.html#documentation", " to select whether faces will be ignored in <B>neutral</B>", "PK Reference - PK_neutral_ignore_fa_t");
+top.note("headers/pk_neutral_method_t.html#documentation", "used to construct the <B>neutral</B> sheet.", "PK Reference - PK_neutral_method_t");
+top.note("headers/pk_neutral_overlap_t.html#documentation", " datatype is used to select how overlaps of <B>neutral</B> sheets are treated in", "PK Reference - PK_neutral_overlap_t");
+top.note("headers/pk_neutral_trim_method_t.html#documentation", "This datatype is used to select how <B>neutral</B> sheets with more than one surface", "PK Reference - PK_neutral_trim_method_t");
+top.note("headers/pk_report_3_t.html#documentation", " PK_REPORT_3_<B>neutral</B>_face_data_c <B>Neutral</B> sheet construction data.", "PK Reference - PK_REPORT_3_t");
+top.note("chapters/di_chap.03.html#50511935_pgfId-273951", " local character set of the target machine) and <B>neutral</B> binary files should be portable between machines. ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-273952", " Binary, <B>neutral</B> or machine files are normally quicker both to", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-285870", " Whether binary transmit files or <B>neutral</B> transmit files are created is dependent on the", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-273971", " Text and <B>neutral</B> binary files shall be portable between different Frustrum", "Downward Interfaces - File Handling");
+top.note("chapters/kd_chap.04.html#50475012_pgfId-281984", " (option transmit <B>neutral</B> -- machine independent, binary format ", "KID Manual - Object-Oriented KID");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

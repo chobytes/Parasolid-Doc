@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<TITLE>STAMOD</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>STAMOD</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_session_start.html>PK_SESSION_start</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+STAMOD ( kijon, nchars, jfilnm, usrfld, world, kivrsn, ifail )
+==============================================================
+
+  Starts the modeller
+
+Receives:
+  KI_cod_logical           *kijon          --- flags whether to write journal
+                                           --- file or not
+ &lt;KI_int_nchars&gt;           *nchars         --- number of characters in journal
+                                           --- file name (used only if kijon is
+                                           --- set to true)
+  KI_chr_filename           jfilnm[nchars] --- name of journal file
+  int                      *usrfld         --- size of user fields (in integers)
+
+Returns:
+  KI_tag_entity            *world          --- world
+  int                      *kivrsn         --- version number of interface being
+                                           --- invoked
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cant_open_jrnl         Journal file could not be opened
+  KI_bad_filename           Character string is not a valid file name
+  KI_bad_user_field_size    User field length is negative or longer than maximum
+  KI_incorrect_mc_conf      Machine configuration not authorised for Parasolid
+  KI_modeller_not_stopped   STAMOD already called since the last call to STOMOD
+
+Description:
+  This routine starts up the modeller and must be called before any other. It
+  may not then be called again until STOMOD has been called. If the journal
+  flag 'kijon' is set to true then journal records will be sent to the specified
+  file for each call to the interface.
+
+  The length (in integers) of user fields may also be specified. The maximum
+  length is 16 integers; specifying a length of zero will result in no user
+  fields being allocated. Note that in order to receive an archived part with
+  its user fields, it is necessary that the user field length for the current
+  session be the same as when the part was archived.
+
+  The world entity (which contains all loaded assemblies and bodies) is
+  returned.
+
+  The interface parameters are initialised: see SEINTP for documentation of
+  the default values.
+
+  The version number of the kernel is returned in 'kivrsn'; when read as a
+  decimal integer it is of form Mmmbbb, where M is the major version number
+  of Parasolid, mm is the minor version number and bbb is the build number,
+  which identifies when the copy of Parasolid currently being run was
+  compiled.  The entire version number should always be quoted in any
+  correspondence with your supplier of Parasolid.
+
+  On platforms where it is possible to vary the machine configuration in ways
+  that would affect Parasolid (eg, the format of floating point numbers or the
+  endian-ness of numbers) the modeller will not be started if the current
+  configuration is not recognised as being safe. In this case the ifail
+  KI_incorrect_mc_conf will be returned.
+
+
+</PRE>
+</BODY>
+</HTML>

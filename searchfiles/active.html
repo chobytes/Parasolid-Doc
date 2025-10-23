@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.099.html#50409889_pgfId-416064", " be made no-roll attributes if partitioned rollback is <B>active</B> (see PK_DELTA_register_callbacks ). ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-382631", " step ensures that the new mechanism is not <B>active</B> when you update features built in the original", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/ov_chap.18.html#50442277_pgfId-277421", " This is an area of <B>active</B> development; Parasolid support for multiprocessors is continually evolving", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_mark_ki_started 5007 PK_MARK_start KI rollback is already <B>active</B>", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_mark_ki_started 5007 PK_MARK_start KI rollback is already <B>active</B>", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_rollback_not_started 5048 PK_ATTRIB_ask_no_roll (MILD) Partitioned rollback is not <B>active</B>", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " PK_ATTRIB_ask_no_roll 5048 PK_ERROR_rollback_not_started (MILD) Partitioned rollback is not <B>active</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " PK_DEBUG_SESSION_check 5048 PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " PK_MARK_ask_following 5048 PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_SESSION_ask_curr_partition 5048 PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_attrib_ask_no_roll.html#errors", " PK_ERROR_rollback_not_started (MILD) Partitioned rollback is not <B>active</B>", "PK Reference - PK_ATTRIB_ask_no_roll");
+top.note("headers/pk_attrib_set_no_roll.html#errors", " PK_ERROR_rollback_not_started (MILD) Partitioned rollback is not <B>active</B>", "PK Reference - PK_ATTRIB_set_no_roll");
+top.note("headers/pk_attrib_set_no_roll.html#documentation", "<B>active</B> (see PK_DELTA_register_callbacks ).", "PK Reference - PK_ATTRIB_set_no_roll");
+top.note("headers/pk_body_change_partition.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_BODY_change_partition");
+top.note("headers/pk_debug_session_check.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_DEBUG_SESSION_check");
+top.note("headers/pk_entity_ask_partition.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_ENTITY_ask_partition");
+top.note("headers/pk_mark_ask_following.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_MARK_ask_following");
+top.note("headers/pk_mark_ask_forward.html#errors", " PK_ERROR_mark_not_started non-partitioned PK rollback is not <B>active</B>", "PK Reference - PK_MARK_ask_forward");
+top.note("headers/pk_mark_ask_frustrum.html#errors", " PK_ERROR_mark_not_started non-partitioned PK rollback is not <B>active</B>", "PK Reference - PK_MARK_ask_frustrum");
+top.note("headers/pk_mark_ask_pmarks.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_MARK_ask_pmarks");
+top.note("headers/pk_mark_ask_preceding.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_MARK_ask_preceding");
+top.note("headers/pk_mark_ask_state.html#errors", " PK_ERROR_mark_not_started non-partitioned PK rollback is not <B>active</B>", "PK Reference - PK_MARK_ask_state");
+top.note("headers/pk_mark_create.html#errors", " PK_ERROR_rollback_not_started Neither PK nor partitioned rollback <B>active</B>", "PK Reference - PK_MARK_create");
+top.note("headers/pk_mark_create.html#documentation", "If partitioned rollback is <B>active</B> then pmarks will be created in all", "PK Reference - PK_MARK_create");
+top.note("headers/pk_mark_delete.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_MARK_delete");
+top.note("headers/pk_mark_goto.html#errors", " PK_ERROR_rollback_not_started Neither PK nor partitioned rollback <B>active</B>", "PK Reference - PK_MARK_goto");
+top.note("headers/pk_mark_goto_2.html#errors", " <B>active</B>", "PK Reference - PK_MARK_goto_2");
+top.note("headers/pk_mark_is.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_MARK_is");
+top.note("headers/pk_mark_is_on.html#declaration", " PK_LOGICAL_t *const is_on --- whether non-partitioned rollback <B>active</B>", "PK Reference - PK_MARK_is_on");
+top.note("headers/pk_mark_start.html#errors", " PK_ERROR_mark_ki_started KI rollback is already <B>active</B>", "PK Reference - PK_MARK_start");
+top.note("headers/pk_mark_stop.html#errors", " PK_ERROR_mark_not_started PK rollback is not <B>active</B>", "PK Reference - PK_MARK_stop");
+top.note("headers/pk_partition_advance_pmark.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_advance_pmark");
+top.note("headers/pk_partition_ask.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_ask");
+top.note("headers/pk_partition_ask_cloning.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_ask_cloning");
+top.note("headers/pk_partition_ask_initial_pmark.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_ask_initial_pmark");
+top.note("headers/pk_partition_ask_pmark.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_ask_pmark");
+top.note("headers/pk_partition_ask_pmark_size.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_ask_pmark_size");
+top.note("headers/pk_partition_ask_pmarks.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_ask_pmarks");
+top.note("headers/pk_partition_ask_pmarks_2.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_ask_pmarks_2");
+top.note("headers/pk_partition_ask_type.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_ask_type");
+top.note("headers/pk_partition_clone_pmark.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_clone_pmark");
+top.note("headers/pk_partition_copy.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_copy");
+top.note("headers/pk_partition_create.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_create");
+top.note("headers/pk_partition_create_empty.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_create_empty");
+top.note("headers/pk_partition_delete.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_delete");
+top.note("headers/pk_partition_find_pmark_by_id.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_find_pmark_by_id");
+top.note("headers/pk_partition_goto_guard.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_goto_guard");
+top.note("headers/pk_partition_has_guard.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_has_guard");
+top.note("headers/pk_partition_is_clone.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_is_clone");
+top.note("headers/pk_partition_make_pmark.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_make_pmark");
+top.note("headers/pk_partition_make_pmark_2.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_make_pmark_2");
+top.note("headers/pk_partition_merge.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_merge");
+top.note("headers/pk_partition_receive.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_receive");
+top.note("headers/pk_partition_receive_b.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_receive_b");
+top.note("headers/pk_partition_receive_deltas.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_receive_deltas");
+top.note("headers/pk_partition_receive_deltas_2.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_receive_deltas_2");
+top.note("headers/pk_partition_receive_u.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_receive_u");
+top.note("headers/pk_partition_reset_attribs.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_reset_attribs");
+top.note("headers/pk_partition_set_current.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_set_current");
+top.note("headers/pk_partition_set_guard.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_set_guard");
+top.note("headers/pk_partition_set_type.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_set_type");
+top.note("headers/pk_partition_start_cloning.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_start_cloning");
+top.note("headers/pk_partition_stop_cloning.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_stop_cloning");
+top.note("headers/pk_partition_transmit.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_transmit");
+top.note("headers/pk_partition_transmit_b.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_transmit_b");
+top.note("headers/pk_partition_transmit_delta.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_transmit_delta");
+top.note("headers/pk_partition_transmit_u.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_PARTITION_transmit_u");
+top.note("headers/pk_pmark_ask_entities.html#errors", " PK_ERROR_rollback_not_started (MILD) Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_ask_entities");
+top.note("headers/pk_pmark_ask_following.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_ask_following");
+top.note("headers/pk_pmark_ask_marks.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_ask_marks");
+top.note("headers/pk_pmark_ask_partition.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_ask_partition");
+top.note("headers/pk_pmark_ask_preceding.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_ask_preceding");
+top.note("headers/pk_pmark_delete.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_delete");
+top.note("headers/pk_pmark_goto.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_goto");
+top.note("headers/pk_pmark_goto_2.html#errors", " PK_ERROR_rollback_not_started (MILD) Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_goto_2");
+top.note("headers/pk_pmark_is.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_is");
+top.note("headers/pk_pmark_is_used_by_mark.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_PMARK_is_used_by_mark");
+top.note("headers/pk_session_ask_curr_partition.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_SESSION_ask_curr_partition");
+top.note("headers/pk_session_ask_mark.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_SESSION_ask_mark");
+top.note("headers/pk_session_ask_max_threads.html#description", "currently use internally (i.e. <B>active</B> SMP threads, not application threads).", "PK Reference - PK_SESSION_ask_max_threads");
+top.note("headers/pk_session_receive.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> but file", "PK Reference - PK_SESSION_receive");
+top.note("headers/pk_session_receive_u.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> but file", "PK Reference - PK_SESSION_receive_u");
+top.note("headers/pk_session_transmit.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_SESSION_transmit");
+top.note("headers/pk_session_transmit_u.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B>", "PK Reference - PK_SESSION_transmit_u");
+top.note("headers/pk_thread_ask_partitions.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_THREAD_ask_partitions");
+top.note("headers/pk_thread_lock_partitions.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_THREAD_lock_partitions");
+top.note("headers/pk_thread_tidy.html#documentation", " any time when a PK function is not <B>active</B>", "PK Reference - PK_THREAD_tidy");
+top.note("headers/pk_thread_unlock_partitions.html#errors", " PK_ERROR_rollback_not_started Partitioned rollback is not <B>active</B> (MILD)", "PK Reference - PK_THREAD_unlock_partitions");
+top.note("chapters/kd_chap.11.html#50475016_pgfId-273849", " Interrogates the model for all <B>active</B> attributes and build corresponding objects in KID with", "KID Manual - Attributes in KID");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-273851", " KID only allows one view to be <B>active</B>, although any number can be defined. When KID", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-273958", " Only one view or graphics subclass can be <B>active</B> at a time, and all graphics output are", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/in_chap.07.html#50520100_pgfId-505363", " of running with DEP <B>active</B>. DEP is normally <B>active</B> on all versions of Windows supported by Parasolid,", "Installation Notes - Environment");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

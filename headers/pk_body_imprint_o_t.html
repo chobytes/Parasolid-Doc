@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_imprint_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_imprint_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_imprint_o_s
+    {
+    int           o_t_version;           --- version number of option structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>  imprint_tool;          --- whether to imprint on tool
+                                         --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>  imprint_overlapping;   --- whether to imprint boundaries of
+                                         --- overlapping areas
+                                         --- (PK_LOGICAL_false)
+    const <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A>
+                  *matched_region;       --- regions to match (NULL)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A>
+                  imprint_complete_targ; --- whether to complete imprint on
+                                         --- target body
+                                         --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_t</A>
+                  imprint_extend_targ;   --- direction in which to complete
+                                         --- imprint on target body
+                                         --- (<A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_tangent_c</A>)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A>
+                  imprint_complete_tool; --- whether to complete imprint on
+                                         --- tool body
+                                         --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_t</A>
+                  imprint_extend_tool;   --- direction in which to complete
+                                         --- imprint on tool body
+                                         --- (<A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_tangent_c</A>)
+    <A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_t</A>
+                  update;                --- update switch
+                                         --- (<A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_default_c</A>)
+
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>  have_tolerance;        --- whether a tolerance is provided
+                                         --- (PK_LOGICAL_false) [NF]
+
+    double        tolerance;             --- tolerance to which the imprint
+                                         --- operation may assume that entities
+                                         --- are coincident (0.0) [NF]
+    };
+
+typedef struct PK_BODY_imprint_o_s PK_BODY_imprint_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is supplied to the body imprinting operation.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_tolerance            proposed tolerance is too small (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_imprint_body.html>PK_BODY_imprint_body</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Description of fields:
+
+<B>'imprint_tool'</B>           Imprint edges and vertices on the tool body.
+                         If this flag is set to PK_LOGICAL_false,
+                         edges and vertices are imprinted on the
+                         target only. The arrays of edges and
+                         vertices on the tool, returned in the results
+                         structure, will be set to null.
+
+<B>'imprint_overlapping'</B>    Imprint the boundaries of overlapping areas.
+                         This is only necessary when the target and
+                         tool are sheet bodies. If a face from the
+                         target and a face from the tool are on the
+                         same surface, the boundaries of the
+                         overlapping area will be imprinted. If this
+                         flag is not set, faces on a common surface
+                         will not imprint on each other.
+
+<B>'matched_region'</B>         Describes matched regions between the target and tool.
+                         See <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A> and <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-394571">here</A> for more
+                         information.
+
+<B>'imprint_complete_targ'</B>  Complete the imprint on the target body so
+                         that the end vertices of the imprint lie on
+                         any edge or any laminar edge of the target
+                         body. The incomplete imprint is completed by
+                         intersecting the target body with a plane
+                         orthogonal to the target at the end vertices
+                         of the incomplete imprint. Depending on the
+                         value of this option, the imprint will be
+                         completed along the direction of this plane
+                         until it either:
+                         o meets any edge belonging to the target body, or
+                         o meets any laminar edge belonging to the
+                           target body.
+                         N.B. The value <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_faceset_c</A> only
+                         applies to the face boolean algorithm, so it may not
+                         be used here.
+
+                         If general topology is not enabled in the session,
+                         the tool body must be a sheet body. The target body
+                         must also be a sheet body if completion is to a
+                         laminar edge, otherwise a solid body is also allowed.
+                         If general topology is enabled, the target and tool
+                         bodies may be of any type, however imprint completion
+                         can still only begin from laminar edges.
+
+                         A completed imprint that self-intersects will be
+                         trimmed at the point of self-intersection.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526837">Completing imprints</A> for more
+                         information.
+
+<B>'imprint_extend_targ'</B>    Choose the orientation of the plane when
+                         completing an imprint with
+                         <B>'imprint_complete_targ'</B>. The plane may lie
+                         tangential or orthogonal to the end of the
+                         imprint. The orthogonal direction may lie
+                         along the forward or backward direction of the
+                         tool body normal.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526837">Completing imprints</A> for more
+                         information.
+
+<B>'imprint_complete_tool'</B>  Complete the imprint on the tool body. The
+                         incomplete imprint will be completed on the
+                         tool body in a manner similar to that described
+                         for <B>'imprint_complete_targ'</B> above. However unlike
+                         <B>'imprint_complete_targ'</B>, if general topology is not
+                         enabled in the session, then it is not possible for
+                         the tool faces to belong to solid bodies.
+                         <B>'imprint_tool'</B> must be set to PK_LOGICAL_true
+                         when completing an imprint on the tool.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526837">Completing imprints</A> for more
+                         information.
+
+<B>'imprint_extend_tool'</B>    Choose the orientation of the plane when
+                         completing an imprint with
+                         <B>'imprint_complete_tool'</B>. This option behaves
+                         in a similar manner to that described in
+                         <B>'imprint_extend_targ'</B>.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526837">Completing imprints</A> for more
+                         information.
+
+<B>'update'</B>                 The default value allows applications to take
+                         advantage of the latest enhancements to the boolean
+                         algorithm. To maintain consistency when rebuilding
+                         models created in a previous version of Parasolid, a
+                         non-default value should be specified.
+                         (<A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_default_c</A>)
+
+<B>'have_tolerance'</B>         Indicates whether an operation tolerance is being
+                         passed in through the <B>'tolerance'</B> parameter.
+
+<B>'tolerance'</B>              The tolerance to which the imprint operation may
+                         assume that entities are coincident. This field should
+                         be set to a value that is related to the tolerance to
+                         which the application is creating approximations.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Local Operation Functions</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Local Operation Functions</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.07.html">Operations on Bodies, Curves, Surfaces, etc.</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.09.html">Miscellaneous Useful Functions</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.08.html#50475021_pgfId-273839">7.1	Introduction</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475021_pgfId-273839"></A>7.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475021_pgfId-273842"></A>Functions which are grouped as <A NAME="50475021_marker-273840"></A><A NAME="50475021_marker-273841"></A>local operations operate only on that part of the body represented by the given face set.</P>
+<P>
+<A NAME="50475021_pgfId-273852"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475021_pgfId-279702"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475021_pgfId-279704"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475021_pgfId-279716"></A>face(s)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475021_pgfId-279723"></A>tweak, ntweak, twefac, create_sheet, remove_faces, create_solid, delete_faces, taper</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475021_pgfId-273853"></A>tweak function</H4>
+<P>
+<A NAME="50475021_pgfId-273857"></A><CODE>
+tweak</CODE>
+<A NAME="50475021_marker-273854"></A><A NAME="50475021_marker-273855"></A><A NAME="50475021_marker-273856"></A> is a local operation that can be used to change the existing surface of a face to a given surface. The topology would be unaltered. <CODE>
+tweak</CODE>
+ takes as an argument a list of of faces and a corresponding list of surfaces.</P>
+<P>
+<A NAME="50475021_pgfId-279590"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475021_pgfId-279691"></A>&gt; (define b1 p_block)
+&gt; (define b2 p_cylinder)
+&gt; (b1 x 10;y 10;z 10;create)
+&gt; (b2 radius 1; height 10; point &acute;(0 5 5); 
+   direction &acute;(0 1 0); create)
+&gt; (b1 unite &acute;b2)     -- unite small cylinder onto side of block
+&gt; (graphics sketch &acute;b1; silhouette; autowindow; redraw)
+
+&gt; (face help tweak)   -- for information on how to tweak a face
+&gt; (define f1 face)
+&gt; (f1 pick)           -- pick block top face using the cursor
+
+&gt; (define s1 p_planar)
+&gt; (s1 point &acute;(0 0 50); direction &acute;(0 0 1); create)
+                -- s1 is plane at Z = 50 parallel to XY plane
+&gt; (f1 tweak &acute;s1) -- this will raise the face up to the surface
+        s1, and now body b1 has the dimensions x 1O, y 10, z 50</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475021_pgfId-273859"></A>ntweak function</H4>
+<P>
+<A NAME="50475021_pgfId-273863"></A><CODE>
+ntweak</CODE>
+<A NAME="50475021_marker-273860"></A><A NAME="50475021_marker-273861"></A><A NAME="50475021_marker-273862"></A> is similar to <CODE>
+tweak</CODE>
+, but changes the existing surface of a face to a given surface but is reversed. The topology must be unaltered.</P>
+
+
+<H4>
+<A NAME="50475021_pgfId-273864"></A>twefac function</H4>
+<P>
+<A NAME="50475021_pgfId-273868"></A><CODE>
+twefac</CODE>
+<A NAME="50475021_marker-273865"></A><A NAME="50475021_marker-273866"></A><A NAME="50475021_marker-273867"></A> is a local operation that can be used to modify the surface of a face by a given transformation. It can also apply a transformation or a list of transformations to either a list of faces or a list of lists of faces. In all cases the topology must be unaltered.</P>
+<P>
+<A NAME="50475021_pgfId-279601"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475021_pgfId-279675"></A>&gt; (define  b1 p_block)
+&gt; (b1 x 10;y 10;z 10;create)
+&gt; (face help twefac)           -- for information on twefac
+&gt; (define f1 face)
+&gt; (f1 pick_from b1)            -- pick the faces from the block
+
+&gt; (define t1 p_translation)
+&gt; (t1 direction &acute;(1 -1 1); distance 30; create)
+&gt; (graphics clear)
+&gt; (graphics sketch &acute;b1; autowindow; redraw)
+
+&gt; (f1 twefac &acute;t1)              -- translate all the faces
+&gt; (graphics sketch &acute;b1; autowindow; redraw)
+
+&gt; (f1 twefac &acute;t1)              -- translate all the faces again
+&gt; (graphics sketch &acute;b1; autowindow; redraw)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475021_pgfId-273870"></A>create_sheet function</H4>
+<P>
+<A NAME="50475021_pgfId-273874"></A><A NAME="50475021_marker-273871"></A><A NAME="50475021_marker-273872"></A><A NAME="50475021_marker-273873"></A>This face function copies the geometry and topology of the face and uses them to make a new sheet body <CODE>
+create_sheet_temp</CODE>
+. It only works for single items, not sets.</P>
+<P>
+<A NAME="50475021_pgfId-279608"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475021_pgfId-279681"></A>&gt; ( define f0 face)
+&gt; (f0 pick)
+&gt; (f0 create_sheet)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475021_pgfId-273876"></A>remove_faces, create_solid and delete_faces functions</H4>
+<P>
+<A NAME="50475021_pgfId-273886"></A><A NAME="50475021_marker-273877"></A><A NAME="50475021_marker-273878"></A><A NAME="50475021_marker-273879"></A><A NAME="50475021_marker-273880"></A><A NAME="50475021_marker-273881"></A><A NAME="50475021_marker-273882"></A><A NAME="50475021_marker-273883"></A><A NAME="50475021_marker-273884"></A><A NAME="50475021_marker-273885"></A>This sub group of face functions create new offspring bodies from a set of faces. </P>
+<UL>
+<LI>
+<A NAME="50475021_pgfId-273887"></A><STRONG>
+create_solid</STRONG> - Makes a copy of the faces involved and creates a new body from the copy. </LI>
+<LI>
+<A NAME="50475021_pgfId-273888"></A><STRONG>
+remove_faces</STRONG> - Removes the faces from their parent body, heals the parent and uses the face set to make a new body. </LI>
+<LI>
+<A NAME="50475021_pgfId-273889"></A><STRONG>
+delete_faces</STRONG> -  Deletes the face set from the parent body and heals the wound. An argument, one of the three listed below, determines how the wounds on parent and offspring bodies are mended.</LI>
+<UL>
+<LI>
+<A NAME="50475021_pgfId-273890"></A><STRONG>
+cap</STRONG> - Fits the simplest surface to the bounding edges.</LI>
+<LI>
+<A NAME="50475021_pgfId-273891"></A><STRONG>
+grow</STRONG> - Only for <CODE>
+create_solid</CODE>
+ and <CODE>
+remove_faces</CODE>
+. Grows surrounding edges and faces, extending them with their surfaces to cover the wound.</LI>
+<LI>
+<A NAME="50475021_pgfId-273892"></A><STRONG>
+growp</STRONG> - Makes an offspring body, using parent surfaces and curves of edges to mend the wound.</LI>
+<LI>
+<A NAME="50475021_pgfId-273893"></A><STRONG>
+shrink</STRONG> - If extending faces does not yield a solution, then shrinking the faces is tried.</LI>
+</UL>
+</UL>
+<P>
+<A NAME="50475021_pgfId-273894"></A>The new <CODE>
+child</CODE>
+ bodies created are given names of the form <CODE>
+create_solid_c1</CODE>
+, <CODE>
+create_solid_c2</CODE>
+ (etc)/ <CODE>
+remove_faces_c1</CODE>
+, <CODE>
+remove_faces_c2</CODE>
+ (etc) depending on which function created/removed them, and the number of child bodies created/removed. </P>
+<P>
+<A NAME="50475021_pgfId-273895"></A>In the case of <CODE>
+remove_faces</CODE>
+, where the parent is modified, the resulting parent body is returned as <CODE>
+remove_faces_p1</CODE>
+. <CODE>
+remove_faces</CODE>
+ is the only function which can take up to two optional arguments. </P>
+<UL>
+<LI>
+<A NAME="50475021_pgfId-273896"></A>When no arguments are given, cap is used to mend both parent and offspring bodies. </LI>
+<LI>
+<A NAME="50475021_pgfId-273897"></A>When only one argument is given, this is used to mend the parent. The default is used to mend the offspring. </LI>
+<LI>
+<A NAME="50475021_pgfId-273898"></A>Where two arguments are given, the first is used to mend the parent, the second to mend the offspring.</LI>
+</UL>
+<P>
+<A NAME="50475021_pgfId-279615"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475021_pgfId-279636"></A>&gt; (define f2 face)
+&gt; (f2 pick2)              -- pick two faces of cylindrical boss
+                             from a body previously drawn
+&gt; (f2 create_solid &acute;growp) -- create new body with copied faces
+                              using growp to mend wound.</PRE>
+<PRE><A NAME="50475021_pgfId-279637"></A>&gt; (define f2 face)
+&gt; (f2 pick2)              -- pick two faces of cylindrical boss
+                             from a body previously drawn
+&gt; (f2 remove_faces &acute;grow)  
+      -- remove faces and  mend parent with grow and create new 
+         body with copied faces, using default cap for mend</PRE>
+<PRE><A NAME="50475021_pgfId-279638"></A>&gt; (define f2 face)
+&gt; (f2 pick2)              -- pick two faces of cylindrical boss
+                             from a body previously drawn
+&gt; (f2 remove_faces &acute;growp &acute;grow)
+  -- remove faces and mend parent with grow using parent
+     surfaces to mend wound, create offspring with copied faces</PRE>
+<PRE><A NAME="50475021_pgfId-279639"></A>&gt; (define f2 face)
+&gt; (f2 pick2)              -- pick two faces of cylindrical boss
+                             from a body previously drawn
+&gt; (f2 delete_faces &acute;cap)  -- delete these faces from b1 and
+                             cap the &acute;wound&acute;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475021_pgfId-273903"></A>taper function</H4>
+<P>
+<A NAME="50475021_pgfId-273907"></A><CODE>
+taper</CODE>
+<A NAME="50475021_marker-273904"></A><A NAME="50475021_marker-273905"></A><A NAME="50475021_marker-273906"></A> drafts a set of faces, which can be any combination of planar, cylindrical and conical surfaces. It has taper properties of point, direction and angle, which define the taper plane and angle (see the description of TAPFAS for details of the effects of this operation and the meaning of the properties involved).</P>
+<P>
+<A NAME="50475021_pgfId-273908"></A>The following tapers a previously defined set of faces by 2 degrees about a taper plane, defined by the point and direction parameters:</P>
+<P>
+<A NAME="50475021_pgfId-279622"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475021_pgfId-279628"></A>&gt; ( f1 point &acute;(0 0 10); direction &acute;(0 0 1); angle 2; taper )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475021_pgfId-110680"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.07.html">Operations on Bodies, Curves, Surfaces, etc.</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.09.html">Miscellaneous Useful Functions</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

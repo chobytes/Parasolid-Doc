@@ -1,0 +1,175 @@
+<HTML>
+<HEAD>
+<TITLE>OUPWPC</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUPWPC</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bcurve_ask_piecewise.html>PK_BCURVE_ask_piecewise</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUPWPC ( bc, basis, coeffs, dim, order, nseg, ifail )
+=====================================================
+
+  Output B-curve in piecewise form
+
+Receives:
+  KI_tag_b_curve           *bc             --- B-curve
+  KI_cod_slba              *basis          --- representation method
+
+Returns:
+  KI_tag_list_dbl          *coeffs         --- vectors defining the curve
+  KI_int_dimension         *dim            --- dimension of defining vectors
+  KI_int_order             *order          --- order of curve
+  KI_int_nitems            *nseg           --- number of segments in curve
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_order              order must be four for Hermite basis
+
+Description:
+  This function outputs a B-curve in a piecewise form chosen by the user. The
+  following methods of representing the data are available:
+
+   o Bezier                   ('basis' = SLBABZ)
+   o Polynomial               ('basis' = SLBAPY)
+   o Hermite (cubic only)     ('basis' = SLBAHE)
+   o Taylor series            ('basis' = SLBATA)
+
+  Coefficient data 'coeffs':
+  . Contains 'order'*'nseg' vectors of dimension 'dim'. If 'dim'=3, then the
+    vectors are 3-D vectors containing the x, y and z components. If 'dim'=4,
+    then each vector has a weight (w) associated with it, and x, y, z and w
+    components are returned for each vector.
+  . The coefficients are returned in order, segment by segment.
+  . The interpretation of the coefficients depends on the representation method
+    chosen; this is determined by the value of the argument 'basis'.
+
+    The expressions for each segment of the B-curve P(t) in the various
+    representations are given below. For generality, the rational form is given.
+    The simplification to the non-rational form can be obtained by setting the
+    weights equal.
+
+  . Bezier vertices SLBABZ:
+
+    The equation of a rational Bezier curve segment is:
+
+                     n                    n
+                     --                /  --
+          P(t)   =   >   b (t) w  V   /   >  b (t) w
+                     --   i     i  i /    --  i     i
+                    i=0                   i=0
+
+          where n     = 'order'-1
+                V     = Bezier vertex
+                 i
+                w     = weight for V
+                 i                  i
+                b (t) = Bezier coefficient, defined by:
+                 i
+                      n!       i       n-i
+          b (t) = --------  * t * (1-t)
+           i      i! (n-i)!
+
+    The Bezier vertices are returned V ,w ,...,V ,w   for the rational form, or
+                                      0  0      n  n
+    V ,...,V  for the non-rational form.
+     0      n
+
+  . Polynomial coefficients SLBAPY:
+
+    The curve equation is given by a rational polynomial of order 'order':
+
+                     n                 n
+                     --         i   /  --     i
+          P(t)   =   >   w  A  t   /   >  w  t
+                     --   i  i    /    --  i
+                    i=0               i=0
+
+          where n = 'order'-1
+                A = polynomial coefficient
+                 i
+                w = weight for A
+                 i              i
+
+    The polynomial coefficients are returned starting with the constant
+    term and ending with the term of highest degree.
+
+  . Hermite coefficients SLBAHE:
+
+    This method can only be used for cubics. The equation of the curve is:
+
+                 f0(t) w0 P0 + g0(t) w1 P1 + f1(t) d0 D0 + g1(t) d1 D1
+          P(t) = -----------------------------------------------------
+                     f0(t) w0  + g0(t) w1 + f1(t) d0 + g1(t) d1
+
+                                2    3                      2     3
+          where f0(t)  =  1 - 31 + 2t          g0(t)  =  3t  - 2t
+
+                                2    3                       2    3
+                f1(t)  =  t - 2t  + t           g1(t)  =  - t  + t
+
+                P0, P1 = start and end points of segment
+                D0, D1 = derivatives at start and end
+                w0, w1 = weights at end points
+                d0, d1 = derivatives of weights at start and end
+
+  The coefficients are returned as P0,w0,P1,w1,D0,d0,D1,d1 for the rational
+  form, or P0,P1,D0,D1 for the non-rational form.
+
+  . Taylor series SLBATA:
+
+    This method stores the derivatives evaluated at the point start of each
+    segment, allowing the curve to be reconstructed as a Taylor series:
+
+                     n
+                     --    (i) (i)  i
+                     >    w   P    t   /  i!
+                     --
+                     i=0
+          P(t)   =   -----------------------
+                      n
+                      --     (i)  i
+                      >     w    t  / i!
+                      --
+                     i=0
+
+          where n = 'order'-1
+                 (i)
+                P    = i'th derivative at t = 0
+                 (i)
+                w    = i'th derivative of weight at t = 0
+
+    The point is returned first, followed by the 1st derivative and ending
+    with the derivative of order 'order'-1.
+
+  Dimension of coefficient vectors 'dim':
+  . For rational curves 'dim'=4.
+  . For non-rational curves 'dim'=3.
+
+  Order of each segment of the curve 'order':
+  . The order of the curve = degree + 1.
+  . The minimum order is 2.
+  . The Hermite basis ('basis' = SLBAHE) may only be chosen if the curve is
+    a cubic ('order' = 4).
+
+
+
+</PRE>
+</BODY>
+</HTML>

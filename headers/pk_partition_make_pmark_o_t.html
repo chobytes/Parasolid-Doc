@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_PARTITION_make_pmark_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_PARTITION_make_pmark_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_PARTITION_make_pmark_o_s
+    {
+    int                       o_t_version;       --- structure version
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              want_attrib_mod;   --- return entities modified
+                                                 --- indirectly by attributes
+                                                 --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              want_new_entities; --- return new entities
+                                                 --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              want_mod_entities; --- return modified entities
+                                                 --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              want_del_entities; --- return deleted entities
+                                                 --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              want_logged_mod;   --- return entities modified
+                                                 --- by logged changes only
+                                                 --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A>          new_entities_classes;
+                                                 --- classes of returned new
+                                                 --- entities (NULL, 0)
+    <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A>          mod_entities_classes;
+                                                 --- classes of returned mod
+                                                 --- entities (NULL, 0)
+    <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A>          del_entities_classes;
+                                                 --- classes of returned del
+                                                 --- entities (NULL, 0)
+    <A HREF=../headers/pk_pmark_t.html>PK_PMARK_t</A>                original_pmark;    --- pmark from clone span
+                                                 --- (PK_PMARK_null)
+    };
+typedef struct PK_PARTITION_make_pmark_o_s PK_PARTITION_make_pmark_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional arguments for <A HREF=../headers/pk_partition_make_pmark_2.html>PK_PARTITION_make_pmark_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_partition_make_pmark_2.html>PK_PARTITION_make_pmark_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'want_attrib_mod'</B>   Controls the type of modifications that are reported in the
+                    return argument <B>'mod_entities'</B> array. If an entity is only
+                    indirectly modified by changes to attributes, it will only
+                    be reported if this option is set to PK_LOGICAL_true.
+                    The default is PK_LOGICAL_true.
+
+                    If you want to use <B>'mod_entities'</B> to track changes in a
+                    model, we recommend that you leave <B>'want_attrib_mod'</B> at
+                    its default of PK_LOGICAL_true. Setting it to
+                    PK_LOGICAL_false can suppress entities that have also been
+                    modified by modelling changes.
+
+
+<B>'want_new_entities'</B> Whether to return an array of created entities instead
+                    of NULL. The default is PK_LOGICAL_true.
+
+
+<B>'want_mod_entities'</B> Whether to return an array of modified entities instead
+                    of NULL. The default is PK_LOGICAL_true.
+
+
+<B>'want_del_entities'</B> Whether to return an array of deleted entities instead
+                    of NULL. The default is PK_LOGICAL_true.
+
+
+<B>'want_logged_mod'</B>   Controls the type of modifications that are reported in the
+                    return argument <B>'mod_entities'</B> array. If this option is set
+                    to PK_LOGICAL_true, only those entities that have been
+                    modified by a modelling change will be reported.
+                    The default is PK_LOGICAL_false.
+
+
+<B>'new_entities_classes'</B>
+                    If not empty, restrict the returned new entities to
+                    those matching the classes in this array.
+                    The default is an empty array.
+
+
+<B>'mod_entities_classes'</B>
+                    If not empty, restrict the returned modified entities to
+                    those matching the classes in this array.
+                    The default is an empty array.
+
+
+<B>'del_entities_classes'</B>
+                    If not empty, restrict the returned deleted entities to
+                    those matching the classes in this array.
+                    The default is an empty array.
+
+
+<B>'original_pmark'</B>    If <B>'original_pmark'</B> is not PK_PMARK_null then the
+                    application is declaring that the partition in its
+                    current state is equivalent to the state it was in when
+                    the <B>'original_pmark'</B> was created. The pmark returned by
+                    <A HREF=../headers/pk_partition_make_pmark_2.html>PK_PARTITION_make_pmark_2</A> is then the clone pmark
+                    corresponding to this <B>'original_pmark'</B>.
+
+
+For the options <B>'new_entities_classes'</B>, <B>'mod_entities_classes'</B> and
+<B>'del_entities_classes'</B>, the arrays are allowed to contain PK_CLASS_entity
+and any of its subclasses, except PK_CLASS_attdef. If any superclasses are
+specified in an array then their subclasses must not also be specified.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>FNENFE</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>FNENFE</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_group_contains_entity.html>PK_GROUP_contains_entity</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+FNENFE ( featre, entity, found, ifail )
+=======================================
+
+  Find entity in feature
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_feature           *featre         --- feature
+  KI_tag_entity            *entity         --- entity to be looked for
+
+Returns:
+  KI_cod_logical           *found          --- true if entity is in feature
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wrong_type_for_feat    'entity' does not match feature type
+
+Description:
+  Returns true if the entity is in the feature, false otherwise.
+
+</PRE>
+</BODY>
+</HTML>

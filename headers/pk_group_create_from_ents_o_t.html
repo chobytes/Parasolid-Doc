@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_GROUP_create_from_ents_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_GROUP_create_from_ents_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_GROUP_create_from_ents_o_s
+    {
+    int                        o_t_version;
+                                    --- version number
+    int                        n_labels;
+                                    --- length of arrays <B>'labelled_entities'</B>
+                                    --- and <B>'labels'</B> (0)
+    const int                 *labelled_entities;
+                                    --- array of entities to be assigned
+                                    --- labels (NULL)
+    const int                 *labels;
+                                    --- array of labels to be assigned to
+                                    --- entities in the group (NULL)
+    <A HREF=../headers/pk_group_membership_t.html>PK_GROUP_membership_t</A>      membership;
+                                    --- behaviour when members of groups are
+                                    --- merged
+                                    --- (PK_GROUP_membership_inclusive_c)
+    <A HREF=../headers/pk_group_split_t.html>PK_GROUP_split_t</A>           split_empty;
+                                    --- behaviour for empty groups on split
+                                    --- (PK_GROUP_split_never_c)
+    <A HREF=../headers/pk_group_merge_t.html>PK_GROUP_merge_t</A>           merge_empty;
+                                    --- behaviour for empty groups on merge
+                                    --- (PK_GROUP_merge_no_c)
+    <A HREF=../headers/pk_group_merge_t.html>PK_GROUP_merge_t</A>           merge_populated;
+                                    --- behaviour for populated groups on merge
+                                    --- (PK_GROUP_merge_no_c)
+    <A HREF=../headers/pk_group_dependants_t.html>PK_GROUP_dependants_t</A>      delete_dependants;
+                                    --- behaviour of groups which are members
+                                    --- groups which are deleted
+                                    --- (PK_GROUP_dependants_keep_c)
+    int                        n_min_contents;
+                                    --- length of arrays <B>'min_contents_labels'</B>
+                                    --- and <B>'min_contents_minima'</B> (0)
+    const int                 *min_contents_labels;
+                                    --- array of labels to be assigned
+                                    --- a minimum content (NULL)
+    const int                 *min_contents_minima;
+                                    --- array of limits for the minimum
+                                    --- allowed contents of groups (NULL)
+    };
+typedef struct PK_GROUP_create_from_ents_o_s PK_GROUP_create_from_ents_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional arguments for <A HREF=../headers/pk_group_create_from_entities_2.html>PK_GROUP_create_from_entities_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_group_create_from_entities_2.html>PK_GROUP_create_from_entities_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'n_labels'</B>              The length of the next two arrays in the options,
+                        <B>'labelled_entities'</B> and <B>'labels'</B>. The default
+                        value is 0.
+
+<B>'labelled_entities'</B>     An array of entities to be assigned the labels given in
+                        the parallel array <B>'labels'</B>. The default value is NULL.
+
+<B>'labels'</B>                An array of labels to be assigned to entities listed in
+                        <B>'labelled_entities'</B>. The default value is NULL.
+
+<B>'membership'</B>            Whether a resultant merged entity belongs to the groups
+                        which the original entities belonged to before they
+                        were merged. The default value is
+                        PK_GROUP_membership_inclusive_c.
+
+<B>'split_empty'</B>           Whether a copy is made in the split-off part for
+                        each empty group in a part when that part is
+                        split. The default value is PK_GROUP_split_never_c.
+
+<B>'merge_empty'</B>           Whether pairs of identical empty groups, one
+                        in each part, are merged into one group in the merged
+                        part. "Identical" here means having the same
+                        attributes and the same group controls.  The default
+                        value is PK_GROUP_merge_no_c.
+
+<B>'merge_populated'</B>       Whether to merge populated groups which become
+                        identical as a result of merging their members. Groups
+                        are identical if they contain the same members (with
+                        the same labels if labels are being used), have the
+                        same group controls and have the same attributes. A
+                        pair of identical groups will only be merged if there
+                        are no other groups identical with them. The default
+                        value is PK_GROUP_merge_no_c.
+
+<B>'delete_dependants'</B>     Whether the deletion of a group is propagated to its
+                        members which are also groups. Groups which are
+                        members of deleted groups will only be deleted if
+                        they are not members of any remaining group. The
+                        default value is PK_GROUP_dependants_keep_c.
+
+<B>'n_min_contents'</B>        The length of the next two arrays in the options,
+                        <B>'min_contents_labels'</B> and <B>'min_contents_minima'</B>.
+                        The default value is 0.
+
+<B>'min_contents_labels'</B>   An array of labels for which the user wishes to
+                        specify a minimum number of entities with that label
+                        in the group. The minimum number of entities for each
+                        label is specified in the corresponding position in
+                        the parallel array <B>'min_contents_minima'</B>. A group
+                        is deleted if the number of members with any
+                        given label falls below the specified value. This
+                        condition is invoked either when a group is
+                        split as a result of its owning part being split
+                        or when an entity belonging to the group is deleted.
+                        If a group is split between parts, the condition is
+                        applied to each resulting group. The default
+                        value is NULL.
+
+                        If explicit labels are not being used, then it is
+                        assumed that all labels are <B>'0'</B>, so groups which
+                        do not label their contents can still be controlled
+                        with this option by specifying a single minimum for
+                        label 0.
+
+<B>'min_contents_minima'</B>   An array of minimum contents values corresponding to
+                        the labels listed in <B>'min_contents_labels'</B>. The
+                        default value is NULL.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_REPORT_record_1_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_REPORT_record_1_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_REPORT_record_1_s
+    {
+    <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_t</A>  status;       --- status code
+    int            n_old_items;  --- number of original items
+    int           *old_items;    --- items existing before operation
+    <A HREF=../headers/pk_class_t.html>PK_CLASS_t</A>    *old_classes;  --- classes of old items
+    int            n_new_items;  --- number of new items
+    <A HREF=../headers/pk_item_t.html>PK_ITEM_t</A>     *new_items;    --- items created during operation
+    };
+typedef struct PK_REPORT_record_1_s PK_REPORT_record_1_t;
+</B>
+<A NAME="description"></A>
+<I>This datatype is a REPORT record containing a status and items.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_report_record_t.html>PK_REPORT_record_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It has the fields:
+
+<B>'status'</B>           this indicates the status represented by the information
+                   in this record.  The <B>'old_items'</B> and <B>'new_items'</B> that are
+                   contained in this record depend upon the <B>'status'</B>.
+                   See documentation of <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_t</A>
+
+<B>'n_old_items'</B>      the number of reported items which existed before the
+                   operation for which the report was created
+
+<B>'old_items'</B>        an array of items which existed before the operation for
+                   which the report was created
+
+<B>'old_classes'</B>      the classes of the items in <B>'old_items'</B>
+
+<B>'n_new_items'</B>      the number of items which have have been created during the
+                   operation for which the report was created
+
+<B>'new_items'</B>        an array of items which have been created during the
+                   operation for which the report was created
+
+
+
+<B>'old_items'</B> relate to pre-operation topologies and <B>'status'</B> values refer
+to the class of post-operation topologies derived from them.
+
+The <B>'old_items'</B> array will contain the following entities according
+to the value of the <B>'status'</B> field. The typical class of <B>'old_items'</B> for
+each value of <B>'status'</B> is given, however exceptions do exist. For these status
+types, the <B>'new_items'</B> array is not currently used and <B>'n_new_items'</B> is set to
+0.
+
+NOTE: Entity classes given in the following represent typical cases.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cant_get_pt_c</A>       : 1 VERTEX    Failed to find new geometry
+                                                for existing vertex.
+                                    n FACEs     Failed to find geometry for
+                                                new vertex.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cant_get_cu_c</A>       : 1 EDGE      Failed to find new geometry
+                                                for existing edge.
+                                    n FACEs     Failed to find geometry for
+                                                new edge.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cant_get_su_c</A>       : n FACEs     Unable to produce offset
+                                                surfaces for these faces.
+                                                No surface replacement is
+                                                performed.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cant_offset_c</A>       : n FACEs     Failed to offset the face or
+                                                the face is only partially
+                                                offset. Likely causes are
+                                                self intersection or regions
+                                                of tight curvature on offset
+                                                surfaces.
+                                  : n EDGEs     Failed to offset the associated
+                                                entities to provide the
+                                                geometry for these edges.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_side_cu_fail_c</A>      : 1 EDGE      Failed to find side curve.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_side_su_fail_c</A>      : 1 FACE      Failed to create a side
+                                                surface.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_not_same_by_c</A>       : n/a         Not currently returned.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_fail_c</A>           : 1 FACE      Face which failed check.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_fa_fail_c</A>        : 2 FACEs     Pair of faces where
+                                                inconsistency found.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_ed_remains_c</A>        : 1 EDGE      An existing edge should have
+                                                disappeared
+                                    n FACEs     A transient edge should have
+                                                disappeared
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_point_contact_c</A>     : 1 VERTEX    Vertex where point contact has
+                                                has been found.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_bad_reference_c</A>     : 1 EDGE      Taper reference edge is not
+                                                valid.
+                                    1 FACE      Taper reference face is not
+                                                valid.
+                                    1 SURF      Taper reference surface is not
+                                                valid.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_not_supported_c</A>     : 1 FACE      Face that has currently
+                                                unsupported combination of
+                                                reference entities.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cant_extend_c</A>       : 1 EDGE      Geometry attached to returned
+                                                edge could not be extended.
+                                    1 FACE      Geometry attached to returned
+                                                face could not be extended.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_sheet_small_c</A>       : 1 FACE      Given sheet is too small.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cant_use_cu_c</A>       : 1 EDGE      The supplied/existing curve
+                                                for this edge lies more than
+                                                <B>'tolerance'</B> away from the
+                                                resulting face surfaces.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_eds_unconnected_c</A>   : n VERTEXs   The vertices at which the
+                                                boundary is not simply
+                                                connected.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_non_laminar_c</A>       : n EDGEs     The non-laminar edges.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_reference_loop_c</A>    : n EDGEs     Reference edges in the
+                                                inconsistent boundary.
+                                    n FACEs     Reference faces in the
+                                                inconsistent regions.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_lp_outside_fa_c</A>     : n LOOPs     Loops which are outside a
+                                                face.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_target_missed_c</A>     : n EDGEs     Target entity cannot bound
+                                                the regions that originate
+                                                from these boundary edges.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_wrong_side_c</A>        : n EDGEs     The side of target entity
+                                                has been specified and the
+                                                boundary formed by these
+                                                edges lies completely on the
+                                                wrong side of the target.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_ed_vxs_touch_c</A>      : n EDGEs     Edge has touching vertices.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_ed_large_tol_c</A>      : n EDGEs     Edge has had large tol set by
+                                                <A HREF=../headers/pk_edge_repair.html>PK_EDGE_repair</A>.
+                                                - or -
+                                                Set of edges sewn together
+                                                using large tol set by
+                                                <A HREF=../headers/pk_body_sew_bodies.html>PK_BODY_sew_bodies</A>.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_negated_c</A>           : n SHELLs    Shells that have been negated
+                                                by <A HREF=../headers/pk_face_delete_2.html>PK_FACE_delete_2</A>.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_check_fail_c</A>        : n BODYs     Bodies that have failed local
+                                                checking in <A HREF=../headers/pk_face_delete_2.html>PK_FACE_delete_2</A>.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_overlap_c</A>        : n FACEs     Faces that form an overlapping
+                                                set after mid-surface trimming.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_imp_dir_undef_c</A>     : n EDGEs     Imprinted edges for which a
+                                                consistent edge direction could
+                                                not be determined.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_not_offset_c</A>     : n FACEs     Faces that do not have an
+                                                offset in the other faceset to
+                                                the supplied tolerance in
+                                                <A HREF=../headers/pk_face_make_neutral_sheet_2.html>PK_FACE_make_neutral_sheet_2</A>.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_fa_repair_c</A>      : n EDGEs     Edges that have been created
+                                                when repairing face-face
+                                                inconsistencies in
+                                                <A HREF=../headers/pk_face_delete_2.html>PK_FACE_delete_2</A>.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_inconsistent_geom_c</A> : 2 VERTEXs   Matched vertices have
+                                                inconsistent geometry in
+                                                <A HREF=../headers/pk_body_knit.html>PK_BODY_knit</A>.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cut_incomplete_c</A>    : n SHELLs    outer shells of original target
+                                                body that were not completely
+                                                cut through by the sectioning
+                                                tool.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_region_type_undef_c</A> : n REGIONS   The result of deleting faces
+                                                of a general body has merged
+                                                regions and the type of the
+                                                reported result regions was
+                                                not determined by the merged
+                                                regions, but has been set
+                                                to void.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_on_target_c</A>         : n EDGEs     Edges are coincident with
+                                                target and don't require
+                                                extension.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_not_extended_c</A>      : n EDGEs     Edges are not coincident with
+                                                target but don't require
+                                                extension.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_miter_fail_c</A>        : n EDGEs     The reference edges where
+                                                mitering has failed.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_self_shadowing_c</A>    : n EDGEs     The reference edges where
+                                                self-shadowing occurs.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_no_roll_diff_c</A>      : n ATTRIBs   No-roll attributes which still
+                                                exist after the roll operation
+                                                whose field values have been
+                                                changed as a result of the
+                                                roll.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_unoriented_c</A>     : n FACEs     Unable to determine the
+                                                orientation for these faces in
+                                                <A HREF=../headers/pk_face_make_neutral_sheet_2.html>PK_FACE_make_neutral_sheet_2</A>.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_bad_blend_c</A>         : n FACEs     Blends which could not be
+                                                processed.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_hidden_by_guise_c</A>   : n ENTITYs   Entities encountered that are
+                                                hidden by the current cellular
+                                                guise.
+
+For the following status types, only <B>'new_items'</B> are returned as follows.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cut_no_clash_c</A>    : n BODYs    result bodies that did not clash
+                                             with the sectioning tool.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cut_unclassed_c</A>   : n BODYs    result bodies that could not be
+                                             uniquely classified as either
+                                             front or back of section.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_blend_faces_sx_c</A>  : n FACEs    FACEs created by the operation
+                                             whose surfaces are
+                                             self-intersecting.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_cant_get_geom_c</A>   : n TOPOLs   Unable to generate geometry for
+                                             these topologies.
+
+For the following status types, both <B>'old_items'</B> and <B>'new_items'</B> are returned
+as follows.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_fix_degens_c</A> : old_items : FACEs on the original body that
+                                            were repaired, followed by the
+                                            original SURFACE. In the case where
+                                            the original surface was an offset
+                                            surface, this is followed by the
+                                            underlying b-SURFACE.
+                                new_items : The repaired b-SURFACE, followed by
+                                            the corresponding offset SURFACEs,
+                                            followed by the corresponding FACEs
+                                            on the resultant body that the
+                                            surfaces belong to.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_sx_repair_c</A>  : old_items : FACEs from the original body that
+                                            were modified as a result of
+                                            repairing self-intersections.
+                                new_items : FACEs on the resultant body that
+                                            were created as a result of
+                                            repairing self-intersections.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_deform_surf_c</A>   : old_items : FACEs from the original body
+                                            corresponding to the b-SURFACEs
+                                            reported in new_items.
+                                new_items : b-SURFACEs which were successfully
+                                            constructed by a deform operation
+                                            before the failure which triggered
+                                            the report.
+
+For the following status type, no additional information is returned.
+
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_negated_body_c</A>
+  <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_large_transf_c</A>
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

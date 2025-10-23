@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_make_patterned_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_make_patterned_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_make_patterned_o_s
+    {
+    int                     o_t_version;    --- version number of options
+                                            --- structure
+    <A HREF=../headers/pk_pattern_cell_t.html>PK_pattern_cell_t</A>       cell;           --- cell to be repeated
+    <A HREF=../headers/pk_pattern_bound_t.html>PK_pattern_bound_t</A>      bound;          --- bounds on the pattern
+    <A HREF=../headers/pk_pattern_form_t.html>PK_pattern_form_t</A>       form;           --- form of pattern
+    <A HREF=../headers/pk_pattern_callback_t.html>PK_pattern_callback_t</A>   callback;       --- callback to be applied
+    };
+
+typedef struct PK_BODY_make_patterned_o_s PK_BODY_make_patterned_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_body_make_patterned.html>PK_BODY_make_patterned</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_value              <B>'repetitions_i'</B>, <B>'repetitions_j'</B>, or
+                                    <B>'repetitions_k'</B> within <B>'bound'</B> have a
+                                    first value greater than the second, or
+                                    specify a number of repetitions greater
+                                    than a complete period if periodic in that
+                                    direction. (MILD)
+    PK_ERROR_bad_trim_curves        Bad trim curves specified as follows:
+                                    - Trim curves have been provided that do
+                                      not lie in a plane spanning the i and j
+                                      directions of a rectilinear or original
+                                      pattern. (MILD)
+                                    - Trim curves have been provided whose
+                                      polyline positions have a non-zero z
+                                      component in an axial pattern. (MILD)
+                                    - Trim curves have been provided whose
+                                      segments' projections are ambiguous when
+                                      applied to an axial type pattern. (MILD)
+    PK_ERROR_bad_form               An <B>'axial'</B> <B>'form'</B> has been provided with
+                                    an insufficient distance between the
+                                    <B>'origin'</B> and <B>'axis'</B>, to prevent the pattern
+                                    from intersecting with the <B>'axis'</B>, when a
+                                    callback hasn't been provided. (MILD)
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_patterned.html>PK_BODY_make_patterned</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+ Description of fields:
+
+
+ 
+ <B>'cell'</B>             Cell to be repeated
+
+ 
+ <B>'bound'</B>            Bounds on the pattern
+
+ 
+ <B>'form'</B>             Form of pattern
+
+ 
+ <B>'callback'</B>         Callback to be applied
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

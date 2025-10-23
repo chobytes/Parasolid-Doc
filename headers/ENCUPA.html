@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>
+<TITLE>ENCUPA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENCUPA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_ask_interval.html>PK_CURVE_ask_interval</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENCUPA ( curve, range, bounds, props, nprops, ifail )
+=====================================================
+
+  Enquire curve parametrisation
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_curve             *curve          --- Curve for enquiry
+
+Returns:
+  KI_dbl                    range[2]       --- Parameter range
+  KI_cod_papr               bounds[2]      --- Types of bound
+  KI_tag_list_int          *props          --- Parametrisation properties
+  KI_int_nitems            *nprops         --- Number of properties
+  KI_cod_error             *ifail          --- Failure code
+
+Specific errors:
+  KI_invalid_geometry       curve not supported
+
+Description:
+  This function returns details about the parametrisation of a specific
+  curve.
+
+
+  'range':
+    the parameter of any point on the curve (as returned by ENPAPC) will lie
+    between 'range[0]' and 'range[1]'.    'range[0]' < 'range[1]' always.
+
+    If the range is infinite, then finite values will be returned, and these
+    will be large enough to ensure that the portion of the curve inside the
+    size box is contained within the bounds.
+
+    If the curve is of type TYCUSP (SP-curve), the range parameters will be
+    the first and last knot values of the underlying B-spline.
+
+
+  'bounds':
+    The parametrisation may behave in various ways at the end of its range.
+    The 'bounds' array returns two tokens, describing the behaviour at the
+    start and end of the range respectively. The tokens may take the
+    following values:
+
+          PAPRIF - infinite
+          PAPRXT - extendable
+          PAPRNX - not extendable
+          PAPRPE - periodic
+          PAPRDP - periodic, but not continuously differentiable across
+                   the boundary
+
+    If either end of the range is classified as extendable, then the range of
+    the parameter can be altered by subsequent modelling operations, and the
+    classification of the bounds can also change. In this case, it is
+    advisable to call ENCUPA again. For all other bound classifications,
+    the range and bound classification remain unchanged by modelling
+    operations.
+
+    The periodic classifications (PAPRPE, PAPRDP) apply to both ends of the
+    range - the bounds will be of the same type in these cases. If the type
+    is PAPRDP, then the parametrisation function may have a derivative which
+    is discontinuous in magnitude across the range boundary.
+
+    If the bound classification is infinite or periodic (PAPRIF, PAPRPE or
+    PAPRDP), then the KI function ENPOPC will work on values beyond the
+    corresponding range bound. Otherwise (if the classification is PAPRXT
+    or PAPRNX) ENPOPC will only work for values within the range, unless the
+    curve is a b-curve.
+
+
+  'props', 'nprops':
+    One or more properties of the parametrisation will be returned, in a list
+    'props' of length 'nprops'. The list contains tokens, which can take the
+    following values:
+
+          PAPRPE - periodic
+          PAPRCN - all derivatives continuous  )  exactly one of these two
+          PAPRDC - derivatives not necessarily )  properties will be returned
+                                   continuous  )
+          PAPRLI - linear
+          PAPRCI - circular
+          PAPRBC - bounds coincident ( 'range[0]' and 'range[1]' correspond
+                                       to the same point on the curve )
+
+    The PAPRLI and PAPRCI properties are only returned for lines and circles
+    respectively, and are included for compatibility with the surface
+    parametrisation functions.
+
+    The PAPRPE property indicates a periodic parametrisation.
+
+
+</PRE>
+</BODY>
+</HTML>

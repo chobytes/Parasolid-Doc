@@ -1,0 +1,172 @@
+<HTML>
+<HEAD>
+<TITLE>CRSPCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRSPCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_embed_in_surf.html>PK_CURVE_embed_in_surf</A><BR>
+<A HREF=../headers/pk_spcurve_create.html>PK_SPCURVE_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRSPCU ( surf, dim, order, nctrl, ctrl, knots, period, split, nspc, spc, 
+=========================================================================
+         ifail )
+         =======
+
+  Create SP-curve(s) from B-spline data defined in surface parameter space.
+
+Receives:
+  KI_tag_surface           *surf           --- basis surface for SP-curve
+  int                      *dim            --- dimension of control points
+  KI_int_order             *order          --- order of curve
+  KI_int_nitems            *nctrl          --- number of control points
+  KI_dbl_coefficients       ctrl[dim*nctrl] --- control points
+  KI_dbl_knots              knots[]        --- knot vector
+  KI_cod_logical           *period         --- periodic flag
+  KI_cod_logical           *split          --- split flag
+
+Returns:
+  KI_int_nitems            *nspc           --- number of SP-curves returned
+  KI_tag_list_curve        *spc            --- SP-curves
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_invalid_geometry       invalid spcurves
+  KI_bad_knots              invalid knot vector
+  KI_weight_le_0            weights are non positive
+                            weights are non-positive
+  KI_insufficient_points    insufficient control points
+  KI_bad_dimension          dimension must be 2 or 3
+  KI_linear_multi_seg       multi-segment linear curves not allowed
+  KI_order_lt_2             order must be at least 2
+
+Description:
+  Creates an SP-curve on a surface from B-spline data defined in the surface
+  parameter space.
+
+  An SP-curve must be G1 continuous, and if periodic must meet itself with
+  G1 continuity, an SP_curve may start or end on a surface degeneracy or
+  singularity, surface degeneracies may only appear elsewhere on the curve
+  if the entire curve lies within the degeneracy.
+
+  The arguments are:
+
+  Basis surface 'surf' of SP-curve.
+
+  . This is the surface in whose parameter space the curve
+    is defined. The surface parameters are u and v in what follows.
+
+  . If 'surf' is construction geometry or is attached to a face, within a
+    body, the SP-curve will be created as construction geometry
+    in that body, and may only be attached to topology within that body.
+
+
+  Dimension of control points 'dim':
+
+  . For rational curves 'dim' = 3.
+
+  . For non-rational curves 'dim' = 2.
+
+  Order of the curve 'order':
+
+  . The order of the curve = degree + 1.
+
+  . The minimum order is 2.
+
+  . An order 2 B-Spline may consist of one segment only.
+
+  Number of control points 'nctrl':
+
+  . 'nctrl' >= 'order'.
+
+  Control points 'ctrl':
+
+  . For non-rational curves, the control points are points in the
+    parameter space of 'surf'. They must be supplied as [u0,v0,u1,v1...].
+
+  . For rational curves each vector contains a point in parameter space
+    followed by a weight for the point. The points are supplied
+    [u0,v0,w0,u1,v1,w1...]. The weights must be positive.
+
+  . The (u,v) values defining control points do not have to lie within the
+    parameter range defined by ENSUPA on limited surfaces, though ideally the
+    B-spline curve so defined will be. If this is not the case, then an
+    attempt will be made to extend the surface so that the curve lies wholly
+    within it.
+
+  . The curve must be G1 continuous in parameter space, so that linear
+    curves of >1 segment are not allowed.
+
+  . The curve will NOT be checked for self-intersection.
+
+  Knot vector 'knots':
+
+  . The knot values must form a non-decreasing sequence.
+
+  . The B-Spline may be closed, and may be periodic.
+
+  . For non-periodic B-Splines there must be ('nctrl' + 'order') knot values,
+    the maximum multiplicity of an internal knot value is ('order' - 1), and
+    the maximum multiplicity of an end knot value is 'order'.
+
+  . For periodic B-Splines there must be ('nctrl' + 1 ) knot values, the
+    maximum multiplicity of any knot value is ('order' - 1). If the periodic
+    knot has multiplicity greater than 1, repetitions must be given at the
+    end of the knot vector.
+
+  Periodic flag 'period':
+
+  . The B-Spline may be periodic if it is closed and meets itself with G1
+    continuity, and the resulting three space SP-Curve is also closed and
+    and meets itself with G1 continuity.
+
+  Split flag 'split':
+
+  . If 'split' is set true an ordered list of SP-Curves will be returned
+    which satisfy continuity requirements. Care should still be taken that
+    the degeneracy conditions are met. The flag may be turned off when it
+    is known that the resulting single SP-Curve is valid.
+
+
+  Ownership:
+
+  The ownership of the newly created SP_Curve(s) is determined by the ownership
+  of 'surf' as follows
+
+      |____________________|___________________|
+      | 'surf' owner       | SP_Curve owner    |
+      |____________________|___________________|
+      | World              | World             |
+      | Assembly           | Assembly          |
+      | Body               | Body              |
+      | Face               | Body owning face  |
+      _____________________|___________________|
+
+  Periodics:
+
+  If a single SP_Curve is returned, it will be periodic if the periodic flag
+  'period' was set KI_true. If 'period' was set KI_false but the SP_Curve is
+  closed and G1 continuous, Parasolid may choose to treat the curve as
+  periodic. OUSPCU is not affected and returns bspline data as received by
+  CRSPCU, ENCUPA will however reflect this internal periodicity.
+
+
+</PRE>
+</BODY>
+</HTML>

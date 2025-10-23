@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Using the Parasolid Documentation Web</TITLE>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if ((self != top) && (parent.theMenu)) {
+	var eID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+	if (eID >= 0) {
+		parent.theMenu.selectEntry(eID);
+		if (parent.theMenu.setEntry(eID, true)) {
+			parent.theMenu.refresh();
+		}
+	}
+} else {
+	var navPrinting = false;
+	if ((navigator.appName + navigator.appVersion.substring(0, 1)) == "Netscape4") {
+		navPrinting = (self.innerHeight == 0) && (self.innerWidth == 0);}
+	if ((self.name != 'text') && (self.location.protocol != "file:") && (document.cookie.indexOf('mode=NoFrames') < 0) && !navPrinting) {
+		var newLoc = "index.htm?page=" + escape(self.location.pathname);
+		if (parseInt(navigator.appVersion) >= 3) {self.location.replace(newLoc);} else {self.location.href = newLoc;}
+	}
+}
+
+var floatingMode = (document.cookie.indexOf("mode=Floating") >= 0);
+var platform = 'Win';
+if (navigator.userAgent.indexOf('Mac') >= 0) {platform = 'Mac';}
+if (navigator.userAgent.indexOf('OS/2') >= 0) {platform = 'OS/2';}
+if (navigator.userAgent.indexOf('X11') >= 0) {platform = 'UNIX';}
+var ip = 'images/menu/';
+ip += (platform == 'Mac') ? 'mac/' : ((platform == 'OS/2') ? 'os2/' : 'win/')
+var plusIcon = ip + 'plusonly.gif'
+var minusIcon = ip + 'minusonly.gif'
+//-->
+</script>
+
+<link REL="stylesheet" HREF="ps_doc.css" TYPE="TEXT/CSS">
+</HEAD>
+
+<BODY BGCOLOR=#FFFFFF  BACKGROUND="images/background.gif">
+<H1><A NAME="top">Using the Parasolid Documentation Web</A></H1>
+<HR  WIDTH="100%">
+
+<p>Welcome to the Parasolid Documentation Web. This site gives you access to the 
+  entire set of Parasolid manuals, in both HTML and PDF format. In addition, it 
+  provides a full text search facility, and an index of all PK interface names, 
+  as well as details on how to report problems to Parasolid Product Support. </p>
+<h2>Navigation bar</h2>
+<p>Along the top of this window is a navigation bar containing buttons that give 
+  you quick access to the most commonly used manuals. Alongside this is a list 
+  of all the manuals. To view the list of chapters for any manual, either click 
+  on the appropriate button, or choose the manual from the list and click <b>Go 
+  &gt;&gt; </b>.</p>
+<p>To hide or view the menu (described below) click <b>Display menu</b> or 
+  <b>Hide menu</b>, as appropriate. Note that clicking this button returns you to the home page.</p>
+<h2>Menu</h2>
+<P>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (floatingMode) {
+	document.write('The menu in the separate window ');
+} else {
+	document.write('The menu to the left ');
+}
+document.write('contains a list of all the manuals in the Parasolid documentation set, allowing you to view any page without getting lost and ');
+document.write('without having to repeatedly return to the Home Page.');
+if (floatingMode == false) {
+	document.write(' The size of the frame containing this page may be increased by reducing the width ');
+	document.write('of the Site Plan frame (click the black line and drag it to the left). ');
+}
+document.write('<UL><LI TYPE="square">To expand a section click on the <IMG SRC="');
+document.write(plusIcon + '" WIDTH="18" HEIGHT="16" BORDER="0" ALT=""> icon. ');
+document.write('<LI TYPE="square">To collapse a section click on the <IMG SRC="');
+document.write(minusIcon + '" WIDTH="18" HEIGHT="16" BORDER="0" ALT=""> icon.');
+document.write('<LI TYPE="square">To view the list of chapters in this frame, without expanding the section in the menu, click on the name of the manual itself.</UL>');
+//-->
+</SCRIPT>
+</P>
+
+<H2>Buttons</H2>
+
+<P>Below the menu is a control panel with following options:</P>
+
+<TABLE WIDTH="88%" ALIGN="CENTER" BORDER="0">
+  <TR VALIGN="TOP"> 
+    <TD WIDTH="17%"><b>Search</b></TD>
+    <TD WIDTH="83%">Search the Parasolid documentation. Clicking on this option 
+      opens a new window in which you can type a phrase. More instructions are 
+      available in the new window.</TD>
+  </TR>
+  <TR VALIGN="TOP"> 
+    <TD WIDTH="17%"><B>Help</B></TD>
+    <TD WIDTH="83%">Displays this page.</TD>
+  </TR>
+  <tr VALIGN="TOP"> 
+    <td WIDTH="17%"><b><nobr>Undock menu</nobr></b></td>
+    <td WIDTH="83%">Displays the site menu in a separate browser window.</td>
+  </tr>
+  <TR VALIGN="TOP"> 
+    <TD WIDTH="17%"><B><NOBR>Dock menu</NOBR></B></TD>
+    <TD WIDTH="83%">Displays the site menu in the main browser window. Use 
+      this command to &quot;dock&quot; the menu back onto this window after 
+      using <b>Undock menu</b>..</TD>
+  </TR>
+</TABLE>
+
+<P>This site is designed to be viewed with a Frames and JavaScript capable browser 
+  such as Microsoft Internet Explorer.</P>
+
+<HR WIDTH="100%" SIZE=".">
+
+
+</BODY>
+</HTML>

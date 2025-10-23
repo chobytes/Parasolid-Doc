@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_make_swept_body_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_make_swept_body_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_make_swept_body_o_s
+    {
+    int                        o_t_version;
+    <A HREF=../headers/pk_body_sweep_alignment_t.html>PK_BODY_sweep_alignment_t</A>  alignment;    --- alignment of profile
+                                             --- (PK_BODY_sweep_align_normal_c)
+    <A HREF=../headers/pk_body_simplify_t.html>PK_BODY_simplify_t</A>         simplify;     --- simplify lofted surfaces
+                                             --- (PK_BODY_simplify_analytic_c)
+    <A HREF=../headers/pk_body_topology_t.html>PK_BODY_topology_t</A>         topology_form;--- topology of resultant body
+                                             --- (PK_BODY_topology_minimal_c)
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A>        twist;        --- twist of sweep path
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A>        scale;        --- scale of sweep path
+    <A HREF=../headers/pk_body_sweep_fair_t.html>PK_BODY_sweep_fair_t</A>       fair;         --- method to use for improving
+                                             --- the sweep
+                                             --- (PK_BODY_sweep_fair_default_c)
+    double                     tolerance;    --- tolerance (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               minimise_tolerance;
+                                             --- minimise tolerances where
+                                             --- possible (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               allow_rationals;
+                                             --- allow bodies with rational
+                                             --- surfaces (PK_LOGICAL_true)
+    <A HREF=../headers/pk_body_sweep_scale_type_t.html>PK_BODY_sweep_scale_type_t</A> scale_type;   --- how any scaling should be
+                                             --- applied
+                                             --- (PK_BODY_sweep_scale_both_c)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>                scale_point;  --- defining point for scale
+                                             --- laws of types
+                                             --- PK_BODY_sweep_scale_posn_c or
+                                             --- PK_BODY_sweep_scale_size_c
+    int                        n_ignorable_vertices;
+                                             --- number of vertices that may be
+                                             --- ignored (0)
+    const <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>         *ignorable_vertices;
+                                             --- array of vertices to ignore
+                                             --- (NULL)
+    };
+
+typedef struct PK_BODY_make_swept_body_o_s PK_BODY_make_swept_body_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls on the construction of a swept body.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_swept_body.html>PK_BODY_make_swept_body</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure for making a swept body has the following fields :
+
+<B>'alignment'</B>            If set to PK_BODY_sweep_align_parallel_c, the profile
+                       normal will maintain a constant angle to the global
+                       axes. If set to PK_BODY_sweep_align_normal_c, the
+                       profile normal will maintain a constant angle to the
+                       path tangent. (PK_BODY_sweep_align_normal_c)
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-296683">Controlling the profile alignment</A> for more
+                       information.
+
+<B>'simplify'</B>             A token used to indicate the level of simplification
+                       to be attempted on the swept surfaces generated to
+                       form the faces of the swept body. For a sweep of
+                       multiple profiles, or where <B>'n_guides'</B> is not equal
+                       to 0, this option must be set to PK_BODY_simplify_no_c.
+
+                       If set to PK_BODY_simplify_no_c, no simplification will
+                       be attempted.
+                       If set to PK_BODY_simplify_analytic_c, the function will
+                       attempt to generate analytic surfaces that are within
+                       session precision of the surface defined by the sweep.
+                       If set to PK_BODY_simplify_swept_spun_c, the function
+                       will fail with error PK_ERROR_not_implemented, as this
+                       option is invalid for <A HREF=../headers/pk_body_make_swept_body.html>PK_BODY_make_swept_body</A>.
+
+                       (PK_BODY_simplify_analytic_c)
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-298230">Simplifying the final body</A> for more
+                       information.
+
+<B>'topology_form'</B>        A token used to indicate how the resultant body should
+                       be divided into faces. (PK_BODY_topology_minimal_c)
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-297741">Specifying final topology</A> for more
+                       information.
+
+<B>'twist'</B>                A 1-dimensional LAW standard form or a discrete set
+                       of values to be interpolated at vertices along the path.
+                       The values specify the amount of rotation about the path
+                       tangent direction undergone by the profile as it moves
+                       along the sweep path.
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-297046">Specifying twist</A> for more information.
+
+<B>'scale'</B>                A 1-dimensional LAW standard form or a discrete set
+                       of values to be interpolated at vertices along the path.
+                       The values specify the amount of magnification
+                       of the profile as it moves along the sweep path.
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-297380">Specifying scale</A> for more information.
+
+<B>'fair'</B>                 Indicates what method (if any) to use to attempt to
+                       improve the method of sweeping along the supplied path.
+                       (PK_BODY_sweep_fair_default_c)
+
+<B>'tolerance'</B>            The tolerance to which the sweeping operation may
+                       approximate entities or assume that entities are
+                       coincident. (1.0e-5)
+
+<B>'minimise_tolerance'</B>   If set to PK_LOGICAL_true, topology will be created
+                       with smaller tolerances than <B>'tolerance'</B> if possible.
+                       (PK_LOGICAL_false)
+
+<B>'allow_rationals'</B>      If set to PK_LOGICAL_false, rational bsurfaces will
+                       never be used in the resultant body. (PK_LOGICAL_true)
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-298395">Minimising sweep tolerances</A> for more
+                       information.
+
+<B>'scale_type'</B>           Specifies how any scale law supplied in the <B>'scale'</B>
+                       option should be applied. (PK_BODY_sweep_scale_both_c)
+
+                       If <B>'scale_type'</B> is <B>'PK_BODY_sweep_scale_posn_c'</B>, the
+                       distance between the supplied <B>'scale_point'</B> and the path
+                       is modified according to the <B>'scale'</B>. The profile is
+                       translated to maintain a constant relationship with the
+                       scaled image of the <B>'scale_point'</B>, but is not itself
+                       scaled.
+
+                       If <B>'scale_type'</B> is <B>'PK_BODY_sweep_scale_size_c'</B>, the
+                       size of the profile is modified according to the
+                       <B>'scale'</B> about the <B>'scale_point'</B>. The distance between
+                       the <B>'scale_point'</B> and the path remains constant.
+
+                       If <B>'scale_type'</B> is <B>'PK_BODY_sweep_scale_both_c'</B>, both
+                       the size of the profile and its distance from the path
+                       is modified according to the <B>'scale'</B>. No <B>'scale_point'</B>
+                       should be provided. This is the default.
+
+<B>'scale_point'</B>          A position vector indicating the defining point for a
+                       scale law. Its purpose depends on the specified
+                       <B>'scale_type'</B>: see <B>'scale_type'</B> for details.
+
+                       If no scale law is provided or the <B>'scale_type'</B> is
+                       <B>'PK_BODY_sweep_scale_both_c'</B> this option will be
+                       ignored.
+
+<B>'n_ignorable_vertices'</B> The number of vertices that may be ignored, for the
+                       purposes of building topology. (0)
+
+<B>'ignorable_vertices'</B>   An array of path vertices that may be ignored, for the
+                       purposes of building topology. (NULL)
+
+                       Edges in the profile direction corresponding to path
+                       vertices in this array will not be created, where
+                       possible. It is an error to supply a vertex at the
+                       start or end of an open path, or where two edges do not
+                       meet with G1-continuity.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

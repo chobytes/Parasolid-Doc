@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_imprint_cus_vec_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_imprint_cus_vec_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_imprint_cus_vec_o_s
+    {
+    int                      o_t_version;   --- version number of option
+                                            --- structure
+    <A HREF=../headers/pk_imprint_connect_t.html>PK_imprint_connect_t</A>     connect;       --- How to connect disjoint
+                                            --- components of imprint
+                                            --- (<A HREF=../headers/pk_imprint_connect_t.html>PK_imprint_connect_none_c</A>)
+    <A HREF=../headers/pk_imprint_face_hidden_t.html>PK_imprint_face_hidden_t</A> hidden;        --- How imprint is affected by
+                                            --- other faces
+                                            --- (<A HREF=../headers/pk_imprint_face_hidden_t.html>PK_imprint_face_hidden_body_c</A>)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A>    imprint_complete;
+                                            --- whether to complete imprint
+                                            --- on target faces
+                                            --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             imprint_coi_exactly;
+                                            --- whether to imprint curves
+                                            --- exactly where they are
+                                            --- coincident with the surface
+                                            --- geometry of the face.
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             imprint_exactly;
+                                            --- whether to imprint curves
+                                            --- exactly irrespective of
+                                            --- whether they are coincident
+                                            --- with the surface geometry of
+                                            --- the face.
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             bidirectional; --- whether to imprint curves
+                                            --- in positive and negative
+                                            --- vector direction.
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_imprint_intersect_t.html>PK_imprint_intersect_t</A>   process_intersections;
+                                            --- how to deal with curves that
+                                            --- intersect in view (i.e. down
+                                            --- the supplied direction
+                                            --- vector).
+                                            --- (<A HREF=../headers/pk_imprint_intersect_t.html>PK_imprint_intersect_update_c</A>)
+    };
+typedef struct PK_FACE_imprint_cus_vec_o_s PK_FACE_imprint_cus_vec_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>The option structure defines options applicable to imprinting a set of
+curves on a set of faces.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_imprint_cus_vec.html>PK_FACE_imprint_cus_vec</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Description of fields:
+
+
+
+<B>'connect'</B>                Specifies how to connect disjoint components of
+                         the imprint. Permitted values are :
+
+                         <A HREF=../headers/pk_imprint_connect_t.html>PK_imprint_connect_none_c</A>
+                         <A HREF=../headers/pk_imprint_connect_t.html>PK_imprint_connect_side_c</A>
+                         <A HREF=../headers/pk_imprint_connect_t.html>PK_imprint_connect_all_c</A>
+                         <A HREF=../headers/pk_imprint_connect_t.html>PK_imprint_connect_side_all_c</A>
+                         <A HREF=../headers/pk_imprint_connect_t.html>PK_imprint_connect_hidden_all_c</A>
+
+See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-549574">Connecting disjoint components of an imprint</A> for more
+information.
+
+
+
+<B>'hidden'</B>                 Specifies how imprint of faces is affected by other
+                         faces. Permitted values are :
+
+                         <A HREF=../headers/pk_imprint_face_hidden_t.html>PK_imprint_face_hidden_no_c</A>
+                         <A HREF=../headers/pk_imprint_face_hidden_t.html>PK_imprint_face_hidden_array_c</A>
+                         <A HREF=../headers/pk_imprint_face_hidden_t.html>PK_imprint_face_hidden_body_c</A>
+
+
+
+
+<B>'imprint_complete'</B>       Complete the imprint on the target faces so
+                         that the end vertices of the imprint lie on
+                         any edge or any laminar edge of the target
+                         faces. The incomplete imprint is completed by
+                         intersecting the target faces with a plane
+                         orthogonal to the target at the end vertices
+                         of the incomplete imprint tangential to the
+                         imprinted curve. Depending on the value of this
+                         option, the imprint will be completed along the
+                         direction of this plane until either:
+
+                         o it meets any edge belonging to the target faces
+                         o it meets any laminar edge belonging to the
+                           target faces.
+
+                         A completed imprint that self-intersects
+                         will be trimmed at the point of self-intersection.
+
+                         For more information, see <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-295712">here</A>.
+
+
+`imprint_coi_exactly`     If <B>'imprint_coi_exactly'</B> is set to PK_LOGICAL_true
+                          then curves coincident with their target surfaces
+                          are imprinted exactly where appropriate, rather
+                          than being imprinted by projection.
+                          See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-296271">here</A> for more information.
+                          The default value is PK_LOGICAL_false.
+
+
+`imprint_exactly`         If <B>'imprint_exactly'</B> is set to PK_LOGICAL_true
+                          then all curves will be imprinted accurately,
+                          irrespective of the setting of <B>'imprint_coi_exactly'</B>.
+                          See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-296271">here</A> for more information.
+                          The default value is PK_LOGICAL_false.
+
+
+`bidirectional`           If <B>'bidirectional'</B> is set to PK_LOGICAL_true
+                          then all curves will be imprinted in both positive
+                          and negative vector direction and edges visible in
+                          the view in both directions will be imprinted. If it
+                          is set to false then they are only imprinted in the
+                          positive direction.
+                          The default value is PK_LOGICAL_false.
+
+
+`process_intersections`   Specifies how to deal with supplied curves that
+                          self-intersect or intersect in view (i.e. within a
+                          plane perpendicular to the imprint direction vector).
+                          Permitted values are :
+
+                          <A HREF=../headers/pk_imprint_intersect_t.html>PK_imprint_intersect_update_c</A>
+                          <A HREF=../headers/pk_imprint_intersect_t.html>PK_imprint_intersect_fail_c</A>
+                          <A HREF=../headers/pk_imprint_intersect_t.html>PK_imprint_intersect_fix_c</A>
+
+                          The default value is <A HREF=../headers/pk_imprint_intersect_t.html>PK_imprint_intersect_update_c</A>,
+                          which should be used for updating v22.1 and earlier
+                          models.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

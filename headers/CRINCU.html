@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<TITLE>CRINCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRINCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRINCU ( surf1, surf2, intbox, curves, ncurve, ifail )
+======================================================
+
+  Create intersection curves.
+
+Receives:
+  KI_tag_surface           *surf1          --- surfaces to be
+  KI_tag_surface           *surf2          --- intersected
+  KI_dbl_box                intbox[6]      --- box of interest
+
+Returns:
+ &lt;KI_tag_list_curve&gt;       *curves         --- list of curves
+ &lt;KI_int_nitems&gt;           *ncurve         --- number of curves returned
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_cant_do_intersect      failure in intersection routine
+  KI_su_are_coincident      coincident surfaces
+  KI_dont_intersect         no intersection
+  KI_invalid_geometry       surface fails checks
+
+Description:
+  New curves are created wherever the two surfaces intersect (if they do).
+  The list of new curves is returned in 'curves'.  All curves which pass
+  through the box of interest will be returned; curves which lie completely
+  outside the box may be returned.  Curves may be truncated more or less
+  immediately when they leave the box, and a curve which leaves and reenters
+  the box may be returned as several disjoint sections.
+
+  'intbox' describes the box that contains the area of interest and is
+  specified as follows.
+
+  Its 1st element contains the minimum x_component of the area of interest
+  "   2nd    "        "     "  minimum y_component  "  "    "  "     "
+  "   3rd    "        "     "  minimum z_component  "  "    "  "     "
+  "   4th    "        "     "  maximum x_component  "  "    "  "     "
+  "   5th    "        "     "  maximum y_component  "  "    "  "     "
+  "   6th    "        "     "  maximum z_component  "  "    "  "     "
+
+  For a box to be valid the difference between the maximum and minimum
+  components in all three principal directions must be greater than or
+  equal to zero.
+
+  If either surface has type TYSUPA (B-surface) then that surface must be
+  capable of passing the checks imposed by CHCKEN.
+
+  The self intersection check is only performed if the appropriate option is set
+  (see SEINTP).
+
+</PRE>
+</BODY>
+</HTML>

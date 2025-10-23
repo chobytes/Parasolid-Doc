@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.011.html#50409791_pgfId-305418", " more detailed diagnosis of the problem. For example, if <B>PK_BODY_fix_blends</B> is called and two or more blends are set", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-318840", " can fix the blend by passing the block to <B>PK_BODY_fix_blends</B> , which returns the new blend face in ", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-328031", " edge might have a different set of underlying faces. <B>PK_BODY_fix_blends</B> also provides the ", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-297096", " option in <B>PK_BODY_fix_blends</B> in switched on. See Section 76.3.6, Preserving overlapped topology", "Functional Description - Body Types");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-296911", " blends, local checking is performed as part of the <B>PK_BODY_fix_blends</B> operation. ", "Functional Description - Checking");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-464406", " blend attributes were attached. Edge blends are fixed using <B>PK_BODY_fix_blends</B> , as described in Section 75.4.3, Fix the blends", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-453938", " functions listed below. Blends can then be fixed using <B>PK_BODY_fix_blends</B> . ", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-654732", " chamfers and rolling-ball blends in a single call to <B>PK_BODY_fix_blends</B> . ", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-461414", " <B>PK_BODY_fix_blends</B> changes any edges of the body which have blend", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-463968", " <B>PK_BODY_fix_blends</B> supports a wide range of options for controlling the", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-584575", " can be controlled when fixing edge blends by callling <B>PK_BODY_fix_blends</B> . ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-584723", " blends cannot be used in the same call to <B>PK_BODY_fix_blends</B> . ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-1489704", " fixing an apex-range chamfer in a single call to <B>PK_BODY_fix_blends</B> . ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-585304", " control whether a given blend definition is fixed by <B>PK_BODY_fix_blends</B> or drawn by the rendering functions. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-694311", " option in <B>PK_BODY_fix_blends</B> : see Section 76.3.1, Creating cliff-edge blends , for", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-538281", " <B>PK_BODY_fix_blends</B> provides a wide variety of options for controlling the", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-296339", " The tracking information returned by <B>PK_BODY_fix_blends</B> contains an array of blend faces in ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-1557468", " PK_LOGICAL_false, or because the callback function returns false, then <B>PK_BODY_fix_blends</B> fails, and returns PK_blend_fault_edge_c together with the tag of", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-297280", " any self-intersecting blend faces created after a call to <B>PK_BODY_fix_blends</B> ; this is similar to the repairing done after", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-297473", " lists any faces whose surfaces have been repaired by <B>PK_BODY_fix_blends</B> because the definition of the blend would result in", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-297899", " The value PK_blend_inside_tight_no_c is not currently implemented for <B>PK_BODY_fix_blends</B> and should not be supplied. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-297911", " value for <B>PK_BODY_fix_blends</B> is PK_blend_inside_tight_blends_c . This is different to the default", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-297969", " vertices at which you want to limit edge blends. <B>PK_BODY_fix_blends</B> creates blends as defined, but does not blend any", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-298425", " with another blend fixed in the same call to <B>PK_BODY_fix_blends</B> . In the case of an overlap limit, Parasolid", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299254", " attached to the edges of the body passed to <B>PK_BODY_fix_blends</B> . When a sheet body is created in this", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299255", " single sheet body; if the blend faces returned by <B>PK_BODY_fix_blends</B> are disconnected, then this sheet body is disjoint. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299275", " value returned by <B>PK_BODY_fix_blends</B> is used to determine whether the blend will fail.", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299276", " have the blend returned as a separate sheet body, <B>PK_BODY_fix_blends</B> can create this body in a separate partition that", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299277", " successfully fix the blend on a subsequent call to <B>PK_BODY_fix_blends</B> . See Section 76.3.21, Generating limit data when creating", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299283", " use this limit data in a subsequent call to <B>PK_BODY_fix_blends</B> to attempt to create a successful blend that is", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299324", " should pass this data into a subsequent call to <B>PK_BODY_fix_blends</B> using the ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299335", " should pass this data into a subsequent call to <B>PK_BODY_fix_blends</B> using the ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299358", " blends in a body in a single call to <B>PK_BODY_fix_blends</B> . However, if those chains overlap, then fixing the", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299948", " By default, <B>PK_BODY_fix_blends</B> returns information about the underlying faces of the blends", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-299949", " option in <B>PK_BODY_fix_blends</B> to ensure that each blend face is associated with", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-446188", " See the API documentation for <B>PK_BODY_fix_blends</B> for more information. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-535432", " option in <B>PK_BODY_fix_blends</B> to preserve old behaviour and help eliminate differences in", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.078.html#50409865_pgfId-295529", " options in <B>PK_BODY_fix_blends</B> to control which edges do and do not form", "Functional Description - Edge Blend Overflows");
+top.note("chapters/fd_chap.081.html#50409868_pgfId-470387", " the blend cannot hit the opposite surface, and so <B>PK_BODY_fix_blends</B> returns the fault PK_blend_fault_apex_range_c .. ", "Functional Description - Interpreting Edge Blending Error Codes");
+top.note("chapters/fd_chap.081.html#50409868_pgfId-295962", " fix overlapping blends automatically in a single call to <B>PK_BODY_fix_blends</B> . ", "Functional Description - Interpreting Edge Blending Error Codes");
+top.note("chapters/fd_chap.081.html#50409868_pgfId-295963", " options in <B>PK_BODY_fix_blends</B> can let you fix overlapping blends in a single", "Functional Description - Interpreting Edge Blending Error Codes");
+top.note("chapters/fd_chap.081.html#50409868_pgfId-295967", " by fixing the blends independently, using several calls to <B>PK_BODY_fix_blends</B> . ", "Functional Description - Interpreting Edge Blending Error Codes");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-331768", " the returned arrays to be the same from each <B>PK_BODY_fix_blends</B> call. ", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317053", " <B>PK_BODY_fix_blends</B> ", "Functional Description - Update Switches");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294727", " status code in its output arguments. For example, if <B>PK_BODY_fix_blends</B> is called and two or more blends are set", "Functional Description - Error Handling ");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " use. This value will only ever be returned if <B>PK_BODY_fix_blends</B> was called with ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " use. This value will only ever be returned if <B>PK_BODY_fix_blends</B> was called with ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_cant_fix_blends 330 <B>PK_BODY_fix_blends</B> cant fix blends in body (SERIOUS)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_not_in_same_body 1032 <B>PK_BODY_fix_blends</B> topology has been supplied in an option", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_not_implemented 5000 <B>PK_BODY_fix_blends</B> user options not implemented (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 <B>PK_BODY_fix_blends</B> user supplied options are incompatible", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_cant_fix_blends 330 <B>PK_BODY_fix_blends</B> cant fix blends in body (SERIOUS)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_general_body 1071 <B>PK_BODY_fix_blends</B> the blend is in a non-manifold area of a", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " <B>PK_BODY_fix_blends</B> 5145 PK_ERROR_bad_combination user supplied options are incompatible", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_blend_cap_data_t.html#documentation", " operation. When fixing blends with <B>PK_BODY_fix_blends</B> ,", "PK Reference - PK_blend_cap_data_t");
+top.note("headers/pk_blend_fault_t.html#declaration", " <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_blend_fault_t");
+top.note("headers/pk_blend_fault_t.html#documentation", " <B>PK_BODY_fix_blends</B> was called with", "PK Reference - PK_blend_fault_t");
+top.note("headers/pk_blend_fix_propagate_t.html#documentation", "user function returning false for an edge, <B>PK_body_fix_blends</B> will return", "PK Reference - PK_blend_fix_propagate_t");
+top.note("headers/pk_blend_output_sheet_t.html#documentation", " returned from <B>PK_BODY_fix_blends</B> .", "PK Reference - PK_blend_output_sheet_t");
+top.note("headers/pk_blend_properties_t.html#documentation", " to be ignored by <B>PK_BODY_fix_blends</B> , PK_EDGE_check_blends and", "PK Reference - PK_blend_properties_t");
+top.note("headers/pk_body_blend_propagate_f_t.html#description", "by <B>PK_BODY_fix_blends</B> in determining whether to propagate blended edges.", "PK Reference - PK_BODY_blend_propagate_f_t");
+top.note("headers/pk_body_fix_blends.html#declaration", " PK_ERROR_code_t <B>PK_BODY_fix_blends</B>", "PK Reference - PK_BODY_fix_blends");
+top.note("headers/pk_body_fix_blends.html#documentation", "<B>PK_BODY_fix_blends</B> returns the number of created blend faces,", "PK Reference - PK_BODY_fix_blends");
+top.note("headers/pk_body_fix_blends_o_t.html#description", " <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_BODY_fix_blends_o_t");
+top.note("headers/pk_body_fix_blends_o_t.html#documentation", " application, then fault returned by <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_BODY_fix_blends_o_t");
+top.note("headers/pk_body_t.html#description", " <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_debug_shuffle_start.html#documentation", "- <B>PK_BODY_fix_blends</B> blends , unders , topols ", "PK Reference - PK_DEBUG_shuffle_start");
+top.note("headers/pk_edge_check_blends.html#documentation", "This is a diagnostic function, used to determine why <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_EDGE_check_blends");
+top.note("headers/pk_edge_set_blend_chain.html#documentation", "See <B>PK_BODY_fix_blends</B> for making the blends a part of the topology.", "PK Reference - PK_EDGE_set_blend_chain");
+top.note("headers/pk_edge_set_blend_chamfer.html#documentation", "See <B>PK_BODY_fix_blends</B> for making the blends a part of the topology.", "PK Reference - PK_EDGE_set_blend_chamfer");
+top.note("headers/pk_edge_set_blend_constant.html#documentation", "See <B>PK_BODY_fix_blends</B> for making the blends a part of the topology.", "PK Reference - PK_EDGE_set_blend_constant");
+top.note("headers/pk_edge_set_blend_variable.html#documentation", "See <B>PK_BODY_fix_blends</B> for making the blends a part of the topology.", "PK Reference - PK_EDGE_set_blend_variable");
+top.note("headers/pk_edge_t.html#description", " <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_EDGE_t");
+top.note("headers/pk_entity_t.html#description", " <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_ENTITY_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_array_t.html#description", " <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_FACE_array_t");
+top.note("headers/pk_face_t.html#description", " <B>PK_BODY_fix_blends</B> ", "PK Reference - PK_FACE_t");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7794239", " PK_CURVE_find_surfs_common , PK_FACE_make_blend , PK_FACE_make_3_face_blend , <B>PK_BODY_fix_blends</B> , PK_SURF_find_curves_common ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

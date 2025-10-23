@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_sweep_face_clamp_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_sweep_face_clamp_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_sweep_face_clamp_s
+    {
+    int                 n_edges;        --- number of clamping faces and
+                                        --- clamped edges (0)
+    const <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>    *edges;          --- array of clamped profile edges
+                                        --- (NULL)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>    *faces;          --- array of clamping faces (NULL)
+    int                 n_magnitudes;   --- number of magnitudes for scaling
+                                        --- surface derivatives at clamped
+                                        --- vertices (0)
+    const double       *magnitudes;     --- array of magnitudes for scaling
+                                        --- surface derivatives at clamped
+                                        --- vertices (NULL)
+    const <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>  *vertices;       --- array of clamped profile vertices
+                                        --- (NULL)
+    };
+
+typedef struct PK_sweep_face_clamp_s PK_sweep_face_clamp_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds information for the clamp type PK_sweep_face_clamp_t
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_sweep_deriv_conds_t.html>PK_sweep_deriv_conds_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This structure has the following fields :
+
+<B>'n_edges'</B>       An integer specifying how many edges will be clamped by faces.
+
+<B>'edges'</B>         An array of edges where sweep derivatives are clamped by
+                corresponding entries of <B>'faces'</B>.
+
+<B>'faces'</B>         An array of faces, one for each clamped edge of the profile.
+                The faces may belong to different bodies. The faces must be
+                ordered to correspond with the entries of <B>'edges'</B>.
+
+<B>'n_magnitudes'</B>  An integer specifying how many vertices will have their
+                surface derivatives scaled. Providing no magnitudes is
+                equivalent to setting the magnitude equal to 1.0 for all
+                profile vertices.
+
+<B>'magnitudes'</B>    An array of doubles specifying the scaling factor (relative to
+                an internally determined default value) of surface derivatives.
+
+<B>'vertices'</B>      An array of vertices where the sweep derivatives are multiplied
+                by the corresponding entries in <B>'magnitudes'</B>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

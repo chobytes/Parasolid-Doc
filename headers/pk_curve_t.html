@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B></B>
+<A NAME="description"></A>
+<I>This type represents a CURVE.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_fit_chain_t.html>PK_BCURVE_fit_chain_t</A><br>
+    <A HREF=../headers/pk_blend_shape_t.html>PK_blend_shape_t</A><br>
+    <A HREF=../headers/pk_blendsf_sf_t.html>PK_BLENDSF_sf_t</A><br>
+    <A HREF=../headers/pk_body_imprint_curve.html>PK_BODY_imprint_curve</A><br>
+    <A HREF=../headers/pk_body_imprint_curves_normal.html>PK_BODY_imprint_curves_normal</A><br>
+    <A HREF=../headers/pk_body_imprint_curves_vector.html>PK_BODY_imprint_curves_vector</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_normal.html>PK_BODY_imprint_cus_normal</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_vec.html>PK_BODY_imprint_cus_vec</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_vector.html>PK_BODY_imprint_cus_vector</A><br>
+    <A HREF=../headers/pk_body_make_curves_outline.html>PK_BODY_make_curves_outline</A><br>
+    <A HREF=../headers/pk_body_make_spun_outline.html>PK_BODY_make_spun_outline</A><br>
+    <A HREF=../headers/pk_curve_ask_edges.html>PK_CURVE_ask_edges</A><br>
+    <A HREF=../headers/pk_curve_ask_edges_nmnl.html>PK_CURVE_ask_edges_nmnl</A><br>
+    <A HREF=../headers/pk_curve_ask_fin.html>PK_CURVE_ask_fin</A><br>
+    <A HREF=../headers/pk_curve_ask_interval.html>PK_CURVE_ask_interval</A><br>
+    <A HREF=../headers/pk_curve_ask_param.html>PK_CURVE_ask_param</A><br>
+    <A HREF=../headers/pk_curve_ask_parm_different.html>PK_CURVE_ask_parm_different</A><br>
+    <A HREF=../headers/pk_curve_ask_part.html>PK_CURVE_ask_part</A><br>
+    <A HREF=../headers/pk_curve_convert_parm_to_ki.html>PK_CURVE_convert_parm_to_ki</A><br>
+    <A HREF=../headers/pk_curve_convert_parm_to_pk.html>PK_CURVE_convert_parm_to_pk</A><br>
+    <A HREF=../headers/pk_curve_embed_in_surf.html>PK_CURVE_embed_in_surf</A><br>
+    <A HREF=../headers/pk_curve_embed_in_surf_2.html>PK_CURVE_embed_in_surf_2</A><br>
+    <A HREF=../headers/pk_curve_eval.html>PK_CURVE_eval</A><br>
+    <A HREF=../headers/pk_curve_eval_curvature.html>PK_CURVE_eval_curvature</A><br>
+    <A HREF=../headers/pk_curve_eval_curvature_handed.html>PK_CURVE_eval_curvature_handed</A><br>
+    <A HREF=../headers/pk_curve_eval_handed.html>PK_CURVE_eval_handed</A><br>
+    <A HREF=../headers/pk_curve_eval_with_tan_handed.html>PK_CURVE_eval_with_tan_handed</A><br>
+    <A HREF=../headers/pk_curve_eval_with_tangent.html>PK_CURVE_eval_with_tangent</A><br>
+    <A HREF=../headers/pk_curve_find_box.html>PK_CURVE_find_box</A><br>
+    <A HREF=../headers/pk_curve_find_degens.html>PK_CURVE_find_degens</A><br>
+    <A HREF=../headers/pk_curve_find_discontinuity.html>PK_CURVE_find_discontinuity</A><br>
+    <A HREF=../headers/pk_curve_find_length.html>PK_CURVE_find_length</A><br>
+    <A HREF=../headers/pk_curve_find_min_radius.html>PK_CURVE_find_min_radius</A><br>
+    <A HREF=../headers/pk_curve_find_non_aligned_box.html>PK_CURVE_find_non_aligned_box</A><br>
+    <A HREF=../headers/pk_curve_find_self_int.html>PK_CURVE_find_self_int</A><br>
+    <A HREF=../headers/pk_curve_find_surfs_common.html>PK_CURVE_find_surfs_common</A><br>
+    <A HREF=../headers/pk_curve_find_vector_interval.html>PK_CURVE_find_vector_interval</A><br>
+    <A HREF=../headers/pk_curve_find_vectors.html>PK_CURVE_find_vectors</A><br>
+    <A HREF=../headers/pk_curve_fix_degens.html>PK_CURVE_fix_degens</A><br>
+    <A HREF=../headers/pk_curve_fix_degens_cu_t.html>PK_CURVE_fix_degens_cu_t</A><br>
+    <A HREF=../headers/pk_curve_fix_self_int.html>PK_CURVE_fix_self_int</A><br>
+    <A HREF=../headers/pk_curve_fix_self_int_cu_t.html>PK_CURVE_fix_self_int_cu_t</A><br>
+    <A HREF=../headers/pk_curve_general_t.html>PK_CURVE_general_t</A><br>
+    <A HREF=../headers/pk_curve_intersect_curve.html>PK_CURVE_intersect_curve</A><br>
+    <A HREF=../headers/pk_curve_is_isoparam.html>PK_CURVE_is_isoparam</A><br>
+    <A HREF=../headers/pk_curve_make_approx.html>PK_CURVE_make_approx</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve.html>PK_CURVE_make_bcurve</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve_2.html>PK_CURVE_make_bcurve_2</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve_array.html>PK_CURVE_make_bcurve_array</A><br>
+    <A HREF=../headers/pk_curve_make_curve_reversed.html>PK_CURVE_make_curve_reversed</A><br>
+    <A HREF=../headers/pk_curve_make_helical_surf.html>PK_CURVE_make_helical_surf</A><br>
+    <A HREF=../headers/pk_curve_make_spcurves.html>PK_CURVE_make_spcurves</A><br>
+    <A HREF=../headers/pk_curve_make_spcurves_2.html>PK_CURVE_make_spcurves_2</A><br>
+    <A HREF=../headers/pk_curve_make_surf_isocline.html>PK_CURVE_make_surf_isocline</A><br>
+    <A HREF=../headers/pk_curve_make_wire_body.html>PK_CURVE_make_wire_body</A><br>
+    <A HREF=../headers/pk_curve_make_wire_body_2.html>PK_CURVE_make_wire_body_2</A><br>
+    <A HREF=../headers/pk_curve_output_vectors.html>PK_CURVE_output_vectors</A><br>
+    <A HREF=../headers/pk_curve_parameterise_vector.html>PK_CURVE_parameterise_vector</A><br>
+    <A HREF=../headers/pk_curve_project.html>PK_CURVE_project</A><br>
+    <A HREF=../headers/pk_curve_spin.html>PK_CURVE_spin</A><br>
+    <A HREF=../headers/pk_curve_spin_2.html>PK_CURVE_spin_2</A><br>
+    <A HREF=../headers/pk_curve_sweep.html>PK_CURVE_sweep</A><br>
+    <A HREF=../headers/pk_edge_ask_curve.html>PK_EDGE_ask_curve</A><br>
+    <A HREF=../headers/pk_edge_ask_curve_nmnl.html>PK_EDGE_ask_curve_nmnl</A><br>
+    <A HREF=../headers/pk_edge_ask_geometry.html>PK_EDGE_ask_geometry</A><br>
+    <A HREF=../headers/pk_edge_ask_geometry_nmnl.html>PK_EDGE_ask_geometry_nmnl</A><br>
+    <A HREF=../headers/pk_edge_ask_oriented_curve.html>PK_EDGE_ask_oriented_curve</A><br>
+    <A HREF=../headers/pk_edge_attach_curve_nmnl.html>PK_EDGE_attach_curve_nmnl</A><br>
+    <A HREF=../headers/pk_edge_attach_curves.html>PK_EDGE_attach_curves</A><br>
+    <A HREF=../headers/pk_edge_attach_curves_2.html>PK_EDGE_attach_curves_2</A><br>
+    <A HREF=../headers/pk_face_imprint_curve.html>PK_FACE_imprint_curve</A><br>
+    <A HREF=../headers/pk_face_imprint_curves_2.html>PK_FACE_imprint_curves_2</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_normal.html>PK_FACE_imprint_cus_normal</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_vec.html>PK_FACE_imprint_cus_vec</A><br>
+    <A HREF=../headers/pk_face_imprint_cus_vector.html>PK_FACE_imprint_cus_vector</A><br>
+    <A HREF=../headers/pk_face_intersect_curve.html>PK_FACE_intersect_curve</A><br>
+    <A HREF=../headers/pk_face_intersect_face.html>PK_FACE_intersect_face</A><br>
+    <A HREF=../headers/pk_face_intersect_surf.html>PK_FACE_intersect_surf</A><br>
+    <A HREF=../headers/pk_fin_ask_curve.html>PK_FIN_ask_curve</A><br>
+    <A HREF=../headers/pk_fin_ask_geometry.html>PK_FIN_ask_geometry</A><br>
+    <A HREF=../headers/pk_fin_ask_oriented_curve.html>PK_FIN_ask_oriented_curve</A><br>
+    <A HREF=../headers/pk_fin_attach_curves.html>PK_FIN_attach_curves</A><br>
+    <A HREF=../headers/pk_outline_curve_t.html>PK_outline_curve_t</A><br>
+    <A HREF=../headers/pk_part_ask_construction_curves.html>PK_PART_ask_construction_curves</A><br>
+    <A HREF=../headers/pk_pattern_trim_data_t.html>PK_pattern_trim_data_t</A><br>
+    <A HREF=../headers/pk_point_make_helical_curve.html>PK_POINT_make_helical_curve</A><br>
+    <A HREF=../headers/pk_region_imprint_curve.html>PK_REGION_imprint_curve</A><br>
+    <A HREF=../headers/pk_replace_edge_data_t.html>PK_replace_edge_data_t</A><br>
+    <A HREF=../headers/pk_spcurve_sf_t.html>PK_SPCURVE_sf_t</A><br>
+    <A HREF=../headers/pk_spun_sf_t.html>PK_SPUN_sf_t</A><br>
+    <A HREF=../headers/pk_surf_find_curves_common.html>PK_SURF_find_curves_common</A><br>
+    <A HREF=../headers/pk_surf_intersect_curve.html>PK_SURF_intersect_curve</A><br>
+    <A HREF=../headers/pk_surf_intersect_surf.html>PK_SURF_intersect_surf</A><br>
+    <A HREF=../headers/pk_surf_make_curve_isoparam.html>PK_SURF_make_curve_isoparam</A><br>
+    <A HREF=../headers/pk_surf_make_curve_u_isoparam.html>PK_SURF_make_curve_u_isoparam</A><br>
+    <A HREF=../headers/pk_surf_make_curve_v_isoparam.html>PK_SURF_make_curve_v_isoparam</A><br>
+    <A HREF=../headers/pk_surf_make_curves_isocline.html>PK_SURF_make_curves_isocline</A><br>
+    <A HREF=../headers/pk_surf_make_cus_isocline.html>PK_SURF_make_cus_isocline</A><br>
+    <A HREF=../headers/pk_surf_trim_data_t.html>PK_SURF_trim_data_t</A><br>
+    <A HREF=../headers/pk_swept_sf_t.html>PK_SWEPT_sf_t</A><br>
+    <A HREF=../headers/pk_trcurve_sf_t.html>PK_TRCURVE_sf_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A curve is a type of geometry (PK_CLASS_curve is a subclass of PK_CLASS_geom).
+
+A curve is of one of the types:
+
+ - <A HREF=../headers/pk_bcurve_t.html>PK_BCURVE_t</A>:  a B geometry curve
+ - <A HREF=../headers/pk_line_t.html>PK_LINE_t</A>:    an unbounded straight line
+ - <A HREF=../headers/pk_circle_t.html>PK_CIRCLE_t</A>:  a complete circle
+ - <A HREF=../headers/pk_ellipse_t.html>PK_ELLIPSE_t</A>: a complete ellipse
+ - <A HREF=../headers/pk_spcurve_t.html>PK_SPCURVE_t</A>: a Surface Parameter curve
+ - <A HREF=../headers/pk_fcurve_t.html>PK_FCURVE_t</A>:  a Foreign curve
+ - <A HREF=../headers/pk_icurve_t.html>PK_ICURVE_t</A>:  an intersection curve
+ - <A HREF=../headers/pk_pline_t.html>PK_PLINE_t</A>:   a polyline curve
+
+See <A HREF="../chapters/fd_chap.015.html#50409796_pgfId-295712">Curve</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

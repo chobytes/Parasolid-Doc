@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<TITLE>SETLEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SETLEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_set_precision.html>PK_EDGE_set_precision</A><BR>
+<A HREF=../headers/pk_vertex_set_precision.html>PK_VERTEX_set_precision</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SETLEN ( entity, tol, edges, nedges, ifail )
+============================================
+
+  Associates a tolerance value with a face, edge or vertex.
+
+Receives:
+  KI_tag_entity            *entity         --- can be face, edge or vertex
+  double                   *tol            --- new tolerance value
+
+Returns:
+ &lt;KI_tag_list_edge&gt;        *edges          --- list of new edges
+  KI_int_nitems            *nedges         --- number of edges
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_tolerance          new tolerance smaller than old
+                            edge is too short for supplied tolerance
+                            tolerance is less than half Parasolid tolerance
+  KI_tolerances_too_tight   SP-curve generator could not achieve tol
+  KI_failed_to_create_sp    SP-curve generator failed - unknown reason
+  KI_missing_geom           neither adjacent face has a surface
+                            edge has no curve
+                            face has no surface attached
+  KI_general_body           General body
+  KI_wrong_entity           unsuitable entity type
+
+Description:
+  SETLEN alters the tolerance value associated with the given entity, which is
+  allowed to be a face, edge or vertex. The tolerance is a resolution
+  parameter, and represents the minimum distance (in 3-space) that a point and
+  'entity' must be apart in order to be regarded as distinct. It reflects the
+  user's belief about the accuracy of the geometric data in the body.
+
+  The action of SETLEN in each case is as follows:
+
+  FACE - Associating a tolerance value with a face indicates that its surface
+         is to be viewed as having a region of uncertainty around it whose
+         extent is given by the tolerance. Attempting to set a tolerance on a
+         face without a surface will result in an error. Currently face
+         tolerances are not used internally.
+
+  EDGE - The action for edges is more complicated, and depends on whether the
+         edge previously had Parasolid tolerance associated with it or not
+         (i.e. whether Parasolid regarded the edge as "exact").
+
+         The action for exact edges is as follows:
+
+         The 3-space edge curve is used to create SP-curves on the adjacent
+         surfaces, which are subsequently attached to the fins of the edge.
+         These will be stored along with their bounding information as
+         Trimmed Curves (type TYCUTR). The tolerance of the edge is to be
+         viewed as a band of uncertainty within which all defining SP-curves
+         lie.
+         There will always be the following side-effects:
+         . The original 3-space curve will be detached and deleted if possible.
+         . The tolerances of all vertices on the edge will be increased if
+           necessary so as to be greater than or at least equal to 'tol'.
+           The point on the vertex will be recomputed.
+         . All edges meeting at any vertex of the given edge which possess
+           3-space unbounded curves will have these converted to Trimmed
+           Curve form, with the original curve as the basis curve. This is
+           because the assumption that the vertex point lies on all edge
+           curves meeting there will no longer hold true.
+         . It will be impossible to make the edge "exact" again by using
+           SETLEN. Once this routine has been used on an edge, it will continue
+           to be represented geometrically by means of SP-curves attached to
+           the fins unless MENDEN or RETLEN is called.
+         Additionally, the following may occur:
+         . It may not always be possible to compute one SP-curve from the
+           original curve and the relevant face surface. This will be due
+           to G1 discontinuities (in the surface parameter space) which will
+           have to be represented as extra vertices. The edge may therefore
+           be split a number of times, once for every surface singularity or
+           discontinuity which lay on the original curve. Any new edges created
+           by this process will be returned to the user in 'edges'.
+
+         It is an error to set a tolerance on an "exact" edge when the
+         3-space curve is not present.
+
+         It is an error if the edge is shorter than twice the given 'tol'.
+
+         The action for edges already possessing a tolerance is as follows:
+
+         The SP-curve(s) already present on the fins of the edge will be
+         unchanged by SETLEN. The tolerance of the edge will be set to 'tol'.
+         The tolerances of vertices of the edge will be increased if
+         necessary so as to be greater than or at least equal to the supplied
+         tolerance. It should be noted that reducing the tolerance value on
+         an already toleranced edge is not recommended, as the existing
+         SP_curve(s) will not be replaced in this case. Hence such an edge
+         may fail CHCKEN.
+
+  VERTEX - The tolerance of a vertex is to be viewed as the radius of a sphere
+           of uncertainty around the point of the vertex. Setting the tolerance
+           value is subject to the following restrictions:
+           . it is not permitted to set the tolerance of a vertex to less than
+             the maximum of the tolerances of the edges meeting at it.
+           . attempting to set a tolerance on a vertex without a point
+             attached will result in an error.
+
+  Note that setting tolerances on faces, edges and vertices risks rendering
+  the model invalid, as CHCKEN will use these tolerance values for
+  determining whether geometric items meet appropriately or not. For example,
+  increasing the tolerance of a particular vertex may result in its clashing
+  with a nearby edge, or being within tolerance of another vertex. Both of
+  these configurations will be recognised by CHCKEN. Some checks are made for
+  local effects of this nature but such checking is by no means exhaustive.
+
+  This function is not supported for entities which are part of a
+  general body.
+
+
+</PRE>
+</BODY>
+</HTML>

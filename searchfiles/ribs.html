@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.077.html#50409864_pgfId-585301", " 76.2.5.1 Drawing blend <B>ribs</B> when rendering ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-585302", " You can choose whether <B>ribs</B> are drawn by the rendering functions using the", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-597629", " Blend <B>ribs</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-352923", " describe the blend shape. You can pass blend <B>ribs</B> to a more general surface-creation package to approximate", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-352927", " See Section 78.12, Generating blend <B>ribs</B> . ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-1403277", " <B>ribs</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-822527", " when specifying wire-face blends (see Section 78.21 ), <B>ribs</B> (see Section 78.12 ), or a user-supplied surface", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311311", " a blend rib. See Section 78.12, Generating blend <B>ribs</B> , for full details. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311338", " a blend rib. See Section 78.12, Generating blend <B>ribs</B> , for details. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-714442", " 78.12 Generating blend <B>ribs</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311352", " well as, blend surfaces in face-face blending. Blend <B>ribs</B> are geometric cross-sections of a blend surface, as", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-908764", " Note: You cannot create blend <B>ribs</B> for constant radius rolling-ball blends. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311356", " which causes blending to fail, you can generate <B>ribs</B> and use them to create a surface which", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311357", " Alternatively, you can produce blend <B>ribs</B> as a way of creating a preview of", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311444", " Figure 78-52 Producing blend <B>ribs</B> instead of a blend surface ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311449", " How to specify whether to produce <B>ribs</B>, and in what form (see Section 78.12.1 )", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311453", " How <B>ribs</B> are returned by PK_FACE_make_blend (see Section 78.12.2 )", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311456", " Note: You can only produce blend <B>ribs</B> if you also supply a parameter spine. See", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311466", " 78.12.1 Specifying when to produce <B>ribs</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311467", " You can choose to produce <B>ribs</B> either: ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311472", " number of <B>ribs</B> to produce in each group. <B>ribs</B> are distributed as evenly as possible within each", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311478", " You specify how you want blend <B>ribs</B> to be produced using the ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311488", " PK_blend_output_rib_no_c - No <B>ribs</B> are produced. (the default) ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311489", " PK_blend_output_rib_on_fail_c - <B>Ribs</B> are produced in areas where blending fails to build", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311490", " PK_blend_output_rib_only_c - <B>Ribs</B> are produced, but no blend sheets or faces. The", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311491", " PK_blend_output_rib_also_c - Both <B>ribs</B> and blend faces are produced. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311499", " How to group the <B>ribs</B> that are generated. This can take the following", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311500", " not group the <B>ribs</B>. The total number of <B>ribs</B> produced is no", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311501", " PK_blend_group_rib_by_face_c - <B>Ribs</B> are grouped according to the blend faces produced. No", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311502", " PK_blend_group_rib_by_parms_c - <B>Ribs</B> are grouped by the parameter intervals specified in ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311506", " number of <B>ribs</B> to produce in each group. <B>ribs</B> are distributed across the group as evenly as", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311522", " 78.12.2 How <B>ribs</B> are returned ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311523", " <B>Ribs</B> are returned in the ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311532", " The number of <B>ribs</B> that were created. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311534", " <B>ribs</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311536", " The <B>ribs</B> that were created, stored as an array of", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311546", " field of PK_FACE_make_blend_o_t , then the <B>ribs</B> are returned in that partition. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311549", " Note: For blends which produce multiple sheets, two <B>ribs</B> may share the same parameter, but will never", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-294745", " 79-1 shows a part containing a number of <B>ribs</B>, each of which has a three-face blend along", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295039", " option then by default, the blend boundary and <B>ribs</B> would not have been drawn, and the unblended", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203893", " blend <B>ribs</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204117", " returning <B>ribs</B> in face-face 1293 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204169", " when to produce <B>ribs</B>, face-face 1292 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206258", " returning <B>ribs</B> in 1293 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206281", " when to produce <B>ribs</B> 1292 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206989", " blend <B>ribs</B> 1291 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208895", " produce <B>ribs</B>, face-face blends when to 1292 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209250", " <B>ribs</B> in face-face blends 1293 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209251", " <B>ribs</B> ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-289257", " 10-16 shows a part containing a number of <B>ribs</B>, each of which has a three-face blend along", "Overview of Parasolid - Blending");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_blend_render_rib_no_c 18430 dont draw <B>ribs</B> ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_blend_group_rib_by_face_c 21031 group <B>ribs</B> by blend face ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_blend_group_rib_t.html#documentation", " datatype selects how max_n_ribs limits the number of <B>ribs</B> to be", "PK Reference - PK_blend_group_rib_t");
+top.note("headers/pk_blend_output_rib_t.html#documentation", "This datatype selects whether and how blend <B>ribs</B> are output.", "PK Reference - PK_blend_output_rib_t");
+top.note("headers/pk_blend_properties_t.html#declaration", " PK_blend_render_rib_t render_rib; --- enable rendering of <B>ribs</B>", "PK Reference - PK_blend_properties_t");
+top.note("headers/pk_blend_properties_t.html#documentation", " Whether <B>ribs</B> will be drawn by the rendering functions.", "PK Reference - PK_blend_properties_t");
+top.note("headers/pk_blend_render_rib_t.html#documentation", " PK_blend_render_rib_no_c dont draw <B>ribs</B>", "PK Reference - PK_blend_render_rib_t");
+top.note("headers/pk_blend_rib_control_t.html#declaration", " PK_blend_output_rib_t output_rib; --- whether and how <B>ribs</B> are made", "PK Reference - PK_blend_rib_control_t");
+top.note("headers/pk_blend_rib_control_t.html#description", " This structure controls how blend <B>ribs</B> are output.", "PK Reference - PK_blend_rib_control_t");
+top.note("headers/pk_blend_rib_control_t.html#documentation", " output_rib Control how <B>ribs</B> are produced.", "PK Reference - PK_blend_rib_control_t");
+top.note("headers/pk_blend_rib_r_f.html#declaration", " PK_blend_rib_r_t *const <B>ribs</B>", "PK Reference - PK_blend_rib_r_f");
+top.note("headers/pk_blend_rib_r_t.html#declaration", " int n_ribs; --- number of <B>ribs</B>", "PK Reference - PK_blend_rib_r_t");
+top.note("headers/pk_blend_rib_r_t.html#description", " This structure returns blend <B>ribs</B> and corresponding parameters.", "PK Reference - PK_blend_rib_r_t");
+top.note("headers/pk_blend_rib_r_t.html#documentation", " the number of curves and points in the <B>ribs</B> array (may be 0)", "PK Reference - PK_blend_rib_r_t");
+top.note("headers/pk_debug_shuffle_start.html#documentation", "Note 3: If blend <B>ribs</B> are returned then sheet_bodies will not be shuffled.", "PK Reference - PK_DEBUG_shuffle_start");
+top.note("headers/pk_face_make_blend.html#declaration", " PK_blend_rib_r_t *const <B>ribs</B>, --- <B>ribs</B> returned (if any)", "PK Reference - PK_FACE_make_blend");
+top.note("headers/pk_face_make_blend.html#documentation", "specify whether cross sections of the surfaces, \"<B>ribs</B>\", are returned", "PK Reference - PK_FACE_make_blend");
+top.note("headers/pk_face_make_blend_o_t.html#documentation", " output_rib Control how <B>ribs</B> are produced.", "PK Reference - PK_FACE_make_blend_o_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

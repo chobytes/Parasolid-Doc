@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_neutral_method_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_neutral_method_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_neutral_method_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_neutral_sheet_o_t.html>PK_FACE_make_neutral_sheet_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype controls the method by which the faces given to the function are
+used to construct the neutral sheet.
+
+    PK_neutral_method_mid_offset_c  The function will find the current offset
+                                    value of the faces and consider this to be
+                                    the thickness between the faces. It will
+                                    then make an offset sheet between them
+                                    relative to this thickness.
+
+                                    If the faces are not offsets of each other,
+                                    or are offsets at different distances, then
+                                    this method will fail.
+
+    PK_neutral_method_offset_left_c The function will find the maximum distance
+                                    that the <B>'left_faces'</B> can be offset before
+                                    they intersect the <B>'right_faces'</B> and
+                                    consider this to be the thickness between
+                                    the faces. It will then offset the
+                                    <B>'left_faces'</B> relative to this thickness.
+
+                                    If the minimum distance between the faces
+                                    is zero or can not be calculated, this
+                                    method will fail.
+
+    PK_neutral_method_medial_c      The function will create a single face
+                                    neutral surface such that each point on it
+                                    satisfies (1 - p ) D1 = (1 + p) D2.
+
+                                    This allows creation of neutral sheets for
+                                    face sets which are not offsets of each
+                                    other.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

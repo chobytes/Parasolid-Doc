@@ -1,0 +1,667 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_check_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_check_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_check_o_s
+    {
+    int                       o_t_version; --- version number of option
+                                           --- structure
+    int                       max_faults;  --- limit on fault numbers (10)
+    <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_t</A>           geom;        --- bad geometry
+                                           --- (<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_yes_c</A>)
+    <A HREF=../headers/pk_check_bgeom_t.html>PK_check_bgeom_t</A>          bgeom;       --- bad B geometry
+                                           --- (<A HREF=../headers/pk_check_bgeom_t.html>PK_check_bgeom_yes_c</A>)
+    <A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_t</A>           mesh;        --- bad meshes
+                                           --- (<A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_yes_c</A>)
+    <A HREF=../headers/pk_check_top_geo_t.html>PK_check_top_geo_t</A>        top_geo;     --- topology/geometry inconsistency
+                                           --- (<A HREF=../headers/pk_check_top_geo_t.html>PK_check_top_geo_yes_c</A>)
+    <A HREF=../headers/pk_check_size_box_t.html>PK_check_size_box_t</A>       size_box;    --- size box violation
+                                           --- (<A HREF=../headers/pk_check_size_box_t.html>PK_check_size_box_yes_c</A>)
+    <A HREF=../headers/pk_check_fa_x_t.html>PK_check_fa_X_t</A>           fa_X;        --- face self intersection
+                                           --- (<A HREF=../headers/pk_check_fa_x_t.html>PK_check_fa_X_yes_c</A>)
+    <A HREF=../headers/pk_check_loops_t.html>PK_check_loops_t</A>          loops;       --- loop checks
+                                           --- (<A HREF=../headers/pk_check_loops_t.html>PK_check_loops_yes_c</A>)
+    <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_t</A>          fa_fa;       --- face face inconsistency
+                                           --- (<A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>)
+    <A HREF=../headers/pk_check_sh_t.html>PK_check_sh_t</A>             sh;          --- negated or inconsistent shells
+                                           --- (<A HREF=../headers/pk_check_sh_t.html>PK_check_sh_yes_c</A>)
+    <A HREF=../headers/pk_check_corrupt_t.html>PK_check_corrupt_t</A>        corrupt;     --- corrupt data or identifiers
+                                           --- (<A HREF=../headers/pk_check_corrupt_t.html>PK_check_corrupt_yes_c</A>)
+    <A HREF=../headers/pk_check_nmnl_geom_t.html>PK_check_nmnl_geom_t</A>      nmnl_geom;   --- bad nominal geometry
+                                           --- (<A HREF=../headers/pk_check_nmnl_geom_t.html>PK_check_nmnl_geom_yes_c</A>)
+    <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_t</A>        returns;     --- return version of fault info
+                                           --- (<A HREF=../headers/pk_check_returns_t.html>PK_check_returns_0_c</A>)
+    <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_t</A>   extra_faults;--- expand PK_BODY_state_corrupt_c
+                                           --- (<A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_0_c</A>)
+    <A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_t</A>        attribs;     --- check for validity of system
+                                           --- attributes
+                                           --- (<A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_no_c</A>)
+    };
+
+typedef struct PK_BODY_check_o_s PK_BODY_check_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls for checking a body.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_check.html>PK_BODY_check</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure allows the caller to control which checks are performed;
+if no options are supplied, all checks appropriate to the body will be made
+
+
+max_faults
+----------
+The caller may set an upper limit on the number of faults found, in
+the option <B>'max_faults'</B>; if <B>'max_faults'</B> is zero, the first fault found
+is returned as a PK error: PK_ERROR_check_error, with the entity at fault
+returned in the <A HREF=../headers/pk_error_sf_t.html>PK_ERROR_sf_t</A> structure.
+
+
+geom
+----
+This can be set to one of:
+
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_no_c</A>     don't do any geometry validity checks
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_basic_c</A>  check for invalid or degenerate geometry
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_lazy_c</A>   check for invalid, self-intersecting or
+                       degenerate geometry
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_full_c</A>   check for invalid, self-intersecting or
+                       degenerate geometry, ignore results of pre-V5 checks
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_yes_c</A>    check for invalid, self-intersecting or
+                       degenerate geometry, ignore previous checks
+
+Geometry which passes these tests is marked so that the cost of these
+tests need only be incurred once. Geometry which fails is also marked for
+the same reason.
+
+The option <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_full_c</A> behaves just like <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_lazy_c</A>,
+except that it forces a re-check of geometry marked as valid by
+pre-V5 versions of Parasolid.
+
+The option <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_yes_c</A> behaves just like <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_lazy_c</A>,
+except that it always forces a full check of the geometry,
+overriding the interface parameter, even if the geometry has
+been marked as valid by a previous check.
+
+The check faults associated with these checks are as follows
+
+<B>'state'</B>                    |     <B>'entity_1'</B>      |         <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_ENTITY_state_invalid_c  | invalid geometric   |        null
+                           |     entity          |
+                           |                     |
+PK_GEOM_state_self_int_c   |  self-intersecting  |     point on the
+                           |  geometric entity   |   self-intersection
+                           |                     |
+PK_GEOM_state_degenerate_c |  geometric entity   |      point from
+                           |                     |   degenerate region
+                           |                     |
+PK_TOPOL_state_no_geom_c   | topological entity  |       null
+                           |  with no geometry   |
+                           |                     |
+
+
+bgeom
+-----
+This can be set to one of:
+
+<A HREF=../headers/pk_check_bgeom_t.html>PK_check_bgeom_no_c</A>     don't do any B-geometry validity checks
+<A HREF=../headers/pk_check_bgeom_t.html>PK_check_bgeom_yes_c</A>    do all B-geometry continuity checks
+
+
+Special checks on B-curves and B-surfaces:
+
+There are special checks performed on B-curves and B-surfaces.
+
+
+curves:
+
+The restrictions on B-curves are:
+
+    i)  A B-curve cannot have any first derivative of zero length.
+
+   ii)  A B-curve cannot self-intersect.
+
+  iii)  A B-curve cannot have a cusp interior to a segment.
+
+   iv)  A B-curve must be at least position (G0) continuous.
+
+
+surfaces:
+
+The restrictions on B-surfaces are:
+
+
+    i)  A B-surface cannot contain any first derivative of zero length, except
+        at a legal degeneracy (defined below).
+
+   ii)  A B-surface cannot self-intersect.
+
+  iii)  A B-surface cannot have a ridge or a cusp interior to a patch.
+
+   iv)  A B-surface must be at least position (G0) continuous.
+
+    v)  A B-surface may meet itself in either the u or the v direction or both
+        to form a closed surface.  If it does meet itself, it must do so all
+        along the boundary.  It is illegal for for the surface to meet itself
+        at a single point.
+
+
+   vi)  A legal degeneracy is one which occurs only on a boundary of the
+        surface, and which reduces all the boundary between two
+        or more knot values to a single point.
+
+   vii) A corner of a B-surface cannot be degenerate in both parameters.
+
+Special checks on offsets of B-surfaces:
+
+Offset surfaces whose underlying surfaces are B-surfaces are also checked for
+self intersection.
+
+The check_fault associated with this check is as follows
+
+<B>'state'</B>                        |     <B>'entity_1'</B>       |      <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_TOPOL_state_not_G1_c        |    face or edge      |       null
+                               |                      |
+
+
+mesh 
+-----
+This can be set to one of:
+
+<A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_no_c</A>      don't do any mesh validity checks
+<A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_basic_c</A>   check for invalid mesh topology or geometry
+<A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_yes_c</A>     do all mesh validity checks
+
+
+Special checks on Meshes
+
+There are special checks performed on meshes.
+
+The restrictions on meshes are:
+
+
+    i)  A mesh cannot be non-manifold.
+
+   ii)  A mesh cannot have an mfacet with a zero length mfin
+        (degenerate mfacet).
+
+  iii)  A mesh cannot have an mfacet of zero area (flat mfacet).
+
+   iv)  A mesh cannot have slits, that is laminar mfins that occupy the
+        same position.
+
+    v)  A mesh cannot self-intersect.
+
+   vi)  A mesh cannot have an mvertex normal that is opposed to all adjacent
+        mfacet normals.
+
+  vii)  A mesh that is attached to a face must not be disjoint.
+
+ viii)  A mesh that is attached to a face must have all its boundary mfins
+        along each edge of that face matched to the segments of any
+        polyline attached to the edge.
+
+
+The check_faults associated with this check are as follows
+
+<B>'state'</B>                        |  <B>'entity_1'</B>  |      <B>'position'</B>
+-------------------------------------------------------------------------------
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_bad_mvx_normal_c</A> |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters of the mvertex
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_corrupt_c</A>        |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters of the
+                               |              |  corruption if available
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_degen_mfacet_c</A>   |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters in the mfacet
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_flat_mfacet_c</A>    |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters in the mfacet
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_non_manifold_c</A>   |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters in the
+                               |              |  non manifold region
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_self_int_c</A>       |     mesh     |  position on the
+                               |              |  self intersection
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_slit_c</A>           |     mesh     |  position on the slit
+                               |              |
+PK_FACE_state_bad_edge_c       |     face     |
+                               |              |
+PK_FACE_state_disjoint_mesh_c  |     face     |
+
+
+top_geo
+-------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_top_geo_t.html>PK_check_top_geo_no_c</A>     don't do any topology geometry consistency checks
+<A HREF=../headers/pk_check_top_geo_t.html>PK_check_top_geo_edge_c</A>   check for inconsistencies between topology and
+                          geometry of edges
+<A HREF=../headers/pk_check_top_geo_t.html>PK_check_top_geo_face_c</A>   check for inconsistencies between topology and
+                          geometry of faces
+<A HREF=../headers/pk_check_top_geo_t.html>PK_check_top_geo_yes_c</A>    both edge and face checks
+
+
+
+Special checks on geometry attached to topology:
+
+If any option but <A HREF=../headers/pk_check_top_geo_t.html>PK_check_top_geo_no_c</A> is selected,
+then additional checks on the geometry attached to the body are performed.
+
+The checks performed on curves attached to edges are:
+
+    i)  The curve must be G1 continuous.
+
+   ii)  If the curve is closed then it must have a periodic parameterisation.
+
+The checks performed on surfaces attached to faces are:
+
+  iii)  The surface must be G1 continuous.
+
+   iv)  The constant parameter lines of the surface must be G1 continuous.
+
+    v)  If the surface is closed in either direction then it must have a
+        periodic parameterisation in that direction.
+
+   vi)  The surface may only contain degeneracies along one of its
+        boundaries if all of that boundary is degenerate.
+
+Failure to pass these any of these checks will result in an
+PK_TOPOL_state_not_G1_c code.
+
+Checks i), iii), iv) and vi) are only performed if <B>'bgeom'</B> is set to
+<A HREF=../headers/pk_check_bgeom_t.html>PK_check_bgeom_yes_c</A>
+
+
+The check faults associated with these checks are as follows
+
+<B>'state'</B>                        |<B>'entity_1'</B>|<B>'entity_2'</B>|      <B>'position'</B>
+-------------------------------------------------------------------
+PK_EDGE_state_open_c           |  edge    |          |       null
+                               |          |          |
+PK_EDGE_state_bad_vertex_c     |  edge    |  vertex  |       null
+                               |          |          |
+PK_EDGE_state_reversed_c       |  edge    |          |       null
+                               |          |          |
+PK_EDGE_state_vertices_touch_c |  edge    |          |       null
+                               |          |          |
+PK_EDGE_state_bad_face_order_c |  edge    |          |       null
+                               |          |          |
+PK_FACE_state_bad_vertex_c     |  face    |  vertex  |       null
+                               |          |          |
+PK_FACE_state_bad_edge_c       |  face    |   edge   |       null
+                               |          |          |
+PK_FACE_state_bad_edge_order_c |  face    |          |       null
+                               |          |          |
+PK_FACE_state_no_vtx_at_sing_c |  face    |          | point at singularity
+                               |          |          |
+
+
+size_box
+--------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_size_box_t.html>PK_check_size_box_no_c</A>     don't do size box checks
+<A HREF=../headers/pk_check_size_box_t.html>PK_check_size_box_yes_c</A>    check for size box violations
+
+The check fault associated with this check is as follows
+
+<B>'state'</B>                        |   <B>'entity_1'</B>         |   <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_TOPOL_state_size_box_c      |    face or edge      |       null
+                               |                      |
+
+fa_X
+----
+This can be set to one of:
+
+<A HREF=../headers/pk_check_fa_x_t.html>PK_check_fa_X_no_c</A>     don't do face self-intersection checks
+<A HREF=../headers/pk_check_fa_x_t.html>PK_check_fa_X_yes_c</A>    check for face self-intersections
+
+The check faults associated with this check are as follows
+
+<B>'state'</B>                        |<B>'entity_1'</B>|<B>'entity_2'</B>|  <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_FACE_state_self_int_c       |   face   |          |  point in region of
+                               |          |          |    inconsistency
+                               |          |          |
+PK_FACE_state_bad_wire_fa_ed_c |   face   |   edge   |  point in region of
+                               |          |          |    inconsistency
+                               |          |          |
+PK_EDGE_state_bad_wire_ed_ed_c |   edge   |   edge   |  point in region of
+                               |                     |    inconsistency
+                               |                     |
+
+
+
+loops
+-----
+This can be set to one of:
+
+<A HREF=../headers/pk_check_loops_t.html>PK_check_loops_no_c</A>     don't do loop checks
+<A HREF=../headers/pk_check_loops_t.html>PK_check_loops_yes_c</A>    check for loop consistency of faces
+
+The check fault associated with this check is as follows
+
+<B>'state'</B>                        |      <B>'entity_1'</B>      |     <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_FACE_state_bad_loops_c      |        face          |       null
+                               |                      |
+
+
+fa_fa
+-----
+This can be set to one of:
+
+<A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_no_c</A>     don't do face-face checks
+<A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>    check for face-face inconsistencies
+
+The check fault associated with this check is as follows
+
+<B>'state'</B>                        |<B>'entity_1'</B>|<B>'entity_2'</B>|     <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_FACE_state_bad_face_face_c  |   face   |   face   | point in region of
+                               |          |          |    inconsistency
+                               |          |          |
+
+sh
+--
+This can be set to one of:
+
+<A HREF=../headers/pk_check_sh_t.html>PK_check_sh_no_c</A>     don't do shell checks
+<A HREF=../headers/pk_check_sh_t.html>PK_check_sh_yes_c</A>    check for inside-out or inconsistent shells
+
+The check faults associated with this check are as follows
+
+<B>'state'</B>                        |<B>'entity_1'</B>|<B>'entity_2'</B>|     <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_BODY_state_inside_out_c     |   body   |          |     null
+                               |          |          |
+<A HREF=../headers/pk_region_t.html>PK_REGION_state_bad_shells_c</A>   |  region  |          |     null
+                               |          |          |
+PK_BODY_state_bad_regions_c    |   body   |          |     null
+                               |          |          |
+PK_SHELL_state_bad_topol_geom_c|  shell   |          |     null
+                               |          |          |
+PK_SHELL_state_bad_sh_sh_c     |  shell   |   shell  |  point in region of
+                               |          |          |    inconsistency
+                               |          |          |
+
+
+corrupt
+-------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_corrupt_t.html>PK_check_corrupt_no_c</A>     don't do data structure checks
+<A HREF=../headers/pk_check_corrupt_t.html>PK_check_corrupt_yes_c</A>    check for corrupt data structure and check
+                          identifiers
+
+The check faults associated with this check are as follows
+
+<B>'state'</B>                        |     <B>'entity_1'</B>       |   <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_BODY_state_corrupt_c        |      body            |     null
+                               |                      |
+PK_BODY_state_invalid_ident_c  |      body            |     null
+                               |                      |
+
+
+nmnl_geom
+---------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_nmnl_geom_t.html>PK_check_nmnl_geom_no_c</A>     don't do nominal geometry checks
+<A HREF=../headers/pk_check_nmnl_geom_t.html>PK_check_nmnl_geom_yes_c</A>    do nominal geometry checks
+
+The check faults associated with this check are as follows
+
+<B>'state'</B>                        |<B>'entity_1'</B>|<B>'entity_2'</B>|   <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_EDGE_state_open_nmnl_c      |   edge   |          |     null
+                               |          |          |
+PK_EDGE_state_bad_vertex_nmnl_c|   edge   |  vertex  |     null
+                               |          |          |
+PK_EDGE_state_reversed_nmnl_c  |   edge   |          |     null
+                               |          |          |
+PK_EDGE_state_bad_sp_nmnl_c    |   edge   |          |     null
+                               |          |          |
+
+
+returns
+-------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_returns_t.html>PK_check_returns_0_c</A>        return version 0 check fault information
+<A HREF=../headers/pk_check_returns_t.html>PK_check_returns_1_c</A>        return version 1 check fault information
+<A HREF=../headers/pk_check_returns_t.html>PK_check_returns_2_c</A>        return version 2 check fault information
+<A HREF=../headers/pk_check_returns_t.html>PK_check_returns_3_c</A>        return version 3 check fault information
+<A HREF=../headers/pk_check_returns_t.html>PK_check_returns_4_c</A>        return version 4 check fault information
+<A HREF=../headers/pk_check_returns_t.html>PK_check_returns_5_c</A>        return version 5 check fault information
+<A HREF=../headers/pk_check_returns_t.html>PK_check_returns_latest_c</A>   return latest check fault information
+
+The default value for this option is <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_0_c</A>. This returns
+basic fault information. In particular:
+
+    i)  If <B>'state'</B> is PK_FACE_state_self_int_c, <B>'entity_1'</B> is the face whose
+        boundary is self-intersecting.
+
+   ii)  For curves and surfaces that are closed but not periodic, <B>'state'</B> is
+        PK_TOPOL_state_not_g1_c.
+
+  iii)  For SP-curves on edges and fins with discontinuous underlying 2D
+        B-curves or surfaces, <B>'state'</B> is PK_ENTITY_state_invalid_c.
+
+When this option is set to <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_1_c</A> or later, the changes to the
+returned check fault information are as follows:
+
+    i)  For <B>'state'</B> PK_FACE_state_self_int_c, <B>'entity_1'</B> and <B>'entity_2'</B> will
+        be the pair of intersecting fins in the face unless one of the
+        clashing topologies is an isolated vertex in which case the entities
+        returned will be a fin and the loop of the isolated vertex.
+
+   ii)  For closed but not periodic curves and surfaces, <B>'state'</B> will be
+        PK_TOPOL_state_bad_closed_c.
+
+  iii)  For SP-curves on edges and fins with discontinuous underlying 2D
+        bcurves or surfaces, <B>'state'</B> will be PK_TOPOL_state_not_G1_c and
+        <B>'entity_2'</B> will be the bad underlying bcurve or surface.
+
+When this option is set to <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_2_c</A> or later, the changes to the
+returned check fault information are as follows:
+
+    i)  All enhancements for <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_1_c</A>.
+
+   ii)  If the geometry attached to a topological entity contains an invalid
+        degeneracy, <B>'state'</B> is one of the following, as appropriate:
+            o PK_TOPOL_state_u_parm_degen_c
+            o PK_TOPOL_state_v_parm_degen_c
+            o PK_TOPOL_state_parm_degen_c
+            o PK_TOPOL_state_u_phys_degen_c
+            o PK_TOPOL_state_v_phys_degen_c
+            o PK_TOPOL_state_phys_degen_c
+
+When this option is set to <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_3_c</A> or later, the changes to the
+returned check fault information are as follows:
+
+    i)  All enhancements for <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_2_c</A>.
+
+   ii)  A more stringent check will be carried out to determine whether
+        edges lie within tolerance of their associated surfaces. If an
+        invalidity is found, <B>'state'</B> will be PK_FACE_state_bad_edge_c.
+
+When this option is set to <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_4_c</A> or later, the changes to the
+returned check fault information are as follows:
+
+    i)  All enhancements for <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_3_c</A>.
+
+   ii)  A more thorough check will be carried out to determine whether
+        different vertices of adjacent faces are coincident. If an
+        invalidity is found, <B>'state'</B> will be PK_FACE_state_bad_face_face_c.
+
+When this option is set to <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_5_c</A> or later, the changes to the
+returned check fault information are as follows:
+
+    i)  All enhancements for <A HREF=../headers/pk_check_returns_t.html>PK_check_returns_4_c</A>.
+
+   ii)  If face-edge consistency checks identify cases of polylines
+        that are reversed with respect to meshes they are supposed to
+        be watertight with, <B>'state'</B> will be PK_EDGE_state_reversed_c.
+
+extra_faults
+-------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_0_c</A>       return version 0 check fault states
+<A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_1_c</A>       return version 1 check fault states
+<A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_latest_c</A>  return the latest check fault states
+
+When this option is set to <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_1_c</A> or
+<A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_latest_c</A> the faults which are returned as
+PK_BODY_state_corrupt_c under <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_0_c</A> are expanded and
+returned as
+
+PK_BODY_state_bad_type_c
+PK_BODY_state_no_region_c
+PK_BODY_state_no_shell_c
+PK_BODY_state_no_solid_reg_c
+PK_BODY_state_region_1_solid_c
+PK_BODY_state_shell_not_first_c
+PK_BODY_state_wrong_ext_reg_c
+PK_BODY_state_wrong_num_regs_c
+PK_EDGE_state_bad_fins_c
+PK_EDGE_state_bad_tol_c
+PK_EDGE_state_fin_bad_ring_c
+PK_EDGE_state_fin_ed_next_pos_c
+PK_EDGE_state_fin_ed_not_ed_c
+PK_EDGE_state_fin_not_pos_c
+PK_EDGE_state_single_vertex_c
+PK_EDGE_state_wire_corrupt_c
+PK_ENTITY_state_bad_owner_c
+PK_ENTITY_state_has_att_group_c
+PK_ENTITY_state_shared_c
+PK_FACE_state_diff_sh_same_rg_c
+PK_FACE_state_edge_moebius_c
+PK_FACE_state_wrong_sense_c
+PK_FIN_state_bad_c
+PK_FIN_state_bad_ed_fins_c
+PK_FIN_state_corrupt_c
+PK_FIN_state_ed_next_is_fin_c
+PK_FIN_state_edge_diff_vertex_c
+PK_FIN_state_no_ed_next_in_sh_c
+PK_FIN_state_non_zero_ident_c
+PK_FIN_state_not_ed_next_prev_c
+PK_FIN_state_not_lp_next_prev_c
+PK_FIN_state_vx_not_vx_c
+PK_FIN_state_wrong_vertex_c
+PK_GEOM_state_bad_dep_type_c
+PK_GEOM_state_bad_geom_owner_c
+PK_GEOM_state_bad_owner_c
+PK_GEOM_state_bad_topol_owner_c
+PK_GEOM_state_dup_geom_owner_c
+PK_GEOM_state_not_owners_dep_c
+PK_GEOM_state_not_owning_dep_c
+PK_GROUP_state_bad_c
+PK_LOOP_state_isolated_has_cu_c
+PK_PART_state_bad_attrib_c
+PK_PART_state_bad_attrib_list_c
+PK_PART_state_bad_state_c
+PK_PART_state_corrupt_c
+PK_PART_state_has_key_c
+PK_PART_state_no_key_c
+<A HREF=../headers/pk_region_t.html>PK_REGION_state_no_shell_c</A>
+<A HREF=../headers/pk_region_t.html>PK_REGION_state_wrongly_solid_c</A>
+PK_SHELL_state_bad_body_c
+PK_SHELL_state_bad_fa_orient_c
+PK_SHELL_state_bad_wf_acorn_c
+PK_SHELL_state_bad_wf_c
+PK_SHELL_state_closed_bad_fa_c
+PK_SHELL_state_ed_fa_in_acorn_c
+PK_SHELL_state_eds_fragmented_c
+PK_SHELL_state_fas_fragmented_c
+PK_SHELL_state_no_vx_ed_fa_c
+PK_SHELL_state_not_owning_vx_c
+PK_SHELL_state_open_bad_fa_c
+PK_SHELL_state_reg_meet_at_ed_c
+PK_SHELL_state_reg_meet_at_vx_c
+PK_SHELL_state_sheet_no_fa_c
+PK_SHELL_state_too_many_fas_c
+PK_TOPOL_state_bad_box_c
+PK_TOPOL_state_bad_geom_share_c
+PK_TOPOL_state_bad_owner_type_c
+PK_TOPOL_state_share_no_geom_c
+PK_VERTEX_state_bad_fin_c
+PK_VERTEX_state_bad_isolated_c
+PK_VERTEX_state_bad_tol_c
+PK_VERTEX_state_fin_chains_c
+PK_VERTEX_state_non_manifold_c
+PK_VERTEX_state_not_dep_of_sh_c
+PK_VERTEX_state_owner_not_sh_c
+PK_VERTEX_state_sheet_corrupt_c
+PK_VERTEX_state_too_many_eds_c
+PK_VERTEX_state_wf_ed_bad_sh_c
+
+or possibly PK_BODY_state_corrupt_c if none of the above applies.
+
+attribs
+-------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_no_c</A>     Do not perform validity checks on attached system
+                          attributes.
+<A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_yes_c</A>    Perform system attribute validity checks.
+
+The only check fault associated with this check is the following:
+
+<B>'state'</B>                        | <B>'entity_1'</B>  | <B>'entity_2'</B>    | <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_ATTRIB_state_invalid_att_c  |  attribute  |  attrib owner |   null
+
+If any faults are found with the system attributes present, the user is
+encouraged to use <A HREF=../headers/pk_entity_check_attribs.html>PK_ENTITY_check_attribs</A> to discover more information on
+the faulty attribute(s).
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

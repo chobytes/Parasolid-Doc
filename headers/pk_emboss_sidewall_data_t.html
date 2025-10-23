@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_emboss_sidewall_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_emboss_sidewall_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_emboss_sidewall_data_s
+    {
+    <A HREF=../headers/pk_emboss_sidewall_t.html>PK_emboss_sidewall_t</A>        sidewall;   --- how to construct sidewall
+                                            --- (<A HREF=../headers/pk_emboss_sidewall_t.html>PK_emboss_sidewall_swept_c</A>)
+    <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_t</A>           taper_method;
+                                            --- how to create taper
+                                            --- (<A HREF=../headers/pk_taper_method_t.html>PK_taper_method_isocline_c</A>)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>                draw_direction;
+                                            --- outward draw direction for
+                                            --- tapered and swept sidewall,
+                                            --- or as a general reference for
+                                            --- the face normal of emboss cap
+                                            --- (0,0,1)
+    double                      taper_angle;--- taper angle of tapered sidewall
+                                            --- (0.0)
+    double                      offset;     --- value for offset taper
+                                            --- (0.0)
+    <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A>                   top_surface;--- top surface for offset taper
+                                            --- (PK_ENTITY_null)
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>                   sidewall_body;
+                                            --- supplied sidewall in the
+                                            --- form of a non-disjoined and
+                                            --- manifold sheet body for
+                                            --- <A HREF=../headers/pk_emboss_sidewall_t.html>PK_emboss_sidewall_supplied_c</A>
+                                            --- (PK_ENTITY_null)
+    int                         n_multi_taper_edges;
+                                            --- number of edges of profile
+                                            --- specified for multiple taper
+                                            --- angles for sidewall creation
+                                            --- (0)
+    const <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>             *multi_taper_edges;
+                                            --- array of edges of profile which
+                                            --- will produce sidewalls with
+                                            --- multiple taper angles
+                                            --- (NULL)
+    const double                *multi_taper_angles;
+                                            --- taper angle for each edge in
+                                            --- the <B>'multi_taper_edges'</B> array
+                                            --- (NULL)
+
+    };
+typedef struct PK_emboss_sidewall_data_s PK_emboss_sidewall_data_t;
+</B>
+<A NAME="description"></A>
+<I>This structure is part of the <A HREF=../headers/pk_body_emboss_o_t.html>PK_BODY_emboss_o_t</A> and <A HREF=../headers/pk_face_emboss_o_t.html>PK_FACE_emboss_o_t</A>
+options structure. It contains the data for constructing sidewall geometry.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_emboss_o_t.html>PK_BODY_emboss_o_t</A><br>
+    <A HREF=../headers/pk_face_emboss_o_t.html>PK_FACE_emboss_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Description of fields:
+
+<B>'sidewall'</B>              Method to construct sidewall surfaces.
+                        Values can be:
+                            <A HREF=../headers/pk_emboss_sidewall_t.html>PK_emboss_sidewall_tapered_c</A>
+                            <A HREF=../headers/pk_emboss_sidewall_t.html>PK_emboss_sidewall_ruled_c</A>
+                            <A HREF=../headers/pk_emboss_sidewall_t.html>PK_emboss_sidewall_swept_c</A>
+                            <A HREF=../headers/pk_emboss_sidewall_t.html>PK_emboss_sidewall_supplied_c</A>
+                        The default value is <A HREF=../headers/pk_emboss_sidewall_t.html>PK_emboss_sidewall_swept_c</A>.
+
+<B>'taper_method'</B>          Method to create taper surfaces.
+                        Values can be:
+                            <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_isocline_c</A>
+                            <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_curve_c</A>
+                            <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_offset_c</A>
+                            <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_normal_c</A>
+                        The default value is <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_isocline_c</A>.
+
+<B>'draw_direction'</B>        The outward draw direction of emboss. For tapered
+                        sidewall, it is the taper direction. For swept
+                        sidewall, it is the direction to sweep the profile.
+                        It is also a general reference direction of the
+                        the face normal of resulting emboss cap.
+                        The default value is (0,0,1).
+
+<B>'taper_angle'</B>           The taper angle of tapered sidewall.
+                        The default value is a zero angle.
+
+<B>'offset'</B>                The offset distance for the offset taper method.
+                        The default value is zero.
+
+<B>'top_surface'</B>           The surface on which the profile edge's curve is
+                        projected to create the relevant offset curve.
+                        The default value is PK_ENTITY_null.
+
+<B>'sidewall_body'</B>         The supplied sidewall body. It must be a non-disjoined
+                        and manifold sheet body. It is also expected to be
+                        large enough to reach both the target and the endcap.
+                        The default value is PK_ENTITY_null.
+
+<B>'n_multi_taper_edges'</B>   number of edges of profile body which will use
+                        different taper angles for sidewall creation.
+
+<B>'multi_taper_edges'</B>     Array of edges of profile body which will use different
+                        taper angles for sidewall creation.
+
+<B>'multi_taper_angles'</B>    An array of angles to be used by edges in
+                        <B>'multi_taper_edges'</B> when creating tapered sidewalls.
+
+See <A HREF="../chapters/fd_chap.044.html#50409826_pgfId-295330">here</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_PART_receive_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_PART_receive_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_PART_receive_o_s
+    {
+    int                     o_t_version;
+                                --- version number
+    <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_t</A>    transmit_format;
+                                --- (<A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_neutral_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            receive_user_fields;
+                                --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_attdef_mismatch_t.html>PK_ATTDEF_mismatch_t</A>    attdef_mismatch;
+                                --- (PK_ATTDEF_mismatch_fail_c)
+    int                     part_index;
+                                --- (0)
+    int                     n_part_indices;
+                                --- (0)
+    const int              *part_indices;
+                                --- (NULL)
+    int                     n_identifiers;
+                                --- (0)
+    const int              *identifiers;
+                                --- (NULL)
+    <A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>            receive_indexed_context;
+                                --- (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            key_is_partition;
+                                --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_t</A>   receive_compound;
+                                --- (<A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_split_c</A>)
+    <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_t</A> receive_using_seek;
+                                --- (<A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_no_c</A>)
+    <A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_t</A>      receive_mixed;
+                                --- (<A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_fail_c</A>)
+    };
+typedef struct PK_PART_receive_o_s PK_PART_receive_o_t;
+</B>
+<A NAME="description"></A>
+<I>This option structure contains options pertinent to receiving parts.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_receive.html>PK_DEBUG_receive</A><br>
+    <A HREF=../headers/pk_part_receive.html>PK_PART_receive</A><br>
+    <A HREF=../headers/pk_part_receive_b.html>PK_PART_receive_b</A><br>
+    <A HREF=../headers/pk_part_receive_u.html>PK_PART_receive_u</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'transmit_format'</B>           Format of the XT data. Permitted values are:
+
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_text_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_binary_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_typed_binary_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_neutral_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_applio_c</A>
+
+
+<B>'receive_user_fields'</B>       PK_LOGICAL_true if user fields are to be received.
+
+
+<B>'attdef_mismatch'</B>           If this option is PK_ATTDEF_mismatch_ignore_c then
+                            parts containing mismatched attribute definitions
+                            will be received, but without the mismatched
+                            attribute definitions and their associated
+                            attributes. See <A HREF="../chapters/fd_chap.102.html#50409892_pgfId-294997">here</A> for more
+                            information.
+
+
+<B>'part_index'</B>                For XT files containing multiple bodies, when
+                           <B>'transmit_format'</B> is <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A>,
+                            this is the index of the required body from the
+                            array passed by the application to part transmit.
+                            This option is ignored if <B>'n_part_indices'</B> &gt; 0.
+
+
+<B>'part_indices'</B>              An array of length <B>'n_part_indices'</B> selecting
+                            the indices of the required bodies from the array
+                            passed by the application to part transmit.
+                            If <B>'n_part_indices'</B> is 1, all <B>'identifiers'</B> are
+                            from the single part index, otherwise
+                           <B>'n_part_indices'</B> must equal <B>'n_identifiers'</B> and
+                            each identifier is from the corresponding part
+                            index. The indices must be in a monotonically
+                            non-decreasing order.
+
+
+<B>'identifiers'</B>               An array of length <B>'n_identifiers'</B> used to select
+                            a subset of a part to receive. If <B>'transmit_format'</B>
+                            is <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A> then this should
+                            be an identifier of a single face and only the
+                            face in this array will be received. Otherwise,
+                            if <B>'n_part_indices'</B> is &gt; 0 then this should be
+                            identifiers of child bodies and only the child
+                            bodies in this array will be received.
+
+
+<B>'receive_indexed_context'</B>   Application specific storage when <B>'transmit_format'</B>
+                            is <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A>.
+
+
+<B>'key_is_partition'</B>          Setting this option to PK_LOGICAL_true when
+                           <B>'transmit_format'</B> is <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A>,
+                            enables XT data representing an indexed partition
+                            to be received. The XT data will be opened with
+                            guise FFCXMP rather than FFCXMT, and the XT data
+                            must represent an indexed partition. The ordering
+                            of bodies used to define their indices is that of
+                            <A HREF=../headers/pk_partition_ask_bodies.html>PK_PARTITION_ask_bodies</A>.
+
+
+<B>'receive_compound'</B>          Controls receiving transmit files containing
+                            compound bodies. Allowed values are:
+
+                            <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_split_c</A>:
+                            split any compound bodies into individual bodies
+
+                            <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_keep_c</A>:
+                            receive compound bodies as they are
+
+                            <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_fail_c</A>:
+                            fail with PK_ERROR_compound_body if the file
+                            contains compound bodies
+
+                            If any compound bodies have been split then a
+                            report will be returned via the Parasolid Report
+                            mechanism containing a record of <B>'type'</B>
+                            <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A>.
+                            This record will have a <B>'status'</B> of
+                            <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_compound_split_c</A> and will contain
+                            information on the compound bodies that were
+                            split when the file was received:
+                            - <B>'n_int_arrays'</B> and <B>'n_item_arrays'</B>
+                               the number of parts received from the transmit
+                               file.
+                            - <B>'int_arrays'</B>
+                               for each part received from the transmit file,
+                               an array of child body identifiers if the part
+                               was a compound body, otherwise an empty array.
+                            - <B>'item_arrays'</B>
+                               for each part received from the transmit file,
+                               an array of split bodies if the part was a
+                               compound body, otherwise an array containing
+                               just that part.
+
+
+<B>'receive_using_seek'</B>        How any delayed-load model data in the parts
+                            are handled if they are not immediately needed.
+
+                            If this option is <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_no_c</A> then
+                            delayed-load model data in the file will all
+                            be read sequentially in the same Parasolid call.
+
+                            If this option is <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_yes_c</A>
+                            then only data needed for individual pieces of the
+                            model will be received, which will be faster in
+                            many scenarios and avoids unneeded model data
+                            taking up internal memory.
+
+                            To support <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_yes_c</A> for mesh
+                            data, the part file must have been transmitted
+                            with the option <B>'transmit_meshes'</B> set to
+                            <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_embedded_c</A> and the Frustrum
+                            seek function <B>'ffskxt'</B> must be registered using
+                            <A HREF=../headers/pk_session_register_fru_2.html>PK_SESSION_register_fru_2</A>. If the part file was
+                            transmitted with <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_separate_c</A>
+                            then this option is ignored for mesh data.
+
+                            If the part is received or copied to a partition
+                            that allows partial pmarks, the application is
+                            responsible for maintaining their source copy of
+                            the delayed-load information as it may need to
+                            be loaded more than once.
+
+                            Transmitting a part with delayed-load model data
+                            that is still outstanding will load the missing
+                            data as part of the part transmit.
+
+                            This option is ignored for <A HREF=../headers/pk_part_receive_b.html>PK_PART_receive_b</A>.
+
+
+<B>'receive_mixed'</B>             Controls receiving transmitted files that contain
+                            parts with both facet and classic geometry.
+
+                            If this option is set to the default
+                            <A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_fail_c</A> and the file contains
+                            mixed parts, then receive will fail with
+                            PK_ERROR_mixed_geometry.
+
+                            To allow receiving mixed parts, this option
+                            should be set to <A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_allow_c</A>.
+
+                            <A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_make_facet_c</A> is for future
+                            enhancement and will return
+                            PK_ERROR_not_implemented.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

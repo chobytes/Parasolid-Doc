@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_NABOX_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_NABOX_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_NABOX_sf_s
+     {
+     <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A> basis_set;    --- coordinate system for box
+     <A HREF=../headers/pk_box_t.html>PK_BOX_t</A>      box;          --- box
+     };
+typedef struct PK_NABOX_sf_s PK_NABOX_sf_t;
+</B>
+<A NAME="description"></A>
+<I>This data structure is the standard form for a non-aligned box.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_lattice_find_nabox_r_t.html>PK_LATTICE_find_nabox_r_t</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_2_o_t.html>PK_TOPOL_facet_mesh_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_o_t.html>PK_TOPOL_facet_mesh_o_t</A><br>
+    <A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A><br>
+    <A HREF=../headers/pk_topol_render_line_o_t.html>PK_TOPOL_render_line_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A non-aligned box is a cuboid space defined by an origin, a pair of orthogonal
+axes (normalised direction vectors) and a set of x, y, z intervals. The term
+`non-aligned' means the box axes need not be aligned with the model space axes.
+
+The local Z direction is given through the <B>'axis'</B> field of <B>'basis_set'</B>.
+
+The local X direction is given through the <B>'ref_direction'</B> field of
+<B>'basis_set'</B>.
+
+The local Y direction is formed from the cross product of the local Z
+direction and the local X direction.
+
+These form a right handed coordinate system.
+
+                                y
+                                |
+                                |
+                               / \
+                              /   \
+                     (axis) z/     \x (ref_direction)
+
+The associated box is defined in this local coordinate system.
+Its extent is defined by x, y and z intervals.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

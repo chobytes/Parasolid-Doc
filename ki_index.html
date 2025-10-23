@@ -1,0 +1,382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+	<title>Parasolid KI Programming Reference</title>
+	<LINK rel="stylesheet" href="ps_doc.css">
+	<script language="JavaScript">
+	<!-- Hide script from older browsers -->
+	
+	function updateMenu() {
+		if ((parent.theMenu) && (parent.theMenu.amBusy == false)) {	//Check that Joust is present
+        //First, find the ID of the entry that points to this page.  This is where
+        //we are going to add the new entries.
+        var level2ID = parent.theMenu.findEntry('KI Programming Reference', 'text');
+
+        if (level2ID != -1) {		
+            if (parent.theMenu.entry[level2ID].FirstChild < 0) { //Check they haven't been added already.
+				
+                var level3ID = parent.theMenu.addChild(level2ID, "Document", "Parasolid KI Programming Concepts", "chapters/ki_chap.02.html", "Parasolid KI Programming Concepts");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Kernel Interface Tokens", "chapters/ki_chap.03.html", "Kernel Interface Tokens");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Kernel Interface Error Codes", "chapters/ki_chap.04.html", "Kernel Interface Error Codes");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Kernel Interface Typedefs", "chapters/ki_chap.05.html", "Kernel Interface Typedefs");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Flick Function Descriptions", "chapters/ki_chap.06.html", "Flick Function Descriptions");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Special Kernel Interface Routines", "chapters/ki_chap.07.html", "Special Kernel Interface Routines");
+                parent.theMenu.reload();  //Now, reload (and redraw) the menu!
+            }
+        }
+    } else {
+        setTimeout("updateMenu();", 100);
+    }
+}
+
+// Now call updateMenu
+updateMenu();
+
+// end hide script from older browsers -->
+</script>
+</head>
+
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="images/background.gif">
+
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<A href="http://www.parasolid.com/"><IMG src="graphics/psbar_l.gif" border=0></A></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>KI Programming Reference</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P><TABLE WIDTH=99%>
+<TR>
+<TH>Chapters</TH>
+<TH>Appendices</TH>
+</TR>
+
+<TR>
+<TD VALIGN=TOP>
+
+<OL>
+<LI> <A HREF=chapters/ki_chap.02.html>Parasolid KI Programming Concepts</A>
+<LI> <A HREF=chapters/ki_chap.03.html>Kernel Interface Tokens</A>
+<LI> <A HREF=chapters/ki_chap.04.html>Kernel Interface Error Codes</A>
+<LI> <A HREF=chapters/ki_chap.05.html>Kernel Interface Typedefs</A>
+<LI> <A HREF=chapters/ki_chap.06.html>Flick Function Descriptions</A>
+<LI> <A HREF=chapters/ki_chap.07.html>Special Kernel Interface Routines</A>
+</OL>
+
+</TD>
+
+<TD VALIGN=TOP>
+
+<OL TYPE=A>
+</OL>
+
+</TD>
+</TR>
+</TABLE>
+<HR>
+
+<OL>
+<LI VALUE=2><B>Kernel Interface Routines</B>
+</OL>
+
+<UL>
+
+<LI>
+<A HREF="headers/ADPAPE.html">ADPAPE</A>
+<A HREF="headers/ADVXED.html">ADVXED</A>
+<A HREF="headers/APPTRA.html">APPTRA</A>
+<A HREF="headers/ATGETO.html">ATGETO</A>
+<A HREF="headers/ATTGEO.html">ATTGEO</A>
+<BR><BR>
+<LI>
+<A HREF="headers/BLECHK.html">BLECHK</A>
+<A HREF="headers/BLECRB.html">BLECRB</A>
+<A HREF="headers/BLECVR.html">BLECVR</A>
+<A HREF="headers/BLEENQ.html">BLEENQ</A>
+<A HREF="headers/BLEFIX.html">BLEFIX</A>
+<A HREF="headers/BLEFXF.html">BLEFXF</A>
+<A HREF="headers/BLEREM.html">BLEREM</A>
+<A HREF="headers/BLNAFF.html">BLNAFF</A>
+<A HREF="headers/BLNDVX.html">BLNDVX</A>
+<A HREF="headers/BOPBYS.html">BOPBYS</A>
+<A HREF="headers/BOPOLD.html">BOPOLD</A>
+<BR><BR>
+<LI>
+<A HREF="headers/CCLIST.html">CCLIST</A>
+<A HREF="headers/CHCKEN.html">CHCKEN</A>
+<A HREF="headers/CLABYS.html">CLABYS</A>
+<A HREF="headers/CLENEN.html">CLENEN</A>
+<A HREF="headers/CLENEX.html">CLENEX</A>
+<A HREF="headers/CLPTEN.html">CLPTEN</A>
+<A HREF="headers/CLPTEX.html">CLPTEX</A>
+<A HREF="headers/CLPTFA.html">CLPTFA</A>
+<A HREF="headers/COFEAT.html">COFEAT</A>
+<A HREF="headers/COLIST.html">COLIST</A>
+<A HREF="headers/COMENT.html">COMENT</A>
+<A HREF="headers/COPYEN.html">COPYEN</A>
+<A HREF="headers/CRATDF.html">CRATDF</A>
+<A HREF="headers/CRBSPC.html">CRBSPC</A>
+<A HREF="headers/CRBSPS.html">CRBSPS</A>
+<A HREF="headers/CRBXSO.html">CRBXSO</A>
+<A HREF="headers/CRBYGE.html">CRBYGE</A>
+<A HREF="headers/CRCAPO.html">CRCAPO</A>
+<A HREF="headers/CRCICU.html">CRCICU</A>
+<A HREF="headers/CRCMPC.html">CRCMPC</A>
+<A HREF="headers/CRCOSO.html">CRCOSO</A>
+<A HREF="headers/CRCOSU.html">CRCOSU</A>
+<A HREF="headers/CRCPCU.html">CRCPCU</A>
+<A HREF="headers/CRCUPC.html">CRCUPC</A>
+<A HREF="headers/CRCYSO.html">CRCYSO</A>
+<A HREF="headers/CRCYSU.html">CRCYSU</A>
+<A HREF="headers/CREASS.html">CREASS</A>
+<A HREF="headers/CREATT.html">CREATT</A>
+<A HREF="headers/CREFEA.html">CREFEA</A>
+<A HREF="headers/CREINS.html">CREINS</A>
+<A HREF="headers/CRELCU.html">CRELCU</A>
+<A HREF="headers/CREQSC.html">CREQSC</A>
+<A HREF="headers/CREREF.html">CREREF</A>
+<A HREF="headers/CREROT.html">CREROT</A>
+<A HREF="headers/CRETFM.html">CRETFM</A>
+<A HREF="headers/CRETRA.html">CRETRA</A>
+<A HREF="headers/CREXSU.html">CREXSU</A>
+<A HREF="headers/CRFASU.html">CRFASU</A>
+<A HREF="headers/CRFGCU.html">CRFGCU</A>
+<A HREF="headers/CRFGSU.html">CRFGSU</A>
+<A HREF="headers/CRINCU.html">CRINCU</A>
+<A HREF="headers/CRKNPA.html">CRKNPA</A>
+<A HREF="headers/CRLFPS.html">CRLFPS</A>
+<A HREF="headers/CRLICU.html">CRLICU</A>
+<A HREF="headers/CRLIST.html">CRLIST</A>
+<A HREF="headers/CRMINO.html">CRMINO</A>
+<A HREF="headers/CROFSU.html">CROFSU</A>
+<A HREF="headers/CRPLSU.html">CRPLSU</A>
+<A HREF="headers/CRPRSO.html">CRPRSO</A>
+<A HREF="headers/CRPWPC.html">CRPWPC</A>
+<A HREF="headers/CRPWPS.html">CRPWPS</A>
+<A HREF="headers/CRRVSU.html">CRRVSU</A>
+<A HREF="headers/CRSEPS.html">CRSEPS</A>
+<A HREF="headers/CRSHFA.html">CRSHFA</A>
+<A HREF="headers/CRSIPS.html">CRSIPS</A>
+<A HREF="headers/CRSOFA.html">CRSOFA</A>
+<A HREF="headers/CRSPCU.html">CRSPCU</A>
+<A HREF="headers/CRSPPC.html">CRSPPC</A>
+<A HREF="headers/CRSPPS.html">CRSPPS</A>
+<A HREF="headers/CRSPSO.html">CRSPSO</A>
+<A HREF="headers/CRSPSU.html">CRSPSU</A>
+<A HREF="headers/CRSPTC.html">CRSPTC</A>
+<A HREF="headers/CRTOBY.html">CRTOBY</A>
+<A HREF="headers/CRTOSO.html">CRTOSO</A>
+<A HREF="headers/CRTOSU.html">CRTOSU</A>
+<A HREF="headers/CRTRCU.html">CRTRCU</A>
+<A HREF="headers/CRTSFA.html">CRTSFA</A>
+<BR><BR>
+<LI>
+<A HREF="headers/DEFCON.html">DEFCON</A>
+<A HREF="headers/DEHOSH.html">DEHOSH</A>
+<A HREF="headers/DELCON.html">DELCON</A>
+<A HREF="headers/DELENT.html">DELENT</A>
+<A HREF="headers/DELFAS.html">DELFAS</A>
+<A HREF="headers/DELIST.html">DELIST</A>
+<A HREF="headers/DELIVL.html">DELIVL</A>
+<A HREF="headers/DELSEN.html">DELSEN</A>
+<A HREF="headers/DETGEO.html">DETGEO</A>
+<A HREF="headers/DLENFE.html">DLENFE</A>
+<A HREF="headers/DLORPH.html">DLORPH</A>
+<BR><BR>
+<LI>
+<A HREF="headers/ENBXEN.html">ENBXEN</A>
+<A HREF="headers/ENBYTY.html">ENBYTY</A>
+<A HREF="headers/ENCONT.html">ENCONT</A>
+<A HREF="headers/ENCUPA.html">ENCUPA</A>
+<A HREF="headers/ENDFAT.html">ENDFAT</A>
+<A HREF="headers/ENDFNM.html">ENDFNM</A>
+<A HREF="headers/ENDIPE.html">ENDIPE</A>
+<A HREF="headers/ENEDTY.html">ENEDTY</A>
+<A HREF="headers/ENENTY.html">ENENTY</A>
+<A HREF="headers/ENEQGE.html">ENEQGE</A>
+<A HREF="headers/ENEXEN.html">ENEXEN</A>
+<A HREF="headers/ENFAPR.html">ENFAPR</A>
+<A HREF="headers/ENLOTY.html">ENLOTY</A>
+<A HREF="headers/ENPAPC.html">ENPAPC</A>
+<A HREF="headers/ENPAPS.html">ENPAPS</A>
+<A HREF="headers/ENPBEN.html">ENPBEN</A>
+<A HREF="headers/ENPIFA.html">ENPIFA</A>
+<A HREF="headers/ENPOGC.html">ENPOGC</A>
+<A HREF="headers/ENPOGS.html">ENPOGS</A>
+<A HREF="headers/ENPOPC.html">ENPOPC</A>
+<A HREF="headers/ENPOPS.html">ENPOPS</A>
+<A HREF="headers/ENSHTY.html">ENSHTY</A>
+<A HREF="headers/ENSUPA.html">ENSUPA</A>
+<A HREF="headers/ENVETY.html">ENVETY</A>
+<BR><BR>
+<LI>
+<A HREF="headers/FIXIDS.html">FIXIDS</A>
+<A HREF="headers/FNENFE.html">FNENFE</A>
+<BR><BR>
+<LI>
+<A HREF="headers/GETMND.html">GETMND</A>
+<A HREF="headers/GETMOD.html">GETMOD</A>
+<A HREF="headers/GETSNP.html">GETSNP</A>
+<A HREF="headers/GTINLI.html">GTINLI</A>
+<A HREF="headers/GTRLLI.html">GTRLLI</A>
+<A HREF="headers/GTTGLI.html">GTTGLI</A>
+<BR><BR>
+<LI>
+<A HREF="headers/HOLLBY.html">HOLLBY</A>
+<BR><BR>
+<LI>
+<A HREF="headers/IDATEN.html">IDATEN</A>
+<A HREF="headers/IDATLS.html">IDATLS</A>
+<A HREF="headers/IDATPA.html">IDATPA</A>
+<A HREF="headers/IDCCEN.html">IDCCEN</A>
+<A HREF="headers/IDCOEN.html">IDCOEN</A>
+<A HREF="headers/IDCOFE.html">IDCOFE</A>
+<A HREF="headers/IDENID.html">IDENID</A>
+<A HREF="headers/IDFSEN.html">IDFSEN</A>
+<A HREF="headers/IDKYPA.html">IDKYPA</A>
+<A HREF="headers/IDLSID.html">IDLSID</A>
+<A HREF="headers/IDNCEN.html">IDNCEN</A>
+<A HREF="headers/IDPOFV.html">IDPOFV</A>
+<A HREF="headers/IDSCEN.html">IDSCEN</A>
+<A HREF="headers/IDSCLS.html">IDSCLS</A>
+<A HREF="headers/IDSOFF.html">IDSOFF</A>
+<A HREF="headers/IMPRNT.html">IMPRNT</A>
+<A HREF="headers/INCUCU.html">INCUCU</A>
+<A HREF="headers/INCUFA.html">INCUFA</A>
+<A HREF="headers/INCUSU.html">INCUSU</A>
+<A HREF="headers/INFAFA.html">INFAFA</A>
+<A HREF="headers/INSUFA.html">INSUFA</A>
+<A HREF="headers/INSUSU.html">INSUSU</A>
+<A HREF="headers/INTBYS.html">INTBYS</A>
+<BR><BR>
+<LI>
+<A HREF="headers/KABORT.html">KABORT</A>
+<A HREF="headers/KNITEN.html">KNITEN</A>
+<BR><BR>
+<LI>
+<A HREF="headers/LEVASS.html">LEVASS</A>
+<BR><BR>
+<LI>
+<A HREF="headers/MASSPR.html">MASSPR</A>
+<A HREF="headers/MENDEN.html">MENDEN</A>
+<A HREF="headers/MERGEN.html">MERGEN</A>
+<BR><BR>
+<LI>
+<A HREF="headers/NEGENT.html">NEGENT</A>
+<BR><BR>
+<LI>
+<A HREF="headers/OFFABY.html">OFFABY</A>
+<A HREF="headers/OUATDF.html">OUATDF</A>
+<A HREF="headers/OUBBCO.html">OUBBCO</A>
+<A HREF="headers/OUBBEV.html">OUBBEV</A>
+<A HREF="headers/OUBLSS.html">OUBLSS</A>
+<A HREF="headers/OUBSCU.html">OUBSCU</A>
+<A HREF="headers/OUBSED.html">OUBSED</A>
+<A HREF="headers/OUBSFA.html">OUBSFA</A>
+<A HREF="headers/OUBSPC.html">OUBSPC</A>
+<A HREF="headers/OUBSPS.html">OUBSPS</A>
+<A HREF="headers/OUBSSU.html">OUBSSU</A>
+<A HREF="headers/OUCOCU.html">OUCOCU</A>
+<A HREF="headers/OUCPCU.html">OUCPCU</A>
+<A HREF="headers/OUEXSU.html">OUEXSU</A>
+<A HREF="headers/OUFEAT.html">OUFEAT</A>
+<A HREF="headers/OUFGCU.html">OUFGCU</A>
+<A HREF="headers/OUFGSU.html">OUFGSU</A>
+<A HREF="headers/OUFINF.html">OUFINF</A>
+<A HREF="headers/OUGEEF.html">OUGEEF</A>
+<A HREF="headers/OUGESU.html">OUGESU</A>
+<A HREF="headers/OUIDEN.html">OUIDEN</A>
+<A HREF="headers/OUIDLS.html">OUIDLS</A>
+<A HREF="headers/OUINTP.html">OUINTP</A>
+<A HREF="headers/OULERR.html">OULERR</A>
+<A HREF="headers/OUMODP.html">OUMODP</A>
+<A HREF="headers/OUOFSU.html">OUOFSU</A>
+<A HREF="headers/OUPART.html">OUPART</A>
+<A HREF="headers/OUPWPC.html">OUPWPC</A>
+<A HREF="headers/OUPWPS.html">OUPWPS</A>
+<A HREF="headers/OURVSU.html">OURVSU</A>
+<A HREF="headers/OUSPCU.html">OUSPCU</A>
+<A HREF="headers/OUSPPC.html">OUSPPC</A>
+<A HREF="headers/OUSPPS.html">OUSPPS</A>
+<A HREF="headers/OUSTAT.html">OUSTAT</A>
+<A HREF="headers/OUTATT.html">OUTATT</A>
+<A HREF="headers/OUTBUB.html">OUTBUB</A>
+<A HREF="headers/OUTCUR.html">OUTCUR</A>
+<A HREF="headers/OUTLEN.html">OUTLEN</A>
+<A HREF="headers/OUTPOI.html">OUTPOI</A>
+<A HREF="headers/OUTRAN.html">OUTRAN</A>
+<A HREF="headers/OUTRCU.html">OUTRCU</A>
+<A HREF="headers/OUTSFA.html">OUTSFA</A>
+<A HREF="headers/OUTSUR.html">OUTSUR</A>
+<A HREF="headers/OUUFEN.html">OUUFEN</A>
+<BR><BR>
+<LI>
+<A HREF="headers/PICKEN.html">PICKEN</A>
+<A HREF="headers/PIERCE.html">PIERCE</A>
+<A HREF="headers/PTENFE.html">PTENFE</A>
+<A HREF="headers/PTINLI.html">PTINLI</A>
+<A HREF="headers/PTRLLI.html">PTRLLI</A>
+<A HREF="headers/PTTGLI.html">PTTGLI</A>
+<BR><BR>
+<LI>
+<A HREF="headers/RAYFIR.html">RAYFIR</A>
+<A HREF="headers/REDINS.html">REDINS</A>
+<A HREF="headers/REEDSH.html">REEDSH</A>
+<A HREF="headers/RESUSH.html">RESUSH</A>
+<A HREF="headers/RETLEN.html">RETLEN</A>
+<A HREF="headers/RMFASO.html">RMFASO</A>
+<A HREF="headers/ROLBFN.html">ROLBFN</A>
+<A HREF="headers/ROLBLM.html">ROLBLM</A>
+<A HREF="headers/ROLSMK.html">ROLSMK</A>
+<A HREF="headers/RRFCET.html">RRFCET</A>
+<A HREF="headers/RRHIDL.html">RRHIDL</A>
+<A HREF="headers/RRPIXL.html">RRPIXL</A>
+<A HREF="headers/RRVDEP.html">RRVDEP</A>
+<A HREF="headers/RRVIND.html">RRVIND</A>
+<BR><BR>
+<LI>
+<A HREF="headers/SAVMOD.html">SAVMOD</A>
+<A HREF="headers/SAVSNP.html">SAVSNP</A>
+<A HREF="headers/SCRIBE.html">SCRIBE</A>
+<A HREF="headers/SEBBCO.html">SEBBCO</A>
+<A HREF="headers/SECTBY.html">SECTBY</A>
+<A HREF="headers/SEINTP.html">SEINTP</A>
+<A HREF="headers/SEMODP.html">SEMODP</A>
+<A HREF="headers/SESTPA.html">SESTPA</A>
+<A HREF="headers/SETLEN.html">SETLEN</A>
+<A HREF="headers/SEUFEN.html">SEUFEN</A>
+<A HREF="headers/SHAREN.html">SHAREN</A>
+<A HREF="headers/SIMPEN.html">SIMPEN</A>
+<A HREF="headers/SPLTEN.html">SPLTEN</A>
+<A HREF="headers/SRCHIL.html">SRCHIL</A>
+<A HREF="headers/SRCHRL.html">SRCHRL</A>
+<A HREF="headers/SRCHTG.html">SRCHTG</A>
+<A HREF="headers/STAMOD.html">STAMOD</A>
+<A HREF="headers/STOMOD.html">STOMOD</A>
+<A HREF="headers/SUBBYS.html">SUBBYS</A>
+<A HREF="headers/SWEENT.html">SWEENT</A>
+<A HREF="headers/SWIENT.html">SWIENT</A>
+<BR><BR>
+<LI>
+<A HREF="headers/TAPFAS.html">TAPFAS</A>
+<A HREF="headers/THIKEN.html">THIKEN</A>
+<A HREF="headers/TRIMSH.html">TRIMSH</A>
+<A HREF="headers/TRSHCU.html">TRSHCU</A>
+<A HREF="headers/TWEFAC.html">TWEFAC</A>
+<A HREF="headers/TWSUFA.html">TWSUFA</A>
+<BR><BR>
+<LI>
+<A HREF="headers/UNIBYS.html">UNIBYS</A>
+<A HREF="headers/UNLDPA.html">UNLDPA</A>
+<BR><BR>
+</UL>
+<P ALIGN=RIGHT><A HREF="#topofdoc"><I>[back to top]</I></A></P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,275 @@
+<HTML>
+<HEAD>
+<TITLE>RRVIND</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>RRVIND</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_geom_render_line.html>PK_GEOM_render_line</A><BR>
+<A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+RRVIND ( nopts, iopts, optdta, entys, transf, ifail )
+=====================================================
+
+  Generate view independent rendering data.
+
+Receives:
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in 'iopts'
+  KI_cod_rrop               iopts[nopts]   --- rendering options
+ &lt;KI_tag_list_dbl&gt;          optdta[nopts]  --- option data lists
+  KI_tag_list_entity       *entys          --- entities to render
+ &lt;KI_tag_list_&lt;transform&gt;&gt; *transf         --- entity transforms
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_missing_geom           A topological entity has no associated geometry
+  KI_abort_from_go          Rendering aborted by GO
+  KI_wrong_transf           Unsuitable transform
+  KI_not_same_length        Entity and transform lists are of different lengths
+  KI_wrong_entity_in_list   Entity is not a part, face, edge or geometry.
+  KI_bad_option_data        Option data incorrect for specified options
+
+Description:
+  RRVIND outputs, through the Graphical Output interface (GO), data for a
+  picture of the entities which is independent of the viewing angle and
+  distance.
+
+  RRVIND can render assemblies, bodies, faces, edges, B-Curves
+  and B-Surfaces, foreign geometry and offsets of B-surfaces and foreign
+  geometry.
+
+  Transforms may only contain translation and rotation components.  Reflections,
+  scales and shears are not allowed.
+
+  The data output is selected by options in 'iopts'. For some options the output
+  is further controlled by data in a real list whose tag is passed in the
+  corresponding entry in 'optdta'. If no data is required for an option a null
+  tag should be passed.
+
+  Options accepted are:-
+
+      Option                   Contents of option data
+      ===================================================================
+      RROPED: EDge-data        none
+      RROPTR: TRansform        none
+      RROPSM: SMooth-edges     none
+      RROPIE: Internal Edge    none
+      RROPPC: B-Curve (Bezier) none
+      RROPNC: B-Curve (Nurbs)  none
+      RROPPH: Planar-Hatch     (1) Planar hatch spacing in model units
+                               (2,3,4) Normal direction of hatch planes
+                               (5,6,7) Plane coordinate (omissible)
+      RROPRH: Radial-Hatch     (1) Hatch spacing in radians around 'spine'
+                               (2) Hatch spacing in model units along 'spine'
+                               (3) Hatch spacing in radians about centre
+      RROPPA: PAra-Hatch       (1) Hatch spacing along u
+                               (2) Hatch spacing along v
+      RROPUB: Unfixed-Blends   (1) Rendering style:-
+                                   1 => Draw as specified in model
+                                   2 => Draw blend boundaries
+                                   3 => Draw blend boundaries and rib lines
+                               (2) Rib spacing in model units
+                                   (only required for style 3)
+      RROPCT: Curve Tolerance  (1) Chord tolerance in model units
+                               (2) Maximum chord length in model units
+                               (3) Angular tolerance in radians
+      RROPVP: ViewPort         (1,2,3) Centre of viewport in model coordinates
+                               (4,5,6)    1st axis of viewport in model
+                                          coordinates
+                               (7,8,9)    2nd axis
+                               (10,11,12) 3rd axis
+                               (13) Length of viewport along 1st axis in model
+                                    units
+                               (14) Length along 2nd axis
+                               (15) Length along 3rd axis
+
+
+  When rendering B-Curves and surfaces, only the following options
+  are relevant:-
+
+      RROPTR, RROPPC, RROPNC, RROPPA and RROPCT.
+
+      The default for these types is to render the boundary, for a surface, and
+      the curve for a curve. Therefore, in contrast to the other entity types,
+      output will be generated even in the absence of any accompanying options.
+
+  Option RROPED causes output of data for edges in the model.
+
+  Option RROPTR is required if any of the entities is to be rendered in a
+  transformed position (e.g. as part of an assembly). If it is not specified,
+  the contents of 'transf' are ignored, and entities are rendered in their
+  local coordinate system.
+
+  Option RROPSM causes the output data for an edge to specify whether or not
+  the edge is 'smooth' (i.e. the faces have the same tangent surface at the
+  edge); the calling program may then choose to omit smooth edges from the
+  final drawing. If RROPSM is not specified, the smoothness parameter is
+  returned "unknown" for all edges.
+
+  Option RROPIE causes the output data for an edge to specify whether or not
+  the edge is internal to a surface; i.e. the faces on either side of the edge
+  lie on the same surface. This will be the case if the edge is an internal one
+  between patches on a B-Surface, or is mergeable. The calling program
+  may then choose to omit internal edges from the final drawing.
+  If RROPIE is not specified, the internal edge parameter will be "unknown"
+  for all edges.
+
+  Option RROPPC causes the data for a B-Curve (type TYCUPA) to be
+  output in Bezier form.
+
+  Option RROPNC causes the data for a B-Curve (type TYCUPA) to be
+  output in NURBS format.
+
+  The default, if neither RROPPC or RROPNC is selected, is to output
+  the data for B-Curves as a poly-line. These options both apply to
+  derived B-Curves as well. For example, hatch and boundary lines on
+  B-Surfaces.
+
+  Note that at most one of RROPPC and RROPNC may be selected.
+
+  Option RROPPH causes planar hatch lines to be output. If no option data is
+  given faces which have a planar hatching attribute set will be hatched as
+  specified by that attribute. If a hatch specification is given in the option
+  data all faces not otherwise hatched by use of the RROPRH and RROPPA options
+  will be hatched according to that specification.
+
+  Option RROPRH causes radial hatch lines to be output for faces with standard
+  curved surfaces (cylindrical, conical, spherical, toroidal) or blending
+  surfaces. If no option data is given those faces which have a radial hatching
+  attribute set will be hatched as specified by that attribute. If a hatching
+  specification is given in the option data all faces with standard curved
+  surfaces or blending surfaces will be hatched according to that
+  specification.
+
+  The values given in the option data are interpreted according to the type
+  of surface to which they are applied as follows:
+
+      Cylindrical and Conical surfaces:
+         The first value controls the spacing of straight hatch lines running
+         along the surface parallel to the axis. Such lines would be generated
+         by a plane rotating in steps about the axis by the given angle.
+         This angle must be in the range 0 to two pi.
+
+         The second value controls the spacing of circular hatch lines running
+         around the surface perpendicular to the axis. Such lines would be
+         generated by a plane stepping along the axis by the given distance.
+
+         The third value is not significant.
+
+      Spherical surfaces:
+         The hatching of spherical surfaces is related to an axis passing
+         through the centre of the surface and parallel to the Z axis.
+
+         The first value controls the spacing of the 'longitudinal' hatch
+         lines, as would be generated by a plane rotating by the given angle
+         about the axis of the surface. This angle must be in the range 0 to
+         two pi.
+
+         The third value controls the spacing of the 'latitudinal' hatch lines,
+         as would be generated by a cone (apex at centre of surface, axis
+         parallel to surface axis) whose half angle is incremented by the given
+         value. This value must be in the range 0 to two pi.
+
+         The second value is not significant.
+
+      Torus:
+         The first value controls the spacing of circular hatch lines centered
+         on the axis of the torus, as would be generated by a cone (axis
+         parallel to torus axis, passing through spine of torus) whose half
+         angle is incremented by the given value. This value must be in the
+         range 0 to two pi.
+
+         The second and third values control the spacing of circular hatch
+         lines centered on the spine of the torus, as would be generated by a
+         plane rotating about the axis of the torus. The second value specifies
+         a distance along the spine whereas the third value specifies an angle
+         about the axis. If both second and third values are given the second
+         value is ignored. If a third value is given, it must be in the range
+         0 to two pi.
+
+      Edge-Blend surfaces:
+         The second value controls the spacing of 'circular' hatch lines running
+         around the surface perpendicular to its spine. These are equivalent to
+         the circles generated by this value for cylindrical surfaces. Such
+         lines would be generated by a plane stepping along the surface spine
+         by the given distance.
+
+         The first and third values are not significant.
+
+  Option RROPPA causes parametric hatch lines to be output, which correspond
+  to the locus of points of constant parameter value on the surface. The lines
+  may be output on faces with any type of underlying surface, though
+  longitudinal hatch lines on rolling ball blends ( i.e. lines of constant v
+  parameter ) are not supported.
+
+  If no option data is given, only those faces which have a hatching
+  attribute set will be hatched as specified by that attribute. If a
+  hatching specification is given in the option data, all faces will be
+  hatched according to that specification. Two values are required for the
+  option data: the first corresponds to the u parameter spacing, and
+  the second the spacing in v. Both values must be positive, and should lie
+  within the parameter range for the surface, which can be output using ENSUPA.
+
+  In both the RROPRH and RROPPA options the hatch lines generated are controlled
+  by two significant values for any given surface. If either value is zero hatch
+  lines are not generated for that case. If both values are non-zero the face is
+  cross hatched.
+
+  Option RROPUB is required if rendering is to take account of unfixed blending
+  surfaces; by default these are ignored. If RROPUB is specified with no option
+  data, unfixed blends will be rendered according to the attributes held in the
+  model; alternatively, option data can be used to specify how rendering is to
+  be done.
+
+  The edges of faces adjacent to the unfixed blend will be clipped to the blend
+  boundaries but hatch lines on such faces are not affected.
+
+  This option is ignored for general bodies, however - i.e. unfixed blends on
+  general bodies are not rendered.
+
+  Option RROPCT controls the representation of B-curves as polylines. A curved
+  edge is approximated by a number of straight lines called chords. The first
+  value in the option data is a chord tolerance. This is an upper bound on
+  the distance from each chord to the curve it is approximating. The second
+  value is a chord limit. This is an upper bound on the length of a chord
+  used in the approximation of a curved edge. The third value is an angular
+  tolerance. This limits the angular error between a curve and a chord used
+  in its approximation. This is an upper bound on the sum of the two angles
+  formed between the chord and the curve tangent at each chord end. If this
+  option is not specified a default angular tolerance is used.
+
+  If the option RROPVP is supplied then the system will attempt only to render
+  those bodies/faces which are inside or partly inside the viewport supplied.
+
+  The viewport is a cuboid region of model space and should be supplied in the
+  option data as a real list consisting of a centre, three axes, and lengths in
+  model units along these axes. The axes must be orthogonal but need not be
+  normalised.
+
+  While all faces that are inside or partly inside the viewport will be
+  rendered, no attempt is made to trim the output to the boundaries of the
+  viewport, and bodies or faces lying entirely outside, but close to it may be
+  rendered.
+
+
+</PRE>
+</BODY>
+</HTML>

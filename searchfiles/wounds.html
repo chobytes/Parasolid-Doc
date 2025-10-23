@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.064.html#50409850_pgfId-363293", " and creates a new body from them. Any <B>wounds</B> that are left in either the original body", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-322249", " you may have special requirements when healing the <B>wounds</B> in an edited model that mean you cannot", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-300966", " 64.2 Deleting faces and healing <B>wounds</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-300988", " 64.2.1 Methods for healing <B>wounds</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-300989", " A variety of methods are available for healing <B>wounds</B> created when editing, and in particular deleting, faces", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-301076", " The method for healing the <B>wounds</B> caused by the operations. See Section 64.2.3, Heal", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-610543", " . See Section 64.3, Deleting faces without healing <B>wounds</B> for more information. ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-415549", " general body: PK_FACE_delete_2 deletes the faces, heals the <B>wounds</B> as requested, and returns a general body as", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-415859", " Figure 64-1 Deleting faces and healing <B>wounds</B> on a general body ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-301114", " Section 64.2.1, Methods for healing <B>wounds</B> when healing <B>wounds</B>. This section describes the methods supported, and provides", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-305520", " Figure 64-3 Healing <B>wounds</B> by capping a hole with a surface ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-302546", " Figure 64-4 Healing <B>wounds</B> by growing the faces around the hole: PK_FACE_heal_shrink_c", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-301473", " Figure 64-5 Healing <B>wounds</B> growing some faces around a hole while shrinking", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-301476", " You can also supply PK_FACE_heal_grow_from_parent_c. However, this heals <B>wounds</B> by growing faces in exactly the same way", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-303107", " Figure 64-9 Healing <B>wounds</B> with loops that contain multiple edge vertices by", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-301707", " Parasolid can heal <B>wounds</B> such as this even when faces need to", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-301742", " Figure 64-10 Healing <B>wounds</B> with loops that contain multiple edge vertices by", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-698663", " 64.2.7 Tracking capping faces when healing <B>wounds</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-698664", " classic or facet body and heal the resultant <B>wounds</B> with capping faces. These capping faces can be", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-698707", " 64.3 Deleting faces without healing <B>wounds</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-302007", " 64.3.1 Limitations/restrictions on healing <B>wounds</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-302008", " It is not possible to heal <B>wounds</B> in a single operation if the set of", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-302108", " Using this strategy avoids the need to heal <B>wounds</B>, letting you implement editing tools that are not", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321398", " PK_EDGE_delete can only heal <B>wounds</B> if the 3-space curves of the edges adjacent", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321851", " body into two or more bodies. If PK_FACE_heal_no, <B>wounds</B> are not healed, and each deleted face set", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-322198", " See Section 64.6.3, Adding cap faces to heal <B>wounds</B> , for more information. ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-322276", " 64.6.3 Adding cap faces to heal <B>wounds</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-398563", " planar cap faces with which to heal the <B>wounds</B> left by deleting only part of a chain", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.073.html#50409859_pgfId-294760", " a body are such that the body contains <B>wounds</B>, then they are healed using the same techniques", "Functional Description - Creating New Bodies From Existing Entities");
+top.note("chapters/fd_chap.073.html#50409859_pgfId-294762", " be healed as described in Section 72.3, Healing <B>wounds</B> . ", "Functional Description - Creating New Bodies From Existing Entities");
+top.note("chapters/fd_chap.073.html#50409859_pgfId-294778", " as described in Section 72.3, Healing <B>wounds</B> . <B>wounds</B> in parent bodies and child bodies can be", "Functional Description - Creating New Bodies From Existing Entities");
+top.note("chapters/fd_chap.073.html#50409859_pgfId-295871", " Figure 72-1 Healing holes (<B>wounds</B>) using Grow from Parent ", "Functional Description - Creating New Bodies From Existing Entities");
+top.note("chapters/fd_chap.073.html#50409859_pgfId-295879", " 72.3 Healing <B>wounds</B> ", "Functional Description - Creating New Bodies From Existing Entities");
+top.note("chapters/fd_chap.073.html#50409859_pgfId-316648", " <B>Wounds</B> created by PK_FACE_make_solid_bodies or PK_FACE_remove_to_solid_bodies can be healed using", "Functional Description - Creating New Bodies From Existing Entities");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378543", " Healing <B>wounds</B> ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275471", " The covering of holes or <B>wounds</B> in a body, via the fitting of new", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207273", " healing <B>wounds</B> 1074 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210682", " <B>wounds</B> ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-410225", " Editing faces and healing <B>wounds</B> ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-665513", " 5.4 Editing faces and healing <B>wounds</B>", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-299499", " a hole usually remains. Parasolid can repair these <B>wounds</B> automatically, using a number of strategies that you", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-274847", " Figure 5-21 Healing <B>wounds</B> after face edits ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438175", " healing <B>wounds</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5439146", " <B>wounds</B>, healing ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_FACE_heal_no_c 18080 dont heal <B>wounds</B> - leave rubber faces ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_FACE_heal_no_c 18080 dont heal <B>wounds</B> - leave rubber faces ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_face_delete.html#declaration", " PK_FACE_heal_t heal_action, --- method for healing <B>wounds</B>", "PK Reference - PK_FACE_delete");
+top.note("headers/pk_face_delete.html#documentation", "See also Local Ops: Deleting Faces and Healing <B>Wounds</B> for more", "PK Reference - PK_FACE_delete");
+top.note("headers/pk_face_delete_2.html#documentation", "See also Local Ops: Deleting Faces and Healing <B>Wounds</B> for more", "PK Reference - PK_FACE_delete_2");
+top.note("headers/pk_face_delete_facesets.html#documentation", " each faceset leaves a wound. The healing of <B>wounds</B> is controlled", "PK Reference - PK_FACE_delete_facesets");
+top.note("headers/pk_face_delete_facesets_o_t.html#documentation", " function will attempt to heal <B>wounds</B> by whatever method it", "PK Reference - PK_FACE_delete_facesets_o_t");
+top.note("headers/pk_face_delete_o_t.html#declaration", " PK_FACE_heal_t heal_action; --- how to heal <B>wounds</B>", "PK Reference - PK_FACE_delete_o_t");
+top.note("headers/pk_face_heal_t.html#documentation", " PK_FACE_heal_no_c dont heal <B>wounds</B> - leave rubber faces", "PK Reference - PK_FACE_heal_t");
+top.note("headers/pk_face_make_solid_bodies.html#declaration", " PK_FACE_heal_t heal_action, --- method for healing <B>wounds</B> [PF]", "PK Reference - PK_FACE_make_solid_bodies");
+top.note("headers/pk_face_make_solid_bodies.html#documentation", "holes are treated as <B>wounds</B> which are healed as specified by heal_action .", "PK Reference - PK_FACE_make_solid_bodies");
+top.note("headers/pk_face_remove_to_solid_bodies.html#declaration", " PK_FACE_heal_t parent_heal_action, --- method for healing <B>wounds</B> [PF]", "PK Reference - PK_FACE_remove_to_solid_bodies");
+top.note("headers/pk_face_remove_to_solid_bodies.html#documentation", "holes are treated as <B>wounds</B> which are healed as specified by a heal", "PK Reference - PK_FACE_remove_to_solid_bodies");
+top.note("chapters/kd_chap.08.html#50475021_pgfId-273889", " of the three listed below, determines how the <B>wounds</B> on parent and offspring bodies are mended. ", "KID Manual - Local Operation Functions");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

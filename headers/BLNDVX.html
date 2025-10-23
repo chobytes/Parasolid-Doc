@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<TITLE>BLNDVX</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BLNDVX</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_vertex_make_blend.html>PK_VERTEX_make_blend</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BLNDVX ( vertex, radius, neweds, newvxs, ifail )
+================================================
+
+  Blends vertices on sheets and wires.
+
+Receives:
+  KI_tag_list_vertex       *vertex         --- vertex or vertices to blend
+  KI_dbl_distance          *radius         --- blend radius
+
+Returns:
+  KI_tag_list_edge         *neweds         --- list of new edges
+  KI_tag_list_vertex       *newvxs         --- list of new vertices
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wrong_surface          surfaces not suitable
+  KI_invalid_bodies         invalid body
+  KI_edges_intersect        blends would intersect
+  KI_blends_overlap         blends would overlap
+  KI_cant_blend_vertex      blending can't be done
+  KI_wrong_number_edges     not two edges at vertex
+  KI_solid_body             vertices on solid body
+  KI_different_bodies       vertices on different bodies
+  KI_general_body           general body
+
+Description:
+  Blends vertices from sheet or wire bodies with the given radius.
+
+  Only two edges should meet at the vertex, and these two edges must share a
+  common plane.  If the face between the two edges has a surface then it must
+  be planar. A circular blend is created between the two edges.
+
+  All vertices in the list should belong to the same body.
+
+  If the two edges at the vertex are parallel so that the profile of the body
+  is smooth across the vertex then that vertex will be ignored.
+  If blending is not possible for any one of the vertices in the list for any
+  other reason then none of the blending will be done.
+
+  If the body is planar then a valid body will be returned. If the body is
+  non-planar then blending may create a self-intersecting body. In this case if
+  local checking is on then the function will return an ifail stating that the
+  body is invalid.
+
+  If any loop on a face is excluded from the face by a blend then this loop
+  will be removed from the body.
+
+  Lists of the blend edges and the new vertices are returned.
+
+  This function is not supported for vertices on general bodies.
+
+</PRE>
+</BODY>
+</HTML>

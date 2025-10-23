@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.064.html#50409850_pgfId-363283", " of faces. Particularly useful when used in conjunction with <B>PK_FACE_identify_blends</B> to clean up a model: see Section 63.3.1, Identifying", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-316513", " You can use <B>PK_FACE_identify_blends</B> to identify any constant-radius rolling ball blend created in", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-316755", " <B>PK_FACE_identify_blends</B> lets you control properties of the blends to be", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-352105", " The combination of <B>PK_FACE_identify_blends</B> and PK_FACE_delete_facesets , together with PK_FACE_delete_blends , provides you", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321802", " by calls to either PK_BODY_find_facesets , PK_BODY_identify_details , or <B>PK_FACE_identify_blends</B> . ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-322250", " face can be identified as a blend face by <B>PK_FACE_identify_blends</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296029", " You can use <B>PK_FACE_identify_blends</B> to identify blends within a body. This function lets", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-489069", " <B>PK_FACE_identify_blends</B> identifies blend faces with manifold topology. The faces can", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296037", " 65.5.1 Calling <B>PK_FACE_identify_blends</B> ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-420743", " <B>PK_FACE_identify_blends</B> receives and returns the following arguments: ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296158", " <B>PK_FACE_identify_blends</B> works by identifying and returning chains of connected blend", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296160", " argument of <B>PK_FACE_identify_blends</B> to control how chains of blends are returned, with", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296230", " adjacent to those branch faces in the call to <B>PK_FACE_identify_blends</B> . ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296234", " faces that are not supplied in the call to <B>PK_FACE_identify_blends</B> . ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296235", " branch face is limited to the faces supplied to <B>PK_FACE_identify_blends</B> . ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296286", " <B>PK_FACE_identify_blends</B> lets you control whether or not a given chain", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296292", " Note: <B>PK_FACE_identify_blends</B> only finds blends with a constant radius. It cannot", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296322", " By default, <B>PK_FACE_identify_blends</B> returns faces that are blend-like and span pi radians.", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296337", " You can control the information that <B>PK_FACE_identify_blends</B> returns using the ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296338", " PK_LOGICAL_true, then the radius of each blend returned by <B>PK_FACE_identify_blends</B> is returned. ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296339", " PK_LOGICAL_true, then the convexity of each blend returned by <B>PK_FACE_identify_blends</B> is returned ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296360", " This function receives a blend face (as identified by <B>PK_FACE_identify_blends</B> ) and, optionally, a tolerance, and returns the array", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296433", " <B>PK_FACE_identify_blends</B> and PK_BODY_identify_details contain powerful options to let you control", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-305127", " ball blend (i.e. faces that would be returned by <B>PK_FACE_identify_blends</B> ). ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317132", " <B>PK_FACE_identify_blends</B> ", "Functional Description - Update Switches");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_wrong_entity_in_array 357 <B>PK_FACE_identify_blends</B> (MILD) given faces are not from the same body", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_wrong_entity_in_array 357 <B>PK_FACE_identify_blends</B> (MILD) given faces are not from the same body", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>PK_FACE_identify_blends</B> 357 PK_ERROR_wrong_entity_in_array (MILD) given faces are not from the", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_blend_identify_t.html#declaration", " <B>PK_FACE_identify_blends</B> ", "PK Reference - PK_blend_identify_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_FACE_identify_blends</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_change_blend_o_t.html#documentation", " If set to 0 (the default) then <B>PK_FACE_identify_blends</B> should", "PK Reference - PK_FACE_change_blend_o_t");
+top.note("headers/pk_face_find_blend_unders.html#errors", " <B>PK_FACE_identify_blends</B> .", "PK Reference - PK_FACE_find_blend_unders");
+top.note("headers/pk_face_find_blend_unders.html#documentation", "faces that can be identified as blends by <B>PK_FACE_identify_blends</B> , otherwise it", "PK Reference - PK_FACE_find_blend_unders");
+top.note("headers/pk_face_identify_blends.html#declaration", " PK_ERROR_code_t <B>PK_FACE_identify_blends</B>", "PK Reference - PK_FACE_identify_blends");
+top.note("headers/pk_face_identify_blends_o_t.html#errors", " <B>PK_FACE_identify_blends</B> ", "PK Reference - PK_FACE_identify_blends_o_t");
+top.note("headers/pk_face_identify_blends_r_t.html#description", " <B>PK_FACE_identify_blends</B> ", "PK Reference - PK_FACE_identify_blends_r_t");
+top.note("headers/pk_face_t.html#description", " <B>PK_FACE_identify_blends</B> ", "PK Reference - PK_FACE_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

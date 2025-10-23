@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_blend_fault_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A><br>
+    <A HREF=../headers/pk_edge_check_blends.html>PK_EDGE_check_blends</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype is used to return blending fault types. In some cases
+a faulty topological entity is also returned.
+
+For more information, see <A HREF="../chapters/fd_chap.081.html#50409868_pgfId-294758">here</A>.
+
+It has the following values:
+
+                              fault_topol
+                              PK_CLASS_...
+
+PK_blend_fault_no_blend_c                edge has no blend
+PK_blend_fault_no_fault_c                blend is OK
+PK_blend_fault_tangent_c                 blend on tangent edge
+PK_blend_fault_singularity_c     vertex  blend ends on surface singularity
+PK_blend_fault_obsolete_c                unsupported V1 or V2 blend
+PK_blend_fault_vertex_c          vertex  configuration of edges at vertex
+                                         is too complicated
+PK_blend_fault_sheet_c                   edge is laminar
+PK_blend_fault_general_c         vertex  edge has non-manifold vertex
+PK_blend_fault_2_edge_c          vertex  blend ends on illegal 2 edge
+                                         vertex
+PK_blend_fault_chamfer_c                 edge geometry unsuited to
+                                         asymmetric chamfer ranges
+PK_blend_fault_conic_c                   edge geometry unsuited to
+                                         asymmetric conic ranges
+PK_blend_fault_bsurf_c           face    blend requires invalid extension
+                                         of B-surface
+PK_blend_fault_range_c           edge    range inconsistent with adjacent
+                                         blended edge
+PK_blend_fault_type_c            edge    blend type inconsistent with
+                                         adjacent blended edge, or attempted to
+                                         fix a G2 edge blend at the same time
+                                         as a non-G2 edge blend, or attempted
+                                         to fix a blend set by
+                                         <A HREF=../headers/pk_edge_set_blend_chain.html>PK_EDGE_set_blend_chain</A> at the same
+                                         time as blend set by
+                                         <A HREF=../headers/pk_edge_set_blend_variable.html>PK_EDGE_set_blend_variable</A>.
+PK_blend_fault_edge_c            edge    adjoining edge not blended
+PK_blend_fault_loop_c                    blend completely overlaps edge
+                                         loop
+PK_blend_fault_overlap_c                 overlapping blends
+PK_blend_fault_overlap_edge_c    edge    unblended edge overlapped by blend
+PK_blend_fault_bad_end_c         vertex  undetermined problem at end of
+                                         blend
+PK_blend_fault_face_c            face    range of blend on face too large
+PK_blend_fault_overlap_end_c     vertex  illegal overlap on end boundary
+PK_blend_fault_end_c             vertex  blend has illegal end boundary
+PK_blend_fault_chamfer_intsec_c  vertex  can't intersect chamfers at vertex
+PK_blend_fault_edge_intsec_c     edge    end boundary intersects unblended
+                                         edge
+PK_blend_fault_other_edge_c      edge    illegal blend on other edge
+                                         prevented full check
+PK_blend_fault_cliffedge_c               cliff edge blend range
+                                         inconsistent with cliff edge
+PK_blend_fault_unknown_c                 unspecified numerical problem
+                                         with blend
+PK_blend_fault_self_int_c        face    the blend has produced a
+                                         self-intersecting surface
+PK_blend_fault_face_face_c       face    the blend has produced a
+                                         face-face inconsistency
+PK_blend_fault_repaired_c        group   The blend succeeded. Some of the blend
+                                         surfaces have been repaired because
+                                         they would otherwise have been
+                                         self-intersecting. <B>'fault_topol'</B> will
+                                         contain the group of faces that have
+                                         been repaired. The group will also
+                                         contain any faces created by
+                                         requesting that Parasolid patch a
+                                         limit. It is your application's
+                                         responsibility to delete
+                                         this group after use. This value will
+                                         only ever be returned if
+                                         <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A> was called with
+                                         <B>'repair_su_X'</B> set to
+                                         <B>'<A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_report_c</A>'</B>.
+PK_blend_fault_bad_cap_c         plane   a capping plane could not be used
+                                 body    a capping sheet body could not
+                                         be used
+                                 face    an inappropriate limit face has been
+                                         supplied
+                                 fin     an inappropriate limit fin has been
+                                         supplied
+PK_blend_fault_rho_too_large_c   face    A large rho value has resulted in the
+                                         blend cross section curvature being
+                                         too flat compared to the underlying
+                                         surface(s)
+PK_blend_fault_g2_vx_blend_c             Attempted to fix curvature-continuous
+                                         blend with vertex blending enabled.
+PK_blend_fault_g2_collar_setb_c          Attempted to fix curvature-continuous
+                                         blend with a collar setback set.
+PK_blend_fault_face_not_g1_c     face    an underlying surface is not smooth
+PK_blend_fault_apex_range_c              A large range value has resulted in
+                                         an apex-range/angle blend becoming
+                                         ill-defined.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

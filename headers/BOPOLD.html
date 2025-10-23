@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<TITLE>BOPOLD</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BOPOLD</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BOPOLD ( target, tools, nopts, opts, optdta, bodys, nbodys, ifail )
+===================================================================
+
+  Global or local boolean operation on bodies
+
+Receives:
+  KI_tag_list_entity       *target         --- target body or list of faces
+  KI_tag_list_entity       *tools          --- tool bodies or faces of tool body
+ &lt;KI_int_nitems&gt;           *nopts          --- number of boolean options
+  KI_cod_boop               opts[nopts]    --- boolean option codes
+ &lt;KI_tag_list_entity&gt;       optdta[nopts]  --- boolean option data lists
+
+Returns:
+  KI_tag_list_body         *bodys          --- resulting bodies
+  KI_int_nitems            *nbodys         --- number of bodies
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_boolean_failure        Unrecognised result
+                            Invalid matched region
+                            Inconsistent arguments, or internal error
+  KI_partial_no_intersect   No imprinting in local boolean
+  KI_non_manifold           Non-manifold result
+  KI_t_sheet                T-sheet
+  KI_partial_coi_found      Boolean failure due to partial coincidence
+  KI_cant_intsc_solid_sheet Cannot intersect solid target with sheet tool bodies
+  KI_solid_has_void         Illegal void
+  KI_not_solid              Body is not solid
+  KI_not_sheet              Body is not sheet
+  KI_opposed_sheets         Attempt to unite opposed sheets
+  KI_cant_unite_solid_sheet Attempt to unite solid and sheet
+  KI_unsuitable_topology    A faceset selector is from boundary or wrong body
+  KI_tool_faces_many_bodies Tool faces are from more than one body
+  KI_targ_faces_many_bodies Target faces are from more than one body
+  KI_mixed_sheets_solids    Mixture of sheet and solid tool bodies
+  KI_instanced_tools        Instanced tool bodies
+  KI_duplicate_targets      Duplication in list of target faces
+  KI_duplicate_tools        Duplication in list of tool bodies
+  KI_too_many_targets       Too many target bodies
+  KI_unsuitable_entity      Target or tool not a face or body
+                            mixed body
+  KI_wire_body              Target or tool has wireframe or acorn components
+  KI_missing_geom           Target or tool has incomplete geometry
+  KI_same_tool_and_target   Tool body is also target body
+  KI_contradictory_request  Bad combination of options or data for type of boolean
+  KI_not_in_same_partition  Target and tools are not all in the same partition
+  KI_general_body           Target or tool is general body
+
+Description:
+   This function takes the same arguments as BOPBYS. Its only purpose is to
+  provide access to pre-v9 behaviour in partial booleans with excluded faces. As
+  such, its use is STRONGLY DEPRECATED and it will be withdrawn in a future
+  version. Do not use this unless you know exactly why you need it: if BOPBYS
+  does not provide the desired functionality, the correct way to obtain it is
+  through the PK.
+
+</PRE>
+</BODY>
+</HTML>

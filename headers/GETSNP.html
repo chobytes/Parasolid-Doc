@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<TITLE>GETSNP</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>GETSNP</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_session_receive.html>PK_SESSION_receive</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+GETSNP ( nchars, filnam, histfl, statfl, ifail )
+================================================
+
+  Restore a snapshot
+
+Receives:
+  KI_int_nchars            *nchars         --- number of characters in filename
+  KI_chr_filename           filnam[nchars] --- filename for snapshot
+  int                      *histfl         --- unused: should be zero
+  KI_cod_logical           *statfl         --- true to restore interface params
+
+Returns:
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_file_read_corruption   corrupt data read, perhaps an NFS problem
+  KI_FG_snapshot_failure    foreign geometry fails re-initialisation
+  KI_schema_incompatible    schema contents in newer format
+  KI_schema_corrupt         contents of schema file not as expected
+  KI_schema_access_error    error opening, closing or reading from schema file
+  KI_wrong_version          snapshot from different version of modeller
+  KI_corrupt_file           invalid file contents
+  KI_usfd_mismatch          mismatch in user field size
+  KI_wrong_format           snapshot file in wrong format (binary or text)
+  KI_file_access_error      error reading or closing snapshot file
+  KI_cant_open_file         cannot open snapshot file
+  KI_cant_find_file         cannot find snapshot file
+  KI_bad_filename           invalid filename
+
+Description:
+  Restores tag memory from snapshot 'filnam'.
+
+  All entities which existed prior to the GETSNP call will be deleted if it
+  is successful. After a successful call to GETSNP, there will be no session
+  marks available, and each partition will have only its initial partition mark.
+  In particular, it is not possible to roll back past a successful GETSNP.
+
+  If the GETSNP fails, it will be possible to roll back, except in the case
+  of KI_FG_snapshot_failure.
+
+  Restored entities will have the same tags as when the snapshot was made.
+  This means that the value of a restored tag may be the same as that of a
+  tag allocated prior to the GETSNP call. To prevent confusion, the caller
+  should ensure that all tags returned before the GETSNP call are discarded.
+  The one exception is the tag of the 'world' entity which will be unchanged.
+
+  Interface and modelling parameters may be restored from the snapshot file, as
+  follows. Some parameters are never restored; some are always restored; and
+  the remainder are restored if 'statfl' is true, but retain their original
+  value if 'statf' is false:
+
+         Not restored: SLIPCH, SLIPJO, SLIPRB, SLIPRF
+
+         Restored:     SLIPBB, SLMPLP, SLMPAP
+
+         Restored if 'statfl' = true:
+              SLIPBT, SLIPSN, SLIPLC, SLIPDC, SLIPUF, SLIPSI, SLIPCO,
+              SLIPTL, SLIPGS, SLIPGT
+
+</PRE>
+</BODY>
+</HTML>

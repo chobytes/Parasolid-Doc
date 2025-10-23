@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.002.html#50409781_pgfId-297982", " kernel calls functions in the frustrum. You must <B>register</B> these frustrum functions with Parasolid before your application", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298155", " Note: If you use partitions, you need to <B>register</B> a ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298181", " Note: If you use rollback, you need to <B>register</B> a ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-331932", " non-zero error codes are returned, your application can <B>register</B> an error handling function with Parasolid. This function", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299609", " If you wish, your application can also <B>register</B> signal handlers with the operating system to deal", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-294948", " modeler and make PK calls, you need to <B>register</B> the frustrum functions with Parasolid. To do this,", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-405825", " /* <B>Register</B> the frustrum with Parasolid */ ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295326", " Whether your application should <B>register</B> an error-handling function with Parasolid ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295328", " Your application can write and <B>register</B> a particular function, known as an ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295364", " You <B>register</B> an error-handling function with Parasolid by calling PK_ERROR_register_callbacks", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295451", "must <B>register</B> the frustrum before attempting to start a Parasolid", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-326982", " You can <B>register</B> signal handlers with the operating system to recover", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-345279", " are compatible and thread-safe. In addition, PK_THREAD_register_memory_cbs can <B>register</B> thread-specific allocation and freeing functions. See Section 114.2,", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-638942", " PK_MEMORY_register_callbacks can optionally <B>register</B> PK_MEMORY_free_f_t and PK_MEMORY_alloc_f_t . This type of memory", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.013.html#50409793_pgfId-294807", " If you <B>register</B> thread-specific memory allocation and freeing functions with PK_THREAD_register_memory_cbs", "Functional Description - Calling Parasolid From .NET Code");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-338223", " is read-only, then it is recommended that you <B>register</B> it as such. ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-475989", " Before using partitioned rollback you need to <B>register</B> a delta frustrum using PK_DELTA_register_callbacks . To stop", "Functional Description - Rollback");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-294871", " You need to <B>register</B> a special indexed frustrum, rather than the standard", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-385232", " option, you need to <B>register</B> the frustrum seek function FFSKXT using PK_SESSION_register_fru_2 .", "Functional Description - Archives");
+top.note("chapters/fd_chap.121.html#50409914_pgfId-309454", " functions with Parasolid. It also explains how to <B>register</B> signal handlers to allow the operating system to", "Functional Description - Introduction To Error Handling");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294753", " Whether your application should <B>register</B> an error-handling function with Parasolid. ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294757", " Your application can <B>register</B> a particular function, known as an ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-306306", " You <B>register</B> an error-handling function with Parasolid by calling PK_ERROR_register_callbacks", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295410", " Warning: If you <B>register</B> an error handler with Parasolid, you must not", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294733", " the operating system. (It is also common to <B>register</B> a single function to handle both types of", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294785", " sets a flag inside the Parasolid kernel to <B>register</B> the abort request and returns to the calling", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294826", " is not the only possibility; you can also <B>register</B> a single function to handle several types of", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294830", " // <B>register</B> signal handlers with the operating system ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294906", " that this check is not necessary if you <B>register</B> an error handler that throws an exception for", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294926", " is not protected -- not necessary if you <B>register</B> an error handler that uses exceptions ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294957", " might otherwise remain running) if you do not <B>register</B> an error handler that uses exceptions. ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295030", " Note: If you <B>register</B> an error handler that throws an exception for", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-286005", " Performance issue: Each time you <B>register</B> a function pointer (or a structure containing several", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-286151", " const PK_SESSION_applio_t *new /* functions to <B>register</B> (may be NULL) */ ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-346710", " They were introduced for use by functions that <B>register</B> function pointers, or ask Parasolid for the values", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-350074", " To <B>register</B> a frustrum function, initialize the corresponding delegate with", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209659", " <B>register</B> with the operating system 1633 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-288451", " non-zero error codes are returned, your application can <B>register</B> an error handling function with Parasolid. This function", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-279540", " If you wish, your application can also <B>register</B> signal handlers with the operating system in order", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("headers/pk_attdef_callback_fns_t.html#description", "<B>register</B> with the PK using PK_ATTDEF_register_callbacks or", "PK Reference - PK_ATTDEF_callback_fns_t");
+top.note("headers/pk_debug_session_watch_classes.html#documentation", "The application may <B>register</B> arrays of item classes to watch via a", "PK Reference - PK_DEBUG_SESSION_watch_classes");
+top.note("headers/pk_debug_session_watch_fns.html#documentation", "The application may <B>register</B> an array of PK functions to watch via", "PK Reference - PK_DEBUG_SESSION_watch_fns");
+top.note("headers/pk_debug_session_watch_items.html#documentation", "The application may <B>register</B> arrays of tagged items to watch via a", "PK Reference - PK_DEBUG_SESSION_watch_items");
+top.note("headers/pk_delta_frustrum_t.html#description", "application wishes to <B>register</B> with the PK using PK_DELTA_register_callbacks .", "PK Reference - PK_DELTA_frustrum_t");
+top.note("headers/pk_error_frustrum_t.html#description", "application wishes to <B>register</B> with the PK using PK_ERROR_register_callbacks .", "PK Reference - PK_ERROR_frustrum_t");
+top.note("headers/pk_error_register_callbacks.html#documentation", "Application threads may <B>register</B> thread-specific error handlers with", "PK Reference - PK_ERROR_register_callbacks");
+top.note("headers/pk_mark_frustrum_t.html#description", "application wishes to <B>register</B> with the PK using PK_MARK_start .", "PK Reference - PK_MARK_frustrum_t");
+top.note("headers/pk_memory_frustrum_t.html#description", "application wishes to <B>register</B> with the PK using PK_MEMORY_register_callbacks .", "PK Reference - PK_MEMORY_frustrum_t");
+top.note("headers/pk_session_applio_t.html#documentation", "wishes to <B>register</B> with the PK using PK_SESSION_register_applio or", "PK Reference - PK_SESSION_applio_t");
+top.note("headers/pk_session_frustrum_t.html#description", "wishes to <B>register</B> with the PK using PK_SESSION_register_frustrum .", "PK Reference - PK_SESSION_frustrum_t");
+top.note("headers/pk_session_register.html#documentation", "This function provides a mechanism to <B>register</B> Parasolid with other UGS", "PK Reference - PK_SESSION_register");
+top.note("headers/pk_session_register_applio.html#declaration", " const PK_SESSION_applio_t *new --- functions to <B>register</B> (may be NULL)", "PK Reference - PK_SESSION_register_applio");
+top.note("headers/pk_session_register_applio_2.html#declaration", " const PK_SESSION_applio_t *new --- functions to <B>register</B> (may be NULL)", "PK Reference - PK_SESSION_register_applio_2");
+top.note("headers/pk_session_register_fru_o_t.html#documentation", "Parasolid will <B>register</B> each Frustrum function to the value at the", "PK Reference - PK_SESSION_register_fru_o_t");
+top.note("headers/pk_session_watch_tags.html#documentation", "The application may <B>register</B> an array of tagged entities to watch via", "PK Reference - PK_SESSION_watch_tags");
+top.note("chapters/di_chap.06.html#50511938_pgfId-273982", " for each required function, and the application must <B>register</B> this with Parasolid before starting the modeller. This", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.06.html#50511938_pgfId-288661", " transmit and receive mesh data, you need to <B>register</B> the frustrum seek function FFSKXT using PK_SESSION_register_fru_2 .", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.06.html#50511938_pgfId-288627", " Note: We strongly recommend that you <B>register</B> your frustrum using PK_SESSION_register_fru_2 ", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.08.html#50511940_pgfId-274045", " the Graphical Output functions that your application should <B>register</B> with Parasolid using PK_SESSION_register_fru_2 ; these functions render", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.08.html#50511940_pgfId-287409", " You can <B>register</B> Graphical Output functions independently of the other frustrum", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.08.html#50511940_pgfId-287273", " lists the Graphical Output functions that you can <B>register</B> during a Parasolid session. ", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.09.html#50511941_pgfId-284223", " section describes the delta functions that you can <B>register</B> during a Parasolid session. ", "Downward Interfaces - PK_DELTA Functions");
+top.note("chapters/di_chap.10.html#50511942_pgfId-283318", " lists the memory management functions that you can <B>register</B> during a Parasolid session. ", "Downward Interfaces - PK_MEMORY Functions");
+top.note("chapters/di_chap.11.html#50511943_pgfId-285942", " lists the application I/O functions that you can <B>register</B> during a Parasolid session. ", "Downward Interfaces - Application I/O Functions");
+top.note("chapters/di_chap.12.html#50511944_pgfId-281732", " lists the indexed I/O functions that you can <B>register</B> during a Parasolid session. ", "Downward Interfaces - Indexed I/O Functions");
+top.note("chapters/di_chap.13.html#50511945_pgfId-279766", " a Parasolid session. You do not need to <B>register</B> all of these callback functions; if there are", "Downward Interfaces - Attribute Callback Functions");
+top.note("chapters/fg_chap.02.html#50462725_pgfId-273873", " each of these functions, and use PK_SESSION_register_frustrum to <B>register</B> them with Parasolid, along with the standard frustrum", "FG Manual - Introduction and Summary");
+top.note("chapters/in_chap.06.html#50520099_pgfId-272971", " to use the supplied DLL, your application must <B>register</B> a frustrum - see Chapter 5, &#8220;Registering the", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.07.html#50520100_pgfId-319677", " You should also <B>register</B> a signal handler to handle the signal (SIGFPE)", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-739031", " <B>Register</B> a &#8220;translator&#8221; function with the C++ runtime, via ", "Installation Notes - Environment");
+top.note("chapters/in_chap.08.html#50520101_pgfId-278381", " signals by default; to do so, they must <B>register</B> signal handlers. ", "Installation Notes - Floating-Point Traps");
+top.note("chapters/in_chap.08.html#50520101_pgfId-278385", " the best strategy. For information about how to <B>register</B> a signal handler and how Parasolid interacts with", "Installation Notes - Floating-Point Traps");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-283514", " information for system-wide callbacks, such as those you <B>register</B> using PK_ATTDEF_register_cb . ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

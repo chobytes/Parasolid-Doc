@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_knit_pattern_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_knit_pattern_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_knit_pattern_s
+    {
+    int                          n_edges;
+    <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>                   *edges;
+    <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>                   *matches;
+    int                          n_reversals;
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>                   *reversals;
+    };
+
+typedef struct PK_BODY_knit_pattern_s PK_BODY_knit_pattern_t;
+
+</B>
+<A NAME="description"></A>
+<I>A structure describing matches between coincident edges on a given set of
+bodies. The structure also specifies which owning bodies need to be reversed
+in order to correctly knit the bodies together.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_apply_knit_pattern.html>PK_BODY_apply_knit_pattern</A><br>
+    <A HREF=../headers/pk_body_find_knit_pattern.html>PK_BODY_find_knit_pattern</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+PK_BODY_knit_pattern_t lists pairs of edges that are tolerantly or
+accurately coincident and which may be simply joined together by topological
+operations to assemble a larger composite body.
+
+The structure is normally expected to be completed by a call to
+<A HREF=../headers/pk_body_find_knit_pattern.html>PK_BODY_find_knit_pattern</A>, though an application can construct one itself.
+The structure can be passed to PK_BODY_knit_bodies to specify how a collection
+of sheet bodies can be assembled into a larger composite body.
+
+    edges:      An ordered list of edges that can be matched wholly
+                will other edges coincident with them.
+
+    matches:    An ordered list of edges. Each entry is wholly coincident
+                with the corresponding entry in <B>'edges'</B>.
+
+    reversals:  A list of bodies owning edges in either of the <B>'edges'</B> or
+               <B>'matches'</B> lists that must be reversed in order that
+                an attempt to assemble a composite body by topologically
+                fusing the paired edges may succeed.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

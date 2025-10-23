@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_change_radiate_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_change_radiate_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_change_radiate_o_s
+    {
+    int             o_t_version;        --- version number of option structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    have_axis;          --- whether the axis of rotation is
+                                        --- supplied (PK_LOGICAL_false)
+    <A HREF=../headers/pk_axis1_sf_t.html>PK_AXIS1_sf_t</A>   axis;               --- the axis of rotation
+    double          axial_displacement; --- shift along <B>'axis'</B> (0.0)
+    <A HREF=../headers/pk_radiate_step_t.html>PK_radiate_step_t</A>
+                    radiate_step;       --- whether to create a radiate
+                                        --- step face
+                                        --- (<A HREF=../headers/pk_radiate_step_t.html>PK_radiate_step_no_c</A>)
+    };
+typedef struct PK_FACE_change_radiate_o_s PK_FACE_change_radiate_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains radiate-specific optional controls for <A HREF=../headers/pk_face_change.html>PK_FACE_change</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_unsupported_operation  (MILD)    The supplied <B>'axis'</B> is not an
+                                              axis of rotation of the face's
+                                              surface.
+
+    PK_ERROR_bad_combination        (MILD)    There is no <B>'axis'</B> supplied when
+                                              surfaces of the set of faces for
+                                              the same radiate operation don't
+                                              have a common and unique axis of
+                                              rotation.
+                                              Non-zero <B>'axial_displacement'</B>
+                                              is specified without supplied
+                                              <B>'axis'</B>.
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_opts_t.html>PK_FACE_change_opts_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'have_axis'</B>             When set to PK_LOGICAL_true, <B>'axis'</B> is supplied
+                        as the axis of rotation of the face's surface.
+                        Otherwise, an axis is extracted from the definition
+                        of the surface.
+
+
+<B>'axis'</B>                  This is the supplied axis of rotation of the face's
+                        surface.
+
+
+<B>'axial_displacement'</B>    Radiated surface is moved along <B>'axis'</B> by this
+                        amount.
+
+
+<B>'radiate_step'</B>          A "boundary edge" is an edge between a face which is
+                        being radiated and one which is not, or between two
+                        faces being radiated differently.
+
+                        If this option is set to <A HREF=../headers/pk_radiate_step_t.html>PK_radiate_step_no_c</A>, then
+                        no step faces will be created.
+
+                        If set to <A HREF=../headers/pk_radiate_step_t.html>PK_radiate_step_smooth_c</A>, then step faces
+                        will be created along all smooth boundary edges.
+
+                        If set to <A HREF=../headers/pk_radiate_step_t.html>PK_radiate_step_all_c</A>, step faces will be
+                        created at both sharp and smooth edges.
+
+                        If set to <A HREF=../headers/pk_radiate_step_t.html>PK_radiate_step_not_coi_c</A>, step faces are
+                        created at all edges except those where the surface
+                        of the step would be coincident with the surface of
+                        the adjacent face.
+
+                        If set to <A HREF=../headers/pk_radiate_step_t.html>PK_radiate_step_smooth_site_c</A>, step faces
+                        are created at all smooth boundary edges but will
+                        not be created if this can be done by growing site
+                        faces.
+
+                        See <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-926633">here</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

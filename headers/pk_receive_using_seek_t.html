@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_receive_using_seek_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_receive_using_seek_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_receive_using_seek_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_part_receive_o_t.html>PK_PART_receive_o_t</A><br>
+    <A HREF=../headers/pk_partition_receive_o_t.html>PK_PARTITION_receive_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype determines how delayed loading model data is handled.
+
+It has the values:
+
+    PK_receive_using_seek_no_c      read all model data in the file
+                                    sequentially in the same Parasolid
+                                    call before any is needed
+    PK_receive_using_seek_yes_c     read only the data for an individual
+                                    piece of the model as it is needed, by
+                                    seeking within its file if supported
+
+Delayed loading mesh data from part and partition files can use seek.
+
+To support PK_receive_using_seek_yes_c, the receive option <B>'transmit_format'</B>
+must be one of the binary formats and the Frustrum seek function <B>'ffskxt'</B>
+must be registered using <A HREF=../headers/pk_session_register_fru_2.html>PK_SESSION_register_fru_2</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

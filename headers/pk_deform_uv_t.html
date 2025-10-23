@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_deform_uv_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_deform_uv_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_deform_uv_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_deform_o_t.html>PK_FACE_change_deform_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype controls the range of the surface that is evaluated on when
+deforming faces in a <A HREF=../headers/pk_face_change.html>PK_FACE_change</A> operation. It has the values:
+
+    PK_deform_uv_face_box_c    The deformation will be evaluated over the
+                               face's uvbox. The deformed b-surface's uvbox
+                               will be that of the face, unless the b-surface
+                               needs to be extended in order for the
+                               operation to succeed. No geometry will be
+                               shared.
+
+    PK_deform_uv_all_c         For bounded geometry, the entire uvbox of the
+                               original surface will be evaluated over.
+                               For unbounded geometry, the range of the
+                               evaluations will be large enough to cover all
+                               the deforming faces shared by the original
+                               surface. Geometry sharing will be preserved
+                               where possible, so that a single surface shared
+                               between multiple faces with a common deform
+                               operation will result in a single shared surface
+                               on the resultant body.
+
+    PK_deform_uv_on_face_c     The deformation will be evaluated only at
+                               points that lie within or on the boundary of
+                               the face. No geometry will be shared.
+                               This value is not supported.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_fctab_point_topol_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_fctab_point_topol_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_fcstr_point_topol_s
+       {
+       int           point;
+       <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>    topol;
+       };
+typedef struct PK_TOPOL_fcstr_point_topol_s
+               PK_TOPOL_fcstr_point_topol_t;
+struct PK_TOPOL_fctab_point_topol_s
+       {
+       PK_TOPOL_fcstr_point_topol_t *data;
+       int                          length;
+       };
+typedef struct PK_TOPOL_fctab_point_topol_s
+               PK_TOPOL_fctab_point_topol_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_table_t.html>PK_TOPOL_facet_table_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is a support structure for <A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A>.  It is a lookup table
+which maps facet point indices on face boundaries to their associated model
+topology.  The associated topology will be a <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>, <A HREF=../headers/pk_fin_t.html>PK_FIN_t</A> or
+<A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A> and is the topology whose geometry is associated with the point
+index.
+
+Note that the facet topology is not always equivalent to the model topology,
+this can occur in regions of the model where the distance between model edges
+is very small, in such cases the facetted representation essentially 'zips' up
+the edges; an edge is 'zipped' to another for some or all of its length.
+In these regions the topology returned will be that of the edge or fin that
+was 'zipped' to, see <A HREF="../chapters/fd_chap.111.html#50409902_pgfId-298663">here</A> for details.
+
+NOTE: The mapping from all points to topologies is a sparse relation as only
+points lying on the face boundaries will be returned.  For interior facet
+points the associated face can be found using the <B>'facet_face'</B>, <B>'facet_fin'</B>
+and <B>'fin_data'</B> and <B>'data_point_idx'</B> tables.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

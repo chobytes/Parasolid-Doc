@@ -1,0 +1,1237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>LISP in KID</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>LISP in KID</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.02.html">Kernel Interface Driver (KID) - an Overview</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.04.html">Object-Oriented KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273839">2.1	Introduction</A>
+<UL>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273841">2.1.1	LISP evaluation</A>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273864">2.1.2	Atomic Symbols</A>
+</UL>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273877">2.2	List operators</A>
+<UL>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273879">2.2.1	CAR and CDR</A>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273899">2.2.2	CONS</A>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273910">2.2.3	LIST and APPEND</A>
+</UL>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273924">2.3	Predicates</A>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273936">2.4	Conditionals</A>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273949">2.5	User-defined functions</A>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273958">2.6	Recursion vs. iteration</A>
+<UL>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273960">2.6.1	Recursion</A>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273963">2.6.2	Iteration</A>
+</UL>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273971">2.7	Special features of Parasolid LISP</A>
+<LI> <A HREF="kd_chap.03.html#50475011_pgfId-273997">2.8	Object oriented LISP</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475011_pgfId-273839"></A>2.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475011_pgfId-273840"></A>As previously discussed in the opening chapter we have assumed that users of KID have knowledge of LISP, but for those who are a little rusty or unsure of the concepts used, the following section is designed to get you started.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475011_pgfId-273841"></A>	2.1.1 	LISP evaluation</H2>
+<P>
+<A NAME="50475011_pgfId-273842"></A>You should think of LISP as an interpreter. It evaluates or attempts to evaluate messages which you pass to it. The messages which you pass are called symbolic expressions (s-expressions).</P>
+
+<H4>
+<A NAME="50475011_pgfId-273843"></A>S-expressions</H4>
+<P>
+<A NAME="50475011_pgfId-273844"></A>In the following examples of s-expressions notice that numbers evaluate to themselves:</P>
+<P>
+<A NAME="50475011_pgfId-280841"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281159"></A>&gt; ( times 3 4 )
+12
+&gt; 3.1417
+3.1417
+&gt; ( times 3 ( plus 2 2 ) )
+12</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273846"></A>S-expressions are composed of lists and atoms.</P>
+
+
+<H4>
+<A NAME="50475011_pgfId-273847"></A>Atoms</H4>
+<P>
+<A NAME="50475011_pgfId-273848"></A>Atoms are entities which LISP treats as whole items, i.e. they cannot be broken down further. Examples are:</P>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-273849"></A>integers</LI>
+<LI>
+<A NAME="50475011_pgfId-273850"></A>reals, e.g. 3.1417</LI>
+<LI>
+<A NAME="50475011_pgfId-273851"></A>strings, e.g. a; b; plus. Strings are commonly used as either variable or function names.</LI>
+</UL>
+
+
+<H4>
+<A NAME="50475011_pgfId-273852"></A>Lists</H4>
+<P>
+<A NAME="50475011_pgfId-273853"></A>Lists are chains of elements bounded by parentheses, where elements are either atoms or lists themselves. For example:</P>
+<P>
+<A NAME="50475011_pgfId-280857"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281179"></A>(3 4 5 )
+(a d f )
+( plus 2 ( times 4 3 ) )
+( )			--- empty list</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475011_pgfId-273855"></A>List evaluation</H4>
+<P>
+<A NAME="50475011_pgfId-273856"></A>When evaluating lists LISP applies the following criteria:</P>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-273857"></A>the first element of the list is treated as a function or operator name, and the subsequent elements are arguments, for example:</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-282341"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475011_pgfId-282378"></A>&gt; ( plus 2 4 )</P>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-273859"></A>as lists can be embedded, the innermost lists are evaluated first, and their values are taken as arguments in the next innermost list, etc. For example:</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-282352"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475011_pgfId-282370"></A>&gt; ( times 6 ( plus 1 ( plus 2 2 ) ) )<BR>
+30</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475011_pgfId-273861"></A>Quotation</H4>
+<P>
+<A NAME="50475011_pgfId-273862"></A>S-expressions which are preceded by a quote ( ' ) are NOT evaluated, for example:</P>
+<P>
+<A NAME="50475011_pgfId-280864"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281210"></A>&gt; &acute; ( 3 4 )
+( 3 4 )
+
+&gt; ( quote ( 3 4 ) )		--- is equivalent to the above
+( 3 4 )
+&gt; &acute;a
+a</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475011_pgfId-273864"></A>	2.1.2 	Atomic Symbols</H2>
+
+<H4>
+<A NAME="50475011_pgfId-273865"></A>SETQ</H4>
+<P>
+<A NAME="50475011_pgfId-273866"></A>As previously discussed, strings can be used as variables. They can be bound to values using the <CODE>
+setq</CODE>
+ operator, for example:</P>
+<P>
+<A NAME="50475011_pgfId-280877"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281250"></A>&gt; ( setq a 3 )
+3
+&gt; a			--- `a&acute; now evaluates to 3
+3
+&gt; ( setq a ( add1 a ) )
+4
+&gt; a
+4</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273868"></A>A side effect of these type of operations is that the complete s-expression always evaluates to a result.</P>
+<P>
+<A NAME="50475011_pgfId-273869"></A>The following examples are equivalent forms:</P>
+<P>
+<A NAME="50475011_pgfId-280889"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281297"></A>&gt; ( setq a 2 )
+
+&gt; ( set &acute;a 2 )
+
+&gt; ( set ( quote a ) 2 )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475011_pgfId-273871"></A>Predefined symbol-strings</H4>
+<P>
+<A NAME="50475011_pgfId-273872"></A>A number of symbol-strings are predefined by the system, for example:</P>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-273873"></A><CODE>
+plus</CODE>
+, <CODE>
+times</CODE>
+, <CODE>
+add1</CODE>
+ (operator names)</LI>
+<LI>
+<A NAME="50475011_pgfId-273874"></A><CODE>
+nil</CODE>
+ ( the empty list, or logical false )</LI>
+<LI>
+<A NAME="50475011_pgfId-273875"></A><CODE>
+t</CODE>
+ ( the logical true )</LI>
+</UL>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475011_pgfId-273877"></A>2.2	<A NAME="50475011_marker-273876"></A>List operators
+
+
+</H1>
+<P>
+<A NAME="50475011_pgfId-273878"></A>Symbolic operations on lists consist primarily of taking lists apart and building them up. LISP provides two basic functions for taking lists apart, these are <CODE>
+car</CODE>
+ and <CODE>
+cdr</CODE>
+. Both are functions of one argument, which should be a list, and they always cause their argument to be evaluated.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475011_pgfId-273879"></A>	2.2.1 	CAR and CDR</H2>
+
+<H4>
+<A NAME="50475011_pgfId-273880"></A>car</H4>
+<P>
+<A NAME="50475011_pgfId-273882"></A><CODE>
+car</CODE>
+<A NAME="50475011_marker-273881"></A> returns the first element of this list, for example:</P>
+<P>
+<A NAME="50475011_pgfId-280909"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281328"></A>&gt; (car &acute;(a b c))
+a</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475011_pgfId-273884"></A>cdr</H4>
+<P>
+<A NAME="50475011_pgfId-273886"></A><CODE>
+cdr</CODE>
+<A NAME="50475011_marker-273885"></A> returns the list with its first element missing, for example:</P>
+<P>
+<A NAME="50475011_pgfId-280920"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281359"></A>&gt; (cdr &acute;(a b c))
+(b c)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273888"></A><CODE>
+car</CODE>
+ and <CODE>
+cdr</CODE>
+ are considered non-destructive as they do not actually change the lists on which they operate, for example:</P>
+<P>
+<A NAME="50475011_pgfId-280938"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281407"></A>&gt; ( setq x &acute;(a b c))
+(a b c)
+&gt; x
+(a b c)
+&gt; (car x)
+a
+&gt; x
+(a b c)
+&gt; (cdr x)
+(b c)
+&gt; x
+(a b c)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475011_pgfId-273890"></A>Embedded car and cdr calls</H4>
+<P>
+<A NAME="50475011_pgfId-273891"></A><CODE>
+car</CODE>
+ and <CODE>
+cdr</CODE>
+ can be embedded in a single call, for example:</P>
+<P>
+<A NAME="50475011_pgfId-280949"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281451"></A>&gt; (cdr (car &acute;((a b c) (d e f)))
+(b c)
+&gt; (car (cdr &acute;((a b c) (d e f)))
+(d e f)
+&gt; (car (cdr (car (cdr &acute;((a b c) (d e f))))))
+e</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273893"></A>Code containing long strings of cars and cdrs is hard to follow. Alternatively, the same calls can be made by the single function that corresponds to the sequence of calls used. For example, the previous examples would use these single calls to achieve the same results:</P>
+<P>
+<A NAME="50475011_pgfId-280956"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281505"></A>&gt; (cdar &acute;((a b c) (d e f)))
+(b c)
+&gt; (cadr &acute;((a b c) (d e f)))
+(d e f)
+&gt; (cadadr &acute;((a b c) (d e f)))
+e</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475011_pgfId-273895"></A>element</H4>
+<P>
+<A NAME="50475011_pgfId-273897"></A><A NAME="50475011_marker-273896"></A>The function <CODE>
+element</CODE>
+ is a shorthand for embedded <CODE>
+car</CODE>
+ and <CODE>
+cdr</CODE>
+ calls, for example, in the following example <CODE>
+element</CODE>
+ returns the third element of the given list:</P>
+<P>
+<A NAME="50475011_pgfId-280976"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281572"></A>&gt; ( setq x &acute;(1 4 6 7 ) )
+(1 4 6 7)
+&gt; ( element 3 x )
+6</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475011_pgfId-273899"></A>	2.2.2 	CONS</H2>
+<P>
+<A NAME="50475011_pgfId-273901"></A><A NAME="50475011_marker-273900"></A>Just as <CODE>
+car</CODE>
+ and <CODE>
+cdr</CODE>
+ take lists apart, <CODE>
+cons</CODE>
+ builds lists up. <CODE>
+cons</CODE>
+ is a function of two arguments where the second argument should always evaluate to a list.</P>
+<P>
+<A NAME="50475011_pgfId-273902"></A><CODE>
+cons</CODE>
+ evaluates both of its arguments, and then returns as its value the list obtained by taking the second argument and placing the first one in front of it, for example:</P>
+<P>
+<A NAME="50475011_pgfId-281622"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281628"></A>&gt; (cons &acute;a &acute;(b c))
+(a b c)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273904"></A><CODE>
+cons</CODE>
+ can be considered to be the inverse function of <CODE>
+car</CODE>
+ and <CODE>
+cdr</CODE>
+, as <CODE>
+cons</CODE>
+ always produces a list whose <CODE>
+car</CODE>
+ is the first argument to <CODE>
+cons</CODE>
+, and whose <CODE>
+cdr</CODE>
+ is the second argument.</P>
+<P>
+<A NAME="50475011_pgfId-273905"></A>Like <CODE>
+car</CODE>
+ and <CODE>
+cdr</CODE>
+, <CODE>
+cons</CODE>
+ is non-destructive.</P>
+
+<H4>
+<A NAME="50475011_pgfId-273907"></A><A NAME="50475011_marker-273906"></A>Dotted pairs</H4>
+<P>
+<A NAME="50475011_pgfId-273908"></A>If the second argument to <CODE>
+cons</CODE>
+ is an atom then the result is a dotted pair rather than a list. In most cases this is not a desirable result and the use of <CODE>
+list</CODE>
+ would produce preferable results. However, the syntax for the input of PK option structures requires the use of dotted pairs for which <CODE>
+cons</CODE>
+ should be used. For example:</P>
+<P>
+<A NAME="50475011_pgfId-281611"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281647"></A>(cons &acute;a &acute;b) -&gt; (a . b)
+(cons &acute;a &acute;(b c)) -&gt; (a b c)
+(cons &acute;(a b) &acute;c) -&gt; ((a b) . c)
+(list &acute;(a b) &acute;c) -&gt; ((a b) c)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475011_pgfId-273910"></A>	2.2.3 	LIST and APPEND</H2>
+<P>
+<A NAME="50475011_pgfId-273911"></A><CODE>
+cons</CODE>
+ can be used to build up complicated s-expressions, for example, to create the lists (1 2 3) and (a (b c) d), using <CODE>
+cons</CODE>
+ we would:</P>
+<P>
+<A NAME="50475011_pgfId-280987"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281670"></A>&gt; (cons &acute;1 (cons &acute;2 (cons &acute;3 nil)))
+(1 2 3)
+&gt; (cons &acute;a (cons (cons &acute;b (cons &acute;c nil)) (cons &acute;d nil)))
+(a (b c) d)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273913"></A>As this is obviously cumbersome, the <CODE>
+list</CODE>
+ and <CODE>
+append</CODE>
+ functions are simpler ways to build new lists.</P>
+
+<H4>
+<A NAME="50475011_pgfId-273914"></A>list</H4>
+<P>
+<A NAME="50475011_pgfId-273916"></A><CODE>
+list</CODE>
+ takes any number of arguments, evaluates them, and builds a new list containing each value as an element. For example:</P>
+<P>
+<A NAME="50475011_pgfId-281003"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281693"></A>&gt; (list &acute;1 &acute;2 &acute;3)
+(1 2 3)
+&gt; (list &acute;a &acute;(b c) &acute;d)
+(a (b c) d)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475011_pgfId-273918"></A>append</H4>
+<P>
+<A NAME="50475011_pgfId-273920"></A><CODE>
+append</CODE>
+ takes two arguments, which should both evaluate to lists, and creates a new list by concatenating the given lists. For example:</P>
+<P>
+<A NAME="50475011_pgfId-281026"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281704"></A>&gt; (append &acute;(a b) &acute;(c d))
+(a b c d)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273922"></A><CODE>
+append</CODE>
+ can also produce dotted pairs:</P>
+<P>
+<A NAME="50475011_pgfId-282084"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-282094"></A>(append &acute;(a b) &acute;c) -&gt; (a b . c)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475011_pgfId-273924"></A>2.3	Predicates
+
+
+</H1>
+<P>
+<A NAME="50475011_pgfId-273925"></A>A predicate is a symbolic expression which evaluates to true (<CODE>
+t</CODE>
+) or false (<CODE>
+nil</CODE>
+), i.e. it is a test.</P>
+
+<H4>
+<A NAME="50475011_pgfId-273926"></A>Logical operators</H4>
+<P>
+<A NAME="50475011_pgfId-273927"></A>The following logical operators are defined: <CODE>
+not</CODE>
+, <CODE>
+and</CODE>
+, <CODE>
+or</CODE>
+.</P>
+
+
+<H4>
+<A NAME="50475011_pgfId-273928"></A>atom</H4>
+<P>
+<A NAME="50475011_pgfId-273930"></A><CODE>
+atom</CODE>
+<A NAME="50475011_marker-273929"></A> determines whether or not its argument is an atom, for example:</P>
+<P>
+<A NAME="50475011_pgfId-281040"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281715"></A>&gt; (atom &acute;a)
+t
+&gt; (atom &acute;(a b c))
+nil</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475011_pgfId-273932"></A>listp</H4>
+<P>
+<A NAME="50475011_pgfId-273934"></A><CODE>
+listp</CODE>
+<A NAME="50475011_marker-273933"></A> determines whether something is a list. For example:</P>
+<P>
+<A NAME="50475011_pgfId-281047"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281752"></A>&gt; (listp &acute;a)
+nil
+&gt; (listp &acute;(a b c))
+t</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475011_pgfId-273936"></A>2.4	Conditionals
+
+
+</H1>
+<P>
+<A NAME="50475011_pgfId-273937"></A>Predicates can be used to make choices, but to do this the equivalent of a conditional branch is needed. For this the <CODE>
+cond</CODE>
+ (for conditional) function is provided. <CODE>
+cond</CODE>
+ is similar to the &quot;if; then; and else&quot; statements.</P>
+<P>
+<A NAME="50475011_pgfId-273939"></A><A NAME="50475011_marker-273938"></A>A <CODE>
+cond</CODE>
+ s-expression can have any number of arguments (clauses), which consist of a series of expressions. The first element of a <CODE>
+cond</CODE>
+ clause is treated as a condition to be tested for; the rest consists of things to do should the condition prevail.</P>
+<P>
+<A NAME="50475011_pgfId-281057"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281798"></A>&gt; (cond
+   (predicate1 action1a action1b action1c ...)
+   (predicate2 action2a action2b action2c ...)
+   .
+   .
+   (t default_action1 default_action2 ...)
+)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273941"></A>meaning:</P>
+<P>
+<A NAME="50475011_pgfId-281064"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281841"></A>if
+    predicate1 is true, then evaluate action1a,
+    action1b, etc. in sequence
+else if
+    predicate2 is true, then evaluate action2a ...
+    .
+    .
+else
+    evaluate default_action1, ...</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273943"></A>A <CODE>
+cond</CODE>
+ clause is only fully evaluated providing that the first element of the clause evaluates to true <CODE>
+t</CODE>
+.</P>
+<P>
+<A NAME="50475011_pgfId-273944"></A>For example, if you want to be sure that something is a list before you take its <CODE>
+car</CODE>
+, do:</P>
+<P>
+<A NAME="50475011_pgfId-282140"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-282160"></A>&gt; (cond ((listp x) (car x)))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-282142"></A>This previous example is a <CODE>
+cond</CODE>
+ of one clause, the s-expression <CODE>
+((listp x) (car x))</CODE>
+. Where the first element of the clause is <CODE>
+(listp x)</CODE>
+ which is the condition of the clause. It is only when this evaluates to true that LISP evaluates the rest of the clause, the expression <CODE>
+(car x)</CODE>
+. For example:</P>
+<P>
+<A NAME="50475011_pgfId-281071"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281884"></A>&gt; (setq x &acute;(a b c))
+(a b c)
+&gt; (cond ((listp x ) (car x)))
+a
+&gt; (setq x &acute;y)
+y
+&gt; (cond ((listp x) (car x)))
+nil</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273948"></A>Like other LISP functions, <CODE>
+cond</CODE>
+ always returns a value. In the previous example, when the test in the <CODE>
+cond</CODE>
+ clause evaluates to true, LISP evaluates the next expression, whilst returning the value of that expression as the value of <CODE>
+cond</CODE>
+. When the test failed, the <CODE>
+cond</CODE>
+ returned <CODE>
+nil</CODE>
+.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475011_pgfId-273949"></A>2.5	User-defined functions
+
+
+</H1>
+<P>
+<A NAME="50475011_pgfId-273950"></A>A LISP user can create functions using the function <CODE>
+defun</CODE>
+ (define function).</P>
+
+<H4>
+<A NAME="50475011_pgfId-273951"></A>defun</H4>
+<P>
+<A NAME="50475011_pgfId-273953"></A><CODE>
+defun</CODE>
+ takes as its arguments the name of the function to be defined, a list of formal parameters (literal atoms), and some bodies of code (s-expressions). <CODE>
+defun</CODE>
+ does not evaluate any of these arguments, it associates, for future reference, the formal parameter list and bodies of code with the given function name. </P>
+<P>
+<A NAME="50475011_pgfId-273954"></A>For example, to create the simple function <CODE>
+addthree</CODE>
+:</P>
+<P>
+<A NAME="50475011_pgfId-281083"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281935"></A>&gt; (defun addthree (x) (plus x 3))
+addthree
+&gt; (addthree 4)
+7</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273956"></A>More generally, the syntax of a call to <CODE>
+defun</CODE>
+ would look like:</P>
+<P>
+<A NAME="50475011_pgfId-281090"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-281980"></A>&gt; (defun function_name (param1 param2 ... paramn)
+    (... s-expression1 ...)
+    (... s-expression2 ...
+    (... s-expression2 ...)
+    .
+    .
+)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475011_pgfId-273958"></A>2.6	Recursion vs. iteration
+
+
+</H1>
+<P>
+<A NAME="50475011_pgfId-273959"></A>At times we want to repeat an operation an indefinite number of times, each time with different inputs. This can be achieved through the use of iteration or recursion.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475011_pgfId-273960"></A>	2.6.1 	Recursion</H2>
+<P>
+<A NAME="50475011_pgfId-273961"></A>By using recursion we can accomplish the equivalent of indefinite repetition; a function is said to be recursive if it refers to itself in its definition. It is necessary to make sure that the function checks first for a termination condition, to avoid an infinite loop. For example:</P>
+<P>
+<A NAME="50475011_pgfId-281105"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-282014"></A>&gt; (defun fac (n)
+    (cond
+        ((eq n 0) 1)
+        (t (times n (fac (sub1 n))))
+    )
+    )
+fac
+&gt; (fac 4)
+24</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475011_pgfId-273963"></A>	2.6.2 	Iteration</H2>
+<P>
+<A NAME="50475011_pgfId-273964"></A>In iterative code, indefinite repetition is designated by explicit instructions to do something repeatedly. In LISP there are several functions that enable you to write an explicit loop</P>
+
+<H4>
+<A NAME="50475011_pgfId-273965"></A>mapc</H4>
+<P>
+<A NAME="50475011_pgfId-273967"></A><CODE>
+mapc</CODE>
+ is a &quot;LISP-like&quot; way of doing an iteration, in which it takes two arguments; the first being a list and the second a function. For example:</P>
+<P>
+<A NAME="50475011_pgfId-282165"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-282203"></A>&gt; ( mapc list_name function_name )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-273969"></A><CODE>
+mapc</CODE>
+ maps each element of <CODE>
+list_name</CODE>
+ by applying <CODE>
+function_name</CODE>
+ (which must be a single argument) to it, for example:</P>
+<P>
+<A NAME="50475011_pgfId-281116"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-282046"></A>&gt; ( mapc &acute;( 2 5 7 ) add1 )
+( 3 6 8 )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475011_pgfId-273971"></A>2.7	Special features of Parasolid LISP
+
+
+</H1>
+<P>
+<A NAME="50475011_pgfId-273972"></A>Parasolid LISP provides a more extensive set of LISP facilities than those which are generally found in other LISP dialects, important points worth noting are listed below:</P>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-273973"></A>atomic types include integer, real, string, and function</LI>
+<LI>
+<A NAME="50475011_pgfId-273974"></A>arithmetic operations - <CODE>
+plus</CODE>
+, <CODE>
+difference</CODE>
+, <CODE>
+times</CODE>
+, <CODE>
+quotient</CODE>
+, <CODE>
+equal</CODE>
+, <CODE>
+greaterp</CODE>
+, <CODE>
+lessp</CODE>
+ are overloaded</LI>
+<P>
+<A NAME="50475011_pgfId-273975"></A>For example, <CODE>
+plus</CODE>
+ works with character strings as well as reals.</P>
+<LI>
+<A NAME="50475011_pgfId-273976"></A>the input token reader:</LI>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-273977"></A>regards <STRONG>
+underscore _</STRONG> as part of a symbol, rather than <STRONG>
+minus </STRONG>-</LI>
+<LI>
+<A NAME="50475011_pgfId-273978"></A>recognizes strings in double quotes <STRONG>
+&quot;....&quot;</STRONG> as quoted atoms</LI>
+<LI>
+<A NAME="50475011_pgfId-273979"></A>recognizes <STRONG>
+double hyphen</STRONG>, <CODE>
+--</CODE>
+, as beginning a comment</LI>
+</UL>
+<LI>
+<A NAME="50475011_pgfId-273980"></A><STRONG>
+HELP</STRONG> allows retrieval of system and user information</LI>
+<LI>
+<A NAME="50475011_pgfId-273981"></A><STRONG>
+LOAD</STRONG> permits execution of journal files or separately developed code</LI>
+<LI>
+<A NAME="50475011_pgfId-273982"></A>variables which are not defined, and properties which are not available default to <STRONG>
+UNDEFINED</STRONG> (note that <STRONG>
+UNDEFINED</STRONG> has the value true for the purposes of conditionals etc.)</LI>
+<LI>
+<A NAME="50475011_pgfId-273983"></A>system functions may not be redefined and can only be handed to other functions by quoting, e.g. eval and plus in:</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-282308"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475011_pgfId-282318"></A>( apply 'eval ( list plus 1 1 ) )</P>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-273985"></A><STRONG>
+CAR</STRONG>, <STRONG>
+CDR</STRONG> on <STRONG>
+nil</STRONG> or an atom are not permissible.</LI>
+<LI>
+<A NAME="50475011_pgfId-273986"></A><STRONG>
+COND</STRONG> raises an error if no true condition is encountered.</LI>
+</UL>
+
+<H4>
+<A NAME="50475011_pgfId-273987"></A>Quick reference summary</H4>
+<P>
+<A NAME="50475011_pgfId-273988"></A>For a quick reference table summary of the functions available in PARASOLID LISP, see <A HREF="kd_chap.18.html#50475027_41105">Appendix B, &quot;Parasolid LISP Functions&quot;</A>.</P>
+
+
+<H4>
+<A NAME="50475011_pgfId-273992"></A>Error codes</H4>
+<P>
+<A NAME="50475011_pgfId-273993"></A>The error codes in PARASOLID LISP are given in <A HREF="kd_chap.20.html#50475025_15859">Appendix D, &quot;List of Parasolid LISP Functions&quot;</A>.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475011_pgfId-273997"></A>2.8	Object oriented LISP
+
+
+</H1>
+<P>
+<A NAME="50475011_pgfId-273998"></A>Parasolid LISP has been extended by the inclusion of object-oriented functions and these are used extensively within KID.</P>
+<P>
+<A NAME="50475011_pgfId-273999"></A>Object-oriented expressions have the form:</P>
+<P>
+<A NAME="50475011_pgfId-282323"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-282333"></A>(object function argument1 argument2 ...)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475011_pgfId-274001"></A>The functions listed first are extensions to functional LISP rather than object oriented themselves:</P>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-274004"></A><CODE>
+define</CODE>
+<A NAME="50475011_marker-274002"></A><A NAME="50475011_marker-274003"></A> - creates objects within structures.</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-282275"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475011_pgfId-282281"></A>&gt; ( define &lt;object&gt; &lt;class&gt; )</P>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-274008"></A><CODE>
+undefine</CODE>
+<A NAME="50475011_marker-274006"></A><A NAME="50475011_marker-274007"></A> - deletes an object (and any of its subclasses) whether or not it has been previously defined. The syntax is shown below; the argument can be one object or many, separated by spaces:</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-282268"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475011_pgfId-282289"></A>&gt; ( undefine &lt;objects&gt; )</P>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-274012"></A><CODE>
+redefine</CODE>
+<A NAME="50475011_marker-274010"></A><A NAME="50475011_marker-274011"></A> - redefines an object as another class.</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-274013"></A>Object oriented LISP provides many more useful functions to add to those described for standard LISP. Below is a summary of such functions which are properties of the universe class. Try using (universe help _&lt;name_&gt;) for more information.</P>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-274016"></A><CODE>
+help</CODE>
+<A NAME="50475011_marker-274014"></A><A NAME="50475011_marker-274015"></A> - returns help about the object.</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-282257"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475011_pgfId-282297"></A>&gt; ( fred help [property] )      --&gt; useful information</P>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-274020"></A><CODE>
+detach</CODE>
+<A NAME="50475011_marker-274018"></A><A NAME="50475011_marker-274019"></A> - detaches an object from its owning class or parent.</LI>
+<LI>
+<A NAME="50475011_pgfId-274023"></A><CODE>
+attach</CODE>
+<A NAME="50475011_marker-274021"></A><A NAME="50475011_marker-274022"></A> - attaches an object to a new class.</LI>
+<LI>
+<A NAME="50475011_pgfId-274026"></A><CODE>
+is</CODE>
+<A NAME="50475011_marker-274024"></A><A NAME="50475011_marker-274025"></A> - returns the owning class of an object. If an argument is given it must be the name of a class and the function returns the subclass of the one given which leads to the object in the class structure, e.g.</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-281123"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475011_pgfId-282073"></A>&gt; ( define limb fred )       --&gt; limb<BR>
+&gt; ( define left_leg limb )   --&gt; left_leg<BR>
+&gt; ( define right_leg limb )  --&gt; right_leg<BR>
+&gt; ( fred is )                --&gt; man<BR>
+&gt; ( left_leg is )            --&gt; limb<BR>
+&gt; ( left_leg is man )        --&gt; fred<BR>
+&gt; ( left_leg is fred )       --&gt; limb</P>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-274030"></A><CODE>
+superclass</CODE>
+<A NAME="50475011_marker-274028"></A><A NAME="50475011_marker-274029"></A> - returns the owning class of an object</LI>
+<LI>
+<A NAME="50475011_pgfId-274033"></A><CODE>
+subclass</CODE>
+<A NAME="50475011_marker-274031"></A><A NAME="50475011_marker-274032"></A> - returns the objects owned by the given class</LI>
+<LI>
+<A NAME="50475011_pgfId-274036"></A><CODE>
+sibling</CODE>
+<A NAME="50475011_marker-274034"></A><A NAME="50475011_marker-274035"></A> - returns all objects in the same owning class as the given object</LI>
+<LI>
+<A NAME="50475011_pgfId-274039"></A><CODE>
+supertree</CODE>
+<A NAME="50475011_marker-274037"></A><A NAME="50475011_marker-274038"></A> - returns the direct ancestors of the object, e.g.</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-282242"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-282252"></A>&gt; ( left_leg supertree ) --&gt; (left_leg limb fred man universe)</PRE>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-282995"></A><CODE>
+subtree</CODE>
+<A NAME="50475011_marker-282993"></A><A NAME="50475011_marker-282994"></A> - returns the descendants of a given object</LI>
+<LI>
+<A NAME="50475011_pgfId-282998"></A>the symbol minus<A NAME="50475011_marker-282996"></A><A NAME="50475011_marker-282997"></A> <CODE>
+-</CODE>
+ removes a property from an object. If the property is not found, this message is not passed to the owning object.</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-282227"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475011_pgfId-282237"></A>&gt; ( fred age 33 )          --&gt; 33<BR>
+&gt; ( fred age )             --&gt; 33<BR>
+&gt; ( fred - age )           --&gt; t<BR>
+&gt; ( fred age )             --&gt; undefined</P>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475011_pgfId-274050"></A><CODE>
+defun</CODE>
+<A NAME="50475011_marker-274048"></A><A NAME="50475011_marker-274049"></A> - defines a function</LI>
+</UL>
+<P>
+<A NAME="50475011_pgfId-274051"></A>The following object functions are used internally in KID and need not concern the user. They are <A NAME="50475011_marker-274052"></A>reserved words and should not be overwritten.</P>
+<P>
+<A NAME="50475011_pgfId-283046"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475011_pgfId-283083"></A>PROPERTY FUNCTIONP INHERIT SYSTEM SUBJECT LAZY GUARD LISTENER UNGUARD OWN OWNER RESUME ABANDON </PRE>
+</TD>
+</TR>
+</TABLE>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.02.html">Kernel Interface Driver (KID) - an Overview</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.04.html">Object-Oriented KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

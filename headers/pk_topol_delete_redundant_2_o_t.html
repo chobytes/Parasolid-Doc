@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_delete_redundant_2_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_delete_redundant_2_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_delete_redundant_2_o_s
+{
+int                  o_t_version;           --- version number of options
+                                            --- structure
+<A HREF=../headers/pk_topol_dimension_t.html>PK_TOPOL_dimension_t</A> max_topol_dimension;   --- controls which topologies or
+                                            --- sub-topologies of the input
+                                            --- may be regarded as redundant
+                                            --- (PK_TOPOL_dimension_any_c)
+<A HREF=../headers/pk_redundant_merge_t.html>PK_redundant_merge_t</A> scope;                 --- controls the scope of the
+                                            --- search for redundant topology
+                                            --- (<A HREF=../headers/pk_redundant_merge_t.html>PK_redundant_merge_on_c</A>)
+<A HREF=../headers/pk_continuity_t.html>PK_continuity_t</A>      facet_geom_continuity; --- level of geometric continuity
+                                            --- between adjacent facet
+                                            --- geometries that is necessary
+                                            --- for topology to be considered
+                                            --- redundant
+                                            --- (<A HREF=../headers/pk_continuity_t.html>PK_continuity_g0_c</A>)
+<A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>         have_vertex_angle;     --- whether a <B>'vertex_angle'</B>
+                                            --- value has been supplied
+                                            --- (PK_LOGICAL_false)
+double               vertex_angle;          --- angle used to decide whether
+                                            --- a vertex between two polyline
+                                            --- edges is smooth.
+int                  n_protected_topols;    --- number of protected topologies
+                                            --- (0)
+const <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>    *protected_topols;      --- protected topology array
+                                            --- (NULL)
+};
+
+typedef struct PK_TOPOL_delete_redundant_2_o_s
+                        PK_TOPOL_delete_redundant_2_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for removing redundant topologies.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_angle        occurs when <B>'have_vertex_angle'</B> is set
+                              to PK_LOGICAL_true and the value supplied
+                              for the <B>'vertex_angle'</B> is either negative
+                              or strictly larger than pi. (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_delete_redundant_2.html>PK_TOPOL_delete_redundant_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+max_topol_dimension   : Specifies what type of topologies should be considered
+                        for redundancy. A maximum dimension of
+                        PK_TOPOL_dimension_0_c will consider vertices only;
+                        one of PK_TOPOL_dimension_1_c will consider edges or
+                        vertices. A maximum dimension of
+                        PK_TOPOL_dimension_any_c will consider all topologies
+                        of dimensionality equal to or less than the the
+                        dimensionality of the supplied <B>'topols'</B>; this is the
+                        default. The <B>'max_topol_dimension'</B> must not be higher
+                        than the dimension of the supplied <B>'topols'</B>.
+
+scope                 : Specifies how the (sub)topologies forming the external
+                        boundaries to the input topological set are treated.
+
+facet_geom_continuity : The level of geometric continuity between adjacent
+                        facet geometries that is necessary for topology to
+                        be considered redundant. It can take the values:
+
+                          o <A HREF=../headers/pk_continuity_t.html>PK_continuity_g0_c</A>
+                            All manifold non-laminar edges between, or wire
+                            edges in, faces with mesh surfaces are considered
+                            redundant. Similarly all manifold vertices between,
+                            or on, edges with pline curves are considered
+                            redundant unless there are more than two
+                            non-redundant edges meeting at them. This is the
+                            default.
+
+                          o <A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>
+                            An edge on a facet body will be considered
+                            redundant only if the mvertices lying along it
+                            will not become sharp when the edge is removed.
+
+                            A vertex between two polyline edges is considered
+                            for redundancy only if either edge belongs to the
+                            g1 edge chain of the other (this can be tested
+                            by calling <A HREF=../headers/pk_edge_find_g1_edges.html>PK_EDGE_find_g1_edges</A> with its
+                            <B>'tolerance'</B> set to the same value as the desired
+                            <B>'vertex_angle'</B>).
+
+                        Leaving <B>'facet_geom_continuity'</B> at its default of
+                        <A HREF=../headers/pk_continuity_t.html>PK_continuity_g0_c</A> is not usually advisable, as it
+                        will remove all non-laminar manifold topology from
+                        facet bodies, typically resulting in a single face
+                        body with a single mesh surface. This can sometimes
+                        have a detrimental impact on the performance of
+                        subsequent modelling operations.
+
+have_vertex_angle     : Whether a <B>'vertex_angle'</B> has been supplied.
+
+vertex_angle          : The angle to which the <B>'tolerance'</B> should be set in
+                        <A HREF=../headers/pk_edge_find_g1_edges.html>PK_EDGE_find_g1_edges</A> in order to determine whether
+                        a vertex between two polyline edges will be considered
+                        for redundancy. Increasing the <B>'vertex_angle'</B> will
+                        typically increase the number of vertices which are
+                        considered redundant.
+
+n_protected_topols    : Number of protected topologies.
+
+protected_topols      : Protected topology array. These topologies and their
+                        sub-topologies will not be deleted.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_fctab_fin_fin_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_fctab_fin_fin_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_fctab_fin_fin_s
+        {
+        int     *fin;
+        int   length;
+        };
+typedef struct PK_TOPOL_fctab_fin_fin_s
+               PK_TOPOL_fctab_fin_fin_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_r_t.html>PK_TOPOL_facet_r_t</A><br>
+    <A HREF=../headers/pk_topol_facet_table_t.html>PK_TOPOL_facet_table_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is a support structure for <A HREF=../headers/pk_topol_facet_r_t.html>PK_TOPOL_facet_r_t</A> and <A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A>.
+It is an indexed table which maps fins onto co-fins. Fins without co-fins
+(laminar edges on sheet bodies or edges that lie on loops that are being
+ignored on one face) have their co-fin value set to -1. Fins with a single
+co-fin share the same start & end vertices as their co-fin but in reversed
+order.  This mapping is commutative.
+
+A fin is represented by an ordered pair of vertices. Each fin follows an
+anti-clockwise direction (from its tail to its head) consistent with
+the ordering of fins in a facet or the boundary of a facet_strip. Each fin is
+assigned an integer value from 0 to (<B>'number_of_fins'</B> - 1).
+
+Each fin can be associated with a co-fin (one belonging to an adjacent facet
+or facet strip).  In this case, the co-fin will have a value from 0 to
+(<B>'number_of_fins'</B> - 1).
+
+If a fin lies on the perimeter of the facet mesh, it has no co-fin. A null
+co-fin value of -1 is used to represent such a case.  -1 is also returned
+for fins that lie on edges between facetted faces in the case where geometry or
+trimmed matching have been requested.
+
+A co-fin value of -2 will be used to represent cases where the associated
+co-fin for a particular fin has not been found but where a co-fin should exist
+(i.e. -1 was not returned in the <B>'fin_fin'</B> table).  This may be the result of
+facetting failing on a face (indicated by an entry in the <B>'error_object'</B>
+table).  Otherwise a co-fin value of -2 indicates that an error has occurred in
+fin-fin matching and so the <B>'fin_fin'</B> table is not correct.
+
+When a general body is facetted using <A HREF=../headers/pk_topol_facet_2.html>PK_TOPOL_facet_2</A> with <B>'match'</B> set to
+<A HREF=../headers/pk_facet_match_t.html>PK_facet_match_topol_c</A> then the fin_fin table contains rings of fins around
+non-manifold edges (those with more than two model fins).  A facet fin at a
+non-manifold model edge will have as its co-fin a fin from a facet from
+the mesh of another face which meets at that model edge.  This co-fin will in
+turn have as its co-fin a fin of a facet from a mesh of yet another face which
+meets at the model edge.  Eventually by following these entries in the fin_fin
+table, the original fin will be found as the co-fin of a facet fin of a facet
+from the mesh of some face which meets at the edge. Thus the fin-fin
+relationship around a non-manifold model edge forms a ring.
+
+The ordering of this ring is the same as the ordering of the model fins around
+the model edge as returned by <A HREF=../headers/pk_edge_ask_fins.html>PK_EDGE_ask_fins</A>.  Although model fins form a
+ring around a model edge, and facet fins form a corresponding ring there is no
+favoured start fin for these rings.  Thus although the ordering of the two
+rings is the same it can not be assumed that the first fin encountered in the
+fin_fin table from a ring of fins around a non-manifold edge is a fin from the
+mesh of the face of the first model fin returned by <A HREF=../headers/pk_edge_ask_fins.html>PK_EDGE_ask_fins</A>.  When
+facetting a list of faces which does not contain all of the faces at a
+non-manifold edge, the fin-fin table entries still form a ring around the edge;
+these occur in the same order as if all the faces were being facetted, but the
+fins from unfacetted faces are omitted.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

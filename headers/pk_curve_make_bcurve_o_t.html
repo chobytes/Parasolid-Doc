@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_make_bcurve_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_make_bcurve_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_make_bcurve_o_s
+    {
+    int                     o_t_version;  --- option structure version
+    double                  tolerance;    --- max deviation of <B>'curve'</B>
+                                          --- from <B>'bcurve'</B> (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_degree;  --- whether a degree is
+                                          --- specified (PK_LOGICAL_false) [NF]
+    int                     degree;       --- degree of <B>'bcurve'</B>
+                                          --- (= order-1) [NF]
+    <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_t</A>   force_continuity;
+                                          --- whether to force a certain
+                                          --- level of continuity
+                                          --- (<A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>) [NF]
+    <A HREF=../headers/pk_continuity_t.html>PK_continuity_t</A>         continuity;   --- level of continuity [NF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            force_non_rational;
+                                          --- whether <B>'bcurve'</B> should be
+                                          --- non-rational
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            force_bezier; --- whether <B>'bcurve'</B> should be
+                                          --- piecewise Bezier
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_make_bcurve_update_t.html>PK_make_bcurve_update_t</A> update;       --- update flag
+                                          --- (<A HREF=../headers/pk_make_bcurve_update_t.html>PK_make_bcurve_update_default_c</A>)
+    };
+
+typedef struct PK_CURVE_make_bcurve_o_s PK_CURVE_make_bcurve_o_t;
+</B>
+<A NAME="description"></A>
+<I>This options structure holds optional controls for <A HREF=../headers/pk_curve_make_bcurve_2.html>PK_CURVE_make_bcurve_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_make_bcurve_2.html>PK_CURVE_make_bcurve_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'tolerance'</B>             If an approximation of the curve is produced, this
+                        option specifies the maximum deviation between the
+                        input and output curves. Note that the actual
+                        achieved tolerance is returned as <B>'achieved_tol'</B>.
+
+<B>'have_degree'</B>           Specifies whether the degree of the resulting <B>'bcurve'</B>
+                        is supplied through the <B>'degree'</B> option. If
+                        PK_LOGICAL_false, the degree will depend upon the input
+                        curve - see the documentation for
+                        <A HREF=../headers/pk_curve_make_bcurve_2.html>PK_CURVE_make_bcurve_2</A> for details.
+                        Note: this option must be set to PK_LOGICAL_false if
+                        the input curve is a polyline.
+
+<B>'degree'</B>                The desired degree of the resulting <B>'bcurve'</B>.
+                        Currently the supported values are 2 (for quadratic
+                        B-curves) and 3 (for cubics).
+
+<B>'force_continuity'</B>      This option allows a continuity level to be supplied
+                        through the <B>'continuity'</B> option, and also controls how
+                        discontinuities of the input <B>'curve'</B> will be handled.
+                        It has the possible values:
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_yes_c</A>
+                          All discontinuities will be eliminated up to the
+                          level specified by the <B>'continuity'</B> option. The
+                          parameterisation of the input curve may not be
+                          preserved.
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_prefer_c</A>
+                          Small curve discontinuities will be eliminated, up
+                          to the level specified by the <B>'continuity'</B> option.
+                          Any large discontinuities which are not removed will
+                          be reported with a <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_discontinuities_c</A>
+                          record. The parameterisation of the input curve may
+                          not be preserved.
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>
+                          No attempt will be made to remove discontinuities,
+                          and no report will be returned. The parameterisation
+                          of the input curve will be preserved, except in the
+                          case of exact representations of circles and
+                          ellipses.
+
+                        Note: this option must be set to
+                        <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A> if the input curve is a
+                        polyline.
+
+<B>'continuity'</B>            The desired continuity of the resulting <B>'bcurve'</B>.
+                        This is ignored if <B>'force_continuity'</B> is set to
+                        <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>. The possible values are:
+
+                            <A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A>
+                            <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A>
+                            <A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>
+                            <A HREF=../headers/pk_continuity_t.html>PK_continuity_g2_c</A>
+
+<B>'force_non_rational'</B>    If set to PK_LOGICAL_true, <B>'bcurve'</B> is forced to be
+                        non-rational, otherwise its rationality will depend on
+                        the input curve.
+
+<B>'force_bezier'</B>          If set to PK_LOGICAL_true, <B>'bcurve'</B> is forced to be
+                        piecewise-Bezier.
+
+<B>'update'</B>                The default value (<A HREF=../headers/pk_make_bcurve_update_t.html>PK_make_bcurve_update_default_c</A>)
+                        allows applications to take advantage of the latest
+                        enhancements to the algorithm. To maintain consistency
+                        when rebuilding models created in a previous version of
+                        Parasolid, a non-default value should be specified.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

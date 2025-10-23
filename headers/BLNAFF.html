@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<TITLE>BLNAFF</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BLNAFF</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_find_blend_topol.html>PK_EDGE_find_blend_topol</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BLNAFF ( edge, iedge, nedge, iface, nface, ifail )
+==================================================
+
+  Find edges and faces affected by blend
+
+Receives:
+  KI_tag_edge              *edge           --- edge
+
+Returns:
+  KI_tag_list_edge         *iedge          --- list of affected edges
+  KI_int_nitems            *nedge          --- number of edges in 'iedge'
+  KI_tag_list_face         *iface          --- list of affected faces
+  KI_int_nitems            *nface          --- number of faces in 'iface'
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_bad_blend_bound        illegal blend boundary
+  KI_not_blended            no blend on edge
+  KI_general_body           general body
+
+Description:
+  Finds lists of edges and faces that are affected by the blending surface on
+  the given edge. The faces in 'iface' and edges in 'iedge' are those partially
+  or completely overlapped by the blending surface.
+
+  The list in 'iedge' will always contain the original edge 'edge'.
+
+  This function is not supported for edges on general bodies.
+
+</PRE>
+</BODY>
+</HTML>

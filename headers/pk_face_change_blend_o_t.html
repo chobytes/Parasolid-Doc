@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_change_blend_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_change_blend_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_change_blend_o_s
+    {
+    int                     o_t_version;    --- version number of option
+                                            --- structure
+    <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_t</A>     xs_shape;       --- cross-section shape
+                                            --- (<A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_conic_c</A>)
+    double                  radius;         --- radius of blend when reapplied
+                                            --- (0.0)
+    int                     n_unders;       --- number of underlying faces of
+                                            --- the blend (0)
+    const <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>      *unders;         --- faces used to define the blend
+                                            --- (NULL)
+    const <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_t</A>
+                           *orientations;   --- which side of each of the
+                                            --- unders the blend lies (NULL)
+    const double           *ranges;         --- ranges on each of the unders
+                                            --- (NULL)
+    <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_t</A>    ov_smooth;      --- control smooth overflow
+                                            --- behaviour
+                                            --- (<A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_diff_c</A>)
+    };
+typedef struct PK_FACE_change_blend_o_s PK_FACE_change_blend_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains blend-specific optional controls for <A HREF=../headers/pk_face_change.html>PK_FACE_change</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_not_implemented        (MILD)    <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_no_c</A> is not a
+                                              supported value for <B>'ov_smooth'</B>.
+                                              <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_unknown_c</A> is
+                                              not a supported value for
+                                              <B>'orientations'</B>.
+                                              <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_unset_c</A> and
+                                              <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_g2_c</A> are not
+                                              supported values for <B>'xs_shape'</B>.
+                                              <B>'xs_shape'</B> set to
+
+    PK_ERROR_wrong_entity           (MILD)    An element of <B>'unders'</B> is not of
+                                              type <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>.
+
+    PK_ERROR_wrong_number_entities  (MILD)    Wrong number of <B>'n_unders'</B>
+                                              supplied, <B>'n_unders'</B> should be
+                                              set to either be 0, 2 or 3.
+
+    PK_ERROR_not_in_same_body       (MILD)    <B>'xs_shape'</B> is set to
+                                              <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A> and
+                                              an element of <B>'unders'</B> does not
+                                              belong to the same body as the
+                                              faces in the <B>'faces'</B> array.
+                                              <B>'xs_shape'</B> is set to
+                                              <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_blend_c</A> and
+                                              more than one member of <B>'unders'</B>
+                                              belongs to a different body from
+                                              that which the faces in the
+                                              <B>'faces'</B> array belong to.
+
+    PK_ERROR_bad_combination        (MILD)    <B>'n_unders'</B> &gt; 0 and no <B>'unders'</B>
+                                              have been supplied.
+                                              <B>'n_unders'</B> = 2 and no
+                                              <B>'orientations'</B> have been
+                                              supplied.
+                                              <B>'n_unders'</B> = 2 and neither
+                                              <B>'radius'</B> nor <B>'ranges'</B> have
+                                              been supplied.
+                                              <B>'n_unders'</B> = 3 and <B>'radius'</B> not
+                                              set to 0.0, <B>'ranges'</B> not set to
+                                              NULL or <B>'orientations'</B> not set to
+                                              NULL.
+                                              <B>'xs_shape'</B> set to
+                                              <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A> but
+                                              no <B>'unders'</B> have been supplied.
+                                              <B>'xs_shape'</B> set to
+                                              <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A> and
+                                              <B>'radius'</B> not set to 0.0.
+                                              <B>'xs_shape'</B> set to
+                                              <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_conic_c</A> and
+                                              <B>'ranges'</B> not set to NULL.
+
+    PK_ERROR_bad_combination        (SERIOUS) <B>'n_unders'</B> = 3 and not all
+                                              members of <B>'unders'</B> are being
+                                              reapplied as blends/chamfers with
+                                              their <B>'xs_shape'</B> set to same
+                                              value as <B>'xs_shape'</B>.
+
+    PK_ERROR_mutual_dependency      (MILD)    Mutual dependency between faces
+                                              being reapplied as chamfers or
+                                              blends with supplied `unders`,
+                                              one of the <B>'unders'</B> of
+                                              a given face is itself being
+                                              reaplied as a chamfer or a blend
+                                              with supplied `unders` and has
+                                              the given face as one of its
+                                              <B>'unders'</B>.
+
+    PK_ERROR_unsupported_operation  (SERIOUS) <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A> but
+                                              no analytic chamfer solution
+                                              exists
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_opts_t.html>PK_FACE_change_opts_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'xs_shape'</B>       Controls the cross-section shape of blend, allowing the blend
+                 to be reapplied as either a constant radius rolling ball
+                 blend or a chamfer.
+
+                 Permitted values are:
+
+                   <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_conic_c</A> (default)
+                   <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A>
+
+                 Note: currently it is only possible to produce chamfers with
+                 analytic surfaces.
+
+<B>'radius'</B>         The value in <B>'radius'</B> defines the blend radius to be used when
+                 applying the blend and must take a value greater than or equal
+                 to zero.  If <B>'radius'</B> is set to 0.0 (the default), the radius
+                 of the blend when reapplied will be the same as that of the
+                 original blend.
+
+                 If <B>'xs_shape'</B> is set to <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A> this
+                 value is ignored.
+
+<B>'n_unders'</B>       The number of underlying faces of the blend that are supplied.
+                 If set to 0 (the default) then <A HREF=../headers/pk_face_identify_blends.html>PK_FACE_identify_blends</A> should
+                 identify the face as a blend and suitable unders and
+                 orientations will be determined for it. Otherwise an
+                 appropriate blend between the supplied <B>'unders'</B> will be
+                 constructed.
+
+<B>'unders'</B>         The underlying faces of the blend.
+
+<B>'orientations'</B>   An array of length <B>'n_unders'</B> which determines which side of
+                 the corresponding <B>'unders'</B> the blend lies.
+                 Permitted values are:
+
+                   <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_before_c</A>  the blend lies in the
+                                                  direction of the
+                                                  corresponding <B>'unders'</B> normal
+
+                   <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_behind_c</A>  the blend lies in the
+                                                  direction opposite to the
+                                                  corresponding <B>'unders'</B> normal
+
+<B>'ranges'</B>         An array of length <B>'n_unders'</B> which determines the chamfer
+                 range on each of the corresponding <B>'unders'</B>.
+
+<B>'ov_smooth'</B>      Controls the behaviour for smooth overflows. A notch solution
+                 will be produced when smooth overflow is not allowed.
+                 Permitted values are:
+
+                   <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_diff_c</A>      only allow smooth overflow
+                                                  for different convexities
+
+                   <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_any_c</A>       allow smooth overflow for
+                                                  any convexities
+
+                 The default value is <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_diff_c</A>.
+
+
+When reapplying a face that can be identified as a blend by
+<A HREF=../headers/pk_face_identify_blends.html>PK_FACE_identify_blends</A> with <B>'xs_shape'</B> set to <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_conic_c</A> there
+is no need to specify the <B>'unders'</B>, <B>'orientations'</B> or <B>'ranges'</B>.  It is only
+necessary to specify a <B>'radius'</B> if the blend is to be reapplied with a radius
+different from that of the original blend.
+
+If reapplying a face that cannot be identified as a blend or reapplying a face
+as a chamfer <B>'n_unders'</B> should be set to 2 and it is necessary to supply
+<B>'unders'</B>, <B>'orientations'</B> and either a <B>'radius'</B> if <B>'xs_shape'</B> is set to
+<A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_conic_c</A> or <B>'ranges'</B> if <B>'xs_shape'</B> is set to
+<A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A>.
+
+If reapplying a branch face that cannot be identified as a blend or reapplying
+a branch face as a chamfer <B>'n_unders'</B> should be set to 3 and it is necessary
+to supply <B>'unders'</B>.  The <B>'orientations'</B>, <B>'ranges'</B> and <B>'radius'</B> fields should
+not be specified and this information will be determined from the <B>'unders'</B>.
+If <B>'xs_shape'</B> is set to <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_conic_c</A> then all of the <B>'unders'</B>
+should be being reapplied as blends.  If <B>'xs_shape'</B> is set to
+<A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A> all of the <B>'unders'</B> should be being reapplied as
+chamfers.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

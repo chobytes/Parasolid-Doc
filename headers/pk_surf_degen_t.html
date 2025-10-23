@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SURF_degen_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SURF_degen_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SURF_degen_s
+    {
+    <A HREF=../headers/pk_surf_degen_type_t.html>PK_SURF_degen_type_t</A> type;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>         have_position;
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>          position;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>         have_normal;
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>         normal;
+    <A HREF=../headers/pk_uvbox_t.html>PK_UVBOX_t</A>           uvbox;
+    };
+
+typedef struct PK_SURF_degen_s PK_SURF_degen_t;
+
+</B>
+<A NAME="description"></A>
+<I>A structure packaging information about a degeneracy on a surface.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_surf_degens_t.html>PK_SURF_degens_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Each structure contains information on a single region where the surface is
+degenerate.
+
+The structure has the following fields :
+
+<B>'type'</B>              Indicates the type of degeneracy.
+
+<B>'have_position'</B>     Whether the degenerate region occupies a single position in
+                    three-space. If set to PK_LOGICAL_true, then the position
+                    is returned in <B>'position'</B>.
+
+<B>'position'</B>          Indicates the position of the degeneracy in three-space.
+
+<B>'have_normal'</B>       Whether a normal can be calculated for the surface at the
+                    degeneracy.
+
+<B>'normal'</B>            The normal of the surface at the degeneracy, if available.
+
+<B>'uvbox'</B>             The range of the degeneracy in parameter space. Note that
+                    it is possible to have zero-width parameter ranges.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

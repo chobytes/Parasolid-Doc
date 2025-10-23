@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<TITLE>CROFSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CROFSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_offset_create.html>PK_OFFSET_create</A><BR>
+<A HREF=../headers/pk_surf_offset.html>PK_SURF_offset</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CROFSU ( undrly, dstnce, offsur, ifail )
+========================================
+
+  Create an offset surface.
+
+Receives:
+  KI_tag_surface           *undrly         --- underlying surface
+  double                   *dstnce         --- offset distance
+
+Returns:
+  KI_tag_surface           *offsur         --- offset surface
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_su_self_intersect      surface would be self-intersecting
+  KI_cant_offset            underlying surface cannot be offset
+
+Description:
+  An offset surface is returned - this is defined to be the smooth, continuous
+  (G1) surface obtained from the underlying surface by adding to each point on
+  it the unit normal vector scaled by the offset distance. If the offset
+  distance is zero then the underlying surface is returned, otherwise a new
+  surface is created.
+
+  Whenever possible the surface created is not explicitly of type "Offset
+  surface", but a simpler analytic type. In these cases CROFSU will not allow the
+  caller to specify an offset distance such that the resulting surface would be
+  inside out.  For example a sphere cannot be offset inwards by more than its
+  radius.
+
+  For surfaces of type TYSUFG, the surface will only be created if the underlying
+  surface is not degenerate.
+
+  For surfaces of type TYSUPA, TYSUSE, TYSUSU, the surface created will be
+  checked for self intersections caused by degeneracies on the underlying
+  surface.  If such a self intersection is detected then an attempt will be made
+  to trim the parameter range of the created surface to ensure that it is not
+  self intersecting.  If this fails then the surface will not be created.
+
+  Note that if there are any degeneracies on the underlying surface, then the
+  bound classification returned by ENSUPA for the underlying surface and for the
+  created surface may be different.
+
+  No further checks for self intersection are made by CROFSU. However, the created
+  offset surface may be checked for self intersection by calling CHCKEN with the
+  appropriate option set (see CHCKEN and SEINTP).
+
+  If the SLIPCO interface parameter is zero, surfaces of type TYSUPA (B-surface)
+  will be checked to ensure that they satisfy the composite geometry conditions
+  which would be performed by CHCKEN if they were attached to a face. If this
+  check fails then the offset surface will not be created.
+
+  The ifail KI_cant_offset is returned if the underlying surface is unsuitable
+  for offsetting by any distance. The ifail KI_su_self_intersect is returned if
+  the underlying surface is suitable but the requested offset is too large.
+
+  If 'undrly' is not an orphan, then the offset surface will be created as
+  construction geometry in the owning part of 'undrly'.
+
+  Surfaces are not allowed to have more than one offset (of type TYSUOF).
+  Consequently, 'offsur' may be created as an offset of a copy of 'undrly'.
+
+  Note that if CROFSU creates a surface of type TYSUOF, the underlying surface
+  of 'offsur' will be a dependent of it, with all the limitations that this
+  implies. In particular, if the offset surface is deleted, then the underlying
+  surface may also be deleted. (See DELENT.)
+
+</PRE>
+</BODY>
+</HTML>

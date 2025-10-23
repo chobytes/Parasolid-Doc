@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298192", " results returned from those functions. This helps to <B>debug</B> applications that use the PK. For example, if", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-335455", " 9.4 <B>Debug</B> functions ", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-345294", " for these functions is provided in Chapter 102, <B>Debug</B> Functionality . For further information, see the ", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-343011", "<B>Debug</B> ", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.094.html#50409884_pgfId-311999", " Chapter 102, <B>debug</B> Functionality describes the Parasolid <B>debug</B> functionality. ", "Functional Description - Introduction To Application Support");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-346904", " This chapter describes the wide range of <B>debug</B> functions that are provided to help you monitor", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-346819", " Parasolids <B>debug</B> functionality should also be used when generating data", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-328951", " The following functions can be used to <B>debug</B> your implementation of Parasolids version control mechanisms. ", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-330092", " Writes a comment to a Parasolid <B>debug</B> report file. ", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-330096", " Starts recording <B>debug</B> information from PK functions. ", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-330100", " Stops recording <B>debug</B> information from PK functions. ", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-345283", "<B>Debug</B> ", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295036", " order of returned entities. You can use the <B>debug</B> functions PK_DEBUG_shuffle_start and PK_DEBUG_shuffle_stop to help test the", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.117.html#50409909_pgfId-359695", "<B>Debug</B> ", "Functional Description - Session Support");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-389588", " the APIs provided by Parasolid to help you <B>debug</B> your version control code. ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-387042", " can use the functions PK_DEBUG_behaviours_start and PK_DEBUG_behaviours_stop to <B>debug</B> your use of the version control mechanism in", "Functional Description - Version Controls");
+top.note("chapters/ov_chap.03.html#50442274_pgfId-335201", " with one of Siemens Parasolid Toolkits, the XML-based <B>debug</B> reporting system is simple and streamlined and provides", "Overview of Parasolid - About Parasolid");
+top.note("chapters/ov_chap.04.html#50442254_pgfId-290589", " help you to <B>debug</B> your application code ", "Overview of Parasolid - Model Structure");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_journalling_on 5141 PK_DEBUG_report_start <B>debug</B> output cannot be enabled if", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_dbg_rprt_not_started 5143 PK_DEBUG_report_stop <B>debug</B> output has not been started (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_journalling_on 5141 PK_DEBUG_report_start <B>debug</B> output cannot be enabled if", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " PK_DEBUG_report_start 5142 PK_ERROR_dbg_rprt_not_stopped <B>debug</B> output has already been started", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_debug_behaviours_start.html#description", " Initialises and starts the <B>debug</B> of the behaviours mechanism.", "PK Reference - PK_DEBUG_behaviours_start");
+top.note("headers/pk_debug_behaviours_start_o_t.html#declaration", " PK_DEBUG_versioning_t versioning; --- <B>debug</B> versioning value", "PK Reference - PK_DEBUG_behaviours_start_o_t");
+top.note("headers/pk_debug_behaviours_stop.html#description", " Stops the <B>debug</B> of the behaviours mechanism.", "PK Reference - PK_DEBUG_behaviours_stop");
+top.note("headers/pk_debug_body_extract_data.html#documentation", " function intended for use on bodies with associated <B>debug</B> information,", "PK Reference - PK_DEBUG_BODY_extract_data");
+top.note("headers/pk_debug_output_session_t.html#documentation", " specify whether to include session data in a <B>debug</B>", "PK Reference - PK_DEBUG_output_session_t");
+top.note("headers/pk_debug_receive.html#declaration", " PK_DEBUG_data_t *const data --- <B>debug</B> data", "PK Reference - PK_DEBUG_receive");
+top.note("headers/pk_debug_report_cb_t.html#documentation", "This datatype indicates whether <B>debug</B> information for callback functions will", "PK Reference - PK_DEBUG_report_cb_t");
+top.note("headers/pk_debug_report_comment.html#description", " Writes a comment to the <B>debug</B> report file.", "PK Reference - PK_DEBUG_report_comment");
+top.note("headers/pk_debug_report_start.html#description", " Initialises and starts the output of <B>debug</B> information. Any PK calls made", "PK Reference - PK_DEBUG_report_start");
+top.note("headers/pk_debug_report_start.html#errors", " PK_ERROR_journalling_on <B>debug</B> output cannot be enabled if", "PK Reference - PK_DEBUG_report_start");
+top.note("headers/pk_debug_report_start_o_t.html#declaration", " report_cb; --- whether to include <B>debug</B>", "PK Reference - PK_DEBUG_report_start_o_t");
+top.note("headers/pk_debug_report_start_o_t.html#description", " This structure provides options for the output of <B>debug</B> report information.", "PK Reference - PK_DEBUG_report_start_o_t");
+top.note("headers/pk_debug_report_start_o_t.html#documentation", " output_as_journal If PK_LOGICAL_true, then the <B>debug</B> report information", "PK Reference - PK_DEBUG_report_start_o_t");
+top.note("headers/pk_debug_report_stop.html#description", " Stops the output of <B>debug</B> information for PK functions. This function can only", "PK Reference - PK_DEBUG_report_stop");
+top.note("headers/pk_debug_report_stop.html#errors", " PK_ERROR_dbg_rprt_not_started <B>debug</B> output has not been started (MILD)", "PK Reference - PK_DEBUG_report_stop");
+top.note("headers/pk_debug_transmit.html#declaration", "const PK_DEBUG_data_t *data, --- <B>debug</B> data", "PK Reference - PK_DEBUG_transmit");
+top.note("headers/pk_ffopwr_f_t.html#documentation", " --- schema,licence,<B>debug</B> report", "PK Reference - PK_FFOPWR_f_t");
+top.note("chapters/di_chap.02.html#50511934_pgfId-281688", " + <B>debug</B> trace ", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.03.html#50511935_pgfId-282819", " <B>debug</B> report ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-282887", " FFCDBG <B>debug</B> report file (FFOPWR only) ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-282928", " files are created as a result of calling PK_<B>DEBUG</B>_report_start . They are always created in XML format.", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-285392", " is characteristic of recording a new journal or <B>debug</B> report file. ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-274020", " If the system crashes while the journal or <B>debug</B> report file is still open, the system is", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.14.html#50511946_pgfId-281417", " <B>debug</B> report file ", "Downward Interfaces - Frustrum Tokens and Error Codes");
+top.note("chapters/in_chap.07.html#50520100_pgfId-563688", " installed, Windows will offer you the chance to <B>debug</B> the program, and the debugger will tell you", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-339799", " ASLR can make it much harder to <B>debug</B> some kinds of code problems, notably bad pointers", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-331537", " You will probably wish to create <B>debug</B> versions of your application for use during development,", "Installation Notes - Environment");
+top.note("chapters/fr_chap.02.html#50462722_pgfId-278622", " in order to take advantage of Parasolid&#8217;s native <B>debug</B> format. ", "Reporting Faults to Parasolid - Introduction");
+top.note("chapters/fr_chap.02.html#50462722_pgfId-278772", " Generate <B>debug</B> information by wrapping calls to Parasolid <B>debug</B> functions around the failing PK or KI function.", "Reporting Faults to Parasolid - Introduction");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278611", " format known as <B>debug</B> XML: see Section 2.2, &#8220;<B>debug</B> XML&#8221; , for instructions on how to do", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281003", " In the vast majority of cases, <B>Debug</B> XML is sufficient for Parasolid Support to reproduce the", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281082", " In a small number of cases, <B>Debug</B> XML cannot be used to reproduce a problem. In", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278586", " 2.2 <B>Debug</B> XML", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278639", " <B>Debug</B> XML is the standard mechanism for capturing all the", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-279037", " The <B>debug</B> report file contains the following information: ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281196", " it is intended to capture exactly one modelling call. <B>Debug</B> XML files that contain multiple calls to Parasolid have", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278644", " 2.2.1 How to generate <B>Debug</B> XML ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278645", " function with calls that start and stop the <B>debug</B> reporting mechanism as follows: ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281576", " string which identifies the file to which the <B>debug</B> information will be written. ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278664", " off by calling PK_SESSION_set_journalling before the call to PK_<B>DEBUG</B>_report_start , as shown in the example above. ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281660", " V13.2, they may need to be modified to support <B>Debug</B> XML output. See Appendix A, &#8220;Updating The Frustrum&#8221; .", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281686", " Warning: PK_DEBUG_report_start and PK_DEBUG_report_stop are <B>debug</B> functions and as such are intended for internal", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278667", " 2.2.2 How to verify <B>Debug</B> XML ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278629", " A well-formed <B>Debug</B> XML file will open in a web browser and", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281755", " codes. You should ensure, therefore, that you submit any <B>Debug</B> XML that is generated from a Parasolid session to", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278709", " In addition to <B>Debug</B> XML, other supporting information can often help illustrate a", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278727", " when you report a regression, you should provide two <B>Debug</B> XML files, one for the passing case and one", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-283177", " a callback function definition, then Parasolid can generate <B>debug</B> XML for any calls to that callback function", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-292944", " Recording callback data in the <B>debug</B> XML is typically useful to Parasolid Support when", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-283245", " not generate <B>debug</B> information for callback functions. The <B>debug</B> XML contains a pointer to the callback function", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-283249", " Generate full <B>debug</B> information for any callback functions that are specific", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-283514", " Note: Setting this value does not generate <B>debug</B> information for system-wide callbacks, such as those you", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278792", " a run-time error in Parasolid may mean that the <B>Debug</B> XML is not well-formed. In such cases, you might", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278794", " setting a particular option value, then try generating complete <B>Debug</B> XML by setting the option to a different value.", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281911", " Note: Incomplete <B>Debug</B> XML can be created in circumstances other than an", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-279799", " In rare circumstances, <B>Debug</B> XML is not sufficient for Parasolid Support to reproduce", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-282435", " Situations where <B>Debug</B> XML was not properly generated. ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278922", " certain issues that cannot be reproduced using a standard <B>Debug</B> XML file will become reproducible. ", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278968", " If the <B>Debug</B> XML is truncated (due to an RTE for example)", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278993", " If <B>Debug</B> XML cannot be generated and you are familiar with", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.04.html#50462721_pgfId-279833", " in Parasolid&#8217;s XML-based <B>debug</B> format. See Section 2.2, &#8220;<B>debug</B> XML&#8221; , for information about how to generate", "Reporting Faults to Parasolid - How To Report A Fault");
+top.note("chapters/fr_chap.04.html#50462721_pgfId-284345", " The <B>debug</B> information generated by Parasolid ", "Reporting Faults to Parasolid - How To Report A Fault");
+top.note("chapters/fr_chap.06.html#50462725_pgfId-275468", " If you use PK_<B>DEBUG</B>_report_start to create <B>Debug</B> XML with the ", "Reporting Faults to Parasolid - Updating The Frustrum");
+top.note("chapters/fr_chap.06.html#50462725_pgfId-275485", " is rollback, snapshot, journal, transmit, schema, license and <B>debug</B> report). ", "Reporting Faults to Parasolid - Updating The Frustrum");
+top.note("chapters/fr_chap.06.html#50462725_pgfId-275681", " /* If we are writing a journal or <B>debug</B> report file then flush the ", "Reporting Faults to Parasolid - Updating The Frustrum");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

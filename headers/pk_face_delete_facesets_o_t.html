@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_delete_facesets_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_delete_facesets_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_delete_facesets_o_s
+    {
+    int            o_t_version;    --- options structure version number
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>   allow_disjoint; --- allow function to produce disjoint
+                                   --- bodies (PK_LOGICAL_false)
+    <A HREF=../headers/pk_face_heal_t.html>PK_FACE_heal_t</A> heal_action;    --- healing action (PK_FACE_heal_yes_c)
+    int            n_details;      --- number of details (0)
+    <A HREF=../headers/pk_detail_t.html>PK_detail_t</A>   *details;        --- array of details (NULL)
+    double         tolerance;      --- tolerance (1.0e-6)
+    <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_t</A>
+                   update;         --- update flag
+                                   --- (<A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>)
+    };
+typedef struct PK_FACE_delete_facesets_o_s PK_FACE_delete_facesets_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains options for <A HREF=../headers/pk_face_delete_facesets.html>PK_FACE_delete_facesets</A>
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_delete_facesets.html>PK_FACE_delete_facesets</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Its user fields are:
+
+<B>'allow_disjoint'</B>   if set to PK_LOGICAL_true, then when the operation splits
+                   the body into two or more components then the function
+                   will return a single disjoint body.  If set to
+                   PK_LOGICAL_false (the default) then the components are
+                   turned into separate bodies.
+
+<B>'heal_action'</B>      If set to PK_FACE_heal_yes_c (the default), then the
+                   function will attempt to heal wounds by whatever method it
+                   can.  If set to PK_FACE_heal_no_c, then wounds will not be
+                   healed and each faceset will be replaced by a single rubber
+                   face.  If set to any other value then an error is returned.
+
+<B>'n_details'</B>        number of details in the following array.  Setting this to
+                   zero is equivalent to giving an array of length one
+                   containing <A HREF=../headers/pk_detail_t.html>PK_detail_any_c</A>.  Otherwise the array <B>'details'</B>
+                   is an array parallel to the <B>'facesets'</B> given to
+                   <A HREF=../headers/pk_face_delete_facesets.html>PK_FACE_delete_facesets</A> and indicates the detail type of
+                   each faceset.  If <B>'n_details'</B> is less than <B>'n_facesets'</B>
+                   then the final element of <B>'details'</B> is repeated for the
+                   remaining facesets
+
+<B>'details'</B>          An array of details giving the detail type for each
+                   faceset which may be used to select appropriate healing
+                   methods.
+
+<B>'tolerance'</B>        tolerance for healing
+
+<B>'update'</B>           The default value allows applications to take
+                   advantage of the latest enhancements of the generic
+                   algorithms supporting Parasolid local operations
+                   functions. To maintain consistency when rebuilding
+                   models created in a previous version of Parasolid,
+                   a non-default value should be specified.
+
+                   The default value is <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>
+
+
+See <A HREF="../chapters/fd_chap.065.html#50409851_pgfId-321837">here</A> for more information.
+
+NOTE:
+
+  Splitting a body into disjoint components is only possible when wounds
+  are healed. If <B>'heal_action'</B> is set to PK_FACE_heal_no_c and deletion of a
+  faceset would cause a shell to be split into two or more shells, then
+  <A HREF=../headers/pk_face_delete_facesets.html>PK_FACE_delete_facesets</A> will return the error PK_ERROR_not_connected,
+  because if shells have rubber faces it is not possible to distinguish
+  between the cases where two shells bound separate volumes and when one
+  shell bounds a void inside the other.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<TITLE>OUTRCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUTRCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_trcurve_ask.html>PK_TRCURVE_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUTRCU ( trimmed_curve, basis_curve, point_1, point_2, parm_1, parm_2, ifail )
+==============================================================================
+
+  Outputs a trimmed curve
+
+Receives:
+  KI_tag_curve             *trimmed_curve   --- trimmed curve to be output
+
+Returns:
+  KI_tag_curve             *basis_curve    --- underlying curve
+  KI_vec_position           point_1        --- start point
+  KI_vec_position           point_2        --- end point
+  KI_dbl_parameter         *parm_1         --- start parameter
+  KI_dbl_parameter         *parm_2         --- end parameter
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_bad_type               supplied curve is not a trimmed curve
+
+Description:
+  Given the tag of a trimmed curve, OUTRCU will return the trimmed curve's data.
+
+  A trimmed curve consists of:
+
+  . An underlying curve ('basis_curve').
+  . A pair of points, with their parameters on 'basis_curve', representing the
+    start and end of the trimmed curve.
+
+  The following data is output:
+
+  . The tag of the basis curve ('basis_curve').
+  . The start point of the trimmed curve ('point_1').
+  . The end point of the trimmed curve ('point_2').
+  . The parameter of the start point of the trimmed curve ('parm_1').
+  . The parameter of the end point of the trimmed curve ('parm_2').
+
+  Note: If 'basis_curve' is closed and the trimmed curve starts and ends at the
+        same point, the parameters output will be a period apart.
+        'parm_2' will always be greater than 'parm_1'
+
+
+</PRE>
+</BODY>
+</HTML>

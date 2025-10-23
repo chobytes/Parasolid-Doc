@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>IDCCEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>IDCCEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_surf_find_curves_common.html>PK_SURF_find_curves_common</A><BR>
+<A HREF=../headers/pk_curve_find_surfs_common.html>PK_CURVE_find_surfs_common</A><BR>
+<A HREF=../headers/pk_face_find_edges_common.html>PK_FACE_find_edges_common</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+IDCCEN ( enty1, enty2, idty, entys, nitems, ifail )
+===================================================
+
+  Identify common connected entities
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_entity            *enty1          --- first entity to look in
+ &lt;KI_tag_entity&gt;           *enty2          --- second entity to look in
+  KI_cod_idty              *idty           --- type of connection
+
+Returns:
+  KI_tag_list_entity       *entys          --- Returned list of entities
+ &lt;KI_int_nitems&gt;           *nitems         --- Number of returned entities
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_general_body           General body
+  KI_not_in_same_body       entities not owned by the same body
+  KI_wrong_entity           wrong entity type(s)
+
+Description:
+  Identify and return a list of entities connected to the received entity or
+  entities and with the specified connection.
+
+  All connections are found via the topology of the part; e.g. to identify all
+  curves common to two surfaces, all the faces associated with the first surface
+  are compared with all the faces associated with the second surface to find all
+  common edges and hence all common curves.
+
+  The supported connection types are:-
+
+  IDTYCS:        Find common curves from two surfaces
+      Both surfaces must be owned by topology in the same part
+      enty1, enty2 = surfaces
+      entys = list of curves  (May contain duplicate entries)
+
+  IDTYSC:        Find pairs of surfaces given common curve
+      enty1 = curve
+      entys = list of pairs of surfaces
+
+  IDTYEF:        Find edges common to two faces
+      Both faces must be owned by the same part
+      enty1, enty2 = faces
+      entys = list of edges
+
+  This function is not supported for entities belonging to general
+  bodies.
+
+
+</PRE>
+</BODY>
+</HTML>

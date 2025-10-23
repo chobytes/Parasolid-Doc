@@ -1,0 +1,3538 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>KID Rendering</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>KID Rendering</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.13.html">Viewing Environment and Definition</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.15.html">Picking</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.14.html#50475018_pgfId-287057">13.1	Introduction</A>
+<UL>
+<LI> <A HREF="kd_chap.14.html#50475018_pgfId-273845">13.1.1	Wire frame pictures</A>
+<LI> <A HREF="kd_chap.14.html#50475018_pgfId-273877">13.1.2	Hidden line pictures</A>
+<LI> <A HREF="kd_chap.14.html#50475018_pgfId-273895">13.1.3	Shaded pictures</A>
+<LI> <A HREF="kd_chap.14.html#50475018_pgfId-273915">13.1.4	Faceted pictures</A>
+</UL>
+<LI> <A HREF="kd_chap.14.html#50475018_pgfId-273929">13.2	Rendering options</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475018_pgfId-287057"></A>13.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475018_pgfId-287058"></A>The KID rendering functionality uses the rendering functions in Parasolid's PK interface. The KID rendering options have retained their six-character naming convention (as used in the KI interface), but are applied to the options used by the PK functions.</P>
+<P>
+<A NAME="50475018_pgfId-273841"></A>To render items in a given view, the view must be the current one, i.e. the last one to be selected. The following functions are available.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475018_pgfId-273845"></A>	13.1.1 	<A NAME="50475018_marker-273842"></A><A NAME="50475018_marker-273843"></A><A NAME="50475018_marker-273844"></A>Wire frame pictures</H2>
+
+<H4>
+<A NAME="50475018_pgfId-273847"></A><A NAME="50475018_41079"></A>sketch</H4>
+<P>
+<A NAME="50475018_pgfId-273848"></A>Using the function &quot;sketch&quot;, bodies, faces, edges and B-surfaces can be sketched.</P>
+<P>
+<A NAME="50475018_pgfId-273859"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-287019"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-287021"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-287023"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-287025"></A>sketch</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-287012"></A>&gt; (graphics sketch &acute;[&lt;object&gt;])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273860"></A>If the optional argument is not given, all the items in the <CODE>
+drawing_list</CODE>
+ property are rendered in the appropriate style. If an argument is given (which can be a single object or a list of objects), a new drawing list is defined which contains only these objects.</P>
+<P>
+<A NAME="50475018_pgfId-273861"></A>Another way to sketch objects is by the use of functions which are properties of the object itself.</P>
+<P>
+<A NAME="50475018_pgfId-284860"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286991"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286993"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286995"></A>topology</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286997"></A>sketch</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286981"></A>&gt; (define view_1 graphics)
+&gt; (view_1 sketch &acute;b0)
+&gt; (view_1 zoom 2)
+&gt; (view_1 redraw)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273873"></A>This draws the object according to the current view and adds the object to the drawing list of the current view, unless it is already there.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475018_pgfId-273877"></A>	13.1.2 	<A NAME="50475018_marker-273874"></A><A NAME="50475018_marker-273875"></A><A NAME="50475018_marker-273876"></A>Hidden line pictures</H2>
+
+<H4>
+<A NAME="50475018_pgfId-273879"></A><A NAME="50475018_40458"></A>hidden</H4>
+<P>
+<A NAME="50475018_pgfId-284873"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286955"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286957"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286959"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286961"></A>hidden</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286948"></A>&gt; (graphics hidden &acute;[&lt;object&gt;])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273891"></A>If the optional argument is not given, all the items in the <CODE>
+drawing_list</CODE>
+ property are rendered in the appropriate style. If an argument is given (which can be a single object or a list of objects), a new drawing list is defined which contains only these objects.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475018_pgfId-273895"></A>	13.1.3 	<A NAME="50475018_marker-273892"></A><A NAME="50475018_marker-273893"></A><A NAME="50475018_marker-273894"></A>Shaded pictures</H2>
+
+<H4>
+<A NAME="50475018_pgfId-273896"></A>shade</H4>
+<P>
+<A NAME="50475018_pgfId-273897"></A>The procedure for opening an Xwindow for a shaded graphical display differs from that described previously. When using the &quot;shade&quot; function the following calls are used to open an Xwindow:</P>
+<P>
+<A NAME="50475018_pgfId-273908"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286911"></A>&gt; (graphics open_device &acute;xcolour)
+&gt; (graphics shading_output [&acute;device | &acute;file] )
+                         -- use &acute;device to output to the screen
+                             and &acute;file to output to a file</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286923"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286925"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286927"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286929"></A>shade</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286903"></A>&gt; (graphics shade &acute;[&lt;object&gt;])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273910"></A>If the optional argument is not given, all the items in the <CODE>
+drawing_list</CODE>
+ property are shaded according to the given shading options. If an argument is given (either a single object, or a list of objects), the <CODE>
+drawing_list</CODE>
+ property is redefined, and the given objects are shaded.</P>
+<P>
+<A NAME="50475018_pgfId-287214"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-287234"></A>Note: Note that the shade function is only available on UNIX, it does not work on NT.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475018_pgfId-273915"></A>	13.1.4 	<A NAME="50475018_marker-273912"></A><A NAME="50475018_marker-273913"></A><A NAME="50475018_marker-273914"></A>Faceted pictures</H2>
+
+<H4>
+<A NAME="50475018_pgfId-273916"></A>facet</H4>
+<P>
+<A NAME="50475018_pgfId-284897"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286882"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286884"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286886"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286888"></A>facet</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286875"></A>&gt; (graphics facet &acute;[&lt;object&gt;])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273928"></A>If the optional argument is not given, all the items in the <CODE>
+drawing_list</CODE>
+ property are faceted according to the given faceting options. If an argument is given (either a single object, or a list of objects), the <CODE>
+drawing_list</CODE>
+ property is redefined, and the given objects are faceted and output through the GO.</P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475018_pgfId-273929"></A>13.2	Rendering options
+
+
+</H1>
+<P>
+<A NAME="50475018_pgfId-273932"></A><A NAME="50475018_marker-273930"></A><A NAME="50475018_marker-273931"></A>For all of the rendering options the option can be called by either its long name (as used in all the following option examples) or its code.</P>
+<P>
+<A NAME="50475018_pgfId-284904"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286862"></A>&gt; (graphics drafting t)</PRE>
+<UL>
+<P>
+<A NAME="50475018_pgfId-286867"></A>OR</P>
+</UL>
+<PRE><A NAME="50475018_pgfId-286868"></A>&gt; (graphics rropdr t)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475018_pgfId-273934"></A>anti_aliasing (RROPAN)</H4>
+<P>
+<A NAME="50475018_pgfId-273938"></A><A NAME="50475018_marker-273935"></A><A NAME="50475018_marker-273936"></A><A NAME="50475018_marker-273937"></A>This option controls the anti_aliasing of entities passed to the shade function.</P>
+<P>
+<A NAME="50475018_pgfId-284915"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286854"></A>&gt; (graphics anti_aliasing [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273940"></A>If no argument is given, the current value of the <CODE>
+anti_aliasing</CODE>
+ option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-273950"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286134"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286136"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273943"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273945"></A>option RROPAN is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273947"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273949"></A>option RROPAN is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-273951"></A>background_colour (RROPBK)</H4>
+<P>
+<A NAME="50475018_pgfId-273955"></A><A NAME="50475018_marker-273952"></A><A NAME="50475018_marker-273953"></A><A NAME="50475018_marker-273954"></A>This option controls the background colour that is passed to the shade function.</P>
+<P>
+<A NAME="50475018_pgfId-284922"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286846"></A>&gt; (graphics background_colour [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273957"></A>If no argument is given, the current value of the background colour option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-273967"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286122"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286124"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273960"></A>list of three values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273962"></A>option RROPBK is set with the given values (in the order below)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273964"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273966"></A>option RROPBK is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273968"></A>If the option RROPBK is not set, the following defaults are used for background color:</P>
+<P>
+<A NAME="50475018_pgfId-273982"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286110"></A>Color</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286112"></A>Value</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273971"></A>Red</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273973"></A>0.0</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273975"></A>Green</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273977"></A>0.0</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273979"></A>Blue</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273981"></A>0.0</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-273983"></A>blend (RROPUB)</H4>
+<P>
+<A NAME="50475018_pgfId-273987"></A><A NAME="50475018_marker-273984"></A><A NAME="50475018_marker-273985"></A><A NAME="50475018_marker-273986"></A>This option specifies that the rendering operation takes account of all unfixed blends in the entity passed to the sketch function.</P>
+<P>
+<A NAME="50475018_pgfId-284929"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286830"></A>&gt; (graphics blend [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-273989"></A>If no argument is given, the current value of the unfixed blend option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-273999"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286099"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286101"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273992"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273994"></A>option RROPUB is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273996"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-273998"></A>option RROPUB is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274000"></A>convexity (RROPCV)</H4>
+<P>
+<A NAME="50475018_pgfId-274004"></A><A NAME="50475018_marker-274001"></A><A NAME="50475018_marker-274002"></A><A NAME="50475018_marker-274003"></A>This option controls the convexity of the facets, that are to be output as convex polygons, by the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-284936"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286822"></A>&gt; (graphics convexity [&lt;anything but nil OR nil&gt;])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274006"></A>If no argument is given, the current value of convexity is used if it has been set; otherwise a default is used. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274016"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286083"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286085"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274009"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274011"></A>option RROPCV is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274013"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274015"></A>option RROPCV is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274017"></A>curve_tolerance (RROPCT)</H4>
+<P>
+<A NAME="50475018_pgfId-274021"></A><A NAME="50475018_marker-274018"></A><A NAME="50475018_marker-274019"></A><A NAME="50475018_marker-274020"></A>This option controls the faceted representation by considering the curved edge approximation of the entity that is passed to the sketch, facet and hidden functions.</P>
+<P>
+<A NAME="50475018_pgfId-284943"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286814"></A>&gt; (graphics curve_tolerance [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274023"></A>If no argument is given, the current values of the curve tolerances are used if they have been set; otherwise defaults are used. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274033"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286067"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286069"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274026"></A>list of three values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274028"></A>option RROPCT is set with the given values (in the order below)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274030"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274032"></A>option RROPCT is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274034"></A>The curve tolerances are:</P>
+<UL>
+<LI>
+<A NAME="50475018_pgfId-274035"></A>Chord tolerance in model units</LI>
+<LI>
+<A NAME="50475018_pgfId-274036"></A>Maximum chord length in model units</LI>
+<LI>
+<A NAME="50475018_pgfId-274037"></A>Angular tolerance in radians</LI>
+</UL>
+
+
+<H4>
+<A NAME="50475018_pgfId-274038"></A>depth_modulation (RROPDM)</H4>
+<P>
+<A NAME="50475018_pgfId-274042"></A><A NAME="50475018_marker-274039"></A><A NAME="50475018_marker-274040"></A><A NAME="50475018_marker-274041"></A>This option controls depth modulation of an entity that is passed to the shade function.</P>
+<P>
+<A NAME="50475018_pgfId-284951"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286802"></A>&gt; (graphics depth_modulation [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274044"></A>If no argument is given, the current value of the depth modulation option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274058"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286055"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286057"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274047"></A>list of one value</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274049"></A>option RROPDM is set with the given value</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274051"></A>anything else but nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274053"></A>option RROPDM is set with the value 0.3 (default)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274055"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274057"></A>option RROPDM is unset</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274060"></A><A NAME="50475018_32783"></A>drafting (RROPDR)</H4>
+<P>
+<A NAME="50475018_pgfId-274064"></A><A NAME="50475018_marker-274061"></A><A NAME="50475018_marker-274062"></A><A NAME="50475018_marker-274063"></A>This option controls the output of drafting-style lines of entities that are passed to the hidden function by distinguishing between lines which are blocked by other lines and those which are obscured by other faces of the body.</P>
+<P>
+<A NAME="50475018_pgfId-284958"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286794"></A>&gt; (graphics drafting [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274066"></A>If no argument is given, the current state of the drafting-style lines option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274076"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286047"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286049"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274069"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274071"></A>option RROPDR is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274073"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274075"></A>option RROPDR is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286467"></A>Note: The <A HREF="kd_chap.14.html#50475018_32783">&quot;drafting (RROPDR)&quot;</A> and <A HREF="kd_chap.14.html#50475018_39183">&quot;perspective (RROPPS)&quot;</A> options are mutually exclusive and turn each other off.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274084"></A>edge_data (RROPED)</H4>
+<P>
+<A NAME="50475018_pgfId-274088"></A><A NAME="50475018_marker-274085"></A><A NAME="50475018_marker-274086"></A><A NAME="50475018_marker-274087"></A>This option controls the drawing of edge data of the entities passed to the sketch function.</P>
+<P>
+<A NAME="50475018_pgfId-284972"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286786"></A>&gt; (graphics edge_data [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274090"></A>If no argument is given, the current state of the edge data option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274100"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286039"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286041"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274093"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274095"></A>option RROPED is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274097"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274099"></A>option RROPED is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274101"></A>edge_tags (RROPET)</H4>
+<P>
+<A NAME="50475018_pgfId-274105"></A><A NAME="50475018_marker-274102"></A><A NAME="50475018_marker-274103"></A><A NAME="50475018_marker-274104"></A>This option controls output of the edge tag for those facet edges derived from face edges for entities passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-284979"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286778"></A>&gt; (graphics edge_tags [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274107"></A>If no argument is given, the current values of the edge tags are used if they have been set; otherwise defaults are used. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274117"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286031"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286033"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274110"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274112"></A>option RROPET is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274114"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274116"></A>option RROPET is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274118"></A>face_colour (RROPFC)</H4>
+<P>
+<A NAME="50475018_pgfId-274122"></A><A NAME="50475018_marker-274119"></A><A NAME="50475018_marker-274120"></A><A NAME="50475018_marker-274121"></A>This option controls the face colour of entities passed to the shade function.</P>
+<P>
+<A NAME="50475018_pgfId-284990"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286770"></A>&gt; (graphics face_colour [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274124"></A>If no argument is given, the current value of the face colour option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274134"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286021"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286023"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274127"></A>list of three values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274129"></A>option RROPFC is set with the given values (in the order below)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274131"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274133"></A>option RROPFC is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274135"></A>If the option RROPFC is not set, the following defaults are used for face color:</P>
+<P>
+<A NAME="50475018_pgfId-274149"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286011"></A>Color</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286013"></A>Value</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274138"></A>Red</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274140"></A>1.0</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274142"></A>Green</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274144"></A>1.0</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274146"></A>Blue</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274148"></A>1.0</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274151"></A><A NAME="50475018_41285"></A>facet_infinite (RROPFI)</H4>
+<P>
+<A NAME="50475018_pgfId-274155"></A><A NAME="50475018_marker-274152"></A><A NAME="50475018_marker-274153"></A><A NAME="50475018_marker-274154"></A>This option controls the non-generation of facets for faces which can quickly be identified as back-facing in the view from infinity direction of entities passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285000"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286754"></A>&gt; (graphics facet_infinite [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274157"></A>If no argument is given, the current state of the <CODE>
+facet_infinite</CODE>
+ option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274167"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286003"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-286005"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274160"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274162"></A>option RROPFI is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274164"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274166"></A>option RROPFI is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286485"></A>Note: The <A HREF="kd_chap.14.html#50475018_41285" CLASS="XRef">&quot;facet_infinite (RROPFI)&quot;</A>,<A HREF="kd_chap.14.html#50475018_11392">&quot;facet_perspective (RROPFP)&quot;</A> and <A HREF="kd_chap.14.html#50475018_19945">&quot;vertex_matching (RROPVM)&quot;</A> options are exclusive and turning one on turns the others off.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274178"></A>facet_minimum_size (RROPMF)</H4>
+<P>
+<A NAME="50475018_pgfId-285013"></A><A NAME="50475018_marker-285010"></A><A NAME="50475018_marker-285011"></A><A NAME="50475018_marker-285012"></A>This option controls the minimum size of the facets of entities passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285022"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286746"></A>&gt; (graphics facet_minimum_size [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-285015"></A>If no argument is given, the current value of the minimum facet size, if set, is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274194"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285995"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285997"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274187"></A>n</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274189"></A>option RROPMF is set with the given value</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274191"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274193"></A>option RROPMF is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274196"></A><A NAME="50475018_11392"></A>facet_perspective (RROPFP)</H4>
+<P>
+<A NAME="50475018_pgfId-274200"></A><A NAME="50475018_marker-274197"></A><A NAME="50475018_marker-274198"></A><A NAME="50475018_marker-274199"></A>This option controls the non-generation of facets for faces which can quickly be identified as back-facing in the perspective view direction of entities passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285029"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286738"></A>&gt; (graphics facet_perspective [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274202"></A>If no argument is given, the current state of the <CODE>
+facet_perspective</CODE>
+ option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274212"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285987"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285989"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274205"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274207"></A>option RROPFP is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274209"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274211"></A>option RROPFP is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286518"></A>Note: The <A HREF="kd_chap.14.html#50475018_41285" CLASS="XRef">&quot;facet_infinite (RROPFI)&quot;</A>,<A HREF="kd_chap.14.html#50475018_11392">&quot;facet_perspective (RROPFP)&quot;</A> and <A HREF="kd_chap.14.html#50475018_19945">&quot;vertex_matching (RROPVM)&quot;</A> options are exclusive and turning one on turns the others off.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274223"></A>facet_size (RROPFS)</H4>
+<P>
+<A NAME="50475018_pgfId-274227"></A><A NAME="50475018_marker-274224"></A><A NAME="50475018_marker-274225"></A><A NAME="50475018_marker-274226"></A>This option controls the faceted representation of entities passed to the facet function by considering the size of the facet.</P>
+<P>
+<A NAME="50475018_pgfId-285040"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286730"></A>&gt; (graphics facet_size [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274229"></A>If no argument is given, the current values of the facet size tolerances are used if they have been set; otherwise defaults are used. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274239"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285979"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285981"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274232"></A>list of two values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274234"></A>option RROPFS is set with the given values (in the order below)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274236"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274238"></A>option RROPFS is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274240"></A>The facet size tolerances are:</P>
+<UL>
+<LI>
+<A NAME="50475018_pgfId-274241"></A>Maximum number of sides per facet</LI>
+<LI>
+<A NAME="50475018_pgfId-274242"></A>Maximum width of facet in model units</LI>
+</UL>
+
+
+<H4>
+<A NAME="50475018_pgfId-274243"></A>facet_strips (RROPTS)</H4>
+<P>
+<A NAME="50475018_pgfId-274247"></A><A NAME="50475018_marker-274244"></A><A NAME="50475018_marker-274245"></A><A NAME="50475018_marker-274246"></A>This option controls the output of faceted data of entities passed to the facet function to be in &quot;triangle strips&quot; which form triangle facets.</P>
+<P>
+<A NAME="50475018_pgfId-285047"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286722"></A>&gt; (graphics facet_strips [ n | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274249"></A>If no argument is given, the current value of the <CODE>
+facet_strips</CODE>
+ option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274259"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285971"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285973"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274252"></A>n</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274254"></A>option RROPTS is set with the given maximum number of facets in a strip</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274256"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274258"></A>option RROPTS is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274260"></A>first_derivatives (RROPD1)</H4>
+<P>
+<A NAME="50475018_pgfId-274264"></A><A NAME="50475018_marker-274261"></A><A NAME="50475018_marker-274262"></A><A NAME="50475018_marker-274263"></A>This option controls the output of first derivatives data for entities passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285054"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286714"></A>&gt; (graphics first_derivatives [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274266"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274276"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285963"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285965"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274269"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274271"></A>option RROPD1 is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274273"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274275"></A>option RROPD1 is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274277"></A>hierarchical (RROPHR)</H4>
+<P>
+<A NAME="50475018_pgfId-274281"></A><A NAME="50475018_marker-274278"></A><A NAME="50475018_marker-274279"></A><A NAME="50475018_marker-274280"></A>This option controls the output of hierarchical data for entities passed to the hidden function by outputting the data for the invisible part of partial visible lines.</P>
+<P>
+<A NAME="50475018_pgfId-285061"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286706"></A>&gt; (graphics hierarchical [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274283"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274293"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285955"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285957"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274286"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274288"></A>option RROPHR is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274290"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274292"></A>option RROPHR is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274294"></A>hierarchical_no_geom (RROPHN)</H4>
+<P>
+<A NAME="50475018_pgfId-274298"></A><A NAME="50475018_marker-274295"></A><A NAME="50475018_marker-274296"></A><A NAME="50475018_marker-274297"></A>As for the hierarchical option, this option controls the output of hierarchical data for entities passed to the hidden function by outputting the data for the invisible part of partial visible lines, but omitting any geometry segments.</P>
+<P>
+<A NAME="50475018_pgfId-285068"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286698"></A>&gt; (graphics hierarchical_no_geom [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274300"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274310"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285947"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285949"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274303"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274305"></A>option RROPHN is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274307"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274309"></A>option RROPHN is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274311"></A>hierarchical_parametrised (RROPHP)</H4>
+<P>
+<A NAME="50475018_pgfId-274315"></A><A NAME="50475018_marker-274312"></A><A NAME="50475018_marker-274313"></A><A NAME="50475018_marker-274314"></A>As for the hierarchical option, this option controls the output of hierarchical data for entities passed to the hidden function by outputting curve parameters with visibility segments.</P>
+<P>
+<A NAME="50475018_pgfId-285075"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286690"></A>&gt; (graphics hierarchical_parametrised [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274317"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274327"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285935"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285937"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274320"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274322"></A>option RROPHP is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274324"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274326"></A>option RROPHP is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274328"></A>holes_permitted (RROPHO)</H4>
+<P>
+<A NAME="50475018_pgfId-274332"></A><A NAME="50475018_marker-274329"></A><A NAME="50475018_marker-274330"></A><A NAME="50475018_marker-274331"></A>This option controls whether or not facets passed to the facet function are represented with holes in their interiors.</P>
+<P>
+<A NAME="50475018_pgfId-285082"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286682"></A>&gt; (graphics holes_permitted [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274334"></A>If no argument is given, the current values of the holes permitted are used if they have been set; otherwise defaults are used. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274344"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285927"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285929"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274337"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274339"></A>option RROPHO is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274341"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274343"></A>option RROPHO is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274345"></A>ignore_loops (RROPIL)</H4>
+<P>
+<A NAME="50475018_pgfId-274349"></A><A NAME="50475018_marker-274346"></A><A NAME="50475018_marker-274347"></A><A NAME="50475018_marker-274348"></A>This option specifies those loops that are to be ignored when faceting a body.</P>
+<P>
+<A NAME="50475018_pgfId-285089"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286674"></A>&gt; (graphics ignore_loops 56)         -- ignore a specified loop
+&gt; (graphics ignore_loops &acute;(56 70 92)  -- or a list of loops
+&gt; (graphics ignore_loops &acute;loo_object) -- or a loo (loop) object</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274351"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274365"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285919"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285921"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274354"></A>tag/list of tags</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274356"></A>faceting ignores the specified loop/s</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274358"></A>tag of loo (loop) object</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274360"></A>faceting ignores the loops in the loo object - if the loo object is updated, the next faceting call takes note of this</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274362"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274364"></A>option RROPIL is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286539"></A>Note: It may be difficult to select the loops as there are few functions available for loops in KID. The following example may help.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274367"></A>Selecting a loop to ignore:</P>
+<P>
+<A NAME="50475018_pgfId-285096"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286660"></A>(defun intersection (a b)
+      (cond
+        ((null a) nil)
+        ((member (car a) b) (cons (car a) 
+                            (intersection (cdr a) b)))
+        (t (intersection (cdr a) b))))
+
+(modeller start)
+(graphics open_device &acute;x)
+((define b0 p_block) create)
+((define c0 p_cylinder) height 20; point &acute;(0 0 5); 
+ direction &acute;(0 1 1 ); radius 2; create)
+((define t0 p_torus) point &acute;(0 5 10); 
+ direction &acute;(1 0 0 ); minrad 1; majrad 6; create)
+
+(b0 subtract &acute;c0)
+(b0 subtract &acute;t0)
+(graphics silhouette t; sketch &acute;b0;ar)
+((define f0 face) pick_from b0;
+     pick_using &acute;(eq (f0 enquire &acute;type) &acute;cylindrical))
+
+((define e0 edge) pick
+    &acute;(( 222.09889296390998 128.22734466248986
+        155.80355543323157 )
+    ( -0.75000326975537235 -0.43300948728521493 
+      -0.49999787927274819 )))
+((define loop_0 loo) tag (intersection
+        ((define loop_1 loo) pick_from f0)
+        ((define loop_2 loo) pick_from e0)))
+
+(graphics ignore_loops &acute;loop_0; clear; facet &acute;f0; ar)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274369"></A>image_smoothness (RROPIS)</H4>
+<P>
+<A NAME="50475018_pgfId-274373"></A><A NAME="50475018_marker-274370"></A><A NAME="50475018_marker-274371"></A><A NAME="50475018_marker-274372"></A>This option controls whether the hidden function calculates the smoothness of edges in the image, i.e. whether the faces either side of the edge are tangent. If an edge is smooth, the hidden function also calculates whether or not it is coincident with a silhouette. The example KID Frustrum does not draw smooth edges which are not coincident with silhouettes if <CODE>
+(graphics smooth t)</CODE>
+ is selected, so for example mergeable edges are omitted from hidden line pictures.</P>
+<P>
+<A NAME="50475018_pgfId-285103"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286652"></A>&gt; (graphics smooth [ t|nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274375"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows: </P>
+<P>
+<A NAME="50475018_pgfId-274385"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285911"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285913"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274378"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274380"></A>options RROPIS and RROPDS are set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274382"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274384"></A>options RROPIS and RROPDS are not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274386"></A>internal_edges (RROPIE/N)</H4>
+<P>
+<A NAME="50475018_pgfId-274390"></A><A NAME="50475018_marker-274387"></A><A NAME="50475018_marker-274388"></A><A NAME="50475018_marker-274389"></A>This option controls the output data for an edge that is passed to the hidden and sketch functions by specifying whether or not it is an internal edge.</P>
+<P>
+<A NAME="50475018_pgfId-285110"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286644"></A>&gt; (graphics internal_edges [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274392"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274402"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285903"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285905"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274395"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274397"></A>option RROPIE/N is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274399"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274401"></A>option RROPIE/N is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286555"></A>Note: This turns both RROPIN and RROPIE on for the hidden and sketch relevant functions. To switch the options individually use (graphics rropie) and (graphics rropin).</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274404"></A>invisible (RROPIV)</H4>
+<P>
+<A NAME="50475018_pgfId-274408"></A><A NAME="50475018_marker-274405"></A><A NAME="50475018_marker-274406"></A><A NAME="50475018_marker-274407"></A>This option controls the output for hidden lines passed to the hidden function, so that hidden lines can be rendered in a dotted line-style.</P>
+<P>
+<A NAME="50475018_pgfId-285117"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286636"></A>&gt; (graphics invisible [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274410"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows: </P>
+<P>
+<A NAME="50475018_pgfId-274420"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285895"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285897"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274413"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274415"></A>option RROPIV is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274417"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274419"></A>option RROPIV is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274421"></A>lights function</H4>
+<P>
+<A NAME="50475018_pgfId-274425"></A><A NAME="50475018_marker-274422"></A><A NAME="50475018_marker-274423"></A><A NAME="50475018_marker-274424"></A>This function controls the light sources that are passed to the shade function.</P>
+<P>
+<A NAME="50475018_pgfId-285137"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286628"></A>&gt; (graphics lights [&lt;list of lists each containing seven values&gt;])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274427"></A>The argument given is a list containing a number of lists, each defining a light source. If no argument is given, the current list of light sources is returned. If an argument is given, the current list of light sources is set to the value of the argument.</P>
+<P>
+<A NAME="50475018_pgfId-274428"></A>A number of pre-defined light sources are available as follows:</P>
+<P>
+<A NAME="50475018_pgfId-285854"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285755"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285757"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285759"></A>ambient_high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285761"></A>(3 0.75 0.75 0.75 1 1 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285763"></A>ambient_med</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285765"></A>(3 0.50 0.50 0.50 1 1 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285767"></A>ambient_low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285769"></A>(3 0.25 0.25 0.25 1 1 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285771"></A>lightx_high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285773"></A>(1 0.75 0.75 0.75 1 0 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285775"></A>lightx_med</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285777"></A>(1 0.50 0.50 0.50 1 0 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285779"></A>lightx_low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285781"></A>(1 0.25 0.25 0.25 1 0 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285783"></A>lighty_high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285785"></A>(1 0.75 0.75 0.75 0 1 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285787"></A>lighty_med</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285789"></A>(1 0.50 0.50 0.50 0 1 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285791"></A>lighty_low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285793"></A>(1 0.25 0.25 0.25 0 1 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285795"></A>lightz_high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285797"></A>(1 0.75 0.75 0.75 0 0 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285799"></A>lightz_med</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285801"></A>(1 0.50 0.50 0.50 0 0 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285803"></A>lightz_low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285805"></A>(1 0.25 0.25 0.25 0 0 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285807"></A>lightxy_high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285809"></A>(1 0.75 0.75 0.75 1 1 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285811"></A>lightxy_med</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285813"></A>(1 0.50 0.50 0.50 1 1 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285815"></A>lightxy_low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285817"></A>(1 0.25 0.25 0.25 1 1 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285819"></A>lightxz_high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285821"></A>(1 0.75 0.75 0.75 1 0 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285823"></A>lightxz_med</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285825"></A>(1 0.50 0.50 0.50 1 0 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285827"></A>lightxz_low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285829"></A>(1 0.25 0.25 0.25 1 0 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285831"></A>lightyz_high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285833"></A>(1 0.75 0.75 0.75 0 1 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285835"></A>lightyz_med</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285837"></A>(1 0.50 0.50 0.50 0 1 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285839"></A>lightyz_low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285841"></A>(1 0.25 0.25 0.25 0 1 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285843"></A>lightxyz_high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285845"></A>(1 0.75 0.75 0.75 1 1 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285847"></A>lightxyz_med</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285849"></A>(1 0.50 0.50 0.50 1 1 1)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285851"></A>lightxyz_low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285853"></A>(1 0.25 0.25 0.25 1 1 1)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-285883"></A>The default lights are ambient_high, lightxz_med and lightyz_low</P>
+
+
+<H4>
+<A NAME="50475018_pgfId-274542"></A>no_fitting (RROPNF)</H4>
+<P>
+<A NAME="50475018_pgfId-274546"></A><A NAME="50475018_marker-274543"></A><A NAME="50475018_marker-274544"></A><A NAME="50475018_marker-274545"></A>This option controls the way facets fit together at the edges of adjacent faces when they are passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285144"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286620"></A>&gt; (graphics no_fitting [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274548"></A>If no argument is given, the current values of no fitting are used if they have been set; otherwise defaults are used. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274558"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285615"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285617"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274551"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274553"></A>option RROPNF is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274555"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274557"></A>option RROPNF is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274560"></A><A NAME="50475018_14762"></A>nurbs_curves (RROPNC)</H4>
+<P>
+<A NAME="50475018_pgfId-274564"></A><A NAME="50475018_marker-274561"></A><A NAME="50475018_marker-274562"></A><A NAME="50475018_marker-274563"></A>This option controls the output of NURBs curves passed to the sketch and hidden functions by allowing the NURB curve data to be presented to the Graphical Output in B-spline form.</P>
+<P>
+<A NAME="50475018_pgfId-285151"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286612"></A>&gt; (graphics nurbs_curves [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274566"></A>If no argument is given, the current setting is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274576"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285607"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285609"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274569"></A>anything but nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274571"></A>option RROPNC is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274573"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274575"></A>option RROPNC is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286573"></A>Note: The <A HREF="kd_chap.14.html#50475018_14762">&quot;nurbs_curves (RROPNC)&quot;</A> and <A HREF="kd_chap.14.html#50475018_23125">&quot;parametric_curves (RROPPC)&quot;</A> options are mutually exclusive and turn each other off.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274584"></A>para_hatch (RROPPA)</H4>
+<P>
+<A NAME="50475018_pgfId-274588"></A><A NAME="50475018_marker-274585"></A><A NAME="50475018_marker-274586"></A><A NAME="50475018_marker-274587"></A>This option controls the hatching of composite B-surfaces passed to the sketch and hidden functions. Two parameters are given to the option that specify the spacing between hatchlines in both the u and v directions.</P>
+<P>
+<A NAME="50475018_pgfId-285158"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286604"></A>&gt; ( f0 para_hatch )            -- enquire face hatching
+&gt; ( f0 para_hatch &lt;space&gt; )    -- set both u and v para spacing
+&gt; ( f0 para_hatch &lt;u&gt; &lt;v&gt; )    -- set both independently</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274590"></A>The faces are not actually hatched by this command. They appear hatched in the next graphics command providing the global graphics rendering switches are set:</P>
+<P>
+<A NAME="50475018_pgfId-285165"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286596"></A>&gt; ( graphics para_hatch t )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274592"></A>Hatching is disabled by using the argument nil.</P>
+<P>
+<A NAME="50475018_pgfId-285172"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286588"></A>&gt; (graphics para_hatch nil )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274594"></A>parameter_information (RROPPI)</H4>
+<P>
+<A NAME="50475018_pgfId-274598"></A><A NAME="50475018_marker-274595"></A><A NAME="50475018_marker-274596"></A><A NAME="50475018_marker-274597"></A>This option controls the output of parameter information for entities passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285179"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286392"></A>&gt; (graphics parameter_information [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274600"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274610"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285599"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285601"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274603"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274605"></A>option RROPPI is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274607"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274609"></A>option RROPPI is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274612"></A><A NAME="50475018_23125"></A>parametric_curves (RROPPC)</H4>
+<P>
+<A NAME="50475018_pgfId-274616"></A><A NAME="50475018_marker-274613"></A><A NAME="50475018_marker-274614"></A><A NAME="50475018_marker-274615"></A>This option controls the output of B-curves (Bezier curves) passed to the sketch and hidden functions by allowing the B-curve data to be presented to the Graphical Output in Bezier form or as poly lines.</P>
+<P>
+<A NAME="50475018_pgfId-285190"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286384"></A>&gt; (graphics parametric_curves [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274618"></A>If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274628"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285591"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285593"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274621"></A>anything but nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274623"></A>option RROPPC is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274625"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274627"></A>option RROPPC is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286409"></A>Note: The <A HREF="kd_chap.14.html#50475018_14762">&quot;nurbs_curves (RROPNC)&quot;</A> and <A HREF="kd_chap.14.html#50475018_23125">&quot;parametric_curves (RROPPC)&quot;</A> options are mutually exclusive and turn each other off.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274637"></A><A NAME="50475018_39183"></A>perspective (RROPPS)</H4>
+<P>
+<A NAME="50475018_pgfId-274641"></A><A NAME="50475018_marker-274638"></A><A NAME="50475018_marker-274639"></A><A NAME="50475018_marker-274640"></A>This option controls the whether or not the entities passed to the sketch, hidden, sketch and shade functions are created in a perspective view.</P>
+<P>
+<A NAME="50475018_pgfId-285197"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286376"></A>&gt; (graphics perspective [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274643"></A>If no argument is given, the current state of this option is returned. If an argument is supplied, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274653"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285583"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285585"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274646"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274648"></A>option RROPPS is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274650"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274652"></A>option RROPPS is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286428"></A>Note: The <A HREF="kd_chap.14.html#50475018_32783">&quot;drafting (RROPDR)&quot;</A> and <A HREF="kd_chap.14.html#50475018_39183">&quot;perspective (RROPPS)&quot;</A> options are mutually exclusive and turn each other off.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274661"></A>planar_hatch (RROPPH)</H4>
+<P>
+<A NAME="50475018_pgfId-274665"></A><A NAME="50475018_marker-274662"></A><A NAME="50475018_marker-274663"></A><A NAME="50475018_marker-274664"></A>This option controls the hatching of planar surfaces passed to the sketch and hidden functions. It takes an argument, which if set to nil, disables planar hatching, otherwise a list of 4 parameters is required:</P>
+<P>
+<A NAME="50475018_pgfId-285204"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286368"></A>&gt; ( f0 planar_hatch )        -- enquire face hatching
+&gt; ( f0 planar_hatch &lt;gap&gt;)-- set hatching space (default Z dir)
+&gt; ( f0 planar_hatch &lt;gap&gt; &lt;direction&gt; ) </PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274667"></A>The faces are not actually hatched by this command. They appear hatched in the next graphics command providing the global graphics rendering switches are set:</P>
+<P>
+<A NAME="50475018_pgfId-285211"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286360"></A>&gt; ( graphics planar_hatch t )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274669"></A>Planar hatching is disabled by using the argument nil:</P>
+<P>
+<A NAME="50475018_pgfId-285218"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286352"></A>&gt; ( graphics planar_hatch nil )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274671"></A>planarity_tolerance (RROPPT)</H4>
+<P>
+<A NAME="50475018_pgfId-274675"></A><A NAME="50475018_marker-274672"></A><A NAME="50475018_marker-274673"></A><A NAME="50475018_marker-274674"></A>This option controls the planarity tolerance of facets passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285225"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286344"></A>&gt; (graphics planarity_tolerance [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274677"></A>If no argument is given, the current values of the surface tolerances are used if they have been set; otherwise defaults are used. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274687"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285575"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285577"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274680"></A>list of two values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274682"></A>option RROPPT is set with the given values (in the order below)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274684"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274686"></A>option RROPPT is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274688"></A>The planarity tolerances are:</P>
+<UL>
+<LI>
+<A NAME="50475018_pgfId-274689"></A>distance tolerance in model units</LI>
+<LI>
+<A NAME="50475018_pgfId-274690"></A>angular tolerance in radians</LI>
+</UL>
+
+
+<H4>
+<A NAME="50475018_pgfId-274691"></A>radial_hatch (RROPRH)</H4>
+<P>
+<A NAME="50475018_pgfId-274695"></A><A NAME="50475018_marker-274692"></A><A NAME="50475018_marker-274693"></A><A NAME="50475018_marker-274694"></A>This option controls the radial hatching of entities passed to the sketch and hidden functions.</P>
+<P>
+<A NAME="50475018_pgfId-274696"></A>The argument set to nil disables radial hatching. For hatching on, a list of three parameters is required:</P>
+<P>
+<A NAME="50475018_pgfId-285232"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286336"></A>&gt; ( f0 radial_hatch )             -- enquire face hatching
+&gt; ( f0 radial_hatch &lt;gap&gt;           -- 	and angle around spine
+&gt; ( f0 radial_hatch &lt;gap&gt; &lt;ang1&gt; &lt;ang2&gt; )
+                                    -- and angle about spine</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274698"></A>The faces are not actually hatched by this command. They appear hatched in the next graphics command providing the global graphics rendering switches are set:</P>
+<P>
+<A NAME="50475018_pgfId-285239"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286328"></A>&gt; ( graphics radial_hatch t )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274700"></A>Radial hatching is disabled by using the argument nil:</P>
+<P>
+<A NAME="50475018_pgfId-285246"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286320"></A>&gt; ( graphics radial_hatch nil )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274702"></A>regional (RROPRG)</H4>
+<P>
+<A NAME="50475018_pgfId-274706"></A><A NAME="50475018_marker-274703"></A><A NAME="50475018_marker-274704"></A><A NAME="50475018_marker-274705"></A>This option controls the production of regional data for all visible edges and silhouettes passed to the hidden function.</P>
+<P>
+<A NAME="50475018_pgfId-285253"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286312"></A>&gt; (graphics regional [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274708"></A>If no argument is given, the current state of this option is returned. If an argument is supplied, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274718"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285567"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285569"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274711"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274713"></A>option RROPRG is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274715"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274717"></A>option RROPRG is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274719"></A>regional_attribute (RROPRA)</H4>
+<P>
+<A NAME="50475018_pgfId-274723"></A><A NAME="50475018_marker-274720"></A><A NAME="50475018_marker-274721"></A><A NAME="50475018_marker-274722"></A>This option controls the controls the creation of regional data for all visible edges and silhouettes adjacent to any face with regional-data that are passed to the hidden function.</P>
+<P>
+<A NAME="50475018_pgfId-285260"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286304"></A>&gt; (graphics regional_attribute [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274725"></A>If no argument is given, the current state of this option is returned. If an argument is supplied, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274735"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285559"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285561"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274728"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274730"></A>option RROPRA is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274732"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274734"></A>option RROPRA is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274736"></A>resolution</H4>
+<P>
+<A NAME="50475018_pgfId-274740"></A><A NAME="50475018_marker-274737"></A><A NAME="50475018_marker-274738"></A><A NAME="50475018_marker-274739"></A>This function controls the pixel map that is passed to the shade function.</P>
+<P>
+<A NAME="50475018_pgfId-285280"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286296"></A>&gt; (graphics resolution [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274742"></A>If no argument is given, the current resolution value is returned. If an argument is given, the pixel map is set with values according to the argument as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274768"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285551"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285553"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285527"></A>very high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285529"></A>512 512 pixel_size_x pixel_size_y 256 256</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285531"></A>high</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285533"></A>256 256 pixel_size_x pixel_size_y 128 128 (default)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285535"></A>medium</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285537"></A>128 128 pixel_size_x pixel_size_y 64 64</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285539"></A>low</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285541"></A>64 64 pixel_size_x pixel_size_y 32 32</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285543"></A>list of six values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285545"></A>the pixel map is set with the given values</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285547"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285549"></A>64 64 pixel_size_x pixel_size_y 32 32</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274769"></A>The pixel sizes are calculated automatically according to the resolution (e.g. 256 x 256) and the current window size. It is therefore best to sketch the object(s), autowindow, redraw and then shade.</P>
+
+
+<H4>
+<A NAME="50475018_pgfId-274770"></A>second_derivatives (RROPD2)</H4>
+<P>
+<A NAME="50475018_pgfId-274774"></A><A NAME="50475018_marker-274771"></A><A NAME="50475018_marker-274772"></A><A NAME="50475018_marker-274773"></A>This option controls the output of first derivatives data for entities passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285287"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286288"></A>&gt; (graphics second_derivatives [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274776"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274786"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285515"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285517"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274779"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274781"></A>option RROPD2 is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274783"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274785"></A>option RROPD2 is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274787"></A>shade_file</H4>
+<P>
+<A NAME="50475018_pgfId-274791"></A><A NAME="50475018_marker-274788"></A><A NAME="50475018_marker-274789"></A><A NAME="50475018_marker-274790"></A>This function controls the name of shade file output by the shade function.</P>
+<P>
+<A NAME="50475018_pgfId-285294"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286280"></A>&gt; (graphics shade_file [ &lt;&acute;file_name&gt; ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274793"></A>If no argument is given, the name of the current shade file is returned. If an argument is given, the shade file is set to the value of the argument.</P>
+<P>
+<A NAME="50475018_pgfId-274794"></A>The default shade file &quot;graphics.sig&quot; is a binary file which consists of header information, of which the first four arguments detail the offset of the pixel image, followed by the run-length encoded RGB pixel intensities.</P>
+<P>
+<A NAME="50475018_pgfId-274795"></A>When required the following C program can be used to decode .sig files:</P>
+<P>
+<A NAME="50475018_pgfId-285305"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286271"></A>#include &lt;stdio.h&gt;
+
+typedef struct   {  int a;
+                    int b;
+                    int x;
+                    int y;
+                 }  header_t;
+
+typedef struct   {  double red;
+                    double green;
+                    double blue;
+                    int count;
+                  }  run_t;</PRE>
+<P>
+<A NAME="50475018_pgfId-286272"></A>main ( argc, argv )<BR>
+int    argc;<BR>
+char * argv[];<BR>
+{<BR>
+run_t    run;<BR>
+header_t header;<BR>
+<BR>
+/*Read header*/    <BR>
+<BR>
+fread( &amp;a, sizeof( int ), 1, stdin );<BR>
+fread( &amp;b, sizeof( int ), 1, stdin );<BR>
+fread( &amp;x, sizeof( int ), 1, stdin );<BR>
+fread( &amp;y, sizeof( int ), 1, stdin );<BR>
+printf( &quot;HEADER %d %d x=%d, y=%d&#92;n&quot;,<BR>
+         header.a,header.b,header.x,header.y);<BR>
+printf(&quot;COUNT RED GREEN BLUE&#92;n&quot; );<BR>
+while (fread( &amp;run, sizeof( run_t ), 1, stdin) &gt; 0)<BR>
+      {<BR>
+          printf( &quot;%-6d %-8g %-8g %-8g&#92;n&quot;,<BR>
+          run.count, run.red, run.green, run.blue );<BR>
+      }<BR>
+}</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274798"></A>Assume b0 to be a sphere with a transparency attribute attached to its face, and b1 to be a large cube. b0 lies in front of b1:</P>
+<P>
+<A NAME="50475018_pgfId-285312"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286263"></A>&gt; (graphics select)
+&gt; (graphics anti_aliasing t)
+&gt; (graphics surface_reflection &acute;(0.99 0.00 0.01 0.10 20))
+&gt; (graphics depth_modulation &acute;(0.75))
+&gt; (graphics face_colour &acute;(1 0 0))
+&gt; (graphics background_colour &acute;(0 0 1))
+&gt; (graphics translucence t)
+&gt; (graphics resolution &acute;very_high)
+&gt; (setq lightxz_red &acute;(1 0.75 0.00 0.00 1 0 1))
+&gt; (setq lightyz_blue &acute;(1 0.00 0.00 0.50 0 1 1))
+&gt; (graphics lights 
+     (list ambient_high lightxz_red lightyz_blue))
+&gt; (graphics shade_file &quot;shade_file.pix&quot;)
+&gt; (graphics shade &acute;(b0 b1))</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274800"></A>silhouette (RROPSI)</H4>
+<P>
+<A NAME="50475018_pgfId-274804"></A><A NAME="50475018_marker-274801"></A><A NAME="50475018_marker-274802"></A><A NAME="50475018_marker-274803"></A>This option controls the creation and labelling of silhouette lines for entities passed to the sketch function.</P>
+<P>
+<A NAME="50475018_pgfId-274805"></A>If the optional argument is not given, silhouette curves are drawn in the current drawing list only. If the optional argument is set to <CODE>
+t</CODE>
+, silhouettes are drawn in every rendering operation.</P>
+<P>
+<A NAME="50475018_pgfId-285319"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286255"></A>&gt; (graphics silhouette [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274807"></A>The blend option controls unfixed blend surfaces rendering. If set to t, they are included in the next draw. Integers given as arguments can be used in several ways:</P>
+<P>
+<A NAME="50475018_pgfId-285326"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286220"></A>&gt; (graphics blend 1)        -- draw as attributes specify</PRE>
+<UL>
+<P>
+<A NAME="50475018_pgfId-286223"></A>OR</P>
+</UL>
+<PRE><A NAME="50475018_pgfId-286224"></A>&gt; (graphics blend t)      -- exactly equivalent
+&gt; (graphics blend 2)      -- only draw blend boundaries
+&gt; (graphics blend &acute;(3 n ))
+  -- where n is set to rib spacing draw boundaries and
+     overwrite rib attribute if different</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274809"></A>silhouette_density (RROPSD)</H4>
+<P>
+<A NAME="50475018_pgfId-274813"></A><A NAME="50475018_marker-274810"></A><A NAME="50475018_marker-274811"></A><A NAME="50475018_marker-274812"></A>This option controls the silhouette density output for entities passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285333"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286212"></A>&gt; (graphics silhouette_density [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274815"></A>If no argument is given, the current value of the silhouette density option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274825"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285507"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285509"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274818"></A>list of five values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274820"></A>option RROPSD is set with the given values</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274822"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274824"></A>option RROPSD is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274826"></A>The five values represent the following properties:</P>
+<UL>
+<LI>
+<A NAME="50475018_pgfId-274827"></A>the first three values define the view direction</LI>
+<LI>
+<A NAME="50475018_pgfId-274828"></A>the fourth defines the angular tolerance</LI>
+<LI>
+<A NAME="50475018_pgfId-274829"></A>the fifth defines the chordal tolerance</LI>
+</UL>
+
+
+<H4>
+<A NAME="50475018_pgfId-274830"></A>smooth_edges (RROPSM)</H4>
+<P>
+<A NAME="50475018_pgfId-274834"></A><A NAME="50475018_marker-274831"></A><A NAME="50475018_marker-274832"></A><A NAME="50475018_marker-274833"></A>This option controls whether the sketch function calculates the smoothness of edges in the image, i.e. whether the faces either side of the edge are tangent.</P>
+<P>
+<A NAME="50475018_pgfId-285340"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286204"></A>&gt; (graphics smooth_edges [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274836"></A>If no argument is given, the current state of this option is returned. If an argument is given it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274846"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285499"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285501"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274839"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274841"></A>option RROPSM is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274843"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274845"></A>option RROPSM is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274847"></A>smooth_edges_do_not_block (RROPDS)</H4>
+<P>
+<A NAME="50475018_pgfId-274851"></A><A NAME="50475018_marker-274848"></A><A NAME="50475018_marker-274849"></A><A NAME="50475018_marker-274850"></A>This option controls whether or not the hidden function allows smooth edges which are not coincident with silhouettes to occlude other lines in drafting mode. As the KID Example Frustrum does not draw smooth edges if (graphics smooth) is selected, then this option should also be selected with it. The option ensures that the situation where a smooth edge occludes another but then does not itself get drawn cannot occur.</P>
+<P>
+<A NAME="50475018_pgfId-285347"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286196"></A>&gt; (graphics smooth_edges_do_not_block [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274853"></A>The option is automatically selected when <CODE>
+(graphics smooth)</CODE>
+ is selected. You probably only need to control it independently of <CODE>
+(graphics smooth)</CODE>
+ when the frustrum is designed to draw smooth edges in a different line style rather than omitting them completely, for example.</P>
+<P>
+<A NAME="50475018_pgfId-274863"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285491"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285493"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274856"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274858"></A>option RROPDS is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274860"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274862"></A>option RROPDS is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274864"></A>surface_reflection (RROPSF)</H4>
+<P>
+<A NAME="50475018_pgfId-274868"></A><A NAME="50475018_marker-274865"></A><A NAME="50475018_marker-274866"></A><A NAME="50475018_marker-274867"></A>This option controls the surface reflectivity of entities passed to the shade function.</P>
+<P>
+<A NAME="50475018_pgfId-285354"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286188"></A>&gt; (graphics surface_reflection [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274870"></A>If no argument is given, the current value of the surface reflectivity option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274880"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285483"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285485"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274873"></A>list of five  values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274875"></A>option RROPSF is set with the given values (in the order below)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274877"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274879"></A>option RROPSF is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274881"></A>The five values represent the following properties, if the option is not set, the defaults shown are used.</P>
+<P>
+<A NAME="50475018_pgfId-274907"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274884"></A>Property</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274886"></A>Default</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274888"></A>Coefficient of specular reflection</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274890"></A>0.90</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274892"></A>Proportion of colour in highlights</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274894"></A>0.00</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274896"></A>Coefficient of diffuse reflection</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274898"></A>0.60</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274900"></A>Coefficient of ambient reflection</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274902"></A>0.25</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274904"></A>Reflection power</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274906"></A>20</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274908"></A>surface_tolerance (RROPST)</H4>
+<P>
+<A NAME="50475018_pgfId-274912"></A><A NAME="50475018_marker-274909"></A><A NAME="50475018_marker-274910"></A><A NAME="50475018_marker-274911"></A>This option controls the surface tolerance of entities passed to the facet function by considering the approximation to the surface.</P>
+<P>
+<A NAME="50475018_pgfId-285361"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286180"></A>&gt; (graphics surface_tolerance [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274914"></A>If no argument is given, the current values of the surface tolerances are used if they have been set; otherwise defaults are used. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274924"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285475"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285477"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274917"></A>list of two values</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274919"></A>option RROPST is set with the given values (in the order below)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274921"></A>anything else</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274923"></A>option RROPST is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274925"></A>The surface tolerances are:</P>
+<UL>
+<LI>
+<A NAME="50475018_pgfId-274926"></A>distance tolerance in model units</LI>
+<LI>
+<A NAME="50475018_pgfId-274927"></A>angular tolerance in radians</LI>
+</UL>
+
+
+<H4>
+<A NAME="50475018_pgfId-274928"></A>transform (RROPTR)</H4>
+<P>
+<A NAME="50475018_pgfId-274932"></A><A NAME="50475018_marker-274929"></A><A NAME="50475018_marker-274930"></A><A NAME="50475018_marker-274931"></A>This option controls the transformed positions of all entities passed to the sketch, hidden, shade and facet functions.</P>
+<P>
+<A NAME="50475018_pgfId-285368"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286172"></A>&gt; (graphics transform [argument])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274934"></A>An example of applying a transform when rendering:</P>
+<P>
+<A NAME="50475018_pgfId-285375"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286164"></A>&gt; ( (define t0 p_translation) direction &acute;(0 0 1); 
+    distance 2; create )
+&gt; ( (define b0 p_block) create )
+&gt; ( graphics ske &acute;b0; ar; transform &acute;t0; sketch; ar )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274936"></A>When using the above sequence of commands, if there are many entities in the drawing list, but only one transform is supplied, then the transform list is replicated to ensure that there are an equal number of transforms as entities. At all times the list of transforms must match the list of entities.</P>
+
+
+<H4>
+<A NAME="50475018_pgfId-274937"></A>translucence (RROPTL)</H4>
+<P>
+<A NAME="50475018_pgfId-274941"></A><A NAME="50475018_marker-274938"></A><A NAME="50475018_marker-274939"></A><A NAME="50475018_marker-274940"></A>This option controls the translucent rendering of those faces passed to the shade function that have a specifying attribute attached.</P>
+<P>
+<A NAME="50475018_pgfId-285382"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286156"></A>&gt; (graphics translucence [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274943"></A>If no argument is given, the current value of the translucence option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274953"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285467"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285469"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274946"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274948"></A>option RROPTL is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274950"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274952"></A>option RROPTL is not set (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274955"></A><A NAME="50475018_19945"></A>vertex_matching (RROPVM)</H4>
+<P>
+<A NAME="50475018_pgfId-274959"></A><A NAME="50475018_marker-274956"></A><A NAME="50475018_marker-274957"></A><A NAME="50475018_marker-274958"></A>This option ensures that there are no gaps along the model edges and that along these edges there are no facet vertices which are interior to an adjacent facet edge in the entity that is passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285397"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286148"></A>&gt; (graphics vertex_matching [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274961"></A>If no argument is given, the current value of the vertex_matching option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274971"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285459"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285461"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274964"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274966"></A>option RROPVM is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274968"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274970"></A>option RROPVM is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475018_pgfId-286446"></A>Note: The <A HREF="kd_chap.14.html#50475018_41285" CLASS="XRef">&quot;facet_infinite (RROPFI)&quot;</A>,<A HREF="kd_chap.14.html#50475018_11392">&quot;facet_perspective (RROPFP)&quot;</A> and <A HREF="kd_chap.14.html#50475018_19945">&quot;vertex_matching (RROPVM)&quot;</A> options are exclusive and turning one on turns the others off.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274982"></A>vertex_normals (RROPVN)</H4>
+<P>
+<A NAME="50475018_pgfId-274986"></A><A NAME="50475018_marker-274983"></A><A NAME="50475018_marker-274984"></A><A NAME="50475018_marker-274985"></A>This option allows the surface normal to be output at every facet vertex in the entity passed to the facet function.</P>
+<P>
+<A NAME="50475018_pgfId-285408"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-286140"></A>&gt; (graphics vertex_normals [ t | nil ])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-274988"></A>If no argument is given, the current value of the vertex_normals option is returned. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-274998"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285451"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285453"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274991"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274993"></A>option RROPVN is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274995"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-274997"></A>option RROPVN is unset (default)</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475018_pgfId-274999"></A>viewport (RROPVP)</H4>
+<P>
+<A NAME="50475018_pgfId-275003"></A><A NAME="50475018_marker-275000"></A><A NAME="50475018_marker-275001"></A><A NAME="50475018_marker-275002"></A>This option attempts to render those bodies/faces which are inside or partly inside the supplied viewport.</P>
+<P>
+<A NAME="50475018_pgfId-285418"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475018_pgfId-285424"></A>&gt; (graphics viewport [argument])
+&gt; (graphics viewport)          --- returns the current viewport</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-275005"></A>If no argument is given, the default viewport is used in which the full image is rendered. If an argument is given, it is interpreted as follows:</P>
+<P>
+<A NAME="50475018_pgfId-275023"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285430"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-285432"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-275008"></A>t</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-275010"></A>option RROPVP is set</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-275012"></A>nil</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-275014"></A>option RROPVP is unset (default)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-275016"></A>list of 15 doubles</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-275018"></A>sets the viewport</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-275020"></A>'box</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475018_pgfId-275022"></A>create a viewport for the boxes of all the items in the current drawing list</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475018_pgfId-275024"></A>Whenever the viewport is turned ON (by either of the three relevant options), the view is recalculated after each <A HREF="kd_chap.13.html#50475017_25662">&quot;zoom&quot;</A> or <A HREF="kd_chap.13.html#50475017_35292">&quot;autowindow&quot;</A>.</P>
+<P>
+<A NAME="50475018_pgfId-110680"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.13.html">Viewing Environment and Definition</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.15.html">Picking</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

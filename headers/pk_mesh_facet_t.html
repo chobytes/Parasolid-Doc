@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_facet_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_facet_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_facet_s
+    {
+    <A HREF=../headers/pk_mesh_facet_type_t.html>PK_MESH_facet_type_t</A>           facet_type; --- The type of facet data
+                                               --- being conveyed
+    union
+        {
+        <A HREF=../headers/pk_mesh_facet_index_t.html>PK_MESH_facet_index_t</A>     *index;
+        <A HREF=../headers/pk_mesh_facet_strip_t.html>PK_MESH_facet_strip_t</A>     *strip;
+        <A HREF=../headers/pk_mesh_facet_fan_t.html>PK_MESH_facet_fan_t</A>       *fan;
+        <A HREF=../headers/pk_mesh_facet_vector_t.html>PK_MESH_facet_vector_t</A>    *vector;
+        }
+                                   facet;      --- Data
+    };
+typedef struct PK_MESH_facet_s PK_MESH_facet_t;
+</B>
+</PRE>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_facet_cb_f_t.html>PK_MESH_facet_cb_f_t</A><br>
+    <A HREF=../headers/pk_mesh_facet_f.html>PK_MESH_facet_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

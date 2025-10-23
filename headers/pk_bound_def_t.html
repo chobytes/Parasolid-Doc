@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_bound_def_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_bound_def_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_bound_def_s
+    {
+    <A HREF=../headers/pk_bound_t.html>PK_bound_t</A>        bound;        --- method of defining bound
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>      forward;      --- whether bound in positive sense of path
+    double            distance;     --- extrusion distance
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>       entity;       --- bounding entity
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>      nearest;      --- whether divisions are numbered from
+                                    --- nearest to or furthest from the
+                                    --- profile
+    int               nth_division; --- select nth division
+    <A HREF=../headers/pk_bound_side_t.html>PK_bound_side_t</A>   side;         --- which side is the first division if
+                                    --- the bound divides the profile
+    };
+typedef struct PK_bound_def_s PK_bound_def_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure describes how an extruded body or feature is bound in one
+direction.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_extrude_o_t.html>PK_BODY_extrude_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It has the following fields:
+
+<B>'bound'</B>        method used for defining this bound.  See the documentation
+               for <A HREF=../headers/pk_bound_t.html>PK_bound_t</A>.
+
+<B>'forward'</B>      whether the bound is on the side of the given <B>'profile'</B>
+               in the direction of the given <B>'path'</B> vector, or on the other
+               side.
+
+<B>'distance'</B>     distance to bound when <B>'bound'</B> is <A HREF=../headers/pk_bound_t.html>PK_bound_distance_c</A>.
+               This must be greater than or equal to zero.
+               To extrude in the opposite direction to the <B>'path'</B>
+               vector, <B>'forward'</B> is set to PK_LOGICAL_false.
+
+<B>'entity'</B>       a bounding entity.  This may be a body, face or surface
+               depending upon <B>'bound'</B>.
+
+<B>'nearest'</B>      if PK_LOGICAL_true then divisions are numbered starting
+               from one and increasing in the direction moving away from
+               the profile.  If <B>'nearest'</B> is set to PK_LOGICAL_false then
+               the first division is that furthest from the <B>'profile'</B> and
+               division numbers increase towards the <B>'profile'</B>.
+
+<B>'nth_division'</B> when <B>'bound'</B> is one of: <A HREF=../headers/pk_bound_t.html>PK_bound_surf_c</A>, <A HREF=../headers/pk_bound_t.html>PK_bound_face_c</A>,
+               <A HREF=../headers/pk_bound_t.html>PK_bound_body_c</A> or <A HREF=../headers/pk_bound_t.html>PK_bound_sheet_c</A> then <B>'nth_division'</B> may be
+               set to select a particular division.
+
+<B>'side'</B>         which side of the bounding entity intersecting the profile
+               is to count as the first division.  This can only be one of
+               <A HREF=../headers/pk_bound_side_t.html>PK_bound_side_out_c</A> or <A HREF=../headers/pk_bound_side_t.html>PK_bound_side_in_c</A> when: <B>'bound'</B> is
+               <A HREF=../headers/pk_bound_t.html>PK_bound_body_c</A> or <A HREF=../headers/pk_bound_t.html>PK_bound_face_c</A>, <B>'entity'</B> is solid
+               and for the first and nearest division.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

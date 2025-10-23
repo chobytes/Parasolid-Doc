@@ -1,0 +1,197 @@
+<HTML>
+<HEAD>
+<TITLE>BLECRB</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BLECRB</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_set_blend_chamfer.html>PK_EDGE_set_blend_chamfer</A><BR>
+<A HREF=../headers/pk_edge_set_blend_constant.html>PK_EDGE_set_blend_constant</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BLECRB ( edges, type, range1, range2, nprops, props, pvals, blends, nblend, 
+============================================================================
+         ifail )
+         =======
+
+  Define a rolling ball blend or chamfer.
+
+Receives:
+  KI_tag_list_edge         *edges          --- edges to be blended
+  int                      *type           --- blend type
+  KI_dbl                   *range1         --- blend range 1
+  KI_dbl                   *range2         --- blend range 2
+ &lt;KI_int_nitems&gt;           *nprops         --- number of blend properties
+  KI_cod_blec               props[nprops]  --- array of blend properties
+ &lt;KI_tag_list&gt;              pvals[nprops]  --- array of tags of data lists
+
+Returns:
+  KI_tag_list_edge         *blends         --- list of edges to which blends
+                                           --- have been attached
+  int                      *nblend         --- number of edges to which blends
+                                           --- have been attached
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_bad_blend_param        blend parameter out of range
+                            illegal blend property
+  KI_general_body           general body
+
+Description:
+  Attaches unfixed blends with the given parameters to a list of edges. Any
+  existing attributes are replaced by one with the given parameters.
+
+
+     'type'     1 => rolling ball blend
+                2 => chamfer
+
+
+  The blend ranges are interpreted according to the following table.
+
+  blend type    |  'range1'                  |     'range2'
+  ----------------------------------------------------------------------
+  Rolling ball  |  radius of rolling ball    |    ignored
+  ----------------------------------------------------------------------
+  Chamfer       | range 'on left-hand face'  |     other range
+
+  If the blend type is Rolling Ball, 'range1' must be greater than twice the
+  maximum tolerance of all edges in 'edges' and their associated vertices.
+
+  If the blend type is Chamfer, one of 'range1' and 'range2' must be greater
+  than twice the maximum tolerance of all edges in 'edges' and their associated
+  vertices.
+
+
+  'props' consists of an array of 'nprops' blend properties, and 'pvals' consists
+  of a parallel array of tags of data lists for those properties, which can
+  frequently be null tags. The meanings of the properties and the associated data
+  are given below.
+
+  BLECCL cliffedge blend
+
+      associated value in pvals: tag of list containing tag of edge at cliff top.
+
+      Creates a blend tangent to the face adjacent to the blended edge and
+      touching the edge at the 'top' of the cliff. This property is only valid if
+      only one blend is being created with this call to BLECRB.
+
+      This property is only valid for rolling ball blends.
+
+
+  BLECPR  propagate flag
+
+      associated value in pvals: null tag.
+
+      Blend will be propagated over tangent edges, or past other unfixed blends
+      if the resultant combination of blends at a vertex would be invalid, and
+      blending the third edge results in a valid combination. The default
+      behaviour is no propagation.
+
+      Note that if a blend does propagate, and you wish to remove the resulting
+      blend attributes, BLEREM will need to be passed the tags of the edges
+      propagated on to as well as that of the original edge.
+
+      This property is invalid for cliffedge blends.
+
+  BLECTL  set tolerance
+
+      associated value in pvals: real list containing tolerance.
+
+      Sets the tolerance for the blended edge.  This argument is only allowed
+      when defining a chamfer surface.  The default tolerance is
+      1000 * modeller resolution.
+
+
+  There are  also some tokens relating to overflow behaviour.
+
+  The default overflow behaviour of a blend is as follows;
+
+  When fixing a blend, it is possible that  the blend as defined by its basic
+  parameters would lie outside the faces adjacent to the edge being blended. If
+  this is so, the blend must 'overflow'.
+
+  If the configuration allows us, we do this by 'smoothly overflowing' and
+  creating a blend one of whose underlying faces is the one it has overflowed
+  onto.
+
+  If the configuration is unsuitable for this, we try  to 'cliff overflow' -
+  that is replace the appropriate section of the blend by a cliffedge blend
+  running along the appropriate edges (Cliffedge overflows are only implemented
+  for rolling ball blends).
+
+  If the configuration is unsuitable for this as well, we will then 'notch
+  overflow' - that is, merely trim the blend by the other faces in the region,
+  leaving its surface geometry unchanged. If the configuration is unsuitable
+  for this as well, the blend will not fix.
+
+  By default neither cliffedge or smooth overflows will occur when the edge being
+  overflowed is of the same convexity as the edge being blended.
+
+  By default also, cliffedge overflows will not occur at the ends of blends,
+  except where they meet another blend smoothly.
+
+
+    Overflow Type    Prevent     Allow when Same Convexity     Allow at End
+  ---------------------------------------------------------------------------
+    SMOOTH       |   BLECNS    |          BLECSM           |      *         |
+    CLIFFEDGE    |   BLECNC    |          BLECSC           |    BLECEC      |
+    NOTCH        |   BLECNN    |            *              |      *         |
+  ---------------------------------------------------------------------------
+
+  A * means that this behaviour is always possible.
+
+  All these tokens have an associated value in pvals of a null tag.
+  Note that while any combination of these tokens is allowed the preventative
+  tokens will, of course, negate the efffects of the other overflow tokens.
+  For further explanation, and examples, of the use of these tokens, please
+  refer to the blending section of the manual.
+
+
+
+  BLECRI      ribs will be drawn by RRVIND
+
+      associated value in  pvals: tag of real list containing ribspace.
+
+      Where  ribspace is the approximate separation of rib lines.
+                  (0 <  ribspace < size)
+
+  BLECDF      draw and fix flag
+
+      associated value in  pvals: null tag.
+
+      Causes the blend to be ignored by BLEFIX, BLECHK and RRVIND, which will
+      all treat the edges as unblended.
+      Default behaviour is for an unfixed blend to be fixed, checked and drawn
+      as required.
+      Note that that an unfixed blend will only be  drawn in RRVIND if BLECDF has
+      not been set and RRVIND has been called with option RROPUB.
+
+
+
+  A successful result will produce a new blend attribute. It will return the tag
+  of the edge(s) to which the blend attribute is attached.
+  See BLEFIX for making the blends a part of the topology.
+
+  Note that an unfixed cliffedge blend will be invalidated if stored between
+  sessions.
+
+  This function is not supported for edges on general bodies.
+
+</PRE>
+</BODY>
+</HTML>

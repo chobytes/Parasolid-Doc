@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CYL_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CYL_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_CYL_sf_s
+    {
+    <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A>   basis_set;  --- location, cylinder axis, drn. to u = 0
+    double          radius;     --- the radius of the cylinder
+    };
+
+typedef struct PK_CYL_sf_s PK_CYL_sf_t;
+</B>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_radius_le_0        The radius for the cylinder was less than or
+                                equal to zero
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_cyl_ask.html>PK_CYL_ask</A><br>
+    <A HREF=../headers/pk_cyl_create.html>PK_CYL_create</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+See documentation for <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A>.
+
+The parameterisation of a cylinder is as follows:
+
+    P = basis_set.location
+    x = basis_set.ref_direction
+    y = basis_set.axis X basis_set.ref_direction ( cross product )
+    z = basis_set.axis
+    R = radius(&gt;0)
+
+    S(u, v) = P + R( (cos u)x + (sin u)y ) + vz    ( 0 &lt;= u &lt; 2PI )
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

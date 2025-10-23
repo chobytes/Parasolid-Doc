@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Kernel Interface Driver (KID) - an Overview</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Kernel Interface Driver (KID) - an Overview</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.03.html">LISP in KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.02.html#50475009_pgfId-273839">1.1	Introduction</A>
+<UL>
+<LI> <A HREF="kd_chap.02.html#50475009_pgfId-273860">1.1.1	LISP</A>
+<LI> <A HREF="kd_chap.02.html#50475009_pgfId-273868">1.1.2	Facilities within KID</A>
+</UL>
+<LI> <A HREF="kd_chap.02.html#50475009_pgfId-273882">1.2	Concepts</A>
+<UL>
+<LI> <A HREF="kd_chap.02.html#50475009_pgfId-273883">1.2.1	Object-oriented KID</A>
+</UL>
+<LI> <A HREF="kd_chap.02.html#50475009_pgfId-273971">1.3	Starting/terminating a KID session</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475009_pgfId-273839"></A>1.1	Introduction
+
+
+</H1>
+
+<H4>
+<A NAME="50475009_pgfId-273840"></A>Document purpose</H4>
+<P>
+<A NAME="50475009_pgfId-273841"></A>This manual, for the <A HREF=../kd_index.html>Kernel Interface Driver</A> (KID), is for programmers who wish to use KID to drive PARASOLID. It assumes knowledge of the kernel interface (KI) and the PK interface, LISP, and modeling in PARASOLID, though some basic elements are explained in the following chapters.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273842"></A>Notation used in this manual</H4>
+<P>
+<A NAME="50475009_pgfId-273843"></A>Throughout this manual, the notation <CODE>
+--&gt;</CODE>
+ is used in examples to indicate when information is returned by a call.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273844"></A>What is KID?</H4>
+<P>
+<A NAME="50475009_pgfId-273846"></A><A NAME="50475009_marker-273845"></A>KID is recommended as an introduction to Parasolid which enables you to quickly create solid objects, manipulate and display them.</P>
+<UL>
+<LI>
+<A NAME="50475009_pgfId-273847"></A>KID is a stand-alone program, that accesses the Parasolid KI / PK independently of any application program, incorporating:</LI>
+<UL>
+<LI>
+<A NAME="50475009_pgfId-273848"></A>the Parasolid library;</LI>
+<LI>
+<A NAME="50475009_pgfId-273849"></A>a basic graphics library;</LI>
+<LI>
+<A NAME="50475009_pgfId-273850"></A>its own Frustrum for file and memory management;</LI>
+<LI>
+<A NAME="50475009_pgfId-273851"></A>a command-line user interface.</LI>
+</UL>
+<LI>
+<A NAME="50475009_pgfId-273852"></A>The KID user interface is a LISP interpreter that allows the Parasolid KI / PK to be called directly and interactively.</LI>
+<P>
+<A NAME="50475009_pgfId-273853"></A>A command is a complete LISP expression, enclosed in brackets, which is read in and evaluated by the driver.</P>
+<P>
+<A NAME="50475009_pgfId-273854"></A>The LISP interpreter is implemented in C and is included within the supplied executable image of KID.</P>
+<LI>
+<A NAME="50475009_pgfId-273855"></A>The user-interface has two levels, which can be combined:</LI>
+<UL>
+<LI>
+<A NAME="50475009_pgfId-273856"></A>object-oriented KID</LI>
+<LI>
+<A NAME="50475009_pgfId-273857"></A>a lower level, more direct interface to the KI / PK called FLICK</LI>
+</UL>
+<LI>
+<A NAME="50475009_pgfId-273858"></A>As quite complex programs can be built up in LISP, without the need for a compiling/relinking cycle, KID is an ideal tool for learning about Parasolid and for the prototyping of ideas before they are coded into an application.</LI>
+<LI>
+<A NAME="50475009_pgfId-273859"></A>KID is used by customers and internally for investigating and reporting faults in Parasolid.</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475009_pgfId-273860"></A>	1.1.1 	LISP</H2>
+
+<H4>
+<A NAME="50475009_pgfId-273861"></A>What is LISP?</H4>
+<P>
+<A NAME="50475009_pgfId-273864"></A><A NAME="50475009_marker-273862"></A><A NAME="50475009_marker-273863"></A>The programming language LISP, or &quot;LISt Processing language&quot;, is one of the oldest programming languages, dating from 1960. Though primarily intended for symbolic processing with applications in artificial intelligence, algebraic computation and theorem proving, in KID it is used as a general purpose interface.</P>
+<P>
+<A NAME="50475009_pgfId-273865"></A>LISP is highly interactive and is thought of as an interpreter as it evaluates symbolic expressions, or s-expressions, which you pass to it. You do not need to compile or link LISP programs.</P>
+<P>
+<A NAME="50475009_pgfId-273866"></A>The language supports a range of programming styles from &quot;Fortran with brackets&quot; to functional programming. Modern implementations are very complex and different from one another.</P>
+<P>
+<A NAME="50475009_pgfId-273867"></A>PARASOLID LISP is provided with a set of standard functions.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475009_pgfId-273868"></A>	1.1.2 	Facilities within KID</H2>
+
+<H4>
+<A NAME="50475009_pgfId-273869"></A>Graphics</H4>
+<P>
+<A NAME="50475009_pgfId-273872"></A><A NAME="50475009_marker-273870"></A><A NAME="50475009_marker-273871"></A>KID is supplied with its own graphical system and device drivers. Functions are available to render items from the kernel in a number of ways. Picking from the screen is used extensively as a method of selection.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273873"></A>Rollback</H4>
+<P>
+<A NAME="50475009_pgfId-273876"></A><A NAME="50475009_marker-273874"></A><A NAME="50475009_marker-273875"></A>It is possible to roll back the kernel via KID functions. A rollmark can be set at the beginning of each command or sequence of commands. If a command fails to complete successfully, the kernel can then be rolled back to the state it was when the rollmark was set.</P>
+<P>
+<A NAME="50475009_pgfId-273877"></A>It is not possible to roll back the driver. After a kernel rollback, the driver and the kernel may be inconsistent.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273878"></A>Help</H4>
+<P>
+<A NAME="50475009_pgfId-273881"></A><A NAME="50475009_marker-273879"></A><A NAME="50475009_marker-273880"></A>The on-line help often provides a convenient way of finding out about objects in KID. It provides information about an object and its properties.</P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475009_pgfId-273882"></A>1.2	Concepts
+
+
+</H1>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475009_pgfId-273883"></A>	1.2.1 	Object-oriented KID</H2>
+<P>
+<A NAME="50475009_pgfId-273886"></A><A NAME="50475009_marker-273884"></A><A NAME="50475009_marker-273885"></A>In any object oriented programming environment, an object is used to represent a collection of data and functions. An object can be used to represent a real thing or an abstract idea.</P>
+
+<H4>
+<A NAME="50475009_pgfId-273887"></A>Objects and classes</H4>
+<P>
+<A NAME="50475009_pgfId-273888"></A>Objects in KID are arranged in a pre-defined class structure and an object can own other sets of objects. An owning object is referred to as a class. The objects in a class represent the same kind of component, e.g. bodies, faces.</P>
+<P>
+<A NAME="50475009_pgfId-280918"></A>&nbsp;</P>
+
+
+
+<IMG SRC="../graphics/kd_chap-4.gif">
+
+<P>
+<A NAME="50475009_pgfId-273923"></A>Figure 1-1 Class tree structure (objects owning objects)</P>
+<P>
+<A NAME="50475009_pgfId-273924"></A>All the information concerning an object, including the functions necessary to manipulate it, are kept within the object. PARASOLID LISP has been extended by the inclusion of object oriented functions and these are used extensively within KID.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273925"></A>Item</H4>
+<P>
+<A NAME="50475009_pgfId-273933"></A><A NAME="50475009_marker-273926"></A><A NAME="50475009_marker-273927"></A><A NAME="50475009_marker-273928"></A><A NAME="50475009_marker-273929"></A><A NAME="50475009_marker-273930"></A><A NAME="50475009_marker-273931"></A><A NAME="50475009_marker-273932"></A>An item exists as a tagged (i.e. uniquely numbered) entity in the kernel. It has a tag which may or may not be known about by KID.</P>
+<P>
+<A NAME="50475009_pgfId-280041"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475009_pgfId-280051"></A>&gt; (define f1 face)  -- define f1 as a member of the face class
+&gt; (f1 pick)  -- pick is a function inherited by the object face
+               and enables a cursor pick from a model drawing.</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475009_pgfId-273936"></A>Objects are used to refer to an item in the kernel. Only an object in a <A NAME="50475009_marker-273937"></A>class below the entity class may refer to an item in this way. An object may refer to more than one item.</P>
+<P>
+<A NAME="50475009_pgfId-273938"></A>One of the main tasks of KID is to maintain the correspondence between items and objects.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273941"></A><A NAME="50475009_marker-273939"></A><A NAME="50475009_marker-273940"></A>Primitives</H4>
+<P>
+<A NAME="50475009_pgfId-273942"></A>Before an item can be created by the kernel it is necessary to supply data to define it. This data is stored in one of the classes below the primitive class. The data may simply be a set of geometric data (point, direction, radius, etc.) or it may also include the names of existing objects.</P>
+<P>
+<A NAME="50475009_pgfId-273943"></A>Most primitive classes have a corresponding create function, their names are usually the name of the type of entity which is created preceded by p_.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273946"></A><A NAME="50475009_marker-273944"></A><A NAME="50475009_marker-273945"></A>Tags</H4>
+<P>
+<A NAME="50475009_pgfId-273947"></A>The tag of an object is one of its properties. This property can be one of the following: </P>
+<UL>
+<LI>
+<A NAME="50475009_pgfId-273948"></A>nil - the object does not have an associated item; </LI>
+<LI>
+<A NAME="50475009_pgfId-273949"></A>an atom - the object refers to a single item; </LI>
+<LI>
+<A NAME="50475009_pgfId-273950"></A>a list of tags which refer to a set of items. To maintain version independence, the set is not ordered and it is not possible to use individual items from the set. For example, it is possible to define a face object which consists of all the faces in a body, and to move all the faces with a single function call.</LI>
+</UL>
+<P>
+<A NAME="50475009_pgfId-273951"></A>All communication with the kernel interface is via tags, so you use an object which refers to an item to perform a kernel function on the item.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273954"></A><A NAME="50475009_marker-273952"></A><A NAME="50475009_marker-273953"></A>Dead Tags</H4>
+<P>
+<A NAME="50475009_pgfId-273955"></A>Objects which refer to items which have been deleted, for example after a rollback, contain dead tags. Some caution should be exercised in this case, and <A HREF="kd_chap.04.html#50475012_38413">&quot;undefine&quot;</A> used to remove the dead object. It is possible that a dead tag may be unintentionally passed to the kernel. This is always trapped by the kernel and an ifail error message returned.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273961"></A><A NAME="50475009_marker-273959"></A><A NAME="50475009_marker-273960"></A>Errors</H4>
+<P>
+<A NAME="50475009_pgfId-273962"></A>Missing mandatory parameters give an error to the user.</P>
+<P>
+<A NAME="50475009_pgfId-273963"></A>To rectify you should repeat the KID command after first setting the properly named parameter on the object. For example:</P>
+<P>
+<A NAME="50475009_pgfId-280060"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475009_pgfId-280070"></A>&gt; (define b0 p_cone)
+&gt; (b0 lrad 10; height 20; create)
+            --&gt; &quot;b0 should first have parameter urad specified&quot;
+            ...(followed by lisp error 42)
+&gt; (b0 urad 2; create)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475009_pgfId-273965"></A>Function arguments</H4>
+<P>
+<A NAME="50475009_pgfId-273969"></A><A NAME="50475009_marker-273966"></A><A NAME="50475009_marker-273967"></A>The majority of <A NAME="50475009_marker-273968"></A>object functions use predefined properties of the object as their arguments. Some functions use both predefined properties and a single argument given at the time of the call, for example:</P>
+<P>
+<A NAME="50475009_pgfId-280075"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475009_pgfId-280085"></A>&gt; ( &lt;object&gt; transmit `&lt;file_name&gt;)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475009_pgfId-273971"></A>1.3	Starting/terminating a KID session
+
+
+</H1>
+
+<H4>
+<A NAME="50475009_pgfId-273972"></A>Starting</H4>
+<P>
+<A NAME="50475009_pgfId-273974"></A><A NAME="50475009_marker-273973"></A>To run the KID program, for example, on VMS platform, type:</P>
+<PRE><A NAME="50475009_pgfId-273975"></A>$ run PARASOLID:kid.exe</PRE>
+<P>
+<A NAME="50475009_pgfId-273976"></A>where PARASOLID is a logical name defining the pathname to kid.exe.</P>
+<P>
+<A NAME="50475009_pgfId-273977"></A>When the program is ready the <CODE>
+&gt;</CODE>
+ prompt is shown:</P>
+<P>
+<A NAME="50475009_pgfId-280090"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475009_pgfId-280100"></A>restore: finished in 2.149999999999s
+
+*** KID version &gt;v60&lt;
+
+switch to journal file kid.jou
+&gt;</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475009_pgfId-273979"></A>For further information on running KID on all supported platforms, see <A HREF="in_chap.06.html#0_37581">Chapter 5, &quot;Using Parasolid&quot;</A>, of the <EM><A HREF=../in_index.html>Installation Notes</A></EM>.</P>
+
+
+<H4>
+<A NAME="50475009_pgfId-273983"></A>Terminating</H4>
+<P>
+<A NAME="50475009_pgfId-273984"></A>To terminate a KID session type:</P>
+<PRE><A NAME="50475009_pgfId-273985"></A>&gt; (quit)</PRE>
+<P>
+<A NAME="50475009_pgfId-110680"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.03.html">LISP in KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

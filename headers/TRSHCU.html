@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<TITLE>TRSHCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>TRSHCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_trim.html>PK_BODY_trim</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+TRSHCU ( sheet, ncurvs, curvs, nopts, opts, direct, edges, nedges, which, 
+==========================================================================
+         original, ifail )
+         =================
+
+  Trim sheet body with curves
+
+Receives:
+  KI_tag_body              *sheet          --- Sheet body to trim
+  KI_int_nitems            *ncurvs         --- number of curves supplied
+  KI_tag_curve              curvs[ncurvs]  --- curves to trim sheet
+  KI_int_nitems            *nopts          --- no of trimming options supplied
+  KI_cod_trsh               opts[nopts]    --- trimming options
+  KI_vec_direction          direct         --- direction of projection
+
+Returns:
+ &lt;KI_tag_list_edge&gt;        *edges          --- edges imprinted
+ &lt;KI_int_nitems&gt;           *nedges         --- number of edges
+ &lt;KI_tag_list_curve&gt;       *which          --- which curve edge is derived from
+ &lt;KI_tag_list_int&gt;         *original       --- whether edge is original
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_curves_dont_meet       curves not a closed loop
+  KI_unsuitable_entity      sheet handed in has no imprintable faces
+                            geometry of wrong type
+  KI_failed_to_trim         trim would not split the sheet
+  KI_fragment               trim would fragment the sheet
+  KI_invalid_geometry       geometry fails to pass checks
+  KI_bad_selection_code     inappropriate property
+  KI_contradictory_request  invalid combination of options
+  KI_not_sheet              body is not a sheet
+
+Description:
+
+      This function imprints a list of curves onto a sheet body. It will also
+  trim the sheet body if requested. Which part of the sheet body is to be kept
+  is controlled by options as described below. The sheet body may have any
+  number of faces. The method of projection of the curves is also controlled
+  by options. Consecutive curves in a closed loop or open string of curves
+  should meet at their ends to modeller tolerance.
+
+      The returned arguments are 3 parallel lists - the first of these is a
+  list of the edges imprinted; the second is a list of curve tags which is
+  used to indicate which curve each edge is derived from and the third is a
+  list of logicals indicating whether each edge is an original edge ( where
+  a curve has projected onto an existing edge ) or a new one. KI_true means
+  that the edge is original.
+
+      The only method of projection supported at present is where the curves
+  are projected onto the body along a given direction given by the 'direct'
+  argument. The option for this is TRSHPD. Each point on one of the curves
+  should only have one image under projection on the body - i.e. the sheet
+  should not be self-obscuring when viewed down the projection direction.
+
+      The option TRSHTR controls whether the function should also perform a
+  trim operation on the sheet. If this is not supplied then no trimming is
+  done and the operation is similar to a SCRIBE or IMPRINT. If it is supplied
+  then a further token must be supplied which indicates which face-set of the
+  sheet is to survive the trimming operation:
+
+      TRSHLC - The face-set to the left of the first curve will be retained.
+      TRSHRC - The face-set to the right of the first curve will be retained.
+      TRSHIL - The face-set inside the loop of curves will be retained
+      TRSHOL - The face-set outside the loop of curves will be retained
+
+      These last two options must only be supplied if the curves provided
+  constitute a closed, planar loop. If TRSHTR is selected then the imprinted
+  edges must split the sheet into at least two face-sets.
+
+      The curves supplied must be of type TYCUPA, TYCUEL, TYCUCI or TYCUTR. If
+  they are trimmed curves then the underlying curves mustbe of type TYCUPA,
+  TYCUEL, TYCUCI or TYCUST.
+
+
+</PRE>
+</BODY>
+</HTML>

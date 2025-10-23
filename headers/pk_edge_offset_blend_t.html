@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_EDGE_offset_blend_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_EDGE_offset_blend_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+typedef int PK_EDGE_offset_blend_t;
+
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_hollow_o_t.html>PK_BODY_hollow_o_t</A><br>
+    <A HREF=../headers/pk_body_offset_o_t.html>PK_BODY_offset_o_t</A><br>
+    <A HREF=../headers/pk_body_thicken_o_t.html>PK_BODY_thicken_o_t</A><br>
+    <A HREF=../headers/pk_face_hollow_o_t.html>PK_FACE_hollow_o_t</A><br>
+    <A HREF=../headers/pk_face_offset_o_t.html>PK_FACE_offset_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This datatype is used to select advanced offset with blends.
+
+The effect of advanced offset with blends is to replace the offset edge which
+would have otherwise resulted with a blended face of uniform radius, subject
+to the following requirements.
+
+* The edge lies between two non-rubber faces.
+* The offset distances applied to the two faces are equal in magnitude, the
+  resulting blend will have radius equal to this value.
+* The faces are both offset to the same side of their original positions.
+* The 'convexity' of the original edge satisfies the convexity indicated
+  by the option value. Edges of mixed convexity are not suitable for blending
+  with this option except in the case where an otherwise convex or concave
+  edge is smooth at one or both of its ends.
+* Further requirements specific to any function offering this option will be
+  documented with that function.
+
+For the purpose of this option 'convexity' refers to the 'visual' convexity
+of the original edge when viewed from the side of the original faces on
+which the offset faces lie. There is no direct dependence on face normal
+direction but an indirect dependence in that the 'side' of the original face
+on which an offset face lies depends on face normal direction and the
+sign of the offset distance applied to that face.
+
+It has the values:
+
+    PK_EDGE_offset_blend_no_c:       Offset edges are not blended.
+
+    PK_EDGE_offset_blend_convex_c:   The effect of the operation is to blend
+                                     the offset edge which would otherwise
+                                     have resulted - convex edges only.
+
+This option results in "class migration". The class of the modified
+topology is not necessarily the same as the class of the original topology
+from which it was derived. This means that failing entities reported in
+<A HREF=../headers/pk_topol_local_r_t.html>PK_TOPOL_local_r_t</A> may not be of the class typical for the status value.
+See documentation in <A HREF=../headers/pk_topol_local_r_t.html>PK_TOPOL_local_r_t</A> for further details.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

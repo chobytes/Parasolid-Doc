@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BLENDSF_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BLENDSF_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+    struct PK_BLENDSF_sf_s
+        {
+        <A HREF=../headers/pk_geom_t.html>PK_GEOM_t</A>     geom_1;       --- first supporting geometry
+        <A HREF=../headers/pk_geom_t.html>PK_GEOM_t</A>     geom_2;       --- second supporting geometry
+        double        radii[2];     --- blend surface radii
+        <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>    spine;        --- blend spine
+        <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A> spine_extent; --- parameter range of spine
+        };
+    typedef struct PK_BLENDSF_sf_s PK_BLENDSF_sf_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure is the standard form of a blendsf: a rolling ball blend surface.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_blendsf_ask.html>PK_BLENDSF_ask</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The surface is defined by:
+
+ - Two supporting geometries, <B>'geom_1'</B> and <B>'geom_2'</B>, to which the blendsf is
+   tangential.
+ - Two <B>'radii'</B> whose common magnitude is the radius of the rolling ball and
+   whose algebraic sign determines on which side of each supporting surface
+   the blendsf lies.
+ - A <B>'spine'</B> curve which is the locus of the centre of the rolling ball.
+ - A <B>'spine_extent'</B>, which is the parameter range of the <B>'spine'</B> over which
+   the blendsf is defined.
+
+<B>'spine'</B> is the intersection of a surface offset from <B>'geom_1'</B> by radii[0] and a
+surface offset from <B>'geom_2'</B> by radii[1].  When a value in <B>'radii'</B> is positive
+then the offset is in the same direction as the surface normal ( as returned
+by <A HREF=../headers/pk_surf_eval_with_normal.html>PK_SURF_eval_with_normal</A> ).  When a value in <B>'radii'</B> is negative, then the
+offset is in the opposite direction to the surface normal.
+
+A blendsf is parameterised as:
+
+    R(u,v) = C(u) + rX(u)cos(va(u)) + rY(u)sin(va(u))
+
+where:
+
+    - C is the <B>'spine'</B> curve
+    - r is the magnitude of `radii[0]' and `radii[1]'
+    - u has the range <B>'spine_extent'</B>
+    - R(u,0) and R(u,1) are the curves where the blendsf meets the supporting
+      geometries.
+    - X(u) is in the direction R(u,0) - C(u)
+    - X(u) and Y(u) are unit vectors such that dC(u)/du, X(u) and Y(u) form
+      an orthogonal set
+    - a(u) is the angle subtended by points R(u,0) and R(u,1) at the spine
+    - 0 &lt;= v &lt;= 1
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

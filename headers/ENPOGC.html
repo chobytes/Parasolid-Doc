@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+<TITLE>ENPOGC</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENPOGC</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_eval_curvature.html>PK_CURVE_eval_curvature</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENPOGC ( curve, coords, tangnt, prnorm, binorm, curvat, ifail )
+===============================================================
+
+  Enquire point on general curve.
+
+Receives:
+  KI_tag_curve             *curve          --- curve enquired of
+  KI_vec_position           coords         --- position of interest on curve
+
+Returns:
+  KI_vec_normal             tangnt         --- tangent direction ratio
+  KI_vec_direction          prnorm         --- normal direction ratio
+  KI_vec_normal             binorm         --- binormal direction ratio
+  KI_dbl_curvature         *curvat         --- curvature
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_at_terminator          coords at terminator of curve
+  KI_not_on_curve           coords not within resolution distance of curve
+  KI_invalid_geometry       the curve fails to pass checks
+
+Description:
+  Calculates the tangent, principal normal, binormal and curvature of the
+  curve at the given point. The first three are returned as direction
+  ratios (normalised vectors).
+
+  The application program should check the curvature, and ignore the
+  normals if the curvature is very small.
+
+  An example where this would occur is a straight line, which of course
+  has a curvature of zero. In this case the principal normal and binormal
+  directions are not returned.
+
+  The curve must be capable of passing the checks imposed by CHCKEN.
+  The self intersection check is only performed if the appropriate option is set
+  (see SEINTP).
+
+</PRE>
+</BODY>
+</HTML>

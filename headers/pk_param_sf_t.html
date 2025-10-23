@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_PARAM_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_PARAM_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_PARAM_sf_s
+    {
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>       range;        --- range containing all parameter values
+    <A HREF=../headers/pk_param_bound_t.html>PK_PARAM_bound_t</A>    bound[2];     --- token describing entity bounds
+    <A HREF=../headers/pk_param_periodic_t.html>PK_PARAM_periodic_t</A> periodic;     --- token describing entity periodicity
+    <A HREF=../headers/pk_param_form_t.html>PK_PARAM_form_t</A>     form;         --- token describing entity form
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        continuous;   --- whether continuous
+    };
+typedef struct PK_PARAM_sf_s PK_PARAM_sf_t;
+
+</B>
+<A NAME="description"></A>
+<I>This standard form describes the parameterisation of a geometric entity in
+one parametric direction.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_ask_param.html>PK_CURVE_ask_param</A><br>
+    <A HREF=../headers/pk_surf_ask_params.html>PK_SURF_ask_params</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'range'</B>:
+   an interval defining a range containing all parameter values. For all
+   surfaces other than meshes, all values within the range are valid parameter
+   values. In the case of meshes, the set of parameter values will be a strict
+   subset of the given range. If the parametric range is infinite, then the
+   values given here will be sufficient to include all that part of the
+   geometric entity within the size box.
+
+<B>'bound'</B>:
+   tokens describing the boundedness at either end of the parameter range.
+   bound[0] describes the limit range.value[0], and bound[1] describes the
+   limit range.value[1].  The token is one of the following:
+
+      <A HREF=../headers/pk_param_bound_t.html>PK_PARAM_bound_infinite_c</A>    entity extends infinitely
+      <A HREF=../headers/pk_param_bound_t.html>PK_PARAM_bound_extendable_c</A>  entity may be extended in this direction
+      <A HREF=../headers/pk_param_bound_t.html>PK_PARAM_bound_bound_c</A>       entity may not be parametrically extended
+      <A HREF=../headers/pk_param_bound_t.html>PK_PARAM_bound_closed_c</A>      ends of parameter range are coincident
+      <A HREF=../headers/pk_param_bound_t.html>PK_PARAM_bound_degenerate_c</A>  for surfaces only, parameter boundary has
+                                   no 3D extent
+
+<B>'periodic'</B>:
+   token indicating whether the parameterisation is periodic.  It has one of
+   the values:
+
+      <A HREF=../headers/pk_param_periodic_t.html>PK_PARAM_periodic_no_c</A>       not periodic
+      <A HREF=../headers/pk_param_periodic_t.html>PK_PARAM_periodic_yes_c</A>      periodic continuously differentiable at seam
+      <A HREF=../headers/pk_param_periodic_t.html>PK_PARAM_periodic_seamed_c</A>   periodic but not continuously
+                                   differentiable across seam
+
+   Note that when <B>'periodic'</B> has one of the values <A HREF=../headers/pk_param_periodic_t.html>PK_PARAM_periodic_yes_c</A> or
+   <A HREF=../headers/pk_param_periodic_t.html>PK_PARAM_periodic_seamed_c</A>, then the parametric period is the difference
+   between range.value[0] and range.value[1].
+
+
+<B>'form'</B>:
+   token indicating the relationship between the parameterisation and 3-space
+   extent.  It takes one of the following values:
+
+      <A HREF=../headers/pk_param_form_t.html>PK_PARAM_form_linear_c</A>       parameter is proportional to distance along
+                                   a straight line.  For a surface the straight
+                                   line corresponds to a constant value of the
+                                   other parameter
+      <A HREF=../headers/pk_param_form_t.html>PK_PARAM_form_circular_c</A>     parameter represents an angle round a circle
+                                   For a surface, the circle corresponds to a
+                                   constant value of the other parameter.
+      <A HREF=../headers/pk_param_form_t.html>PK_PARAM_form_mesh_c</A>         surface is a mesh. See <A HREF="../chapters/fd_chap.090.html#50409878_pgfId-339100">here</A> for
+                                   more information on mesh parameterisation.
+      <A HREF=../headers/pk_param_form_t.html>PK_PARAM_form_any_c</A>          not one of the above
+
+<B>'continuous'</B>:
+   if PK_LOGICAL_true then all derivatives are continuous, otherwise all
+   derivatives are not necessarily continuous.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<TITLE>CRFGSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRFGSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRFGSU ( keylen, key, nspace, nints, ivals, nreals, rvals, surf, ifail )
+========================================================================
+
+  Creates a foreign surface.
+
+Receives:
+  KI_int_nchars            *keylen         --- Length of surface key
+  KI_chr_key                key[keylen]    --- Surface key
+  KI_int_nitems            *nspace         --- Space required by foreign surface
+                                           --- (specified in doubles)
+ &lt;KI_int_nitems&gt;           *nints          --- Number of integer values
+  int                       ivals[nints]   --- Array of integer values
+ &lt;KI_int_nitems&gt;           *nreals         --- Number of real values
+  double                    rvals[nreals]  --- Array of real values
+
+Returns:
+  KI_tag_surface           *surf           --- surface.
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_FG_evaluator_error     Surface evaluator failure
+  KI_FG_modelling_error     Cannot model with this surface
+  KI_FG_data_not_found      Surface evaluator data not found
+  KI_FG_integer_data_error  FG integer data error
+  KI_FG_real_data_error     FG real data error
+  KI_FG_data_alloc_error    FG data allocation fault
+  KI_FG_evaluator_not_found Surface evaluator not found
+
+Description:
+  This function creates a foreign surface, i.e. one whose evaluator is external
+  to Parasolid. This function call will only produce a surface if an appropriate
+  surface evaluator has been linked to Parasolid. The surface is identified
+  by its key. Any additional data required by the evaluator is supplied in
+  arrays containing integer and real values.
+
+  This KI call will result in the execution of the initialisation routines of
+  the FG evaluator system. Function arguments are as follow:
+
+  'keylen'  is the length or number of characters contained within the 'key'.
+
+  'key'     to uniquely identify the surface evaluator.
+
+  'nspace'  specifies the length of the block of data to be initialised by the
+            foreign surface loader.
+
+  'nints', 'ivals', 'nreals', 'rvals' specify the numerical data supplied to
+            the surface evaluator.
+
+  'surf'   is the returned tag of a foreign surface, if the operation succeeds.
+
+
+</PRE>
+</BODY>
+</HTML>

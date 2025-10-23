@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_facet_choice_2_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_facet_choice_2_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_facet_choice_2_o_s
+    {
+    int             o_t_version;           --- version of this PK option struct
+    int             max_facets_per_strip;  --- (10000)
+    <A HREF=../headers/pk_facet_split_strip_t.html>PK_facet_split_strip_t</A>                 --- whether to split strips so that
+                    split_strips;          --- no strip spans more than a
+                                           --- single period
+                                           --- (<A HREF=../headers/pk_facet_split_strip_t.html>PK_facet_split_strip_no_c</A>)
+    <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_t</A>            --- whether to force surface
+                    consistent_parms;      --- parameters for facet vertices
+                                           --- within a given facet on a
+                                           --- periodic surface to lie within
+                                           --- half a period of each other
+                                           --- (<A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_no_c</A>)
+    <A HREF=../headers/pk_facet_smp_t.html>PK_facet_smp_t</A>  smp;                   --- whether to multi-thread
+                                           --- facetting(<A HREF=../headers/pk_facet_smp_t.html>PK_facet_smp_no_c</A>)
+    <A HREF=../headers/pk_topol_facet_tables_cb_f_t.html>PK_TOPOL_facet_tables_cb_f_t</A>           --- callback function for returning
+                    facet_tables_cb;       --- facet tables (NULL)
+    <A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>    facet_tables_context;  --- context for callback (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    thread_safe;           --- whether the callback function is
+                                           --- thread safe(PK_LOGICAL_false)
+    <A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_t</A>
+                    report_pts_off_topol;  --- whether to report facet points
+                                           --- that lie off the model topology
+                                           --- (<A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    facet_fin;             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    strip_boundary;        --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    strip_zigzag;          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    fin_fin;               --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    fin_data;              --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    data_point_idx;        --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    data_normal_idx;       --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    data_param_idx;        --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    data_deriv_idx;        --- (PK_LOGICAL_false) [PF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    data_curv_idx;         --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    point_vec;             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    normal_vec;            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    param_uv;              --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    deriv_dp;              --- (PK_LOGICAL_false) [PF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    deriv_d2p;             --- (PK_LOGICAL_false) [PF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    curv_dirs;             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    facet_face;            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    strip_face;            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    fin_edge;              --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    point_topol;           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    fin_topol;             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    error_object;          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    incr_faces;            --- For future use
+                                           --- (PK_LOGICAL_false)
+    };
+    typedef struct PK_TOPOL_facet_choice_2_o_s PK_TOPOL_facet_choice_2_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure selects how the facets are to be output and which tables are to
+be returned. See <A HREF="../chapters/fd_chap.111.html#50409902_pgfId-295196">here</A> for more information.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_o_t_version_incorrect  (MILD) option structure not initialised
+                                           correctly
+    PK_ERROR_bad_combination        (MILD) A bad combination of tables has been
+                                           requested, or an inappropriate
+                                           combination of options have been set
+                                           with <B>'report_pts_off_topol'</B>.
+                                           See below for details.
+    PK_ERROR_callback_failed (MILD/SEVERE) Application callback function did
+                                           not return PK_ERROR_no_errors.
+                                           Severe error only returned if
+                                           <B>'incremental_facetting'</B> not set to
+                                           <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_no_c</A>.
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_2_o_t.html>PK_TOPOL_facet_2_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The PK_TOPOL_facet_choice_2_o_t structure specifies how the application wishes
+<A HREF=../headers/pk_topol_facet_2.html>PK_TOPOL_facet_2</A> to return the facets generated and which tables should be
+returned.
+
+Facets may be output individually or as strips.  A strip is a sequence of
+connected triangular facets such that each facet has two immediately adjacent
+facets except for the end facets, which have only one.  The value of
+<B>'max_facet_sides'</B> in <A HREF=../headers/pk_topol_facet_mesh_o_t.html>PK_TOPOL_facet_mesh_o_t</A> is ignored when facet strips are
+output: the facets are always triangular.
+
+Each of the <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> fields may be set by the application to the value
+PK_LOGICAL_true or PK_LOGICAL_false indicating whether or not the application
+wishes <A HREF=../headers/pk_topol_facet_2.html>PK_TOPOL_facet_2</A> to return this particular table (via the returned
+<A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A> structure).
+
+A facet mesh is defined by tables of facet topology, geometry and tracking
+data. Facet topology is described in terms of facet, strip, fin and vertex
+indices.
+
+The <B>'facet_fin'</B>, <B>'strip_boundary'</B> and <B>'strip_zigzag'</B> tables give indices into
+the <B>'fin_data'</B> table.  The <B>'fin_data'</B> table then gives indices into the
+<B>'data_point_idx'</B>, <B>'data_normal_idx'</B>, <B>'data_param_idx'</B>, <B>'data_deriv_idx'</B> and
+<B>'data_curv_idx'</B> tables.  These tables in turn give indices into the geometry
+tables: <B>'point_vec'</B>, <B>'normal_vec'</B>, <B>'param_uv'</B>, <B>'deriv_dp'</B>, <B>'deriv_d2p'</B> and
+<B>'curv_dirs'</B>.  The tracking tables can be used to match facets, strips and fins
+to faces and edges in the original part.
+
+Note: for topology with facet geometry, derivatives are not meaningful.  If
+      derivatives are requested for an entity with facet geometry an entry of
+      <A HREF=../headers/pk_facet_fault_t.html>PK_facet_fault_topol_deriv_c</A> will be returned in the <B>'error_object'</B> table
+      (if requested) for this entity indicating that the dp and/or d2p values
+      referenced by this entity should not be used.
+
+DERIVATIVES AND SURFACE NORMALS
+If derivatives are requested, the cross product dPdu X dPdv points in the
+same direction as the surface normal. This is true except in the case where
+a transform is supplied for which calling <A HREF=../headers/pk_transf_classify.html>PK_TRANSF_classify</A> on the transform
+returns a matrix_type of <A HREF=../headers/pk_matrix_type_t.html>PK_matrix_type_reflection_c</A>. In this case, each
+dPdu X dPdv points in the opposite direction to the corresponding surface
+normal.
+
+MESH TOPOLOGY
+Each topology entity (facet, strip, fin or vertex) in the facet mesh is
+connected to other entities in the mesh. The complete connectivity data are
+described as the facet mesh topology.
+
+FACET STRIPS:
+Requesting the <B>'strip_boundary'</B> and/or the <B>'strip_zigzag'</B> table will result in
+facet strips being output via the tables.  The <B>'max_facets_per_strip'</B> option
+can be used to limit the number of facets per strip.
+
+The <B>'split_strips'</B> option allows facet strips on periodic surfaces to be split
+so that the strips do not span more than a single period on the surface.  The
+permitted values for the <B>'split_strips'</B> option are:
+                PK_facet_split_strips_no_c  (default)
+                PK_facet_split_strips_yes_c
+
+The control of the parameterisation of the strip can be obtained via the
+<B>'consistent_parms'</B> option described below.
+
+The <B>'strip_face'</B> table can only be requested if the <B>'strip_boundary'</B> and/or
+the <B>'strip_zigzag'</B> tables have been requested.  Otherwise the error
+PK_ERROR_bad_combination is returned.
+
+MULTI-THREADING:
+The <B>'smp'</B> option allows facetting to be multi-threaded.  The permitted values
+for the <B>'smp'</B> option are:
+                <A HREF=../headers/pk_facet_smp_t.html>PK_facet_smp_no_c</A>  (default)
+                <A HREF=../headers/pk_facet_smp_t.html>PK_facet_smp_body_c</A>
+
+If set to <A HREF=../headers/pk_facet_smp_t.html>PK_facet_smp_body_c</A> then different bodies (or faces from different
+bodies) may be facetted concurrently provided that multi-threading has been
+enabled by a call to <A HREF=../headers/pk_session_set_smp.html>PK_SESSION_set_smp</A>.  Instances of a particular body (or
+faces of a body) will appear consecutively in the tables but the order of the
+bodies themselves may vary between calls to <A HREF=../headers/pk_topol_facet_2.html>PK_TOPOL_facet_2</A>.
+
+FACET TABLE CALLBACK:
+The option <B>'facet_tables_cb'</B> enables the facet data to be returned via a
+callback function on a body-by-body basis instead of through the usual faceting
+tables.
+
+If faceting an array of faces or a mixture of bodies and faces, faces from the
+same body (with the same transform) will be output in the same callback. As
+well as providing the facet data for a given body, the associated transform
+will also be returned via the callback; this means that facets for different
+instances of the same body will be output in different callbacks.
+
+If no callback function is supplied, faceting data for all bodies/faces being
+faceted will output through a single <A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A> which can only be
+returned once all bodies/faces have been faceted.
+
+The callback function returns a <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> to Parasolid to indicate
+whether it wishes to continue or abort. If PK_ERROR_no_errors is returned,
+Parasolid will continue the operation as usual. If any other error code is
+returned, Parasolid will abort facetting and return PK_ERROR_callback_failed
+from <A HREF=../headers/pk_topol_facet_2.html>PK_TOPOL_facet_2</A>. If incremental facetting is enabled, this error code
+will be designated as a severe error, otherwise it will be designated as a mild
+error.
+
+The <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> <B>'thread_safe'</B> specifies whether the callback function may be
+called from more than one thread simultaneously.  If set to PK_LOGICAL_true,
+and SMP is enabled within Parasolid and the <B>'smp'</B> option is set to
+<A HREF=../headers/pk_facet_smp_t.html>PK_facet_smp_body_c</A>, then the callback may be called from multiple threads. In
+this case, the application should ensure that both the callback function and
+the <A HREF=../headers/pk_memory_frustrum_t.html>PK_MEMORY_frustrum_t</A> functionality are thread-safe. If set to
+PK_LOGICAL_false, then Parasolid will ensure that the callback function is not
+called simultaneously from multiple threads, even when SMP is switched on in
+Parasolid.
+
+The tables supplied to the callback will not be freed by Parasolid and must
+instead be freed by the application. To do so, it must first call
+<A HREF=../headers/pk_topol_facet_2_r_f.html>PK_TOPOL_facet_2_r_f</A> using the pointer provided, and then call <A HREF=../headers/pk_memory_free.html>PK_MEMORY_free</A>
+to free the <A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A> structure itself.
+
+REPORT POINTS OFF TOPOL:
+The <B>'report_pts_off_topol'</B> option controls whether facet points that lie off
+the model topology are reported in the <B>'error_object'</B> table. The options are:
+                <A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_no_c</A> (default)
+                <A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_off_eds_c</A>
+                <A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_off_tpl_c</A>
+
+If set to <A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_off_eds_c</A>, any facet points that lie off the model
+edges are reported in the <B>'error_object'</B> table.
+
+If set to <A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_off_tpl_c</A>, any facet points that lie off the model
+edges and any internal facet points (i.e. facet points that do not lie on a
+face boundary) that lie off the model faces are reported in the <B>'error_object'</B>
+table.
+
+NOTE: If <B>'report_points_off_topol'</B> is set to <A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_off_eds_c</A> or
+<A HREF=../headers/pk_facet_pt_report_t.html>PK_facet_pt_report_off_tpl_c</A> the <B>'error_object'</B> table must be requested; the
+<B>'match'</B> option in <A HREF=../headers/pk_topol_facet_mesh_2_o_t.html>PK_TOPOL_facet_mesh_2_o_t</A> must be set to
+<A HREF=../headers/pk_facet_match_t.html>PK_facet_match_topol_c</A>; and the <B>'quality'</B> option in <A HREF=../headers/pk_topol_facet_mesh_2_o_t.html>PK_TOPOL_facet_mesh_2_o_t</A>
+must be set to <A HREF=../headers/pk_facet_quality_t.html>PK_facet_quality_improved_c</A>; otherwise the error
+PK_ERROR_bad_combination will be returned.
+
+CONSISTENT PARAMETERS:
+The <B>'consistent_parms'</B> option only has an effect on periodic surfaces, setting
+this to either <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_su_c</A> or PK_face_consistent_parms_fa_c
+ensures surface parameters for facet vertices within a given facet lie within
+half a period of each other.
+
+If facets are being output as strips each strip will be composed of
+consistently parameterised triangular facets.  All triplets of vertices
+within the strip will have surface parameters that lie within half a period of
+each other.
+
+If the <B>'consistent_parms'</B> option is set to <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_su_c</A> then
+one facet vertex within the facet or strip will have parameters in the first
+period and all other vertices within the facet or strip will be made
+consistent with this.
+
+Setting <B>'consistent_parms'</B> to <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_fa_c</A> only produces
+different results from <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_su_c</A> if the facets do not
+cover the whole of the period.  In this case each facet vertex is given a
+unique parameter value. Facet vertices that fall within the face uvbox, as
+returned from <A HREF=../headers/pk_face_find_uvbox.html>PK_FACE_find_uvbox</A>, will have parameters lying inside this box.
+All other facet vertices will be made consistent with those inside the face's
+uvbox.  In cases where the facets do not span the whole of the period but the
+face uvbox is the whole period, some facet vertices may not lie inside the
+face's uvbox.
+
+The permitted values for the <B>'consistent_parms'</B> option are:
+                <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_no_c</A>  (default)
+                <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_su_c</A>
+                <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_fa_c</A>
+
+
+TABLES:
+In the table below if 'field' is set to PK_LOGICAL_true the corresponding
+'table' will be returned.
+
+type            field                       table
+--------        -------------------         ---------------------------------
+topology        <B>'facet_fin'</B>                 <A HREF=../headers/pk_topol_fctab_facet_fin_t.html>PK_TOPOL_fctab_facet_fin_t</A>
+
+topology        <B>'strip_boundary'</B>            <A HREF=../headers/pk_topol_fctab_strip_boundary_t.html>PK_TOPOL_fctab_strip_boundary_t</A>
+
+topology        <B>'strip_zigzag'</B>              <A HREF=../headers/pk_topol_fctab_strip_zigzag_t.html>PK_TOPOL_fctab_strip_zigzag_t</A>
+
+topology        <B>'fin_fin'</B>                   <A HREF=../headers/pk_topol_fctab_fin_fin_t.html>PK_TOPOL_fctab_fin_fin_t</A>
+
+topology        <B>'fin_data'</B>                  <A HREF=../headers/pk_topol_fctab_fin_data_t.html>PK_TOPOL_fctab_fin_data_t</A>
+
+topology        <B>'data_point_idx'</B>            <A HREF=../headers/pk_topol_fctab_data_point_t.html>PK_TOPOL_fctab_data_point_t</A>
+
+topology        <B>'data_normal_idx'</B>           <A HREF=../headers/pk_topol_fctab_data_normal_t.html>PK_TOPOL_fctab_data_normal_t</A>
+
+topology        <B>'data_param_idx'</B>            <A HREF=../headers/pk_topol_fctab_data_param_t.html>PK_TOPOL_fctab_data_param_t</A>
+
+topology        <B>'data_deriv_idx'</B>            <A HREF=../headers/pk_topol_fctab_data_deriv_t.html>PK_TOPOL_fctab_data_deriv_t</A>
+
+topology        <B>'data_curv_idx'</B>             <A HREF=../headers/pk_topol_fctab_data_curv_t.html>PK_TOPOL_fctab_data_curv_t</A>
+
+geometry        <B>'point_vec'</B>                 <A HREF=../headers/pk_topol_fctab_point_vec_t.html>PK_TOPOL_fctab_point_vec_t</A>
+
+geometry        <B>'normal_vec'</B>                <A HREF=../headers/pk_topol_fctab_normal_vec_t.html>PK_TOPOL_fctab_normal_vec_t</A>
+
+geometry        <B>'param_uv'</B>                  <A HREF=../headers/pk_topol_fctab_param_uv_t.html>PK_TOPOL_fctab_param_uv_t</A>
+
+geometry        <B>'deriv_dp'</B>                  <A HREF=../headers/pk_topol_fctab_deriv_dp_t.html>PK_TOPOL_fctab_deriv_dp_t</A>
+
+geometry        <B>'deriv_d2p'</B>                 <A HREF=../headers/pk_topol_fctab_deriv_d2p_t.html>PK_TOPOL_fctab_deriv_d2p_t</A>
+
+geometry        <B>'curv_dirs'</B>                 <A HREF=../headers/pk_topol_fctab_curv_dirs_t.html>PK_TOPOL_fctab_curv_dirs_t</A>
+
+tracking        <B>'facet_face'</B>                <A HREF=../headers/pk_topol_fctab_facet_face_t.html>PK_TOPOL_fctab_facet_face_t</A>
+
+tracking        <B>'strip_face'</B>                <A HREF=../headers/pk_topol_fctab_strip_face_t.html>PK_TOPOL_fctab_strip_face_t</A>
+
+tracking        <B>'fin_edge'</B>                  <A HREF=../headers/pk_topol_fctab_fin_edge_t.html>PK_TOPOL_fctab_fin_edge_t</A>
+
+tracking        <B>'point_topol'</B>               <A HREF=../headers/pk_topol_fctab_point_topol_t.html>PK_TOPOL_fctab_point_topol_t</A>
+
+tracking        <B>'fin_topol'</B>                 <A HREF=../headers/pk_topol_fctab_fin_topol_t.html>PK_TOPOL_fctab_fin_topol_t</A>
+
+tracking        <B>'error_object'</B>              <A HREF=../headers/pk_topol_fctab_error_object_t.html>PK_TOPOL_fctab_error_object_t</A>
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.019.html#50409800_pgfId-300830", " is continuous up to second order in the <B>loft</B> direction and each curve lies along a constant", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-301916", " resulting surface can be made periodic in the <B>loft</B> direction in which case the surface returns to", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-302637", " Similar to splining, a knot vector for the <B>loft</B> direction may be supplied. ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-294823", " You can additionally constrain the geometry of a <B>loft</B> across profiles by specifying any of the following:", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-301343", " geometry at the start or end of the <B>loft</B> ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-301345", " control the geometry in the direction of the <B>loft</B> ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-545230", "C++\Code Examples\Modelling\Profiling\<B>Loft</B> ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-298327", " Figure 41-2 <B>Loft</B> twist ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297438", " (in the case of a start or end <B>loft</B>), as shown in ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295334", " the direction of the profile orientation, and the <B>loft</B> direction (taken in that order). All the profiles", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-534213", " You specify derivative conditions for a <B>loft</B> operation using a PK_BODY_loft_deriv_conds_t structure. Derivative conditions can", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-534236", " at the start or end of a non-periodic <B>loft</B>, providing there are no vector, face, or planar", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-534272", " planar clamp, the start or end of the <B>loft</B> is clamped parallel to a specified plane. The", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-534313", " Figure 41-7 Constraining the curvature of the <B>loft</B> when applying face clamps ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295516", " If PK_PARAM_periodic_yes_c , the <B>loft</B> returns periodically to the start profile. If the", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295529", " the fields available in this structure. If the <B>loft</B> is periodic, these constraints are ignored. ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-304323", " for the start and end profiles in a <B>loft</B> ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295593", " for any combination of other profiles in a <B>loft</B>: ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295650", " for the start and end profiles in a <B>loft</B>. See Section 41.5.3, Calculating derivative magnitudes for more", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295659", " are mapped onto profiles in the <B>loft</B> using the ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295585", " for some of the intermediate profiles in a <B>loft</B> containing 6 profiles. ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-304947", " Specifying derivative conditions for intermediate profiles in a <B>loft</B> ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295978", " a degenerate profile is considered as having a <B>loft</B> profile which occupies a single point in space.", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295979", " of end conditions are applicable at a degenerate <B>loft</B> profile: ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295980", "No clamp: the tangents of the <B>loft</B> are not constrained. ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295981", " produces a smooth <B>loft</B> termination by constraining the <B>loft</B> to have a unique tangent plane with a", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295982", " or may not be smooth, by constraining the <B>loft</B> to interpolate the specified derivatives at the degenerate", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295986", " the adjacent profile. Mismatching these can cause the <B>loft</B> to twist. ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296140", " Where all the profiles in the <B>loft</B> have the same number of edges, and hence", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-457953", " for a <B>loft</B> operation, you can constrain the <B>loft</B> geometry across profiles, resulting in a lofted body", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-458124", " influence that covers the whole length of the <B>loft</B> and whose bound is the boundary of the", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296435", " produce a periodic <B>loft</B>. When Parasolid produces a <B>loft</B> from one or two profiles and a closed", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296505", " not in the set of matching vertices. The <B>loft</B> operation described in the right hand side of", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296595", " wires are interpolated by the <B>loft</B> operation, the <B>loft</B> derivatives along the guide wires are completely determined.", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296671", " In addition to <B>loft</B> profiles (as described in Section 41.4, Specifying derivative", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296753", " integer refers to a guide wire in the <B>loft</B>, where 0 refers to the first guide wire", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296910", " When creating a periodic <B>loft</B> using a closed guide wire and fewer than", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296920", " if it had been specified in the original <B>loft</B>. Failure to do this could result in significant", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296927", " profiles and a closed guide curve. During the <B>loft</B> operation, Parasolid has created two construction profiles, and", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297000", " operation creates edges in the direction of the <B>loft</B> at vertices where two profile edges join smoothly.", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297018", " surface is created for the area of the <B>loft</B> that is generated from them. If, in addition,", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297021", " edges are considered to join smoothly. Thus, separate <B>loft</B> faces are created, and in cases where the", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297026", "Figure 41-23 shows a <B>loft</B> created from two wire profiles, each of which", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297121", " i.e. edges running in the direction of the <B>loft</B>, have nominal geometry derived from the surfaces of", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-298008", " such as those created when creating a periodic <B>loft</B> using a single profile and a closed guide", "Functional Description - Lofting");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207520", " intermediate <B>loft</B> profiles 531 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207740", " <B>loft</B> profiles ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208904", " intermediate <B>loft</B> 531 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.02.html#50442241_pgfId-274047", " explains how you can extrude, spin, sweep or <B>loft</B> between profiles (wire or sheet sketches) to create", "Overview of Parasolid - Introduction");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-280118", " Figure 9-20 Using degenerate profiles in a <B>loft</B> ", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-280019", " Figure 9-22 Using a guide curve to control <B>loft</B> shape ", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-281232", " Simplify the surfaces of the <B>loft</B> body ", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_BODY_loft_bad_profile_c 21552 Invalid <B>loft</B> profile ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_BODY_loft_bad_profile_c 21552 Invalid <B>loft</B> profile ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_bcurve_make_bsurf_lofted.html#documentation", " continuous up to the second order in the <B>loft</B> ( v )", "PK Reference - PK_BCURVE_make_bsurf_lofted");
+top.note("headers/pk_bcurve_make_bsurf_lofted_o_t.html#documentation", " the lofted surface will be cubic in the <B>loft</B>", "PK Reference - PK_BCURVE_make_bsurf_lofted_o_t");
+top.note("headers/pk_body_loft_deriv_conds_t.html#description", "lofted surfaces in the <B>loft</B> direction at a profile, or the profile direction", "PK Reference - PK_BODY_loft_deriv_conds_t");
+top.note("headers/pk_body_loft_deriv_conds_t.html#documentation", " implied and hence the natural <B>loft</B> end condition", "PK Reference - PK_BODY_loft_deriv_conds_t");
+top.note("headers/pk_body_loft_end_conds_t.html#description", "second derivatives of the lofted surfaces in the <B>loft</B> direction.", "PK Reference - PK_BODY_loft_end_conds_t");
+top.note("headers/pk_body_loft_end_conds_t.html#documentation", " surfaces are to be periodic in the <B>loft</B> direction. Otherwise", "PK Reference - PK_BODY_loft_end_conds_t");
+top.note("headers/pk_body_loft_face_clamp_t.html#declaration", " int n_magnitudes;--- number of magnitudes for scaling <B>loft</B>", "PK Reference - PK_BODY_loft_face_clamp_t");
+top.note("headers/pk_body_loft_face_clamp_t.html#description", " hold scaling factor magnitudes and the vertices where <B>loft</B>", "PK Reference - PK_BODY_loft_face_clamp_t");
+top.note("headers/pk_body_loft_face_clamp_t.html#documentation", "Across all entries of edges , the <B>loft</B> derivatives are determined such", "PK Reference - PK_BODY_loft_face_clamp_t");
+top.note("headers/pk_body_loft_fault_t.html#documentation", " PK_BODY_loft_bad_profile_c Invalid <B>loft</B> profile", "PK Reference - PK_BODY_loft_fault_t");
+top.note("headers/pk_body_loft_planar_clamp_t.html#documentation", " cross-boundary tangents of the <B>loft</B> at the clamped profile or", "PK Reference - PK_BODY_loft_planar_clamp_t");
+top.note("headers/pk_body_loft_vector_clamp_t.html#documentation", " for a clamped start profile on a non-periodic <B>loft</B>", "PK Reference - PK_BODY_loft_vector_clamp_t");
+top.note("headers/pk_body_make_lofted_body.html#declaration", "const PK_BODY_t profiles[], --- profiles to <B>loft</B>", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_body_make_lofted_body.html#documentation", " user is informed of the result of the <B>loft</B> operation via a returned", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_body_make_lofted_body_o_t.html#documentation", " an edge in the <B>loft</B> direction passing through this", "PK Reference - PK_BODY_make_lofted_body_o_t");
+top.note("headers/pk_body_one_vertex_match_t.html#documentation", " lofting, if there are guide wires for the <B>loft</B> and the", "PK Reference - PK_BODY_one_vertex_match_t");
+top.note("headers/pk_body_simplify_t.html#documentation", "the surfaces generated by the sweep or <B>loft</B>, but will not affect the topology", "PK Reference - PK_BODY_simplify_t");
+top.note("headers/pk_body_tracked_loft_r_t.html#documentation", " to <B>loft</B> the profiles.", "PK Reference - PK_BODY_tracked_loft_r_t");
+top.note("headers/pk_body_vertex_matches_t.html#documentation", " profiles for a periodic <B>loft</B>/sweep, and one less than", "PK Reference - PK_BODY_vertex_matches_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

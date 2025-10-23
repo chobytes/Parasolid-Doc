@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295090", " option set, and specifying the current view using a <B>PK_TRANSF_t</B> entity. ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295100", " <B>PK_TRANSF_t</B> ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-313270", " is an array of <B>PK_TRANSF_t</B> objects, each object defining a different view direction. A", "Functional Description - Facet Mesh Generation");
+top.note("headers/pk_assembly_ask_parts_transfs.html#declaration", " <B>PK_TRANSF_t</B> **const transfs --- transforms in assembly (optional)", "PK Reference - PK_ASSEMBLY_ask_parts_transfs");
+top.note("headers/pk_assembly_transform.html#declaration", " <B>PK_TRANSF_t</B> transf --- transform (may be PK_ENTITY_null)", "PK Reference - PK_ASSEMBLY_transform");
+top.note("headers/pk_body_enlarge.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation", "PK Reference - PK_BODY_enlarge");
+top.note("headers/pk_body_imprint_cus_shadow.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- body transformation", "PK Reference - PK_BODY_imprint_cus_shadow");
+top.note("headers/pk_body_imprint_cus_shadow.html#documentation", " <B>PK_TRANSF_t</B> entities. Each body is transformed by its corresponding entry", "PK Reference - PK_BODY_imprint_cus_shadow");
+top.note("headers/pk_body_make_curves_outline.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- body transformation", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_curves_outline.html#documentation", " <B>PK_TRANSF_t</B> entities. Each body is transformed by its corresponding entry", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_facet_body.html#declaration", " <B>PK_TRANSF_t</B> transf, --- Transform", "PK Reference - PK_BODY_make_facet_body");
+top.note("headers/pk_body_make_persp_outline.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- body transformation", "PK Reference - PK_BODY_make_persp_outline");
+top.note("headers/pk_body_make_persp_outline.html#documentation", " <B>PK_TRANSF_t</B> entities. Each body is transformed by its corresponding entry", "PK Reference - PK_BODY_make_persp_outline");
+top.note("headers/pk_body_make_persp_outline_r_t.html#declaration", " <B>PK_TRANSF_t</B> *original_error_transfs;", "PK Reference - PK_BODY_make_persp_outline_r_t");
+top.note("headers/pk_body_make_spun_outline.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- body transformation", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_make_spun_outline.html#documentation", " <B>PK_TRANSF_t</B> entities. Each body is transformed by its corresponding entry", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_pick_topols.html#declaration", "const <B>PK_TRANSF_t</B> *body_transfs, --- transformations", "PK Reference - PK_BODY_pick_topols");
+top.note("headers/pk_body_pick_topols.html#documentation", " <B>PK_TRANSF_t</B> entities. The ray is compared with the n_bodies bodies,", "PK Reference - PK_BODY_pick_topols");
+top.note("headers/pk_body_transform.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation", "PK Reference - PK_BODY_transform");
+top.note("headers/pk_body_transform_2.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation", "PK Reference - PK_BODY_transform_2");
+top.note("headers/pk_change_edge_geom_data_t.html#declaration", " const <B>PK_TRANSF_t</B> *transforms; --- array of transforms to be", "PK Reference - PK_change_edge_geom_data_t");
+top.note("headers/pk_entity_range.html#declaration", "const <B>PK_TRANSF_t</B> tf_1[], --- transforms for first entities", "PK Reference - PK_ENTITY_range");
+top.note("headers/pk_entity_range_vector.html#declaration", "const <B>PK_TRANSF_t</B> tf[], --- transforms for the entities", "PK Reference - PK_ENTITY_range_vector");
+top.note("headers/pk_entity_t.html#documentation", " - <B>PK_TRANSF_t</B> : a transform", "PK Reference - PK_ENTITY_t");
+top.note("headers/pk_face_change_data_transform_t.html#declaration", " <B>PK_TRANSF_t</B> transform; --- transform", "PK Reference - PK_FACE_change_data_transform_t");
+top.note("headers/pk_face_instance_tools.html#declaration", "const <B>PK_TRANSF_t</B> transforms[], --- instancing transforms", "PK Reference - PK_FACE_instance_tools");
+top.note("headers/pk_face_is_coincident_o_t.html#declaration", " <B>PK_TRANSF_t</B> transf1; --- transform applied to face1", "PK Reference - PK_FACE_is_coincident_o_t");
+top.note("headers/pk_face_pattern.html#declaration", "const <B>PK_TRANSF_t</B> transforms[], --- pattern transformations", "PK Reference - PK_FACE_pattern");
+top.note("headers/pk_face_pattern_2.html#declaration", "const <B>PK_TRANSF_t</B> transforms[], --- pattern transformations", "PK Reference - PK_FACE_pattern_2");
+top.note("headers/pk_face_pattern_instance_r_t.html#declaration", " <B>PK_TRANSF_t</B> transform; --- transform which produced", "PK Reference - PK_FACE_pattern_instance_r_t");
+top.note("headers/pk_face_transform.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- face transformations", "PK Reference - PK_FACE_transform");
+top.note("headers/pk_face_transform_2.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- face transformations", "PK Reference - PK_FACE_transform_2");
+top.note("headers/pk_fcurve_sf_t.html#declaration", " <B>PK_TRANSF_t</B> transf; --- transformation (may be PK_ENTITY_null)", "PK Reference - PK_FCURVE_sf_t");
+top.note("headers/pk_fsurf_sf_t.html#declaration", " <B>PK_TRANSF_t</B> transf; --- transformation (may be PK_ENTITY_null)", "PK Reference - PK_FSURF_sf_t");
+top.note("headers/pk_geom_enlarge.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- transforms to be applied to the", "PK Reference - PK_GEOM_enlarge");
+top.note("headers/pk_geom_render.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- transformations to be applied to geoms", "PK Reference - PK_GEOM_render");
+top.note("headers/pk_geom_render.html#documentation", " not NULL, it should be an array containing one <B>PK_TRANSF_t</B> for", "PK Reference - PK_GEOM_render");
+top.note("headers/pk_geom_render_line.html#declaration", "const <B>PK_TRANSF_t</B> geom_transfs[],", "PK Reference - PK_GEOM_render_line");
+top.note("headers/pk_geom_transform.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation", "PK Reference - PK_GEOM_transform");
+top.note("headers/pk_geom_transform_2.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation", "PK Reference - PK_GEOM_transform_2");
+top.note("headers/pk_instance_replace_transf.html#declaration", " <B>PK_TRANSF_t</B> transf --- replacement transform", "PK Reference - PK_INSTANCE_replace_transf");
+top.note("headers/pk_instance_sf_t.html#declaration", " <B>PK_TRANSF_t</B> transf; --- transform (must be a rigid motion,", "PK Reference - PK_INSTANCE_sf_t");
+top.note("headers/pk_instance_transform.html#declaration", " <B>PK_TRANSF_t</B> transf --- transform (may be PK_ENTITY_null)", "PK Reference - PK_INSTANCE_transform");
+top.note("headers/pk_partition_ask_transfs.html#declaration", " <B>PK_TRANSF_t</B> **const transfs --- transforms (optional)", "PK Reference - PK_PARTITION_ask_transfs");
+top.note("headers/pk_topol_clash.html#declaration", "const <B>PK_TRANSF_t</B> tf1[], --- Transforms for targets", "PK Reference - PK_TOPOL_clash");
+top.note("headers/pk_topol_eval_mass_props_o_t.html#declaration", " const <B>PK_TRANSF_t</B> *transfs; --- array of transformations (NULL)", "PK Reference - PK_TOPOL_eval_mass_props_o_t");
+top.note("headers/pk_topol_facet.html#declaration", "const <B>PK_TRANSF_t</B> topol_transfs[], --- applied transformations", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet.html#documentation", " topol_transfs is not NULL, it is an array of <B>PK_TRANSF_t</B> entities of", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet_2.html#declaration", "const <B>PK_TRANSF_t</B> topol_transfs[], --- applied transformations", "PK Reference - PK_TOPOL_facet_2");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#declaration", " <B>PK_TRANSF_t</B> *cull_transfs; --- (0, NULL)", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", " Currently only the first <B>PK_TRANSF_t</B> in the array will be used for culling.", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_tables_cb_f_t.html#declaration", " <B>PK_TRANSF_t</B> transform, --- transform associated with body", "PK Reference - PK_TOPOL_facet_tables_cb_f_t");
+top.note("headers/pk_topol_find_box_2.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- transformations to be applied", "PK Reference - PK_TOPOL_find_box_2");
+top.note("headers/pk_topol_find_nabox.html#declaration", "const <B>PK_TRANSF_t</B> transfs[], --- transformations to be applied", "PK Reference - PK_TOPOL_find_nabox");
+top.note("headers/pk_topol_find_nabox.html#documentation", "containing <B>PK_TRANSF_t</B> entities. The topols array may contain duplicates", "PK Reference - PK_TOPOL_find_nabox");
+top.note("headers/pk_topol_render_facet.html#declaration", "const <B>PK_TRANSF_t</B> topol_transfs[], --- applied transformations", "PK Reference - PK_TOPOL_render_facet");
+top.note("headers/pk_topol_render_line.html#declaration", "const <B>PK_TRANSF_t</B> topol_transfs[], --- applied transformations", "PK Reference - PK_TOPOL_render_line");
+top.note("headers/pk_topol_render_volume.html#declaration", "const <B>PK_TRANSF_t</B> topol_transfs[],--- applied transformations", "PK Reference - PK_TOPOL_render_volume");
+top.note("headers/pk_transf_array_t.html#description", " This structure contains an array of entities of type <B>PK_TRANSF_t</B> ", "PK Reference - PK_TRANSF_array_t");
+top.note("headers/pk_transf_array_t.html#documentation", " <B>PK_TRANSF_t</B> *array; --- array of TRANSFormations", "PK Reference - PK_TRANSF_array_t");
+top.note("headers/pk_transf_ask.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transf to receive message", "PK Reference - PK_TRANSF_ask");
+top.note("headers/pk_transf_check.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation to be checked", "PK Reference - PK_TRANSF_check");
+top.note("headers/pk_transf_classify.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation to be classified", "PK Reference - PK_TRANSF_classify");
+top.note("headers/pk_transf_create.html#declaration", " <B>PK_TRANSF_t</B> *const transf --- created transf", "PK Reference - PK_TRANSF_create");
+top.note("headers/pk_transf_create_equal_scale.html#declaration", " <B>PK_TRANSF_t</B> *const transf --- equal scaling transformation", "PK Reference - PK_TRANSF_create_equal_scale");
+top.note("headers/pk_transf_create_reflection.html#declaration", " <B>PK_TRANSF_t</B> *const transf --- reflection transformation", "PK Reference - PK_TRANSF_create_reflection");
+top.note("headers/pk_transf_create_rotation.html#declaration", " <B>PK_TRANSF_t</B> *const transf --- rotation transformation", "PK Reference - PK_TRANSF_create_rotation");
+top.note("headers/pk_transf_create_translation.html#declaration", " <B>PK_TRANSF_t</B> *const transf --- translation transformation", "PK Reference - PK_TRANSF_create_translation");
+top.note("headers/pk_transf_create_view.html#declaration", " <B>PK_TRANSF_t</B> *const transf --- the view transform", "PK Reference - PK_TRANSF_create_view");
+top.note("headers/pk_transf_enlarge.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transform to enlarge", "PK Reference - PK_TRANSF_enlarge");
+top.note("headers/pk_transf_enlarge_r_t.html#declaration", " <B>PK_TRANSF_t</B> transf_out; --- resultant transform", "PK Reference - PK_TRANSF_enlarge_r_t");
+top.note("headers/pk_transf_is_equal.html#declaration", " <B>PK_TRANSF_t</B> t1, --- first transformation", "PK Reference - PK_TRANSF_is_equal");
+top.note("headers/pk_transf_transform.html#declaration", " <B>PK_TRANSF_t</B> transf_1, --- first transformation", "PK Reference - PK_TRANSF_transform");
+top.note("headers/pk_transf_transform_2.html#declaration", " <B>PK_TRANSF_t</B> transf_1, --- first transformation", "PK Reference - PK_TRANSF_transform_2");
+top.note("headers/pk_transf_transform_r_t.html#declaration", " <B>PK_TRANSF_t</B> transf_out; --- resultant transform", "PK Reference - PK_TRANSF_transform_r_t");
+top.note("headers/pk_vector_make_view_transf.html#declaration", " <B>PK_TRANSF_t</B> *const transf --- viewing transformation", "PK Reference - PK_VECTOR_make_view_transf");
+top.note("headers/pk_vector_transform.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation to apply", "PK Reference - PK_VECTOR_transform");
+top.note("headers/pk_vector_transform_direction.html#declaration", " <B>PK_TRANSF_t</B> transf, --- transformation to apply", "PK Reference - PK_VECTOR_transform_direction");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

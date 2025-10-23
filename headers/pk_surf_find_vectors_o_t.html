@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SURF_find_vectors_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SURF_find_vectors_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SURF_find_vectors_o_s
+    {
+    int                 o_t_version;         --- option structure version
+    int                 n_measurements;      --- number of measurements
+                                             --- (1)
+    double             *measurements;        --- values of the measurements
+                                             --- (0.5)
+    <A HREF=../headers/pk_measure_t.html>PK_measure_t</A>        measurement_method;  --- what <B>'measurements'</B> measure
+                                             --- (<A HREF=../headers/pk_measure_t.html>PK_measure_chord_ratio_c</A>)
+    <A HREF=../headers/pk_surf_curve_t.html>PK_SURF_curve_t</A>     curve_type;          --- type of curve on surface
+                                             --- (PK_SURF_curve_vec_proj_c)
+                                             --- [PF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        have_help_point;     --- whether a <B>'help_point'</B> has
+                                             --- been supplied
+                                             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>         help_point;          --- help position vector
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        have_proj_direction; --- whether a <B>'proj_direction'</B>
+                                             --- has been supplied
+                                             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>        proj_direction;      --- projection direction vector
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_t</A>  error_on_failure;    --- when to return an error
+                                             --- indicating failure
+                                             --- (<A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_no_c</A>)
+    };
+typedef struct PK_SURF_find_vectors_o_s PK_SURF_find_vectors_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure holds controls for <A HREF=../headers/pk_surf_find_vectors.html>PK_SURF_find_vectors</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_surf_find_vectors.html>PK_SURF_find_vectors</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure allows the caller to control how the position vectors
+on the surface are determined.
+
+Notation: The "path curve" is a bounded curve, lying on the supplied <B>'surface'</B>,
+          on which all the returned vectors lie.
+          The "start point" of the path curve is the position vector
+          corresponding to evaluating the surface at <B>'uv_start'</B>.
+          The "end point" of the path curve is the position vector
+          corresponding to evaluating the curve at <B>'uv_end'</B>.
+          The "bounded length" of the path curve is the length of the curve
+          measured along the curve from the start point to the end point.
+
+n_measurements:
+---------------
+
+The number of values supplied in <B>'measurements'</B>.
+
+
+measurements:
+-------------
+
+The values supplied are either distances or ratios of distances measured in
+3-space. If they are distance measurements, they may neither be negative nor
+exceed the bounded length of the path curve. If they are ratios, they may
+neither be negative nor greater than 1.
+
+measurement_method:
+-------------------
+This enum determines what the values in <B>'measurements'</B> represent. The allowed
+options are:
+
+    <A HREF=../headers/pk_measure_t.html>PK_measure_distance_c</A>
+    <A HREF=../headers/pk_measure_t.html>PK_measure_distance_ratio_c</A>
+    <A HREF=../headers/pk_measure_t.html>PK_measure_chord_c</A>
+    <A HREF=../headers/pk_measure_t.html>PK_measure_chord_ratio_c</A>
+    <A HREF=../headers/pk_measure_t.html>PK_measure_2_chords_ratio_c</A>
+
+See the documentation of <A HREF=../headers/pk_curve_find_vectors_o_t.html>PK_CURVE_find_vectors_o_t</A> for detailed information.
+
+In general, the computational cost of the methods involving chord measurements
+is lower than the methods involving true curve lengths or ratios of such.
+
+curve_type:
+-----------
+This argument of type <A HREF=../headers/pk_surf_curve_t.html>PK_SURF_curve_t</A> determines the method used to define the
+path curve. See the documentation of <A HREF=../headers/pk_surf_curve_t.html>PK_SURF_curve_t</A> for the existing options.
+
+Facet geometry is not supported when <B>'curve_type'</B> is PK_SURF_curve_linear_sp_c.
+
+If <B>'curve_type'</B> is set equal to PK_SURF_curve_vec_proj_c, the path curve is
+the projected image of the chord between <B>'uv_start'</B> and <B>'uv_end'</B>. If
+<B>'have_proj_direction'</B> is set to PK_LOGICAL_false, the chord is projected using
+a plane characterised by the chord direction and the surface normals at
+<B>'uv_start'</B> and <B>'uv_end'</B>(see #here#DOC0000# for more information).
+Otherwise, if <B>'have_proj_direction'</B> is set to PK_LOGICAL_true, the chord
+between <B>'uv_start'</B> and <B>'uv_end'</B> is projected in the supplied <B>'proj_direction'</B>.
+
+help_point:
+-----------
+This option is only available if <B>'curve_type'</B> is set to
+PK_SURF_curve_linear_sp_c. If the application intends to supply a
+<B>'help_point'</B>, the option <B>'have_help_point'</B> must be set to PK_LOGICAL_true.
+
+In some cases (e.g. periodic surfaces), ambiguity may exist on the
+definition of the path curve. The application should then provide a
+<B>'help_point'</B> via the option structure, and the function will use the nearest
+path curve to the <B>'help_point'</B>. Otherwise, the path curve will be the curve
+segment with shortest bounded length.
+
+proj_direction:
+---------------
+This option is only available if <B>'curve_type'</B> is set to
+PK_SURF_curve_vec_proj_c. If the application intends to supply a
+<B>'proj_direction'</B>, the option <B>'have_proj_direction'</B> must be set to
+PK_LOGICAL_true.
+
+error_on_failure:
+-----------------
+This enum determines when the error PK_ERROR_cant_get_vectors will be
+returned. It can be set to:
+
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_any_c</A>
+    The error PK_ERROR_cant_get_vectors will be returned unless the
+    operation is successful for all values in <B>'measurements'</B>.
+
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_all_c</A>
+    The error PK_ERROR_cant_get_vectors will be returned if the
+    operation is successful for none of the values in <B>'measurements'</B>.
+
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_no_c</A>
+    The error PK_ERROR_cant_get_vectors will not be returned.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

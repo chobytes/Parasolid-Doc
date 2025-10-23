@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299609", " handlers with the operating system to deal with <B>run-time</B> errors and user interrupts. For more information about", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.004.html#50409783_pgfId-301567", " the support that Parasolid provides to manage the <B>run-time</B> session with Parasolid, including the ability to call", "Functional Description - Overview Of This Manual");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-336848", " 7.2 Handling of <B>run-time</B> errors and user interrupts ", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-326982", " handlers with the operating system to recover from <B>run-time</B> errors and user interrupts. If you dont have", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-387349", " 9.3.2 Space for memory is allocated at <B>run-time</B> ", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-387353", " The application allocates space at <B>run-time</B> and passes a constant pointer to it to", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295371", " that applications are always able to recover from <B>run-time</B> errors or other severe errors by using session", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295392", " the session to a valid state. However, a <B>run-time</B> error during a call to PK_MARK_goto_2 or PK_PMARK_goto_2", "Functional Description - Rollback");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-333120", " within Parasolid. Your function should either create a <B>run-time</B> error or call PK_SESSION_abort , allowing you to", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.121.html#50409914_pgfId-309454", " to allow the operating system to recover from <B>run-time</B> errors and user interrupts. ", "Functional Description - Introduction To Error Handling");
+top.note("chapters/fd_chap.121.html#50409914_pgfId-310367", " describes how to deal with signal handlers and <B>run-time</B> errors that are caught by the operating system.", "Functional Description - Introduction To Error Handling");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294866", " error, data structures may become corrupt, leading to <B>run-time</B> errors at a later stage. You are therefore", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295213", " This error can arise when <B>run-time</B> errors are processed by a signal handler; for", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295226", " This error can arise when <B>run-time</B> errors or user interrupts are processed by a", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295236", " A <B>run-time</B> error in the Parasolid kernel is being processed", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-321661", " your application in the same way as other <B>run-time</B> errors. ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295431", " hence deleting it afterwards could lead to a <B>run-time</B> error. Specifically, the functions that may have corrupted", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295434", " in order to avoid any possibility of a <B>run-time</B> error later. ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294725", " that are caught by the operating system: specifically <B>run-time</B> errors (e.g., access violations, floating-point errors or illegal", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294784", " to abort the current session because of a <B>run-time</B> error or user interrupt. ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294798", " For <B>run-time</B> errors, it ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294809", " within an executing Parasolid. These functions should generate <B>run-time</B> errors, allowing you to test your signal handlers.", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294821", " This section describes handling <B>run-time</B> errors and user interrupts, and also raising alarm", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294838", " // <B>run-time</B> errors ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294860", " 122.3.2 <B>Run-time</B> errors ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294864", " running, the signal handler calls PK_SESSION_abort indicating a <B>run-time</B> error from within a PK function or a", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294865", " For details of how Parasolid deals with the <B>run-time</B> error once it regains control, see Section 122.4,", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294879", " // first RE-REGISTER the signal handler for <B>run-time</B> errors ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294900", " Figure 122-2 Example of a signal handler for <B>run-time</B> errors ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294947", " has been reached. This gets converted to a <B>run-time</B> error, as shown in ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294957", " when processing user interrupts, which get converted to <B>run-time</B> errors after a certain length of time. This", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294967", " // now raise a <B>run-time</B> error ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294984", " When Parasolid resumes execution following either a <B>run-time</B> error or a user interrupt, it ascertains the", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294985", " taken by Parasolid in the event of a <B>run-time</B> error or user interrupt, based on the example", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295007", " User interrupts are ignored; <B>run-time</B> errors force the application to exit. ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295019", " User interrupts are ignored; <B>run-time</B> errors force the application to exit. ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-318089", " When <B>run-time</B> errors occur during the execution of protected code,", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295030", " the error code PK_ERROR_unhandleable_condition, Parasolid can recover from <B>run-time</B> errors and handle user interrupts during unprotected code.", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295035", " diagrams below illustrate the stages involved in processing <B>run-time</B> errors and user interrupts, in sequence starting from", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-309771", " Following a <B>run-time</B> error, the signal handler calls PK_SESSION_abort with the", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295096", " Figure 122-5 Flow of control during a <B>run-time</B> error without an error handler ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295132", " Figure 122-6 Flow of control during a <B>run-time</B> error with an error handler that returns ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295167", " Figure 122-7 Flow of control during a <B>run-time</B> error with an error handler that throws exceptions", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295345", " 122.6.1 <B>Run-time</B> errors ", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295346", " For <B>run-time</B> errors, the signal handler calls PK_SESSION_abort , which", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275799", " <B>Run-time</B> error handler ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275800", " can be registered to handle some types of <B>run-time</B> error from your application. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205987", " <B>run-time</B> 1619, 1633 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209320", " <B>run-time</B> error ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209324", " <B>run-time</B> errors 1633 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209647", " for <B>run-time</B> errors ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.03.html#50442274_pgfId-335227", " 2.5 million tests including all faults ever fixed.The <B>run-time</B> plug-and-play compatibility of the Parasolid Toolkit APIs provides", "Overview of Parasolid - About Parasolid");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-279540", " the operating system in order to recover from <B>run-time</B> errors and enable user interrupts. ", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("headers/pk_debug_try_error_handler.html#description", " point of this is to allow testing of <B>run-time</B> error", "PK Reference - PK_DEBUG_try_error_handler");
+top.note("headers/pk_debug_try_error_handler.html#documentation", "supplied to PK_DEBUG_try_error_handler causes a <B>run-time</B> error,", "PK Reference - PK_DEBUG_try_error_handler");
+top.note("headers/pk_debug_try_error_handler_o_t.html#documentation", " of \"typical\" <B>run-time</B> error situations; the latter is", "PK Reference - PK_DEBUG_try_error_handler_o_t");
+top.note("headers/pk_face_set_approx.html#documentation", "Note: this can increase the <B>run-time</B> model size quite significantly.", "PK Reference - PK_FACE_set_approx");
+top.note("headers/pk_memory_alloc_f_t.html#documentation", " type compatible with malloc in the standard C <B>run-time</B> library.", "PK Reference - PK_MEMORY_alloc_f_t");
+top.note("headers/pk_memory_free_f_t.html#documentation", " type compatible with free in the standard C <B>run-time</B> library.", "PK Reference - PK_MEMORY_free_f_t");
+top.note("headers/pk_memory_frustrum_t.html#documentation", "C <B>run-time</B> library.", "PK Reference - PK_MEMORY_frustrum_t");
+top.note("headers/pk_session_abort.html#documentation", " course is not legitimate for interrupts caused by <B>run-time</B> errors).", "PK Reference - PK_SESSION_abort");
+top.note("chapters/di_chap.02.html#50511934_pgfId-280939", " use of system calls rather than the C <B>run-time</B> library for enhanced performance. ", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.09.html#50511941_pgfId-274055", " use of system calls rather than the C <B>run-time</B> library for enhanced performance. ", "Downward Interfaces - PK_DELTA Functions");
+top.note("chapters/di_chap.10.html#50511942_pgfId-274047", " with malloc and free in the standard C <B>run-time</B> library. ", "Downward Interfaces - PK_MEMORY Functions");
+top.note("chapters/in_chap.05.html#50520098_pgfId-273082", " the Parasolid version at <B>run-time</B>, it can use <B>run-time</B> library functions to open the shared library (e.g.", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.05.html#50520098_pgfId-273083", " may need to be overridden, so that the <B>run-time</B> loader will search the directory where the customer", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.05.html#50520098_pgfId-307586", " See Section 6.6.1, &#8220;Windows <B>run-time</B> libraries&#8221; . ", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.05.html#50520098_pgfId-309265", " See also Section 6.9, &#8220;Linking Windows <B>run-time</B> libraries&#8221; ", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.05.html#50520098_pgfId-325674", " in its value. Parasolid also requires the C++ <B>run-time</B> library from the Android NDK, ", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.06.html#50520099_pgfId-294265", " 5.6.3 <B>Run-time</B> error handling ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-294301", " platforms, code run by SMP &#8220;worker&#8221; threads generates <B>run-time</B> errors in the same way as code run", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.06.html#50520099_pgfId-294306", " either signals or Structured Exception Handling to handle <B>run-time</B> errors. ", "Installation Notes - Using Parasolid");
+top.note("chapters/in_chap.07.html#50520100_pgfId-325557", " Section 6.9, &#8220;Linking Windows <B>run-time</B> libraries&#8221; , describes how to deal with some", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-775644", " Parasolid-based applications are linked against an appropriate C++ <B>run-time</B> library for each platform. If your applications already", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-797570", " complied using a different standard, check that the <B>run-time</B> libraries for that standard are compatible with the", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-785913", " Studio 2019 or later version of the Microsoft <B>run-time</B> library DLL for modern versions of Visual Studio,", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-791675", " 2022. It requires Visual Studio 2019 or later <B>run-time</B> libraries, since it does not use the /d2FH4-option.", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-741529", " Studio 2019 or later version of the Microsoft <B>run-time</B> library DLL for modern versions of Visual Studio,", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-790015", " of Parasolid requires Visual Studio 2019 or later <B>run-time</B> libraries. It is compatible with all Update levels", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-784219", " Studio 2019 or later version of the Microsoft <B>run-time</B> library DLL for modern versions of Visual Studio,", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-784256", " 2022. It requires Visual Studio 2019 or later <B>run-time</B> libraries, since it does not use the /d2FH4-option.", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-777264", " code, you will need to add the C++ <B>run-time</B> library, ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-322664", " (that is, allow the operating system to catch <B>run-time</B> errors arising from floating-point operations).However, this is not", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-319695", " floating-point traps and Parasolid SMP, see Section 5.6.3, &#8220;<B>Run-time</B> error handling&#8221; . ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-541229", " the same <B>run-time</B> libraries, see Section 6.6.1, &#8220;Windows <B>run-time</B> libraries&#8221; ).", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-644489", " settings, the calculations performed by code using different <B>run-time</B> libraries won&#8217;t be entirely consistent, which may have", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-497313", " an application. See also Section 6.9, &#8220;Linking Windows <B>run-time</B> libraries&#8221; . ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-759676", " Section 5.6.3, &#8220;<B>Run-time</B> error handling&#8221; ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-762379", " to standard error. It will then call the <B>run-time</B> library function ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-664840", " to standard error. It will then call the <B>run-time</B> library function ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-413426", " 6.6.1 Windows <B>run-time</B> libraries ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-799740", " Studio had its own version of the C/C++ <B>run-time</B> library, or &#8220;CRT&#8221;, and building programs that used", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-800864", " <B>Run-time</B> library compatibility ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-801116", " at Visual Studio 2019, and thus require the <B>run-time</B> libraries from Visual Studio 2019 or 2022. ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-801514", " Installing <B>run-time</B> libraries ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-551682", " Warning: None of the Visual Studio <B>run-time</B> libraries are provided as part of any version", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-727794", " in the list by the Visual Studio 2022 <B>run-time</B> libraries, which will serve programs built with all", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-502445", " See also Section 6.9, &#8220;Linking Windows <B>run-time</B> libraries&#8221; . ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-827047", " The <B>run-time</B> libraries for all versions of Visual Studio that", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-705210", " 6.9 Linking Windows <B>run-time</B> libraries", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-413081", " apply to your use of the Microsoft C/C++ <B>run-time</B> library (&#8220;CRT&#8221;). ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-636302", " same CRT, as described in Section 6.6.1, &#8220;Windows <B>run-time</B> libraries&#8221; .This means that, for the purposes of", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-324356", " function provided in the Visual Studio <B>run-time</B> library enables and disables floating-point traps for both", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-324376", ", moving into the code in the C/C++ <B>run-time</B> library that calls ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-324383", " way as the code in the Microsoft C/C++ <B>run-time</B> library. The source code for that library is", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-481445", " Your signal handler should call the Microsoft C/C++ <B>run-time</B> library function ", "Installation Notes - Environment");
+top.note("chapters/in_chap.08.html#50520101_pgfId-289135", " Floating-point <B>run-time</B> errors are a sign that your program is", "Installation Notes - Floating-Point Traps");
+top.note("chapters/in_chap.08.html#50520101_pgfId-278331", " the hardware detects floating-point <B>run-time</B> errors. Unlike other <B>run-time</B> errors, you can decide whether the operating system", "Installation Notes - Floating-Point Traps");
+top.note("chapters/in_chap.08.html#50520101_pgfId-278755", " done by means of calls to the C <B>run-time</B> library: there are some examples in Chapter 6,", "Installation Notes - Floating-Point Traps");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-281755", " be truncated (particularly if there has been a <B>run-time</B> error or other unhandled error), but the output", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278792", " &#8220;How to verify Debug XML&#8221; , encountering a <B>run-time</B> error in Parasolid may mean that the Debug", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

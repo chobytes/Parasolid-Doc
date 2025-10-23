@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_create_topology_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_create_topology_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_create_topology_o_s
+    {
+    int              o_t_version;    --- version number
+    <A HREF=../headers/pk_body_type_t.html>PK_BODY_type_t</A>   body_type;      --- preferred result body type
+                                     --- (PK_BODY_type_general_c)
+    int              n_extra_faults; --- number of extra faults to return (0)
+    <A HREF=../headers/pk_body_fault_t.html>PK_BODY_fault_t</A> *extra_faults;   --- extra faults to return (NULL)
+    };
+typedef struct PK_BODY_create_topology_o_s
+               PK_BODY_create_topology_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A>
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The fields are as follows:
+
+<B>'body_type'</B>        This indicates the expected type of the created body.  If
+                   the body cannot be made to be of this type then its type
+                   will be PK_BODY_type_general_c.  Note that if a body just
+                   consists of any number of isolated vertices, then the
+                   expected type may be specified as either
+                   PK_BODY_type_minimum_c or PK_BODY_type_acorn_c.
+
+<B>'n_extra_faults'</B>   number of extra faults that may be returned.  See "Extra
+                   Faults" below.
+
+<B>'extra_faults'</B>     extra faults that may be returned. See "Extra Faults"
+                   below.
+
+Extra Faults:
+By default, <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A> will only return the specific faults:
+    PK_BODY_fault_wrong_child_c
+    PK_BODY_fault_extra_parent_c
+    PK_BODY_fault_extra_child_c
+    PK_BODY_fault_missing_parent_c
+    PK_BODY_fault_bad_loop_c
+    PK_BODY_fault_bad_shells_c
+    PK_BODY_fault_bad_region_c
+    PK_BODY_fault_extra_parent_c.
+Any other fault is returned as PK_BODY_fault_unknown_c.  The fields
+<B>'n_extra_faults'</B> and <B>'extra_faults'</B> may be used to request that further
+specific topological faults may be returned.  The extra faults that may be
+requested are:
+    PK_BODY_fault_bad_fa_sh_rg_c
+    PK_BODY_fault_disjoint_shell_c
+    PK_BODY_fault_empty_region_c
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

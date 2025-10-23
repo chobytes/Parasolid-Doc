@@ -1,0 +1,101 @@
+<HTML>
+<HEAD>
+<TITLE>RAYFIR</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>RAYFIR</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_pick_topols.html>PK_BODY_pick_topols</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+RAYFIR ( palist, transf, wchhit, point, direct, nhitpt, hitpts, hitfas, 
+========================================================================
+         indces, ifail )
+         ===============
+
+  Intersect ray with bodies
+
+Receives:
+  KI_tag_list_part         *palist         --- entities to fire ray through
+ &lt;KI_tag_list_&lt;transform&gt;&gt; *transf         --- part transformations
+ &lt;KI_int_nitems&gt;           *wchhit         --- number of intersections wanted
+  KI_vec                    point          --- point from which ray is fired
+  KI_vec_direction          direct         --- direction of ray
+
+Returns:
+ &lt;KI_int_nitems&gt;           *nhitpt         --- number of points returned
+  KI_tag_list_dbl          *hitpts         --- points where ray hit bodies
+  KI_tag_list_face         *hitfas         --- faces hit by ray
+  KI_tag_list_int          *indces         --- indices of bodies hit by ray
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_wrong_transf           Unsuitable transform
+  KI_not_same_length        Entity and transform lists are of different lengths
+  KI_wrong_entity_in_list   Entity is not a part
+
+Description:
+  RAYFIR fires a ray at a list of transformed parts and returns the faces hit.
+  A face is considered to be hit by the ray if and only if the ray passes
+  through the face. Cases where the ray touches the face but does not pass
+  through it are not considered hits, e.g. a tangential intersection of the ray
+  with a face is not a hit.
+
+  This is achieved internally by first applying the inverse transform to
+  the ray, and then applying the original transform to the hit points found.
+  If none of the parts are to be transformed, 'transf' may be specified as a
+  null tag, which will be interpreted as an identity transform.
+
+  The ray begins at 'point' and proceeds along 'direction' as far as necessary:
+  faces in the opposite direction will not be found.
+
+  For each intersection found, the routine will insert in the lists it returns:
+
+      The coordinates of the point of intersection, in the next three entries
+      in 'hitpts'.
+
+      The tag of the face intersected by the array, in the next entry
+      of 'hitfas'.
+
+      The index in 'palist' of the particular part owning the face hit by the
+      ray, in the next entry of 'indces'.
+
+  Thus the lengths of 'hitpts', 'hitfas' and 'indces' will be 3*'nhitpt',
+  'nhitpt' and 'nhitpt' respectively.
+
+  If the ray does not intersect any of the transformed parts three empty lists
+  will be returned.
+
+  If non-empty lists are returned then they will be sorted according to ascending
+  distance measured from 'point' along the sense of 'direct'. If the ray hits
+  two faces at the same point, for instance at an edge, then the relative
+  ordering of the pair is arbitary.
+
+  The number of intersections returned is controlled by the parameter 'wchhit'.
+  At present the values are:
+
+      0      - All intersections with all bodies
+      n > 0  - The closest n intersections with the ray to the point
+               from which the ray is fired along the sense of 'direct'.
+
+  If transforms are supplied they may only contain translation and rotation
+  components. Reflections, scales and shears are not allowed.
+
+</PRE>
+</BODY>
+</HTML>

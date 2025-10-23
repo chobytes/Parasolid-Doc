@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.015.html#50409796_pgfId-295220", " trimmed surface data for a face, you can force <B>PK_FACE_output_surf_trimmed</B> to create data with parametric outer loops using the", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308632", " <B>PK_FACE_output_surf_trimmed</B> provides a means of outputting a trimmed surface representation", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-459036", " Note: <B>PK_FACE_output_surf_trimmed</B> does not support facet geometry, however PK_MESH_make_surf_trimmed provides similar", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-309050", " not always desirable. Options, PK_FACE_trim_confine_closed_c and PK_FACE_trim_confine_periph_c, when using <B>PK_FACE_output_surf_trimmed</B> are designed to make the trimming curves join up", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-338016", " surfaces is optional when using the options PK_FACE_trim_confine_yes_c in <B>PK_FACE_output_surf_trimmed</B> . The alternative is to follow the boundaries as", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-309740", " use either of the options PK_FACE_trim_confine_closed_c or PK_FACE_trim_confine_periph_c in <B>PK_FACE_output_surf_trimmed</B> as illustrated in ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310103", " Here <B>PK_FACE_output_surf_trimmed</B> is forced to produce two trimmed surfaces when it", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310236", " the purpose of outputting trimmed surface representations, using <B>PK_FACE_output_surf_trimmed</B> ; ", "Functional Description - Exporting Data");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_missing_geom 96 <B>PK_FACE_output_surf_trimmed</B> given face has no surface", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_bad_option_data 907 <B>PK_FACE_output_surf_trimmed</B> option data incorrect", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_cant_make_trimmed_sf 1008 <B>PK_FACE_output_surf_trimmed</B> failed to make trimmed surface", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_option_data 907 <B>PK_FACE_output_surf_trimmed</B> option data incorrect", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_cant_make_bspline 993 <B>PK_FACE_output_surf_trimmed</B> failed to make equivalent bspline surface", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_missing_geom 96 <B>PK_FACE_output_surf_trimmed</B> given face has no surface", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_tolerances_too_tight 1064 <B>PK_FACE_output_surf_trimmed</B> curve tolerance too tight", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>PK_FACE_output_surf_trimmed</B> 907 PK_ERROR_bad_option_data option data incorrect", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_output_surf_trimmed.html#declaration", " PK_ERROR_code_t <B>PK_FACE_output_surf_trimmed</B>", "PK Reference - PK_FACE_output_surf_trimmed");
+top.note("headers/pk_face_output_surf_trimmed.html#documentation", "In the returned data from <B>PK_FACE_output_surf_trimmed</B> all geometries are either", "PK Reference - PK_FACE_output_surf_trimmed");
+top.note("headers/pk_face_output_surf_trimmed_o_t.html#description", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_FACE_output_surf_trimmed_o_t");
+top.note("headers/pk_face_output_surf_trimmed_o_t.html#documentation", " <B>PK_FACE_output_surf_trimmed</B> will by default extend it to fit SP-curves", "PK Reference - PK_FACE_output_surf_trimmed_o_t");
+top.note("headers/pk_face_t.html#description", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_FACE_t");
+top.note("headers/pk_face_trim_degen_t.html#documentation", "included in the output of <B>PK_FACE_output_surf_trimmed</B> . It has two values:", "PK Reference - PK_FACE_trim_degen_t");
+top.note("headers/pk_face_trim_surf_t.html#documentation", " <B>PK_FACE_output_surf_trimmed</B> . It has two values:", "PK Reference - PK_FACE_trim_surf_t");
+top.note("headers/pk_geom_t.html#description", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_GEOM_t");
+top.note("headers/pk_interval_t.html#errors", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_INTERVAL_t");
+top.note("headers/pk_logical_t.html#description", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_LOGICAL_t");
+top.note("headers/pk_surf_t.html#description", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_SURF_t");
+top.note("headers/pk_surf_trim_data_t.html#description", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_SURF_trim_data_t");
+top.note("headers/pk_surf_trim_data_t.html#documentation", " provided in the documentation of <B>PK_FACE_output_surf_trimmed</B> ,", "PK Reference - PK_SURF_trim_data_t");
+top.note("headers/pk_topol_t.html#description", " <B>PK_FACE_output_surf_trimmed</B> ", "PK Reference - PK_TOPOL_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

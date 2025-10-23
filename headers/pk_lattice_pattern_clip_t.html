@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_LATTICE_pattern_clip_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_LATTICE_pattern_clip_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_LATTICE_pattern_clip_s
+    {
+    <A HREF=../headers/pk_lrod_clip_t.html>PK_LROD_clip_t</A>         lrod_clip;       --- specifies whether lrods survive
+                                            --- when clipped.
+                                            --- (<A HREF=../headers/pk_lrod_clip_t.html>PK_LROD_clip_keep_connected_c</A>)
+    <A HREF=../headers/pk_lrod_coi_t.html>PK_LROD_coi_t</A>          lrod_coi;        --- specifies whether lrods
+                                            --- coincident with one or more
+                                            --- clipping entities survive.
+                                            --- (<A HREF=../headers/pk_lrod_coi_t.html>PK_LROD_coi_keep_connected_c</A>)
+    <A HREF=../headers/pk_lball_radius_t.html>PK_LBALL_radius_t</A>      lball_radius;    --- controls the radius of any new
+                                            --- lballs created by clipping.
+                                            --- (<A HREF=../headers/pk_lball_radius_t.html>PK_LBALL_radius_interpolate_c</A>)
+    <A HREF=../headers/pk_ltopol_dup_merge_t.html>PK_LTOPOL_dup_merge_t</A>  merge_duplicates;
+                                            --- whether duplicate ltopologies
+                                            --- created by the clip should be
+                                            --- merged.
+                                            --- (<A HREF=../headers/pk_ltopol_dup_merge_t.html>PK_LTOPOL_dup_merge_no_c</A>)
+    double                 duplicate_tolerance;
+                                            --- tolerance used in merging of
+                                            --- duplicate ltopologies. (0.0)
+
+    };
+typedef struct PK_LATTICE_pattern_clip_s PK_LATTICE_pattern_clip_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for clipping when a patterned
+lattice is trimmed to bounding entities.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_option_data            An invalid <B>'duplicate_tolerance'</B> has
+                                        been supplied. (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_lattice_make_patterned_o_t.html>PK_LATTICE_make_patterned_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+
+<B>'lrod_clip'</B>                 Specifies the survival conditions for clipped
+                            lrods.
+
+<B>'lrod_coi'</B>                  Specifies the survival conditions for lrods
+                            coincident with one or more clipping entities.
+
+<B>'lball_radius'</B>              Controls the radii of any new lballs created at
+                            surviving lrods.
+
+<B>'merge_duplicates'</B>          Whether duplicate ltopologies created by the clip
+                            should be merged. If this is
+                            <A HREF=../headers/pk_ltopol_dup_merge_t.html>PK_LTOPOL_dup_merge_yes_c</A>, then
+                            <B>'duplicate_tolerance'</B> sets the maximum distance
+                            between lball positions, variation in lball radii,
+                            and variation in lball_lrod_radii at which lballs
+                            can be considered duplicates of one another. If
+                            this is <A HREF=../headers/pk_ltopol_dup_merge_t.html>PK_LTOPOL_dup_merge_no_c</A>, then
+                            <B>'duplicate_tolerance'</B> is ignored.
+
+<B>'duplicate_tolerance'</B>       The tolerance used in the merging of duplicate
+                            ltopologies if <B>'merge_duplicates'</B> is
+                            <A HREF=../headers/pk_ltopol_dup_merge_t.html>PK_LTOPOL_dup_merge_yes_c</A>. If this is not provided
+                            then the merging will be performed to session
+                            precision.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

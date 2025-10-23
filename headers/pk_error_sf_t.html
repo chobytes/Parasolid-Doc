@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ERROR_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ERROR_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_ERROR_sf
+    {
+    char function[PK_max_token_size];      --- name of PK function in which
+                                           --- error occurred
+    <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> code;                  --- error code
+    char code_token[PK_max_token_size];    --- name of error code
+    <A HREF=../headers/pk_error_severity_t.html>PK_ERROR_severity_t</A> severity;          --- none, mild, serious or fatal
+    int argument_number;                   --- number of invalid argument or 0
+    char argument_name[PK_max_token_size]; --- argument name if arg no != 0
+    int argument_index;                    --- if arg no != 0 and argument
+                                           --- is an array, the array index
+                                           --- where the checking failed
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A> entity;                    --- entity to which error applies or
+                                           --- PK_ENTITY_null
+    };
+typedef struct PK_ERROR_sf PK_ERROR_sf_t;
+</B>
+<A NAME="description"></A>
+<I>This data structure is the standard form for an error record used for reporting
+errors to application code.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_error_ask_last.html>PK_ERROR_ask_last</A><br>
+    <A HREF=../headers/pk_error_frustrum_t.html>PK_ERROR_frustrum_t</A><br>
+    <A HREF=../headers/pk_error_raise.html>PK_ERROR_raise</A><br>
+    <A HREF=../headers/pk_thread_ask_last_error.html>PK_THREAD_ask_last_error</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is used to pass information to the application supplied error handler
+and from <A HREF=../headers/pk_error_ask_last.html>PK_ERROR_ask_last</A> and <A HREF=../headers/pk_thread_ask_last_error.html>PK_THREAD_ask_last_error</A>.
+
+If there have been no errors, or the last error has been cleared, <B>'function'</B>
+will be the name of the PK function that asked for the last error, <B>'code'</B> will
+be PK_ERROR_no_errors and <B>'severity'</B> will be PK_ERROR_none.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

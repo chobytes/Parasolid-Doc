@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ATTRIB_reset_cb_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ATTRIB_reset_cb_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_ATTRIB_reset_cb_r_s
+    {
+    <A HREF=../headers/pk_attrib_reset_t.html>PK_ATTRIB_reset_t</A>        status;      --- return status of call
+    <A HREF=../headers/pk_attrib_field_t.html>PK_ATTRIB_field_t</A>        field_type;  --- field type of values
+    int                      n_values;    --- length of array of values
+    <A HREF=../headers/pk_attrib_field_values_t.html>PK_ATTRIB_field_values_t</A> values;      --- replacement contents for field
+    };
+typedef struct PK_ATTRIB_reset_cb_r_s PK_ATTRIB_reset_cb_r_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains the new values (if required) for the contents
+of the given field as specified by a callback function of type
+<A HREF=../headers/pk_attrib_reset_cb_f_t.html>PK_ATTRIB_reset_cb_f_t</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_attrib_reset_cb_f_t.html>PK_ATTRIB_reset_cb_f_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'status'</B>            specifies the return status of the call.
+
+<B>'field_type'</B>        specifies the field type of the contents of <B>'values'</B>.
+                    This must be the same as the original field type
+                    passed to the callback.
+
+<B>'n_values'</B>          specifies the number of entries in values.  This
+                    must either be the same as the original number of
+                    values, indicating that the array <B>'values'</B>
+                    contains new contents for the field, or zero,
+                    indicating that the contents of the field should
+                    not be changed.
+
+<B>'values'</B>            is an array of length <B>'n_values'</B>.  If <B>'status'</B> is
+                    PK_ATTRIB_reset_continue_c and <B>'n_values'</B> is not
+                    zero then the contents of this array will be
+                    copied into the indicated field of the attribute.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

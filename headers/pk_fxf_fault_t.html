@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_fxf_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_fxf_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_fxf_fault_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_fxf_error_t.html>PK_fxf_error_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype indicates the status of the face blend operation.
+
+It has the values:
+
+ PK_fxf_fault_no_fault_c      The requested blend succeeded.
+
+ PK_fxf_fault_repaired_c      The blend succeeded. Some of the blend surfaces
+                              have been repaired or modified to avoid
+                              self-intersections or sharp edges. <B>'topols'</B>
+                              will contain the faces that have been modified.
+                              This token is only returned if the <B>'repair_su_X'</B>
+                              option is set to <A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_report_c</A>
+                              or the <B>'prevent_sharp'</B> option is set to
+                              <A HREF=../headers/pk_blend_prevent_sharp_t.html>PK_blend_prevent_sharp_report_c</A>.
+
+ PK_fxf_fault_sheet_c         The blend has not been attached,
+                              nor have the walls been trimmed
+                              but blend sheet bodies have been created.
+                              This token is only returned if
+                              <A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A> was called with <B>'walls'</B> set to
+                              <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_both_c</A> or <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_attach_c</A>
+                              represents a partial success.
+                              The associated data is a vector in <B>'points'</B>
+                              and topological tags in <B>'topols'</B>
+                              These indicate the region where the blend could
+                              not be attached.
+
+ PK_fxf_fault_unknown_c       The blend could not be created.
+
+ PK_fxf_fault_insufficient_c  The application has supplied insufficient data
+                              to define a blend.
+
+ PK_fxf_fault_inconsistent_c  The application has supplied inconsistent data.
+
+ PK_fxf_fault_wall_c          The application has supplied an invalid wall of
+                              faces.
+                              The associated data in <B>'topols'</B> is the invalid
+                              array of faces.
+
+ PK_fxf_fault_range_c         The application has supplied an invalid range
+                              definition.
+
+ PK_fxf_fault_thl_c           The application has supplied invalid tangent hold
+                              line data.
+                              The associated value in <B>'topols'</B> is the invalid
+                              tangent hold line data.
+
+ PK_fxf_fault_cliff_c         The application has supplied invalid cliff edge
+                              data.
+                              The associated value in <B>'topols'</B> is the invalid
+                              cliff edge data.
+
+ PK_fxf_fault_curved_c        A face in a wall is too tightly curved
+                              for the blend to fit.
+                              The associated value in <B>'topols'</B> is the face in
+                              question.
+
+ PK_fxf_fault_small_c         A blend range is too small.
+                              The associated value in <B>'dists'</B> is the suggested
+                              larger range for the blend.
+
+ PK_fxf_fault_large_c         A blend range is too large.
+                              The associated value in <B>'dists'</B> is the suggested
+                              smaller range for the blend.
+
+ PK_fxf_fault_left_c          <B>'left_sense'</B> is incorrect.
+
+ PK_fxf_fault_right_c         <B>'right_sense'</B> is incorrect.
+
+ PK_fxf_fault_both_c          Both <B>'left_sense'</B> and <B>'right_sense'</B> are
+                              incorrect.
+
+ PK_fxf_fault_sheet_clash_c   The blend sheet(s) intersect one another
+                              and hence could not be attached.
+                              The associated data is a vector in <B>'points'</B>
+                              and topological tags in <B>'topols'</B>
+                              These indicate which sheet(s) clashed
+                              and the point at which they clashed.
+
+ PK_fxf_fault_wall_clash_c    The blend, which has been attached,
+                              has combined two bodies and has
+                              produced a face-face inconsistency elsewhere
+                              in the model.
+                              The associated value in <B>'topols'</B> is an array
+                              containing the tags of a pair of clashing faces.
+
+ PK_fxf_fault_face_face_c     The blend, which has been attached,
+                              has caused a face-face inconsistency.
+                              The associated value in <B>'topols'</B> is an array
+                              containing the tags of a pair of clashing faces.
+
+ PK_fxf_fault_self_int_c      The blend contains face(s) with self
+                              intersecting geometry.
+                              The associated value in <B>'topols'</B> is an array
+                              containing the tags of the blend faces with
+                              self-intersecting surfaces.
+
+ PK_fxf_fault_rho_value_c     The application has supplied an invalid rho
+                              value.
+
+ PK_fxf_fault_asymmetric_c    The application has supplied asymmetric ranges
+                              which are inconsistent with the underlying
+                              geometry.
+
+ PK_fxf_fault_chl_c           The application has supplied invalid conic hold
+                              line data.
+                              The associated value in <B>'topols'</B> is the invalid
+                              conic hold line data.
+
+ PK_fxf_fault_bad_spine_c     The application has supplied an invalid
+                              parameter spine.
+                              An associated value may be returned in
+                              <B>'points'</B>, representing a point where the spine
+                              is unsuitable.
+
+ PK_fxf_fault_bad_ribs_c      The application has supplied invalid rib
+                              controls.
+
+ PK_fxf_fault_plane_origin_c  The application has supplied a limit or capping
+                              plane whose origin does not determine a unique
+                              location at which to trim the blend.
+
+ PK_fxf_fault_plane_insuff_c  The application has supplied a limit or capping
+                              plane which is not sufficient to trim the blend.
+                              For example, if the blend is closed, the
+                              application must supply two limit planes.
+
+ PK_fxf_fault_preview_rib_c   No preview rib could be constructed.
+
+ PK_fxf_fault_rho_too_large_c A large rho value has resulted in the blend cross
+                              section curvature being too flat compared to the
+                              underlying surface(s)
+
+ PK_fxf_fault_depth_value_c   The application has supplied an invalid depth
+                              value.
+
+ PK_fxf_fault_skew_value_c    The application has supplied an invalid skew
+                              value.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

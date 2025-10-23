@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>ENBXEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENBXEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_topol_find_box.html>PK_TOPOL_find_box</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENBXEN ( entity, entbox, ifail )
+================================
+
+  Enquire box containing the specified entity.
+
+Receives:
+  KI_tag_topology          *entity         --- entity whose box is required
+
+Returns:
+  KI_dbl_box                entbox[6]      --- box containing entity
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_system_error           
+  KI_empty_body             body has no faces, edges, or vertices
+  KI_empty_assy             assembly instances no bodies
+  KI_missing_geom           entity has missing point geometry
+  KI_wrong_entity           entity is of incorrect type
+
+Description:
+
+  The entity must be an assembly, body, face or edge.
+
+  The coordinates of the opposite corners of a rectangular box
+  with sides parallel to X, Y and Z axes are returned. The box will
+  contain the specified entity and will usually be close to the
+  minimum possible size, but this is not guaranteed.
+
+  Element zero of array 'entbox' will contain the minimum X coordinate
+  of the box, element one the minimum Y, element two the minimum Z,
+  element three the maximum X and so on. On failure, all elements of
+  'entbox' will be set to zero.
+
+  If edge or face geometry is missing the entity will still be boxed
+  ignoring those edges and faces. If any point geometry is missing
+  then the boxing will fail.
+
+  An attempt to box an assembly which instances no bodies will fail.
+
+  If a body is empty the ifail KI_empty_body will be returned.
+
+
+</PRE>
+</BODY>
+</HTML>

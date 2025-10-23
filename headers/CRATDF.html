@@ -1,0 +1,180 @@
+<HTML>
+<HEAD>
+<TITLE>CRATDF</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRATDF</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_attdef_create.html>PK_ATTDEF_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRATDF ( namlen, name, nopts, option, opdata, type, ifail )
+===========================================================
+
+  Create a new attribute type definition.
+
+Receives:
+  KI_int_nitems            *namlen         --- length of 'name'
+  KI_chr_string             name[namlen]   --- name of attribute type
+  KI_int_nitems            *nopts          --- number of option codes
+  KI_cod_atop               option[nopts]  --- array of option codes
+ &lt;KI_tag_list&gt;              opdata[nopts]  --- corresponding lists of data
+
+Returns:
+  KI_tag_attrib_def        *type           --- attribute type
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_illegal_owner          invalid class for type with geometric owner
+  KI_not_found              legal owner option has been omitted
+                            class code has been omitted
+                            no legal owners supplied
+  KI_bad_request_code       invalid class code supplied
+                            list of field types contains an invalid code
+  KI_list_wrong_length      class code list length is not one
+  KI_not_unique             a token has been repeated in 'option'
+  KI_wrong_entity_in_list   invalid token found in list of legal owners
+  KI_duplicate_list_item    item duplicated in list of legal owners
+  KI_existing_attr_type     attribute type already defined
+  KI_bad_name               invalid name for attribute type
+
+Description:
+   Creates a new attribute type definition with the given name, returning
+  the tag of the type for use in calling the other attribute functions.
+
+   The attribute type definition comes in two parts; the name, which will
+  act as a label for the type which is fixed across transmit and receive,
+  and the option data, which specify what entities may own attributes of
+  the given type, what fields these attributes have and how such attributes
+  behave when modelling operations are applied to their owners.
+
+  Type name:
+   The name is specified by a character array containing only printable
+  characters and an integer argument stating the length of the name.
+
+   If 'name' begins with the string SDL/TY, which is reserved for attribute
+  types whose names are generated internally by Parasolid, KI_bad_name will
+  be returned in 'ifail'.
+
+  Option data:
+   The data defining the attribute type are supplied in the arrays 'option'
+  and 'opdata'.  Each entry in 'option' is a code from the sequence ATOP00.
+  The entries in 'opdata' are tags of lists of data appropriate to the codes
+  in the corresponding positions in 'option'.
+
+   The following table lists the legal 'option' values and the corresponding
+  data; the first two codes must be supplied to specify the legal owners
+  and behaviour when modelling operations are applied to the owner of an
+  attribute:
+
+  token option[i] | data in list opdata[i]
+
+  ATOPCL          | RQAC (class) code indicating behaviour when owner changes
+  ATOPOW          | legal owner type codes
+  ATOPFL          | field types
+
+
+  Field types:
+   Every attribute of a certain type contains a specified sequence of fields
+  of specified types; these are supplied to CRATDF as request codes in an
+  integer list in the position in array 'opdata' corresponding to that of
+  the entry ATOPFL in the array 'option'.  The permitted tokens and their
+  meanings are as follows:
+
+      RQAPRL    Real
+      RQAPIN    Integer
+      RQAPCS    Character string
+      RQAPVC    Vector
+      RQAPCO    Co-ordinate
+      RQAPDR    Direction
+      RQAPAX    Axis
+
+  An axis field consists of two vector values, communicated as six real
+  values, one of which is a point on the axis and the other is its direction.
+
+  The order of the fields is important, as they are distinguished in OUATDF,
+  CREATT and OUTATT by type and order.
+
+  To define an attribute which has no fields, omit ATOPFL in 'option'.
+
+  Class code:
+   The behaviour of an attribute of the new type when the entity to which
+  the attribute is attached is changed by a modelling operation is described
+  by the request code supplied in 'opdata' alongside the code ATOPCL in
+  'option'.  The meaning of the request code alongside ATOPCL is as follows:
+
+      RQAC01   Attribute is independent of physical size and position of
+               entity to which it is attached (e.g. density).
+      RQAC02   Attribute is dependent on entity size but not on position.
+               (e.g. weight).
+      RQAC03   Attribute may vary with position or orientation (e.g. moment
+               of inertia).
+      RQAC04   Attribute transforms with its owner, but is otherwise
+               independent of the size and shape of its owner (e.g.
+               start-point or direction of movement of the tool that
+               cuts a face)
+      RQAC05   Attribute transforms with its owner provided its owner is
+               not changed in other ways (e.g. centre of gravity)
+      RQAC06   As for class 1, attribute is independent of physical size and
+               position of the entity to which it is attached. However this
+               class of attribute supports multiple values - one entity may
+               have a list of attributes of the same type attached.
+      RQAC07   As for class 4, attribute transforms with its owner, but is
+               otherwise independent of size and shape of the owner. However
+               this class supports multiple values - an entity may have a list
+               of attributes of the same type attached.
+
+   The response of a field of an attribute when the attribute transforms
+  (with its owner) depends on the type of the field as follows:
+
+      real, integer and string fields are unaffected,
+      co-ordinate fields are acted on by the transformation,
+      vector and direction fields are acted on by the reflection and rotation
+          parts of the transformation, and
+      axis fields behave as a coordinate field and a direction field.
+
+   For a fuller account of the behaviour of attributes under modelling
+  operations and the meaning of attributes, consult the chapter on Attributes.
+
+  Legal owners:
+   The entities which may legitimately own attributes of the given type
+  are specified in an integer list, passed in 'opdata' in the position
+  corresponding to that of the code ATOPOW in 'option', using the following
+  token values to identify the different entity types:
+
+      TYTOAS    Assembly
+      TYTOIN    Instance
+      TYTOBY    Body
+      TYTORG    Region
+      TYTOSH    Shell
+      TYTOFA    Face
+      TYTOLO    Loop
+      TYTOED    Edge
+      TYTOVX    Vertex
+      TYADFE    Feature
+      TYGESU    Surface
+      TYGECU    Curve
+      TYGEPT    Point
+
+   The geometric entity types, surface, curve and point, may only be specified
+  as legal owners for attribute types with class RQAC01 or RQAC04.
+
+
+</PRE>
+</BODY>
+</HTML>

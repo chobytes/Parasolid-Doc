@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_imprint_vectors_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_imprint_vectors_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_imprint_vectors_r_s
+{
+<A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_t</A>         status;          --- status
+int                       n_error_indices; --- number of <B>'vectors'</B> not on the
+                                           --- mesh, or number of <B>'vectors'</B>
+                                           --- in bad "clusters"
+int                      *error_indices;   --- indices of <B>'vectors'</B> which
+                                           --- caused the failure indicated
+                                           --- by the status.
+int                       n_defects;       --- number of defects in the
+                                           --- <B>'resultant_mesh'</B>
+<A HREF=../headers/pk_mesh_defect_details_t.html>PK_MESH_defect_details_t</A> *defects;         --- defects in the <B>'resultant_mesh'</B>
+};
+typedef struct PK_MESH_imprint_vectors_r_s PK_MESH_imprint_vectors_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure is returned after attempting to imprint vectors on a mesh. It
+holds a status identifying the nature of the success or failure, an array of
+the indices of the vectors in the input array caused the failure, and an array
+of defects in the <B>'resultant_mesh'</B>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_imprint_vectors.html>PK_MESH_imprint_vectors</A><br>
+    <A HREF=../headers/pk_mesh_imprint_vectors_r_f.html>PK_MESH_imprint_vectors_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Any space allocated by Parasolid within this structure may be freed by calling
+<A HREF=../headers/pk_mesh_imprint_vectors_r_f.html>PK_MESH_imprint_vectors_r_f</A>.
+
+The structure has the following fields:
+
+<B>'status'</B>:            Token indicating whether the vectors were successfully
+                     imprinted onto the mesh and whether there were any
+                     defects in the <B>'resultant_mesh'</B>.
+
+                     Tokens that indicate success are:
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_success_c</A>,
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_defects_c</A>.
+
+                     Tokens that indicate failure are:
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_wrong_mtopol_c</A>
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_bad_parameter_c</A>
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_off_mesh_c</A>
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_bad_clusters_c</A>.
+
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_wrong_mtopol_c</A> and
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_bad_parameter_c</A> take precedence over
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_off_mesh_c</A> and
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_bad_clusters_c</A>.
+
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_off_mesh_c</A> takes precedence over
+                     <A HREF=../headers/pk_imprint_vecs_t.html>PK_imprint_vecs_bad_clusters_c</A>.
+
+<B>'error_indices'</B>:     If any of the vectors supplied were not within session
+                     precision of the mesh, or were not within session
+                     precision of their corresponding mtopol/parameter given
+                     in the options structure, then this array will contain
+                     the indices of those vectors in the input array.
+                     Otherwise if any input vectors were in a cluster of
+                     vectors which could not be resolved into a single vector
+                     to imprint, the vectors from all such clusters will have
+                     their indices from the input array included in
+                     `error indices'. (See documentation for
+                     <A HREF=../headers/pk_mesh_imprint_vectors.html>PK_MESH_imprint_vectors</A> for a definition of a "cluster".)
+                     Otherwise this array will be null.
+
+<B>'defects'</B>:           An array of all the defects in the <B>'resultant_mesh'</B>
+                     caused by imprinting the vectors. If there are no such
+                     defects this array will be null. Note that if there
+                     were defects in the original mesh then there may be
+                     defects in the <B>'resultant_mesh'</B> which are not in the
+                     array, as they were not caused by imprinting. However if
+                     a vector is imprinted near an existing defect this may be
+                     returned.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

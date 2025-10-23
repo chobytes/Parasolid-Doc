@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ENTITY_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ENTITY_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B></B>
+<A NAME="description"></A>
+<I>This type represents an ENTITY.  An entity is any modelling item.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_attdef_copy_callback_f_t.html>PK_ATTDEF_copy_callback_f_t</A><br>
+    <A HREF=../headers/pk_attdef_delete_callback_f_t.html>PK_ATTDEF_delete_callback_f_t</A><br>
+    <A HREF=../headers/pk_attdef_merge_callback_f_t.html>PK_ATTDEF_merge_callback_f_t</A><br>
+    <A HREF=../headers/pk_attdef_receive_callback_f_t.html>PK_ATTDEF_receive_callback_f_t</A><br>
+    <A HREF=../headers/pk_attdef_split_callback_f_t.html>PK_ATTDEF_split_callback_f_t</A><br>
+    <A HREF=../headers/pk_attdef_transmit_callback_f_t.html>PK_ATTDEF_transmit_callback_f_t</A><br>
+    <A HREF=../headers/pk_attrib_ask_owner.html>PK_ATTRIB_ask_owner</A><br>
+    <A HREF=../headers/pk_attrib_create_empty.html>PK_ATTRIB_create_empty</A><br>
+    <A HREF=../headers/pk_bb_output_events.html>PK_BB_output_events</A><br>
+    <A HREF=../headers/pk_blend_cap_data_t.html>PK_blend_cap_data_t</A><br>
+    <A HREF=../headers/pk_blend_constraint_t.html>PK_blend_constraint_t</A><br>
+    <A HREF=../headers/pk_blend_delete_cap_data_t.html>PK_blend_delete_cap_data_t</A><br>
+    <A HREF=../headers/pk_body_extend_o_t.html>PK_BODY_extend_o_t</A><br>
+    <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A><br>
+    <A HREF=../headers/pk_body_make_persp_outline_r_t.html>PK_BODY_make_persp_outline_r_t</A><br>
+    <A HREF=../headers/pk_body_pick_topol_r_t.html>PK_BODY_pick_topol_r_t</A><br>
+    <A HREF=../headers/pk_body_sweep_status_2_r_t.html>PK_BODY_sweep_status_2_r_t</A><br>
+    <A HREF=../headers/pk_body_sweep_tool_status_r_t.html>PK_BODY_sweep_tool_status_r_t</A><br>
+    <A HREF=../headers/pk_body_taper.html>PK_BODY_taper</A><br>
+    <A HREF=../headers/pk_body_taper_o_t.html>PK_BODY_taper_o_t</A><br>
+    <A HREF=../headers/pk_boolean_report_r_t.html>PK_boolean_report_r_t</A><br>
+    <A HREF=../headers/pk_bound_def_t.html>PK_bound_def_t</A><br>
+    <A HREF=../headers/pk_change_edge_geom_data_t.html>PK_change_edge_geom_data_t</A><br>
+    <A HREF=../headers/pk_check_fault_t.html>PK_check_fault_t</A><br>
+    <A HREF=../headers/pk_curve_project.html>PK_CURVE_project</A><br>
+    <A HREF=../headers/pk_curve_self_int_t.html>PK_CURVE_self_int_t</A><br>
+    <A HREF=../headers/pk_debug_local_diffs_r_t.html>PK_DEBUG_local_diffs_r_t</A><br>
+    <A HREF=../headers/pk_edge_offset_on_body_r_t.html>PK_EDGE_offset_on_body_r_t</A><br>
+    <A HREF=../headers/pk_entity_ask_attribs.html>PK_ENTITY_ask_attribs</A><br>
+    <A HREF=../headers/pk_entity_ask_class.html>PK_ENTITY_ask_class</A><br>
+    <A HREF=../headers/pk_entity_ask_first_attrib.html>PK_ENTITY_ask_first_attrib</A><br>
+    <A HREF=../headers/pk_entity_ask_identifier.html>PK_ENTITY_ask_identifier</A><br>
+    <A HREF=../headers/pk_entity_ask_owning_groups.html>PK_ENTITY_ask_owning_groups</A><br>
+    <A HREF=../headers/pk_entity_ask_owning_groups_2.html>PK_ENTITY_ask_owning_groups_2</A><br>
+    <A HREF=../headers/pk_entity_ask_partition.html>PK_ENTITY_ask_partition</A><br>
+    <A HREF=../headers/pk_entity_ask_user_field.html>PK_ENTITY_ask_user_field</A><br>
+    <A HREF=../headers/pk_entity_check_attribs.html>PK_ENTITY_check_attribs</A><br>
+    <A HREF=../headers/pk_entity_copy.html>PK_ENTITY_copy</A><br>
+    <A HREF=../headers/pk_entity_copy_2.html>PK_ENTITY_copy_2</A><br>
+    <A HREF=../headers/pk_entity_delete.html>PK_ENTITY_delete</A><br>
+    <A HREF=../headers/pk_entity_delete_attribs.html>PK_ENTITY_delete_attribs</A><br>
+    <A HREF=../headers/pk_entity_find_reparam.html>PK_ENTITY_find_reparam</A><br>
+    <A HREF=../headers/pk_entity_is_curve.html>PK_ENTITY_is_curve</A><br>
+    <A HREF=../headers/pk_entity_is_geom.html>PK_ENTITY_is_geom</A><br>
+    <A HREF=../headers/pk_entity_is_part.html>PK_ENTITY_is_part</A><br>
+    <A HREF=../headers/pk_entity_is_surf.html>PK_ENTITY_is_surf</A><br>
+    <A HREF=../headers/pk_entity_is_topol.html>PK_ENTITY_is_topol</A><br>
+    <A HREF=../headers/pk_entity_may_own_attdef.html>PK_ENTITY_may_own_attdef</A><br>
+    <A HREF=../headers/pk_entity_range.html>PK_ENTITY_range</A><br>
+    <A HREF=../headers/pk_entity_range_end_t.html>PK_ENTITY_range_end_t</A><br>
+    <A HREF=../headers/pk_entity_range_o_t.html>PK_ENTITY_range_o_t</A><br>
+    <A HREF=../headers/pk_entity_range_vector.html>PK_ENTITY_range_vector</A><br>
+    <A HREF=../headers/pk_entity_range_vector_o_t.html>PK_ENTITY_range_vector_o_t</A><br>
+    <A HREF=../headers/pk_entity_set_user_field.html>PK_ENTITY_set_user_field</A><br>
+    <A HREF=../headers/pk_entity_track_record_r_t.html>PK_ENTITY_track_record_r_t</A><br>
+    <A HREF=../headers/pk_error_sf_t.html>PK_ERROR_sf_t</A><br>
+    <A HREF=../headers/pk_expr_value_t.html>PK_EXPR_value_t</A><br>
+    <A HREF=../headers/pk_face_change_blend_o_t.html>PK_FACE_change_blend_o_t</A><br>
+    <A HREF=../headers/pk_face_change_data_bend_t.html>PK_FACE_change_data_bend_t</A><br>
+    <A HREF=../headers/pk_face_change_data_taper_t.html>PK_FACE_change_data_taper_t</A><br>
+    <A HREF=../headers/pk_face_change_taper_o_t.html>PK_FACE_change_taper_o_t</A><br>
+    <A HREF=../headers/pk_face_install_surfs_isocline.html>PK_FACE_install_surfs_isocline</A><br>
+    <A HREF=../headers/pk_face_make_3_face_blend_o_t.html>PK_FACE_make_3_face_blend_o_t</A><br>
+    <A HREF=../headers/pk_face_reparameterise_surf_r_t.html>PK_FACE_reparameterise_surf_r_t</A><br>
+    <A HREF=../headers/pk_face_replace_surfs_r_t.html>PK_FACE_replace_surfs_r_t</A><br>
+    <A HREF=../headers/pk_face_taper.html>PK_FACE_taper</A><br>
+    <A HREF=../headers/pk_face_taper_o_t.html>PK_FACE_taper_o_t</A><br>
+    <A HREF=../headers/pk_find_reparam_record_r_t.html>PK_find_reparam_record_r_t</A><br>
+    <A HREF=../headers/pk_frame_ask_owner_r_t.html>PK_FRAME_ask_owner_r_t</A><br>
+    <A HREF=../headers/pk_geom_render_o_t.html>PK_GEOM_render_o_t</A><br>
+    <A HREF=../headers/pk_group_add_entities.html>PK_GROUP_add_entities</A><br>
+    <A HREF=../headers/pk_group_ask_entities.html>PK_GROUP_ask_entities</A><br>
+    <A HREF=../headers/pk_group_ask_entity_label.html>PK_GROUP_ask_entity_label</A><br>
+    <A HREF=../headers/pk_group_contains_entity.html>PK_GROUP_contains_entity</A><br>
+    <A HREF=../headers/pk_group_create_from_entities.html>PK_GROUP_create_from_entities</A><br>
+    <A HREF=../headers/pk_group_create_from_entities_2.html>PK_GROUP_create_from_entities_2</A><br>
+    <A HREF=../headers/pk_group_find_entities.html>PK_GROUP_find_entities</A><br>
+    <A HREF=../headers/pk_group_merge_entities.html>PK_GROUP_merge_entities</A><br>
+    <A HREF=../headers/pk_group_remove_entities.html>PK_GROUP_remove_entities</A><br>
+    <A HREF=../headers/pk_group_set_entity_label.html>PK_GROUP_set_entity_label</A><br>
+    <A HREF=../headers/pk_hole_component_t.html>PK_hole_component_t</A><br>
+    <A HREF=../headers/pk_lattice_clip_o_t.html>PK_LATTICE_clip_o_t</A><br>
+    <A HREF=../headers/pk_mesh_defect_details_t.html>PK_MESH_defect_details_t</A><br>
+    <A HREF=../headers/pk_part_ask_attribs_cb.html>PK_PART_ask_attribs_cb</A><br>
+    <A HREF=../headers/pk_part_find_entity_by_ident.html>PK_PART_find_entity_by_ident</A><br>
+    <A HREF=../headers/pk_part_receive_meshes.html>PK_PART_receive_meshes</A><br>
+    <A HREF=../headers/pk_part_rectify_identifiers.html>PK_PART_rectify_identifiers</A><br>
+    <A HREF=../headers/pk_partition_clone_pmark.html>PK_PARTITION_clone_pmark</A><br>
+    <A HREF=../headers/pk_partition_entities_t.html>PK_PARTITION_entities_t</A><br>
+    <A HREF=../headers/pk_partition_is_clone.html>PK_PARTITION_is_clone</A><br>
+    <A HREF=../headers/pk_partition_make_pmark_2.html>PK_PARTITION_make_pmark_2</A><br>
+    <A HREF=../headers/pk_pmark_goto.html>PK_PMARK_goto</A><br>
+    <A HREF=../headers/pk_pmark_goto_2.html>PK_PMARK_goto_2</A><br>
+    <A HREF=../headers/pk_range_end_t.html>PK_range_end_t</A><br>
+    <A HREF=../headers/pk_section_report_r_t.html>PK_section_report_r_t</A><br>
+    <A HREF=../headers/pk_surf_self_int_t.html>PK_SURF_self_int_t</A><br>
+    <A HREF=../headers/pk_topol_ask_entities_by_attdef.html>PK_TOPOL_ask_entities_by_attdef</A><br>
+    <A HREF=../headers/pk_topol_find_frames_r_t.html>PK_TOPOL_find_frames_r_t</A><br>
+    <A HREF=../headers/pk_topol_local_r_t.html>PK_TOPOL_local_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+An entity may be of one of the types:
+
+ - <A HREF=../headers/pk_attdef_t.html>PK_ATTDEF_t</A>: an attribute definition
+ - <A HREF=../headers/pk_attrib_t.html>PK_ATTRIB_t</A>: an attribute
+ - <A HREF=../headers/pk_group_t.html>PK_GROUP_t</A>:  a group
+ - <A HREF=../headers/pk_transf_t.html>PK_TRANSF_t</A>: a transform
+ - <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>:  any topological entity
+ - <A HREF=../headers/pk_geom_t.html>PK_GEOM_t</A>:   any geometrical entity
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

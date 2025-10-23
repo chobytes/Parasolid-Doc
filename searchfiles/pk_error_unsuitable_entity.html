@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.018.html#50409799_pgfId-311450", " a b-curve. If it is not one of these, <B>PK_ERROR_unsuitable_entity</B> is returned ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-311583", " must be a line, circle, ellipse or a b-curve. <B>PK_ERROR_unsuitable_entity</B> is returned if the curve is not one of", "Functional Description - Geometry");
+top.note("chapters/p2_chap.06.html#sec_e_1_2", " <B>PK_ERROR_unsuitable_entity</B> 914 ", "PK Reference - PK Error Codes (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " <B>PK_ERROR_unsuitable_entity</B> 914 PK_ATTDEF_set_group_closing (MILD) attdef is a Parasolid System", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.08.html#sec_g_1_4", " <B>PK_ERROR_unsuitable_entity</B> 914 ", "PK Reference - PK Error Codes (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " <B>PK_ERROR_unsuitable_entity</B> 914 PK_ATTDEF_set_group_closing (MILD) attdef is a Parasolid System", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " PK_ATTDEF_set_group_closing 914 <B>PK_ERROR_unsuitable_entity</B> (MILD) attdef is a Parasolid System", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " PK_CURVE_embed_in_surf 914 <B>PK_ERROR_unsuitable_entity</B> curve is not a BCURVE", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " PK_GEOM_render 914 <B>PK_ERROR_unsuitable_entity</B> geoms contains a geometric", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_SPCURVE_create 914 <B>PK_ERROR_unsuitable_entity</B> `spcurve_sf->curve is not a BCURVE or is", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_attdef_set_group_closing.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) attdef is a Parasolid System", "PK Reference - PK_ATTDEF_set_group_closing");
+top.note("headers/pk_bcurve_ask_splinewise.html#errors", " <B>PK_ERROR_unsuitable_entity</B> degree of curve is greater than 3 or", "PK Reference - PK_BCURVE_ask_splinewise");
+top.note("headers/pk_blend_delete_unders_data_t.html#errors", " <B>PK_ERROR_unsuitable_entity</B> A member of blends is a face that is", "PK Reference - PK_blend_delete_unders_data_t");
+top.note("headers/pk_body_add_to_compound.html#errors", " <B>PK_ERROR_unsuitable_entity</B> a given body contains an entity", "PK Reference - PK_BODY_add_to_compound");
+top.note("headers/pk_body_ask_first_edge.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is a child body", "PK Reference - PK_BODY_ask_first_edge");
+top.note("headers/pk_body_ask_first_face.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is a child body", "PK Reference - PK_BODY_ask_first_face");
+top.note("headers/pk_body_ask_memory_usage.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Body is a child body (MILD)", "PK Reference - PK_BODY_ask_memory_usage");
+top.note("headers/pk_body_embed_in_surf.html#errors", " <B>PK_ERROR_unsuitable_entity</B> sheet has more than one non-rubber face", "PK Reference - PK_BODY_embed_in_surf");
+top.note("headers/pk_body_enlarge.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is not a sheet or solid body (MILD)", "PK Reference - PK_BODY_enlarge");
+top.note("headers/pk_body_extend.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is not a sheet or general body", "PK Reference - PK_BODY_extend");
+top.note("headers/pk_body_extrude.html#errors", " <B>PK_ERROR_unsuitable_entity</B> profile is unsuitable for extrusion (MILD)", "PK Reference - PK_BODY_extrude");
+top.note("headers/pk_body_extrude_o_t.html#errors", " <B>PK_ERROR_unsuitable_entity</B> extruded_body is provided but is either", "PK Reference - PK_BODY_extrude_o_t");
+top.note("headers/pk_body_hollow_2.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is not solid body or any face specified", "PK Reference - PK_BODY_hollow_2");
+top.note("headers/pk_body_imprint_curve.html#errors", " <B>PK_ERROR_unsuitable_entity</B> not a minimum or wire body (SERIOUS)", "PK Reference - PK_BODY_imprint_curve");
+top.note("headers/pk_body_imprint_curve.html#documentation", "<B>PK_ERROR_unsuitable_entity</B> will be returned.", "PK Reference - PK_BODY_imprint_curve");
+top.note("headers/pk_body_imprint_curves_normal.html#errors", " <B>PK_ERROR_unsuitable_entity</B> The target body or supplied curves are", "PK Reference - PK_BODY_imprint_curves_normal");
+top.note("headers/pk_body_imprint_curves_vector.html#errors", " <B>PK_ERROR_unsuitable_entity</B> The target body or supplied curves are", "PK Reference - PK_BODY_imprint_curves_vector");
+top.note("headers/pk_body_imprint_cus_normal.html#errors", " <B>PK_ERROR_unsuitable_entity</B> The target body or supplied curves", "PK Reference - PK_BODY_imprint_cus_normal");
+top.note("headers/pk_body_imprint_cus_shadow.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) body is not a sheet or a solid", "PK Reference - PK_BODY_imprint_cus_shadow");
+top.note("headers/pk_body_imprint_cus_vec.html#errors", " <B>PK_ERROR_unsuitable_entity</B> The target body or supplied curves are", "PK Reference - PK_BODY_imprint_cus_vec");
+top.note("headers/pk_body_imprint_cus_vector.html#errors", " <B>PK_ERROR_unsuitable_entity</B> The target body or supplied curves are", "PK Reference - PK_BODY_imprint_cus_vector");
+top.note("headers/pk_body_make_compound.html#errors", " <B>PK_ERROR_unsuitable_entity</B> one of the bodies contains an entity", "PK Reference - PK_BODY_make_compound");
+top.note("headers/pk_body_make_curves_outline.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) Supplied body is neither sheet, nor", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_patterned.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Supplied body has classic geometry.", "PK Reference - PK_BODY_make_patterned");
+top.note("headers/pk_body_make_persp_outline.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) a supplied body is edge-on or is", "PK Reference - PK_BODY_make_persp_outline");
+top.note("headers/pk_body_make_spun_outline.html#errors", " <B>PK_ERROR_unsuitable_entity</B> a received body is neither solid", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_offset.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is not a sheet or solid body", "PK Reference - PK_BODY_offset");
+top.note("headers/pk_body_offset_2.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is not a sheet or solid body (MILD)", "PK Reference - PK_BODY_offset_2");
+top.note("headers/pk_body_remove_from_parents.html#errors", " <B>PK_ERROR_unsuitable_entity</B> a given body is not a child body (MILD)", "PK Reference - PK_BODY_remove_from_parents");
+top.note("headers/pk_body_spin.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Body is unsuitable for spin (MILD)", "PK Reference - PK_BODY_spin");
+top.note("headers/pk_body_spin.html#documentation", "to one of PK_ERROR_wrong_entity, <B>PK_ERROR_unsuitable_entity</B> or", "PK Reference - PK_BODY_spin");
+top.note("headers/pk_body_sweep.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Body is unsuitable for sweep (MILD)", "PK Reference - PK_BODY_sweep");
+top.note("headers/pk_bsurf_ask_splinewise.html#errors", " <B>PK_ERROR_unsuitable_entity</B> degree of surface is greater than 3", "PK Reference - PK_BSURF_ask_splinewise");
+top.note("headers/pk_change_edge_geom_data_t.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) The entities array has been supplied", "PK Reference - PK_change_edge_geom_data_t");
+top.note("headers/pk_curve_embed_in_surf.html#errors", " <B>PK_ERROR_unsuitable_entity</B> curve is not a BCURVE", "PK Reference - PK_CURVE_embed_in_surf");
+top.note("headers/pk_curve_embed_in_surf_2.html#errors", " <B>PK_ERROR_unsuitable_entity</B> curve is not a 2D b-curve or is not", "PK Reference - PK_CURVE_embed_in_surf_2");
+top.note("headers/pk_curve_find_box.html#errors", " <B>PK_ERROR_unsuitable_entity</B> the input curve is infinite, and the", "PK Reference - PK_CURVE_find_box");
+top.note("headers/pk_curve_make_curve_reversed.html#errors", " <B>PK_ERROR_unsuitable_entity</B> curve type is not supported", "PK Reference - PK_CURVE_make_curve_reversed");
+top.note("headers/pk_curve_make_wire_body_2.html#errors", " <B>PK_ERROR_unsuitable_entity</B> unsuitable curve(s) supplied (MILD)", "PK Reference - PK_CURVE_make_wire_body_2");
+top.note("headers/pk_curve_spin.html#errors", " <B>PK_ERROR_unsuitable_entity</B> not one of the allowed curve types", "PK Reference - PK_CURVE_spin");
+top.note("headers/pk_curve_spin_2.html#errors", " <B>PK_ERROR_unsuitable_entity</B> not one of the allowed curve types", "PK Reference - PK_CURVE_spin_2");
+top.note("headers/pk_curve_sweep.html#errors", " <B>PK_ERROR_unsuitable_entity</B> not one of the allowed curve types", "PK Reference - PK_CURVE_sweep");
+top.note("headers/pk_edge_make_faces_from_wire.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Unsuitable entity specified as", "PK Reference - PK_EDGE_make_faces_from_wire");
+top.note("headers/pk_entity_find_reparam.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) entities contains an entity", "PK Reference - PK_ENTITY_find_reparam");
+top.note("headers/pk_face_attach_surf_fitting.html#errors", " <B>PK_ERROR_unsuitable_entity</B> face does not comes from a sheet", "PK Reference - PK_FACE_attach_surf_fitting");
+top.note("headers/pk_face_cover.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) The faces body is not a sheet or", "PK Reference - PK_FACE_cover");
+top.note("headers/pk_face_fix_mesh_defects.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Some of the faces in faces dont have", "PK Reference - PK_FACE_fix_mesh_defects");
+top.note("headers/pk_face_hollow.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is not a solid body", "PK Reference - PK_FACE_hollow");
+top.note("headers/pk_face_hollow_2.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is not a solid body", "PK Reference - PK_FACE_hollow_2");
+top.note("headers/pk_face_hollow_3.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) body is not a solid body", "PK Reference - PK_FACE_hollow_3");
+top.note("headers/pk_face_imprint_cus_normal.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Unsuitable curve type for operation", "PK Reference - PK_FACE_imprint_cus_normal");
+top.note("headers/pk_face_imprint_cus_vec.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Unsuitable curve type for operation", "PK Reference - PK_FACE_imprint_cus_vec");
+top.note("headers/pk_face_imprint_cus_vector.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Unsuitable curve type for operation", "PK Reference - PK_FACE_imprint_cus_vector");
+top.note("headers/pk_face_instance_bodies.html#documentation", "<B>PK_ERROR_unsuitable_entity</B> Arguments not of correct type", "PK Reference - PK_FACE_instance_bodies");
+top.note("headers/pk_face_instance_tools.html#errors", "<B>PK_ERROR_unsuitable_entity</B> arguments not of correct type.", "PK Reference - PK_FACE_instance_tools");
+top.note("headers/pk_face_offset.html#errors", " <B>PK_ERROR_unsuitable_entity</B> body is not a sheet or solid body", "PK Reference - PK_FACE_offset");
+top.note("headers/pk_face_offset_2.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) body is not a sheet or solid body", "PK Reference - PK_FACE_offset_2");
+top.note("headers/pk_face_reparameterise_surf.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) geometry unsuitable for the", "PK Reference - PK_FACE_reparameterise_surf");
+top.note("headers/pk_face_replace_with_sheet.html#errors", " <B>PK_ERROR_unsuitable_entity</B> (MILD) body is not a sheet or solid body", "PK Reference - PK_FACE_replace_with_sheet");
+top.note("headers/pk_face_spin.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Face(s) unsuitable for spin", "PK Reference - PK_FACE_spin");
+top.note("headers/pk_face_spin.html#documentation", "to one of PK_ERROR_wrong_entity, <B>PK_ERROR_unsuitable_entity</B> or", "PK Reference - PK_FACE_spin");
+top.note("headers/pk_face_sweep.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Face(s) unsuitable for sweep", "PK Reference - PK_FACE_sweep");
+top.note("headers/pk_geom_render.html#errors", " <B>PK_ERROR_unsuitable_entity</B> geoms contains a geometric", "PK Reference - PK_GEOM_render");
+top.note("headers/pk_lattice_clip.html#errors", " <B>PK_ERROR_unsuitable_entity</B> One or more unsupported clipping", "PK Reference - PK_LATTICE_clip");
+top.note("headers/pk_part_transmit.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Not all the given parts are bodies (MILD)", "PK Reference - PK_PART_transmit");
+top.note("headers/pk_part_transmit_u.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Not all the given parts are bodies (MILD)", "PK Reference - PK_PART_transmit_u");
+top.note("headers/pk_partition_clone_pmark.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Cloning is not started in partition ", "PK Reference - PK_PARTITION_clone_pmark");
+top.note("headers/pk_partition_is_clone.html#errors", " <B>PK_ERROR_unsuitable_entity</B> partition not in a suitable state (MILD)", "PK Reference - PK_PARTITION_is_clone");
+top.note("headers/pk_partition_reset_attribs.html#errors", " <B>PK_ERROR_unsuitable_entity</B> One of attdefs is a Parasolid system", "PK Reference - PK_PARTITION_reset_attribs");
+top.note("headers/pk_spcurve_create.html#errors", " <B>PK_ERROR_unsuitable_entity</B> `spcurve_sf->curve is not a BCURVE or is", "PK Reference - PK_SPCURVE_create");
+top.note("headers/pk_spcurve_sf_t.html#errors", " <B>PK_ERROR_unsuitable_entity</B> curve is not a BCURVE", "PK Reference - PK_SPCURVE_sf_t");
+top.note("headers/pk_spun_sf_t.html#errors", " <B>PK_ERROR_unsuitable_entity</B> curve is not of allowed class", "PK Reference - PK_SPUN_sf_t");
+top.note("headers/pk_surf_find_box.html#errors", " <B>PK_ERROR_unsuitable_entity</B> the input surface is infinite in at least", "PK Reference - PK_SURF_find_box");
+top.note("headers/pk_surf_make_sheet_body.html#errors", " <B>PK_ERROR_unsuitable_entity</B> cannot make sheet body from surface of this", "PK Reference - PK_SURF_make_sheet_body");
+top.note("headers/pk_surf_make_sheet_trimmed.html#errors", " <B>PK_ERROR_unsuitable_entity</B> surface must be G1 and it must be", "PK Reference - PK_SURF_make_sheet_trimmed");
+top.note("headers/pk_swept_sf_t.html#errors", " <B>PK_ERROR_unsuitable_entity</B> curve is not of allowed class", "PK Reference - PK_SWEPT_sf_t");
+top.note("headers/pk_topol_make_new.html#errors", " <B>PK_ERROR_unsuitable_entity</B> the entity in topol is not a face.", "PK Reference - PK_TOPOL_make_new");
+top.note("headers/pk_topol_remove_body_component.html#errors", " <B>PK_ERROR_unsuitable_entity</B> given region is not solid", "PK Reference - PK_TOPOL_remove_body_component");
+top.note("headers/pk_vertex_spin.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Vertex is unsuitable for spin (MILD)", "PK Reference - PK_VERTEX_spin");
+top.note("headers/pk_vertex_sweep.html#errors", " <B>PK_ERROR_unsuitable_entity</B> Vertex is unsuitable for sweep (MILD)", "PK Reference - PK_VERTEX_sweep");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

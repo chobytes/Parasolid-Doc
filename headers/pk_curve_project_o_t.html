@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_project_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_project_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_project_o_s
+    {
+    int                   o_t_version;    --- version number of options
+    <A HREF=../headers/pk_proj_method_t.html>PK_proj_method_t</A>      method;         --- the method of projection
+                                          --- (<A HREF=../headers/pk_proj_method_t.html>PK_proj_method_unset_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          have_direction; --- whether <B>'direction'</B> is set
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>          direction;      --- the direction of projection
+                                          --- (0.0 0.0 0.0)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>           eye_position;   --- position for perspective
+                                          --- projection
+                                          --- (0.0 0.0 0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          bidirectional;  --- bidirectional projection
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_proj_max_dist_t.html>PK_proj_max_dist_t</A>    use_max_dist;   --- how to limit projection
+                                          --- (<A HREF=../headers/pk_proj_max_dist_t.html>PK_proj_max_dist_no_c</A>)
+    double                max_dist;       --- limiting projection distance
+                                          --- (0.0)
+    <A HREF=../headers/pk_proj_face_hidden_t.html>PK_proj_face_hidden_t</A> hidden;         --- how to project to hidden faces
+                                          --- (<A HREF=../headers/pk_proj_face_hidden_t.html>PK_proj_face_hidden_body_c</A>)
+    <A HREF=../headers/pk_proj_connect_t.html>PK_proj_connect_t</A>     connect;        --- how to connect disjoint outputs
+                                          --- (<A HREF=../headers/pk_proj_connect_t.html>PK_proj_connect_none_c</A>)
+    <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A>      banned_classes; --- array of curve classes which are
+                                          --- forbidden (0, NULL)
+    <A HREF=../headers/pk_proj_split_clash_t.html>PK_proj_split_clash_t</A> split_clash;    --- how to split resulting clashes
+                                          --- (<A HREF=../headers/pk_proj_split_clash_t.html>PK_proj_split_clash_all_c</A>)
+    <A HREF=../headers/pk_proj_to_points_t.html>PK_proj_to_points_t</A>   create_points;  --- how to project curves to points
+                                          --- (<A HREF=../headers/pk_proj_to_points_t.html>PK_proj_to_points_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          construction;   --- whether to add as construction
+                                          --- geometry (PK_LOGICAL_true)
+    double                tolerance;      --- operation tolerance
+                                          --- (1.0e-6)
+    <A HREF=../headers/pk_proj_function_t.html>PK_proj_function_t</A>    function;       --- whether to project or imprint
+                                          --- (<A HREF=../headers/pk_proj_function_t.html>PK_proj_function_project_c</A>)
+    <A HREF=../headers/pk_imprint_precision_t.html>PK_imprint_precision_t</A>
+                          imprint_precision;
+                                          --- how to set precision of imprints
+                                          --- (<A HREF=../headers/pk_imprint_precision_t.html>PK_imprint_precision_auto_c</A>)
+    <A HREF=../headers/pk_proj_nominal_t.html>PK_proj_nominal_t</A>     nominal;        --- whether to attach as nominal
+                                          --- geometry (<A HREF=../headers/pk_proj_nominal_t.html>PK_proj_nominal_no_c</A>)
+    <A HREF=../headers/pk_proj_complete_t.html>PK_proj_complete_t</A>    complete;       --- how to complete imprints
+                                          --- (<A HREF=../headers/pk_proj_complete_t.html>PK_proj_complete_no_c</A>)
+    <A HREF=../headers/pk_complete_bound_t.html>PK_complete_bound_t</A>   complete_bound; --- how to bound imprint completion
+                                          --- (<A HREF=../headers/pk_complete_bound_t.html>PK_complete_bound_none_c</A>)
+    double                complete_bound_distance;
+                                          --- distance bound for imprint
+                                          --- completion (0.0)
+    <A HREF=../headers/pk_proj_update_t.html>PK_proj_update_t</A>      update;         --- update switch
+                                          --- (<A HREF=../headers/pk_proj_update_t.html>PK_proj_update_default_c</A>)
+    <A HREF=../headers/pk_proj_tracking_t.html>PK_proj_tracking_t</A>    tracking;       --- format of track records
+                                          --- (<A HREF=../headers/pk_proj_tracking_t.html>PK_proj_tracking_basic_c</A>)
+    <A HREF=../headers/pk_results_output_t.html>PK_results_output_t</A>   results_output; --- whether to output results in the
+                                          --- return structure or in a report
+                                          --- (<A HREF=../headers/pk_results_output_t.html>PK_results_output_return_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          want_orig_intervals;
+                                          --- whether to return the
+                                          --- originating intervals for
+                                          --- each projection
+                                          --- (PK_LOGICAL_false)
+    };
+
+typedef struct PK_CURVE_project_o_s PK_CURVE_project_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This options structure holds optional controls for <A HREF=../headers/pk_curve_project.html>PK_CURVE_project</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_tolerance          (MILD)     The supplied <B>'tolerance'</B> option
+                                               is zero or negative, or the
+                                               supplied <B>'tolerance'</B> option is
+                                               invalid for the supplied
+                                               <B>'max_dist'</B> or
+                                               <B>'complete_bound_distance'</B>
+                                               options.
+    PK_ERROR_distance_le_0          (MILD)     The <B>'use_max_dist'</B> option has a
+                                               non-default value and
+                                               <B>'max_dist'</B> is less than or
+                                               equal to zero, or the
+                                               <B>'complete_bound'</B> option has a
+                                               non-default value and
+                                               <B>'complete_bound_distance'</B> is
+                                               less than or equal to zero.
+    PK_ERROR_bad_position           (MILD)     The <B>'eye_position'</B> is placed
+                                               outside the size box or is
+                                               closer than <B>'tolerance'</B>
+                                               to one of the input curves.
+    PK_ERROR_bad_class              (MILD)     The <B>'banned_classes'</B> array
+                                               contains an unsupported class or
+                                               combination of classes.
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_project.html>PK_CURVE_project</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'method'</B>            Whether to perform a normal, vector or perspective
+                    projection.
+
+<B>'have_direction'</B>    Whether a projection direction is supplied using the
+                    <B>'direction'</B> to define a vector projection. The default
+                    is PK_LOGICAL_false.
+
+                    Note: This option has been superseded by the <B>'method'</B>
+                          option.
+
+<B>'direction'</B>         If <B>'method'</B> is <A HREF=../headers/pk_proj_method_t.html>PK_proj_method_vector_c</A> this option
+                    specifies the direction of vector projection.
+
+<B>'eye_position'</B>      If <B>'method'</B> is <A HREF=../headers/pk_proj_method_t.html>PK_proj_method_perspective_c</A>, this option
+                    specifies the position for the source of rays needed to
+                    define the perspective projection.
+
+<B>'bidirectional'</B>     Whether <B>'curves'</B> should be projected in the positive and
+                    negative <B>'direction'</B>. Only valid for vector projection.
+                    See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-545534">here</A> for more information.
+
+<B>'use_max_dist'</B>      Whether to restrict the projection to be within <B>'max_dist'</B>
+                    of the input curve. This option is not supported if
+                    <B>'method'</B> is <A HREF=../headers/pk_proj_method_t.html>PK_proj_method_vector_c</A> to surfaces.
+                    See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-556522">here</A> for more information.
+
+<B>'max_dist'</B>          If <B>'use_max_dist'</B> is set to <A HREF=../headers/pk_proj_max_dist_t.html>PK_proj_max_dist_whole_c</A>,
+                    this field contains the maximum allowed distance of the
+                    projected curve from its input. The distance is measured
+                    along the projection direction.
+
+<B>'hidden'</B>            How to project to hidden faces. Only valid for
+                    projection to faces or bodies. See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-362580">here</A>
+                    for more information.
+
+<B>'connect'</B>           How to connect disjoint projections. Only valid for vector
+                    projection to faces or bodies. See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-362653">here</A> for more
+                    information.
+
+<B>'banned_classes'</B>    If this array is empty, the output curves may be of any
+                    class. Otherwise, curves of classes contained in this array
+                    will be converted to B-curves, or SP-curves if B-curves are
+                    themselves forbidden. Note that this array may not contain
+                    both PK_CLASS_bcurve and PK_CLASS_spcurve, and that this
+                    array may not contain PK_CLASS_pline.
+
+                    Note: if <B>'function'</B> is set to an imprinting operation, this
+                    option does not control the class of the resulting edge or
+                    fin geometry.
+
+<B>'split_clash'</B>       How to split output curves at self-intersections and
+                    clashes. If not split, these will be reported in a
+                    <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_proj_cu_split_c</A> record. See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-523953">here</A>
+                    for more information.
+
+<B>'create_points'</B>     How to project curves to produce points for point-
+                    like projections, or vertices for point-like imprints. See
+                    <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-362820">here</A> for more information.
+
+<B>'construction'</B>      Whether to add the output curves and points as construction
+                    geometry to the body. If this option is PK_LOGICAL_false,
+                    or if projection is to a surface, the function will produce
+                    orphan geometry. This is in addition to nominal geometry on
+                    tolerant edges, as determined by the <B>'nominal'</B> option.
+                    The default value is PK_LOGICAL_true.
+
+<B>'tolerance'</B>         The operation tolerance for the projection and imprinting.
+                    It is used to resolve clashes (between geometries and
+                    topologies) and for curve fitting if necessary.
+
+<B>'function'</B>          Whether to perform a pure projection, a pure imprint,
+                    or both an imprint and a projection. The default is
+                    <A HREF=../headers/pk_proj_function_t.html>PK_proj_function_project_c</A>. If a non-default value is
+                    chosen, <B>'split_clash'</B> must be set to
+                    <A HREF=../headers/pk_proj_split_clash_t.html>PK_proj_split_clash_all_c</A>.
+
+<B>'imprint_precision'</B> How to set the precision of the imprinted topology.
+                    This option only has an effect if <B>'function'</B> is set to
+                    an imprinting operation.
+                    The default value is <A HREF=../headers/pk_imprint_precision_t.html>PK_imprint_precision_auto_c</A>.
+
+<B>'nominal'</B>           Whether to attach the projected curve as nominal
+                    geometry to imprinted tolerant edges. A non-default
+                    value is only permitted if an imprinting operation has been
+                    specified in <B>'function'</B>. If <B>'function'</B> has the value
+                    <A HREF=../headers/pk_proj_function_t.html>PK_proj_function_both_c</A>, the nominal geometry is in
+                    addition to any orphan or construction geometry controlled
+                    by the <B>'construction'</B> option.
+                    The default value is <A HREF=../headers/pk_proj_nominal_t.html>PK_proj_nominal_no_c</A>.
+
+<B>'complete'</B>          How to complete the imprinted edge chain.
+                    The default value is <A HREF=../headers/pk_proj_complete_t.html>PK_proj_complete_no_c</A>.  A
+                    non-default value is only permitted if an imprinting
+                    operation has been set in <B>'function'</B>, and if no
+                    <B>'banned_classes'</B> have been specified.
+
+                    If this is set to PK_proj_imprint_complete_no_c (the
+                    default), imprint completion is not applied. Otherwise, the
+                    imprint is completed by intersecting the target faces
+                    with a plane orthogonal to the target and tangential to the
+                    edge direction at the end vertex of the imprint chain. The
+                    plane-target intersection is used to imprint additional
+                    edges that complete the imprint chain.
+
+                    Only vertices that correspond to the bounds of the input
+                    curves are able to be completed.
+
+<B>'complete_bound'</B>    How to bound imprint completion. The default
+                    (<A HREF=../headers/pk_complete_bound_t.html>PK_complete_bound_none_c</A>) is unbounded.
+                    A non-default value is only permitted if the <B>'complete'</B>
+                    option has been set to a non-default value.
+
+<B>'complete_bound_distance'</B>
+                    The distance used to bound imprint completion, as
+                    determined by <B>'complete_bound'</B>. If <B>'complete_bound'</B>
+                    has a non-default value, then <B>'complete_bound_distance'</B>
+                    must be greater than <B>'tolerance'</B>.
+
+<B>'update'</B>            The default value (<A HREF=../headers/pk_proj_update_t.html>PK_proj_update_default_c</A>) allows
+                    applications to take advantage of the latest enhancements
+                    to the algorithm. To maintain consistency when rebuilding
+                    models created in a previous version of Parasolid, a
+                    non-default value should be specified.
+
+<B>'tracking'</B>          Determines the format of the tracking records.
+                    The default value (<A HREF=../headers/pk_proj_tracking_t.html>PK_proj_tracking_basic_c</A>) provides
+                    minimal tracking of imprint completion edges.
+
+<B>'results_output'</B>    Specifies whether the function should output its
+                    results as return arguments from the function,
+                    or in report form to the Parasolid report. The records
+                    in the report will be of type <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A>.
+
+                    Possible values are:
+
+                        <A HREF=../headers/pk_results_output_t.html>PK_results_output_return_c</A>:
+                            The results are output in the <B>'return'</B> and
+                            <B>'tracking'</B> arguments to the function.
+                            This is the default.
+
+                        <A HREF=../headers/pk_results_output_t.html>PK_results_output_report_c</A>:
+                            The <B>'return'</B> and <B>'tracking'</B> structures remain
+                            empty. If the function returns PK_ERROR_no_errors
+                            the results are output in the Parasolid report. A
+                            single record with status <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_proj_cu_map_c</A>
+                            will contain all the projection results.
+
+<B>'want_orig_intervals'</B>
+                    Specifies whether the originating intervals are computed
+                    for each projection. This is the interval on the input
+                    curve which contributed to a projection or imprint.
+                    Such intervals are only defined for direct imprints (not
+                    imprint completion edges) and can only be returned in the
+                    Parasolid report (i.e. only if results_output is set to
+                    <A HREF=../headers/pk_results_output_t.html>PK_results_output_report_c</A>).
+
+                    The default value is PK_LOGICAL_false.
+
+
+The tables below show which options are available for each value of
+<B>'function'</B> and <B>'method'</B>.  An "X" indicates that the option may take non-default
+values.
+
+                             +-----------------------------------+
+                             |        <A HREF=../headers/pk_proj_function_t.html>PK_proj_function_t</A>         |
+                             +-----------+-----------+-----------+
+                             |  project  |  imprint  |   both    |
+        +--------------------+-----------+-----------+-----------+
+        | bidirectional      |     X     |     X     |     X     |
+        | use_max_dist       |     X     |     X     |     X     |
+        | hidden             |     X     |     X     |     X     |
+        | connect            |     X     |     X     |     X     |
+        | banned_classes     |     X     |     X     |     X     |
+        | split_clash        |     X     |           |           |
+        | create_points      |     X     |     X     |     X     |
+        | construction       |     X     |           |     X     |
+        | tolerance          |     X     |     X     |     X     |
+        | imprint_precision  |           |     X     |     X     |
+        | nominal            |           |     X     |     X     |
+        | complete           |           |     X     |     X     |
+        | complete_bound     |           |     X     |     X     |
+        | tracking           |     X     |     X     |     X     |
+        | results_output     |     X     |     X     |     X     |
+        | want_orig_intervals|     X     |     X     |     X     |
+        +--------------------+-----------+-----------+-----------+
+
+                             +-----------------------------------------+
+                             |         <A HREF=../headers/pk_proj_method_t.html>PK_proj_method_t</A>                |
+                             +-----------+-----------+-----------------+
+                             |  normal   |  vector   |   perspective   |
+        +--------------------+-----------+-----------+-----------------+
+        | bidirectional      |           |     X     |                 |
+        | use_max_dist       |     X     |     X     |                 |
+        | hidden             |     X     |     X     |                 |
+        | connect            |           |     X     |                 |
+        | banned_classes     |     X     |     X     |        X        |
+        | split_clash        |     X     |     X     |        X        |
+        | create_points      |     X     |     X     |        X        |
+        | construction       |     X     |     X     |        X        |
+        | tolerance          |     X     |     X     |        X        |
+        | imprint_precision  |     X     |     X     |        X        |
+        | nominal            |     X     |     X     |        X        |
+        | complete           |     X     |     X     |        X        |
+        | complete_bound     |     X     |     X     |        X        |
+        | tracking           |     X     |     X     |        X        |
+        | results_output     |     X     |     X     |        X        |
+        | want_orig_intervals|     X     |     X     |        X        |
+        +--------------------+-----------+-----------+-----------------+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

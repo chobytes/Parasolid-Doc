@@ -1,0 +1,4404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Environment</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Environment</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="in_chap.06.html">Using Parasolid</A></TD>
+  <TD><A HREF="../in_index.html">Chapters</A></TD>
+  <TD><A HREF="in_chap.08.html">Floating-Point Traps</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-272927">6.1	Introduction</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-318925">6.2	Build environment</A>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-557277">6.2.1	X64 WIN</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-741505">6.2.2	ARM WIN</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-779717">6.2.3	Intel NT</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-373721">6.2.4	Intel Linux</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-760745">6.2.5	ARM Linux</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-749387">6.2.6	ARM MacOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-703570">6.2.7	Intel MacOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-601714">6.2.8	ARM iOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-610866">6.2.9	Intel iOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-656925">6.2.10	ARM Android</A>
+</UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-413971">6.3	Supported operating systems and hardware</A>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-717598">6.3.1	Windows platforms</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-359962">6.3.2	Intel Linux</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-761800">6.3.3	ARM Linux</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-750124">6.3.4	ARM MacOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-699609">6.3.5	Intel MacOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-602771">6.3.6	ARM iOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-613955">6.3.7	Intel iOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-660501">6.3.8	ARM Android</A>
+</UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-607014">6.4	Floating-point information</A>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-319543">6.4.1	X64 WIN</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-745569">6.4.2	ARM WIN</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-413783">6.4.3	Intel NT</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-553526">6.4.4	Intel Linux</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-762075">6.4.5	ARM Linux</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-750299">6.4.6	ARM MacOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-346293">6.4.7	Intel MacOS</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-661021">6.4.8	ARM Android</A>
+</UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-318927">6.5	Solutions to platform-specific issues</A>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-322507">6.5.1	64-bit and 32-bit code</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-319758">6.5.2	Data alignment issues</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-328510">6.5.3	Using a different compiler from Parasolid</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-738132">6.5.4	Handling signals in C++ applications</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-323977">6.5.5	Memory limitations</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-716705">6.5.6	Memory consumption by Parasolid</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-725159">6.5.7	Posix threads library</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-562784">6.5.8	Stack protection</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-604180">6.5.9	iOS and Android message handling</A>
+</UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-413423">6.6	Supporting material for Parasolid libraries</A>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-413426">6.6.1	Windows run-time libraries</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-825861">6.6.2	Software &#8220;hardening&#8221; of Parasolid</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-339644">6.6.3	Windows icons</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-326980">6.6.4	Windows digital signatures</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-483076">6.6.5	MacOS install names</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-427652">6.6.6	MacOS memory limits</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-604627">6.6.7	iOS and Android memory limits</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-473905">6.6.8	MacOS security and digital signatures</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-559457">6.6.9	MacOS and iOS backwards compatibility</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-672170">6.6.10	Android changes for NDK developers</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-716143">6.6.11	No cryptography in Parasolid</A>
+</UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-617946">6.7	Parasolid version information</A>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-324679">6.7.1	Viewing version information</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-324709">6.7.2	Version information details</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-324744">6.7.3	Version information files</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-324749">6.7.4	Inconsistencies with the kernel version</A>
+</UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-319813">6.8	.NET binding</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-705210">6.9	Linking Windows run-time libraries</A>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-331523">6.9.1	Recommended configuration</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-331550">6.9.2	Other configurations</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-331576">6.9.3	Using a different compiler from Parasolid</A>
+</UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-324352">6.10	Enabling SIGFPE for SSE2 on Intel NT</A>
+<UL>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-324355">6.10.1	Enabling floating-point traps</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-324358">6.10.2	SSE2 and SIGFPE</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-324377">6.10.3	The generate_signals() function</A>
+<LI> <A HREF="in_chap.07.html#50520100_pgfId-347652">6.10.4	SSE2 traps and the Visual Studio debugger</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-272927"></A>6.1	<A NAME="50520100_87471"></A>Introduction
+
+
+</H1>
+<P>
+<A NAME="50520100_pgfId-272928"></A>This chapter contains information specific to the different environments in which Parasolid is supported:</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-325468"></A><A HREF="in_chap.07.html#50520100_22804">Section 6.2, &#8220;Build environment&#8221;</A>, describes the operating systems, compilers, and compiler options that were used to build Parasolid on each platform. </LI>
+<LI>
+<A NAME="50520100_pgfId-325476"></A><A HREF="in_chap.07.html#50520100_70982">Section 6.3, &#8220;Supported operating systems and hardware&#8221;</A>, describes the environments in which Parasolid runs. </LI>
+<LI>
+<A NAME="50520100_pgfId-325481"></A><A HREF="in_chap.07.html#50520100_47449">Section 6.4, &#8220;Floating-point information&#8221;</A>, describes platform-specific floating point information. </LI>
+<LI>
+<A NAME="50520100_pgfId-325486"></A><A HREF="in_chap.07.html#50520100_57358">Section 6.5, &#8220;Solutions to platform-specific issues&#8221;</A>, describes common platform-specific issues and situations that you should avoid.</LI>
+<LI>
+<A NAME="50520100_pgfId-325502"></A><A HREF="in_chap.07.html#50520100_86861">Section 6.6, &#8220;Supporting material for Parasolid libraries&#8221;</A>, provides additional platform-specific information.</LI>
+<LI>
+<A NAME="50520100_pgfId-325507"></A><A HREF="in_chap.07.html#50520100_99324">Section 6.7, &#8220;Parasolid version information&#8221;</A>, describes how you can extract version information from the Parasolid library on each platform. </LI>
+<LI>
+<A NAME="50520100_pgfId-325552"></A><A HREF="in_chap.07.html#50520100_23703">Section 6.8, &#8220;.NET binding&#8221;</A>, describes build information for the Parasolid C# Binding for .NET. </LI>
+<LI>
+<A NAME="50520100_pgfId-325557"></A><A HREF="in_chap.07.html#50520100_26350">Section 6.9, &#8220;Linking Windows run-time libraries&#8221;</A>, describes how to deal with some special cases in linking on Windows platforms.</LI>
+<LI>
+<A NAME="50520100_pgfId-325561"></A><A HREF="in_chap.07.html#50520100_98015">Section 6.10, &#8220;Enabling SIGFPE for SSE2 on Intel NT&#8221;</A>, describes how to handle SSE2 floating-point errors on 32-bit Windows platforms.</LI>
+</UL>
+<P>
+<A NAME="50520100_pgfId-327899"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-327908"></A>Note: Please ensure you check all the sections for information related to the platforms you use. Relevant platforms are clearly indicated at the start of each section. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-318925"></A>6.2	<A NAME="50520100_22804"></A>Build environment
+
+
+</H1>
+<P>
+<A NAME="50520100_pgfId-502331"></A>This section contains information for all platforms on the compiler and operating system used to build Parasolid. For details of the environments in which Parasolid can be run, see <A HREF="in_chap.07.html#50520100_70982">Section 6.3, &#8220;Supported operating systems and hardware&#8221;</A>.</P>
+<P>
+<A NAME="50520100_pgfId-499996"></A>The sizes of the C types that are used in Parasolid interfaces (e.g., int, double and pointer) are defined by each platform&#8217;s compiler. Please see your compiler documentation for details, and remember that the size of pointers depends on your decision to compile for 32-bit or 64-bit code.</P>
+
+<H4>
+<A NAME="50520100_pgfId-774554"></A>C and C++</H4>
+<P>
+<A NAME="50520100_pgfId-775328"></A>Since its creation, Parasolid has been written in a domain-specific language, which is &#8220;transpiled&#8221; to C code, and then compiled with each platform&#8217;s C compiler. The C compiler and options used are documented, to assist you with achieving compile and link compatibility with Parasolid.</P>
+<P>
+<A NAME="50520100_pgfId-772913"></A>At v34.1, we began to include C++ code within Parasolid. This means that some of its object files are generated by a C++ compiler, and some by a C compiler. Both compilers, and the options used with them, are described below. Note that on many platforms, the C and C++ compilers are different front-ends to a common code generator, and are thus often considered to be the same program.</P>
+<P>
+<A NAME="50520100_pgfId-775644"></A>You will need to ensure that Parasolid-based applications are linked against an appropriate C++ run-time library for each platform. If your applications already use C++, this is already taken care of. If not, linking using the C++ compiler is the best course of action.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-779725"></A>C++ standards</H4>
+<P>
+<A NAME="50520100_pgfId-779763"></A>At v36.0, Parasolid is compiled as C++17. </P>
+<P>
+<A NAME="50520100_pgfId-797570"></A>Since Parasolid&#8217;s interfaces are, and will remain, pure C, your applications are not required to use the same C++ standard as Parasolid. However, if your application code is complied using a different standard, check that the run-time libraries for that standard are compatible with the C++ standard used by Parasolid,</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-733377"></A><A NAME="50520100_89614"></A>Choice of compilers</H4>
+<P>
+<A NAME="50520100_pgfId-730492"></A>Because Parasolid is large, complex, extensively tested, and sensitive to changes in compilers, we take considerable care that all the computers used in developing and producing it have the same version of the compilers used for the relevant Parasolid platform. We very rarely change or update the compiler versions used for a given version and build of Parasolid after its release. We only do this if a compiler has serious bugs or other problems that make it impractical for further use.</P>
+<P>
+<A NAME="50520100_pgfId-733543"></A>For compilers that are frequently updated, such as Microsoft Visual Studio, we much prefer to use the initial release of each version of the compilers, because that provides greater assurance of upwards compatibility with later releases and updates.<A NAME="50520100_46956"></A></P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-557277"></A>	6.2.1 	<A NAME="50520100_52876"></A>X64 WIN</H2>
+<P>
+<A NAME="50520100_pgfId-785895"></A>Parasolid was compiled, linked and tested on 64-bit Windows 10, version 22H2. The C compiler used was the Microsoft (R) C/C++ Optimizing Compiler Version 19.30.30705 for x64, from Visual Studio 2022 v17.0.0.</P>
+<P>
+<A NAME="50520100_pgfId-785896"></A>The following compiler options were used:</P>
+<P>
+<A NAME="50520100_pgfId-785900"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785899"></A>/MD /DWIN32 /DNDEBUG /D_AMD64_ /GF /W3 /O2 /fp:precise /fp:except /GS /favor:blend /options:strict /D_WIN32_WINNT=_WIN32_WINNT_WIN7</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-786236"></A>The same compiler was used for C++, with the following options:</P>
+<P>
+<A NAME="50520100_pgfId-786240"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-786239"></A>/EHa /MD /DWIN32 /DNDEBUG /D_AMD64_ /GF /W3 /O2 /fp:precise /fp:except /GS /favor:blend /options:strict /std:c++17 /D_WIN32_WINNT=_WIN32_WINNT_WIN7</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-785960"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785904"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785906"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785908"></A>/MD</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785913"></A>Link with <CODE>
+MSVCRT.LIB.</CODE>
+ Parasolid requires the Visual Studio 2019 or later version of the Microsoft run-time library DLL for modern versions of Visual Studio, <CODE>
+VCRUNTIME140.DLL</CODE>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785915"></A>/EHa</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785917"></A>(C++ only) Enable C++ error handing, including asynchronous exceptions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785919"></A>/std:c++17</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785921"></A>(C++ only) Compile as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-786490"></A>/options:strict</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-786492"></A>Treat unrecognized command line flags as errors.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785923"></A>/GF</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785925"></A>Pool read-only strings in read-only memory.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785927"></A>/W3</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785929"></A>Warning level 3.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785931"></A>/O2</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785933"></A>Optimize for speed.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785935"></A>/fp:precise</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785937"></A>Use precise floating-point calculations.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785939"></A>/fp:except</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785941"></A>Use floating-point exceptions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785943"></A>/GS</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785945"></A>Use &#8220;GuardStack&#8221; stack protection, in compliance with the Microsoft SDL. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A> and <A HREF="in_chap.07.html#50520100_63689">Section 6.6.2</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785953"></A>/favor:blend</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785955"></A>Optimize for several different x64 processors.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-785957"></A>/D_WIN32_WINNT=_WIN32_WINNT_WIN7</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-785959"></A>Compile for Windows 7 compatibility. </P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-791675"></A>This build of Parasolid is compatible with all Update levels of Visual Studio 2019 and 2022. It requires Visual Studio 2019 or later run-time libraries, since it does not use the /d2FH4-option.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-741505"></A>	6.2.2 	ARM WIN</H2>
+<P>
+<A NAME="50520100_pgfId-741511"></A>Parasolid was compiled, linked and tested on 64-bit Windows 10 for ARM, version 21H2. The C compiler used was the Microsoft (R) C/C++ Optimizing Compiler Version 19.30.30705 for ARM64 from Visual Studio 2022 v17.0.0. </P>
+<P>
+<A NAME="50520100_pgfId-741512"></A>The following compiler options were used:</P>
+<P>
+<A NAME="50520100_pgfId-741516"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-741515"></A>/MD /fp:precise /Qfast_transcendentals /D_ARM64_ /O2 /GS /Qspectre /D_WIN32_WINNT=_WIN32_WINNT_WIN7 /options:strict /GF /volatile:iso /W3</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-787210"></A>The same compiler was used for C++, with the following options:</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-787225"></A>/EHa /MD /fp:precise /Qfast_transcendentals /D_ARM64_ /O2 /GS /Qspectre /D_WIN32_WINNT=_WIN32_WINNT_WIN7 /std:c++17 /options:strict /GF /volatile:iso /W3</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-741517"></A>Where:</P>
+<P>
+<A NAME="50520100_pgfId-743005"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-741520"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-741522"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-741524"></A>/MD </PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-741529"></A>Link with <CODE>
+MSVCRT.LIB.</CODE>
+ Parasolid requires the Visual Studio 2019 or later version of the Microsoft run-time library DLL for modern versions of Visual Studio, <CODE>
+VCRUNTIME140.DLL</CODE>
+. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-789334"></A>/EHa</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-789429"></A>(C++ only) Enable C++ error handing, including asynchronous exceptions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-789542"></A>/std:c++17</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-789544"></A>(C++ only) Compile as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-741982"></A>/fp:precise</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-741984"></A>Use precise floating-point calculations.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-742044"></A>/Qfast_transcendentals</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-742072"></A>Use transcendental processor instructions, rather than library functions, for improved performance.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-742204"></A>/D_WIN32_WINNT=__WIN32_WINNT_WIN7</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-742206"></A>Limit Parasolid to using Windows 7 APIs.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-789604"></A>/options:strict</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-789606"></A>Treat unrecognized command line flags as errors.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-742332"></A>/O2</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-742334"></A>Optimize for speed.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-742443"></A>/GS</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-742445"></A>Use &#8220;GuardStack&#8221; stack protection, in compliance with the Microsoft SDL. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A> and <A HREF="in_chap.07.html#50520100_63689">Section 6.6.2</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-742501"></A>/Qspectre</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-742503"></A>Use mitigations for the &#8220;Spectre&#8221; family of security problems.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-741531"></A>/GF</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-741533"></A>Pool read-only strings in read-only memory.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-742577"></A>/volatile:iso</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-742579"></A>Use ISO C &#8220;volatile&#8221; semantics, rather than emulating the slower &#8220;MS&#8221; form. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-741535"></A>/W3</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-741537"></A>Warning level 3.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-790015"></A>This build of Parasolid requires Visual Studio 2019 or later run-time libraries. It is compatible with all Update levels of Visual Studio 2022, and with Visual Studio 2019 v16.7 and later. However, we recommend that you use Visual Studio 2022 in preference to 2019, since that avoids compiler bugs we encountered with 2019, and the need to compile with a special pragma to avoid the use of &#8220;floating point contractions.&#8221; Do not use Visual Studio 2019 versions before v16.7 with this platform.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-779717"></A>	6.2.3 	Intel NT</H2>
+<P>
+<A NAME="50520100_pgfId-784181"></A>This build uses SSE2 registers and instructions for improved performance.</P>
+<P>
+<A NAME="50520100_pgfId-784185"></A>Parasolid was compiled, linked and tested on 64-bit Windows 10 version 22H2. While it is built on a 64-bit operating system, it is 32-bit software for use in 32-bit applications. The C compiler used was the Microsoft (R) C/C++ Optimizing Compiler Version 19.30.30705 for x86, from Visual Studio 2022 v17.0.0. </P>
+<P>
+<A NAME="50520100_pgfId-784186"></A>The following compiler options were used:</P>
+<P>
+<A NAME="50520100_pgfId-784190"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784189"></A>/MD /Gs /D_X86_ /GF /GS /fp:precise /arch:SSE2 /O2 /options:strict /Qfast_transcendentals /D_WIN32_WINNT=_WIN32_WINNT_WIN7</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-784702"></A>The same compiler was used for C++, with the following options.</P>
+<P>
+<A NAME="50520100_pgfId-784706"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784705"></A>/EHa /MD /Gs /D_X86_ /GF /GS /fp:precise /arch:SSE2 /O2 /options:strict /std:c++17 /Qfast_transcendentals /D_WIN32_WINNT=_WIN32_WINNT_WIN7</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-784250"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784194"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784196"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784198"></A>/O2</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784200"></A>Optimize for speed.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784202"></A>/EHa</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784204"></A>(C++ only) Enable C++ error handing, including asynchronous exceptions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784206"></A>/std:c++17</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784208"></A>(C++ only) Compile as ISO C++17. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784858"></A>/options:strict</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784860"></A>Treat unrecognized command line flags as errors.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784210"></A>/Gs</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784212"></A>Disable stack checking.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784214"></A>/MD</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784219"></A>Link with <CODE>
+MSVCRT.LIB.</CODE>
+ Parasolid requires the Visual Studio 2019 or later version of the Microsoft run-time library DLL for modern versions of Visual Studio, <CODE>
+VCRUNTIME140.DLL</CODE>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784221"></A>/GF</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784223"></A>Pool literal strings in read-only storage.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784225"></A>/GS</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784227"></A>Use &#8220;GuardStack&#8221; stack protection, in compliance with the Microsoft SDL. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A> and <A HREF="in_chap.07.html#50520100_63689">Section 6.6.2</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784235"></A>/fp:precise</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784237"></A>Use precise floating-point semantics.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784239"></A>/arch:SSE2</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784241"></A>Compile for processors that support the SSE2 instruction set. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784243"></A>/Qfast_transcendentals</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784245"></A>Use transcendental processor instructions, rather than library functions, for improved performance.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-784247"></A>/D_WIN32_WINNT=_WIN32_WINNT_WIN7</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-784249"></A>Compile for Windows 7 compatibility.</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50520100_pgfId-784251"></A>&nbsp;</H4>
+<P>
+<A NAME="50520100_pgfId-784256"></A>This build of Parasolid is compatible with all Update levels of Visual Studio 2019 and 2022. It requires Visual Studio 2019 or later run-time libraries, since it does not use the /d2FH4-option.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-373721"></A>	6.2.4 	Intel Linux</H2>
+
+<H4>
+<A NAME="50520100_pgfId-816582"></A>Default build</H4>
+<P>
+<A NAME="50520100_pgfId-816705"></A>Parasolid was compiled, linked and tested on Red Hat Enterprise Linux 8.8. The C compiler used was gcc version 11.2.1 from Red Hat GCC Toolset 11, with the following options:</P>
+<P>
+<A NAME="50520100_pgfId-816709"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-816708"></A>-m64 -O2 -fno-strict-aliasing -std=c99 -fPIC -fvisibility=hidden -D_XOPEN_SOURCE=700 -fexceptions <CODE>-fasynchronous-unwind-tables </CODE>
+-Wformat -Wformat-security -D_FORTIFY_SOURCE=2 -fstack-protector-strong</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-816710"></A>The same compiler was used for C++, with the <CODE>
+-std</CODE>
+ option changed to <CODE>
+-std=c++17</CODE>
+ and the addition of -D_GLIBCXX_ASSERTIONS.</P>
+<P>
+<A NAME="50520100_pgfId-816782"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816713"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816715"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816717"></A><CODE>
+-m64</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816719"></A>Compile for 64-bit code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816721"></A><CODE>
+-O2</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816723"></A>Optimization level 2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816725"></A><CODE>
+-fno-strict-aliasing</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816727"></A>Do not assume there is no aliasing.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-827535"></A>-std=c99</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-827537"></A>(C only) Compile code as ISO C99.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-827539"></A>-std=c++17</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-827541"></A>(C++ only) Compile code as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816729"></A><CODE>
+-fPIC</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816731"></A>Generate position-independent code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816741"></A><CODE>
+-fvisibility=hidden</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816743"></A>Hide Parasolid&#8217;s internal symbols.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-816745"></A>-D_XOPEN_SOURCE=700</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816747"></A>Use XOPEN facilities.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816749"></A><CODE>
+-fexceptions</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816754"></A>Allow C++ exceptions to be thrown through Parasolid.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816756"></A><CODE>
+-fasynchronous-unwind-tables</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816758"></A>Provide precise stack unwinding tables.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-816764"></A>-Wformat -Wformat-security</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816766"></A>Warn of security risks with the format strings used by the printf/scanf family of functions. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-816768"></A>-D_FORTIFY_SOURCE=2</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816770"></A>Use more-secure C string functions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-816772"></A>-D_GLIBCXX_ASSERTIONS</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816774"></A>(C++ only) Trap on invalid C++ string accesses. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-816776"></A>-fstack-protector-strong</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816781"></A>Use improved stack protection. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A></P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-816783"></A>The Parasolid shared library is linked using additional options for improved security:</P>
+<P>
+<A NAME="50520100_pgfId-816801"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816786"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816788"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816790"></A><CODE>
+-z relro</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816792"></A>Make the relocation table read-only.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816794"></A><CODE>
+-z now</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816796"></A>Load the whole library as soon as any part of it is called.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816798"></A><CODE>
+-z noexecstack</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-816800"></A>The library does not require an executable stack.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-827650"></A>-z defs</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-827652"></A>Make sure there are no undefined symbols.</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50520100_pgfId-816802"></A>&nbsp;</H4>
+<P>
+<A NAME="50520100_pgfId-816803"></A>More linking options are required to allow C++ exceptions to be reliably thrown through Parasolid&#8217;s C code:</P>
+<P>
+<A NAME="50520100_pgfId-842502"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-842549"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-842551"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-842553"></A><CODE>
+-lshared-glibc</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-842718"></A>Tell the linker to use the shared GCC support library, for consistent exception handling across the application.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-842557"></A><CODE>
+-lgcc_s</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-842832"></A>Explicitly require the shared GCC support library.</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50520100_pgfId-816470"></A>GCC7-compatible <BR>
+extra build</H4>
+<P>
+<A NAME="50520100_pgfId-817889"></A>Parasolid was compiled, linked and tested on CentOS 7.9. The C compiler used was gcc version 11.2.1 from Red Hat Developer Toolset 11. The same compiler and linker options were used as the default build. This build was done on CentOS 7.9, so that it would be compatible with our previous GCC7 builds.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-760745"></A>	6.2.5 	ARM Linux</H2>
+<P>
+<A NAME="50520100_pgfId-828165"></A>Parasolid was compiled, linked and tested on Red Hat Enterprise Linux 8.8. The C compiler used was gcc version 11.2.1 from Red Hat GCC Toolset 11, with the following options:</P>
+<P>
+<A NAME="50520100_pgfId-828169"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-828168"></A>-march=armv8-a -ffp-contract=off -O -std=c99 -fPIC -fvisibility=hidden -D_XOPEN_SOURCE=700 -fexceptions <CODE>-fasynchronous-unwind-tables </CODE>
+-D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -fstack-protector-strong <CODE>-fno-strict-aliasing </CODE>
+</PRE>
+<PRE><A NAME="50520100_pgfId-838120"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-828170"></A>The same compiler was used for C++, with the <CODE>
+-std</CODE>
+ option changed to <CODE>
+-std=c++17</CODE>
+, and the addition of -D_GLIBCXX_ASSERTIONS.</P>
+<P>
+<A NAME="50520100_pgfId-828242"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828173"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828175"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828670"></A><CODE>
+-</CODE>
+march=armv8-a</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828672"></A>Compile for the basic 64-bit ARMv8 architecture.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828674"></A>-ffp-contract=off</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828676"></A>Avoid the use of &#8220;floating-point contractions,&#8221; to improve consistency.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828997"></A>-O</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828999"></A>Optimisation level 1.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-828189"></A>-std=c99</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828191"></A>(C only) Compile code as ISO C99.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-828193"></A>-std=c++17</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828195"></A>(C++ only) Compile code as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828197"></A><CODE>
+-fPIC</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828199"></A>Generate position-independent code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828201"></A><CODE>
+-fvisibility=hidden</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828203"></A>Hide Parasolid&#8217;s internal symbols.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-828205"></A>-D_XOPEN_SOURCE=700</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828207"></A>Use XOPEN facilities.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828209"></A><CODE>
+-fexceptions</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828211"></A>Allow C++ exceptions to be thrown through Parasolid.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828216"></A><CODE>
+-fasynchronous-unwind-tables</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828218"></A>Provide precise stack unwinding tables.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-829964"></A>-D_FORTIFY_SOURCE=2</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-829966"></A>Use more-secure C string functions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-828224"></A>-Wformat -Wformat-security</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828226"></A>Warn of security risks with the format strings used by the printf/scanf family of functions. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-828232"></A>-D_GLIBCXX_ASSERTIONS</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828234"></A>(C++ only) Trap on invalid C++ string accesses. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-828236"></A>-fstack-protector-strong</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828241"></A>Use improved stack protection. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-829318"></A><CODE>
+-fno-strict-aliasing</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-829320"></A>Do not assume there is no aliasing.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-828243"></A>The Parasolid shared library is linked using additional options for improved security:</P>
+<P>
+<A NAME="50520100_pgfId-828265"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828246"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828248"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828250"></A><CODE>
+-z relro</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828252"></A>Make the relocation table read-only.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828254"></A><CODE>
+-z now</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828256"></A>Load the whole library as soon as any part of it is called.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828258"></A><CODE>
+-z noexecstack</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828260"></A>The library does not require an executable stack.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828262"></A>-z defs</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828264"></A>Make sure there are no undefined symbols.</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50520100_pgfId-828266"></A>&nbsp;</H4>
+<P>
+<A NAME="50520100_pgfId-828267"></A>More linking options are required to allow C++ exceptions to be reliably thrown through Parasolid&#8217;s C code:</P>
+<P>
+<A NAME="50520100_pgfId-828281"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828270"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828272"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828274"></A><CODE>
+-lshared-glibc</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828276"></A>Tell the linker to use the shared GCC support library, for consistent exception handling across the application.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828278"></A><CODE>
+-lgcc_s</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-828280"></A>Explicitly require the shared GCC support library. </P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-811783"></A>&nbsp;</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-749387"></A>	6.2.6 	ARM MacOS</H2>
+<P>
+<A NAME="50520100_pgfId-749436"></A>Parasolid was compiled, linked and tested on macOS 11.2. The C compiler used was Apple clang version 12.0.0 (clang-1200.0.32.27) from Xcode 12.2.</P>
+<P>
+<A NAME="50520100_pgfId-749437"></A>The following options were used:</P>
+<P>
+<A NAME="50520100_pgfId-749443"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-749440"></A>-target arm64-apple-darwin -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk </PRE>
+<PRE><A NAME="50520100_pgfId-749441"></A>-mmacosx-version-min=11.0 -fstack-protector-strong -O2 -fPIC -dynamic -fno-common -fexceptions </PRE>
+<PRE><A NAME="50520100_pgfId-749442"></A>-std=c99 -Wpartial-availability -Werror=partial-availability</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-769190"></A>The same compiler was used for C++, with the <CODE>
+-std</CODE>
+ option changed to <CODE>
+-std=c++17</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-749507"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749447"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749449"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749451"></A><CODE>
+-target arm64-apple-darwin</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749453"></A>Compile for 64-bit ARM macOS.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749455"></A><CODE>
+-isysroot...</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749457"></A>Use the macOS SDK headers supplied with Xcode 12.2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749459"></A><CODE>
+-mmacosx-version-min...</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749464"></A>Compile and link for macOS 11.0 or later. See <A HREF="in_chap.07.html#50520100_88025">Section 6.6.9</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749466"></A><CODE>
+-O2</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749468"></A>Optimisation level 2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749470"></A><CODE>
+-fPIC</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749472"></A>Generate position-independent code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749474"></A><CODE>
+-dynamic</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749476"></A>Code intended for a dynamic library.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749478"></A><CODE>
+-fno-common</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749480"></A>Make sure that there are no common blocks.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749482"></A>-fexceptions</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749487"></A>Allow C++ exceptions to be thrown through Parasolid.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749489"></A><CODE>
+-std=c99</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749491"></A>(C only) Compile code as ISO C99</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-769252"></A>-std=c++17</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-769254"></A>(C++ only) Compile code as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749493"></A>-fstack-protector-strong</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-749498"></A>Use improved stack protection. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-792479"></A>-Wpartial-availability</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-792481"></A>Warn when compiling calls to partially available functions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-792475"></A>-Werror=partial-availability</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-792477"></A>Make the partial availability warning into a compilation error. See <A HREF="in_chap.07.html#50520100_74307">Section 6.6.9, &#8220;MacOS and iOS backwards compatibility&#8221;</A>.</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-703570"></A>	6.2.7 	Intel MacOS</H2>
+<P>
+<A NAME="50520100_pgfId-703503"></A>Parasolid was compiled, linked and tested on macOS 11.4. The C compiler used was Apple clang version 12.0.0 (clang-1200.0.32.27) from Xcode 12.2.</P>
+<P>
+<A NAME="50520100_pgfId-557770"></A>The following options were used:</P>
+<P>
+<A NAME="50520100_pgfId-558197"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-557774"></A>-m64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk </PRE>
+<PRE><A NAME="50520100_pgfId-557775"></A>-mmacosx-version-min=11.0 -fstack-protector-strong -O2 -fPIC -dynamic -fno-common -fexceptions </PRE>
+<PRE><A NAME="50520100_pgfId-557774"></A>-std=c99 -Wpartial-availability -Werror=partial-availability</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-769060"></A>The same compiler was used for C++, with the <CODE>
+-std</CODE>
+ option changed to <CODE>
+-std=c++17</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-557828"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557786"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557788"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557790"></A><CODE>
+-m64</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557792"></A>Compile for 64-bit code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557794"></A><CODE>
+-isysroot...</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557796"></A>Use the macOS SDK headers supplied with Xcode 12.2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557798"></A><CODE>
+-mmacosx-version-min...</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557800"></A>Compile and link for OS X 11.0 or later. See <A HREF="in_chap.07.html#50520100_88025">Section 6.6.9</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557802"></A><CODE>
+-O2</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557804"></A>Optimisation level 2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557806"></A><CODE>
+-fPIC</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557808"></A>Generate position-independent code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557810"></A><CODE>
+-dynamic</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557812"></A>Code intended for a dynamic library.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557814"></A><CODE>
+-fno-common</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557816"></A>Make sure that there are no common blocks.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557818"></A>-fexceptions</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557823"></A>Allow C++ exceptions to be thrown through Parasolid.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557825"></A><CODE>
+-std=c99</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-557827"></A>(C only) Compile code as ISO C99.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-769131"></A>-std=c++17</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-769133"></A>(C++ only) Compile code as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-558380"></A>-fstack-protector-strong</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-558382"></A>Use improved stack protection. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-592210"></A>-Wpartial-availability</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-592212"></A>Warn when compiling calls to partially available functions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-592214"></A>-Werror=partial-availability</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-592216"></A>Make the partial availability warning into a compilation error. See <A HREF="in_chap.07.html#50520100_74307">Section 6.6.9, &#8220;MacOS and iOS backwards compatibility&#8221;</A>.</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-601714"></A>	6.2.8 	ARM iOS</H2>
+<P>
+<A NAME="50520100_pgfId-601743"></A>Parasolid was compiled, linked and tested on macOS 11.0. The C compiler used was Apple clang version 12.0.0 (clang-1200.0.32.27) from Xcode 12.2. Parasolid was tested on an iPad Pro with 6GB RAM, running iPadOS 13.5. </P>
+<P>
+<A NAME="50520100_pgfId-602988"></A>Please see <A HREF="in_chap.07.html#50520100_12788">Section 6.3.6</A> for expected changes to this platform&#8217;s build and test environment.</P>
+<P>
+<A NAME="50520100_pgfId-601670"></A>The following options were used:</P>
+<P>
+<A NAME="50520100_pgfId-605464"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-602056"></A>-arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk </PRE>
+<PRE><A NAME="50520100_pgfId-612283"></A>-mios-version-min=13.0 -fstack-protector-strong -O2 -fPIC -dynamic -fno-common -fexceptions </PRE>
+<PRE><A NAME="50520100_pgfId-752186"></A>-std=c99 -Wpartial-availability -Werror=partial-availability</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-769328"></A>The same compiler was used for C++, with the <CODE>
+-std</CODE>
+ option changed to <CODE>
+-std=c++17</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-602266"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602194"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602196"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602198"></A><CODE>
+-arch arm64</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602200"></A>Compile 64-bit ARM code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602202"></A><CODE>
+-isysroot...</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602204"></A>Use the iOS SDK headers supplied with Xcode 12.2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602206"></A><CODE>
+-mios-version-min=13.0</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602211"></A>Compile and link for iOS 13.0 onwards. See <A HREF="in_chap.07.html#50520100_88025">Section 6.6.9</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602498"></A>-fstack-protector-strong</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602503"></A>Use improved stack protection. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602213"></A><CODE>
+-O2</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602215"></A>Optimisation level 2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602229"></A><CODE>
+-fPIC</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602231"></A>Generate position-independent code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602233"></A><CODE>
+-dynamic</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602235"></A>Code intended for a dynamic library. This allows for building one in the future without changing the compiler options.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602237"></A><CODE>
+-fno-common</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602239"></A>Make sure that there are no common blocks.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602241"></A>-fexceptions</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602246"></A>Allow C++ exceptions to be thrown through Parasolid.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602248"></A><CODE>
+-std=c99</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602250"></A>(C only) Compile code as ISO C99.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-769360"></A>-std=c++17</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-769362"></A>(C++ only) Compile code as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602259"></A>-Wpartial-availability</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602261"></A>Warn when compiling calls to partially available functions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602263"></A>-Werror=partial-availability</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-602265"></A>Make the partial availability warning into a compilation error. See <A HREF="in_chap.07.html#50520100_74307">Section 6.6.9, &#8220;MacOS and iOS backwards compatibility&#8221;</A>.</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-610866"></A>	6.2.9 	Intel iOS</H2>
+<P>
+<A NAME="50520100_pgfId-610870"></A>Parasolid was compiled, linked and tested on macOS 11.0. The C compiler used was Apple clang version 12.0.0 (clang-1200.0.32.27) from Xcode 12.2. Parasolid was tested on the iOS Simulator from the same version of Xcode.</P>
+<P>
+<A NAME="50520100_pgfId-610874"></A>Please see <A HREF="in_chap.07.html#50520100_12788">Section 6.3.6</A> for expected changes to this platform&#8217;s build and test environment.</P>
+<P>
+<A NAME="50520100_pgfId-610875"></A>The following options were used:</P>
+<P>
+<A NAME="50520100_pgfId-610879"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-610878"></A>-arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-version-min=13.0 -fstack-protector-strong -O2  -fPIC -dynamic -fno-common -fexceptions -std=c99 -Wpartial-availability -Werror=partial-availability</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-769416"></A>The same compiler was used for C++, with the <CODE>
+-std</CODE>
+ option changed to <CODE>
+-std=c++17</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-610955"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610883"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610885"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610887"></A><CODE>
+-arch x86_64</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610889"></A>Compile 64-bit x86 code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610891"></A><CODE>
+-isysroot...</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610893"></A>Use the iOS Simulator SDK headers supplied with Xcode 12.2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610895"></A><CODE>
+-ios-version-min=13.0</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610900"></A>Compile and link for iOS 13.0 onwards. See <A HREF="in_chap.07.html#50520100_88025">Section 6.6.9</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610902"></A>-fstack-protector-strong</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610907"></A>Use improved stack protection. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610909"></A><CODE>
+-O2</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610911"></A>Optimisation level 2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610925"></A><CODE>
+-fPIC</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610927"></A>Generate position-independent code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610929"></A><CODE>
+-dynamic</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610931"></A>Code intended for a dynamic library. This allows for building one in the future without changing the compiler options.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610933"></A><CODE>
+-fno-common</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610935"></A>Make sure that there are no common blocks.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610937"></A>-fexceptions</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610942"></A>Allow C++ exceptions to be thrown through Parasolid.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610944"></A><CODE>
+-std=c99</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610946"></A>(C only) Compile code as ISO C99.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-769448"></A>-std=c++17</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-769450"></A>(C++ only) Compile code as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610948"></A>-Wpartial-availability</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610950"></A>Warn when compiling calls to partially available functions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610952"></A>-Werror=partial-availability</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-610954"></A>Make the partial availability warning into a compilation error. See <A HREF="in_chap.07.html#50520100_74307">Section 6.6.9, &#8220;MacOS and iOS backwards compatibility&#8221;</A>.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-634736"></A>We intend to keep the Intel iOS builds of Parasolid as similar as possible to the ARM iOS builds.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-656925"></A>	6.2.10 	ARM Android</H2>
+<P>
+<A NAME="50520100_pgfId-818828"></A>Parasolid was compiled and linked on CentOS 7.9. The C compiler used was Android clang version 12.0.8, from NDK23b for Linux. Parasolid was tested on a Qualcomm Snapdragon&#174; 8 Gen 1 Mobile Hardware Development Kit, running Android 12.0.</P>
+<P>
+<A NAME="50520100_pgfId-818829"></A>The following compiler options were used:</P>
+<P>
+<A NAME="50520100_pgfId-818833"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-818832"></A><CODE>--target=aarch64-linux-android28 -O2 -fno-strict-aliasing -ffp-contract=off </CODE>
+-std=c99 <CODE>-fPIC -fvisibility=hidden -fexceptions </CODE>
+-Wformat -Wformat-security -fstack-protector-strong -D_FORTIFY_SOURCE=2</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-818834"></A>The same compiler was used for C++, with the <CODE>
+-std</CODE>
+ option changed to <CODE>
+-std=c++17</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-818898"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818837"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818839"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818841"></A> <CODE>
+--target=aarch64-linux-android28</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818843"></A>Compile for 64-bit ARM Android, API 28, Android 9.0.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818845"></A><CODE>
+-O2</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818847"></A>Optimisation level 2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-840875"></A><CODE>
+-fno-strict-aliasing</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-841053"></A>Optimisation should not make assumptions about aliasing.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-840883"></A><CODE>
+-ffp-contract=off</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-840925"></A>Avoid the use of &#8220;floating-point contractions,&#8221; to improve consistency.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-818849"></A>-std=c99</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818851"></A>(C only) Compile code as ISO C99.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-818853"></A>-std=c++17</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818855"></A>(C++ only) Compile code as ISO C++17.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818857"></A><CODE>
+-fPIC</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818859"></A>Generate position-independent code.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818861"></A><CODE>
+-fvisibility=hidden</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818863"></A>Hide Parasolid&#8217;s internal symbols.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818865"></A><CODE>
+-fexceptions</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818870"></A>Allow C++ exceptions to be thrown through Parasolid.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-818872"></A>-Wformat -Wformat-security</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818874"></A>Warn of security risks with the format strings used by the printf/scanf family of functions. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-818876"></A>-fstack-protector-strong</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818881"></A>Use improved stack protection. See <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-818895"></A>-D_FORTIFY_SOURCE=2</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818897"></A>Use more-secure C string functions.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-818899"></A>The Parasolid shared library is linked using the following options:</P>
+<P>
+<A NAME="50520100_pgfId-818925"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818902"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818904"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818906"></A><CODE>
+-z relro</CODE>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818908"></A>Make the relocation table read-only.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818910"></A><CODE>
+-z now</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818912"></A>Load the whole library as soon as any part of it is called.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818914"></A><CODE>
+-z noexecstack</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818916"></A>The library does not require an executable stack.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-830796"></A>-z defs</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-830798"></A>Make sure there are no undefined symbols.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818922"></A>--no-rosegment</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-818924"></A>Work around an Android 9 limitation.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-818926"></A>Parasolid is no longer linked with &#8220;--hash-style=both&#8221; because all Android 9 and later implementations support &#8220;gnu&#8221; symbol table hashes.</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-666176"></A>Note: You can develop Parasolid-based Android apps on Windows, Linux or macOS. The libraries, headers and so on can be used by Android development tools on any platform. Parasolid is built on Linux simply because that was convenient.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-669203"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-669202"></A>Note: No Intel build of Parasolid is supplied. There is no need for a separate simulation platform, unlike iOS, because Android development toolsets invariably include an emulator that runs on Intel and AMD machines, and executes an ARM-based Android OS and ARM-based apps. An Intel Android build would only be useful in developing for Intel-based Android devices.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-413971"></A>6.3	<A NAME="50520100_70982"></A>Supported operating systems and hardware
+
+
+</H1>
+<P>
+<A NAME="50520100_pgfId-413975"></A>This section describes the environments in which Parasolid can run for each platform. It contains information for all platforms.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-717598"></A>	6.3.1 	Windows platforms</H2>
+
+<H4>
+<A NAME="50520100_pgfId-719802"></A>Supported versions of Windows</H4>
+
+<H4>
+<A NAME="50520100_pgfId-717888"></A>Windows 7.<BR>
+Windows 8.1</H4>
+<P>
+<A NAME="50520100_pgfId-717976"></A>Windows 7 is no longer supported by Microsoft, but several customers have asked us to keep Parasolid compatible with it, since they expect demand for it in the future. Therefore:</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-718235"></A>We will continue to compile Parasolid for compatibility with Windows 7.</LI>
+<LI>
+<A NAME="50520100_pgfId-718274"></A>We will do some basic testing on Windows 7, while this is practical.</LI>
+<LI>
+<A NAME="50520100_pgfId-718360"></A>We will not formally support Windows 7, which means that fixing Windows 7-specific problems (which have been extremely rare in practice) will be at our discretion.</LI>
+<LI>
+<A NAME="50520100_pgfId-807372"></A>We have not had requests for Windows 8.1 compatibility, but it is provided automatically by Windows 7 compatibility.</LI>
+</UL>
+<P>
+<A NAME="50520100_pgfId-718416"></A>We intend to continue this scheme until the end of Microsoft support for Windows Server 2012 R2, described below. However, we cannot commit to this, because there is potential for future changes to Windows, Visual Studio, virtual machine systems or security standards to make it impossible. We will, however, make all reasonable efforts to continue with it.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-717926"></A>Windows Server 2012 R2</H4>
+<P>
+<A NAME="50520100_pgfId-718407"></A>Windows Server 2012 R2 will cease to be supported by Parasolid on 10-OCT-2023, when Microsoft support for this operating system ends.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-717945"></A>Windows 10 and Windows 11</H4>
+<P>
+<A NAME="50520100_pgfId-718540"></A>We support Parasolid on the versions of Windows 10 and 11 that are still under support from Microsoft, including their server and embedded versions, where provided. We will cease supporting Parasolid on each version of Windows as and when Microsoft withdraws support for it. The currently supported versions are:</P>
+<P>
+<A NAME="50520100_pgfId-723408"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809045"></A>Windows</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722693"></A>Version</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722695"></A>Codename</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722697"></A>Build</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722699"></A>Server version</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722701"></A>End of support</P>
+</TH>
+</TR>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809047"></A>10</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722703"></A>1507</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722705"></A>Threshold 1</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722707"></A>10240</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722709"></A>&nbsp;</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722711"></A>14-Oct-2025</P>
+</TH>
+</TR>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809049"></A>10</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722713"></A>1607</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722715"></A>Redstone 1</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722717"></A>14393</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722719"></A>2016</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722721"></A>13-Oct-2026</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809051"></A>10</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722743"></A>1809</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722745"></A>Redstone 5</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722747"></A>17763</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722749"></A>2019</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-722751"></A>09-Jan-2029</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809153"></A>10</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809155"></A>21H2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809157"></A>21H2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809159"></A>19044</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809161"></A>2022</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809163"></A>12-JAN-2027</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809057"></A>10</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-808379"></A>22H2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-808381"></A>22H2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-808383"></A>19045</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-808385"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-808387"></A>13-MAY-2025</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809129"></A>11</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809131"></A>21H2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809133"></A>Sun Valley</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809135"></A>22000</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809137"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809139"></A>08-Oct-2024</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809382"></A>11</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809384"></A>22H2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809386"></A>2022 Update</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809388"></A>22621</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809390"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-809392"></A>14-OCT-2025</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-740914"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-724493"></A>Note: Windows 10 Versions 1507, 1607, 1809 and 21H2 have long periods of support from Microsoft, 1507 because it was the initial release, and 1607, 1809 and 21H2 because they have server versions. These are all &#8220;Long Term Servicing Channel&#8221; or &#8220;LTSC&#8221; versions in current Microsoft terminology. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50520100_pgfId-320240"></A>X64 WIN</H4>
+<P>
+<A NAME="50520100_pgfId-480448"></A>Parasolid will run on 64-bit supported versions of Windows.</P>
+<P>
+<A NAME="50520100_pgfId-712185"></A>Parasolid will run on any Intel or AMD 64-bit x86 processor.</P>
+<P>
+<A NAME="50520100_pgfId-473376"></A>Parasolid is built and tested for the traditional 64-bit WIN32 desktop programming environment. It is not supported on the WinRT programming environment, or the Universal Windows Platform (UWP) environment, and is known not to work in those environments. It is not officially supported in Windows 10 applications for the Windows Store that make use of the Desktop Conversion Extension, but we would expect it to work in that environment.</P>
+<P>
+<A NAME="50520100_pgfId-538486"></A>See <A HREF="in_chap.07.html#50520100_95172">Section 6.4.1, &#8220;X64 WIN&#8221;</A> for details of the effects of the Visual Studio 2013 and later 64-bit math libraries when run on processors that support the AVX2 instruction set.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-745257"></A>ARM WIN</H4>
+<P>
+<A NAME="50520100_pgfId-745308"></A>Parasolid runs on 64-bit supported versions of Windows for ARM. It is built for the 64-bit WIN32 environment; see above for variant environments.</P>
+<P>
+<A NAME="50520100_pgfId-745825"></A>See <A HREF="in_chap.06.html#50520099_60984">Section 5.6.1.5, &#8220;Processor affinity&#8221;</A> for issues with processor affinity on ARM WIN.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-479907"></A>Intel NT</H4>
+<P>
+<A NAME="50520100_pgfId-482549"></A>Parasolid will run on 32-bit or 64-bit supported versions of Windows, on any Intel or AMD x86 processor that supports the SSE2 instruction set. It is built for the 32-bit WIN32 environment; see above for variant environments.</P>
+<P>
+<A NAME="50520100_pgfId-344276"></A>The Parasolid DLL has additional version information, allowing you to confirm that you are using an SSE2 build via Windows Explorer. See <A HREF="in_chap.07.html#50520100_99324">Section 6.7, &#8220;Parasolid version information&#8221;</A>, for more details.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-359962"></A>	6.3.2 	Intel Linux</H2>
+
+<H4>
+<A NAME="50520100_pgfId-822890"></A>Default build</H4>
+<P>
+<A NAME="50520100_pgfId-822897"></A>Parasolid will run on any Intel or AMD 64-bit x86 processor. Parasolid is supported on Red Hat Enterprise Linux 8 onwards, Alma Linux 8 onwards, Rocky Linux 8 onwards, SUSE Linux Enterprise Desktop/Server version 15sp3 onwards, Amazon Linux 2023 onwards, and Ubuntu LTS 20.04 onwards.</P>
+<P>
+<A NAME="50520100_pgfId-822898"></A>It should run on any x86-64 Linux with glibc 2.28 or later and the GCC 8 or later versions of libgcc_s and libstdc++.</P>
+<P>
+<A NAME="50520100_pgfId-841182"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-841201"></A>Warning: This default build will not run on CentOS 7, Red Hat Enterprise Linux 7 or SUSE Linux Enterprise 12. For those, see the GCC7 compatible build below.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-822902"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-822901"></A>Note: The Red Hat GCC Toolset we use to provide GCC 11.2 statically links any C and C++ language support functions required by Parasolid which are not available in the GCC 8 versions of libgcc_s and libstdc++.so provided with Red Hat Enterprise Linux 8. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50520100_pgfId-822903"></A>GCC7-compatible <BR>
+extra build</H4>
+<P>
+<A NAME="50520100_pgfId-769621"></A>This build is compatible with our GCC7 build of Parasolid, provided at Parasolid versions 34.1 to 35.1. It will run on any Intel or AMD 64-bit x86 processor. Parasolid is supported on CentOS 7, SUSE Linux Enterprise Desktop/Server version 12 onwards, Red Hat Enterprise Linux 7 onwards, and Ubuntu LTS 20.04 onwards.</P>
+<P>
+<A NAME="50520100_pgfId-778700"></A>It should run on any x86-64 Linux with glibc 2.14 or later and the GCC 4.8 or later versions of libgcc_s and libstdc++.</P>
+<P>
+<A NAME="50520100_pgfId-823403"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-823422"></A>Warning: Versions 7.9 of CentOS and Red Hat Enterprise Linux will leave support from Red Hat on 30-Jun-2024. We hope to be able to continue support of this build until 31-Dec-2024, if we can do so while meeting proper security standards. However, we cannot yet commit to this.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-777173"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-777184"></A>Note: The Red Hat Developer Toolset we use to provide GCC 11.2 statically links any C and C++ language support functions required by Parasolid which are not available in the GCC 4.8 versions of libgcc_s and libstdc++.so provided with CentOS 7. This allows this build to run on the same set of Linux distributions as our former GCC 4.8 and GCC 7.3 builds.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-761800"></A>	6.3.3 	ARM Linux</H2>
+<P>
+<A NAME="50520100_pgfId-761824"></A>Parasolid will run on any 64-bit ARM processor. Parasolid is supported on Red Hat Enterprise Linux 8 onwards, Alma Linux 8 onwards, Rocky Linux 8 onwards, SUSE Linux Enterprise Desktop/Server version 15sp3 onwards, Amazon Linux 2023 onwards, and Ubuntu LTS 20.04 onwards.</P>
+<P>
+<A NAME="50520100_pgfId-841432"></A>It should run on any ARM64 Linux with glibc 2.28 or later and the GCC 8 or later versions of libgcc_s and libstdc++.</P>
+<P>
+<A NAME="50520100_pgfId-823836"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-841435"></A>Warning: This build will not run on Amazon Linux 2, our former build standard.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-750124"></A>	6.3.4 	ARM MacOS</H2>
+<P>
+<A NAME="50520100_pgfId-750156"></A>Parasolid runs on macOS 11.0 or later on any ARM-based &#8220;Apple Silicon&#8221; Macintosh.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-699609"></A>	6.3.5 	Intel MacOS</H2>
+<P>
+<A NAME="50520100_pgfId-443561"></A>Parasolid runs on macOS11.0 or later on any Intel-based Macintosh.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-602771"></A>	6.3.6 	<A NAME="50520100_12788"></A>ARM iOS</H2>
+<P>
+<A NAME="50520100_pgfId-721609"></A>Apple now provides two separate operating systems in the iOS family. These are iOS, for iPhones (and iPods) and iPadOS, for iPads. Although they use the same software development kits and tools, Apple does not provide any undertakings about compatibility between them. This change took place at iOS 13, which was accompanied by iPadOS 13. We develop and test Parasolid using iPad Pros, because they have more RAM than iPhones, and some of our test cases reach or exceed the RAM capacity of the largest currently available iPad Pros.</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-722278"></A>Parasolid runs under iPadOS 13, 14, 15 or 16 on any iPad that is supported by those operating systems.</LI>
+<LI>
+<A NAME="50520100_pgfId-722371"></A>We expect Parasolid to work under iOS 13, 14, 15or 16 on any iPhone or iPod that is supported by those operating systems, but it has not been tested and is not formally supported.</LI>
+</UL>
+<P>
+<A NAME="50520100_pgfId-602763"></A>Since, by mobile device standards, a fully-featured solid-modeling application may use a lot of processor time and memory, we recommend that your apps require an iPad Pro with at least 4GB RAM. </P>
+<P>
+<A NAME="50520100_pgfId-715699"></A>Parasolid uses the basic ARMv8 64-bit instruction set, rather than any of the later enhanced instruction sets, so as to be compatible with older hardware.</P>
+<P>
+<A NAME="50520100_pgfId-793955"></A>Apple&#8217;s tvOS and watchOS are related to iOS, but use separate software development kits. We do not consider either to be relevant for Parasolid.</P>
+<P>
+<A NAME="50520100_pgfId-616974"></A><A NAME="50520100_33092"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-654798"></A>Warning: Given the pace of Apple&#8217;s release of new iOS versions and development tools, it is not always practical for us to maintain a Parasolid release with the same development tools, nor to test it on the same version of iOS, throughout its maintenance life. This is different from our practice with other, non-iOS platforms. </ADDRESS><BR>
+<ADDRESS>
+<A NAME="50520100_pgfId-654906"></A>It is possible that during the life of this release, we will switch to building Parasolid with a later version of Xcode, possibly more than once. When we change Xcode versions, subsequent patch releases may no longer run on the minimum version of iOS supported at the First Customer Ship (FCS) release. The FCS release, and patch releases made before the change of Xcode, will remain compatible with the original minimum iOS.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-613955"></A>	6.3.7 	Intel iOS</H2>
+<P>
+<A NAME="50520100_pgfId-616988"></A>Parasolid runs on the iOS Simulator for iPadOS 13, 14, 15 or 16, on any 64-bit Intel-based Macintosh with an appropriate version of Xcode installed. The warning for ARM iOS above also applies to this platform. We intend to keep the Intel iOS builds of Parasolid as similar as possible to the ARM iOS builds.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-660501"></A>	6.3.8 	<A NAME="50520100_52598"></A>ARM Android</H2>
+<P>
+<A NAME="50520100_pgfId-660549"></A>Parasolid runs on Android 9.0 or later on any ARM-based device running a 64-bit version of Android. Since, by mobile device standards, a fully-featured solid-modelling application may use a lot of processor time and memory, we recommend that your apps require a fast device with at least 4GB RAM. </P>
+<P>
+<A NAME="50520100_pgfId-777253"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-777264"></A>Note: Since Parasolid contains C++ code, you will need to add the C++ run-time library, <CODE>
+libc++_shared.so</CODE>
+ from the Android NDK to your app bundle, if it was not already included. Android does not provide a &#8220;system&#8221; C++ run-time library, but requires each app that uses C++ to include its preferred C++ run-time. This uses slightly more storage, but means that the C++ standard available does not depend on the operating system version.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-674986"></A>Parasolid should also be runnable in the Android ARM emulator, although its size demands a powerful host machine, and our efforts have had limited success.</P>
+<P>
+<A NAME="50520100_pgfId-716106"></A>Parasolid uses the basic ARMv8 64-bit instruction set, rather than any of the later enhanced instruction sets, so as to be compatible with older hardware.</P>
+<P>
+<A NAME="50520100_pgfId-677631"></A>See also <A HREF="in_chap.07.html#50520100_70089">Section 6.6.10, &#8220;Android changes for NDK developers&#8221;</A>.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-607014"></A>6.4	<A NAME="50520100_47449"></A>Floating-point information
+
+
+</H1>
+
+<H4>
+<A NAME="50520100_pgfId-634227"></A>&nbsp;</H4>
+<P>
+<A NAME="50520100_pgfId-322664"></A>Where practical, we recommend that you enable floating-point traps (that is, allow the operating system to catch run-time errors arising from floating-point operations).However, this is not practical on many of the supported platforms. See below for details of how to set up the recommended configurations on each platform, or the reasons why this is impractical.</P>
+<P>
+<A NAME="50520100_pgfId-708545"></A>The errors that we recommend that you enable traps for are:</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-319674"></A>Invalid operation</LI>
+<LI>
+<A NAME="50520100_pgfId-319675"></A>Divide by zero</LI>
+<LI>
+<A NAME="50520100_pgfId-319676"></A>Overflow</LI>
+</UL>
+<P>
+<A NAME="50520100_pgfId-319677"></A>You should also register a signal handler to handle the signal (SIGFPE) caught by the operating system in these cases; see <A HREF="fd_chap.123.html#35122">Chapter 122, &#8220;Signal Handling&#8221;</A> of the <EM><A HREF=../fd_index.html>Functional Description</A></EM> manual for details.</P>
+<P>
+<A NAME="50520100_pgfId-319694"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-319686"></A>Warning: You must <EM>
+not</EM> enable traps for these floating-point errors:</ADDRESS><BR>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-319687"></A>Underflow</LI>
+<LI>
+<A NAME="50520100_pgfId-319688"></A>Denormal operand</LI>
+<LI>
+<A NAME="50520100_pgfId-319689"></A>Inexact result</LI>
+</UL>
+<ADDRESS>
+<A NAME="50520100_pgfId-319693"></A>Parasolid relies on numbers being rounded naturally, including rounding to zero, and will not operate correctly if the above floating-point errors are trapped by the OS.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-319695"></A>For more information about floating-point traps, see <A HREF="in_chap.08.html#50520101_35052">Appendix A, &#8220;Floating-Point Traps&#8221;</A>. For more information about floating-point traps and Parasolid SMP, see <A HREF="in_chap.06.html#50520099_27708">Section 5.6.3, &#8220;Run-time error handling&#8221;</A>.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-319543"></A>	6.4.1 	<A NAME="50520100_95172"></A>X64 WIN</H2>
+<P>
+<A NAME="50520100_pgfId-320881"></A>The recommended floating-point traps are disabled by default on this platform. They are enabled by the line:</P>
+<P>
+<A NAME="50520100_pgfId-320885"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-320884"></A><CODE>#include &lt;float.h&gt;</CODE>
+</PRE>
+<PRE><A NAME="50520100_pgfId-342858"></A><CODE>_controlfp(_EM_DENORMAL | _EM_UNDERFLOW | _EM_INEXACT, _MCW_EM);</CODE>
+</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-320886"></A>Note that this line specifies those floating-point traps to be <EM>
+disabled</EM>; all other traps are consequently enabled. You should consult the Microsoft documentation for <CODE>
+_controlfp()</CODE>
+ before making use of this function. </P>
+<P>
+<A NAME="50520100_pgfId-320887"></A>The use of denormals as zeroes is recommended on this platform and can be enabled with the following additional line:</P>
+<P>
+<A NAME="50520100_pgfId-536822"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-320890"></A>#include &lt;float.h&gt;</PRE>
+<PRE><A NAME="50520100_pgfId-342865"></A>_controlfp(_DN_FLUSH, _MCW_DN);</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50520100_pgfId-320858"></A>FMA3 instructions</H4>
+<P>
+<A NAME="50520100_pgfId-536878"></A>Parasolid is compiled to use the basic x86-64 instruction set, and does not use AVX, AVX2 or FMA3 instructions. However, Microsoft's 64-bit math library contains code paths that use FMA3 combined floating-point-multiply-add instructions. These paths will be used by default on processors that support them, such as the Intel &#8220;Haswell&#8221; series, AMD &#8220;Piledriver&#8221; series and their successors.</P>
+<P>
+<A NAME="50520100_pgfId-537119"></A>Microsoft's objective in this is increased performance, but Parasolid makes sufficiently few calls to the math library that this has no detectable effect on Parasolid's speed in our trials. However, the occasional slight differences in rounding caused by combining a multiply and an add into a single instruction can cause math library functions to produce slightly different results. These differences can cause a Parasolid modeling operation to fail where it would succeed on a processor without FMA3 instructions. In the same way, a Parasolid operation can succeed on a processor with FMA3 instructions when it would fail on a processor without them. These changes do not happen often (less than one in a thousand tests in our trials), but they are common enough to be noticed. Parasolid's algorithms are robust against most instances of such differences, but without human knowledge of what's &#8220;right&#8221; and what isn't, perfection is unattainable. The differences are similar in number and scope to those caused by a change of compilers, but depend on the hardware in use at run-time. </P>
+<P>
+<A NAME="50520100_pgfId-539745"></A>If you want to turn off the use of FMA3 instructions on processors that support them, you can do so with the line: </P>
+<P>
+<A NAME="50520100_pgfId-545777"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-538095"></A>#include &lt;math.h&gt;</PRE>
+<PRE><A NAME="50520100_pgfId-538279"></A>_set_FMA3_enable(0); /* 0 = disable, 1 = enable */</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-541229"></A>Doing this only affects the process that makes the call to <CODE>
+_set_FMA3_enable()</CODE>
+, but it affects all code in that process that was built with the same version of Visual Studio. This happens because it is a setting within an individual run-time library, and different versions of Visual Studio can use different run-time libraries (However, Visual Studio 2015 to 2022 share the same run-time libraries, see <A HREF="in_chap.07.html#50520100_84226">Section 6.6.1, &#8220;Windows run-time libraries&#8221;</A>).</P>
+<P>
+<A NAME="50520100_pgfId-644497"></A>You should consult the Microsoft documentation for <CODE>
+_set_FMA3_enable()</CODE>
+ before making use of this function. </P>
+<P>
+<A NAME="50520100_pgfId-644489"></A>If your program contains code built with more than one version of Visual Studio that supports FMA3, then if you change this setting, you should change it in code compiled by each version of Visual Studio. If different run-time libraries are using different FMA3 settings, the calculations performed by code using different run-time libraries won&#8217;t be entirely consistent, which may have unpredictable results.</P>
+<P>
+<A NAME="50520100_pgfId-537661"></A>This issue, as of Visual Studio 2015 to 2022, only affects 64-bit code.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-745569"></A>	6.4.2 	ARM WIN</H2>
+<P>
+<A NAME="50520100_pgfId-745545"></A>Floating-point traps are an optional feature of the ARM architecture, and Windows 10 for ARM does not allow them to be enabled.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-413783"></A>	6.4.3 	Intel NT</H2>
+<P>
+<A NAME="50520100_pgfId-413787"></A>Parasolid is compiled with the <CODE>
+/fp:precise</CODE>
+ option, which is the compiler&#8217;s default. Intel NT builds of Parasolid on older compilers used <CODE>
+/fp:fast</CODE>
+, which is slightly faster, but provides worse consistency. You can use either setting for your applications&#8217; code, but <CODE>
+/fp:precise</CODE>
+ is preferable, if its performance is acceptable.</P>
+<P>
+<A NAME="50520100_pgfId-413647"></A>Do not call Parasolid with the x87 floating-point unit set to any evaluation precision other than 53-bit precision (64-bit values), since it will only operate correctly with that setting. All floating-point values passed to, and returned from, Parasolid should be standard 64-bit values.The recommended floating-point traps are disabled by default on this platform. They can be enabled using code such as:</P>
+<P>
+<A NAME="50520100_pgfId-345138"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-345548"></A>#include &lt;float.h&gt;</PRE>
+<PRE><A NAME="50520100_pgfId-345549"></A>_controlfp(_EM_DENORMAL | _EM_UNDERFLOW | _EM_INEXACT, _MCW_EM); </PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-345142"></A>Note that this line specifies those floating-point traps to be <EM>
+disabled</EM>; all other traps are consequently enabled. You should consult the Microsoft documentation for <CODE>
+_controlfp()</CODE>
+ before making use of this function. </P>
+<P>
+<A NAME="50520100_pgfId-644146"></A>Note that this Parasolid platform uses both x87 and SSE2 registers and instructions, but that Windows does not generate the SIGFPE signal when SSE2 instructions cause traps. It is reasonably simple to implement this yourself with some code in the <CODE>
+main()</CODE>
+ function of your program: see <A HREF="in_chap.07.html#50520100_98015">Section 6.10, &#8220;Enabling SIGFPE for SSE2 on Intel NT&#8221;</A>. Even if you do not use signals for error handling, see that section for details of the necessary calls to <CODE>
+_fpreset()</CODE>
+. </P>
+<P>
+<A NAME="50520100_pgfId-413622"></A>It is possible to use denormals as zeroes on this platform, and this gives a small improvement in performance. However, you may wish to avoid the practice. The SSE2 floating-point registers support them but the x87 registers do not; Parasolid uses both, with the choice for any individual calculation being made by the compiler. Our trials have been unable to detect any significant differences in Parasolid test results when using denormals as zeroes, but the possibility remains. To use denormals as zeroes, use the following call:</P>
+<P>
+<A NAME="50520100_pgfId-345871"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-346048"></A>#include &lt;float.h&gt;</PRE>
+<PRE><A NAME="50520100_pgfId-346049"></A>_controlfp(_DN_FLUSH, _MCW_DN); </PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-553526"></A>	6.4.4 	Intel Linux</H2>
+<P>
+<A NAME="50520100_pgfId-360927"></A>This platform disables the recommended floating-point traps by default. You can enable them with the following code:</P>
+<P>
+<A NAME="50520100_pgfId-361049"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-361047"></A>#include &lt;fenv.h&gt;</PRE>
+<PRE><A NAME="50520100_pgfId-361048"></A>feenableexcept( FE_OVERFLOW | FE_INVALID | FE_DIVBYZERO);</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-762075"></A>	6.4.5 	ARM Linux</H2>
+<P>
+<A NAME="50520100_pgfId-762135"></A>Floating-point traps are an optional feature of the ARM architecture, and the Linux operating system has to be able to run with or without them, depending on hardware manufacturers&#8217; choices. It manages this by always leaving them turned off, and does not supply a way for software to turn them on. The recommended floating-point traps thus cannot be enabled.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-750299"></A>	6.4.6 	ARM MacOS</H2>
+<P>
+<A NAME="50520100_pgfId-824538"></A>The recommended floating-point traps are disabled by default on this platform, and should not be enabled. The Clang compiler does not attempt to generate code that can safely be run with floating-point traps enabled. At optimization levels -O1 and -O2, it will sometimes move code that can cause a floating-point trap outside the scope of a test intended to prevent the trap. ARM-based versions of macOS also report floating-point traps as illegal instructions, making them indistinguishable from program corruptions.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-346293"></A>	6.4.7 	Intel MacOS</H2>
+<P>
+<A NAME="50520100_pgfId-824799"></A>The recommended floating-point traps are disabled by default on this platform, and should not be enabled. The Clang compiler does not attempt to generate code that can safely be run with floating-point traps enabled. At optimization levels -O1 and -O2, it will sometimes move code that can cause a floating-point trap outside the scope of a test intended to prevent the trap.ARM iOS</P>
+<P>
+<A NAME="50520100_pgfId-603840"></A>The recommended floating-point traps are disabled by default on this platform. They should not be enabled, for the same reasons as ARM MacOS. Intel iOS</P>
+<P>
+<A NAME="50520100_pgfId-612675"></A>The recommended floating-point traps are disabled by default on this platform. They should not be enabled, for the same reason as Intel MacOS. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-661021"></A>	6.4.8 	ARM Android</H2>
+<P>
+<A NAME="50520100_pgfId-661009"></A>Floating-point traps are an optional feature of the ARM architecture, and the Android operating system has to be able to run with or without them, depending on device manufacturers&#8217; choices. It manages this by always leaving them turned off, and does not supply a way for apps to turn them on. The recommended floating-point traps thus cannot be enabled.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-318927"></A>6.5	<A NAME="50520100_57358"></A>Solutions to platform-specific issues
+
+
+</H1>
+<P>
+<A NAME="50520100_pgfId-326146"></A>This section describes platform-specific issues and situations that you should avoid. It contains information on all relevant platforms.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-322507"></A>	6.5.1 	64-bit and 32-bit code</H2>
+
+<H4>
+<A NAME="50520100_pgfId-328318"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-551237"></A>X64 WIN and Intel NT</P>
+<P>
+<A NAME="50520100_pgfId-551265"></A>We recommend that you build your applications as 64-bit code, for Windows 10 and later operating systems. If this is not practical, we recommend that you build as 32-bit code for Windows 10 and later.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-638245"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-638301"></A>Intel NT</P>
+<P>
+<A NAME="50520100_pgfId-638279"></A>If you wish to use this platform, note that all of your application has to be compiled as 32-bit code. Windows does not support mixing 32-bit and 64-bit code in the same program.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-665072"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-665051"></A>ARM Android</P>
+<P>
+<A NAME="50520100_pgfId-665329"></A>Parasolid is only provided for the arm64-v8a ABI. It is not possible to build Parasolid-based apps for any other Android ABI.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-319758"></A>	6.5.2 	<A NAME="50520100_58848"></A>Data alignment issues</H2>
+
+<H4>
+<A NAME="50520100_pgfId-328089"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-328090"></A>Windows platforms</P>
+<P>
+<A NAME="50520100_pgfId-328476"></A>Do not use the <CODE>
+/Zp</CODE>
+ compiler option, which modifies the Microsoft C/C++ compiler's structure packing rules. Parasolid is compiled with the Microsoft C/C++ compiler's default structure packing, and if structures compiled with different packing are passed to it, it will crash.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-328510"></A>	6.5.3 	Using a different compiler from Parasolid</H2>
+
+<H4>
+<A NAME="50520100_pgfId-328511"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-328512"></A>Windows platforms</P>
+<P>
+<A NAME="50520100_pgfId-497313"></A>It is possible to build applications for these platforms with a different compiler to that used by Parasolid, although it is not recommended or officially supported. If you do this, any calls to the <CODE>
+matherr()</CODE>
+ function made by the run-time library used by Parasolid will not be caught by your application, and FMA3 settings can be inconsistent between different parts of an application. See also <A HREF="in_chap.07.html#50520100_26350">Section 6.9, &#8220;Linking Windows run-time libraries&#8221;</A>.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-661200"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-661211"></A>ARM Android</P>
+<P>
+<A NAME="50520100_pgfId-661710"></A>If you need to use a different NDK from Parasolid, note that the minimum Android API standard required by your app will be the highest API standard required by any of its components. </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-738132"></A>	6.5.4 	Handling signals in C++ applications</H2>
+
+<H4>
+<A NAME="50520100_pgfId-738251"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-738276"></A>Windows platforms</P>
+<P>
+<A NAME="50520100_pgfId-738304"></A>C++ applications built in the Visual Studio environment can&#8217;t, by default, handle signals. To do this, some non-default settings and some support code are required. <A HREF="fd_chap.123.html#35122">Chapter 122, &#8220;Signal Handling&#8221;</A>, in the <A HREF=../fd_index.html>Functional Description</A> provides a detailed explanation of signal handling, and Microsoft&#8217;s documentation is the definitive reference on use of their tools. The steps needed to tie these things together are:</P><UL>
+<LI>
+<A NAME="50520100_pgfId-738771"></A>Enable your application to catch a &#8220;Structured Exception&#8221;, by compiling it with the <CODE>
+/EHa</CODE>
+ option.</LI>
+<LI>
+<A NAME="50520100_pgfId-739031"></A>Register a &#8220;translator&#8221; function with the C++ runtime, via <CODE>
+_set_se_translator()</CODE>
+. Note that this registration is thread specific, and thus needs to be done for every thread that enters Parasolid.</LI>
+<LI>
+<A NAME="50520100_pgfId-739079"></A>Then, when there is a signal from the OS, the C++ runtime catches it and calls the translator function.</LI>
+<LI>
+<A NAME="50520100_pgfId-739147"></A>The translator function should call <A HREF=../headers/pk_thread_is_in_kernel.html><A HREF=../headers/pk_thread_is_in_kernel.html>PK_THREAD_is_in_kernel</A></A>, and then call <A HREF=../headers/pk_session_abort.html>PK_SESSION_abort</A> if <A HREF=../headers/pk_thread_is_in_kernel.html><A HREF=../headers/pk_thread_is_in_kernel.html>PK_THREAD_is_in_kernel</A></A> showed that Parasolid was executing.</LI>
+<LI>
+<A NAME="50520100_pgfId-739209"></A>Parasolid then calls the application&#8217;s registered error handler, and this error handler can then throw a C++ exception, which the application should catch to allow recovery rather than exit.</LI>
+<LI>
+<A NAME="50520100_pgfId-739295"></A>If <A HREF=../headers/pk_thread_is_in_kernel.html>PK_THREAD_is_in_kernel</A> did not indicate that Parasolid was executing in the relevant thread, then the translator function can throw a C++ exception when it sees fit.</LI>
+</UL>
+<P>
+<A NAME="50520100_pgfId-759769"></A>See the following sections:</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-759676"></A><A HREF="in_chap.06.html#50520099_27708">Section 5.6.3, &#8220;Run-time error handling&#8221;</A></LI>
+<LI>
+<A NAME="50520100_pgfId-759682"></A><A HREF="in_chap.07.html#50520100_47449">Section 6.4, &#8220;Floating-point information&#8221;</A></LI>
+<LI>
+<A NAME="50520100_pgfId-759847"></A><A HREF="in_chap.07.html#50520100_98015">Section 6.10, &#8220;Enabling SIGFPE for SSE2 on Intel NT&#8221;</A></LI>
+</UL>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-323977"></A>	6.5.5 	Memory limitations</H2>
+
+<H4>
+<A NAME="50520100_pgfId-413441"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-413442"></A>X64 WIN, ARM WIN, Android, iOS and MacOS</P>
+<P>
+<A NAME="50520100_pgfId-413446"></A>X64 WIN and ARM WIN programs that use Parasolid always require more stack space than the default provided by the platform&#8217;s linker. Android, iOS and MacOS require larger than default stack sizes for application threads which will call Parasolid and for Parasolid internal SMP threads (on relevant platforms). See <A HREF="in_chap.06.html#50520099_68496">Section 5.5, &#8220;Stack sizes&#8221;</A>, for more details.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-716705"></A>	6.5.6 	Memory consumption by Parasolid</H2>
+
+<H4>
+<A NAME="50520100_pgfId-716761"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-716813"></A>Android, ARM iOS and Intel NT</P>
+<P>
+<A NAME="50520100_pgfId-716857"></A>These platforms impose limitations on the amount of memory that can be used by software:</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-717291"></A>Android and ARM iOS are limited to the physical memory of the device they run on, some of which will be reserved for the operating system.</LI>
+<LI>
+<A NAME="50520100_pgfId-717232"></A>Intel NT is limited to 4GB of address space.</LI>
+</UL>
+<P>
+<A NAME="50520100_pgfId-717204"></A>If you produce software for these platforms, we recommend that you take special care in testing for and handling out-of-memory conditions. This applies to Parasolid memory use in general, but meshes and lattices are especially likely to use large amounts of memory.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-746231"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-746218"></A>ARM WIN</P>
+<P>
+<A NAME="50520100_pgfId-746318"></A>While this platform runs on ARM-based devices with no hard disk, Windows requires that such devices be capable of &#8220;swapping&#8221; data between physical memory and storage. ARM WIN programs are therefore not limited to the physical memory of the device they run on.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-725159"></A>	6.5.7 	Posix threads library</H2>
+
+<H4>
+<A NAME="50520100_pgfId-328172"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-328173"></A>Linux platforms</P>
+<P>
+<A NAME="50520100_pgfId-338566"></A>You will need to use the <CODE>
+-lpthread</CODE>
+ parameter when linking, because the Parasolid library contains references to the POSIX threads library. See <A HREF="in_chap.06.html#50520099_50680">Section 5.6, &#8220;Symmetric Multi-Processing (SMP)&#8221;</A> for details. On macOS, iOS, and Android platforms, the POSIX threads functions are included in the standard system library.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-562784"></A>	6.5.8 	<A NAME="50520100_85400"></A>Stack protection</H2>
+<P>
+<A NAME="50520100_pgfId-562772"></A>All of the platforms on which Parasolid is supported can use &#8220;stack protection&#8221;, also known as &#8220;buffer overflow protection&#8221; or &#8220;buffer overrun protection&#8221;, provided by the compiler. This is a safety precaution against attempts by computer viruses or other &#8220;malware&#8221; to take over a program. </P>
+<P>
+<A NAME="50520100_pgfId-563588"></A>A program&#8217;s stack is an area of memory, used to hold the local variables of the functions that make up the program. When a function is called, it usually uses stack memory for variables, and when it exits and returns to its caller, the memory used by those variables is freed for use by subsequent functions. The stack is also used to store the &#8220;return address&#8221; of each function call, the place where the caller function should resume running when the called function terminates. </P>
+<P>
+<A NAME="50520100_pgfId-566347"></A>If a program can be persuaded or tricked into storing more data in a variable on the stack than will fit, then this can overwrite the return address. The simplest way of doing this is to give a function that reads a string, from a file or a network message, a longer string than the variable will hold. If the function doesn&#8217;t check the length and stop when it reaches the limit, then it overwrites whatever lies beyond the variable, which is called &#8220;overrunning&#8221; the variable. Variables that hold strings are sometimes known as &#8220;buffers&#8221;.</P>
+<P>
+<A NAME="50520100_pgfId-567793"></A>The point of overwriting the return address is that when the function tries to return, it does so to an address controlled by whoever created the data that was read. This is why many security flaws can only be exploited via specially crafted files or network messages. </P>
+<P>
+<A NAME="50520100_pgfId-567321"></A>Stack protection systems work by means of compiler-inserted code at the start and end of vulnerable functions. The code at the start stores a hard-to-predict value (a &#8220;cookie&#8221; or &#8220;canary&#8221;) on the stack between the variables and the return address. The code at the end checks to see if the value has changed: if so, it is assumed that some variable has been overrun and the return address has been overwritten, corrupting the stack.</P>
+<P>
+<A NAME="50520100_pgfId-567897"></A>The usual response to a stack corruption is to terminate the program. It is not generally possible to recover from this condition, because there is no way to tell how far the corruption has spread.</P>
+
+<H4>
+<A NAME="50520100_pgfId-563613"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-563625"></A>Windows Platforms</P>
+<P>
+<A NAME="50520100_pgfId-563676"></A>Parasolid is compiled with the <CODE>
+/GS</CODE>
+ (GuardStack) option, which implements stack protection, in accordance with the Microsoft Security Development Lifecycle (see <A HREF="in_chap.07.html#50520100_63689">Section 6.6.2</A>).</P>
+<P>
+<A NAME="50520100_pgfId-563688"></A>If the protection code detects stack corruption, it generates an exception, which normally goes unhandled, and terminates the program. If you have a debugger installed, Windows will offer you the chance to debug the program, and the debugger will tell you that there has been a stack buffer overrun.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-762318"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-762293"></A>Linux Platforms</P>
+<P>
+<A NAME="50520100_pgfId-762395"></A>Parasolid is compiled with the <CODE>
+-fstack-protector-strong</CODE>
+ option, which implements stack protection.</P>
+<P>
+<A NAME="50520100_pgfId-762379"></A>If the protection code detects stack corruption, it will output the message &#8220;stack smashing detected&#8221; to standard error. It will then call the run-time library function <CODE>
+abort()</CODE>
+. This will raise UNIX signal 6, SIGABRT, whose default handler will terminate the program. If you have installed a handler for this signal, it will be called. If your handler returns, or you have requested that SIGABRT be ignored, the program will be terminated.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-564090"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-564388"></A>MacOS and iOS</P>
+<P>
+<A NAME="50520100_pgfId-564101"></A>Parasolid is compiled with the <CODE>
+-fstack-protector-strong</CODE>
+ option, which implements stack protection.</P>
+<P>
+<A NAME="50520100_pgfId-635417"></A>If the protection code detects stack or heap corruption, your program will be terminated, and the message &#8220;Abort trap: 6&#8221; sent to standard error. This is done by raising UNIX signal 6, SIGABRT. It is not possible to trap this signal and report it differently, because the protection code disables any SIGABRT handler immediately before raising the signal.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-662374"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-662338"></A>Android</P>
+<P>
+<A NAME="50520100_pgfId-662421"></A>Parasolid is compiled with the <CODE>
+-fstack-protector-strong</CODE>
+ option, which implements stack protection. </P>
+<P>
+<A NAME="50520100_pgfId-664840"></A>If the protection code detects stack corruption, it will add the message &#8220;stack corruption detected&#8221; to the Android log, and send it to standard error. It will then call the run-time library function <CODE>
+abort()</CODE>
+. This will raise UNIX signal 6, SIGABRT, whose default handler will terminate the program. If you have installed a handler for this signal, it will be called. If your handler returns, or you have requested that SIGABRT be ignored, the program will be terminated.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-604180"></A>	6.5.9 	<A NAME="50520100_87230"></A>iOS and Android message handling</H2>
+<P>
+<A NAME="50520100_pgfId-604165"></A>Since Parasolid modeling operations can take significant amounts of time, and their duration can be hard to predict, it is important that you do not call Parasolid from the main thread of your app (on Android, the UI thread). If you do this, the application risks becoming unresponsive to messages from the operating system.</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-670007"></A>iOS may then kill it, assuming it has hung. </LI>
+<LI>
+<A NAME="50520100_pgfId-670083"></A>Android will display an &#8220;Application Not Responding&#8221; message and wait for user input. </LI>
+</UL>
+<P>
+<A NAME="50520100_pgfId-670024"></A>Create a separate thread to call Parasolid, and make sure it has sufficient stack space (see <A HREF="in_chap.06.html#50520099_68496">Section 5.5, &#8220;Stack sizes&#8221;</A>).</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-413423"></A>6.6	<A NAME="50520100_86861"></A>Supporting material for Parasolid libraries
+
+
+</H1>
+<P>
+<A NAME="50520100_pgfId-413424"></A>This section describes additional relevant material that you will find useful.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-413426"></A>	6.6.1 	<A NAME="50520100_84226"></A>Windows run-time libraries</H2>
+<P>
+<A NAME="50520100_pgfId-799740"></A>Visual Studio 2015 marked an important change in Microsoft&#8217;s provision of run-time libraries. Before that version, each version of Visual Studio had its own version of the C/C++ run-time library, or &#8220;CRT&#8221;, and building programs that used a mixture of versions of Visual Studio required special care. Since Visual Studio 2015, all versions of Visual Studio have used the same filenames for their CRT: </P>
+<OL>
+<LI>
+<A NAME="50520100_pgfId-800245"></A>The &#8220;Universal CRT&#8221;, <CODE>
+UCRT.DLL</CODE>
+.</LI>
+<LI>
+<A NAME="50520100_pgfId-800316"></A>The <CODE>
+api-ms-win-crt</CODE>
+ family of DLLs, which provide access to the Universal CRT.</LI>
+<LI>
+<A NAME="50520100_pgfId-800396"></A>The compiler-specific support functions, <CODE>
+VCRUNTIME140.DLL</CODE>
+.</LI>
+
+<P>
+<A NAME="50520100_pgfId-800479"></A>Visual Studios 2015 to 2022 are all &#8220;the same&#8221; compiler in some respects, since they all use the same CRT. Visual Studio 2019 added an additional file, <CODE>
+VCRUNTIME140_1.DLL</CODE>
+, to support improvements to C++. </P>
+
+<H4>
+<A NAME="50520100_pgfId-800864"></A>Run-time library compatibility</H4>
+<P>
+<A NAME="50520100_pgfId-801116"></A>Versions of Parasolid built with Visual Studio 2022 make use of the C++ improvements introduced at Visual Studio 2019, and thus require the run-time libraries from Visual Studio 2019 or 2022.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-801514"></A>Installing run-time libraries</H4>
+<P>
+<A NAME="50520100_pgfId-413398"></A>To be able to run programs that use Parasolid, you will need to install the relevant redistributable CRT. These are supplied with the relevant Visual Studio, and will be found, by default, in the following directories:</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-783633"></A>&nbsp;</H4>
+
+
+<H4>
+<A NAME="50520100_pgfId-791339"></A>&nbsp;</H4>
+
+
+<H4>
+<A NAME="50520100_pgfId-791340"></A>Visual Studio 2022 </H4>
+<P>
+<A NAME="50520100_pgfId-783675"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-791343"></A>c:&#92;program files (x86)&#92;Microsoft Visual Studio 17.0&#92;VC&#92;redist&#92;MSVC&#92;14.30.30704&#92;vc_redist.x64.exe</PRE>
+<PRE><A NAME="50520100_pgfId-791344"></A>c:&#92;program files (x86)&#92;Microsoft Visual Studio 17.0&#92;VC&#92;redist&#92;MSVC&#92;14.30.30704&#92;vc_redist.x86.exe</PRE>
+<PRE><A NAME="50520100_pgfId-791345"></A>c:&#92;program files (x86)&#92;Microsoft Visual Studio 17.0&#92;VC&#92;redist&#92;MSVC&#92;14.30.30704&#92;vc_redist.arm64.exe</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-551686"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-551682"></A>Warning: None of the Visual Studio run-time libraries are provided as part of any version of Windows.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50520100_pgfId-801876"></A>Microsoft recommends that you install and use the latest libraries, as they may contain significant bug fixes.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-727794"></A>When you install Visual Studio 2022 on a computer that already has Visual Studio 2015, 2017 or 2019 run-time libraries installed, the older Visual Studio run-time libraries will apparently disappear from lists of installed programs. They have been replaced in the list by the Visual Studio 2022 run-time libraries, which will serve programs built with all versions of Visual Studio from 2015 onwards.</P>
+<P>
+<A NAME="50520100_pgfId-502445"></A>See also <A HREF="in_chap.07.html#50520100_26350">Section 6.9, &#8220;Linking Windows run-time libraries&#8221;</A>. </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-825861"></A>	6.6.2 	<A NAME="50520100_63689"></A>Software &#8220;hardening&#8221; of Parasolid</H2>
+
+<H4>
+<A NAME="50520100_pgfId-339642"></A>Microsoft Security Development Lifecycle</H4>
+<P>
+<A NAME="50520100_pgfId-341846"></A>Parasolid complies with the Microsoft Security Development Lifecycle (MS-SDL). This is a set of standards intended to reduce the incidence of security vulnerabilities in Microsoft Windows applications. Microsoft recommends that all Windows software producers should use MS-SDL. We have done so because of customer requests. This does not make software perfectly secure, but it makes a would-be intruder&#8217;s task harder. </P>
+
+
+<H4>
+<A NAME="50520100_pgfId-826248"></A>Hardening for other Parasolid platforms</H4>
+<P>
+<A NAME="50520100_pgfId-505625"></A>Parasolid now has &#8220;hardening&#8221; broadly equivalent to MS-SDL on the Linux and Android platforms. This is explained below using MS-SDL terminology.</P>
+<P>
+<A NAME="50520100_pgfId-831268"></A>Parasolid on Linux complies with many of Red Hat's recommendations for compiler and linker options. It omits some that are more appropriate for open-source software running as part of the operating system.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-505331"></A>Data Execution Protection (DEP)</H4>
+<P>
+<A NAME="50520100_pgfId-505363"></A>Parasolid DLLs for Windows platforms are linked with the <CODE>
+/NXCompat</CODE>
+ linker option, to mark them as capable of running with DEP active. DEP is normally active on all versions of Windows supported by Parasolid, if all EXEs and DLLs used by a program are marked <CODE>
+/NXCompat</CODE>
+. Parasolid operates correctly with Data Execution Protection (DEP) checking active for Parasolid itself and the KID test harness.</P>
+<P>
+<A NAME="50520100_pgfId-826328"></A>All other Parasolid platforms provide equivalents of DEP, which are used automatically.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-339795"></A><A NAME="50520100_57798"></A>Address Space Layout Randomisation (ASLR)</H4>
+<P>
+<A NAME="50520100_pgfId-339797"></A>Parasolid DLLs for Windows platforms are linked with the<CODE>
+ /DynamicBase</CODE>
+ linker option, to mark them as capable of running with the ASLR security measure, introduced at Windows Vista. This is only used if all EXEs and DLLs used by a program are marked <CODE>
+/DynamicBase</CODE>
+. Parasolid built with Visual Studio 2017 or later allows Windows to use more entropy with ASLR for 64-bit code, strengthening the protection. </P>
+<P>
+<A NAME="50520100_pgfId-339799"></A>ASLR can make it much harder to debug some kinds of code problems, notably bad pointers and memory overwrites. If you suspect that you are experiencing such problems, you can remove the <CODE>
+/DyamicBase</CODE>
+ marker with:</P>
+<P>
+<A NAME="50520100_pgfId-575499"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-340482"></A>editbin /DynamicBase:NO pskernel.dll</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-340472"></A>Note that removing this marker will invalidate the Authenticode signature of the DLL. Do not distribute any DLLs that you have changed in this way; reserve them for debugging.</P>
+<P>
+<A NAME="50520100_pgfId-826365"></A>All other Parasolid platforms provide equivalents of ASLR, which are used automatically.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-339806"></A>Safer Structured Exception Handling</H4>
+<P>
+<A NAME="50520100_pgfId-339808"></A>Parasolid DLLs for Windows platforms are linked with the <CODE>
+/SafeSEH</CODE>
+ linker option, to ensure that they contain a table of all their Structured Exception Handling (SEH) exception handlers. This can be used by Windows as a countermeasure to new exception handlers being uploaded through security exploits.</P>
+<P>
+<A NAME="50520100_pgfId-826390"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-544208"></A>Note: If you link your own Parasolid DLL, or statically link Parasolid to your application, we recommend that you use the <CODE>
+/NXcompat</CODE>
+, <CODE>
+/DynamicBase</CODE>
+ and <CODE>
+/SafeSEH</CODE>
+ linker options. <CODE>
+/SafeSEH</CODE>
+ is used automatically when linking 64-bit code and you do not need to specify it explicitly. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-826406"></A>Structured Exception Handling is unique to Microsoft Windows. Other platforms have no need to secure a feature they don&#8217;t possess.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-339811"></A>Structured Exception Handler Overwrite Protection (SEHOP)</H4>
+<P>
+<A NAME="50520100_pgfId-517642"></A>This is a feature of all versions of Windows supported by Parasolid, which improves on /SafeSEH, but has to be turned on for each application on a desktop Windows system. It isn&#8217;t possible for Parasolid, which is a library, to turn it on, but we recommend that your products&#8217; installers do so. For full details, see the &#8220;Let me enable it myself&#8221; section of:<BR>
+<CODE>
+<A HREF="https://support.microsoft.com/kb/956607">https://support.microsoft.com/kb/956607</A></CODE>
+. </P>
+<P>
+<A NAME="50520100_pgfId-826452"></A>Again, Structured Exception Handling is unique to Windows, so other platforms have no need to secure a feature they don&#8217;t possess.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-517644"></A>GuardStack </H4>
+<P>
+<A NAME="50520100_pgfId-339813"></A>Parasolid is compiled with the GuardStack compiler option (<CODE>
+/GS</CODE>
+ compiler option) so as to provide stack protection and comply with MS-SDL. We recommend that you consider using the <CODE>
+/GS</CODE>
+ option for your application code. Code that performs network I/O is best compiled with the source pragma <CODE>
+#pragma strict_gs_check</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-507832"></A>Using GuardStack has increased the size of Parasolid, and reduced its speed, but both losses are less than 2%, after some optimization work. Parasolid Support can provide advice on reducing the performance losses on request. </P>
+<P>
+<A NAME="50520100_pgfId-826502"></A>All other Parasolid platforms are compiled using the GCC or Clang option <CODE>
+-fstack-protector-strong</CODE>
+, which provides equivalent protection. For details of what happens when a stack buffer overflow is detected, see <A HREF="in_chap.07.html#50520100_85400">Section 6.5.8, &#8220;Stack protection&#8221;</A>.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-339816"></A>Secure string handling </H4>
+<P>
+<A NAME="50520100_pgfId-526777"></A>Parasolid on Windows uses the secure string functions from ISO/IEC TR24731 (e.g., <CODE>
+strcpy_s()</CODE>
+ as required by MS-SDL), and no longer calls the traditional string functions banned by MS-SDL.</P>
+<P>
+<A NAME="50520100_pgfId-541574"></A>If the secure string functions detect a buffer overrun, they will generate an &#8220;Invalid Parameter Error&#8221;. We recommend that your applications should catch and report these errors, rather than simply terminating. See MSDN for details of invalid parameter errors and the function <CODE>
+_set_invalid_parameter_handler()</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-826726"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-522477"></A>Note: Parasolid still contains calls to the traditional memcpy() function. These calls do not originate from source code, but are inserted by the C/C++ compilers for copying structures, and by the C++ Standard Template Library. As as described in Microsoft&#8217;s Visual Studio documentation for memcpy, these classes of call to memcpy are permitted in code that complies with MS-SDL. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-826767"></A>The Linux and Android platforms are compiled with the <CODE>
+-D_FORTIFY_SOURCE=2</CODE>
+ option, which causes the compiler to use versions of the traditional string functions that check the lengths of their arguments. If they detect a buffer overflow, they write the message &#8220;*** buffer overflow detected ***&#8221; to standard output and call <CODE>
+abort()</CODE>
+. This will raise UNIX signal 6, SIGABRT, whose default handler will terminate the program. If you have installed a handler for this signal, it will be called. If your handler returns, or you have requested that SIGABRT be ignored, the program will be terminated.</P>
+<P>
+<A NAME="50520100_pgfId-841897"></A>If these string handling functions are passed invalid arguments, such as null pointers, they write the message &#8220;Fatal exception: a secure string handling function received invalid parameters.&#8221; to standard output and call <CODE>
+abort()</CODE>
+, as described above.</P>
+<P>
+<A NAME="50520100_pgfId-830819"></A>Linux platforms are compiled with -D_GLIBCXX_ASSERTIONS, which provides length checking for C++ <CODE>
+std::string</CODE>
+ objects. These are reported to standard output as normal assertion failures, followed by a call to <CODE>
+abort()</CODE>
+, as described above.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-506838"></A>Heap metadata protection</H4>
+<P>
+<A NAME="50520100_pgfId-827047"></A>The run-time libraries for all versions of Visual Studio that can be used with Parasolid automatically terminate a program when they detect corruption of the memory heap. </P>
+<P>
+<A NAME="50520100_pgfId-827091"></A>The other Plarasolid platforms do not have a precise equivalent of this feature, but do provide heap debugging facilities that partially fill this gap.</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-827048"></A>Linux: See <CODE>
+man mcheck</CODE>
+,</LI>
+<LI>
+<A NAME="50520100_pgfId-827049"></A>macOS and iOS: see https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/MallocDebug.html</LI>
+<LI>
+<A NAME="50520100_pgfId-638777"></A>Android: see https://android.googlesource.com/platform/bionic/+/master/libc/malloc_debug/README.md</LI>
+</UL>
+
+
+<H4>
+<A NAME="50520100_pgfId-507140"></A>Pointer encoding</H4>
+<P>
+<A NAME="50520100_pgfId-507164"></A>MS-SDL recommends, but does not require, that function pointers be passed and stored in an encoded form. This has not been implemented in Parasolid, since it would create a large amount of work for all customers, even those who do not chose to implement MS-SDL, and would make Parasolid completely incompatible with earlier versions. </P>
+
+
+<H4>
+<A NAME="50520100_pgfId-339821"></A>.NET DLLs</H4>
+<P>
+<A NAME="50520100_pgfId-339823"></A>.NET DLLs are always built with <CODE>
+/DynamicBase</CODE>
+ and <CODE>
+/NXCompat</CODE>
+; they don't contain SEH exception handlers.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-339644"></A>	6.6.3 	Windows icons</H2>
+<P>
+<A NAME="50520100_pgfId-327645"></A>The Parasolid DLLs supplied for these platforms contain two Windows icons: a Parasolid &#8220;program&#8221; icon and a Parasolid &#8220;document&#8221; icon. They may be used in the user interface of Parasolid-based programs. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-326980"></A>	6.6.4 	Windows digital signatures</H2>
+<P>
+<A NAME="50520100_pgfId-327006"></A>The Parasolid DLLs for all the Windows platforms contain Authenticode&#174; digital signatures (see MSDN). These signatures now use SHA-512 (or stronger) cryptographic hashes.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-483076"></A>	6.6.5 	<A NAME="50520100_71579"></A>MacOS install names</H2>
+<P>
+<A NAME="50520100_pgfId-483080"></A>Parasolid is supplied as a dynamic library, or &#8220;dylib&#8221;. Its default install name is <CODE>
+./libpskernel.dylib</CODE>
+. Use <CODE>
+otool</CODE>
+ with the <CODE>
+-L</CODE>
+ option to check the install names in, or used by, a dylib or executable.</P>
+<P>
+<A NAME="50520100_pgfId-363677"></A>You can use the utility <CODE>
+install_name_tool</CODE>
+ with the <CODE>
+-id</CODE>
+ option to change the Parasolid dylib's install name to the path name and filename where your application will store the Parasolid library: the Parasolid dylib was linked with the <BR>
+-<CODE>
+headerpad_max_install_names</CODE>
+ option to allow for this. The reason for doing this is that the linker copies the install name in the Parasolid dylib into executables and dylibs that are linked against it. Therefore, if you change the name in the Parasolid dylib, you get the correct names in your own code automatically.</P>
+<P>
+<A NAME="50520100_pgfId-363679"></A>You can change the install name(s) that an executable (including <CODE>
+kid.exe</CODE>
+) uses for the dylibs it calls with the <CODE>
+-change</CODE>
+ option of <CODE>
+install_name_tool</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-431714"></A>There are three special strings that may be useful to you when setting install names. <CODE>
+@executable_path</CODE>
+ is replaced with the directory of the main executable of whatever program is loading the library. <CODE>
+@loader_path</CODE>
+ is replaced with the directory of the executable or library that is loading the library. <CODE>
+@rpath</CODE>
+ is replaced by the string(s) embedded in the application using the <CODE>
+-Wl,-rpath,&lt;string&gt;</CODE>
+ option, and these string(s) may use <CODE>
+@loader_path</CODE>
+. Using these strings, it is possible to create applications that do not require installers and can be dragged and dropped into any directory. This follows the example of recent releases of Xcode, which is an exemplar of Apple&#8217;s application design. For more details, see &#8220;man Id&#8221; and &#8220;man dyld&#8221;.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-427652"></A>	6.6.6 	MacOS memory limits</H2>
+<P>
+<A NAME="50520100_pgfId-413206"></A>Most operating systems have a way to limit the amount of virtual memory that can be used by the operating system. macOS does not. It provides a dialog that informs the user of excessive memory usage, but their only course of action is to kill off applications.</P>
+<P>
+<A NAME="50520100_pgfId-413192"></A>Incorrect requests to Parasolid can cause it to request very large quantities of memory from its frustrum. As a safety precaution, you may wish to have your frustrum keep a running total of memory allocated through it and refuse to allocate more than, say, four times the physical memory of the machine.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-604627"></A>	6.6.7 	iOS and Android memory limits</H2>
+<P>
+<A NAME="50520100_pgfId-604615"></A>Since an iOS or Android device has no ability to &#8220;swap&#8221; memory out to its storage when an app tries to use too much memory, it is important that your Parasolid frustrum keeps a running total of memory allocated through it. Your app must set limits to prevent the frustrum allocating more memory than is available.</P>
+<P>
+<A NAME="50520100_pgfId-612861"></A>You may wish to use a similar memory limitation with the iOS Simulator. This is not mandatory, but it does make the simulator behave more like an iOS device.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-473905"></A>	6.6.8 	MacOS security and digital signatures</H2>
+<P>
+<A NAME="50520100_pgfId-413161"></A>We presume that Parasolid customers will want to make their applications compatible with Apple&#8217;s &#8220;Gatekeeper&#8221; security software. This requires signing all executables, dylibs, scripts, and other runnable parts of an application with an appropriate Apple signing certificate. Recent versions of Xcode can automate this process, and, by default, will apply the signature to everything signable in the application. </P>
+<P>
+<A NAME="50520100_pgfId-429044"></A>Parasolid family dylibs are not signed, and we do not currently intend to start signing them. This is because changing the install name of a library invalidates any signature. We feel it is important to give our customers the flexibility to set install names for whichever method they prefer their applications to use for locating libraries. Apple appear to regard signing as the final step of building a complete application, and Parasolid is a toolkit, not a complete application at all. See <A HREF="in_chap.07.html#50520100_71579">Section 6.6.5</A> above for details of setting install names.</P>
+<P>
+<A NAME="50520100_pgfId-429826"></A>Customers who download Parasolid from our website directly onto a Macintosh computer will find that the Parasolid dylib extracted from the <CODE>
+.tar.gz</CODE>
+ file has a file-system attribute marking it as a quarantined file, created by the web browser and extraction tools. You should remove this attribute with the <CODE>
+xattr</CODE>
+ command before building your application, since distributing a dylib with a quarantine attribute already on it is likely to cause confusion. See &#8220;man xattr&#8221; for details.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-559457"></A>	6.6.9 	<A NAME="50520100_74307"></A><A NAME="50520100_88025"></A>MacOS and iOS backwards compatibility</H2>
+<P>
+<A NAME="50520100_pgfId-561518"></A>Apple&#8217;s system headers are annotated with the versions of macOS and iOS at which functions appear. The compiler uses the -<CODE>
+mmacosx-version-min</CODE>
+ and -<CODE>
+mios-version-min</CODE>
+ arguments to interpret those annotations.</P>
+<P>
+<A NAME="50520100_pgfId-602542"></A>Since macOS 10.12, and for all iOS and iPadOS versions, Parasolid is compiled with the -<CODE>
+Wpartial-availability</CODE>
+ and -<CODE>
+Werror=partial-availability</CODE>
+ options. These ensure that if functions were used that were not available at the minimum operating system to be supported, the calls would be treated as compilation errors.</P>
+<P>
+<A NAME="50520100_pgfId-803556"></A>For example, at Parasolid v36.0 the iOS builds of Parasolid are compiled for compatibility with iOS 13, using the iOS 14.2 headers supplied with Xcode 12.2. Using -Wpartial-availability and -Werror=partial-availability ensures that no calls to functions that aren&#8217;t available on iOS 13 can be compiled. This helps ensure that Parasolid is backwards compatible to iOS 13.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-672170"></A>	6.6.10 	<A NAME="50520100_70089"></A>Android changes for NDK developers</H2>
+<P>
+<A NAME="50520100_pgfId-672137"></A>The Android project maintains a web page of issues that developers who use the Android NDK need to take account of, at:<BR>
+<CODE>
+<A HREF="https://android.googlesource.com/platform/bionic/+/master/android-changes-for-ndk-developers.md">https://android.googlesource.com/platform/bionic/+/master/android-changes-for-ndk-developers.md</A></CODE>
+</P>
+<P>
+<A NAME="50520100_pgfId-672105"></A>Parasolid complies with all of them, as of the production of this document. Specifically, Parasolid:</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-672425"></A>Does not load any libraries with <CODE>
+dlopen()</CODE>
+. </LI>
+<LI>
+<A NAME="50520100_pgfId-672598"></A>Provides only Gnu-style hashes. </LI>
+<LI>
+<A NAME="50520100_pgfId-672675"></A>Uses only public APIs.</LI>
+<LI>
+<A NAME="50520100_pgfId-672751"></A>Has full section headers.</LI>
+<LI>
+<A NAME="50520100_pgfId-672821"></A>Has no text relocations.</LI>
+<LI>
+<A NAME="50520100_pgfId-672859"></A>Uses only SONAMEs in DT_NEEDED entries in its ELF header. </LI>
+<LI>
+<A NAME="50520100_pgfId-672937"></A>Has a correct SONAME.</LI>
+<LI>
+<A NAME="50520100_pgfId-672985"></A>Has no DT_RUNPATH entry in its ELF header.</LI>
+<LI>
+<A NAME="50520100_pgfId-673090"></A>Has no segments that are both writable and executable.</LI>
+<LI>
+<A NAME="50520100_pgfId-673152"></A>Has a valid ELF header and section headers.</LI>
+<LI>
+<A NAME="50520100_pgfId-691901"></A>Uses thread-local variables, but they all have trivial destructors.</LI>
+<LI>
+<A NAME="50520100_pgfId-681309"></A>Does not attempt to hook, or detect hooking of, C library functions.</LI>
+<LI>
+<A NAME="50520100_pgfId-707652"></A>Does not rely on the classic Bionic file paths holding regular files.</LI>
+<LI>
+<A NAME="50520100_pgfId-712599"></A>Does not attempt to read any execute-only memory.</LI>
+<LI>
+<A NAME="50520100_pgfId-747716"></A>Does not use any relative relocations.</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-716143"></A>	6.6.11 	No cryptography in Parasolid</H2>
+<P>
+<A NAME="50520100_pgfId-716227"></A>Parasolid has no ability to encrypt or decrypt anything. There are no cryptographic algorithms within it. We are documenting this because there are countries that impose restrictions on the import and/or export of cryptographic software.</P>
+<P>
+<A NAME="50520100_pgfId-716268"></A>The code signatures of Windows DLLs and the &#8220;Enhanced Strong Names&#8221; of the .NET binding DLLs make use of cryptography, but Parasolid does not contain any cryptographic functionality that makes use of them. External cryptographic software, normally provided with Windows, is required to validate those signatures.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-617946"></A>6.7	<A NAME="50520100_99324"></A>Parasolid version information
+
+
+</H1>
+<P>
+<A NAME="50520100_pgfId-325239"></A>Version information is embedded into Parasolid DLLs (for Windows platforms), shared libraries (for UNIX and Android platforms) and archive libraries (for UNIX, Android and iOS platforms). You can use this information to find out exactly which version of Parasolid you are using, for example, when reporting problems to Parasolid Support. This section explains what information is available, and how you can view it on all platforms on which Parasolid is supported. </P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-324679"></A>	6.7.1 	Viewing version information</H2>
+<P>
+<A NAME="50520100_pgfId-324683"></A>To view the version information on Windows platforms, navigate to the Parasolid DLL using Windows Explorer. Right-click on the DLL file and select <STRONG>
+Properties</STRONG>, then click the <STRONG>
+Version</STRONG> tab. </P>
+<P>
+<A NAME="50520100_pgfId-324690"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520100_pgfId-324689"></A>Note: You can also hover the mouse pointer over the DLL file in Windows Explorer to display a subset of the available version information in a tool-tip popup window.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-324704"></A>On UNIX platforms and Android, use <CODE>
+what libpskernel.so</CODE>
+ (or whatever the shared library is called on your platform: see <A HREF="in_chap.05.html#50520098_35815">Section 4.1.2</A>). If your operating system lacks a <CODE>
+what</CODE>
+ command, there are basic UNIX commands that can substitute:</P>
+<P>
+<A NAME="50520100_pgfId-662887"></A>&nbsp;</P>
+<PRE><A NAME="50520100_pgfId-662863"></A>	strings libpskernel.so | grep &#8217;@(#)&#8217; </PRE>
+<P>
+<A NAME="50520100_pgfId-662851"></A>&nbsp;</P>
+<P>
+<A NAME="50520100_pgfId-607997"></A>For iOS archive libraries, use <CODE>
+what libpskernel_archive.a</CODE>
+, in the Terminal application of your development Mac.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-324709"></A>	6.7.2 	Version information details</H2>
+<P>
+<A NAME="50520100_pgfId-324710"></A>The data items that are used are defined by the Windows VERSIONINFO resource, described in detail in the Microsoft Developer Network documentation library. Parasolid&#8217;s usage of Windows resources is described below; all those not mentioned are used in the same way on all platforms.</P>
+<P>
+<A NAME="50520100_pgfId-324743"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324716"></A>Resource</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324718"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324720"></A>FILEVERSION, PRODUCTVERSION</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324722"></A>Binary resources on Windows platforms, but strings on UNIX, Android and iOS platforms.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324724"></A>FILEOS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324726"></A>Binary on Windows platforms, &#8220;Darwin&#8221; on iOS, &#8220;Android&#8221; on Android, and the output of <CODE>
+uname</CODE>
+ on UNIX platforms. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324728"></A>FILETYPE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324730"></A>Binary on Windows platforms, &#8220;Dynamic Library&#8221; on MacOS, and either &#8220;Sharable Library&#8221; or &#8220;Sharable Object&#8221; on UNIX and Android platforms, according to the particular platform&#8217;s conventions. UNIX, Android and iOS archive libraries have &#8220;Archive Library&#8221;.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324732"></A>LegalCopyright</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324734"></A>Strings on Windows platforms use the &#169; character, while strings on UNIX, Android and iOS platforms spell it out as &#8220;(C)&#8221;.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324736"></A>LegalTrademarks</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324738"></A>Strings on Windows platforms use the &#8482; and &#174; characters, while strings on UNIX, Android and iOS platforms spell them out as &#8220;(TM)&#8221; and &#8220;(R)&#8221;.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324740"></A>SpecialBuild Description</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520100_pgfId-324742"></A>This is used to label Intel NT builds of Parasolid as requiring SSE2 instructions (in addition to x87 instructions). It may be used for additional purposes in the future.</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-324744"></A>	6.7.3 	Version information files</H2>
+<P>
+<A NAME="50520100_pgfId-324745"></A>The source file used to generate the version information for Windows DLLs and UNIX and Android shared libraries is supplied in the relevant Parasolid release kits. For UNIX and Android platforms, it is <CODE>
+libpskernel_resources.c</CODE>
+, which defines a set of C strings to be found by the <CODE>
+what</CODE>
+ command. For Windows platforms, it is <CODE>
+pskernel.rc</CODE>
+, a source file for the Microsoft Resource Compiler. Both of these files contain conditional compilation commands, to allow you to use them, if you need to create your own DLL or shared library, while allowing them to be distinguished from the libraries found in a Parasolid release kit. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-324749"></A>	6.7.4 	Inconsistencies with the kernel version</H2>
+<P>
+<A NAME="50520100_pgfId-324750"></A>You should not regard the information from version resources as described here as the definitive source of Parasolid version information. If it is inconsistent with the values returned by the function <A HREF=../headers/pk_session_ask_kernel_version.html>PK_SESSION_ask_kernel_version</A>, you should always assume the function to be correct.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-319813"></A>6.8	<A NAME="50520100_23703"></A>.NET binding
+
+
+</H1>
+
+<H4>
+<A NAME="50520100_pgfId-639964"></A>Applies to:</H4>
+<P>
+<A NAME="50520100_pgfId-639991"></A>Intel NT and X64 WIN</P>
+<P>
+<A NAME="50520100_pgfId-413106"></A>Bindings for using Parasolid in .NET programs are supplied with the Intel NT platform (32-bit .NET), and the X64 WIN platform (64-bit .NET). For details of the binding see <A HREF="fd_chap.013.html#18658">Chapter 12, &#8220;Calling Parasolid From .NET Code&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM> manual.</P>
+<P>
+<A NAME="50520100_pgfId-499756"></A>The bindings were compiled with the Microsoft (R) Visual C# Compiler, as supplied with Visual Studio and updated by Windows security updates. The bindings for Visual Studio 2022 builds require version 4.8 of the .NET framework.</P>
+<P>
+<A NAME="50520100_pgfId-699714"></A>These bindings will not work with any earlier version of C# or the .NET Framework. </P>
+<P>
+<A NAME="50520100_pgfId-747767"></A>The .NET Framework is not yet available for ARM WIN, and thus no binding is supplied. </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-705210"></A>6.9	<A NAME="50520100_26350"></A>Linking Windows run-time libraries
+
+
+</H1>
+<P>
+<A NAME="50520100_pgfId-413081"></A>This section explains various issues and restrictions that can apply to your use of the Microsoft C/C++ run-time library (&#8220;CRT&#8221;).</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-331523"></A>	6.9.1 	Recommended configuration</H2>
+<P>
+<A NAME="50520100_pgfId-331525"></A>Parasolid is compiled with the<CODE>
+ /MD</CODE>
+ option, so that it uses the multi-threaded DLL version of the CRT. We recommend that you use the supplied Parasolid DLL, <CODE>
+pskernel.dll</CODE>
+, by linking its import library, <CODE>
+pskernel.lib</CODE>
+, rather than statically linking Parasolid. </P>
+<P>
+<A NAME="50520100_pgfId-331531"></A>It is simplest and best if your application is compiled using the same version of Visual Studio as Parasolid. The shipped version of your application should be compiled with the <CODE>
+/MD</CODE>
+ option; this ensures Parasolid and your application are using the same copy of the CRT. </P>
+<P>
+<A NAME="50520100_pgfId-331537"></A>You will probably wish to create debug versions of your application for use during development, using the <CODE>
+/MDd</CODE>
+ option. This makes your application use the debug multi-threaded DLL version of the CRT, which means that Parasolid and your application are linked against different copies of the CRT. This works correctly with Parasolid, because its frustrum architecture means that for many purposes (especially memory and file management) it is using your application's copy of the CRT, via function pointers provided by your application. Two caveats apply:</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-596553"></A>Any calls to the <CODE>
+matherr()</CODE>
+ function generated by Parasolid code will be made by Parasolid's copy of the CRT, and will not reach your application. </LI>
+<LI>
+<A NAME="50520100_pgfId-596562"></A>If you alter the FMA3 setting on X64 WIN in such a program, you will need to do so for all the CRTs involved. See <A HREF="in_chap.07.html#50520100_95172">Section 6.4.1, &#8220;X64 WIN&#8221;</A> for details. </LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-331550"></A>	6.9.2 	Other configurations</H2>
+<P>
+<A NAME="50520100_pgfId-332333"></A>Please review the material on the <CODE>
+/MD</CODE>
+, <CODE>
+/MDd</CODE>
+, <CODE>
+/MT</CODE>
+ and <CODE>
+/MTd</CODE>
+ C/C++ compiler options in the MSDN documentation library before attempting to use any of the configurations described in this section. </P>
+
+<H4>
+<A NAME="50520100_pgfId-332337"></A>Statically linking Parasolid</H4>
+<P>
+<A NAME="50520100_pgfId-332341"></A>If you wish to statically link Parasolid to your application, use the <CODE>
+pskernel_archive.lib</CODE>
+ library. This only makes sense if all calls to Parasolid and all functions supplied to Parasolid from your application come from a single EXE or DLL, and your application is compiled with <CODE>
+/MD</CODE>
+. Trying to statically link Parasolid to code compiled with <CODE>
+/MDd</CODE>
+ will not work, as the link will fail. You <EM>
+cannot</EM> statically link Parasolid to code compiled with <CODE>
+/MT</CODE>
+ or <CODE>
+/MTd</CODE>
+: again, the link will fail.</P>
+
+
+<H4>
+<A NAME="50520100_pgfId-331568"></A>Static linking to the CRT</H4>
+<P>
+<A NAME="50520100_pgfId-331570"></A>If you need to link your application statically to the CRT, compile it with <CODE>
+/MT</CODE>
+ or <CODE>
+/MTd</CODE>
+ and link against the DLL Parasolid using <CODE>
+pskernel.lib</CODE>
+. This configuration is not recommended; removing the need for static linking of the CRT is preferable. </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-331576"></A>	6.9.3 	Using a different compiler from Parasolid</H2>
+<P>
+<A NAME="50520100_pgfId-331578"></A>It is possible to use a different version of Visual Studio for your application than the version that was used to build Parasolid. This is not supported, but has been successfully accomplished by several Parasolid customers. You should definitely use the Parasolid DLL, and remember that Parasolid and your application will be linked against different CRTs, as described above. The Parasolid frustrum architecture allows this to work, under normal circumstances, but care and testing will be required, and the caveats above apply.</P>
+<ADDRESS>
+<A NAME="50520100_pgfId-636302"></A>Note: Visual Studio 2015 to 2022 all use the same CRT, as described in <A HREF="in_chap.07.html#50520100_84226">Section 6.6.1, &#8220;Windows run-time libraries&#8221;</A>.This means that, for the purposes of this section, they can be treated as being the same version of Visual Studio. We do not know if this situation will continue for future versions of Visual Studio.</ADDRESS><BR>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520100_pgfId-324352"></A>6.10	<A NAME="50520100_98015"></A>Enabling SIGFPE for SSE2 on Intel NT
+
+
+</H1>
+<P>
+<A NAME="50520100_pgfId-324353"></A>Modern processors for the Intel NT platform have two separate sets of floating-point registers and instructions: the x87 set and the SSE2 set. Compilers may generate code that utilizes both sets of registers. The complexity of using both sets of registers, and the limited support of 32-bit Windows for SSE2 floating-point traps, means that some extra code is required for the traps to be handled well.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-324355"></A>	6.10.1 	Enabling floating-point traps</H2>
+<P>
+<A NAME="50520100_pgfId-324356"></A>The <CODE>
+_controlfp()</CODE>
+ function provided in the Visual Studio run-time library enables and disables floating-point traps for both the x87 and the SSE2 registers and instructions. You should consult the Microsoft documentation for <CODE>
+_controlfp()</CODE>
+ before making use of this function. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-324358"></A>	6.10.2 	SSE2 and SIGFPE</H2>
+<P>
+<A NAME="50520100_pgfId-324359"></A>32-bit versions of Windows (including the 32-bit emulation of Windows inside 64-bit Windows) do not generate SIGFPE, or any other signal, in response to SSE2 traps. They may produce a dialog box, or other error notification, claiming to have detected &#8220;multiple floating-point traps&#8221;.</P>
+<P>
+<A NAME="50520100_pgfId-587844"></A>&nbsp;</P>
+<P>
+<A NAME="50520100_pgfId-324369"></A>This is produced by the Structured Exception Handling system (SEH), the underlying mechanism used by Windows for handling all hardware traps including access violations, integer divide-by-zero errors and floating-point traps. SEH is described in the MSDN documentation library; it works somewhat like C++ exceptions, but is quite separate from them.</P>
+<P>
+<A NAME="50520100_pgfId-324370"></A>You can convert SEH exceptions into signals by putting a SEH <CODE>
+__try</CODE>
+/<CODE>
+__except</CODE>
+ block in the <CODE>
+main()</CODE>
+ function of a C or C++ program:</P>
+<P>
+<A NAME="50520100_pgfId-324374"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-324373"></A>#include &lt;windows.h&gt;<EM>// For GetExceptionCode() and</EM></PRE>
+<PRE><A NAME="50520100_pgfId-342990"></A><EM>                    // EXCEPTION_CONTINUE_SEARCH</EM></PRE>
+<PRE><A NAME="50520100_pgfId-342998"></A>&nbsp;</PRE>
+<PRE><A NAME="50520100_pgfId-343006"></A>extern void generate_signals ( int );</PRE>
+<PRE><A NAME="50520100_pgfId-343014"></A>&nbsp;</PRE>
+<PRE><A NAME="50520100_pgfId-343022"></A>int main( int argc, char *argv[])</PRE>
+<PRE><A NAME="50520100_pgfId-343030"></A>{</PRE>
+<PRE><A NAME="50520100_pgfId-343038"></A>  __try</PRE>
+<PRE><A NAME="50520100_pgfId-343046"></A>  {</PRE>
+<PRE><A NAME="50520100_pgfId-343054"></A>    <EM>// Do the actual work of the program</EM></PRE>
+<PRE><A NAME="50520100_pgfId-343062"></A>  }</PRE>
+<PRE><A NAME="50520100_pgfId-343070"></A>  __except(  generate_signals ( (int)GetExceptionCode()  ),</PRE>
+<PRE><A NAME="50520100_pgfId-343078"></A>             EXCEPTION_CONTINUE_SEARCH )</PRE>
+<PRE><A NAME="50520100_pgfId-343086"></A>  {};</PRE>
+<PRE><A NAME="50520100_pgfId-343094"></A>}</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-324375"></A>This is an add-on to the normal method Windows uses for generating signals from hardware traps. If the program causes a hardware trap within the <CODE>
+__try{}</CODE>
+ block, the operating system takes control of the thread that caused the trap and uses it to start executing SEH support code. This searches through the program&#8217;s stack looking for <CODE>
+__except(){}</CODE>
+ blocks. This is not the same as C++ stack unwinding: while it is similar in that the stack is searched in the same manner, functions are not exited, destructors are not called, and so on. The search changes nothing itself: it merely searches.</P>
+<P>
+<A NAME="50520100_pgfId-324376"></A>Once the search has reached the <CODE>
+main()</CODE>
+ function, the <CODE>
+__except</CODE>
+ shown above gets control, and evaluates its &#8220;filter&#8221; expression: the part in <CODE>
+()</CODE>
+ brackets. That calls the support function <CODE>
+generate_signals()</CODE>
+, which will be described below. If that function returns -indicating that it hasn&#8217;t handled the SEH exception - then the value EXCEPTION_CONTINUE_SEARCH is returned from the filter expression. The search then continues above <CODE>
+main()</CODE>
+, moving into the code in the C/C++ run-time library that calls <CODE>
+main()</CODE>
+ to start the program. That has a <CODE>
+__try</CODE>
+/<CODE>
+__except</CODE>
+ block that generates the default signals provides by the Microsoft run-time library. </P>
+<ADDRESS>
+<A NAME="50520100_pgfId-656559"></A>Note: This code, and the code in the following section, is not required in 64-bit Windows applications.</ADDRESS><BR>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-324377"></A>	6.10.3 	The generate_signals() function</H2>
+<P>
+<A NAME="50520100_pgfId-324378"></A>This accepts the output of the special function <CODE>
+GetExceptionCode()</CODE>
+, which can only be called in the filter expression of an <CODE>
+__except</CODE>
+ block, and which provides a value that specifies which SEH exception has happened. It can then simply call your program&#8217;s signal handler with an appropriate signal code.</P>
+<P>
+<A NAME="50520100_pgfId-324382"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520100_pgfId-324381"></A>#include &lt;windows.h&gt;<EM>// For STATUS_... codes</EM></PRE>
+<PRE><A NAME="50520100_pgfId-343102"></A>#include &lt;signal.h&gt; <EM>// For SIG... codes</EM></PRE>
+<PRE><A NAME="50520100_pgfId-343110"></A>&nbsp;</PRE>
+<PRE><A NAME="50520100_pgfId-343118"></A>void generate_signals( int seh_code)</PRE>
+<PRE><A NAME="50520100_pgfId-343126"></A>{</PRE>
+<PRE><A NAME="50520100_pgfId-343134"></A>  switch( seh_code)</PRE>
+<PRE><A NAME="50520100_pgfId-343142"></A>  {</PRE>
+<PRE><A NAME="50520100_pgfId-343150"></A>    case STATUS_FLOAT_MULTIPLE_TRAPS: <EM>// Generated by 32-bit</EM></PRE>
+<PRE><A NAME="50520100_pgfId-343158"></A>    case STATUS_FLOAT_MULTIPLE_FAULTS:<EM>// Windows for SSE2 traps</EM></PRE>
+<PRE><A NAME="50520100_pgfId-343166"></A>      my_signal_handler( SIGFPE);</PRE>
+<PRE><A NAME="50520100_pgfId-343174"></A>      break;</PRE>
+<PRE><A NAME="50520100_pgfId-343182"></A>&nbsp;</PRE>
+<PRE><A NAME="50520100_pgfId-343190"></A>    default:</PRE>
+<PRE><A NAME="50520100_pgfId-343198"></A>      break;</PRE>
+<PRE><A NAME="50520100_pgfId-343206"></A>    }</PRE>
+<PRE><A NAME="50520100_pgfId-343214"></A>}</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520100_pgfId-324383"></A>This makes a direct call to the signal handler function that you registered via the <CODE>
+signal()</CODE>
+ function, and completes the necessary action. This example code works in the same way as the code in the Microsoft C/C++ run-time library. The source code for that library is supplied with all versions of Visual Studio - although installing it is optional - and the files in it that implement signals are <CODE>
+winxfltr.c</CODE>
+ and <CODE>
+crtexe.c</CODE>
+.</P>
+<P>
+<A NAME="50520100_pgfId-481445"></A>Your signal handler should call the Microsoft C/C++ run-time library function <CODE>
+_fpreset()</CODE>
+when it handles a SIGFPE generated by the Microsoft run-time library. Note that threads can cause traps and signals independently of each other, and there is nothing in the C or C++ run-time libraries that automatically tidies up other threads when one hits a trap. Parasolid multi-threading handles this: when a thread causes a signal to be generated, and the signal handler calls <A HREF=../headers/pk_session_abort.html>PK_SESSION_abort</A>, the thread that caused the signal (and is now running the internal error handler) waits until all the other threads have either finished their work, or taken the chance to abort themselves, and then continues with aborting the Parasolid call.</P>
+<P>
+<A NAME="50520100_pgfId-347645"></A>SEH works with C++ code as well as C code, although it is best to compile C++ code with the <CODE>
+/EHa</CODE>
+ option, to make sure that the optimizer does not discard code that could be needed under SEH.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520100_pgfId-347652"></A>	6.10.4 	SSE2 traps and the Visual Studio debugger</H2>
+<P>
+<A NAME="50520100_pgfId-645046"></A>If your version of Visual Studio does not catch SSE2 floating-point traps from 32-bit code, they can be added to it as follows:</P>
+<UL>
+<LI>
+<A NAME="50520100_pgfId-347656"></A>Look in your Windows header files for the hexadecimal values for <CODE>
+STATUS_FLOAT_MULTIPLE_FAULTS</CODE>
+ and <CODE>
+STATUS_FLOAT_MULTIPLE_TRAPS</CODE>
+.</LI>
+<LI>
+<A NAME="50520100_pgfId-645268"></A>Within Visual Studio, find the exceptions controls, as described in MSDN.</LI>
+<LI>
+<A NAME="50520100_pgfId-645420"></A>Add <CODE>
+STATUS_FLOAT_MULTIPLE_FAULTS</CODE>
+ and <CODE>
+STATUS_FLOAT_MULTIPLE_TRAPS</CODE>
+ as Win32 Exceptions, with their own names, and the hexadecimal codes from the Windows headers.</LI>
+</UL>
+<P>
+<A NAME="50520100_pgfId-347658"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="in_chap.06.html">Using Parasolid</A></TD>
+  <TD><A HREF="../in_index.html">Chapters</A></TD>
+  <TD><A HREF="in_chap.08.html">Floating-Point Traps</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

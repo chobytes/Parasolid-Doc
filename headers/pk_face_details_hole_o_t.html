@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_details_hole_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_details_hole_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_details_hole_o_s
+    {
+    int                 o_t_version;       --- options structure version number
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>         up;                --- up vector for through holes
+                                           --- ( 0.0, 0.0, 1.0 )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        include_zero_depth;--- whether zero depth components
+                                           --- are to be returned
+                                           --- ( PK_LOGICAL_true )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        want_profiles;     --- whether wire body profiles are
+                                           --- to be returned
+                                           --- ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        simplify_geom;     --- whether simplified geometry is
+                                           --- required ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_detail_hole_cb_f_t.html>PK_detail_hole_cb_f_t</A>
+                        cb;                --- callback function ( NULL )
+    <A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>        cb_context;        --- context for callback function
+                                           --- ( NULL )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        face_tracking;     --- whether extra face tracking
+                                           --- information is returned in
+                                           --- <A HREF=../headers/pk_hole_component_t.html>PK_hole_component_t</A>
+                                           --- ( PK_LOGICAL_false )
+    };
+typedef struct PK_FACE_details_hole_o_s PK_FACE_details_hole_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains hole classification options.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_classify_details_o_t.html>PK_FACE_classify_details_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It has the following fields:
+
+<B>'up'</B>                 for through holes, the hole's <B>'origin'</B> will be placed at
+                     that end of the hole which makes the DOT product of the
+                     hole's <B>'origin'</B>s <B>'axis'</B> and the <B>'up'</B> vector positive.
+
+<B>'include_zero_depth'</B> whether the array of <B>'components'</B> in the
+                     <A HREF=../headers/pk_detail_def_hole_t.html>PK_detail_def_hole_t</A> should include
+                     <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_zero_depth_in_c</A> and
+                     <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_zero_depth_out_c</A> components.  This setting
+                     has no effect on the content of the <B>'faces'</B> array
+                     returned in the <A HREF=../headers/pk_detail_def_t.html>PK_detail_def_t</A>.
+
+<B>'want_profiles'</B>      whether wire body profiles are to be returned in the
+                     <B>'profile'</B> field of a <A HREF=../headers/pk_detail_def_hole_t.html>PK_detail_def_hole_t</A>.  Such profiles,
+                     if requested, produce the shape of the hole when spun
+                     around the hole's axis.
+
+<B>'simplify_geom'</B>      whether original model geometry or simplified geometry
+                     should be returned in the <B>'entity'</B> field of a
+                     <A HREF=../headers/pk_hole_component_t.html>PK_hole_component_t</A>. If this is set to PK_LOGICAL_false,
+                     then the returned geometry will be the actual geometry of
+                     the model. If this is set to PK_LOGICAL_true, then the
+                     simplest geometry which can represent the shape of the
+                     component will be returned.
+
+<B>'cb'</B>                 callback function.  If this is not NULL, then it will be
+                     called for each recognized hole and passed the
+                     <A HREF=../headers/pk_detail_def_hole_t.html>PK_detail_def_hole_t</A> for that hole.  The callback
+                     function must return an integer which will be copied into
+                     the <B>'cb_result'</B> result field of the <A HREF=../headers/pk_detail_def_hole_t.html>PK_detail_def_hole_c</A>
+                     which is returned from <A HREF=../headers/pk_face_classify_details.html>PK_FACE_classify_details</A>.  This
+                     integer may record an application's classification of the
+                     hole.
+
+<B>'cb_context'</B>         context pointer for callback function.  This pointer
+                     allows an application to pass any necessary information
+                     into and out of its callback function.
+
+<B>'face_tracking'</B>      whether surfaces or groups containing the surface and
+                     split faces should be returned in the <B>'entity'</B> field of a
+                     <A HREF=../headers/pk_hole_component_t.html>PK_hole_component_t</A>. If this is set to PK_LOGICAL_false,
+                     then the returned <B>'entity'</B> will be the surface. If this
+                     is set to PK_LOGICAL_true, then new groups will be
+                     created containing the surface and all faces that make up
+                     the component and will be returned.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

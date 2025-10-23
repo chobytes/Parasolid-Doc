@@ -1,0 +1,260 @@
+<HTML>
+<HEAD>
+<TITLE>GETMND</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>GETMND</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+GETMND ( keylen, key, nopts, opts, part, mend, fault, mcomp, fcomp, nmend, 
+===========================================================================
+         nfault, ifail )
+         ===============
+
+  Recover a faulty model.
+
+Receives:
+  KI_int_nchars            *keylen         --- length of key
+  KI_chr_key                key[keylen]    --- key of part
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options
+  KI_cod_mdop               opts[nopts]    --- option codes
+
+Returns:
+  KI_tag_part              *part           --- recovered part
+ &lt;KI_tag_list_int&gt;         *mend           --- tokens describing mends
+ &lt;KI_tag_list_int&gt;         *fault          --- tokens describing faults
+ &lt;KI_tag_list_&lt;entity&gt;&gt;    *mcomp          --- mended components
+ &lt;KI_tag_list_&lt;entity&gt;&gt;    *fcomp          --- faulty components
+ &lt;KI_int_nitems&gt;           *nmend          --- number of mends returned
+ &lt;KI_int_nitems&gt;           *nfault         --- number of faults returned
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_FG_receive_failure     part contains unrecognised foreign geom
+  KI_withdrawn_surface      part contains a withdrawn blend surface
+  KI_mend_attempt_failure   mending attempt failure
+  KI_schema_corrupt         contents of schema file not as expected
+  KI_schema_access_error    error opening, closing or reading the schema file
+  KI_wrong_format           receiving binary archive as text or vice-versa
+  KI_wrong_version          part archived by incompatible version of modeller
+  KI_corrupt_file           invalid file contents  but requires roll
+                            invalid file contents
+  KI_usfd_mismatch          archive has wrong user-field size
+  KI_keyed_part_mismatch    archived part not same type as part with same key
+  KI_cyclic_assy            receiving part would create cyclic reference
+  KI_attr_defn_mismatch     archived attribute definitions don't match current
+  KI_already_loaded         part with key already loaded
+  KI_file_access_error      error reading or closing archive
+  KI_cant_open_file         error opening archive
+  KI_key_not_found          key not found in archive
+  KI_bad_key                key has invalid syntax
+
+Description:
+   GETMND attempts to load into internal memory a part which exists in an
+  archive and which is identified with the given key, but which has
+  either failed to be loaded using GETMOD or which has failed to check
+  once loaded.
+
+   The same conditions apply to GETMND as to GETMOD, with regard to the
+  interface parameter settings, and with regard to unloaded and loaded
+  parts with the same key. This is reflected in the specific errors which
+  can be returned.
+
+   Parts retrieved using GETMND will normally have the same part status as
+  parts retrieved using GETMOD, though parts which have had to be modified
+  in a fundamental way to make them valid, in particular which have had to
+  be negated, will have the status of modified parts.
+
+   A diversity of problems may determine that a part which was valid within
+  one version of the modeller becomes problematic or invalid within a later
+  version:
+
+    a)  Withdrawn geometry types may not be received into a modeller which does
+        not recognise them.
+
+    b)  Different versions of the modeller may impose different constraints
+        on permissible model parameters, i.e. the values of linear and
+        angular precision, and permitted model size. Versions of Romulus
+        and Parasolid before v3.0 permit the user to set linear and angular
+        precision parameters, and accordingly the maximum model size, whereas
+        v3.0 Parasolid requires conformity to modeller parameters fixed
+        internally, and outside the control of the user.
+
+    c)  The checker may vary in strictness between different versions of
+        the modeller. For example, Romulus models were permitted to have
+        vertices, edges or faces passing outside the size box; in Parasolid
+        the checking routines require all parts to be wholly contained in
+        the size box.
+
+    d)  Differences in the ways different versions of the modeller describe
+        intersections between geometries (e.g. between two surfaces, between
+        a curve and a surface) may lead to differences in the ways the
+        consistency of a model is determined. For example, the surfaces of
+        two adjacent faces in one version of the modeller may meet in an
+        edge with a particular curve geometry; in a different version of the
+        modeller the two surfaces may be deemed to meet at a curve geometry
+        significantly different from the original.
+
+   The first two problems, a) and b), result in models failing to be received
+  into the modeller using GETMOD. The latter two problems, c) and d), result
+  in models failing to check, the first problem resulting in the "Model data
+  is corrupt" failure, the second problem resulting in the "Geometry
+  inconsistent with topology" failure.
+
+
+   GETMND provides a route by which some of these problems may be resolved,
+  the type of mending tasks to be attempted being under the control of the
+  user. Control is provided in the form of the opts[] array. A specific
+  code will be required for each kind of mending task to be performed.
+  The order in which options are supplied is of no significance. If no
+  options are provided, then GETMND will function in much the same
+  way as a call to GETMOD followed by one or more calls to CHCKEN (applied
+  to the part itself if it is a body, or to all the unkeyed bodies within
+  an assembly if the part is an assembly).
+
+   The range of options are as follows:
+
+    Option code              Interpretation
+    ============================================================================
+
+    MDOPMD                   Attempt to bring model geometry into line
+                             with current standards of model consistency.
+
+    MDOPRB                   Supply rubber geometry to faces, edges and
+                             vertices affected by types of geometry not
+                             recognised by the current modeller.
+
+    MDOPNG                   Negate any inside-out bodies.
+
+  For those parts affected by withdrawn geometry types, but for which
+  no relevant mending operation has been supplied GETMND will return a
+  failure, in much the same way as GETMOD, returning KI_withdrawn_surface.
+
+   Once mending tasks have been performed, the part is checked in detail:
+  a body will be fully checked, whilst an assembly will have all its
+  unkeyed bodies fully checked. Information about components affected by
+  mends and components faulty after mending attempts will be reported back
+  via the lists 'mcomp' and 'fcomp'; the interpretation of the mends and
+  faults are provided in accompanying token lists.
+
+  If there are no mends, 'nmend' is zero; similarly if there are no faults,
+  'nfault' is zero. Otherwise a token describing a mend or fault is
+  returned in the token lists 'mends' and 'faults', and tags of mended or
+  faulty entities are returned in the entity lists 'mcomp' and 'fcomp'. An
+  entity may occur in both lists: for example, a face formerly attached
+  to a withdrawn type of geometry may be rubberised according to a mending
+  request option, but the face still qualifies as a fault. The owning
+  shells, bodies, referencing instances of a faulty or mended component
+  are to be identified using IDCOEN.
+
+  The lists 'faults' and 'fcomp' will be of equal length: there will be
+  'nfaults' entries in each, the 'i-th' fault type corresponding to the
+  'i-th' entry in 'fcomp'. When no data is associated with a given fault type
+  the null tag will be entered in the appropriate place of 'fcomp'. Similarly
+  the lists 'mends' and 'mcomp' will be of equal length, with a similar
+  one-one correspondance between mend types and associated data.
+
+  If there is more than one fault in the entity then the function does not
+  guarantee to return all the faults.  Note that consistency mending performs
+  a merge on the received part ( see MERGEN for details ), and this could
+  succeed in making an invalid body valid without detecting that any mends
+  have taken place.
+
+
+  The following tables show the tokens that may be returned, and the data
+  associated with them. Different categories of fault and mend are
+  separated for convenience:
+
+   Faults which indicate potential problems with a model, which when not
+  accompanied by additional faults serve simply to warn the user of the
+  possibility of problems. The report that a body is negative, however,
+  may or may not constitute a fault; only the caller can decide.
+
+  Warnings:
+  ========
+
+  token   |     meaning         |   associated tag
+  ----------------------------------------------------------------------------
+  RTSTSZ  |  Size setting       |       null tag
+          |     differences     |
+          |                     |
+  RTSTBX  |  Part not wholly in |  tag of an example of violating item
+          |    size box         |    (typically a vertex, edge or face)
+          |                     |
+  RTSTNG  | body  is inside out |  tag of inside-out body
+          |                     |
+          |                     |
+
+
+   When mending tasks have been performed information about them will
+  be returned. Unless non-warning faults are returned in the fault
+  list the tokens and accompanying data described below are simply
+  for information.
+    Mends performed:
+    ===============
+
+    token   |     meaning          |   associated tag
+    -----------------------------------------------------------------------
+    RTSTMD  | Consistency mending  |  tag of list of affected edges
+            | has taken place      |  and vertices
+            |                      |
+    RTSTWG  | Withdrawn geometries |  tag of list of faces, edges or
+            |  now rubberised      |  vertices affected by withdrawn
+            |                      |  geometry
+            |                      |
+    RTSTIO  | body  was inside out |  tag of previously inside-out body
+            | (now made positive)  |
+            |                      |
+
+   The following table describes faults which are serious and should
+  be regarded as fatal to the secure use of the part within the current
+  version of Parasolid. Missing geometry may not be serious in the
+  context of a request to rubberise topology affected by withdrawn
+  geometry types, though the problem is certainly serious if no remedy
+  for the missing geometry problem can be found. The communication about
+  the failure of the modeller to carry out a check indicates that the
+  model cannot be processed reliably in its present form; though it also
+  indicates an internal problem in the body checker, which should be
+  reported.
+
+  Serious faults:
+  ==============
+
+  token   |     meaning         |   associated tag
+  ---------------------------------------------------------------------
+  RTSTCR  |   data structure    |  tag of list of examples of
+          |        corrupt      | corrupt topological or geometrical
+          |                     | entities
+          |                     |
+  RTSTIN  | inconsistent geom.  |  tag of list of problematic
+          |   and topology      | topological items (not necessarily
+          |                     | exhaustive)
+          |                     |
+  RTSTMG  |  missing geometry   |  tag of a list of topological items
+          |                     | lacking geometry
+          |                     |
+  RTSTSX  |  self-intersecting  |  tag of a list of topological
+          |     topology        | items suffering from self-intersection
+          |                     |
+  RTSTCF  | failure in carrying |        null tag
+          |    out check        |
+
+</PRE>
+</BODY>
+</HTML>

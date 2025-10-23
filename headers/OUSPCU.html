@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<TITLE>OUSPCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUSPCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_spcurve_ask.html>PK_SPCURVE_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUSPCU ( spc, surf, ctrl, dim, order, nctrl, knots, period, ifail )
+===================================================================
+
+  Output an SP-curve in B-spline form.
+
+Receives:
+  KI_tag_curve             *spc            --- SP-curve
+
+Returns:
+  KI_tag_surface           *surf           --- basis surface of SP-curve
+  KI_tag_list_dbl          *ctrl           --- control points
+  int                      *dim            --- vertex dimension (2 or 3)
+  KI_int_order             *order          --- order of curve
+  KI_int_nitems            *nctrl          --- number of control points
+  KI_tag_list_dbl          *knots          --- knot values
+  KI_cod_logical           *period         --- periodic flag
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_type               non-sp curve supplied
+
+Description:
+  OUSPCU will, given the tag of an SP-curve, output the SP-curve's data.
+
+  An SP-curve describes a 3-space curve in (2-dimensional) parameter space
+  of a surface.
+
+  The SP-curve consists of general B-spline curves in surface parameter
+  space (i.e. curves with (u,v) instead of (x,y,z) vertices, where u & v
+  are the parameters of the surface). SP-curves can be rational, in which
+  case 'dim' is 3, and the vertices are (u,v,w) vectors.
+
+  The SP-curve parameterisation is governed by the range of the knot
+  vector 'knots'.
+
+  The following data is output:
+
+  (1) The surface ('surf') in whose parameter space the SP-curve has been
+      computed.
+
+  (2) The B-spline control points 'ctrl'.
+
+  (3) The vertex dimension 'dim', which will be 2 for non-rational curves,
+      and 3 for rational ones.
+
+  (4) The order of the SP-curve 'order'.
+
+  (5) The number of control points 'nctrl'.
+
+  (6) The knot vector 'knots'. There will be 'nctrl' + 'order' of these.
+
+  (7) If the B-spline is periodic, 'period' is set to KI_true.
+
+  Periodics:
+
+  Parasolid may choose to treat an SP-curve as periodic if it is closed and
+  G1 continuous even if the B-spline is not periodic and 'period' is KI_false,
+  ENCUPA reflects this internal periodicity.
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_PARTITION_transmit_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_PARTITION_transmit_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_PARTITION_transmit_o_s
+    {
+    int                       o_t_version;
+                                  --- version number
+    <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_t</A>      transmit_format;
+                                  --- (<A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_neutral_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              transmit_user_fields;
+                                  --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_partition_xmt_deltas_t.html>PK_PARTITION_xmt_deltas_t</A> transmit_deltas;
+                                  --- (PK_PARTITION_xmt_deltas_none_c)
+    int                       transmit_version;
+                                  --- (0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              transmit_all_attdefs;
+                                  --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_pmark_array_t.html>PK_PMARK_array_t</A>          pmarks;
+                                  --- (NULL, 0)
+    <A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>              transmit_indexed_context;
+                                  --- (NULL)
+    <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_t</A>      transmit_meshes;
+                                  --- (<A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_separate_c</A>)
+    };
+typedef struct PK_PARTITION_transmit_o_s PK_PARTITION_transmit_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is supplied to <A HREF=../headers/pk_partition_transmit.html>PK_PARTITION_transmit</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_partition_transmit.html>PK_PARTITION_transmit</A><br>
+    <A HREF=../headers/pk_partition_transmit_b.html>PK_PARTITION_transmit_b</A><br>
+    <A HREF=../headers/pk_partition_transmit_u.html>PK_PARTITION_transmit_u</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'transmit_format'</B>        Format of the 'file'. Permitted values are
+
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_text_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_binary_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_typed_binary_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_neutral_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_applio_c</A>
+
+
+<B>'transmit_user_fields'</B>   PK_LOGICAL_true if user fields are to be transmitted.
+
+
+<B>'transmit_deltas'</B>        Whether to transmit no deltas, all deltas, only
+                         deltas in the 'main line' from the initial pmark to
+                         the current pmark, or delay transmitting deltas until
+                         a call to <A HREF=../headers/pk_partition_transmit_delta.html>PK_PARTITION_transmit_delta</A>.
+
+
+<B>'transmit_version'</B>       By default (i.e. <B>'transmit_version'</B> is zero),
+                         partitions saved using Parasolid 14.0 and later are
+                         backward compatible at least as far as the previous
+                         major version. All information associated with the
+                         part is stored in the saved partition, including
+                         information that may not itself be recognised by
+                         the earlier version. E.g., partitions saved from
+                         15.x would be backward compatible to at least v14.x,
+                         together with all the information they contain.
+
+                         By explicitly setting <B>'transmit_version'</B> to a
+                         non-zero integer, an alternative method is used to
+                         achieve backward compatibility. Using this method,
+                         the partition is saved using the precise format of
+                         the previous version. Any information associated
+                         with the partition and not recognised by that
+                         previous version will not be present in the
+                         partition when it is saved.
+
+                         The integer specifies which version to use. For
+                         example, 141 would indicate Parasolid 14.1, and
+                         130 would indicate Parasolid 13.0. The value must
+                         be at least 120 for transmitting partitions, and
+                         the current version is allowed.
+
+
+<B>'transmit_all_attdefs'</B>  If PK_LOGICAL_false, only attribute definitions used by
+                        the partition (and/or its deltas if <B>'transmit_deltas'</B>
+                        is not PK_PARTITION_xmt_deltas_none_c) are transmitted.
+                        By default, all the definitions in the session are
+                        transmitted.
+
+
+<B>'pmarks'</B>                 Pmarks to override which deltas to transmit. If
+                         <B>'transmit_deltas'</B> is PK_PARTITION_xmt_deltas_none_c
+                         then these <B>'pmarks'</B> are included; if
+                         <B>'transmit_deltas'</B> is PK_PARTITION_xmt_deltas_all_c
+                         or PK_PARTITION_xmt_deltas_main_c then these <B>'pmarks'</B>
+                         are excluded. This option cannot be used when
+                         <B>'transmit_deltas'</B> is PK_PARITION_xmt_deltas_later_c.
+                         If any pmark deltas are to be transmitted then the
+                         initial and current pmarks must be included.
+                         Junction pmarks must be transmitted if pmarks in
+                         more than one of their branches are transmitted.
+
+
+<B>'transmit_indexed_context'</B>
+                         Application specific storage when <B>'transmit_format'</B>
+                         is <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A>.
+
+
+<B>'transmit_meshes'</B>        Where any mesh data in the partition are stored.
+
+                         If this option is <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_separate_c</A>
+                         then all mesh data are transmitted to a separate
+                         file with the same <B>'key'</B>, which is opened with
+                         guise FFCXMM (transmit file containing mesh data).
+
+                         If this option is <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_embedded_c</A>
+                         then all mesh data are stored within the partition
+                         file instead, thus allowing data for each mesh to
+                         be individually received when needed using the
+                         receive option <B>'receive_using_seek'</B> set to
+                         <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_yes_c</A>.
+
+                         To support <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_embedded_c</A>,
+                         <B>'transmit_format'</B> must be one of the binary
+                         formats and the Frustrum seek function <B>'ffskxt'</B>
+                         must be registered using <A HREF=../headers/pk_session_register_fru_2.html>PK_SESSION_register_fru_2</A>.
+                         Partition files with embedded mesh data can still
+                         be received without using seek.
+
+                         This option is ignored for <A HREF=../headers/pk_partition_transmit_b.html>PK_PARTITION_transmit_b</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

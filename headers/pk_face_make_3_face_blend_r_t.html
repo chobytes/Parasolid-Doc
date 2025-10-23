@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_make_3_face_blend_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_make_3_face_blend_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_make_3_face_blend_r_s
+    {
+    <A HREF=../headers/pk_3_face_blend_t.html>PK_3_face_blend_t</A>       status;       --- blend status
+    <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_t</A>  left_orientation;
+                                          --- orientation used for left wall
+    <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_t</A>  right_orientation;
+                                          --- orientation used for right wall
+    <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_t</A>  centre_orientation;
+                                          --- orientation used for centre wall
+    int                     n_sheets;     --- number of sheets
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>             *sheets;       --- associated sheets
+    int                     n_topols;     --- number of topols
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>             *topols;       --- error topology
+    int                     n_points;     --- number of points
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>            *points;       --- error points
+    int                     n_dists;      --- number of lengths
+    double                 *dists;        --- error lengths
+    };
+typedef struct PK_FACE_make_3_face_blend_r_s PK_FACE_make_3_face_blend_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure returns three face blending results.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_3_face_blend.html>PK_FACE_make_3_face_blend</A><br>
+    <A HREF=../headers/pk_face_make_3_face_blend_r_f.html>PK_FACE_make_3_face_blend_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This typedef has the following fields:
+
+ <B>'status'</B>             a status token of type <A HREF=../headers/pk_3_face_blend_t.html>PK_3_face_blend_t</A>
+
+ <B>'left_orientation'</B>   orientation used for the left wall
+ <B>'right_orientation'</B>  orientation used for the right wall
+ <B>'centre_orientation'</B> orientation used for the centre wall
+
+ <B>'n_sheets'</B>           the number of blend sheet bodies returned
+ <B>'sheets'</B>             blend sheet bodies returned, if any
+
+ <B>'n_topols'</B>           the number of topological entities returned
+ <B>'topols'</B>             an array of topological entities associated with a status
+ <B>'n_points'</B>           the number of vectors returned
+ <B>'points'</B>             an array of vectors associated with a status
+ <B>'n_dists'</B>            the number of distance values returned
+ <B>'dists'</B>              an array of distance values associated with a status
+
+Any space allocated by Parasolid within this structure may be freed
+by calling <A HREF=../headers/pk_face_make_3_face_blend_r_f.html>PK_FACE_make_3_face_blend_r_f</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_facet_local_tolerances_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_facet_local_tolerances_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_facet_local_tolerances_s
+    {
+    double             curve_chord_tol;
+    double             curve_chord_max;
+    double             curve_chord_ang;
+    double             surface_plane_tol;
+    double             surface_plane_ang;
+    double             min_facet_width;
+    double             max_facet_width;
+    };
+typedef struct PK_facet_local_tolerances_s PK_facet_local_tolerances_t;
+</B>
+<A NAME="description"></A>
+<I>Local facet tolerances
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_mesh_2_o_t.html>PK_TOPOL_facet_mesh_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_o_t.html>PK_TOPOL_facet_mesh_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The PK_facet_local_tolerances_t structure provides the following controls:
+  CURVE TOLERANCES
+    The following arguments control the curve tolerance values, measuring how
+    closely a curved edge entity is approximated by a number of straight line
+    chords.
+
+    Three curve tolerance controls are provided:
+
+    curve_chord_tol : the maximum chordal distance between a facet edge and
+                      its original edge entity
+
+    curve_chord_max : the maximum length of any facet edge which represents
+                      part of an original edge entity
+
+    curve_chord_ang : the maximum angle which is permitted between a facet
+                      chord and its original edge entity
+
+  SURFACE TOLERANCES
+    The following arguments control surface tolerance values, measuring
+    how closely any curved surface attached to a face is approximated
+    by a facet mesh.
+
+    Two surface tolerance controls are provided :
+
+    surface_plane_tol : the maximum distance between the mid-plane
+                        of a facet and its original face entity
+
+    surface_plane_ang : the maximum angle (in radians) which is permitted
+                        between the surface normals at any two positions
+                        on the surface which lie within the facet boundary
+                        (this is usually met but it is not guaranteed).
+
+  MIN/MAX FACET WIDTH
+    Two facet width controls are provided:
+
+    max_facet_width : the maximum length of any facet side.
+
+    min_facet_width : value below which Parasolid will disregard the supplied
+                      curve, surface and planarity tolerances so that no
+                      further subdivision is carried out.
+
+    Facets of width smaller than <B>'min_facet_width'</B> can be created when a facet
+    of width slightly larger than <B>'min_facet_width'</B> is refined or in cases
+    where the facet is adjacent to an edge, whose faces have different
+    <B>'min_facet_width'</B>s.
+
+    If both a <B>'min_facet_width'</B> and <B>'max_facet_width'</B> are supplied the
+    <B>'min_facet_width'</B> must be less than the <B>'max_facet_width'</B> otherwise
+    PK_ERROR_bad_combination will be returned.
+
+    Note: The <B>'min_facet_width'</B> is ignored on topologies with facet geometry.
+
+  To set one or more of these constraints, the value is set to a positive
+  value.  If the value of a constraint is set to 0.0 the local tolerance of
+  this constraint will not override the tolerance of the corresponding
+  constraint previously supplied in the <A HREF=../headers/pk_topol_facet_mesh_o_t.html>PK_TOPOL_facet_mesh_o_t</A>.  If a
+  particular constraint is set to 0.0 and the value of the corresponding
+  constraint in the <A HREF=../headers/pk_topol_facet_mesh_o_t.html>PK_TOPOL_facet_mesh_o_t</A> is not supplied the default for
+  this constraint will be used.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

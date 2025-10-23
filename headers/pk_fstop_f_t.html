@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FSTOP_f_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FSTOP_f_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef void (*PK_FSTOP_f_t)
+(
+<I>--- returned arguments ---
+</I>int *ifail
+);
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_fru_o_t.html>PK_SESSION_ask_fru_o_t</A><br>
+    <A HREF=../headers/pk_session_frustrum_t.html>PK_SESSION_frustrum_t</A><br>
+    <A HREF=../headers/pk_session_register_fru_o_t.html>PK_SESSION_register_fru_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+  Shut down the frustrum
+
+Returns:
+  int                      *ifail          --- error code: FR_no_errors
+
+
+Description:
+  This function shuts down the frustrum, and is called from kernel
+  function <A HREF=../headers/pk_session_stop.html>PK_SESSION_stop</A>. Calls to FSTART and FSTOP may be nested;
+  in this case only the "outermost calls" (i.e. the first FSTART call,
+  and the "balancing" FSTOP call) should have any effect.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

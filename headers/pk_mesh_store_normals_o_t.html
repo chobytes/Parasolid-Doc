@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_store_normals_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_store_normals_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_store_normals_o_s
+    {
+    int                      o_t_version;    --- version number of
+                                             --- option structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             have_mesh_angle;--- whether a <B>'mesh_angle'</B> is
+                                             --- supplied (PK_LOGICAL_false)
+    double                   mesh_angle;     --- mesh angle
+    <A HREF=../headers/pk_mesh_replace_normal_t.html>PK_MESH_replace_normal_t</A> replace;        --- which currently stored
+                                             --- normals should be replaced
+                                             --- (<A HREF=../headers/pk_mesh_replace_normal_t.html>PK_MESH_replace_normal_all_c</A>)
+    int                      n_mtopols;      --- number of <B>'mtopols'</B> (0)
+    <A HREF=../headers/pk_mtopol_t.html>PK_MTOPOL_t</A>             *mtopols;        --- specified mtopols (NULL)
+    int                     *mtopol_normal_indices;
+                                             --- indices mapping normals to
+                                             --- mtopols (NULL)
+    int                      n_mtopol_normals;
+                                             --- number of <B>'mtopol_normals'</B>(0)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>            *mtopol_normals; --- supplied normals (NULL)
+    };
+typedef struct PK_MESH_store_normals_o_s PK_MESH_store_normals_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_mesh_store_normals.html>PK_MESH_store_normals</A>.
+
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_mtopols_not_same_mesh <B>'mtopols'</B> not all from same mesh (MILD)
+                                   or
+                                   <B>'mtopols'</B> not in <B>'mesh'</B> (MILD)
+    PK_ERROR_duplicate_array_item  <B>'mtopols'</B> contains duplicates (MILD)
+    PK_ERROR_bad_combination       <B>'replace'</B> is <A HREF=../headers/pk_mesh_replace_normal_t.html>PK_MESH_replace_normal_mtopol_c</A>
+                                   and <B>'n_mtopols'</B> is zero. (MILD)
+                                   or
+                                   <B>'replace'</B> is <A HREF=../headers/pk_mesh_replace_normal_t.html>PK_MESH_replace_normal_mtopol_c</A>
+                                   and the <B>'mesh'</B> does not have stored
+                                   normals. (MILD)
+    PK_ERROR_bad_value             integer value in <B>'mtopol_normal_indices'</B>
+                                   array is not -1 and does not lie between 0
+                                   and <B>'n_mtopol_normals'</B>. (MILD)
+    PK_ERROR_wrong_mtopol          element in <B>'mtopols'</B> array is not of type
+                                   PK_CLASS_mfin or PK_CLASS_mvertex (MILD)
+                                   or
+                                   <B>'mtopols'</B> contains a mfin and also the
+                                   mfin's mvertex (MILD)
+    PK_ERROR_bad_tolerance         <B>'mesh_angle'</B> is either &lt; 0 or &gt; pi (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_store_normals.html>PK_MESH_store_normals</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Mesh angle
+    If <B>'have_mesh_angle'</B> is set to PK_LOGICAL_true the supplied <B>'mesh_angle'</B>
+    will override the session mesh_angle returned by <A HREF=../headers/pk_session_ask_mesh_angle.html>PK_SESSION_ask_mesh_angle</A>.
+    See the documentation of <A HREF=../headers/pk_session_ask_mesh_angle.html>PK_SESSION_ask_mesh_angle</A> for more information.
+
+Replace
+    For meshes that do not have stored normals the <B>'replace'</B> option must be
+    set to <A HREF=../headers/pk_mesh_replace_normal_t.html>PK_MESH_replace_normal_all_c</A>, otherwise the error
+    PK_ERROR_bad_combination will be returned.
+
+    For meshes with stored normals setting <B>'replace'</B> to
+    <A HREF=../headers/pk_mesh_replace_normal_t.html>PK_MESH_replace_normal_all_c</A> will result in all normals in the mesh being
+    replaced.  Setting <B>'replace'</B> to <A HREF=../headers/pk_mesh_replace_normal_t.html>PK_MESH_replace_normal_mtopol_c</A> will result
+    in only those mtopols supplied in <B>'mtopols'</B> having their normals replaced.
+
+Specifying mtopols and associated normals
+    The <B>'mtopols'</B> field can be used to specify an array of unique mtopols
+    (mfins and/or mvertices) for which the normal is to be replaced.  The
+    normal can either be supplied or else Parasolid will calculate the
+    normal using either the session mesh angle or the <B>'mesh_angle'</B> option if
+    given.
+
+    For mfins the mvertex normal of the mfin will be replaced.  For mvertices
+    the mvertex normals for each of the mfins at the given mvertex will be
+    replaced.
+
+    If the <B>'mtopols'</B> array contains both an mfin and its mvertex the error
+    PK_ERROR_wrong_mtopol is returned.
+
+    <B>'mtopol_normals'</B>
+    This field is an array of length <B>'n_mtopol_normals'</B> containing all the
+    supplied normals.  If set to NULL no normals are supplied and the normals
+    for each of the <B>'mtopols'</B> will be calculated by Parasolid.
+
+    <B>'mtopol_normal_indices'</B>
+    This field must either be NULL or of length <B>'n_mtopols'</B>.  If NULL, all of
+    the <B>'mtopols'</B> will have their normals calculated.  If of length <B>'n_mtopols'</B>
+    it takes integer values corresponding to indexes into the <B>'mtopol_normals'</B>
+    array.  For each mtopol in <B>'mtopols'</B>, the corresponding entry in
+    <B>'mtopol_normal_indices'</B> is the index into <B>'mtopol_normals'</B> corresponding to
+    the the normal to be stored.
+    It is possible to supply an index of -1 indicating that the normal should
+    be calculated by Parasolid rather than be set to one of the normals
+    supplied in <B>'mtopol_normals'</B>.
+
+    For elements of <B>'mtopols'</B> of class PK_CLASS_mvertex, if a normal is
+    supplied all mfins at this mvertex will share this normal, whereas if the
+    normal is calculated the mfins at the mvertex can have different normals.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

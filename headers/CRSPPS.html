@@ -1,0 +1,235 @@
+<HTML>
+<HEAD>
+<TITLE>CRSPPS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRSPPS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bsurf_create_splinewise.html>PK_BSURF_create_splinewise</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRSPPS ( ncol, nrow, pts, nprops, props, pdata, bs, ifail )
+===========================================================
+
+  Create B-surface by splining
+
+Receives:
+  KI_int_nitems            *ncol           --- number of columns of points
+  KI_int_nitems            *nrow           --- number of rows of points
+  KI_vec_position           pts[ncol * nrow] --- mesh of points to spline
+ &lt;KI_int_nitems&gt;           *nprops         --- number of surface properties
+  KI_cod_papr               props[nprops]  --- array of surface properties
+ &lt;KI_tag_list&gt;              pdata[nprops]  --- array of tags of data lists
+
+Returns:
+  KI_tag_b_surface         *bs             --- B-surface
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_incompatible_props     periodic row/col with coincident end points
+                            incompatible boundary conditions
+  KI_wrong_number_knots     wrong number of knots
+  KI_repeated_knots         repeated knots
+  KI_bad_knots              bad parameterisation
+  KI_bad_derivative         derivative too big
+                            wrong number of coordinates in twist vector
+                            wrong number of coordinates in derivative
+  KI_bad_position           a mesh point lies outside modeller size box
+  KI_coincident_points      repeated mesh points
+  KI_insufficient_points    not enough mesh points
+  KI_bad_parametric_prop    inappropriate property
+  KI_bad_tag_in_list        col knot vector tag is null
+                            row knot vector tag is null
+
+Description:
+  This function creates a B-surface by splining through a mesh of
+  points. The surface will be continuous in slope and curvature. The points
+  will lie on the surface, rows of points will define lines of constant v
+  parameter, and columns of points will define lines of constant u parameter.
+
+  The surface may be periodic in either the u or v direction, in which case
+  the surface 'wraps round' and meets itself along the relevant boundary, with
+  slope and curvature continuity.
+
+  Number of columns of points 'ncol':
+  . For surfaces with non-periodic rows 'ncol' >= 2.
+  . For surfaces with periodic rows 'ncol' >= 3.
+
+  Number of rows of points 'nrow':
+  . For surfaces with non-periodic columns 'nrow' >= 2.
+  . For surfaces with periodic columns 'nrow' >= 3.
+
+  Mesh Points 'pts':
+  . The points must be supplied in order, row by row.
+  . Consecutive points, in a row or column, must not coincide.
+  . To make a surface closed and non-periodic along the rows the first and last
+    points of each row must coincide.
+  . To make a surface closed and non-periodic along the columns the first and
+    last points of each column must coincide.
+  . If the surface is periodic in u or v the first and last points of the rows
+    or columns should not coincide.
+
+  Surface properties 'nprops', 'props', 'pdata'
+    There are several controls that may be applied to the splining operation.
+    For example, the surface may be periodic or knot vectors may be supplied.
+    Each action has a default, and each default can be overridden by giving a
+    token in the 'props' array. 'nprops' is the number of tokens that have
+    been supplied in 'props'.
+
+    A particular action may require additional data; if so, this must be
+    supplied in a list. The tag of the list must be entered in the array
+    'pdata', in the position corresponding to the token in 'props'. If the
+    action does not require additional data, then the null tag should be
+    entered in the appropriate position in 'pdata'.
+
+  Property tokens:
+    The 'props' array contains 'nprops' tokens from the sequence PAPR00. The
+    table shows which tokens may be used, and the data associated with them.
+
+    There are some pairs (or sets) of tokens which are alternatives; if both are
+    supplied they may be contradictory, and in this case the last one to be
+    supplied is the one which is used.
+
+    There are also cases in which the presence of a token implies a particular
+    structure, and another implies a different structure. Use of both tokens is
+    inconsistent, and raises an error.
+
+    In explaining the various controls that may be applied to the splining
+    operation the following notation is used
+
+      o  bottom boundary  - first row of points
+      o  top boundary     - last row of points
+      o  left boundary    - first col of points
+      o  right boundary   - last col of points
+
+      token   |       meaning                      |     real data
+      ---------------------------------------------------------------------
+              |                                    |
+      PAPRPU  |    surface rows are periodic       |       none
+              |                                    |
+      PAPRPV  |   surface columns are periodic     |       none
+              |                                    |
+      PAPRNB  |  natural boundary condition        |       none
+              |  across bottom boundary of surface |
+              |                                    |
+      PAPRNT  |  natural boundary condition        |       none
+              |  across top boundary of surface    |
+              |                                    |
+      PAPRNL  |  natural boundary condition        |       none
+              |  across left boundary of surface   |
+              |                                    |
+      PAPRNR  |  natural boundary condition        |       none
+              |  across right boundary of surface  |
+              |                                    |
+      PAPRCB  |  derivatives supplied across       | 'ncol' derivative vectors
+              |  bottom boundary of surface        |
+              |  i.e. clamped boundary             |
+              |  condition                         |
+              |                                    |
+      PAPRCT  |  derivatives supplied across       | 'ncol' derivative vectors
+              |  top boundary of surface i.e.      |
+              |  clamped boundary condition        |
+              |                                    |
+      PAPRCL  |  derivatives supplied across       | 'nrow' derivative vectors
+              |  left boundary of surface          |
+              |  i.e. clamped boundary condition   |
+              |                                    |
+      PAPRCR  |  derivatives supplied across       | 'nrow' derivative vectors
+              |  right boundary of surface         |
+              |  i.e. clamped boundary condition   |
+              |                                    |
+      PAPRBL  | bottom left twist vector supplied  |   twist vector
+              |                                    |
+      PAPRBR  | bottom right twist vector supplied |   twist vector
+              |                                    |
+      PAPRTL  | top left twist vector supplied     |   twist vector
+              |                                    |
+      PAPRTR  | top right twist vector supplied    |   twist vector
+              |                                    |
+      PAPRKU  | knot vector supplied for rows      |   knot vector
+              |                                    |
+      PAPRKV  | knot vector supplied for columns   |   knot vector
+              |                                    |
+      PAPRCU  |       force bicubic surface        |       none
+              |                                    |
+
+
+  End conditions PAPRPU, PAPRPV, PAPRNB, PAPRNT, PAPRNL, PAPRNR,
+                 PAPRCB, PAPRCT, PAPRCL, PAPRCR:
+    There are three boundary conditions available to control the splining:
+    natural, clamped and periodic. These apply to the u and v directions (i.e.
+    the rows and columns) independently. Natural and clamped conditions refer to
+    either the start or end of the rows or columns, whereas the periodic end
+    condition refers to both the start and end. If no boundary condition is
+    given for a boundary then natural end conditions are used. If clamped and
+    natural boundary conditions are both supplied then only the last to be
+    supplied is used; this is not flagged as an error.
+
+  . A natural boundary condition implies that the surface has no curvature
+    across the relevant boundary. Natural end conditions are the default.
+
+  . A clamped boundary condition allows the user to specify derivatives across
+    a boundary of the surface. The derivatives are supplied in a real list of
+    length 3*'ncol' (for PAPRCB and PAPRCT), or 3*'nrow' (for PAPRCL and
+    PAPRCR).
+
+    The derivatives should be supplied with respect to a parameter which varies
+    from 0 to 1 between the first or last two rows or columns of points (as
+    appropriate). In other words, the derivatives should have dimensions of
+    length. The magnitude is significant, and supplying vectors which are too
+    large may cause the surface to loop or kink.
+
+  . A periodic boundary condition implies the surface is closed, so that the
+    surface will return to the start row or column after the final row or
+    column has been splined. The surface meets itself with continuity
+    of tangent and curvature. If periodic end conditions are used, then at
+    least three rows or columns must be supplied.
+
+  Twist vectors PAPRBL, PAPRBR, PAPRTL, PAPRTR:
+    A 'twist vector' is a derivative with respect to both u and v; i.e. it is
+    the rate of change of the u derivatives in the v direction, and also the
+    rate of change of the v derivatives in the u direction. The twist vectors
+    may be supplied at any of the four corners, but only when both adjacent
+    boundaries have clamped boundary conditions. If the twist vectors are
+    supplied when they are not required then they are ignored. If the twist
+    vectors are not supplied then a suitable default value is used.
+
+  Knot vectors PAPRKU, PAPRKV:
+    If a knot vector is supplied, in either direction, then it must satisfy the
+    following conditions:
+    . The knot values must form an increasing sequence; repeated knots are
+      not permitted.
+    . For non-periodic splining there must be 'ncol' knot values in the u
+      direction, or 'nrow' knot values in the v direction.
+    . For periodic splining there must be ('ncol'+1) knot values in the u
+      direction, or ('nrow'+1) knot values in the v direction.
+
+    If the knot vector is not supplied then an averaged accumulated chord length
+    parameterisation is used.
+
+  Surface degree PAPRCU:
+    In general, the surface will be bicubic. However, if only two rows or
+    columns of points are given and the corresponding end conditions are
+    natural, then by default a ruled surface (degree 1) will be produced.
+    This default can be overridden by supplying the token PAPRCU, which will
+    force the surface to be bicubic. The surface is always non-rational.
+
+
+</PRE>
+</BODY>
+</HTML>

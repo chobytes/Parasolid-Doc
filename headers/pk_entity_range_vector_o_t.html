@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ENTITY_range_vector_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ENTITY_range_vector_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_ENTITY_range_vector_o_s
+    {
+    int                     o_t_version;   --- version number of option struct
+    <A HREF=../headers/pk_range_bound_t.html>PK_range_bound_t</A>        bound;         --- bounds on min/max separation
+    <A HREF=../headers/pk_range_param_entity_t.html>PK_range_param_entity_t</A> param_entity;  --- option to return a vector and
+                                           --- parameter on the sub-entity
+                                           --- (if applicable). Also controls
+                                           --- whether a fin can be returned
+                                           --- as the sub_entity.
+                                           --- (<A HREF=../headers/pk_range_param_entity_t.html>PK_range_param_entity_topol_c</A>)
+    int                     n_guesses;     --- number of guesses. (0)
+    const <A HREF=../headers/pk_range_guess_t.html>PK_range_guess_t</A> *guesses;       --- guesses for end on <B>'entities'</B>
+                                           --- (NULL) [NF]
+    int                     n_entities_with_scales;
+                                           --- number of entities for which a
+                                           --- scale factor is specified (0)
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>            *entities_with_scales;
+                                           --- array of entities for which a
+                                           --- scale factor is specified
+                                           --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>      *scale_factors; --- scale factor associated with
+                                           --- the corresponding entity in
+                                           --- <B>'entities_with_scales'</B> (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>       output_scale;  --- scale factor to shrink the
+                                           --- measured distance.
+                                           --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    };
+
+typedef struct PK_ENTITY_range_vector_o_s PK_ENTITY_range_vector_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for finding the global minimum/maximum separation
+between two arrays of entities.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_entity_range_vector.html>PK_ENTITY_range_vector</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+<B>'bound'</B>            : structure consisting of:
+                     <B>'have_upper_bound'</B>: whether an upper bound is supplied.
+                     <B>'upper_bound'</B>     : an upper bound on the minimum/maximum
+                                         distance to be computed.
+                                         If supplied, when finding the minimum
+                                         distance, the minimum distance
+                                         achieved will only be returned if
+                                         it is less than the upper bound.
+                                         If supplied, when finding the maximum
+                                         distance, the maximum distance
+                                         achieved will only be returned if it
+                                         is less than or equal to the upper
+                                         bound.
+                     <B>'have_lower_bound'</B>: whether a lower bound is supplied.
+                     <B>'lower_bound'</B>     : a lower bound on the minimum/maximum
+                                         distance to be computed.
+                                         If supplied, when finding the minimum
+                                         distance, the minimum distance
+                                         achieved will only be returned if it
+                                         is greater than or equal to the lower
+                                         bound.
+                                         If supplied, when finding the maximum
+                                         distance, the maximum distance
+                                         achieved will only be returned if it
+                                         is greater than the lower bound.
+
+<B>'param_entity'</B>     : option to return a vector and parameter on the sub-entity
+                     if applicable. This will always be the case for bodies.
+                     Additionally, this option controls whether a fin can be
+                     returned as the <B>'sub_entity'</B>
+                     (<A HREF=../headers/pk_range_param_entity_t.html>PK_range_param_entity_topol_c</A>)
+
+                     The following entity/sub-entity cases are affected.
+
+                     When <B>'param_entity'</B> is set to
+                     <A HREF=../headers/pk_range_param_entity_t.html>PK_range_param_entity_topol_c</A>:
+
+                     +-----+-------------------------------------------+
+                     |  #  | Entity  | Identified  | Geometry used for |
+                     |     |         | Sub-Entity  | parameterisation  |
+                     +-----+---------+-------------+-------------------+
+                     |     |         |             |                   |
+                     | (1) |   fin   |   vertex    | curve of the fin  |
+                     |     |         |             |                   |
+                     | (2) |  edge   |    none     | curve of the edge |
+                     | (3) |  edge   |   vertex    | curve of the edge |
+                     |     |         |             |                   |
+                     | (4) |  face   |  acc edge   | surf of the face  |
+                     | (5) |  face   |  tol edge   | surf of the face  |
+                     | (6) |  face   |   vertex    | surf of the face  |
+                     |     |         |             |                   |
+                     | (7) |  body   |  tol edge   | curve of the edge |
+                     |     |         |             |                   |
+                     +-----+---------+-------------+-------------------+
+
+                     Curve of the edge defined by <A HREF=../headers/pk_edge_ask_geometry.html>PK_EDGE_ask_geometry</A>.
+
+                     When <B>'param_entity'</B> is set to
+                     <A HREF=../headers/pk_range_param_entity_t.html>PK_range_param_entity_sub_c</A>:
+
+                     +-----+-------------------------------------------+
+                     |  #  | Entity  | Identified  | Geometry used for |
+                     |     |         | Sub-Entity  | parameterisation  |
+                     +-----+---------+-------------+-------------------+
+                     |     |         |             |                   |
+                     | (1) |   fin   |   vertex    |       none        |
+                     |     |         |             |                   |
+                     | (2) |  edge*  |    fin**    | curve of the fin  |
+                     | (3) |  edge   |   vertex    |       none        |
+                     |     |         |             |                   |
+                     | (4) |  face   |  acc edge   | curve of the edge |
+                     | (5) |  face   | fin in face | curve of the fin  |
+                     | (6) |  face   |   vertex    |       none        |
+                     |     |         |             |                   |
+                     | (7) |  body   |   fin**     | curve of the fin  |
+                     |     |         |             |                   |
+                     +-----+---------+-------------+-------------------+
+                       * tolerant edge without nominal geometry
+                      ** primary fin (defined by <A HREF=../headers/pk_edge_ask_first_fin.html>PK_EDGE_ask_first_fin</A>)
+
+                     Curve of the edge defined by <A HREF=../headers/pk_edge_ask_geometry_nmnl.html>PK_EDGE_ask_geometry_nmnl</A>.
+
+<B>'n_guesses'</B>        : value indicating the length of the array estimate
+                     structures. If the length is non-zero, it must take the
+                     value of <B>'n_vectors'</B>.
+
+<B>'guesses'</B>          : an array of estimate structures, for the end of the
+                     separation, of the form:
+
+                     <B>'type'</B>        form of guess, either:
+                                   <A HREF=../headers/pk_range_guess_t.html>PK_range_guess_no_c</A>     : no guess
+                                   <A HREF=../headers/pk_range_guess_t.html>PK_range_guess_param_c</A>  : parametric guess
+                                   <A HREF=../headers/pk_range_guess_t.html>PK_range_guess_vector_c</A> : position guess.
+                     <B>'parameters'</B>  an array of up to 2 parameters.
+                     <B>'vector'</B>      end position vector.
+
+                     Guesses are only allowed for entity arrays of length 1.
+                     For a curve, edge, or fin, a curve parameter estimate
+                     may be supplied.
+                     For a surface or face, surface parameter estimates may
+                     be supplied.
+                     For a curve, surface, edge, fin, or face, a position
+                     vector estimate may be supplied. Such an estimate is
+                     expected to be on or close to the entity.
+                     Note that either a position vector estimate or a parameter
+                     estimate may be specified, but not both.
+
+                     The array contains the estimates of the closest points
+                     for the positions provided in <B>'vectors'</B>.
+                     If no estimate is supplied the <B>'guesses'</B> can be NULL
+                     otherwise it must have length <B>'n_vectors'</B>.
+
+                     Currently, it is not possible to provide estimates for a
+                     subset of the positions.
+
+<B>'n_entities_with_scales'</B>
+                   : integer indicating the lengths of the arrays of
+                     <B>'entities_with_scales'</B> and  <B>'scale_factors'</B>.
+
+<B>'entities_with_scales'</B>
+                   : an array, of length <B>'n_entities_with_scales'</B>, containing
+                     unique entities which are to be considered at the scale
+                     factors provided in <B>'scale_factors'</B>. The entities supplied
+                     should either be orphan geometries or parts. If this array
+                     is NULL, no scale factors are applied.
+
+<B>'scale_factors'</B>    : this array should match the length of
+                     <B>'entities_with_scales'</B>. Each element of the array is
+                     a scale factor to be applied to the corresponding element
+                     in the <B>'entities_with_scales'</B> array.
+
+<B>'output_scale'</B>     : value indicating the scale of the space where the calling
+                     application is operating.
+                     If set to a value other than <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>, then:
+                        - the measured distance returned by the function will
+                          be scaled by the output scale factor
+                        - any supplied distance bounds should be provided in
+                          the space of the output scale factor.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

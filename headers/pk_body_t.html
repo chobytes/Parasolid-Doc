@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B></B>
+<A NAME="description"></A>
+<I>This type represents a BODY. A body is the basic modelling unit and typically
+corresponds to a component.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_add_to_compound.html>PK_BODY_add_to_compound</A><br>
+    <A HREF=../headers/pk_body_apply_knit_pattern.html>PK_BODY_apply_knit_pattern</A><br>
+    <A HREF=../headers/pk_body_ask_children.html>PK_BODY_ask_children</A><br>
+    <A HREF=../headers/pk_body_ask_components.html>PK_BODY_ask_components</A><br>
+    <A HREF=../headers/pk_body_ask_config.html>PK_BODY_ask_config</A><br>
+    <A HREF=../headers/pk_body_ask_curve_nmnl_state.html>PK_BODY_ask_curve_nmnl_state</A><br>
+    <A HREF=../headers/pk_body_ask_edges.html>PK_BODY_ask_edges</A><br>
+    <A HREF=../headers/pk_body_ask_faces.html>PK_BODY_ask_faces</A><br>
+    <A HREF=../headers/pk_body_ask_fins.html>PK_BODY_ask_fins</A><br>
+    <A HREF=../headers/pk_body_ask_first_edge.html>PK_BODY_ask_first_edge</A><br>
+    <A HREF=../headers/pk_body_ask_first_face.html>PK_BODY_ask_first_face</A><br>
+    <A HREF=../headers/pk_body_ask_frames.html>PK_BODY_ask_frames</A><br>
+    <A HREF=../headers/pk_body_ask_loops.html>PK_BODY_ask_loops</A><br>
+    <A HREF=../headers/pk_body_ask_memory_usage.html>PK_BODY_ask_memory_usage</A><br>
+    <A HREF=../headers/pk_body_ask_parent.html>PK_BODY_ask_parent</A><br>
+    <A HREF=../headers/pk_body_ask_regions.html>PK_BODY_ask_regions</A><br>
+    <A HREF=../headers/pk_body_ask_shells.html>PK_BODY_ask_shells</A><br>
+    <A HREF=../headers/pk_body_ask_topology.html>PK_BODY_ask_topology</A><br>
+    <A HREF=../headers/pk_body_ask_type.html>PK_BODY_ask_type</A><br>
+    <A HREF=../headers/pk_body_ask_vertices.html>PK_BODY_ask_vertices</A><br>
+    <A HREF=../headers/pk_body_boolean.html>PK_BODY_boolean</A><br>
+    <A HREF=../headers/pk_body_boolean_2.html>PK_BODY_boolean_2</A><br>
+    <A HREF=../headers/pk_body_change_partition.html>PK_BODY_change_partition</A><br>
+    <A HREF=../headers/pk_body_check.html>PK_BODY_check</A><br>
+    <A HREF=../headers/pk_body_contains_vector.html>PK_BODY_contains_vector</A><br>
+    <A HREF=../headers/pk_body_copy_topology.html>PK_BODY_copy_topology</A><br>
+    <A HREF=../headers/pk_body_create_minimum_topology.html>PK_BODY_create_minimum_topology</A><br>
+    <A HREF=../headers/pk_body_create_sheet_circle.html>PK_BODY_create_sheet_circle</A><br>
+    <A HREF=../headers/pk_body_create_sheet_planar.html>PK_BODY_create_sheet_planar</A><br>
+    <A HREF=../headers/pk_body_create_sheet_polygon.html>PK_BODY_create_sheet_polygon</A><br>
+    <A HREF=../headers/pk_body_create_sheet_rectangle.html>PK_BODY_create_sheet_rectangle</A><br>
+    <A HREF=../headers/pk_body_create_sheet_topology.html>PK_BODY_create_sheet_topology</A><br>
+    <A HREF=../headers/pk_body_create_solid_block.html>PK_BODY_create_solid_block</A><br>
+    <A HREF=../headers/pk_body_create_solid_cone.html>PK_BODY_create_solid_cone</A><br>
+    <A HREF=../headers/pk_body_create_solid_cyl.html>PK_BODY_create_solid_cyl</A><br>
+    <A HREF=../headers/pk_body_create_solid_prism.html>PK_BODY_create_solid_prism</A><br>
+    <A HREF=../headers/pk_body_create_solid_sphere.html>PK_BODY_create_solid_sphere</A><br>
+    <A HREF=../headers/pk_body_create_solid_topology.html>PK_BODY_create_solid_topology</A><br>
+    <A HREF=../headers/pk_body_create_solid_torus.html>PK_BODY_create_solid_torus</A><br>
+    <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A><br>
+    <A HREF=../headers/pk_body_create_topology_2_r_t.html>PK_BODY_create_topology_2_r_t</A><br>
+    <A HREF=../headers/pk_body_create_wire_topology.html>PK_BODY_create_wire_topology</A><br>
+    <A HREF=../headers/pk_body_disjoin.html>PK_BODY_disjoin</A><br>
+    <A HREF=../headers/pk_body_embed_in_surf.html>PK_BODY_embed_in_surf</A><br>
+    <A HREF=../headers/pk_body_emboss.html>PK_BODY_emboss</A><br>
+    <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A><br>
+    <A HREF=../headers/pk_body_enlarge_r_t.html>PK_BODY_enlarge_r_t</A><br>
+    <A HREF=../headers/pk_body_extend.html>PK_BODY_extend</A><br>
+    <A HREF=../headers/pk_body_extrude.html>PK_BODY_extrude</A><br>
+    <A HREF=../headers/pk_body_extrude_o_t.html>PK_BODY_extrude_o_t</A><br>
+    <A HREF=../headers/pk_body_fill_hole.html>PK_BODY_fill_hole</A><br>
+    <A HREF=../headers/pk_body_fill_hole_o_t.html>PK_BODY_fill_hole_o_t</A><br>
+    <A HREF=../headers/pk_body_find_extreme.html>PK_BODY_find_extreme</A><br>
+    <A HREF=../headers/pk_body_find_facesets.html>PK_BODY_find_facesets</A><br>
+    <A HREF=../headers/pk_body_find_knit_pattern.html>PK_BODY_find_knit_pattern</A><br>
+    <A HREF=../headers/pk_body_find_laminar_edges.html>PK_BODY_find_laminar_edges</A><br>
+    <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A><br>
+    <A HREF=../headers/pk_body_hollow.html>PK_BODY_hollow</A><br>
+    <A HREF=../headers/pk_body_hollow_2.html>PK_BODY_hollow_2</A><br>
+    <A HREF=../headers/pk_body_identify_details.html>PK_BODY_identify_details</A><br>
+    <A HREF=../headers/pk_body_identify_facesets.html>PK_BODY_identify_facesets</A><br>
+    <A HREF=../headers/pk_body_identify_general.html>PK_BODY_identify_general</A><br>
+    <A HREF=../headers/pk_body_imprint_body.html>PK_BODY_imprint_body</A><br>
+    <A HREF=../headers/pk_body_imprint_curve.html>PK_BODY_imprint_curve</A><br>
+    <A HREF=../headers/pk_body_imprint_curves_normal.html>PK_BODY_imprint_curves_normal</A><br>
+    <A HREF=../headers/pk_body_imprint_curves_vector.html>PK_BODY_imprint_curves_vector</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_normal.html>PK_BODY_imprint_cus_normal</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_shadow.html>PK_BODY_imprint_cus_shadow</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_vec.html>PK_BODY_imprint_cus_vec</A><br>
+    <A HREF=../headers/pk_body_imprint_cus_vector.html>PK_BODY_imprint_cus_vector</A><br>
+    <A HREF=../headers/pk_body_imprint_faces.html>PK_BODY_imprint_faces</A><br>
+    <A HREF=../headers/pk_body_imprint_faces_2.html>PK_BODY_imprint_faces_2</A><br>
+    <A HREF=../headers/pk_body_imprint_plane.html>PK_BODY_imprint_plane</A><br>
+    <A HREF=../headers/pk_body_imprint_plane_2.html>PK_BODY_imprint_plane_2</A><br>
+    <A HREF=../headers/pk_body_intersect_bodies.html>PK_BODY_intersect_bodies</A><br>
+    <A HREF=../headers/pk_body_is_cellular.html>PK_BODY_is_cellular</A><br>
+    <A HREF=../headers/pk_body_knit.html>PK_BODY_knit</A><br>
+    <A HREF=../headers/pk_body_knit_pattern_t.html>PK_BODY_knit_pattern_t</A><br>
+    <A HREF=../headers/pk_body_make_compound.html>PK_BODY_make_compound</A><br>
+    <A HREF=../headers/pk_body_make_curves_outline.html>PK_BODY_make_curves_outline</A><br>
+    <A HREF=../headers/pk_body_make_facet_body.html>PK_BODY_make_facet_body</A><br>
+    <A HREF=../headers/pk_body_make_lofted_body.html>PK_BODY_make_lofted_body</A><br>
+    <A HREF=../headers/pk_body_make_lofted_body_o_t.html>PK_BODY_make_lofted_body_o_t</A><br>
+    <A HREF=../headers/pk_body_make_manifold_bodies.html>PK_BODY_make_manifold_bodies</A><br>
+    <A HREF=../headers/pk_body_make_patterned.html>PK_BODY_make_patterned</A><br>
+    <A HREF=../headers/pk_body_make_patterned_r_t.html>PK_BODY_make_patterned_r_t</A><br>
+    <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A><br>
+    <A HREF=../headers/pk_body_make_persp_outline_o_t.html>PK_BODY_make_persp_outline_o_t</A><br>
+    <A HREF=../headers/pk_body_make_section.html>PK_BODY_make_section</A><br>
+    <A HREF=../headers/pk_body_make_section_r_t.html>PK_BODY_make_section_r_t</A><br>
+    <A HREF=../headers/pk_body_make_section_with_surfs.html>PK_BODY_make_section_with_surfs</A><br>
+    <A HREF=../headers/pk_body_make_spun_outline.html>PK_BODY_make_spun_outline</A><br>
+    <A HREF=../headers/pk_body_make_swept_body.html>PK_BODY_make_swept_body</A><br>
+    <A HREF=../headers/pk_body_make_swept_body_2.html>PK_BODY_make_swept_body_2</A><br>
+    <A HREF=../headers/pk_body_make_swept_body_2_o_t.html>PK_BODY_make_swept_body_2_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_tool.html>PK_BODY_make_swept_tool</A><br>
+    <A HREF=../headers/pk_body_make_swept_tool_o_t.html>PK_BODY_make_swept_tool_o_t</A><br>
+    <A HREF=../headers/pk_body_offset.html>PK_BODY_offset</A><br>
+    <A HREF=../headers/pk_body_offset_2.html>PK_BODY_offset_2</A><br>
+    <A HREF=../headers/pk_body_offset_planar_wire.html>PK_BODY_offset_planar_wire</A><br>
+    <A HREF=../headers/pk_body_pick_topols_o_t.html>PK_BODY_pick_topols_o_t</A><br>
+    <A HREF=../headers/pk_body_remove_from_parents.html>PK_BODY_remove_from_parents</A><br>
+    <A HREF=../headers/pk_body_repair_shells.html>PK_BODY_repair_shells</A><br>
+    <A HREF=../headers/pk_body_reverse_orientation.html>PK_BODY_reverse_orientation</A><br>
+    <A HREF=../headers/pk_body_section_with_sheet.html>PK_BODY_section_with_sheet</A><br>
+    <A HREF=../headers/pk_body_section_with_sheet_2.html>PK_BODY_section_with_sheet_2</A><br>
+    <A HREF=../headers/pk_body_section_with_surf.html>PK_BODY_section_with_surf</A><br>
+    <A HREF=../headers/pk_body_set_curve_nmnl_state.html>PK_BODY_set_curve_nmnl_state</A><br>
+    <A HREF=../headers/pk_body_set_type.html>PK_BODY_set_type</A><br>
+    <A HREF=../headers/pk_body_sew_bodies.html>PK_BODY_sew_bodies</A><br>
+    <A HREF=../headers/pk_body_share_geom.html>PK_BODY_share_geom</A><br>
+    <A HREF=../headers/pk_body_simplify_geom.html>PK_BODY_simplify_geom</A><br>
+    <A HREF=../headers/pk_body_spin.html>PK_BODY_spin</A><br>
+    <A HREF=../headers/pk_body_subtract_bodies.html>PK_BODY_subtract_bodies</A><br>
+    <A HREF=../headers/pk_body_sweep.html>PK_BODY_sweep</A><br>
+    <A HREF=../headers/pk_body_sweep_tool_r_t.html>PK_BODY_sweep_tool_r_t</A><br>
+    <A HREF=../headers/pk_body_taper.html>PK_BODY_taper</A><br>
+    <A HREF=../headers/pk_body_thicken.html>PK_BODY_thicken</A><br>
+    <A HREF=../headers/pk_body_thicken_2.html>PK_BODY_thicken_2</A><br>
+    <A HREF=../headers/pk_body_thicken_3.html>PK_BODY_thicken_3</A><br>
+    <A HREF=../headers/pk_body_tracked_loft_r_t.html>PK_BODY_tracked_loft_r_t</A><br>
+    <A HREF=../headers/pk_body_tracked_sweep_2_r_t.html>PK_BODY_tracked_sweep_2_r_t</A><br>
+    <A HREF=../headers/pk_body_tracked_sweep_r_t.html>PK_BODY_tracked_sweep_r_t</A><br>
+    <A HREF=../headers/pk_body_transform.html>PK_BODY_transform</A><br>
+    <A HREF=../headers/pk_body_transform_2.html>PK_BODY_transform_2</A><br>
+    <A HREF=../headers/pk_body_trim.html>PK_BODY_trim</A><br>
+    <A HREF=../headers/pk_body_trim_gap_analysis.html>PK_BODY_trim_gap_analysis</A><br>
+    <A HREF=../headers/pk_body_trim_neutral_sheets.html>PK_BODY_trim_neutral_sheets</A><br>
+    <A HREF=../headers/pk_body_trim_neutral_sheets_2.html>PK_BODY_trim_neutral_sheets_2</A><br>
+    <A HREF=../headers/pk_body_unite_bodies.html>PK_BODY_unite_bodies</A><br>
+    <A HREF=../headers/pk_body_vertex_match_t.html>PK_BODY_vertex_match_t</A><br>
+    <A HREF=../headers/pk_boolean_r_t.html>PK_boolean_r_t</A><br>
+    <A HREF=../headers/pk_cone_make_solid_body.html>PK_CONE_make_solid_body</A><br>
+    <A HREF=../headers/pk_curve_make_wire_body.html>PK_CURVE_make_wire_body</A><br>
+    <A HREF=../headers/pk_curve_make_wire_body_2.html>PK_CURVE_make_wire_body_2</A><br>
+    <A HREF=../headers/pk_cyl_make_solid_body.html>PK_CYL_make_solid_body</A><br>
+    <A HREF=../headers/pk_debug_body_compare.html>PK_DEBUG_BODY_compare</A><br>
+    <A HREF=../headers/pk_debug_body_extract_data.html>PK_DEBUG_BODY_extract_data</A><br>
+    <A HREF=../headers/pk_detail_def_hole_t.html>PK_detail_def_hole_t</A><br>
+    <A HREF=../headers/pk_edge_ask_body.html>PK_EDGE_ask_body</A><br>
+    <A HREF=../headers/pk_edge_make_wire_body.html>PK_EDGE_make_wire_body</A><br>
+    <A HREF=../headers/pk_edge_remove_to_bodies.html>PK_EDGE_remove_to_bodies</A><br>
+    <A HREF=../headers/pk_emboss_sidewall_data_t.html>PK_emboss_sidewall_data_t</A><br>
+    <A HREF=../headers/pk_face_ask_body.html>PK_FACE_ask_body</A><br>
+    <A HREF=../headers/pk_face_boolean.html>PK_FACE_boolean</A><br>
+    <A HREF=../headers/pk_face_change_taper_o_t.html>PK_FACE_change_taper_o_t</A><br>
+    <A HREF=../headers/pk_face_delete.html>PK_FACE_delete</A><br>
+    <A HREF=../headers/pk_face_delete_facesets.html>PK_FACE_delete_facesets</A><br>
+    <A HREF=../headers/pk_face_delete_from_sheet.html>PK_FACE_delete_from_sheet</A><br>
+    <A HREF=../headers/pk_face_emboss.html>PK_FACE_emboss</A><br>
+    <A HREF=../headers/pk_face_instance_bodies.html>PK_FACE_instance_bodies</A><br>
+    <A HREF=../headers/pk_face_make_3_face_blend.html>PK_FACE_make_3_face_blend</A><br>
+    <A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A><br>
+    <A HREF=../headers/pk_face_make_neutral_sheet.html>PK_FACE_make_neutral_sheet</A><br>
+    <A HREF=../headers/pk_face_make_sect_with_sfs_r_t.html>PK_FACE_make_sect_with_sfs_r_t</A><br>
+    <A HREF=../headers/pk_face_make_sheet_bodies.html>PK_FACE_make_sheet_bodies</A><br>
+    <A HREF=../headers/pk_face_make_sheet_body.html>PK_FACE_make_sheet_body</A><br>
+    <A HREF=../headers/pk_face_make_solid_bodies.html>PK_FACE_make_solid_bodies</A><br>
+    <A HREF=../headers/pk_face_remove_to_solid_bodies.html>PK_FACE_remove_to_solid_bodies</A><br>
+    <A HREF=../headers/pk_face_replace_with_sheet.html>PK_FACE_replace_with_sheet</A><br>
+    <A HREF=../headers/pk_face_set_pair_t.html>PK_FACE_set_pair_t</A><br>
+    <A HREF=../headers/pk_face_taper_o_t.html>PK_FACE_taper_o_t</A><br>
+    <A HREF=../headers/pk_fin_ask_body.html>PK_FIN_ask_body</A><br>
+    <A HREF=../headers/pk_frame_ask_body.html>PK_FRAME_ask_body</A><br>
+    <A HREF=../headers/pk_lattice_make_bodies_r_t.html>PK_LATTICE_make_bodies_r_t</A><br>
+    <A HREF=../headers/pk_loop_ask_body.html>PK_LOOP_ask_body</A><br>
+    <A HREF=../headers/pk_mesh_make_bodies.html>PK_MESH_make_bodies</A><br>
+    <A HREF=../headers/pk_partition_ask_bodies.html>PK_PARTITION_ask_bodies</A><br>
+    <A HREF=../headers/pk_point_make_minimum_body.html>PK_POINT_make_minimum_body</A><br>
+    <A HREF=../headers/pk_region_ask_body.html>PK_REGION_ask_body</A><br>
+    <A HREF=../headers/pk_region_combine_bodies.html>PK_REGION_combine_bodies</A><br>
+    <A HREF=../headers/pk_section_2_r_t.html>PK_section_2_r_t</A><br>
+    <A HREF=../headers/pk_shell_ask_body.html>PK_SHELL_ask_body</A><br>
+    <A HREF=../headers/pk_sphere_make_solid_body.html>PK_SPHERE_make_solid_body</A><br>
+    <A HREF=../headers/pk_surf_make_sheet_body.html>PK_SURF_make_sheet_body</A><br>
+    <A HREF=../headers/pk_surf_make_sheet_trimmed.html>PK_SURF_make_sheet_trimmed</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_2_o_t.html>PK_TOPOL_facet_mesh_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_mesh_o_t.html>PK_TOPOL_facet_mesh_o_t</A><br>
+    <A HREF=../headers/pk_topol_make_general_body.html>PK_TOPOL_make_general_body</A><br>
+    <A HREF=../headers/pk_topol_remove_body_component.html>PK_TOPOL_remove_body_component</A><br>
+    <A HREF=../headers/pk_topol_render_line_o_t.html>PK_TOPOL_render_line_o_t</A><br>
+    <A HREF=../headers/pk_topol_render_volume_o_t.html>PK_TOPOL_render_volume_o_t</A><br>
+    <A HREF=../headers/pk_torus_make_solid_body.html>PK_TORUS_make_solid_body</A><br>
+    <A HREF=../headers/pk_vertex_ask_body.html>PK_VERTEX_ask_body</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A body is a type of part (PK_CLASS_body is a subclass of PK_CLASS_part).
+
+See <A HREF="../chapters/fd_chap.015.html#50409796_pgfId-294771">Body</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

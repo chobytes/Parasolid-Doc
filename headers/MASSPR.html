@@ -1,0 +1,202 @@
+<HTML>
+<HEAD>
+<TITLE>MASSPR</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>MASSPR</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_topol_eval_mass_props.html>PK_TOPOL_eval_mass_props</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+MASSPR ( entity, nopts, iopts, accrcy, periph, amount, mass, cofg, inert, 
+==========================================================================
+         ifail )
+         =======
+
+  Mass and related property calculation
+
+Receives:
+  KI_tag_list_entity       *entity         --- entity or list of entities
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in 'iopts'
+  KI_cod_maop               iopts[ nopts ] --- mass property request options
+  double                   *accrcy         --- accuracy parameter, 0.0 - 1.0
+
+Returns:
+  KI_tag_list_dbl          *periph         --- size of periphery of entity
+  KI_tag_list_dbl          *amount         --- size of entity
+  KI_tag_list_dbl          *mass           --- mass
+  KI_tag_list_dbl          *cofg           --- centre of gravity
+  KI_tag_list_dbl          *inert          --- inertia tensor at cofg
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_different_types        Bodies must all be either wire, sheet or solid
+                            Entities in list not all of the same type
+  KI_mass_eq_0              Bodies have zero total mass
+  KI_density_le_0           A body has zero or negative density
+  KI_missing_geom           A topological entity lacks geometry
+  KI_request_not_supported  Unimplemented mass property requested
+  KI_empty_assy             No bodies referenced by list of assemblies
+  KI_general_body           general body
+  KI_wrong_entity_in_list   Entity of wrong type in list
+  KI_contradictory_request  Contradictory or unknown request made
+  KI_bad_accuracy           Accuracy out of range
+
+Description:
+  This routine calculates the following geometric properties of certain
+  topological entities:
+
+    Type       "Periphery"      "Amount"       "Mass"   "Cofg, inertia"
+    ========================================================================
+    Edge        -                Length         -        Cofg, Inertia
+    Face        Circumference    Area           -        Cofg, Inertia
+    Wire body   -                Length         Mass     Cofg, Inertia
+    Sheet Body  Circumference    Surface Area   Mass     Cofg, Inertia
+    Solid Body  Surface area     Volume         Mass     Cofg, Inertia
+    Face/sheet)
+    considered) Surface area     Volume          -       Cofg, Inertia
+    as Solid  )
+    Assembly    Total periphery  Total amount   Mass     As for components
+
+  No other types are acceptable.  If a list of entities is given they must all
+  be of the same type, and the results are totals, except for the centre of
+  gravity and inertia, which refer to the collection of entities.  For an
+  assembly or list of assemblies, the results take account of all body
+  occurrences in the assemblies or sub-assemblies; these occurrences must all be
+  the same body type.
+
+  Results given as '-' are returned as NULTAG.
+
+  The mass is the product of the amount and the density; any bodies with no
+  density attribute will be regarded as having density 1.0.  Areas are always
+  treated as unsigned.  The amount, mass, centre of gravity, and inertia of
+  bodies and assemblies will take account of any void shells.
+
+  For bodies or assemblies, 'inert' is the inertia tensor at the centre of
+  gravity ( with respect to the X, Y, Z axis directions ).
+
+  Information found:
+    There are four possible requests which control how mass properties are
+    calculated - these are given in a list of integers, with the number in the
+    list supplied as another argument. The requests control the level of mass
+    properties calculated, whether periphery data is given, what style the
+    errors are presented in and whether the received entities are considered
+    separately or as part of a single entity.
+
+    The main mass properties form a hierarchy in that the mass is needed to find
+    the centre of gravity, and the centre of gravity is needed to find the
+    inertia.  One request code controls the level to which calculations are
+    done.  If no request for this option is given, the default is MAOPIN.
+
+        Request code         Interpretation
+        ========================================================
+
+        MAOPNA            No data in this hierarchy to be is found
+        MAOPAM            Finds the amount and mass of the entities only
+        MAOPCG            Finds the centre of gravity as well
+        MAOPIN            Finds the moment of inertia as well
+
+    The periphery data is controlled separately by another request, which needs
+    only two settings.  The default is MAOPPE.
+
+        Request code         Interpretation
+        ========================================================
+
+        MAOPNP            No periphery data calculated
+        MAOPPE            Calculates the periphery of the entities
+
+  Accuracy of calculation:
+    If the calculation requested only involves simple geometries, an accurate
+    method of integration is used, and the parameter 'accrcy' is ignored.  In
+    complex cases 'accrcy' is used to determine the accuracy of the calculation:
+    it must be in the range 0.0 to 1.0, and as it approaches 1.0, the
+    calculation will be more accurate but slower.  The dependence of errors on
+    'accrcy' is not linear, and values below 0.9 will give only coarse
+    approximations.  A great deal of calculation may be required to satisfy an
+    'accrcy' of 1.0, and in general convergence cannot be guaranteed.  Supplying
+    an accuracy parameter of 1.0 for parts involving B-surfaces is not
+    recommended.
+
+  Error estimates:
+    Mass properties can be requested to calculate error estimates for the values
+    found.  For each returned list, the initial entries give the calculated
+    value, and subsequent entries give the associated errors.  There is the
+    option of having no errors output, of having a single quantity to add or
+    subtract from the answer value, or having intervals specifying the ranges of
+    the errors.  For the centre of gravity, the latter two would correspond to a
+    sphere centred on the answer vector and a box containing it.  The default is
+    to have MAOPNE.
+
+        Request code         Interpretation
+        ========================================================
+
+        MAOPNE            No errors are given
+        MAOPEM            Modulus +/- to give error range
+        MAOPEI            An interval bracketing the value is given
+
+    This table gives the number of doubles returned for each mass property,
+    first for the value and then for the error option.
+
+                          Value  No Error  Error modulus  Error interval
+      ======================================================================
+
+      Periphery             1       0            1            2
+      Amount                1       0            1            2
+      Mass                  1       0            1            2
+      Centre of Gravity     3       0            1            6
+      Moment of Inertia     9       0            1            18
+
+    The moment of inertia returned using the 'MAOPEM' option consists of 9
+    doubles representing the inertia and 1 double giving the error modulus.
+    Using the 'MAOPEI' option, the data returned consists of 9 doubles
+    representing the inertia followed by 9 doubles for the lower limits and
+    then 9 doubles giving the upper limits of inertia.
+
+  Considering received entities as a single entity:
+    It is possible to supply a list of faces or a list of sheet bodies
+    and have them considered as forming the boundary of a single solid.
+
+        Request code           Interpretation
+      =====================================================================
+        MAOPCS                 supplied list of faces/sheets will be
+                               considered as the boundary of a single solid
+
+    Under this option the mass will not be returned, as there is currently
+    no way of unambiguously specifiying a density for the calculation.
+    The Moment of Inertia will be returned, but will be calculated without
+    reference to any density attributes attached to the supplied entities,
+    effectively assuming a density of one for the solid of which they form the
+    boundary.
+
+    No checking is done that the faces or sheets provided do form a valid
+    solid boundary. If they do not, the the returned results are likely to
+    be meaningless.
+
+  Entities are faces or edges:
+    A list of faces without the MAOPCS option or a list of edges will be
+    treated as a sheet or wire body respectively. Again the density is not
+    specified, so the Moment of Inertia will be calculated with an assumed
+    density of one.
+
+  This function does not support general bodies or assemblies which
+  contain a general body.
+
+
+</PRE>
+</BODY>
+</HTML>

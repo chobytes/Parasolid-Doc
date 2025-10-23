@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ENTITY_track_record_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ENTITY_track_record_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_ENTITY_track_record_r_s
+    {
+    <A HREF=../headers/pk_entity_track_t.html>PK_ENTITY_track_t</A>          track;
+    int                        n_original_entities;
+    int                       *original_entities;
+    <A HREF=../headers/pk_class_t.html>PK_CLASS_t</A>                *original_classes;
+    int                        n_product_entities;
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>               *product_entities;
+    };
+typedef struct PK_ENTITY_track_record_r_s PK_ENTITY_track_record_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>This data structure encapsulates the association between entities before
+and after the modelling operation.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_entity_track_r_t.html>PK_ENTITY_track_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'track'</B>               This value of this field indicates what type of tracking
+                      information the record represents. Permitted values
+                      are :
+
+                        PK_ENTITY_track_delete_c
+                        PK_ENTITY_track_merge_c
+                        PK_ENTITY_track_create_c
+                        PK_ENTITY_track_split_c
+                        PK_ENTITY_track_derive_c
+
+
+
+<B>'n_original_entities'</B> The length of the <B>'original_entities'</B> and
+                      <B>'original_classes'</B> arrays.
+
+
+<B>'original_entities'</B>   The participating entities in the modelling operation.
+                      The class of the entity is held in the corresponding
+                      element of <B>'original_classes'</B> array.
+
+
+<B>'original_classes'</B>    The class of each participating entity within the
+                      <B>'original_entities'</B> array.
+
+
+<B>'n_product_entities'</B>  The length of the <B>'product_entities'</B> array.
+
+
+<B>'product_entities'</B>    The entities resulting from the modelling operation.
+
+
+The Contents of the Structure
+
+The expectations on the contents of the structure for each track type :
+
+
+PK_ENTITY_track_delete_c
+
+ o <B>'original_entities'</B> contains some or all of the deleted entities.
+
+ o The class of the deleted entities can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o <B>'product_entities'</B> will be empty.
+
+
+PK_ENTITY_track_merge_c
+
+ o <B>'original_entities'</B> contains the list of entities merged.
+
+ o The class of the merged entities can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o <B>'product_entities'</B> holds the list of surviving entities.
+
+
+PK_ENTITY_track_create_c
+
+ o <B>'original_entities'</B> holds the list of entities copied, or the entity
+   from which the existence of the products was inferred.
+
+ o The class of the original entities can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o <B>'product_entities'</B> holds the newly created entities.
+
+
+PK_ENTITY_track_split_c
+
+ o <B>'original_entities'</B> holds the list of entities that were split.
+
+ o The class of the original entities can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o <B>'product_entities'</B> holds the list of entities resulting from the
+   splitting operation.
+
+
+PK_ENTITY_track_derive_c
+
+ o <B>'original_entities'</B> holds the list of entities from which resulted in the
+   product entities, including the original entities from which any portion
+   was created and any unaltered original entities with which that was merged.
+
+ o The class of the original entities can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o <B>'product_entities'</B> holds the list of entities created by combination of
+   merging and splitting.
+
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

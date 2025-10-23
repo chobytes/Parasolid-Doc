@@ -1,0 +1,541 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_fix_blends_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_fix_blends_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_fix_blends_o_s
+    {
+    int                    o_t_version;    --- version number of option
+                                           --- structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           local_check;    --- whether to perform local
+                                           --- checking ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           vx_twin;        --- return vertex tag for vertex
+                                           --- blend ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_blend_local_check_t.html>PK_blend_local_check_t</A> checks;         --- which local checks to perform
+    <A HREF=../headers/pk_blend_setback_data_t.html>PK_blend_setback_data_t</A>
+                           setback_data;   --- data defining any setbacks [NF]
+    <A HREF=../headers/pk_blend_transfer_topol_t.html>PK_blend_transfer_topol_t</A>
+                           transfer;       --- whether to move topology to
+                                           --- blend
+                                           --- (<A HREF=../headers/pk_blend_transfer_topol_t.html>PK_blend_transfer_topol_no_c</A>)
+                                           --- [NF]
+    <A HREF=../headers/pk_blend_fix_propagate_t.html>PK_blend_fix_propagate_t</A>
+                           propagate;      --- whether to propagate
+                                           --- blend edges [PF]
+    <A HREF=../headers/pk_blend_vx_blend_data_t.html>PK_blend_vx_blend_data_t</A>
+                           vx_blend_data;  --- data defining any vertex
+                                           --- blends [NF]
+    <A HREF=../headers/pk_blend_y_blend_data_t.html>PK_blend_y_blend_data_t</A>
+                           y_blend_data;   --- data defining any y-shaped
+                                           --- vertex blends [NF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           preserve_notch; --- retain notch shape
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_blend_edge_update_t.html>PK_blend_edge_update_t</A> update;         --- update flag
+                                           --- (<A HREF=../headers/pk_blend_edge_update_t.html>PK_blend_edge_update_default_c</A>)
+                                           --- [NF]
+    double                 tolerance;      --- maximum allowed tolerance for
+                                           --- blend
+                                           --- (1.0e-05)
+    <A HREF=../headers/pk_blend_set_tol_t.html>PK_blend_set_tol_t</A>     set_tol;        --- controls when a tolerance is
+                                           --- applied to the blend
+                                           --- (<A HREF=../headers/pk_blend_set_tol_t.html>PK_blend_set_tol_yes_c</A>)
+    <A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_t</A> repair_su_X;    --- whether to attempt to repair
+                                           --- self-intersecting surfaces
+                                           --- (<A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_no_c</A>)
+    <A HREF=../headers/pk_blend_output_sheet_t.html>PK_blend_output_sheet_t</A>
+                           output_sheet;   --- whether to create a blend
+                                           --- sheet body
+                                           --- (<A HREF=../headers/pk_blend_output_sheet_t.html>PK_blend_output_sheet_no_c</A>)
+    <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_t</A>
+                           inside_tight;   --- whether to blend on the inside
+                                           --- of tightly curved faces
+                                           --- (<A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_blends_c</A>)
+    <A HREF=../headers/pk_blend_vx_order_data_t.html>PK_blend_vx_order_data_t</A>
+                           vx_order_data;  --- order to apply blends at
+                                           --- vertices with edges of
+                                           --- different convexity [NF]
+    <A HREF=../headers/pk_blend_setback_shape_data_t.html>PK_blend_setback_shape_data_t</A>
+                           setback_shape_data;
+                                           --- whether to add collar
+                                           --- faces to setback vertex
+                                           --- patches
+                                           --- (PK_blend_setback_collar_all_c,
+                                           --- 0, NULL, NULL) [PF]
+    <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_t</A>    ov_smooth;     --- allow smooth overlap between
+                                           --- non-adjacent blends
+                                           --- (<A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_no_c</A>) [NF]
+    <A HREF=../headers/pk_blend_ov_notch_t.html>PK_blend_ov_notch_t</A>     ov_notch;      --- allow notch overlap between
+                                           --- non-adjacent blends
+                                           --- (<A HREF=../headers/pk_blend_ov_notch_t.html>PK_blend_ov_notch_yes_c</A>) [PF]
+    <A HREF=../headers/pk_blend_order_t.html>PK_blend_order_t</A>        ov_order;      --- order to apply non-adjacent
+                                           --- blends that overlap each other
+                                           ---(<A HREF=../headers/pk_blend_order_t.html>PK_blend_order_convex_concave_c</A>)
+                                           --- [NF]
+    <A HREF=../headers/pk_blend_repair_fa_x_t.html>PK_blend_repair_fa_X_t</A>  repair_fa_X;   --- whether to attempt to repair
+                                           --- self-intersecting faces
+                                           --- (<A HREF=../headers/pk_blend_repair_fa_x_t.html>PK_blend_repair_fa_X_no_c</A>) [NF]
+    int                     n_explicit_cliff_edges;
+                                           --- number of explicit cliffs
+                                           --- defined ( 0 ) [NF]
+    <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>              *explicit_cliff_edges;
+                                           --- list of edges with explicitly
+                                           --- defined cliffing behaviour.
+                                           --- ( NULL ) [NF]
+    <A HREF=../headers/pk_blend_ov_exp_cliff_t.html>PK_blend_ov_exp_cliff_t</A>
+                           *explicit_cliff_edges_type;
+                                           --- explicitly defined cliffing
+                                           --- behaviour of the corresponding
+                                           --- edges in explicit_cliff_edges.
+                                           --- ( NULL ) [NF]
+    <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A>          partition;     --- a partition
+                                           --- ( PK_PARTITION_null )
+    <A HREF=../headers/pk_blend_cap_data_t.html>PK_blend_cap_data_t</A>     cap_data;      --- controls how a blend will be
+                                           --- capped [NF]
+    <A HREF=../headers/pk_blend_tolerance_t.html>PK_blend_tolerance_t</A>    improve_tolerance;
+                                           --- controls the tolerance setting
+                                           --- of new edges
+                                           --- (<A HREF=../headers/pk_blend_tolerance_t.html>PK_blend_tolerance_standard_c</A>)
+    <A HREF=../headers/pk_blend_track_type_t.html>PK_blend_track_type_t</A>   tracking_type; --- controls the type of tracking
+                                           --- data returned associated with
+                                           --- the topology and geometry that
+                                           --- has generated the blend faces
+                                           --- (<A HREF=../headers/pk_blend_track_type_t.html>PK_blend_track_type_basic_c</A>)
+    <A HREF=../headers/pk_blend_laminar_trim_t.html>PK_blend_laminar_trim_t</A> laminar_trim;  --- controls how the blend will be
+                                           --- trimmed when the end of the
+                                           --- blend meets a laminar edge of a
+                                           --- sheet body.
+                                           --- (<A HREF=../headers/pk_blend_laminar_trim_t.html>PK_blend_laminar_trim_edges_c</A>)
+                                           --- [NF]
+    <A HREF=../headers/pk_blend_limit_data_t.html>PK_blend_limit_data_t</A>    limit_data;   --- data defining any limits [PF]
+    <A HREF=../headers/pk_topol_array_t.html>PK_TOPOL_array_t</A>         limit_topols; --- limit faces/fins [NF]
+    <A HREF=../headers/pk_blend_limit_patch_t.html>PK_blend_limit_patch_t</A>  *limit_topols_patch;
+                                           --- controls whether to try
+                                           --- patching the blend beyond
+                                           --- the supplied limit topols [NF]
+    const <A HREF=../headers/pk_topol_array_t.html>PK_TOPOL_array_t</A>  *limit_topols_unders;
+                                           --- controls whether the supplied
+                                           --- limit topols should only limit
+                                           --- blends that are between the
+                                           --- specified underlying topologies
+                                           --- [NF]
+    <A HREF=../headers/pk_blend_suggest_limit_t.html>PK_blend_suggest_limit_t</A> suggest_limit;--- controls whether or not
+                                           --- suggested limit data is returned
+                                           --- after edge blend failure
+                                           --- (<A HREF=../headers/pk_blend_suggest_limit_t.html>PK_blend_suggest_limit_no_c</A>)
+    <A HREF=../headers/pk_blend_report_repaired_t.html>PK_blend_report_repaired_t</A>
+                             report;       --- whether to report any repaired
+                                           --- blend faces in the Parasolid
+                                           --- report stream containing a
+                                           --- record of type
+                                           --- <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_1_c</A>.
+                                           --- (<A HREF=../headers/pk_blend_report_repaired_t.html>PK_blend_report_repaired_no_c</A>)
+    <A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_t</A>     extension_shape;
+                                           --- Dictates the type of extension
+                                           --- to use on underlying surfaces of
+                                           --- faces. Note that only linear and
+                                           --- soft extensions are valid for
+                                           --- this option.
+                                           --- (<A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_linear_c</A>)
+    <A HREF=../headers/pk_blend_report_extended_t.html>PK_blend_report_extended_t</A>
+                             report_extended;
+                                           --- whether to report any chamfer
+                                           --- faces that are extended
+                                           --- outside of their natural width
+                                           --- in the Parasolid report stream.
+                                           --- (<A HREF=../headers/pk_blend_report_extended_t.html>PK_blend_report_extended_no_c</A>)
+
+    };
+
+typedef struct PK_BODY_fix_blends_o_s PK_BODY_fix_blends_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for fixing blends on a body.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure defines options applicable to fixing blends on a body.
+
+Description of fields:
+
+<B>'local_check'</B>       The <B>'local_check'</B> flag and the <B>'checks'</B> data structure are
+<B>'checks'</B>            used to control the amount of checking during the blending
+                    operation:
+
+                    If <B>'local_check'</B> is set to PK_LOGICAL_true, then
+                    <B>'checks'</B> will be ignored, and the level of local checking
+                    will be:
+
+                        No surface self-intersection checks will be performed
+                        Face checks will be performed
+                        Face-face inconsistency checks will be performed.
+
+                    If <B>'local_check'</B> is set to PK_LOGICAL_false, then the
+                    amount of local checking will be determined by <B>'checks'</B>.
+
+                    If the <B>'local_check'</B> flag is set to PK_LOGICAL_false and
+                    a self-intersecting surface or a face-face inconsistency
+                    is detected during a local check specified by the
+                    application, then <B>'fault'</B> returned by <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A>
+                    will be set accordingly, <B>'fault_edge'</B> will be set to
+                    PK_ENTITY_null and <B>'fault_topol'</B> will be set to one of the
+                    invalid faces. The blend will have been attached.
+
+                    The faces of all self-intersecting surfaces requested for
+                    detection are returned in a report of type
+                    <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_blend_faces_sx_c</A>.
+
+
+<B>'vx_twin'</B>           The option <B>'vx_twin'</B> is used to request that the
+                    integer in <B>'topols'</B> returned by <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A> be the
+                    (dead) tag of the appropriate
+                    vertex for those blend faces which are generated
+                    from vertices rather than the (dead) tag of an edge.
+                    (default is PK_LOGICAL_false). See
+                    <A HREF="../chapters/fd_chap.077.html#50409864_pgfId-296338">Tag of originating vertex</A> for more information.
+
+<B>'setback_data'</B>
+<B>'setback_shape_data'</B>
+                    The options <B>'setback_data'</B> and <B>'setback_shape_data'</B> are
+                    used to control the shape of the blend where three or
+                    more blends meet at a vertex. If any blends to be fixed
+                    have a cross-section shape of <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A>
+                    then setback blends are not allowed. If any blends to be
+                    fixed have a <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A>
+                    or <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>, setback blends are not allowed.
+
+<B>'transfer'</B>          The option <B>'transfer'</B> is used to select whether any
+                    topology in the region which has been completely overlapped
+                    by the blend will be transferred into the blend faces or
+                    whether it will be deleted. See
+                    <A HREF="../chapters/fd_chap.077.html#50409864_pgfId-296369">Preserving overlapped topology</A> for more
+                    information.
+
+<B>'propagate'</B>         The option <B>'propagate'</B> controls the amount of propagation
+                    that can be performed during the blend fixing operation.
+                    Note that propagation must be turned off for facet
+                    geometry.
+
+<B>'vx_blend_data'</B>     The option <B>'vx_blend_data'</B> is used to define the shape of
+                    the blend where blending past sharp edges of opposite
+                    convexity to the blend. If any blends to be fixed have a
+                    cross-section shape of <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_g2_c</A> or
+                    <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A>, vertex blending is not
+                    allowed: the structure's <B>'vertex_blend'</B> field must be
+                    PK_LOGICAL_false. If any blends to be fixed have a
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> or
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>, vertex blending is not allowed: the
+                    structure's <B>'vertex_blend'</B> field must be PK_LOGICAL_false.
+
+<B>'y_blend_data'</B>      The option <B>'y_blend_data'</B> is used to define the shape of
+                    the blend where two blends on adjacent edge of opposite
+                    convexity meet. If the blend to be fixed has a non-
+                    circular cross-section shape (e.g. G2), y blends are not
+                    allowed: the structure's <B>'y_blend'</B> field must be
+                    PK_LOGICAL_false.
+                    If any blends to be fixed have a <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> or <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>, y blends
+                    are not allowed: the structure's <B>'y_blend'</B> field must be
+                    PK_LOGICAL_false.
+
+<B>'preserve_notch'</B>    The option <B>'preserve_notch'</B> only has an effect when a
+                    sheet body is being blended. If it is set to
+                    PK_LOGICAL_false, <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A> will make
+                    a simple curve within the blend surface to bridge a laminar
+                    notch. If this option is set to PK_LOGICAL_true, the shape
+                    of the notch is projected normally onto the blend surface
+                    to bridge the notch gap. If a solid body is being blended
+                    this option has no effect and is ignored.
+                    See <A HREF="../chapters/fd_chap.077.html#50409864_pgfId-296585">Preserving notch shape</A> for more information.
+
+<B>'update'</B>            The default value allows applications to take advantage of
+                    the latest enhancements to the blending algorithm. To
+                    maintain consistency when rebuilding models created in a
+                    previous version of Parasolid, a non-default value should
+                    be specified.
+                    See <A HREF="../chapters/fd_chap.077.html#50409864_pgfId-300038">Update control</A> for more information.
+
+<B>'tolerance'</B>         The options <B>'set_tol'</B> and <B>'tolerance'</B> control whether a
+<B>'set_tol'</B>           tolerance may be applied to the blend.
+                    <B>'set_tol'</B> must be set to <A HREF=../headers/pk_blend_set_tol_t.html>PK_blend_set_tol_no_c</A> for facet
+                    geometry.
+
+<B>'repair_su_X'</B>       The option <B>'repair_su_X'</B> controls whether or not Parasolid
+                    will attempt to repair blend surfaces that are
+                    self-intersecting. It only has an effect on conic rolling
+                    ball blends. Parasolid will create suitable faces to patch
+                    the self-intersecting regions. This option will only
+                    attempt to repair blends that are self-intersecting due to
+                    an underlying surface of the blend being too tightly
+                    curved to support the blend if the <B>'inside_tight'</B> option
+                    is set to <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_faces_c</A> or
+                    <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_partial_c</A>.
+
+                    If 'repair_su_X' is set to any value other than
+                    '<A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_x_no_c</A>', then the faces of all
+                    self-intersecting surfaces that could not be repaired are
+                    returned in a report of type <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_blend_faces_sx_c</A>.
+
+                    If any blends to be fixed have a <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> or <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>,
+                    <B>'repair_su_X'</B> must be set to <A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_no_c</A>.
+
+                    See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-311603">Repairing self-intersecting blends</A> for more
+                    information.
+
+<B>'output_sheet'</B>      The option <B>'output_sheet'</B> controls whether the blend
+                    should be attached or created as a separate sheet body.
+                    If the <B>'output_sheet'</B> option is set to
+                    <A HREF=../headers/pk_blend_output_sheet_t.html>PK_blend_output_sheet_on_fail_c</A>, the blend sheet body
+                    (possibly disjoint) produced may not remain consistent over
+                    different builds of Parasolid. Future improvements to
+                    blending functionality may result in failing blends
+                    succeeding. Thus, application updates should not depend
+                    upon a blend failing and producing a blend sheet body.
+
+<B>'inside_tight'</B>      The option <B>'inside_tight'</B> controls whether blends will be
+                    created on the inside of faces that have a smaller radius
+                    of curvature than the blend. Switching this option on also
+                    enables cliff-edge overflows on the inside of cliff-edges
+                    that are more tightly curved than the blend radius. This
+                    option will only apply to blends set by using
+                    <A HREF=../headers/pk_edge_set_blend_constant.html>PK_EDGE_set_blend_constant</A>, or conic blends set via
+                    <A HREF=../headers/pk_edge_set_blend_chain.html>PK_EDGE_set_blend_chain</A>. The values
+                    <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_faces_c</A> or
+                    <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_partial_c</A> may only be supplied if the
+                    <B>'repair_su_X'</B> option is set to <A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_yes_c</A>
+                    or <A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_report_c</A>.  In the latter case any
+                    blend faces created on too tightly curved faces will be
+                    returned as repaired.  The value
+                    <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_no_c</A> is not currently implemented for
+                    <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A> and should not be supplied.
+                    See <A HREF="../chapters/fd_chap.077.html#50409864_pgfId-297504">Creating blends inside tight corners</A> for
+                    more information.
+
+<B>'vx_order_data'</B>     The option <B>'vx_order_data'</B> controls the order in which
+                    blends are applied at vertices with edges of different
+                    convexity. If any blends to be fixed have a <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A>
+                    set to <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> or <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>,
+                    <B>'n_vertices'</B> must be set to 0.
+
+<B>'ov_smooth'</B>         The options <B>'ov_smooth'</B>, <B>'ov_notch'</B> and <B>'ov_order'</B> control
+<B>'ov_notch'</B>          the result returned when two blends on edges that do not
+<B>'ov_order'</B>          share a common vertex overlap with each other. The
+                    combination <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_yes_c</A> and
+                    <A HREF=../headers/pk_blend_ov_notch_t.html>PK_blend_ov_notch_yes_c</A> is not currently implemented and
+                    should not be supplied. The option <B>'ov_order'</B> must be set
+                    to either <A HREF=../headers/pk_blend_order_t.html>PK_blend_order_concave_convex_c</A> or
+                    <A HREF=../headers/pk_blend_order_t.html>PK_blend_order_convex_concave_c</A>. If any blends to be fixed
+                    have a cross-section shape of <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A>,
+                    or any blends have a <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> or <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>, then
+                    <B>'ov_smooth'</B> must be set to <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_no_c</A>.
+                    Note that <A HREF=../headers/pk_blend_ov_notch_t.html>PK_blend_ov_notch_yes_c</A> is not implemented for
+                    blends on facet geometry.
+
+<B>'repair_fa_X'</B>       The option <B>'repair_fa_X'</B> controls whether or not Parasolid
+                    will attempt to repair blend faces that are
+                    self-intersecting.
+
+<B>'explicit_cliff_edges'</B>
+<B>'explicit_cliff_edges_type'</B>
+                    The options <B>'explicit_cliff_edges'</B> and
+                    <B>'explicit_cliff_edges_type'</B> are used together to
+                    explicitly define cliffing behaviour upon the edges
+                    contained in the list of edges <B>'explicit_cliff_edges'</B>.
+                    For every element in <B>'explicit_cliff_edges'</B> there should
+                    be a corresponding element in the list
+                    <B>'explicit_cliff_edges_type'</B>. The elements of
+                    <B>'explicit_cliff_edges_type'</B> are of type
+                    <A HREF=../headers/pk_blend_ov_exp_cliff_t.html>PK_blend_ov_exp_cliff_t</A> and can take the value
+                    <A HREF=../headers/pk_blend_ov_exp_cliff_t.html>PK_blend_ov_exp_cliff_no_c</A> or <A HREF=../headers/pk_blend_ov_exp_cliff_t.html>PK_blend_ov_exp_cliff_yes_c</A>.
+                    <A HREF=../headers/pk_blend_ov_exp_cliff_t.html>PK_blend_ov_exp_cliff_no_c</A> specifies that regardless of
+                    all other options cliffing should not occur upon the
+                    associated edge. <A HREF=../headers/pk_blend_ov_exp_cliff_t.html>PK_blend_ov_exp_cliff_yes_c</A> specifies that
+                    cliffing should occur upon the edge overriding the
+                    behaviour specified by other options. If any blends to be
+                    fixed have a cross-section shape of
+                    <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A>, then explicit cliffs must not
+                    be supplied. If any blends to be fixed have a
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> or
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>, then explicit cliffs must not be
+                    supplied.
+
+<B>'partition'</B>         An optional user-supplied partition may be supplied in
+                    <B>'partition'</B>. If a partition is supplied and the blend
+                    options specify the blend result is to be returned as
+                    sheets, rather than attached to the body being blended,
+                    then those resultant sheets will be placed within this
+                    user-supplied partition. Default behaviour assumes no
+                    partition supplied ( PK_PARTITION_null ) and any resultant
+                    sheets are placed in the partition associated with the
+                    body being blended.
+
+<B>'cap_data'</B>          Specifies user-defined controls for how the blend should
+                    be capped. See the documentation for <A HREF=../headers/pk_blend_cap_data_t.html>PK_blend_cap_data_t</A>
+                    for more information. If any blends to be fixed have a
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> or
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>, <B>'n_caps'</B> must be zero.
+
+<B>'improve_tolerance'</B> The option <B>'improve_tolerance'</B> controls some changes to
+                    the blending algorithm which help to reduce the tolerance
+                    on newly created topology. If this option is set to
+                    <A HREF=../headers/pk_blend_tolerance_t.html>PK_blend_tolerance_standard_c</A> (the default) these
+                    changes are disabled.
+
+<B>'tracking_type'</B>     Determines the tracking information that is returned
+                    regarding the underlying topologies and geometries used
+                    to create a blend. See <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A> for details.
+
+                    This option can only be set to
+                    <A HREF=../headers/pk_blend_track_type_t.html>PK_blend_track_type_unders_c</A> if the option <B>'vx_twin'</B>
+                    is set to PK_LOGICAL_true. If <B>'vx_twin'</B> is not set
+                    appropriately PK_ERROR_bad_combination will be returned.
+
+
+<B>'laminar_trim'</B>      This option allows the user to control the trimming
+                    behaviour of a blend created on a laminar edge of a
+                    sheet body. The user can choose between trimming the blend
+                    so that it is continuous with both underlying surfaces,
+                    or trimming it along a continuous parameter line so that it
+                    joins up continuously with the longer underlying surface
+                    only.
+
+<B>'limit_data'</B>        The option <B>'limit_data'</B> provides a means of constraining
+                    the blend by applying limits. If any blends to be fixed
+                    have a <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> or
+                    <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>, <B>'n_limits'</B> must be zero.
+
+<B>'limit_topols'</B>      An array of faces and/or fins which will be used to stop
+                    the blend. If the blend encounters a face or fin from this
+                    array, it will stop and be trimmed to end in a
+                    constant parameter line at that point. If any blends to be
+                    fixed have a <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A> set to <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A>
+                    or <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A>, <B>'length'</B> must be zero.
+
+<B>'limit_topols_patch'</B>
+                    If supplied, this should be an array of the same length
+                    as <B>'limit_topols'</B>. Each element in this array specifies
+                    whether to try patching the blend beyond the corresponding
+                    limit topology specified in the <B>'limit_topols'</B> array.
+
+<B>'limit_topols_unders'</B>
+                    If supplied, this should be an array of the same length
+                    as <B>'limit_topols'</B>. Each element in this array is an array
+                    of topologies which specifies whether the corresponding
+                    limit topology should only limit blends that are blends
+                    between the specified underlying topologies.
+
+                    Each topology array in the <B>'limit_topols_unders'</B> should be
+                    either of length zero or length two. If the array is of
+                    length two then the array should contain a pair of faces;
+                    the limit topology will only limit blends that are between
+                    that pair of underlying faces. If the array is of length
+                    zero then the corresponding limit topology will limit all
+                    blend faces that meet the limit topology.
+
+                    Underlying topologies may only be supplied for limit
+                    topologies of class PK_CLASS_fin; if the limit topology is
+                    not of class PK_CLASS_fin then the corresponding entry in
+                    <B>'limit_topols_unders'</B> should be an array of length zero.
+
+                    If <B>'limit_topols_unders'</B> is not supplied then the blend
+                    will stop at any entry in <B>'limit_topols'</B> that the blend
+                    meets.
+
+<B>'suggest_limit'</B>     This option allows the user to control whether they wish
+                    the suggested limit data to be returned as a report should
+                    an edge blend failure occur. Future improvements to
+                    blending functionality may result in failing blends
+                    succeeding. Thus, application updates should not depend
+                    upon a blend failing and returning a certain set of
+                    suggested limits. This option will not return limits
+                    on facet geometry.
+
+<B>'report'</B>            Whether to report any repaired blend faces in the
+                    Parasolid report stream. Any records will be of type
+                    <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_1_c</A> and will have a status of
+                    <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_rep_sx_faces_c</A> or <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_rep_G2_faces_c</A>.
+                    In the first case the report will list those blend faces
+                    created by repairing self-intersections.
+                    In the second, the blend_faces reported are those from
+                    G2 blends which have been modified to preserve continuity
+                    when crossing G2-discontinuous edges.
+                    ( <A HREF=../headers/pk_blend_report_repaired_t.html>PK_blend_report_repaired_no_c</A> )
+
+<B>'extension_shape'</B>   This option controls how underlying classic surfaces of
+                    faces and classic curves of certain edges are extended for
+                    G2 blends. If the surfaces/curves are extended linearly,
+                    then blends built on the extension may have a C1
+                    discontinuity on the boundary. Setting this option to
+                    <A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_soft_c</A> avoids this, but may require
+                    surfaces of faces to be extended as a result. Any edges
+                    given as cliff edges that bound one of these faces may
+                    also need their curves softly extended.
+
+                    The surfaces/curves whose soft extension are used to
+                    construct the blend and whether they have been
+                    permanently extended, will be reported in a
+                    <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_geom_extended_c</A> report. Any surfaces/curves
+                    that could not be extended or already contain
+                    discontinuities will also be reported in a
+                    <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_blend_x_g1_c</A> report.
+
+                    All edge blends set on the body must have a cross section
+                    shape of either <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_g2_c</A> or non-circular
+                    conic when the option is set to <A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_soft_c</A>,
+                    otherwise the error PK_ERROR_bad_combination will be
+                    raised.
+                    ( <A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_linear_c</A> )
+
+<B>'report_extended'</B>   Whether to report any chamfer faces that are
+                    extended outside of their natural width in the
+                    Parasolid report stream. Any records will be of type
+                    <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> and will have a status of
+                    <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_chamfer_extended_c</A>.
+                    ( <A HREF=../headers/pk_blend_report_extended_t.html>PK_blend_report_extended_no_c</A> )
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

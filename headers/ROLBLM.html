@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE>ROLBLM</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ROLBLM</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_mark_goto.html>PK_MARK_goto</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ROLBLM ( ifail )
+================
+
+  Rolls back changes since the last roll-mark
+
+Returns:
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_no_rollmark            no previous roll-mark exists
+  KI_roll_is_off            logging for roll-back is disabled
+
+Description:
+  Restores tag memory, modelling parameters, interface parameters, and
+  the bulletin board to the state they were in immediately after the
+  most recent call to ROLSMK or ROLBFN.
+
+  Note that the ROLBLM call may affect validity of tags; tags referring to
+  entities created since the last roll-mark will cease to be valid, whilst
+  those referring to entities deleted will become valid. The modeller will
+  always trap invalid tags, giving error KI_not_a_tag. Note, however, that
+  entities restored by a get-snapshot operation may have the same tags as
+  entities which existed prior to the GETSNP call.
+
+  ROLBLM cannot be used to roll back from one roll-mark to the previous one;
+  this can only be done by use of ROLBFN. If ROLBLM is called repeatedly,
+  only the first call will have any affect.
+
+  It is not possible to roll forward to the state of the model immediately
+  prior to the ROLBLM call; if you want the option of rolling forward,
+  you should instead call ROLSMK to set a mark, and then ROLBFN to roll back
+  to the previous mark.
+
+  If the call to ROLBLM follows a roll-back by use of ROLBFN, you will then
+  have the option of doing a roll-forward to undo the effect of the earlier
+  ROLBFN call. This feature allows you to test two alternative modelling
+  operations as follows:
+
+      Set a roll-mark, then try the first operation.
+
+      Set a roll-mark, roll back using ROLBFN, then try the second operation.
+
+      Decide which operation to keep.
+
+      If you want the second operation, simply set a further roll-mark
+      which will invalidate the roll-mark representing the first operation.
+
+      If you want the first operation, call ROLBLM to undo the second
+      operation, then call ROLBFN to roll forward to the result of the
+      first operation.
+
+
+</PRE>
+</BODY>
+</HTML>

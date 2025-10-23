@@ -1,0 +1,99 @@
+<HTML>
+<HEAD>
+<TITLE>CLPTFA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CLPTFA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_geom_range_array_vector.html>PK_GEOM_range_array_vector</A><BR>
+<A HREF=../headers/pk_geom_range_vector.html>PK_GEOM_range_vector</A><BR>
+<A HREF=../headers/pk_topol_range_array_vector.html>PK_TOPOL_range_array_vector</A><BR>
+<A HREF=../headers/pk_topol_range_vector.html>PK_TOPOL_range_vector</A><BR>
+<A HREF=../headers/pk_geom_range_local_vector.html>PK_GEOM_range_local_vector</A><BR>
+<A HREF=../headers/pk_topol_range_local_vector.html>PK_TOPOL_range_local_vector</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CLPTFA ( point, face, nopts, iopts, optdta, fpoint, params, topol, ortho, 
+==========================================================================
+         ifail )
+         =======
+
+  Finds closest point on a face to a given point.
+
+Receives:
+  KI_vec_position           point          --- point
+  KI_tag_face              *face           --- face
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options
+  KI_cod_clop               iopts[nopts]   --- estimation options
+  KI_tag_list               optdta[nopts]  --- option data
+
+Returns:
+  KI_vec_position           fpoint         --- Point on face
+  KI_dbl_parameter          params[2]      --- surface parameters at 'point'
+ &lt;KI_tag_entity&gt;           *topol          --- topology at closest point
+  KI_cod_logical           *ortho          --- indicates whether soln orthogonal
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_parameter          parameter out of range
+  KI_closest_approach_failed failed to find closest approach
+  KI_bad_option_data        bad option data
+  KI_missing_geom           Supplied face has no associated surface
+
+Description:
+  Returns the point 'fpoint' on the face 'face' which is closest to the point
+  'point'. If the closest point lies on the boundary of the face the
+  corresponding edge or vertex is returned in 'topol', otherwise
+  for a solution inside the boundary of the face NULTAG is returned.
+
+  If the entity returned in 'topol' has a tolerance associated with it, the
+  solution 'fpoint' will only be accurate and unique to the tolerance of that
+  entity.
+
+  If logical code 'ortho' equals KI_true, either the points 'point' and 'fpoint'
+  are coincident or the vector between them is orthogonal to the face. In other
+  words, when 'ortho' = KI_true the point enquired from ('point') can be
+  obtained by offsetting from the solution point ('fpoint') along the surface
+  normal (in the +/- direction). 'ortho' = KI_false should only be expected if
+  the solution lies on an edge or vertex.
+  This function cannot always be guaranteed to find an appropriate point
+  on the face, it will perform best if the supplied point is relatively close
+  to the face. A solution will only be returned if it is unique.
+
+  The chance of success is greatly increased if an estimate of the
+  closest point on the face is supplied. Estimates may be supplied as a
+  point known to be close to the solution, or by giving the parameters
+  of such a point specified in the parameter space of the surface. The
+  form of the surface parametrisations are given in the documentation for
+  ENSUPA. In general optimal performance is obtained if both a point and
+  its parameters are supplied.
+  Estimate types are supplied in the array 'iopts' and the corresponding
+  estimate is supplied in 'optdta'. The permissable entries in these arrays
+  are:
+
+     'iopts'    | 'optdta'  |  description
+       entry    |   entry   |
+    ____________|______________________________________________________
+      CLOPPT    | list of 3 | Specify coordinates of point close to
+                |  doubles  | solution.
+      CLOPPR    | list of 2 | Specify parameters corresponding to a
+                |  doubles  | point close to the solution.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>ADVXED</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ADVXED</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_imprint_point.html>PK_EDGE_imprint_point</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ADVXED ( edge, point, newvrx, newedg, ifail )
+=============================================
+
+  Adds a new vertex to a given edge.
+
+Receives:
+  KI_tag_edge              *edge           --- edge to which vertex is added
+  KI_vec_position           point          --- position vector for new vertex
+
+Returns:
+  KI_tag_vertex            *newvrx         --- new vertex added
+ &lt;KI_tag_edge&gt;             *newedg         --- new edge added
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_missing_geom           Edge not geometrically specified
+  KI_not_on_edge            point not on edge curve
+  KI_coincident             point coincident with existing vertex
+  KI_unsuitable_entity      Mixed body
+
+Description:
+  The routine adds a new vertex to a given edge, with vertex geometry to
+  suit the supplied vector.
+  Adding a vertex to a ring edge, e.g. a complete circular edge,
+  will not split the edge into two, whereas other remaining cases will.
+  Tags of the new vertex, and where appropriate the new edge, will
+  be returned from the routine.
+
+  The routine will not allow the user to add a vertex to the edge
+  where a vertex already exists, and will ensure that the new vertex
+  lies within edge tolerance of the supplied edge.
+
+</PRE>
+</BODY>
+</HTML>

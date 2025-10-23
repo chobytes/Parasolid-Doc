@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SURF_self_int_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SURF_self_int_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SURF_self_int_s
+    {
+    <A HREF=../headers/pk_self_int_type_t.html>PK_self_int_type_t</A> type;
+    int                n_positions;
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>       *positions;
+    int                n_uvboxes;
+    <A HREF=../headers/pk_uvbox_t.html>PK_UVBOX_t</A>        *uvboxes;
+    int                n_entities;
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>       *entities;
+    };
+
+typedef struct PK_SURF_self_int_s PK_SURF_self_int_t;
+
+</B>
+<A NAME="description"></A>
+<I>A structure packaging information about a self-intersection on a surface.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_surf_self_ints_t.html>PK_SURF_self_ints_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Each structure contains information on a single physical region in three-space
+where the surface is self-intersecting. Each physical region consists of one or
+more parametric regions.
+
+The structure has the following fields :
+
+<B>'type'</B>              Indicates the type of self-intersection.
+
+<B>'n_positions'</B>       Indicates the number of positions returned. Currently this
+                    will always equal 1.
+
+<B>'positions'</B>         An array of length <B>'n_positions'</B> containing positions in
+                    three-space where the surface is self-intersecting. Note
+                    that these may not be the only positions in the physical
+                    region where the surface is self-intersecting. Currently
+                    only one position will be returned.
+
+<B>'n_uvboxes'</B>         Indicates the number of parametric regions returned.
+
+<B>'uvboxes'</B>           An array of length <B>'n_uvboxes'</B>. This will contain two or
+                    more parametric regions bounding where the surface is self-
+                    intersecting, unless <B>'type'</B> is <A HREF=../headers/pk_self_int_type_t.html>PK_self_int_type_sing_c</A>, in
+                    which case there will be only one parametric region.
+
+<B>'n_entities'</B>        Unused.
+
+<B>'entities'</B>          Unused.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

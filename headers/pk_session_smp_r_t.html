@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SESSION_smp_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SESSION_smp_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SESSION_smp_r_s
+    {
+    <A HREF=../headers/pk_thread_t.html>PK_thread_t</A>         thread_format;
+    int                 n_threads;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        on_single_processor;
+    int                 n_processors;
+    };
+typedef struct PK_SESSION_smp_r_s PK_SESSION_smp_r_t;
+</B>
+<A NAME="description"></A>
+<I>This results structure is returned by <A HREF=../headers/pk_session_ask_smp.html>PK_SESSION_ask_smp</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_smp.html>PK_SESSION_ask_smp</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'thread_format'</B>         In conjunction with the <B>'n_threads'</B> field,
+                        determines the number of threads that will
+                        be invoked. Permitted values are
+
+                            <A HREF=../headers/pk_thread_t.html>PK_thread_disabled_c</A>
+                            <A HREF=../headers/pk_thread_t.html>PK_thread_per_processor_c</A>
+                            <A HREF=../headers/pk_thread_t.html>PK_thread_absolute_c</A>
+
+
+<B>'n_threads'</B>             The number of threads to be invoked for
+                        symmetric multi-processing (SMP). The effect
+                        of this value is dependent on the value of
+                        the <B>'thread_format'</B> field.
+                        This field may only be set to zero if the
+                        <B>'thread_format'</B> field is set to the value,
+                        <B>'<A HREF=../headers/pk_thread_t.html>PK_thread_disabled_c</A>'</B>.
+
+
+<B>'on_single_processor'</B>   PK_LOGICAL_true if SMP is to be enabled on
+                        single processor platforms.
+
+
+<B>'n_processors'</B>          The number of processors detected as on-line
+                        and available for use. On platforms without SMP
+                        support, this is always 1.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

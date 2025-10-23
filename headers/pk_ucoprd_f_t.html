@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_UCOPRD_f_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_UCOPRD_f_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int  (*PK_UCOPRD_f_t)
+(
+<I>--- received arguments ---
+</I>const int          guise,
+const int          format,
+const <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A>   name[],
+const <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> skiphd,
+<I>--- returned arguments ---
+</I>int *strid
+);
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_fru_o_t.html>PK_SESSION_ask_fru_o_t</A><br>
+    <A HREF=../headers/pk_session_frustrum_t.html>PK_SESSION_frustrum_t</A><br>
+    <A HREF=../headers/pk_session_register_fru_o_t.html>PK_SESSION_register_fru_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+  Open various guises of part file for reading
+
+Receives:
+  int                       guise          --- class of file:
+                                           ---  FFCSNP,FFCXMT
+                                           ---  FFCXMP,FFCXMD
+                                           ---  snapshot,C-transmit,
+                                           ---  partition,delta
+  int                       format         --- format code:
+                                           ---  FFBNRY,FFTEXT (binary or text)
+  <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A>                name[]         --- key which identifies file
+                                           ---  (null-terminated Unicode)
+  <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              skiphd         --- action required on opening file
+                                           --- PK_LOGICAL_true:
+                                           ---  skip header (the usual case) or
+                                           --- PK_LOGICAL_false:
+                                           ---  leave header (used by Frustrum
+                                           ---                acceptance tests)
+
+Returns:
+  int                      *strid          --- id for stream on which
+                                           --- file is open
+Return codes:               FR_no_errors
+                            FR_bad_name
+                            FR_not_found
+                            FR_bad_header
+                            FR_open_fail
+
+
+Description:
+  This function opens various guises of existing part files for
+  reading, i.e. C transmit, partition and deltas, and snapshot
+  files, using a Unicode key.
+
+  If the <B>'skiphd'</B> flag is set to PK_LOGICAL_true, the header data is
+  skipped when the file is opened. This is the mode which is used by
+  Parasolid.
+
+  If the <B>'skiphd'</B> flag is set to PK_LOGICAL_false, the header data is not
+  skipped when the file is opened; the preamble, the parts data and the
+  trailer are read by subsequent calls to FFREAD. This mode is only used
+  by the TESTFR to validate what has been written by a particular
+  implementation.
+
+  The routine returns a frustrum stream identifier or <B>'strid'</B>.
+  This is used in subsequent calls to FFREAD and FFCLOS.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

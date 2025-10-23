@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_spline_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_spline_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_BCURVE_spline_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_create_spline.html>PK_BCURVE_create_spline</A><br>
+    <A HREF=../headers/pk_bcurve_spline_r_t.html>PK_BCURVE_spline_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype is used to return the status of a B-curve splining operation.
+
+It has the values:
+
+    PK_BCURVE_spline_ok_c           Successfully created the spline.
+
+    PK_BCURVE_spline_failure_c      Failed to create the spline.
+
+    PK_BCURVE_spline_degree_c       The degree is negative or too low for
+                                    the derivative conditions imposed.
+
+    PK_BCURVE_spline_bad_derivs_c   An invalid derivative has been supplied.
+                                    The indices of the bad derivatives in
+                                    the <B>'derivs'</B> array are returned in
+                                    <B>'fault_values'</B>.
+
+    PK_BCURVE_spline_many_derivs_c  Too many derivatives of a given order.
+                                    The order of the overabundant derivatives
+                                    is returned in <B>'fault_values'</B>.
+
+    PK_BCURVE_spline_bad_params_c   A parameter value in <B>'parameters'</B> lies
+                                    outside the <B>'param_interval'</B> or the
+                                    <B>'parameters'</B> are not monotonically
+                                    increasing with respect to the order
+                                    of the corresponding positions. For
+                                    periodic curves, this error is also given
+                                    if the start and end of the
+                                    <B>'param_interval'</B> are both supplied as
+                                    parameters. The index of the incorrect
+                                    value in <B>'parameters'</B> is returned in
+                                    <B>'fault_values'</B>.
+
+    PK_BCURVE_spline_bad_knots_c    The knot values are inconsistent with
+                                    the parameter range in <B>'param_interval'</B>
+                                    or are not monotonically increasing.
+
+    PK_BCURVE_spline_high_mult_c    The knot multiplicity is too high for
+                                    the given <B>'degree'</B>.  The index of the
+                                    incorrect knot in <B>'knots'</B> is returned
+                                    in <B>'fault_values'</B>.
+
+    PK_BCURVE_spline_overdefined_c  The position, parameter and derivative
+                                    conditions (locally) overdefine a spline
+                                    of the given knotset.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.015.html#50409796_pgfId-296175", " necessarily modeled to Parasolid tolerance) is represented by an <B>SP-curve</B> attached to each fin. The only geometry that may", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295169", " Sometimes, it is not possible to compute a single <B>SP-curve</B> from the original curve and the relevant face surface.", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295407", " Whether to remove that part of the <B>SP-curve</B> geometry on tolerant edges that lies outside the bounds", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295415", " and PK_FACE_close_gaps transform the underlying B-curve of the shared <B>SP-curve</B> such that the loop is closed in parameter space,", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-501942", " <B>SP-curve</B> ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-501396", " 17.2.11 <B>SP-curve</B> ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-501447", " <B>SP-curve</B>. PK_SPCURVE_create uses the standard form to create an", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-500769", " uv parameter gives the corresponding 3-space position on the <B>SP-curve</B>. See Section 92.1.5, Concept of SP-curves , for", "Functional Description - Geometry");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-302906", " normally represented by SP-curves. The basis surface for the <B>SP-curve</B> is the supplied surface on which isocline curves are", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295403", " This could happen as a result of invalid <B>SP-curve</B> data, or more likely an unsuitable tolerance value on", "Functional Description - Checking");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-362515", " is not possible and conversion to a b-curve or <B>SP-curve</B> is necessary. Also used where conversion to a b-curve", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-294817", " Note: This section discusses creating <B>SP-curve</B> data using PK_SPCURVE_create . PK_CURVE_embed_in_surf_2 performs a similar function", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-294826", " 91.3.1 <B>SP-curve</B> data ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-294831", " To create an <B>SP-curve</B> from surface and uv-space B-spline data call PK_SPCURVE_create .", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-354799", " Figure 91-2 <B>SP-curve</B> in 3-space ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-354803", " The <B>SP-curve</B> in ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-355071", " Figure 91-3 <B>SP-curve</B> is G1 in 3-space, but not in uv-space ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295322", " Figure 91-4 <B>SP-curve</B> with small hook ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295326", "Figure 91-5 shows an <B>SP-curve</B> with a high curvature S-bend in the middle of", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295520", " Figure 91-5 <B>SP-curve</B> with high curvature S-bend in the middle ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295608", " which does not incorporate a zero length (in 3-space) <B>SP-curve</B> representing the degeneracy. Therefore the user can legitimately supply", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295638", " No <B>SP-curve</B> should have a length less than twice the supplied", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295674", " later. This situation can be resolved by supplying one <B>SP-curve</B> per intended edge in order to tell Parasolid where", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295697", " In the latter case, Parasolid creates an <B>SP-curve</B> based on the supplied curve, and then can attach", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308635", " space are represented by a curve entity called an <B>SP-curve</B> (surface parameter (space) curve). SP-curves are defined with respect", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308636", " There are various surface and <B>SP-curve</B> options in use with the outputting of a trimmed", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308671", " 92.1.2 <B>SP-curve</B> options ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308682", " specifying a tolerance which the <B>SP-curve</B> representations of the edges should satisfy (Default: 0.00001). ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-394042", " 92.1.4.1 Gaps in <B>SP-curve</B> loops ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310172", " the following factors can lead to occurrences when the <B>SP-curve</B> loops are not closed: ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310226", " An <B>SP-curve</B> therefore represents a 3-space curve as a curve in", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310229", " 92.1.6 Form of the <B>SP-curve</B> ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310233", " at the start or end of an <B>SP-curve</B>. An <B>SP-curve</B> may pass through a periodic parameter space boundary, but", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310234", " The <B>SP-curve</B> is parameterised according to the underlying knot vector. ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310235", " The <B>SP-curve</B> entity exists for: ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-343024", " the non-planar face (the default result), or on the <B>SP-curve</B> attached to the planar face (using ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-298671", " tolerant edge; this is associated with the fin whose <B>SP-curve</B> was used in the discretisation of the edge. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-426976", " the edge if it does not lie on the <B>SP-curve</B> of the fin which was used in the discretisation", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378693", " <B>SP-curve</B> extension ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378747", " <B>SP-curve</B> boxing ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378885", " <B>SP-curve</B> production in local operations ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275547", " 2 for a <B>SP-curve</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275836", " <B>SP-curve</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275873", " by PK_SURF_make_sheet_trimmed , from a surface and loops of <B>SP-curve</B> geometry. Specifically for imported data. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205243", " importing <B>SP-curve</B> 1345 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207413", " importing <B>SP-curve</B> data 1345 ", "Functional Description - ZGlossary");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " 21324 transformation of pattern failed, possibly failed to regenerate <B>SP-curve</B> ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " contains a low bound on the distance the received <B>SP-curve</B> will need to be moved in order for it", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_failed_to_create_sp 1063 PK_EDGE_repair <B>SP-curve</B> generator failed (SERIOUS)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_cant_make_valid_split 5201 PK_CURVE_fix_degens The <B>SP-curve</B> cannot be repaired by", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_cant_make_valid_split 5201 PK_CURVE_fix_degens The <B>SP-curve</B> cannot be repaired by", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_tolerances_too_tight 1064 PK_EDGE_repair <B>SP-curve</B> generator could not achieve", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " PK_CURVE_fix_degens 5201 PK_ERROR_cant_make_valid_split The <B>SP-curve</B> cannot be repaired by", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_SURF_make_sheet_trimmed 1063 PK_ERROR_failed_to_create_sp <B>SP-curve</B> generator failed for unknown", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_thicken.html#declaration", "double tolerance, --- tolerance for <B>SP-curve</B> conversion", "PK Reference - PK_BODY_thicken");
+top.note("headers/pk_curve_eval.html#documentation", " <B>SP-curve</B> 2", "PK Reference - PK_CURVE_eval");
+top.note("headers/pk_curve_fix_degens.html#errors", " PK_ERROR_cant_make_valid_split The <B>SP-curve</B> cannot be repaired by", "PK Reference - PK_CURVE_fix_degens");
+top.note("headers/pk_curve_fix_degens.html#documentation", "If curve is an <B>SP-curve</B> that crosses degeneracies on the underlying surface,", "PK Reference - PK_CURVE_fix_degens");
+top.note("headers/pk_curve_make_curve_reversed.html#documentation", " intersection curve or <B>sp-curve</B>) the returned curve will become construction", "PK Reference - PK_CURVE_make_curve_reversed");
+top.note("headers/pk_curve_make_spcurves.html#documentation", " Curve to be approximated by <B>SP-curve</B>(s)", "PK Reference - PK_CURVE_make_spcurves");
+top.note("headers/pk_curve_make_spcurves_2.html#description", " This function creates an <B>SP-curve</B> representation of a curve which lies,", "PK Reference - PK_CURVE_make_spcurves_2");
+top.note("headers/pk_curve_make_spcurves_2.html#documentation", "<B>SP-curve</B> or series of SP-curves, lying on surf .", "PK Reference - PK_CURVE_make_spcurves_2");
+top.note("headers/pk_curve_make_spcurves_o_t.html#documentation", " PK_make_spcurves_degen_join_c a zero length <B>SP-curve</B>", "PK Reference - PK_CURVE_make_spcurves_o_t");
+top.note("headers/pk_edge_repair.html#errors", " PK_ERROR_failed_to_create_sp <B>SP-curve</B> generator failed (SERIOUS)", "PK Reference - PK_EDGE_repair");
+top.note("headers/pk_edge_reset_precision.html#documentation", " with by either simplifying this <B>SP-curve</B> to its 3-space equivalent,", "PK Reference - PK_EDGE_reset_precision");
+top.note("headers/pk_edge_reset_precision_2.html#documentation", " sheet body, the <B>SP-curve</B> present on the relevant fin will be first", "PK Reference - PK_EDGE_reset_precision_2");
+top.note("headers/pk_edge_set_precision.html#errors", " PK_ERROR_failed_to_create_sp <B>SP-curve</B> generator failed for unknown", "PK Reference - PK_EDGE_set_precision");
+top.note("headers/pk_edge_set_precision.html#documentation", " It may not always be possible to compute one <B>SP-curve</B> from the", "PK Reference - PK_EDGE_set_precision");
+top.note("headers/pk_edge_set_precision_2.html#errors", " PK_ERROR_failed_to_create_sp <B>SP-curve</B> generator failed for unknown", "PK Reference - PK_EDGE_set_precision_2");
+top.note("headers/pk_edge_set_precision_2.html#documentation", " It may not always be possible to compute one <B>SP-curve</B> from the", "PK Reference - PK_EDGE_set_precision_2");
+top.note("headers/pk_edge_set_precision_o_t.html#documentation", " an <B>SP-Curve</B> which is c2 smooth in parameter space, then", "PK Reference - PK_EDGE_set_precision_o_t");
+top.note("headers/pk_embed_curve_t.html#documentation", " <B>SP-curve</B> needed to be moved in order for it to", "PK Reference - PK_embed_curve_t");
+top.note("headers/pk_face_close_gaps_o_t.html#declaration", " PK_LOOP_trim_geom_t trim_fin_geom; --- shorten the <B>SP-curve</B> geometry", "PK Reference - PK_FACE_close_gaps_o_t");
+top.note("headers/pk_face_close_gaps_o_t.html#documentation", " portion of the fins <B>SP-curve</B> that lies outside the", "PK Reference - PK_FACE_close_gaps_o_t");
+top.note("headers/pk_face_output_surf_trimmed.html#documentation", " Each component trimmed <B>SP-curve</B> of a trimming loop will", "PK Reference - PK_FACE_output_surf_trimmed");
+top.note("headers/pk_face_output_surf_trimmed_o_t.html#documentation", "The options are divided into Surface Options, <B>SP-curve</B> Options and Output", "PK Reference - PK_FACE_output_surf_trimmed_o_t");
+top.note("headers/pk_geom_delete_single.html#documentation", "If the geometric entity is an <B>SP-curve</B>, it and the underlying 2D B-curve will", "PK Reference - PK_GEOM_delete_single");
+top.note("headers/pk_loop_close_gaps_o_t.html#declaration", " PK_LOOP_trim_geom_t trim_fin_geom; --- shorten the <B>SP-curve</B> geometry", "PK Reference - PK_LOOP_close_gaps_o_t");
+top.note("headers/pk_loop_close_gaps_o_t.html#documentation", " portion of the fins <B>SP-curve</B> that lies outside the", "PK Reference - PK_LOOP_close_gaps_o_t");
+top.note("headers/pk_loop_trim_geom_t.html#documentation", "PK_LOOP_trim_geom_yes_c : Replace fin <B>SP-Curve</B> geometry with only that", "PK Reference - PK_LOOP_trim_geom_t");
+top.note("headers/pk_make_spcurves_degen_t.html#documentation", "SP-curves. This datatype is used to indicate whether a zero length <B>SP-curve</B>", "PK Reference - PK_make_spcurves_degen_t");
+top.note("headers/pk_mesh_make_surf_trimmed.html#documentation", " Where an <B>SP-curve</B> is to represent a 3-space curve", "PK Reference - PK_MESH_make_surf_trimmed");
+top.note("headers/pk_pattern_status_t.html#documentation", " failed to regenerate <B>SP-curve</B>", "PK Reference - PK_pattern_status_t");
+top.note("headers/pk_report_3_t.html#documentation", " array where double_array[0] is the distance the <B>SP-curve</B> needed to be", "PK Reference - PK_REPORT_3_t");
+top.note("headers/pk_surf_make_sheet_trimmed.html#errors", " PK_ERROR_failed_to_create_sp <B>SP-curve</B> generator failed for unknown", "PK Reference - PK_SURF_make_sheet_trimmed");
+top.note("headers/pk_surf_make_sheet_trimmed.html#documentation", " Each curve in spcurves may either itself be an <B>SP-curve</B> or it", "PK Reference - PK_SURF_make_sheet_trimmed");
+top.note("chapters/kd_chap.10.html#50475015_pgfId-273913", " <B>SP-curve</B> ", "KID Manual - Enquiries");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

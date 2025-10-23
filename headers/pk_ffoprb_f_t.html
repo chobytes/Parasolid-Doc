@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FFOPRB_f_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FFOPRB_f_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef void (*PK_FFOPRB_f_t)
+(
+<I>--- received arguments ---
+</I>const int *guise,
+const int *minsiz,
+const int *maxsiz,
+<I>--- returned arguments ---
+</I>int *actsiz,
+int *strid,
+int *ifail
+);
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_frustrum_t.html>PK_SESSION_frustrum_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+  Open rollback file. This function is documented for legacy
+  purposes only, and should not be implemented for new Parasolid applications.
+
+Receives:
+  int                      *guise          --- class of file: FFCROL (rollback)
+  int                      *minsiz         --- minimum size of file (bytes)
+  int                      *maxsiz         --- maximum size of file (bytes)
+
+Returns:
+  int                      *actsiz         --- actual size of file (bytes)
+  int                      *strid          --- frustrum strid
+  int                      *ifail          --- error code: FR_no_errors
+                                           ---             FR_open_fail
+                                           ---             FR_disc_full
+
+
+Description:
+  This function opens a new binary rollback file, returning a frustrum stream
+  identifier or <B>'strid'</B> for use by FFREAD, FFWRIT, FFTELL, FFSEEK and FFCLOS.
+  The file is allocated a length of between <B>'minsiz'</B> and <B>'maxsiz'</B> bytes, the
+  actual size being returned in <B>'actsiz'</B>. The actual size is normally
+  <B>'maxsiz'</B> bytes, but may be reduced, for example, to give a whole number of
+  disc blocks or if insufficient disc space is available.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

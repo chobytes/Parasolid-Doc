@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.052.html#50409836_pgfId-550057", " direction, using PK_BODY_imprint_cus_vec (imprint curves on a body) and <B>PK_FACE_imprint_cus_vec</B> (imprint curves on specified faces of a body). ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-294850", " PK_BODY_imprint_cus_vec and <B>PK_FACE_imprint_cus_vec</B> support a ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-295213", " PK_BODY_imprint_cus_vec and <B>PK_FACE_imprint_cus_vec</B> support a ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-295228", " When imprinting curves on faces using the local function <B>PK_FACE_imprint_cus_vec</B> , Parasolid provides additional control over the imprint operation", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-295240", " Imprint curves on the faces supplied to <B>PK_FACE_imprint_cus_vec</B> regardless of any other faces that may obscure the", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-295394", " projecting curves onto a face along a vector using <B>PK_FACE_imprint_cus_vec</B> or PK_BODY_imprint_cus_vec , one or more curves will appear", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-295417", " updating models built using Parasolid V22.1 or earlier ( <B>PK_FACE_imprint_cus_vec</B> ) or Parasolid V24.1 and earlier ( PK_BODY_imprint_cus_vec ),", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-295713", " The functions PK_BODY_imprint_cus_normal , PK_FACE_imprint_cus_normal , PK_BODY_imprint_cus_vec and <B>PK_FACE_imprint_cus_vec</B> allow you to specify whether an edge imprinted on", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-295738", " where those edges that are considered laminar edges by <B>PK_FACE_imprint_cus_vec</B> are not laminar edges for PK_BODY_imprint_cus_vec . ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-296262", " option for <B>PK_FACE_imprint_cus_vec</B> and PK_FACE_imprint_cus_normal ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-296274", " These options are available to both <B>PK_FACE_imprint_cus_vec</B> and PK_BODY_imprint_cus_vec : ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-296324", " functions - PK_BODY_imprint_cus_normal , PK_FACE_imprint_cus_normal , PK_BODY_imprint_cus_vec , and <B>PK_FACE_imprint_cus_vec</B> - can return detailed tracking information that relates the", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-296674", " tracking information is available by default in PK_BODY_imprint_cus_vec and <B>PK_FACE_imprint_cus_vec</B> . In PK_BODY_imprint_cus_normal and PK_FACE_imprint_cus_normal , it needs to", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_wrong_entity_in_array 357 <B>PK_FACE_imprint_cus_vec</B> targets not all from same body", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_cant_do_imprint 1018 <B>PK_FACE_imprint_cus_vec</B> Failed to perform imprint", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_cant_complete_imprint 5152 <B>PK_FACE_imprint_cus_vec</B> Failed to complete imprint", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_ambiguous_imprint 5160 <B>PK_FACE_imprint_cus_vec</B> Failed to complete because", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_cant_complete_imprint 5152 <B>PK_FACE_imprint_cus_vec</B> Failed to complete imprint", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_invalid_geometry 999 <B>PK_FACE_imprint_cus_vec</B> Invalid curve (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_unsuitable_entity 914 <B>PK_FACE_imprint_cus_vec</B> Unsuitable curve type for operation", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>PK_FACE_imprint_cus_vec</B> 5160 PK_ERROR_ambiguous_imprint Failed to complete because", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_curve_t.html#description", " <B>PK_FACE_imprint_cus_vec</B> ", "PK Reference - PK_CURVE_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_FACE_imprint_cus_vec</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_imprint_cus_vec.html#declaration", " PK_ERROR_code_t <B>PK_FACE_imprint_cus_vec</B>", "PK Reference - PK_FACE_imprint_cus_vec");
+top.note("headers/pk_face_imprint_cus_vec_o_t.html#description", " <B>PK_FACE_imprint_cus_vec</B> ", "PK Reference - PK_FACE_imprint_cus_vec_o_t");
+top.note("headers/pk_face_t.html#description", " <B>PK_FACE_imprint_cus_vec</B> ", "PK Reference - PK_FACE_t");
+top.note("headers/pk_interval_t.html#errors", " <B>PK_FACE_imprint_cus_vec</B> ", "PK Reference - PK_INTERVAL_t");
+top.note("headers/pk_topol_track_r_t.html#description", " <B>PK_FACE_imprint_cus_vec</B> ", "PK Reference - PK_TOPOL_track_r_t");
+top.note("headers/pk_vector_t.html#description", " <B>PK_FACE_imprint_cus_vec</B> ", "PK Reference - PK_VECTOR_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

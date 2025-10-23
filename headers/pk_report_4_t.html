@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_REPORT_4_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_REPORT_4_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_REPORT_4_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_report_record_4_t.html>PK_REPORT_record_4_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype indicates the status of a <A HREF=../headers/pk_report_record_4_t.html>PK_REPORT_record_4_t</A>.
+
+It has the values:
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_4_receive_meshes_c</A>     Information on the loading of mesh data.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_4_error_report_c</A>       Information on an error in Parasolid.
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_4_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_4_receive_meshes_c</A> contains the following information for a set of
+meshes (<A HREF=../headers/pk_mesh_t.html>PK_MESH_t</A>) for which an error is encountered upon the loading of
+associated mesh data:
+
+- Whenever possible, the keys of the meshes are returned. The different keys
+  are contained in the 2 arrays <B>'strings'</B> and <B>'ustrings'</B>. Keys of type char*
+  are contained in <B>'strings'</B> while keys of type <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A>* are contained in
+  <B>'ustrings'</B>.
+
+- An array of 4 <B>'int_arrays'</B> each of length equal to the number of meshes for
+  which mesh data failed to be loaded.
+
+    - The first array contains the mesh tags.
+
+    - The second array contains integers indicating the particular error
+      encountered for each mesh. The possible values correspond to values of
+      <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A>.
+
+    - The third array contains integers indicating whether the key of each mesh
+      is of type char*, of type <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A>* or if Parasolid was unable to
+      determine the key. The possible values correspond to values of
+      <A HREF=../headers/pk_string_type_t.html>PK_string_type_t</A>.
+
+    - The fourth array contains integers indicating where the key of each mesh
+      can be found. If Parasolid is unable to determine the key of a mesh, this
+      integer will be -1, otherwise these integers correspond to indices into
+      the <B>'strings'</B> or <B>'ustrings'</B> array depending on the type of the key.
+
+- An array <B>'strings'</B>, possibly of length zero, containing the keys of the
+  meshes.
+
+- An array <B>'ustrings'</B>, possibly of length zero, containing the unicode keys of
+  the meshes.
+
+- An array <B>'item_arrays'</B> containing 1 item array of type <A HREF=../headers/pk_item_array_t.html>PK_ITEM_array_t</A> of
+  length equal to the number of meshes for which mesh data failed to be loaded.
+  Each entry contains an entity to which the corresponding mesh is attached or,
+  in the case of an orphan mesh, the partition to which it belongs.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_4_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_4_error_report_c</A> contains the following information for a set of
+entities for which an error is encountered:
+
+- A single array in <B>'int_arrays'</B> containing the <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A>.
+
+- Additional arrays in <B>'item_arrays'</B> containing the entities responsible
+  for the error. In the case of a serious error, these entities may no longer
+  exist. A description of the form these arrays will take can be found in
+  the documentation of each affected function.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

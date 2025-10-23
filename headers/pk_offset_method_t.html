@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_offset_method_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_offset_method_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_offset_method_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_hollow_o_t.html>PK_BODY_hollow_o_t</A><br>
+    <A HREF=../headers/pk_body_offset_o_t.html>PK_BODY_offset_o_t</A><br>
+    <A HREF=../headers/pk_body_thicken_o_t.html>PK_BODY_thicken_o_t</A><br>
+    <A HREF=../headers/pk_face_change_offset_o_t.html>PK_FACE_change_offset_o_t</A><br>
+    <A HREF=../headers/pk_face_hollow_o_t.html>PK_FACE_hollow_o_t</A><br>
+    <A HREF=../headers/pk_face_offset_o_t.html>PK_FACE_offset_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+When the underlying surface is tightly curved with respect to the offset
+distance, the offset surface can contain self-intersections.
+
+If an offset surface is to be self-intersecting, it is divided along
+constant parameter lines into regions that contain self-intersections,
+and regions that don't. Good regions that don't contain self-intersections
+are offset from the corresponding divided underlying surface regions.
+
+This datatype specifies the different methods available for removing and
+healing regions that contain self-intersections.
+
+It has the following values:
+
+    PK_offset_method_sx_trim_c      Self-intersections are removed by
+                                    trimming only. Regions containing
+                                    self-intersections become holes.
+                                    The success of overall operation
+                                    relies on any holes left being healed
+                                    completely by extending and intersecting
+                                    neighbouring surfaces.
+
+    PK_offset_method_sx_repair_1_c  Self-intersections are removed using
+                                    the following procedures.
+
+                                    1. Clean Trimming: A region containing
+                                    self-intersections is simply discarded
+                                    if the area can be trimmed cleanly by
+                                    surrounding offset surface regions without
+                                    leaving a hole on the offset model.
+
+                                    2. B-surface Patching: Otherwise, the
+                                    region of surface area is replaced by
+                                    an approximate b-surface patch that
+                                    joins the neighbouring good regions
+                                    according to the given offset tolerance.
+
+                                    3. Hole Healing: Otherwise, the region
+                                    of self-intersection is trimmed to a
+                                    hole for healing in a way similar to
+                                    PK_offset_method_sx_trim_c.
+
+    PK_offset_method_sx_repair_2_c  Self-intersections are removed as by
+                                    PK_offset_method_sx_repair_1_c, but
+                                    with an extended B-surface Patching
+                                    procedure for regions at surface corners
+                                    or boundary sides.
+
+
+
+Values other than PK_offset_method_sx_trim_c offer more capabilities of
+removing and healing self-intersections of offset surfaces. They are also
+based on a superior method for detecting self-intersections. The value
+PK_offset_method_sx_trim_c should be avoided wherever possible. See
+<A HREF="../chapters/fd_chap.060.html#50409845_pgfId-294907">Removing self-intersections</A> for more information.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

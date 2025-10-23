@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.022.html#50409803_pgfId-411589", " <B>PK_BODY_pick_topols</B> ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-460845", " <B>PK_BODY_pick_topols</B> ", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-475207", " <B>PK_BODY_pick_topols</B> ", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.108.html#50409899_pgfId-294799", " The picking function <B>PK_BODY_pick_topols</B> can be used to simulate face, edge and vertex", "Functional Description - Display Tolerances");
+top.note("chapters/fd_chap.108.html#50409899_pgfId-294801", " <B>PK_BODY_pick_topols</B> should be supplied with ", "Functional Description - Display Tolerances");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-326790", " <B>PK_BODY_pick_topols</B> selects faces, edges or vertices (or combinations of these", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-325007", " types that you want <B>PK_BODY_pick_topols</B> to return. By default, <B>PK_BODY_pick_topols</B> returns only a single", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300657", " > 0), you can improve the performance of <B>PK_BODY_pick_topols</B> by setting the ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-419672", " set of picking topologies can improve the performance of <B>PK_BODY_pick_topols</B> . To use this functionality, the following options must", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-325229", " which entities in model space can be selected by <B>PK_BODY_pick_topols</B> : ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300706", " If you use this option, <B>PK_BODY_pick_topols</B> only picks entities near the ray that lie behind", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300710", " If you use this option, <B>PK_BODY_pick_topols</B> only picks entities near the ray that lie in", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300692", " Using these options can improve the performance of <B>PK_BODY_pick_topols</B> . ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-354451", " Figure 112-1 Restricting which entities can be selected by <B>PK_BODY_pick_topols</B> ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300761", " order in which edges and vertices are returned by <B>PK_BODY_pick_topols</B> . This option allows you to choose between the", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300849", " of ordering picked entities in the return structure of <B>PK_BODY_pick_topols</B> is known as ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301097", " This section discusses performance and reliability issues relating to <B>PK_BODY_pick_topols</B> . ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301140", " curves in a body to improve the performance of <B>PK_BODY_pick_topols</B> . ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301166", " approximate picking, intersection point and distance values returned by <B>PK_BODY_pick_topols</B> are approximate, and must not be used as arguments", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301183", " If necessary, you can force <B>PK_BODY_pick_topols</B> to use accurate geometry rather than an approximation by", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301184", " you are making a large number of calls to <B>PK_BODY_pick_topols</B> , you may be able to improve performance by", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301211", " in those faces, which can then be used by <B>PK_BODY_pick_topols</B> . ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301213", " <B>PK_BODY_pick_topols</B> , with pick_approx set to PK_pick_approximate_no_c ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301215", " to <B>PK_BODY_pick_topols</B> , ensure that accurate picking is used. <B>PK_BODY_pick_topols</B> uses the approximate edge representations you have already created.", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301219", " After the calls to <B>PK_BODY_pick_topols</B> , call this function with the same set of", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301274", " Performance issue: Using accurate geometry with <B>PK_BODY_pick_topols</B> slows down performance and is not generally recommended for", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301328", " If you use <B>PK_BODY_pick_topols</B> to provide your users with functionality to select displayed", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-301331", " Note: To enhance performance and reliability, <B>PK_BODY_pick_topols</B> should be called with the ", "Functional Description - Picking Topology");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_null_direction 31 <B>PK_BODY_pick_topols</B> (MILD) near and far points are identical", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_duplicate_array_item 511 <B>PK_BODY_pick_topols</B> (MILD) body array contains duplicate bodies", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_topol_not_from_body 1019 <B>PK_BODY_pick_topols</B> (MILD) topols_to_pick_from contains a", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_not_implemented 5000 <B>PK_BODY_pick_topols</B> (MILD) topols_to_pick_from contains a", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 <B>PK_BODY_pick_topols</B> (MILD) bad combination of options", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_duplicate_array_item 511 <B>PK_BODY_pick_topols</B> (MILD) body array contains duplicate bodies", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_not_implemented 5000 <B>PK_BODY_pick_topols</B> (MILD) topols_to_pick_from contains a", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_topol_not_from_body 1019 <B>PK_BODY_pick_topols</B> (MILD) topols_to_pick_from contains a", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " <B>PK_BODY_pick_topols</B> 5145 PK_ERROR_bad_combination (MILD) bad combination of options", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_axis1_sf_t.html#description", " <B>PK_BODY_pick_topols</B> ", "PK Reference - PK_AXIS1_sf_t");
+top.note("headers/pk_body_pick_topols.html#declaration", " PK_ERROR_code_t <B>PK_BODY_pick_topols</B>", "PK Reference - PK_BODY_pick_topols");
+top.note("headers/pk_body_pick_topols_o_t.html#description", " <B>PK_BODY_pick_topols</B> ", "PK Reference - PK_BODY_pick_topols_o_t");
+top.note("headers/pk_body_pick_topols_r_t.html#description", " <B>PK_BODY_pick_topols</B> ", "PK Reference - PK_BODY_pick_topols_r_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_BODY_pick_topols</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_part_t.html#description", " <B>PK_BODY_pick_topols</B> ", "PK Reference - PK_PART_t");
+top.note("headers/pk_report_3_t.html#documentation", " <B>PK_BODY_pick_topols</B> .", "PK Reference - PK_REPORT_3_t");
+top.note("headers/pk_transf_t.html#description", " <B>PK_BODY_pick_topols</B> ", "PK Reference - PK_TRANSF_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

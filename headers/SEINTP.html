@@ -1,0 +1,251 @@
+<HTML>
+<HEAD>
+<TITLE>SEINTP</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SEINTP</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_session_set_check_arguments.html>PK_SESSION_set_check_arguments</A><BR>
+<A HREF=../headers/pk_session_set_check_continuity.html>PK_SESSION_set_check_continuity</A><BR>
+<A HREF=../headers/pk_session_set_check_self_int.html>PK_SESSION_set_check_self_int</A><BR>
+<A HREF=../headers/pk_session_set_tag_limit.html>PK_SESSION_set_tag_limit</A><BR>
+<A HREF=../headers/pk_session_set_general_topology.html>PK_SESSION_set_general_topology</A><BR>
+<A HREF=../headers/pk_session_set_journalling.html>PK_SESSION_set_journalling</A><BR>
+<A HREF=../headers/pk_session_set_swept_spun_surfs.html>PK_SESSION_set_swept_spun_surfs</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SEINTP ( pnum, ival, rval, ifail )
+==================================
+
+  Set interface parameter
+
+Receives:
+  KI_cod_slip              *pnum           --- parameter code
+  int                      *ival           --- integer value of parameter
+  double                   *rval           --- real value of parameter
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_tag_limit_out_of_range Tag limit lies out of range
+  KI_roll_forward_fail      Rollback already active
+  KI_bad_rollfile_size      Size given for rollback file too large or too small
+  KI_cant_open_file         Failed to open rollback file
+  KI_bad_value              Continuity check code lies out of range
+                            Binary/text snapshot control code lies outside range
+                            Binary transmission control code lies outside range
+                            Bulletin board control code lies outside range
+                            Bad code
+  KI_no_user_fields         Cannot bulletin user fields of zero length
+  KI_journal_not_open       Journalling was not requested in call to STAMOD
+
+Description:
+  The value of 'pnum' is used to indicate which parameter to set and thereby
+  which value ('ival' or 'rval') to use. At present this routine only receives
+  integer parameters.
+
+  The valid values of 'pnum' and the corresponding parameters are:
+
+  'pnum'    receive  parameter
+
+  SLIPCH    'ival'   Flag indicating whether other KI routines and PK routines
+                     should test their parameters.  Passing  non-zero
+                     'ival' will turn it on. This flag is set to
+                     non_zero in STAMOD.
+
+                     When this is off dead and null tags are still trapped by
+                     KI routines but not by PK routines.
+
+  SLIPJO    'ival'   Flag indicating whether calls to KI routines will produce
+                     output in the journal file. Passing non-zero 'ival' will
+                     turn it on.
+
+                     This flag is set in STAMOD according to the value of the
+                     received argument. If journalling was not requested in
+                     STAMOD ('kijon' set to false) then 'ifail'
+                     KI_journal_not_open will be returned from SEINTP if it
+                     is called with 'pnum' set to SLIPJO regardless of the
+                     value of 'ival'.
+
+  SLIPBB    'ival'   Flag indicating whether the Kernel maintains a bulletin
+                     board. The defined values of 'ival' are:
+                          0  no bulletin board maintained
+                          1  bulletin board is emptied and will be maintained
+                             for tags only
+                          2  bulletin board is emptied and will be maintained
+                             for tags and user fields
+                     This flag is set to zero in STAMOD.
+
+                     If 'ival' is 1 or 2 then a default bulletin board state
+                     is initialised.  This will instruct the bulletin board
+                     to record information about faces, edges and vertices
+                     (types TYTOFA, TYTOED and TYTOVX) for events create,
+                     delete and change (event types BBEVCR, BBEVDE and BBEVCH)
+                     and bodies and assemblies (types TYTOBY and TYTOAS)
+                     for events create and delete. See SEBBCO for more
+                     information.
+
+  SLIPRB    'ival'  Integer flag indicating if logging for rollback is to be
+                     enabled. This must be set in order that roll-back marks
+                     may be set. Passing non-zero 'ival' will turn it on.
+
+                     The absolute value of 'ival' is the maximum size, in
+                     bytes, of the rollback file. This size should be a few
+                     times the size of the model and typically will be several
+                     Mbytes. Routine FFOPRB may allocate a file of smaller size,
+                     and the actual size may be discovered by a call to OUINTP.
+
+                     This flag is set to zero in STAMOD.
+
+  SLIPRF    'ival'   Integer flag indicating whether roll forward is to be
+                     enabled. This must be set while rollback is switched off.
+
+                     If 'ival' is 1 rolling forward will be enabled when
+                     rollback is enabled.
+
+                     If 'ival' is 0 then less information needs to be stored
+                     in the rollfile.
+
+                     This flag is set to 0 in STAMOD.
+
+  SLIPBT    'ival'  Controls the transmit and receive format, which can be
+                    either text, machine-dependent binary, neutral binary,
+                    or using application-registered i/o functions. The allowed
+                    values of 'ival' are:
+
+                          1      text  Receive,    text  Transmit
+                          2     binary Receive,    text  Transmit
+                          3      text  Receive,   binary Transmit
+                          4     binary Receive,   binary Transmit
+                          5      text  Receive,  neutral Transmit
+                          6     binary Receive,  neutral Transmit
+
+                          7     applio Receive,    text  Transmit
+                          8     applio Receive,   binary Transmit
+                          9     applio Receive,  neutral Transmit
+                         10     applio Receive,   applio Transmit
+                         11      text  Receive,   applio Transmit
+                         12     binary Receive,   applio Transmit
+
+                     Values outside this range return KI_bad_value.
+
+                     If ival is 5, 6, or 9, Parasolid will write machine-
+                     independent binary files. These can be read in
+                     as normal binary transmit files, i.e. with ival
+                     set to 2, 4, 6, or 12.
+
+                     This flag is set to 1 in STAMOD.
+
+  SLIPSN    'ival'  Controls whether snapshot files are binary or text.
+                    The defined values of 'ival' are:
+                          1      text  get snapshot,    text save snapshot
+                          2     binary get snapshot,    text save snapshot
+                          3      text  get snapshot,   binary save snapshot
+                          4     binary get snapshot,   binary save snapshot
+
+                     Values outside this range return KI_bad_value.
+
+                     This flag is set to 4 in STAMOD.
+
+  SLIPLC    'ival'   Flag indicating whether the Kernel will perform local
+                     checks of geometry and topology after a local modification
+                     is made to the model by CRFASU, CRSOFA, DELFAS, RMFASO,
+                     SWEENT, SWIENT, TWSUFA, TWEFAC, TAPFAS or BLEFIX.
+                     Passing non-zero 'ival' will turn local checking on.
+
+                     This flag is set to non-zero in STAMOD.
+
+  SLIPDC    'ival'   Flag indicating whether limited checks on the consistency
+                     of geometry attached to a model with ATTGEO and
+                     neighbouring geometry will be performed.
+                     Passing non-zero 'ival' will turn data checking on.
+
+                     This flag is set to zero in STAMOD.
+
+  SLIPUF    'ival'   Controls whether user-field information is received from
+                     archived parts. Normally this should be set to 1 so that
+                     models are received with the same user-field values as when
+                     they were transmitted. However, there are situations where
+                     this is undesirable (for example, when receiving a model
+                     with a different user-field length). In this case SLIPUF
+                     should be set to zero so that user-fields in parts received
+                     subsequently will be set to zero. See GETMOD for further
+                     details.
+
+                     This flag is set to 1 in STAMOD.
+
+  SLIPSI    'ival'   Flag indicating whether the Kernel will perform self
+                     intersection checks on geometry during those operations
+                     which require the geometry to pass the checks imposed by
+                     CHCKEN. Passing non-zero 'ival' will turn self intersection
+                     checking on.
+
+                     This flag is set to non-zero in STAMOD.
+
+  SLIPCO    'ival'   Flag indicating whether the Kernel will perform composite
+                     geometry checks on B-curves and B-surfaces when determining
+                     whether the geometry can be modeled as a single topological
+                     entity.
+
+                     The defined values of `ival are :
+
+                              0       Perform all composite geometry checks
+                              1       Perform no composite geometry checks
+
+                     Values outside this range return KI_bad_value.
+
+                     This flag is set to zero in STAMOD.
+
+  SLIPTL    'ival'   Integer flag indicating if tag limitation is enabled.
+                     Passing a non-zero 'ival' will turn it on, a zero 'ival'
+                     will turn it off. A non-zero value of 'ival' less than
+                     an existing tag will return KI_tag_limit_out_of_range.
+
+                     If non-zero, the modeller will check all tags allocated
+                     against an upper bound equal to the absolute value of
+                     'ival'. An operation that would otherwise result in the
+                     allocation of tags exceeding 'ival' will fail, returning
+                     KI_tag_limit_exceeded.
+
+                     This flag is set to zero in STAMOD.
+
+
+  SLIPGS    'ival'   Flag indicating whether generated surfaces can be
+                     created during a call to SWEENT or SWIENT.
+                     If non-zero, generated surfaces can be created during
+                     a call to SWEENT or SWIENT. If zero, B-surfaces
+                     will be created instead.
+
+                     This flag is set to zero in STAMOD.
+
+  SLIPGT    'ival'   Flag indicating whether general bodies are to be legally
+                     returned by KI functions - principally boolean operations.
+                     With SLIPGT set to zero, general bodies will not be
+                     returned and the operations will fail with the same ifail
+                     as at previous versions i.e. KI_non_manifold.
+                     With SLIPGT set to one, general bodies will be returned as
+                     valid results.
+
+                     This flag is set to zero in STAMOD.
+
+
+
+</PRE>
+</BODY>
+</HTML>

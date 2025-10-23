@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CLASS_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CLASS_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B></B>
+<A NAME="description"></A>
+<I>This type represents a CLASS.  A class token defines the type of an item.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_attdef_sf_2_t.html>PK_ATTDEF_sf_2_t</A><br>
+    <A HREF=../headers/pk_attdef_sf_t.html>PK_ATTDEF_sf_t</A><br>
+    <A HREF=../headers/pk_bb_output_events.html>PK_BB_output_events</A><br>
+    <A HREF=../headers/pk_body_ask_topology.html>PK_BODY_ask_topology</A><br>
+    <A HREF=../headers/pk_body_create_minimum_topology.html>PK_BODY_create_minimum_topology</A><br>
+    <A HREF=../headers/pk_body_create_sheet_topology.html>PK_BODY_create_sheet_topology</A><br>
+    <A HREF=../headers/pk_body_create_solid_topology.html>PK_BODY_create_solid_topology</A><br>
+    <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A><br>
+    <A HREF=../headers/pk_body_create_topology_2.html>PK_BODY_create_topology_2</A><br>
+    <A HREF=../headers/pk_body_create_wire_topology.html>PK_BODY_create_wire_topology</A><br>
+    <A HREF=../headers/pk_body_pick_topols_o_t.html>PK_BODY_pick_topols_o_t</A><br>
+    <A HREF=../headers/pk_class_ask_superclass.html>PK_CLASS_ask_superclass</A><br>
+    <A HREF=../headers/pk_class_is_subclass.html>PK_CLASS_is_subclass</A><br>
+    <A HREF=../headers/pk_debug_local_diffs_r_t.html>PK_DEBUG_local_diffs_r_t</A><br>
+    <A HREF=../headers/pk_debug_session_create_cb_t.html>PK_DEBUG_SESSION_create_cb_t</A><br>
+    <A HREF=../headers/pk_debug_session_destroy_cb_t.html>PK_DEBUG_SESSION_destroy_cb_t</A><br>
+    <A HREF=../headers/pk_edge_ask_geometry.html>PK_EDGE_ask_geometry</A><br>
+    <A HREF=../headers/pk_edge_ask_geometry_nmnl.html>PK_EDGE_ask_geometry_nmnl</A><br>
+    <A HREF=../headers/pk_entity_ask_class.html>PK_ENTITY_ask_class</A><br>
+    <A HREF=../headers/pk_entity_track_r_t.html>PK_ENTITY_track_r_t</A><br>
+    <A HREF=../headers/pk_entity_track_record_r_t.html>PK_ENTITY_track_record_r_t</A><br>
+    <A HREF=../headers/pk_fin_ask_geometry.html>PK_FIN_ask_geometry</A><br>
+    <A HREF=../headers/pk_group_ask_entity_class.html>PK_GROUP_ask_entity_class</A><br>
+    <A HREF=../headers/pk_group_create_from_entities.html>PK_GROUP_create_from_entities</A><br>
+    <A HREF=../headers/pk_group_create_from_entities_2.html>PK_GROUP_create_from_entities_2</A><br>
+    <A HREF=../headers/pk_ltopol_ask_class_r_t.html>PK_LTOPOL_ask_class_r_t</A><br>
+    <A HREF=../headers/pk_mfacet_find_perimeters_o_t.html>PK_MFACET_find_perimeters_o_t</A><br>
+    <A HREF=../headers/pk_mtopol_ask_class.html>PK_MTOPOL_ask_class</A><br>
+    <A HREF=../headers/pk_mtopol_make_meshes_o_t.html>PK_MTOPOL_make_meshes_o_t</A><br>
+    <A HREF=../headers/pk_mtopol_map_r_t.html>PK_MTOPOL_map_r_t</A><br>
+    <A HREF=../headers/pk_mtopol_map_record_r_t.html>PK_MTOPOL_map_record_r_t</A><br>
+    <A HREF=../headers/pk_part_delete_attribs_o_t.html>PK_PART_delete_attribs_o_t</A><br>
+    <A HREF=../headers/pk_part_find_entity_by_ident.html>PK_PART_find_entity_by_ident</A><br>
+    <A HREF=../headers/pk_range_param_bound_t.html>PK_range_param_bound_t</A><br>
+    <A HREF=../headers/pk_report_record_1_t.html>PK_REPORT_record_1_t</A><br>
+    <A HREF=../headers/pk_topol_ask_entities_by_attdef.html>PK_TOPOL_ask_entities_by_attdef</A><br>
+    <A HREF=../headers/pk_topol_track_r_t.html>PK_TOPOL_track_r_t</A><br>
+    <A HREF=../headers/pk_topol_track_record_r_t.html>PK_TOPOL_track_record_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A class is one of the tokens:
+
+ - PK_CLASS_null
+ - PK_CLASS_class
+ - PK_CLASS_entity
+ - PK_CLASS_primitive
+ - PK_CLASS_error
+ - PK_CLASS_session
+ - PK_CLASS_memory
+ - PK_CLASS_mark
+ - PK_CLASS_pmark
+ - PK_CLASS_partition
+ - PK_CLASS_bb
+ - PK_CLASS_int
+ - PK_CLASS_double
+ - PK_CLASS_char
+ - PK_CLASS_string
+ - PK_CLASS_logical
+ - PK_CLASS_vector
+ - PK_CLASS_interval
+ - PK_CLASS_box
+ - PK_CLASS_uvbox
+ - PK_CLASS_uv
+ - PK_CLASS_pointer
+ - PK_CLASS_vector1
+ - PK_CLASS_size
+ - PK_CLASS_attrib
+ - PK_CLASS_attdef
+ - PK_CLASS_group
+ - PK_CLASS_transf
+ - PK_CLASS_ki_list
+ - PK_CLASS_topol
+ - PK_CLASS_part
+ - PK_CLASS_assembly
+ - PK_CLASS_body
+ - PK_CLASS_instance
+ - PK_CLASS_region
+ - PK_CLASS_shell
+ - PK_CLASS_face
+ - PK_CLASS_loop
+ - PK_CLASS_edge
+ - PK_CLASS_fin
+ - PK_CLASS_vertex
+ - PK_CLASS_geom
+ - PK_CLASS_surf
+ - PK_CLASS_plane
+ - PK_CLASS_cyl
+ - PK_CLASS_cone
+ - PK_CLASS_sphere
+ - PK_CLASS_torus
+ - PK_CLASS_bsurf
+ - PK_CLASS_offset
+ - PK_CLASS_fsurf
+ - PK_CLASS_swept
+ - PK_CLASS_spun
+ - PK_CLASS_blendsf
+ - PK_CLASS_curve
+ - PK_CLASS_line
+ - PK_CLASS_circle
+ - PK_CLASS_ellipse
+ - PK_CLASS_bcurve
+ - PK_CLASS_icurve
+ - PK_CLASS_fcurve
+ - PK_CLASS_spcurve
+ - PK_CLASS_trcurve
+ - PK_CLASS_cpcurve
+ - PK_CLASS_point
+ - PK_CLASS_nabox
+ - PK_CLASS_item
+ - PK_CLASS_appitem
+ - PK_CLASS_mtopol
+ - PK_CLASS_mfacet
+ - PK_CLASS_mfin
+ - PK_CLASS_mvertex
+ - PK_CLASS_mesh
+ - PK_CLASS_pline
+ - PK_CLASS_lattice
+ - PK_CLASS_ltopol
+ - PK_CLASS_lrod
+ - PK_CLASS_lball
+ - PK_CLASS_frame
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

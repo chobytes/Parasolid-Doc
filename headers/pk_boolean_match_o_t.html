@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_boolean_match_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_boolean_match_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_boolean_match_o_s
+    {
+    int                 o_t_version;     --- version number
+    <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_t</A>
+                        match_style;     --- (<A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_basic_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        auto_match;      --- (PK_LOGICAL_false)
+    double              auto_match_tol;  --- (0.0)
+    int                 n_match_regions; --- (0)
+    const <A HREF=../headers/pk_boolean_match_region_o_t.html>PK_boolean_match_region_o_t</A>
+                       *match_regions;   --- (NULL)
+    <A HREF=../headers/pk_boolean_match_update_t.html>PK_boolean_match_update_t</A>
+                        update;          --- (<A HREF=../headers/pk_boolean_match_update_t.html>PK_boolean_match_update_dflt_c</A>)
+    };
+typedef struct PK_boolean_match_o_s PK_boolean_match_o_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is used to specify matching behaviour for the target and
+tool bodies.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_invalid_match_region     invalid matched topology data (SERIOUS)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_boolean_o_t.html>PK_BODY_boolean_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_faces_o_t.html>PK_BODY_imprint_faces_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_o_t.html>PK_BODY_imprint_o_t</A><br>
+    <A HREF=../headers/pk_body_section_o_t.html>PK_BODY_section_o_t</A><br>
+    <A HREF=../headers/pk_face_boolean_o_t.html>PK_FACE_boolean_o_t</A><br>
+    <A HREF=../headers/pk_face_imprint_faces_o_t.html>PK_FACE_imprint_faces_o_t</A><br>
+    <A HREF=../headers/pk_face_imprint_o_t.html>PK_FACE_imprint_o_t</A><br>
+    <A HREF=../headers/pk_face_section_o_t.html>PK_FACE_section_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Matching topological regions can aid or enhance the performance of boolean
+operations. Matches can be detected automatically, and the application may
+additionally supply them via the <B>'match_regions'</B> option.
+
+Matched topology can be specified for boolean operations involving both
+manifold and general bodies, and when general topology has been enabled
+via <A HREF=../headers/pk_session_set_general_topology.html>PK_SESSION_set_general_topology</A>.
+
+Refer to <A HREF=../headers/pk_boolean_match_region_o_t.html>PK_boolean_match_region_o_t</A> documentation for a full description
+of matched regions.
+
+This structure also allows a tolerance to be specified for automatic
+detection of matched topology if the <B>'match_style'</B> is set to
+<A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_auto_c</A>.
+
+Description of fields:
+
+
+
+<B>'match_style'</B>        Unless being used for update purposes it is recommended
+                     to set <B>'match_style'</B> to <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_auto_c</A>.
+
+                     If <B>'match_style'</B> is <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_basic_c</A> then
+                     the application must ensure that matched items supplied
+                     as <B>'match_regions'</B> do not interact other than in the
+                     supplied topology. Parasolid will look for other
+                     interactions if <B>'match_style'</B> is set to
+                     <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_relax_c</A> or
+                     <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_auto_c</A>.
+
+                     Note that for facet geometry, if <B>'match_regions'</B> are
+                     supplied then the value <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_auto_c</A>
+                     must be supplied.
+
+
+<B>'auto_match'</B>         Whether a tolerance value for auto-matching is provided in
+                     <B>'auto_match_tol'</B>.
+                     For Imprinting, this MUST be set to PK_LOGICAL_true if
+                     <B>'match_style'</B> is <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_auto_c</A>.
+                     For Boolean and Sectioning operations, this CAN be set to
+                     PK_LOGICAL_true if <B>'match_style'</B> is
+                     <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_auto_c</A>. Otherwise,
+                     <B>'default_tol'</B> is used.
+                     If <B>'match_style'</B> is any other value, <B>'auto_match'</B> must be
+                     PK_LOGICAL_false.
+
+
+<B>'auto_match_tol'</B>     If <B>'auto_match'</B> is set to PK_LOGICAL_true then this
+                     tolerance will be used to automatically detect matched
+                     topology as described above.
+
+
+<B>'n_match_regions'</B>    The number of matched region structures supplied.
+
+
+<B>'match_regions'</B>      Array of structures describing the matched
+                     topological regions.
+
+
+
+<B>'update'</B>             If <B>'update'</B> is <A HREF=../headers/pk_boolean_match_update_t.html>PK_boolean_match_update_0_c</A>
+                     then matching will proceed as pre-V17.1.
+                     If this option is set to the default value of
+                     <A HREF=../headers/pk_boolean_match_update_t.html>PK_boolean_match_update_dflt_c</A> then additional steps
+                     will be taken during the matching process to minimise
+                     the creation of unnecessary tolerant edges.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

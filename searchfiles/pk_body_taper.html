@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.039.html#50409821_pgfId-295103", " (for instance, a tapered extrusion created using PK_BODY_sweep and <B>PK_BODY_taper</B> ), and you want to trim it using the", "Functional Description - Creating Extruded Bodies");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-325317", " This chapter describes how <B>PK_BODY_taper</B> provides functionality to apply tapering to a solid body,", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-925138", " the mold. Two general tapering operations are possible with <B>PK_BODY_taper</B> : ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-308987", " For double-sided tapering, <B>PK_BODY_taper</B> also provides support for ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417052", " 68.2 Calling <B>PK_BODY_taper</B> ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417098", " of the tapering operation. See Section 68.3, Summary of <B>PK_BODY_taper</B> options for more information. ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417486", " Note: The reference entities supplied to <B>PK_BODY_taper</B> are preserved during the operation, but can be split", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1603221", " (ie. casts a shadow on itself). In these cases, <B>PK_BODY_taper</B> returns PK_local_status_self_shadowing_c in the returned ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-752778", " <B>PK_BODY_taper</B> takes a set of options in <B>PK_BODY_taper</B>_o_t . The available options are as follows: ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1599158", " <B>PK_BODY_taper</B> supports the isocline, curve, and surface taper methods. It", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1601686", " Note: When using the default method for <B>PK_BODY_taper</B> , it is recommended that you imprint the isocline", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417542", " <B>PK_BODY_taper</B> provides support for mitering. When mitering, material is added", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-310442", " <B>PK_BODY_taper</B> lets you choose whether or not to add additional", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-310446", " <B>PK_BODY_taper</B> also lets you control how those miter faces are", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1418598", " By default, <B>PK_BODY_taper</B> will remove faces and edges of the body that", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317132", " <B>PK_BODY_taper</B> ", "Functional Description - Update Switches");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_wrong_entity_in_array 357 <B>PK_BODY_taper</B> given references are not from", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_unsuitable_topology 1033 <B>PK_BODY_taper</B> only solid bodies and solid", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_not_implemented 5000 <B>PK_BODY_taper</B> unavailable functionality is", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_reference 5130 <B>PK_BODY_taper</B> invalid reference entity (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_impossible_taper 860 <B>PK_BODY_taper</B> taper conditions cannot be", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_unsuitable_topology 1033 <B>PK_BODY_taper</B> only solid bodies and solid", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " <B>PK_BODY_taper</B> 5130 PK_ERROR_bad_reference invalid reference entity (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_t.html#description", " <B>PK_BODY_taper</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_body_taper.html#declaration", " PK_ERROR_code_t <B>PK_BODY_taper</B>", "PK Reference - PK_BODY_taper");
+top.note("headers/pk_body_taper.html#errors", " PK_ERROR_taper_failed <B>PK_BODY_taper</B> suffered an", "PK Reference - PK_BODY_taper");
+top.note("headers/pk_body_taper_o_t.html#description", " This structure contains optional controls for <B>PK_BODY_taper</B> .", "PK Reference - PK_BODY_taper_o_t");
+top.note("headers/pk_body_taper_o_t.html#documentation", " references to <B>PK_BODY_taper</B> are allowed in this", "PK Reference - PK_BODY_taper_o_t");
+top.note("headers/pk_entity_t.html#description", " <B>PK_BODY_taper</B> ", "PK Reference - PK_ENTITY_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_BODY_taper</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_topol_local_r_t.html#description", " <B>PK_BODY_taper</B> ", "PK Reference - PK_TOPOL_local_r_t");
+top.note("headers/pk_topol_track_r_t.html#description", " <B>PK_BODY_taper</B> ", "PK Reference - PK_TOPOL_track_r_t");
+top.note("headers/pk_vector1_t.html#errors", " <B>PK_BODY_taper</B> ", "PK Reference - PK_VECTOR1_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

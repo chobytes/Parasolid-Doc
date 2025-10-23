@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.018.html#50409799_pgfId-609925", " <B>Piecewise</B> b-curve ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-610053", " <B>Piecewise</B> b-surface ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-610404", " PK_BCURVE_piecewise_sf_t is the <B>piecewise</B> standard form of a b-curve. It contains fields", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-610408", " PK_BCURVE_create_piecewise uses the standard form to create a <B>piecewise</B> b-curve. See PK_BCURVE_piecewise_sf_t for more information. ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-610816", " PK_BSURF_piecewise_sf_t is the <B>piecewise</B> standard form of a b-surface. It contains fields", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-607466", " PK_BSURF_create_piecewise uses the standard form to create a <B>piecewise</B> b-surface. See PK_BSURF_piecewise_sf_t for more information. ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294762", " B-geometry is parametrically defined <B>piecewise</B> polynomial or rational polynomial geometry which is represented", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294799", " From <B>piecewise</B> data (Bezier, Hermite, polynomial, Taylor series) ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-296083", " 18.4.2 <B>Piecewise</B> data ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-296088", " namely Bezier, Hermite, polynomial or Taylor series. By <B>piecewise</B> it is meant that each segment of a", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-296909", " Figure 18-3 A surface created from <B>piecewise</B> data ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-298472", " of positions using PK_BCURVE_create_spline_2 . Parasolid fits a <B>piecewise</B> curve that is (depending on the options used)", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-301381", " different). Lofts can also be created in a <B>piecewise</B> manner (the profiles are repeated). See Section 41.2,", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-599097", " 41.2.1 <B>Piecewise</B> lofting ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-604276", " PK_BODY_make_lofted_body to produce a <B>piecewise</B> lofted body. In <B>piecewise</B> lofting the operation is completed in separate sections,", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-599612", " Figure 41-4 <B>Piecewise</B> lofting with repeated profiles ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295192", " not allowed. Therefore, all applications making use of <B>piecewise</B> linear curves must convert them to G1 quadratics", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295878", " can also be created from spline data or <B>piecewise</B> data using: ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287022", " A spline is a <B>piecewise</B> polynomial or rational function which is defined to", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275757", " <B>Piecewise</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275758", " The <B>piecewise</B> standard form of a B-curve defines it as", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205249", " <B>piecewise</B> 253 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208719", " <B>piecewise</B> data 253 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.08.html#50442268_pgfId-377102", " Supplying <B>piecewise</B> data ", "Overview of Parasolid - B-Spline Curves and Surfaces");
+top.note("chapters/ov_chap.08.html#50442268_pgfId-377482", " that is not as rich as B-spline or <B>piecewise</B> data by using Parasolid&#8217;s general splining functionality. You", "Overview of Parasolid - B-Spline Curves and Surfaces");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-576989", " Create a <B>piecewise</B> lofted body that is non-G1 smooth across the", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-574316", " Figure 9-23 <B>Piecewise</B> lofting with repeated profiles ", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438623", " <B>piecewise</B> data ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_BCURVE_form_polyline_c 8652 The curve is <B>piecewise</B> linear. ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_BCURVE_form_polyline_c 8652 The curve is <B>piecewise</B> linear. ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_bcurve_ask_piecewise.html#declaration", " PK_piecewise_rep_t rep, --- <B>piecewise</B> representation", "PK Reference - PK_BCURVE_ask_piecewise");
+top.note("headers/pk_bcurve_ask_piecewise.html#description", " This function returns the <B>piecewise</B> standard form for a b-curve.", "PK Reference - PK_BCURVE_ask_piecewise");
+top.note("headers/pk_bcurve_ask_piecewise.html#documentation", "Takes a b-curve and returns its <B>piecewise</B> standard form.", "PK Reference - PK_BCURVE_ask_piecewise");
+top.note("headers/pk_bcurve_create_piecewise.html#declaration", " --- b-curve <B>piecewise</B> standard form", "PK Reference - PK_BCURVE_create_piecewise");
+top.note("headers/pk_bcurve_create_piecewise.html#description", " This function creates a b-curve from its <B>piecewise</B> standard form.", "PK Reference - PK_BCURVE_create_piecewise");
+top.note("headers/pk_bcurve_create_piecewise.html#documentation", "Takes a <B>piecewise</B> standard form, and creates a b-curve.", "PK Reference - PK_BCURVE_create_piecewise");
+top.note("headers/pk_bcurve_form_t.html#documentation", " PK_BCURVE_form_polyline_c : The curve is <B>piecewise</B> linear.", "PK Reference - PK_BCURVE_form_t");
+top.note("headers/pk_bcurve_piecewise_sf_t.html#description", " This data structure is the <B>piecewise</B> standard form of of a b-curve.", "PK Reference - PK_BCURVE_piecewise_sf_t");
+top.note("headers/pk_bcurve_t.html#documentation", "<B>Piecewise</B> and splinewise representations of bcurves are also available:", "PK Reference - PK_BCURVE_t");
+top.note("headers/pk_body_make_lofted_body.html#documentation", " <B>Piecewise</B> Lofting", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_bsurf_ask_piecewise.html#declaration", " PK_piecewise_rep_t rep, --- <B>piecewise</B> representation required", "PK Reference - PK_BSURF_ask_piecewise");
+top.note("headers/pk_bsurf_ask_piecewise.html#description", " This function returns the <B>piecewise</B> standard form for a b-surface.", "PK Reference - PK_BSURF_ask_piecewise");
+top.note("headers/pk_bsurf_ask_piecewise.html#documentation", "Takes a b-surface and returns its <B>piecewise</B> standard form.", "PK Reference - PK_BSURF_ask_piecewise");
+top.note("headers/pk_bsurf_create_piecewise.html#description", " This function creates a b-surface from a <B>piecewise</B> standard form.", "PK Reference - PK_BSURF_create_piecewise");
+top.note("headers/pk_bsurf_create_piecewise.html#documentation", "This function takes a <B>piecewise</B> standard form and creates a b_surface.", "PK Reference - PK_BSURF_create_piecewise");
+top.note("headers/pk_bsurf_piecewise_sf_t.html#description", " This data structure is the <B>piecewise</B> standard form of a b-surface.", "PK Reference - PK_BSURF_piecewise_sf_t");
+top.note("headers/pk_bsurf_t.html#documentation", "<B>Piecewise</B> and splinewise representations of bsurfs are also available:", "PK Reference - PK_BSURF_t");
+top.note("headers/pk_curve_make_bcurve_2.html#documentation", " Polyline: The output bcurve will be <B>piecewise</B> linear (degree 1) and", "PK Reference - PK_CURVE_make_bcurve_2");
+top.note("headers/pk_curve_make_bcurve_array.html#documentation", " Polyline: The output B-curve will be <B>piecewise</B> linear (degree 1) and", "PK Reference - PK_CURVE_make_bcurve_array");
+top.note("headers/pk_curve_make_bcurve_array_o_t.html#declaration", " --- be <B>piecewise</B> Bezier", "PK Reference - PK_CURVE_make_bcurve_array_o_t");
+top.note("headers/pk_curve_make_bcurve_o_t.html#declaration", " --- <B>piecewise</B> Bezier", "PK Reference - PK_CURVE_make_bcurve_o_t");
+top.note("headers/pk_piecewise_rep_t.html#documentation", "This datatype indicates the basis method of a <B>piecewise</B> representation.", "PK Reference - PK_piecewise_rep_t");
+top.note("headers/pk_report_3_t.html#documentation", " PK_REPORT_3_line_fit_tols_c Information for curves where the <B>piecewise</B>", "PK Reference - PK_REPORT_3_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_PART_transmit_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_PART_transmit_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_PART_transmit_o_s
+    {
+    int                     o_t_version;
+                                --- version number
+    <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_t</A>    transmit_format;
+                                --- (<A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_neutral_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            transmit_user_fields;
+                                --- (PK_LOGICAL_true)
+    int                     transmit_version;
+                                --- (0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            transmit_nmnl_geometry;
+                                --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>            transmit_indexed_context;
+                                --- (NULL)
+    <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_t</A>    transmit_meshes;
+                                --- (<A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_separate_c</A>)
+    };
+
+typedef struct PK_PART_transmit_o_s PK_PART_transmit_o_t;
+</B>
+<A NAME="description"></A>
+<I>This option structure contains options pertinent to transmitting parts.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_transmit.html>PK_DEBUG_transmit</A><br>
+    <A HREF=../headers/pk_part_transmit.html>PK_PART_transmit</A><br>
+    <A HREF=../headers/pk_part_transmit_b.html>PK_PART_transmit_b</A><br>
+    <A HREF=../headers/pk_part_transmit_u.html>PK_PART_transmit_u</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'transmit_format'</B>           Format of the XT data. Permitted values are
+
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_text_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_binary_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_typed_binary_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_neutral_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A>
+                            <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_applio_c</A>
+
+
+<B>'transmit_user_fields'</B>      PK_LOGICAL_true if user fields are to be
+                            transmitted.
+
+
+<B>'transmit_version'</B>          By default (i.e. <B>'transmit_version'</B> is zero),
+                            data saved using Parasolid 14.0 and later is
+                            backward compatible at least as far as the
+                            previous major version. All information
+                            associated with the part is stored in the
+                            saved XT data, including information that may
+                            not itself be recognised by the earlier
+                            version. E.g., data saved from 15.x would be
+                            backward compatible to at least v14.x,
+                            together with all the information they contain.
+
+                            By explicitly setting <B>'transmit_version'</B> to a
+                            non-zero integer, an alternative method is used
+                            to achieve backward compatibility. Using this
+                            method, the data is saved using the precise
+                            format of the previous version. Any information
+                            associated with the part and not recognised by
+                            that previous version will not be present in
+                            the part data when it is saved.
+
+                            The integer specifies which version to use. For
+                            example, 101 would indicate Parasolid 10.1, and
+                            90 would indicate Parasolid 9.0. The oldest
+                            version that can be used is 7.0 and the current
+                            version is allowed. For versions before 9.0,
+                            a part file can only contain a single part.
+
+
+<B>'transmit_nmnl_geometry'</B>    If PK_LOGICAL_true, then any nominal geometry
+                            on a part is saved, otherwise such geometry is
+                            stripped from the transmitted data. This field
+                            is ignored if <B>'transmit_version'</B> is prior to
+                            V10.1: nominal geometry is unconditionally
+                            removed as earlier versions of Parasolid do not
+                            understand nominal geometry.
+
+
+<B>'transmit_indexed_context'</B>  Application specific storage when <B>'transmit_format'</B>
+                            is <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_indexio_c</A>.
+
+
+<B>'transmit_meshes'</B>           Where any mesh data in the parts are stored.
+
+                            If this option is <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_separate_c</A>
+                            then all mesh data are transmitted to a separate
+                            file with the same <B>'key'</B>, which is opened with
+                            guise FFCXMM (transmit file containing mesh data).
+
+                            If this option is <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_embedded_c</A>
+                            then all mesh data are stored within the part
+                            file instead, thus allowing data for each mesh
+                            to be individually received when needed using
+                            the receive option <B>'receive_using_seek'</B> set to
+                            <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_yes_c</A>.
+
+                            To support <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_embedded_c</A>,
+                            <B>'transmit_format'</B> must be one of the binary
+                            formats and the Frustrum seek function <B>'ffskxt'</B>
+                            must be registered using <A HREF=../headers/pk_session_register_fru_2.html>PK_SESSION_register_fru_2</A>.
+                            Part files with embedded mesh data can still be
+                            received without using seek.
+
+                            This option is ignored for <A HREF=../headers/pk_part_transmit_b.html>PK_PART_transmit_b</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

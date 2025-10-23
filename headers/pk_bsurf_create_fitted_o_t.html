@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BSURF_create_fitted_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BSURF_create_fitted_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BSURF_create_fitted_o_s
+{
+int                o_t_version;             --- option structure version number
+<A HREF=../headers/pk_surf_general_t.html>PK_SURF_general_t</A>  surf;                    --- surface to be fitted
+<A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>      u_range;                 --- u parameter range for B-surface
+                                            --- (0,1)
+<A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>      v_range;                 --- v parameter range for B-surface
+                                            --- (0,1)
+double             tolerance;               --- distance tolerance (1.0e-5)
+double             angular_tolerance;       --- angular tolerance (0.0)
+int                n_u_interpolation_parms; --- number of parameters at which
+                                            --- to interpolate input surface
+                                            --- (0)
+const double      *u_interpolation_parms;   --- u parameters at which to
+                                            --- interpolate input surface
+                                            --- (NULL)
+int                n_v_interpolation_parms; --- number of parameters at which
+                                            --- to interpolate input surface
+                                            --- (0)
+const double      *v_interpolation_parms;   --- v parameters at which to
+                                            --- interpolate input surface
+                                            --- (NULL)
+};
+
+typedef struct PK_BSURF_create_fitted_o_s
+               PK_BSURF_create_fitted_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for the fitting of a general surface by a B-surface.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+PK_ERROR_bad_interval   the range provided is invalid (MILD)
+PK_ERROR_bad_tolerance  one of the tolerances provided is invalid (MILD)
+PK_ERROR_bad_parameter  an interpolation parameter is invalid (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bsurf_create_fitted.html>PK_BSURF_create_fitted</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This structure contains the following fields:
+
+    <B>'surf'</B>                    the surface to be fitted. The default value
+                              for this field is
+                              `surf.type' = PK_SURF_general_surf_c
+                              `surf.surf.parasolid_surf'  = PK_ENTITY_null
+
+
+    <B>'u_range'</B>                 the u parameter range for the resultant
+                              B-surface. The B-surface will exactly fit the
+                              sample points at the start and end of this range.
+                              (0,1)
+
+    <B>'v_range'</B>                 the v parameter range for the resultant
+                              B-surface. The B-surface will exactly fit the
+                              sample points at the start and end of this range.
+                              (0,1)
+
+    <B>'tolerance'</B>               the distance tolerance to within which the
+                              B-surface will fit the sample data. (1.0e-5)
+
+    <B>'angular_tolerance'</B>       if non-zero, the maximum angle between the
+                              tangents of the B-surface and the tangents
+                              from the sample data. Note that this will
+                              require the calculation of first derivatives
+                              at all sample parameters during the fit. (0.0)
+
+    <B>'n_u_interpolation_parms'</B> the number of <B>'u_interpolation_parms'</B> supplied.
+                              (0)
+
+    <B>'u_interpolation_parms'</B>   a strictly increasing array of length
+                              <B>'n_u_interpolation_parms'</B> of parameter values
+                              lying within <B>'u_range'</B>.  The resultant B-surfaces
+                              will exactly pass through the sample points at
+                              these values. If the array is not strictly
+                              increasing, or if one of the elements lies
+                              outside of <B>'u_range'</B>, an error will be returned.
+                              (NULL)
+
+    <B>'n_v_interpolation_parms'</B> the number of <B>'v_interpolation_parms'</B> supplied.
+                              (0)
+
+
+    <B>'v_interpolation_parms'</B>   a strictly increasing array of length
+                              <B>'n_v_interpolation_parms'</B> of parameter values
+                              lying within <B>'v_range'</B>.  The resultant B-surfaces
+                              will exactly pass through the sample points at
+                              these values. If the array is not strictly
+                              increasing, or if one of the elements lies
+                              outside of <B>'v_range'</B>, an error will be returned.
+                              (NULL)
+
+    If <B>'u_interpolation_parms'</B> and <B>'v_interpolation_parms'</B> are specified, they
+    define a grid of points such that the resulting B-surface matches the input
+    surface exactly at these points.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

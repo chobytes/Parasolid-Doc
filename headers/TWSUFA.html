@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<TITLE>TWSUFA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>TWSUFA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_replace_surfs.html>PK_FACE_replace_surfs</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+TWSUFA ( faces, surfs, senses, state, ifail )
+=============================================
+
+  Tweak the surface(s) of face(s).
+
+Receives:
+  KI_tag_list_face         *faces          --- face(s) to tweak
+  KI_tag_list_surface      *surfs          --- new surface(s) for face(s)
+  KI_tag_list_int          *senses         --- senses for surfaces
+
+Returns:
+  KI_cod_rtlo              *state          --- state of the body
+                                           ---   RTLOOK => Valid
+                                           ---   RTLONG => Negated
+                                           ---   RTLOSX => Self-Intersecting
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_cant_do_tweak          Tweak cannot be performed
+                            Tweak cannot be applied to face on boundary
+                            Tweak cannot be applied to a rubber face
+  KI_unsuitable_entity      Mixed body
+                            Surface is too complex
+  KI_general_body           General bodies not supported
+  KI_bad_sharing            attempt to illegally share a surface
+  KI_invalid_geometry       Surface fails checks
+  KI_not_same_length        Lists not of equal length
+  KI_duplicate_list_item    Face appears twice in argument list
+  KI_not_in_same_part       All faces are not from the same part
+
+Description:
+  The surface geometries of the faces are replaced and the curves and points of
+  edges and vertices are recalculated.
+
+  Where edges or faces (sharing a vertex or edge at the boundary of the faces to
+  be tweaked) have geometry which is inextendable, it may not be possible to
+  recalculate vertices or edges. This is because the curve or surface does not
+  intersect the new surface. With such edges which have a user defined tolerance
+  this is likely to occur since SP-curves are inextendable.
+
+  If the faces are on a sheet body, they must not share an edge with any rubber
+  faces.
+
+  The entries in 'senses' define whether the corresponding surface is to
+  be reversed before being attached to a face. After the tweak operation
+  has been performed all the entities in 'faces' will have their senses
+  set to true.
+
+  The number of surfaces and the number of senses must be identical. The number
+  of surfaces supplied must either be one, in which case every face is tweaked
+  to the same surface, or equal to the number of faces, in which case every face
+  is tweaked to the corresponding surface.
+
+  The self intersection check is only performed if the appropriate option
+  is set (see SEINTP).
+
+  In general this procedure may give rise to self-intersecting object
+  boundaries which could cause unpredictable errors later.
+
+  If local checking is on, (see SEINTP and OUINTP) consistency checks will be
+  made on newly created topological and geometrical entities, and the state
+  of the body returned. A state of RTLOOK indicates the body is valid. A state
+  of RTLONG indicates that the result body was originally "inside out" but has
+  been negated, and is now "positive" (has positive volume) and valid. A state
+  of RTLOSX indicates the body is self-intersecting and further modelling
+  operations on it may fail. It is the responsibility of the calling routine to
+  make any necessary reparation.
+
+  If the interface parameter for local checking is switched off, the state
+  returned will be RTLOOK regardless.
+
+  A self-intersecting body can be returned even if the ifail is zero.
+
+  This function is not supported for general bodies.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<TITLE>OUTSUR</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUTSUR</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_cone_ask.html>PK_CONE_ask</A><BR>
+<A HREF=../headers/pk_cyl_ask.html>PK_CYL_ask</A><BR>
+<A HREF=../headers/pk_offset_ask.html>PK_OFFSET_ask</A><BR>
+<A HREF=../headers/pk_plane_ask.html>PK_PLANE_ask</A><BR>
+<A HREF=../headers/pk_sphere_ask.html>PK_SPHERE_ask</A><BR>
+<A HREF=../headers/pk_torus_ask.html>PK_TORUS_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUTSUR ( surfac, sftype, vec1, vec2, d1, d2, sense, ifail )
+===========================================================
+
+  Output surface.
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_surface           *surfac         --- surface to be output
+
+Returns:
+  KI_cod_tysu              *sftype         --- surface type
+  KI_vec                    vec1           --- first vector defining surface
+  KI_vec                    vec2           --- second vector defining surface
+  double                   *d1             --- first double defining surface
+  double                   *d2             --- second double defining surface
+  KI_cod_logical           *sense          --- surface sense. see below
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wrong_sub_type         not a surface supported by this routine
+
+Description:
+  The 'sense' and 'sftype' arguments are returned for all surface types. Further
+  information is returned according to the value of 'sftype':
+
+  Type               Arg   Definition                normal if sense == KI_true
+  =============================================================================
+  Plane (TYSUPL)    'vec1' position in plane         same as 'vec2'
+                    'vec2' normal direction
+
+  Cylinder (TYSUCY) 'vec1' position on axis          away from axis
+                    'vec2' axis direction
+                    'd1'   radius
+
+  Cone (TYSUCO)     'vec1' position on axis          away from axis
+                    'vec2' axis direction
+                    'd1'   radius of cone at 'vec1'
+                    'd2'   half angle (in radians)
+
+  Sphere (TYSUSP)   'vec1' centre position           away from centre
+                    'd1'   radius
+
+  Torus (TYSUTO)    'vec1' centre position           away from circle described
+                    'vec2' axis direction            by major axis
+                    'd1'   major radius
+                    'd2'   minor radius
+
+  Blend (TYSUBL)    'd1'   blend radius
+
+  For all other surface types only the type-code is returned.  Use this code
+  to select the appropriate output routine.
+
+  If sense == KI_false then the surface normal is opposite to the normal
+  described for sense == KI_true.
+
+  Where no information is returned, the relevant argument is set to zero.
+
+</PRE>
+</BODY>
+</HTML>

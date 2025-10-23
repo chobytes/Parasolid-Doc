@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_imprint_cus_shadow_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_imprint_cus_shadow_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_imprint_cus_shadow_o_s
+    {
+    int                   o_t_version;        --- version number
+    double                tolerance;          --- curve tolerance (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          want_edges;         --- whether to return new edges
+                                              --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          want_visible_faces; --- whether to return visible
+                                              --- faces (PK_LOGICAL_false)
+    <A HREF=../headers/pk_shadow_check_fa_t.html>PK_shadow_check_fa_t</A>  check_faces;        --- check modified faces for
+                                              --- faults
+                                              --- (<A HREF=../headers/pk_shadow_check_fa_t.html>PK_shadow_check_fa_no_c</A>)
+    };
+typedef struct PK_BODY_imprint_cus_shadow_o_s
+               PK_BODY_imprint_cus_shadow_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Controls for the <A HREF=../headers/pk_body_imprint_cus_shadow.html>PK_BODY_imprint_cus_shadow</A> options structure.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_imprint_cus_shadow.html>PK_BODY_imprint_cus_shadow</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option <B>'tolerance'</B> controls the accuracy of the silhouette and shadow
+curves generated.
+
+If the <B>'want_edges'</B> option is set to PK_LOGICAL_true, the tags of the new
+edges created will be returned.
+
+If the <B>'want_visible_faces'</B> option is set to PK_LOGICAL_true, the tags of
+the visible faces in the resulting model will be returned.
+
+The option <B>'check_faces'</B> controls the level of post-process face checking
+undertaken on modified faces. The default value is <A HREF=../headers/pk_shadow_check_fa_t.html>PK_shadow_check_fa_no_c</A>. At
+the default check level, the Shadowing operation may produce an invalid body
+without raising an error. Therefore if the output body is used in a downstream
+modelling operation, it is strongly advised to set the <B>'check_face'</B> option to
+<A HREF=../headers/pk_shadow_check_fa_t.html><A HREF=../headers/pk_shadow_check_fa_t.html>PK_shadow_check_fa_yes_c</A></A>. If <B>'check_faces'</B> is set to <A HREF=../headers/pk_shadow_check_fa_t.html><A HREF=../headers/pk_shadow_check_fa_t.html>PK_shadow_check_fa_yes_c</A></A>,
+the error token PK_ERROR_face_check_fails indicates that the checker found a
+face fault.
+
+See <A HREF="../chapters/fd_chap.043.html#50409825_pgfId-324520">Imprinting shadow curves</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

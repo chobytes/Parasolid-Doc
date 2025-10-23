@@ -1,0 +1,629 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_render_line_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_render_line_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_render_line_o_s
+    {
+    int                      o_t_version;--- version of this PK option struct
+    <A HREF=../headers/pk_render_edge_t.html>PK_render_edge_t</A>         edge;       --- whether to draw edges
+                                         --- (<A HREF=../headers/pk_render_edge_t.html>PK_render_edge_yes_c</A>)
+    <A HREF=../headers/pk_render_silhouette_t.html>PK_render_silhouette_t</A>   silhouette; --- whether to draw silhouettes
+                                         --- (<A HREF=../headers/pk_render_silhouette_t.html>PK_render_silhouette_no_c</A>)
+    <A HREF=../headers/pk_mesh_normal_field_t.html>PK_MESH_normal_field_t</A>   sil_mesh_normal_field;
+                                         --- whether silhouettes on meshes are
+                                         --- computed using mvertex normals
+                                         --- (<A HREF=../headers/pk_mesh_normal_field_t.html>PK_MESH_normal_field_mvertex_c</A>)
+    <A HREF=../headers/pk_render_sharp_mfins_t.html>PK_render_sharp_mfins_t</A>  sharp_mfins;--- whether to draw sharp mfins on
+                                         --- faces with facet geometry
+                                         --- (<A HREF=../headers/pk_render_sharp_mfins_t.html>PK_render_sharp_mfins_no_c</A>)
+    <A HREF=../headers/pk_render_vis_t.html>PK_render_vis_t</A>          visibility; --- whether to determine visibility
+                                         --- (<A HREF=../headers/pk_render_vis_t.html>PK_render_vis_no_c</A>)
+    <A HREF=../headers/pk_render_invisible_t.html>PK_render_invisible_t</A>    invisible;  --- whether to output invisible lines
+                                         --- when <B>'visibility'</B> is set to
+                                         --- <A HREF=../headers/pk_render_vis_t.html>PK_render_vis_extended_c</A>
+                                         --- (<A HREF=../headers/pk_render_invisible_t.html>PK_render_invisible_no_c</A>)
+    <A HREF=../headers/pk_render_drafting_t.html>PK_render_drafting_t</A>     drafting;   --- whether to distinguish lines
+                                         --- hidden by lines and faces
+                                         --- when <B>'visibility'</B> is set to
+                                         --- <A HREF=../headers/pk_render_vis_t.html>PK_render_vis_extended_c</A>
+                                         --- (<A HREF=../headers/pk_render_drafting_t.html>PK_render_drafting_no_c</A>)
+    <A HREF=../headers/pk_render_self_hidden_t.html>PK_render_self_hidden_t</A>  self_hidden;--- whether to distinguish lines
+                                         --- hidden by own or another
+                                         --- occurrence when <B>'visibility'</B> is
+                                         --- set to <A HREF=../headers/pk_render_vis_t.html>PK_render_vis_extended_c</A>
+                                         --- (<A HREF=../headers/pk_render_self_hidden_t.html>PK_render_self_hidden_no_c</A>)
+    ---------------------------------------------------------------------------
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_curve_chord_tol;
+                                         --- whether curve_chord_tol is set
+                                         --- ( PK_LOGICAL_false )
+    double                   curve_chord_tol;
+                                         --- chordal tolerance between curve
+                                         --- and chord edges in model units
+                                         --- ( 0.0 )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_curve_chord_max;
+                                         --- whether curve_chord_max is set
+                                         --- ( PK_LOGICAL_false )
+    double                   curve_chord_max;
+                                         --- max length of chord in model units
+                                         --- ( 0.0 )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_curve_chord_ang;
+                                         --- whether curve_chord_ang is set
+                                         --- ( PK_LOGICAL_false )
+    double                   curve_chord_ang;
+                                         --- max angle between adjacent chords
+                                         ---                     in radians
+                                         --- ( 0.0 )
+    ---------------------------------------------------------------------------
+    <A HREF=../headers/pk_render_smooth_t.html>PK_render_smooth_t</A>       smooth;     --- whether to indicate smooth edges
+                                         --- (i.e. where faces have the same
+                                         ---     tangent surface at the edge)
+                                         --- (<A HREF=../headers/pk_render_smooth_t.html>PK_render_smooth_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_edge_smooth_tol;
+                                         --- whether edge_smooth_tol is set
+                                         --- ( PK_LOGICAL_false )
+    double                   edge_smooth_tol;
+                                         --- max angle (in radians) allowed
+                                         --- between face
+                                         --- normals for edge to be smooth
+                                         --- ( 0.0 )
+    <A HREF=../headers/pk_render_internal_t.html>PK_render_internal_t</A>     internal;   --- whether to indicate internal edges
+                                         --- (i.e. where faces on either side
+                                         ---  of the edge lie on same surface)
+                                         --- (<A HREF=../headers/pk_render_internal_t.html>PK_render_internal_no_c</A>)
+    <A HREF=../headers/pk_render_ske_missing_t.html>PK_render_ske_missing_t</A> ske_missing; --- whether to draw bodies with
+                                         --- missing geometry
+                                         --- (<A HREF=../headers/pk_render_ske_missing_t.html>PK_render_ske_missing_no_c</A>)
+    <A HREF=../headers/pk_render_ignore_t.html>PK_render_ignore_t</A>       ignore;
+                                         --- whether to ignore small features
+                                         --- in hidden line rendering.
+                                         --- Small features can be ignored
+                                         --- by inputting an absolute value or
+                                         --- a ratio value
+                                         --- ( <A HREF=../headers/pk_render_ignore_t.html>PK_render_ignore_no_c</A> )
+    double                   ignore_value;
+                                         --- features smaller than this value
+                                         --- will be considered for ignoring
+                                         --- ( 0.0 )
+    ---------------------------------------------------------------------------
+    <A HREF=../headers/pk_render_hierarch_t.html>PK_render_hierarch_t</A>     hierarch;   --- whether to produce hierarchical
+                                         --- output (<A HREF=../headers/pk_render_hierarch_t.html>PK_render_hierarch_no_c</A>)
+    <A HREF=../headers/pk_render_bcurve_t.html>PK_render_bcurve_t</A>       bcurve;     --- method for rendering bcurves
+                                         --- (<A HREF=../headers/pk_render_bcurve_t.html>PK_render_bcurve_polyline_c</A>)
+    <A HREF=../headers/pk_render_memory_target_t.html>PK_render_memory_target_t</A> memory_target;
+                                         --- whether to restrict memory usage
+                                         --- ( <A HREF=../headers/pk_render_memory_target_t.html>PK_render_memory_target_no_c</A> )
+    size_t                    memory_target_value;
+                                         --- target memory usage in bytes
+                                         --- ( 0 )
+    <A HREF=../headers/pk_render_report_line_t.html>PK_render_report_line_t</A> report_lines; --- whether to report line fit
+                                          --- failures and refits
+                                          --- (<A HREF=../headers/pk_render_report_line_t.html>PK_render_report_line_no_c</A>)
+    ---------------------------------------------------------------------------
+    <A HREF=../headers/pk_render_planar_t.html>PK_render_planar_t</A>       planar;     --- whether to draw planar hatching
+                                         --- (<A HREF=../headers/pk_render_planar_t.html>PK_render_planar_no_c</A>)
+    double                   planar_spacing;
+                                         --- distance between planes for
+                                         --- planar hatching
+                                         --- ( 0.0 )
+    <A HREF=../headers/pk_axis1_sf_t.html>PK_AXIS1_sf_t</A>            planar_axis;
+                                         --- axis for planar hatching
+                                         --- (location 0,0,0 direction 0,0,0)
+    <A HREF=../headers/pk_render_radial_t.html>PK_render_radial_t</A>       radial;     --- whether to draw radial hatching
+                                         --- (<A HREF=../headers/pk_render_radial_t.html>PK_render_radial_no_c</A>)
+    double                   radial_around;
+                                         --- angular spacing around spine for
+                                         --- radial hatching
+                                         --- ( 0.0 )
+    double                   radial_along;
+                                         --- spacing in model units along spine
+                                         --- ( 0.0 )
+    double                   radial_about;
+                                         --- angular spacing about centre
+                                         --- ( 0.0 )
+    double                   radial_around_start;
+                                         --- starting value for angular
+                                         --- spacing around
+                                         --- spine for radial hatching
+                                         --- ( PK_TOPOL_render_value_null )
+    double                   radial_along_start;
+                                         --- starting value for spacing in
+                                         --- model units along spine
+                                         --- ( PK_TOPOL_render_value_null )
+    double                   radial_about_start;
+                                         --- starting value for angular
+                                         --- spacing about centre
+                                         --- ( PK_TOPOL_render_value_null )
+    <A HREF=../headers/pk_render_param_t.html>PK_render_param_t</A>        param;      --- whether to draw parametric hatch
+                                         --- (<A HREF=../headers/pk_render_param_t.html>PK_render_param_no_c</A>)
+    double                   param_u;
+                                         --- hatch spacing in u direction
+                                         --- ( 0.0 )
+    double                   param_v;
+                                         --- hatch spacing in v direction
+                                         --- ( 0.0 )
+    int                      param_u_number;
+                                         --- number of u direction hatch lines.
+                                         --- Used only when <B>'param'</B> set to
+                                         --- <A HREF=../headers/pk_render_param_t.html>PK_render_param_number_free_c</A>
+                                         --- ( 0 )
+    
+    int                      param_v_number;
+                                         --- number of v direction hatch lines.
+                                         --- Used only when <B>'param'</B> set to
+                                         --- <A HREF=../headers/pk_render_param_t.html>PK_render_param_number_free_c</A>
+                                         --- ( 0 )
+    double                   param_u_start;
+                                         --- starting value for hatch spacing
+                                         --- in u direction
+                                         --- ( PK_TOPOL_render_value_null )
+    double                   param_v_start;
+                                         --- starting value for hatch spacing
+                                         --- in v direction
+                                         --- ( PK_TOPOL_render_value_null )
+    <A HREF=../headers/pk_render_unfix_t.html>PK_render_unfix_t</A>        unfix;      --- whether to draw unfixed blends
+                                         --- (<A HREF=../headers/pk_render_unfix_t.html>PK_render_unfix_no_c</A>) [NF]
+    double                   unfix_spacing;
+                                         --- unfixed blend default rib spacing
+                                         --- ( 0.0 ) [NF]
+    ---------------------------------------------------------------------------
+    <A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_t</A>      overlap;
+                                         --- whether to allow for overlapping
+                                         --- bodies
+                                         --- ( <A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_no_c</A> )
+    int                      n_overlap_indices;
+                                         --- number of body occurrences in
+                                         --- <B>'overlap_indices1'</B> (0)
+    const int               *overlap_indices1;
+                                         --- first array of body occurrences to
+                                         --- to be clashed (NULL)
+    int                      n_overlap_indices2;
+                                         --- number of body occurrences in
+                                         --- <B>'overlap_indices2'</B> (0)
+    const int               *overlap_indices2;
+                                         --- second array of body occurrences
+                                         --- to be clashed (NULL)
+    <A HREF=../headers/pk_render_transparent_t.html>PK_render_transparent_t</A> transparent; --- whether to draw transparent bodies
+                                         --- (<A HREF=../headers/pk_render_transparent_t.html>PK_render_transparent_no_c</A>)
+    int                     n_transparent_indices;
+                                         --- number of transparent indices (0)
+    const int              *transparent_indices;
+                                         --- array of body occurrences to be
+                                         --- rendered transparent (NULL)
+    <A HREF=../headers/pk_render_transp_hid_t.html>PK_render_transp_hid_t</A>  transparent_hid;
+                                         --- whether to allow transparent
+                                         --- bodies to appear opaque and
+                                         --- obscure other transparent bodies
+                                         --- (<A HREF=../headers/pk_render_transp_hid_t.html>PK_render_transp_hid_no_c</A>)
+    int                      n_suppressed_indices;
+                                         --- number of body occurrences in
+                                         --- <B>'suppressed_indices'</B> (0)
+    const int               *suppressed_indices;
+                                         --- array of body occurrences for
+                                         --- which invisible lines are to be
+                                         --- suppressed (NULL)
+    <A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_t</A>      viewport;  --- whether to use viewport(s)
+                                         --- (<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_no_c</A>)
+    <A HREF=../headers/pk_render_viewport_type_t.html>PK_render_viewport_type_t</A> viewport_type;
+                                         --- type of viewport
+                                         --- (<A HREF=../headers/pk_render_viewport_type_t.html>PK_render_viewport_type_3D_c</A>)
+    int                       n_viewports;
+                                         --- number of viewports (0)
+    const <A HREF=../headers/pk_nabox_sf_t.html>PK_NABOX_sf_t</A>      *viewports;
+                                         --- array of viewports (NULL)
+    <A HREF=../headers/pk_nabox_sf_t.html>PK_NABOX_sf_t</A>             viewport_sf;
+                                         --- viewport definition
+                                         --- if single viewport is used, i.e.
+                                         --- <A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_yes_c</A> chosen
+                                         --- ( (location 0,0,0 axis 0,0,0
+                                         ---    direction 0,0,0)
+                                         ---   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0) )
+    <A HREF=../headers/pk_render_viewport_clip_t.html>PK_render_viewport_clip_t</A> viewport_clipping;
+                                         --- use viewport clipping
+                                         --- (<A HREF=../headers/pk_render_viewport_clip_t.html>PK_render_viewport_clip_no_c</A>)
+    <A HREF=../headers/pk_render_region_t.html>PK_render_region_t</A>        region;    --- whether to produce regional data
+                                         --- (<A HREF=../headers/pk_render_region_t.html>PK_render_region_no_c</A>)
+    int                       n_bodies_with_scales;
+                                         --- number of body occurrences with
+                                         --- scales specified (0)
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>                *bodies_with_scales;
+                                         --- array of bodies for which a
+                                         --- scale factor is specified (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>        *scale_factors;
+                                         --- scale factor associated with the
+                                         --- corresponding body in
+                                         --- <B>'bodies_with_scales'</B> (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>         output_scale_factor;
+                                         --- scale by which to shrink the
+                                         --- resulting line drawing of the
+                                         --- entities
+                                         --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    };
+typedef struct PK_TOPOL_render_line_o_s PK_TOPOL_render_line_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Controls for the <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A> options structure
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+PK_TOPOL_render_line_o_t provides controls for <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A> to
+generate view-independent, view-dependent and hidden line drawings of
+topological entities through the Graphics Output (GO) interface.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-294816">option settings</A> for more information in addition to that
+provided below.
+
+The controls allow view independent and view dependent data (silhouettes)
+to be generated in the same call to <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A>. Hidden line
+drawings should be generated in a separate call to <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A>
+because their arguments are generally incompatible with those used for
+the other categories of drawing.
+
+The options specify which types of lines should be rendered (e.g. edges,
+silhouettes, sharp mfins) and what additional data (e.g. visibility and
+smoothness) needs to be calculated and handed onto GO.
+
+
+Mesh Silhouette Method
+If <B>'sil_mesh_normal_field'</B> is set to <A HREF=../headers/pk_mesh_normal_field_t.html>PK_MESH_normal_field_mvertex_c</A>, mesh
+vertex normals will be used to generate silhouette curves on meshes. If set to
+<A HREF=../headers/pk_mesh_normal_field_t.html>PK_MESH_normal_field_mfacet_c</A>, mfacet normals will be used. This option is
+ignored on classic geometry.
+
+Sharp Mfins
+The <B>'sharp_mfins'</B> options controls whether to output sharp mfins on meshes. The
+criteria for sharpness are as defined by <A HREF=../headers/pk_mfin_is_sharp.html>PK_MFIN_is_sharp</A>.
+
+The <B>'sharp_mfins'</B> option can be set to one of the following values:
+
+<A HREF=../headers/pk_render_sharp_mfins_t.html>PK_render_sharp_mfins_yes_c</A>: On each face with facet geometry, Parasolid will
+                             output polylines running along chains of connected
+                             sharp mfins. The chains will be divided at any
+                             mvertex that has more than two sharp mfins
+                             pointing into it.
+
+                             Where an edge is coincident with a chain of sharp
+                             mfins, only the edge will be output. In
+                             hidden-line drawings Parasolid will indicate that
+                             the edge segment is coincident with sharp mfins.
+
+                             Where a sharp mfin polyline lies along a
+                             silhouette, only the sharp mfin polyline will be
+                             output. In hidden-line drawings Parasolid will
+                             indicate that the sharp-mfin segment is coincident
+                             with a silhouette.
+
+<A HREF=../headers/pk_render_sharp_mfins_t.html>PK_render_sharp_mfins_no_c</A> : Parasolid will not output sharp mfins.
+
+Visibility
+If <B>'visibility'</B> is set to <A HREF=../headers/pk_render_vis_t.html>PK_render_vis_no_c</A> then no visibility evaluation
+(ie hidden line drawing) is performed.  Common visibility requirements may
+be requested by the values: <A HREF=../headers/pk_render_vis_t.html>PK_render_vis_hid_c</A>, <A HREF=../headers/pk_render_vis_t.html>PK_render_vis_inv_c</A> and
+<A HREF=../headers/pk_render_vis_t.html>PK_render_vis_inv_draft_c</A>.  For more refined control over visibility
+requirements, <B>'visibility'</B> may be set to <A HREF=../headers/pk_render_vis_t.html>PK_render_vis_extended_c</A> which
+then enables the options: <B>'invisible'</B>, <B>'drafting'</B> and <B>'self_hidden'</B>.
+In the  cases of specifying that invisible lines are to be output, an
+optional list of body indices into the <B>'topols'</B> array may be specified
+to suppress the display of hidden lines only for those bodies.
+This is done by supplying the auxilliary data <B>'n_suppressed_indices'</B> and
+<B>'suppressed_indices'</B> to indicate the number of bodies and the body indices
+respectively. Any hidden lines from these bodies will not be output, and
+will not obscure coincident hidden lines on other bodies.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-302441">Visibility</A> for more information.
+
+Tolerance Values
+Each control tolerance is passed as a pair of values, consisting of a
+<A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> flag and a double precision value. If a specific tolerance
+is required, the variable is set to a strictly positive value and the
+associated flag set to PK_LOGICAL_true.
+
+If Parasolid is to use its internal tolerance defaults, the associated flag is
+set to PK_LOGICAL_false (and no use made of the associated tolerance argument).
+This is the default state set by the PK_TOPOL_render_line_o_m macro.
+
+A report is returned via the Parasolid report mechanism of type
+<A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A>. This record will have a <B>'status'</B> of
+<A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_render_curve_tols_c</A> and contain the three tolerance values used by
+Parasolid, whether supplied or calculated internally.
+
+See <A HREF="../chapters/fd_chap.108.html#50409899_pgfId-294729">Display Tolerances</A> for more information.
+
+Edge Smoothness
+If <B>'is_edge_smooth_tol'</B> is set to true, the value in <B>'edge_smooth_tol'</B>
+defines the angular tolerance (in radians) for the smoothness property
+in the same way as <A HREF=../headers/pk_edge_is_smooth.html>PK_EDGE_is_smooth</A>.
+
+The criteria for smoothness is defined as being that the angle between the
+normals of the two faces that meet at a given edge do not exceed the angle
+supplied in <B>'edge_smooth_tol'</B>.
+
+If <B>'is_edge_smooth_tol'</B> is set to false, the angular tolerance used will
+depend upon the accuracy of the relevant edge.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-304123">Tolerance on smooth edges</A> for more information.
+
+Sketching Bodies with Missing Geometry
+<A HREF=../headers/pk_render_ske_missing_t.html>PK_render_ske_missing_t</A> controls the sketching of bodies containing entities
+that have missing geometry.
+<A HREF=../headers/pk_render_ske_missing_t.html>PK_render_ske_missing_no_c</A>: returns PK_ERROR_missing_geom when encountering
+missing geometry.
+
+<A HREF=../headers/pk_render_ske_missing_t.html>PK_render_ske_missing_yes_c</A>: ignores entities with missing geom and continues
+to sketch all other entities.  Any edges with missing geometry will be omitted.
+Any faces with missing surface geometry or missing edge geometry will omit
+silhouettes or hatched lines, if these have also been requested.
+
+<A HREF=../headers/pk_render_ske_missing_t.html>PK_render_ske_missing_yes_c</A> is only available when view dependent or view
+independent wire-frame rendering has been requested.  It is not compatible with
+visibility calculations.
+
+Ignore Small Features
+The <B>'ignore'</B> option can be set to one of the following values:
+
+<A HREF=../headers/pk_render_ignore_t.html>PK_render_ignore_no_c</A>: (default) All features will be rendered regardless of
+their size.
+
+<A HREF=../headers/pk_render_ignore_t.html>PK_render_ignore_absolute_c</A>: Any feature with a box size smaller than the
+value specified will be ignored. If the feature belongs to a body that is being
+scaled, this is the box size after the scale is applied.
+
+<A HREF=../headers/pk_render_ignore_t.html>PK_render_ignore_ratio_c</A>: The <B>'ignore_value'</B> corresponds to the ratio of box
+size of the feature to the size of the box containing the entities to be
+rendered, taking into account associated <B>'topol_transfs'</B> and <B>'scale_factors'</B>
+i.e. if this value is set to 0.01 then all features smaller than 1 per-cent
+of the entities' box will be ignored.
+
+<A HREF=../headers/pk_render_ignore_t.html>PK_render_ignore_body_ratio_c</A>: The <B>'ignore_value'</B> corresponds to the ratio of
+the box size of the feature to the size of the box of the body containing the
+feature.
+
+This option only takes effect when visibility is not set to
+<A HREF=../headers/pk_render_vis_t.html>PK_render_vis_no_c</A>. Note that <B>'small'</B> features will only be ignored provided
+that ignoring them does not leave the model invalid.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-304597">Ignoring small features</A> for more information.
+
+Memory Target
+The <B>'memory_target'</B> option can be set to one of the following values:
+
+<A HREF=../headers/pk_render_memory_target_t.html>PK_render_memory_target_yes_c</A>: Parasolid will attempt to restrict the memory
+usage of <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A> to the amount of memory given by
+"memory_target_value".  The target value is not guaranteed to be met. The
+amount of memory used by <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A> will be reduced at the expense
+of total processor time.
+
+The value given by <B>'memory_target'</B> refers to the peak amount of extra memory
+temporarily allocated during <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A>.
+
+<A HREF=../headers/pk_render_memory_target_t.html>PK_render_memory_target_no_c</A>: Parasolid will maximise performance without
+attempting to restrict memory usage.
+
+This option only takes effect when visibility is not set to
+<A HREF=../headers/pk_render_vis_t.html>PK_render_vis_no_c</A>.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-305625">Controlling memory usage</A> for more information.
+
+Line fit report
+If <B>'report_lines'</B> is set to anything but <B>'<A HREF=../headers/pk_render_report_line_t.html>PK_render_report_line_no_c</A>'</B>, then a
+report is returned via the Parasolid report mechanism of type
+<A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A>. This record will have a <B>'status'</B> of
+<A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_line_fit_tols_c</A> and return information for curves that could not
+be fitted with a linear approximation both in the event that it could not be
+fitted at all and if it was refitted by altering the prescribed chord and
+angular tolerances. The curve type, associated edge or face tags, and changed
+tolerance values are included in the report for each failed curve fit or
+successful refit using altered tolerances.
+
+Radial and Param Default Start Values
+If no values are specified for the radial start values then the option
+<A HREF=../headers/pk_render_radial_t.html>PK_render_radial_yes_c</A> will behave like <A HREF=../headers/pk_render_radial_t.html>PK_render_radial_free_c</A> and
+Parasolid will choose the start values. Similarly, if no param start
+values are specified then the option <A HREF=../headers/pk_render_param_t.html>PK_render_param_spaced_c</A> will behave
+like <A HREF=../headers/pk_render_param_t.html>PK_render_param_spaced_free_c</A> and Parasolid will choose the start values.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-294866">Hatching</A> for more information.
+
+Overlapping Body Occurrences
+By default, Parasolid assumes that rendered instances after they have been
+transformed do not overlap. So if you need intersection lines to be generated
+then you must set the <B>'overlap'</B> option to specify the required output. You
+must use this option if, for example, you require rendering of intersection
+lines for an assembly containing clashing instances, i.e. instances that share
+a common volume. This option can be set to one of the following values:
+
+<A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_no_c</A>: Parasolid assumes that the body occurrences to be
+rendered do not overlap. If there are overlapping occurrences present then the
+overlap will not be detected and the resulting picture may contain errors.
+
+<A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_yes_c</A>: Parasolid will detect overlapping body occurences
+and will split the existing lines appropriately. However, the algorithm will
+not generate new edges where the faces interfere with each other. The
+additional effort of detecting overlaps will incur a performance overhead
+compared to <A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_no_c</A>.
+
+<A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_intsec_all_c</A>: This option is similar to
+<A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_yes_c</A> but it will also generate and render any interference
+curves between body occurrences that overlap. Two arrays of indices into the
+<B>'topols'</B> array can be used to limit or "filter" the set of occurrences that are
+actually clashed. The fields <B>'n_overlap_indices'</B> and <B>'n_overlap_indices2'</B>
+should be set to the number of occurrences in <B>'overlap_indices1'</B> and
+<B>'overlap_indices2'</B> respectively. The arrays can be of any size and each body
+occurrence in the first array will be clashed with each body occurence in
+the second array as long as both arrays contain at least one body occurrence.
+If one of the arrays is  empty (either <B>'n_overlap_indices'</B> is 0 or
+<B>'n_overlap_indices2'</B> is 0) then all of the body occurrences in the non-empty
+array will be clashed with one another. If <B>'n_overlap_indices'</B> and
+<B>'n_overlap_indices2'</B> are both are 0 then all occurrences in the <B>'topols'</B> array
+will be clashed with one another. The additional effort of detecting overlaps
+and interference curves will incur a further performance overhead compared to
+<A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_yes_c</A>.
+
+<A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_intsec_pair_c</A>: This option is similar to
+PK_render_intsec_all_c in that it can generate and render interference
+curves between body occurrences that overlap.  It requires that both arrays
+<B>'overlap_indices1'</B> and <B>'overlap_indices2'</B> are entered and that both have the
+same non-zero length (<B>'n_overlap_indices'</B> must equal <B>'n_overlap_indices2'</B>).
+Interference curves will be generated for pairs of body occurrences made up of
+corresponding entries in the two arrays. The additional effort of detecting
+overlaps and interference curves will incur a further performance overhead
+compared to <A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_yes_c</A>.
+
+<A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_intersect_c</A>: (deprecated) Parasolid will detect overlapping
+body occurrences and will split the existing lines appropriately. However, the
+algorithm will generate additional new interference curves where the
+occurrences intersect. The additional effort of detecting overlaps and
+interference curves will incur a further performance overhead over that for
+<A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_yes_c</A>.
+If this option is selected, and if the lists are of equal non-zero length,
+the behaviour is the same as if the <A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_intsec_pair_c</A> option had
+been used; otherwise the behaviour is as for <A HREF=../headers/pk_render_overlap_t.html>PK_render_overlap_intsec_all_c</A>.
+
+These options only take effect when visibility is not set to
+<A HREF=../headers/pk_render_vis_t.html>PK_render_vis_no_c</A>. Abutting body occurrences will always be rendered
+correctly, regardless of the setting of the option.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-305357">Overlapping</A> for more information.
+
+Transparency
+There are two methods for rendering transparent bodies:
+
+1 - Attach a <A HREF="../chapters/fd_chap.124.html#50409918_pgfId-377804">transparency system attribute</A> SDL/TYSA_TRANSPARENCY
+(with transparency coefficient of value greater or equal to 1) to all bodies
+that are to be rendered transparent, and set the <B>'transparent'</B> option to
+<A HREF=../headers/pk_render_transparent_t.html>PK_render_transparent_yes_c</A>.
+
+2 - Set the <B>'transparent'</B> option to <A HREF=../headers/pk_render_transparent_t.html>PK_render_transparent_index_c</A>, and then
+specify the index value of the bodies (according to the order that they appear
+in the array topols[]) that are to be rendered transparent within the array
+<B>'transparent_indices'</B>. The value <B>'n_transparent_indices'</B> is the length of this
+array. Thus if the body occurrences to be rendered transparent lie in the
+third and fifth position of the array topols, then <B>'transparent_indices'</B> will
+be {2, 4}, and <B>'n_transparent_indices'</B> will have value 2. This option can be
+used to make some occurrences of the same body appear transparent, without the
+need to use a transparency attribute.
+
+The <B>'transparent_hid'</B> option can be used to control the rendering of
+transparent bodies within hidden line rendering. Setting the <B>'transparent_hid'</B>
+option to <A HREF=../headers/pk_render_transp_hid_t.html>PK_render_transp_hid_no_c</A> will render transparent bodies as in the
+methods mentioned above. If <B>'transparent_hid'</B> is set to
+<A HREF=../headers/pk_render_transp_hid_t.html>PK_render_transp_hid_yes_c</A>, then all transparent bodies will be rendered
+opaque, but they will only obscure other transparent body occurrences.
+
+For more information, see <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-303817">Transparency</A> in the Functional Descripion.
+
+Multiple Viewports
+<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_t</A> controls the multiple viewport behaviour.
+<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_no_c</A>: no viewports are supplied. (default)
+
+<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_yes_c</A>: the single viewport specified in <B>'viewport_sf'</B>
+is used. Entities outside the single supplied viewport may be omitted. In this
+case, <B>'n_viewports'</B> and <B>'viewports'</B> are ignored.
+
+<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_array_c</A>: an array of viewports is supplied. Entities
+outside all the supplied viewports may be omitted. <B>'viewport_sf'</B> is
+ignored. The number of viewports used is set in <B>'n_viewports'</B> and can be set
+to zero or a positive integer. The array of viewports is specified in
+<B>'viewports'</B>.
+
+<A HREF=../headers/pk_render_viewport_type_t.html>PK_render_viewport_type_t</A> controls the type of viewport being used for this
+rendering. Although multiple viewports can be specified, they all must be of
+the same type.
+
+<A HREF=../headers/pk_render_viewport_type_t.html>PK_render_viewport_type_3D_c</A>: allows for a general non-aligned box to be used
+to specify a region of a set of bodies to be rendered. (default)
+
+<A HREF=../headers/pk_render_viewport_type_t.html>PK_render_viewport_type_2D_c</A>: is used to indicate a 2D viewport. In a 2D
+viewport, the <B>'axis'</B> specified in the viewport's <B>'basis_set'</B> (<A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A>)
+must be the same as the view direction (<B>'view_transf'</B>) specified in the call to
+<A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A>. If this is not the case for each viewport, then an error
+of type PK_ERROR_bad_2d_viewport will be returned.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-304451">Viewport</A> for more information.
+
+Viewport Clipping
+<A HREF=../headers/pk_render_viewport_clip_t.html>PK_render_viewport_clip_yes_c</A>: This is used to enable clipping to the given
+type of viewport.
+
+<A HREF=../headers/pk_render_viewport_clip_t.html>PK_render_viewport_clip_no_c</A>: This is used to indicate that although the
+viewport option has been turned on and viewports provided, no clipping will
+occur. (default)
+
+Scale Factors
+It is possible to associate a scale factor with a body so that the body is
+enlarged by the supplied scale factor in the rendering. The centre of scaling
+is the origin.
+
+In order to supply scale factors for bodies it is necessary to fill in the
+following fields:
+
+<B>'n_bodies_with_scales'</B>
+This is the number of bodies with which a scale factor will be associated. If
+this is 0, no scaling will occur.
+
+<B>'bodies_with_scales'</B>
+This field must be of length <B>'n_bodies_with_scales'</B>, it takes an array of
+unique bodies which are to have a scale factor applied. The scale factor for a
+given body will be applied to all occurrences of that body.
+If this is empty no scaling will occur.  If this is not empty the parallel
+array <B>'scale_factors'</B> must be filled in.
+
+<B>'scale_factors'</B>
+This field must be of length <B>'n_bodies_with_scales'</B>, each <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>
+in this array is the scale associated with the corresponding body in
+<B>'bodies_with_scales'</B>.
+
+Note: If <B>'topol_transfs'</B> are supplied any translation component of the
+      transform will be applied after the body have been scaled.
+
+
+Output Scale Factor
+It is possible to shrink the returned drawing by providing an
+<B>'output_scale_factor'</B> which will be used to scale all the segments returned
+with the scaling centre at the origin.  No scaling is applied when the value is
+<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

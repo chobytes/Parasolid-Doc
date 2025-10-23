@@ -1,0 +1,545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Enquiries</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Enquiries</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.09.html">Miscellaneous Useful Functions</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.11.html">Attributes in KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.10.html#50475015_pgfId-273839">9.1	Introduction</A>
+<LI> <A HREF="kd_chap.10.html#50475015_pgfId-273871">9.2	Enquiring/setting the tag property</A>
+<LI> <A HREF="kd_chap.10.html#50475015_pgfId-273878">9.3	Using enquire to construct complex functions</A>
+<LI> <A HREF="kd_chap.10.html#50475015_pgfId-273944">9.4	Accessing the KI routine IDCOEN for topological entities</A>
+<LI> <A HREF="kd_chap.10.html#50475015_pgfId-273948">9.5	Enquiring coordinates of box enclosing single item</A>
+<LI> <A HREF="kd_chap.10.html#50475015_pgfId-273964">9.6	Enquiring on a supplied point</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475015_pgfId-273839"></A>9.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475015_pgfId-273840"></A>This chapter describes the enquiries available in KID.</P>
+
+<H4>
+<A NAME="50475015_pgfId-273841"></A>enquire function</H4>
+<P>
+<A NAME="50475015_pgfId-273843"></A><A NAME="50475015_marker-273842"></A>It is possible to enquire about topological and geometrical items. The <CODE>
+enquire</CODE>
+ function is applicable to points, curves, surfaces, vertices, edges and faces. The function can be used to print out either all available information or just specific details about the geometry of the item. For instance, assuming c1 ( a curve), f1 ( a face) and a1 ( an assembly) have already been picked:</P>
+<P>
+<A NAME="50475015_pgfId-273855"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280257"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280259"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280261"></A>modeller</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280265"></A><A NAME="50475015_marker-280263"></A><A NAME="50475015_marker-280264"></A>enquire</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280199"></A>&gt; (c1 enquire)
+&gt; (f1 enquire)
+&gt; (a1 enquire)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475015_pgfId-273857"></A>This prints out information about the geometry of the item on the screen. </P>
+<UL>
+<LI>
+<A NAME="50475015_pgfId-273858"></A>For the curve, the type is given, and also information about its geometry. For example, if the curve is a circle, the center point, axis and radius are printed out. </LI>
+<LI>
+<A NAME="50475015_pgfId-273859"></A>For the face, the geometry of the attached surface is printed out, together with the values of the sense and reverse flags for the surface and face respectively, and the tolerance. For example, the outside face of a cone has a conical surface, whose surface sense is 1, i.e. positive.</LI>
+<LI>
+<A NAME="50475015_pgfId-273860"></A>For the assembly, the number of components it consists of; how many of those components are sub-assemblies; and its box vector are printed out.</LI>
+</UL>
+
+
+<H4>
+<A NAME="50475015_pgfId-273861"></A>Using enquire on a one layer assembly</H4>
+<P>
+<A NAME="50475015_pgfId-273862"></A>In addition, for assemblies of only one layer of substructure, a statement to that effect and the number of sheet and solid bodies the assembly consists of are printed out.</P>
+
+
+<H4>
+<A NAME="50475015_pgfId-273863"></A>Using the level function to create a single layer assembly</H4>
+<P>
+<A NAME="50475015_pgfId-273864"></A>To convert an &quot;unlevelled&quot; assembly to a single layer assembly, type:</P>
+<P>
+<A NAME="50475015_pgfId-279949"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280175"></A>&gt; ( a1 level )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475015_pgfId-273866"></A>Other enquiries on an assembly are:</P>
+<P>
+<A NAME="50475015_pgfId-279973"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280143"></A>&gt; ( a1 instances )    -- a list of the first layer of instances
+&gt; ( a1 bodies )       -- a list of the first layer of bodies
+&gt; ( a1 transforms ) 
+                 -- a list of the first layer of transform tags</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475015_pgfId-273868"></A>It is also possible to get more specific information from the enquire function. An argument identifying the type of information required is given to the <CODE>
+enquire</CODE>
+ function, and the function thens return the value of the information, or <CODE>
+nil</CODE>
+ if it is not found. </P>
+<P>
+<A NAME="50475015_pgfId-273869"></A>Assuming c1 is a circular curve:</P>
+<P>
+<A NAME="50475015_pgfId-279984"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280123"></A>&gt; (c1 enquire &acute;point)     --&gt;(0 0 0)
+&gt; (c1 enquire &acute;direction) --&gt;(0 0 1)
+&gt; (c1 enquire &acute;radius)    --&gt; 42
+&gt; (c1 enquire &acute;maj_axis)  --&gt; nil
+&gt; (c1 enquire &acute;type)      --&gt; circle</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475015_pgfId-273871"></A>9.2	Enquiring/setting the tag property
+
+
+</H1>
+<P>
+<A NAME="50475015_pgfId-273875"></A><A NAME="50475015_marker-273872"></A><A NAME="50475015_marker-273873"></A><A NAME="50475015_marker-273874"></A>If a primitive is created, or if an object has been picked from the screen, it has a property which contains the value of the kernel tag which represents the item. KID uses this when it calls the KI / PK. It is possible to access the value of the tag, or to set it to a particular value. For instance, if it is known that tag 99 refers to a face, the following  creates an object which may then be manipulated by KID:</P>
+<P>
+<A NAME="50475015_pgfId-279995"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280107"></A>&gt; (define f1 face)
+&gt; (f1 tag 99)         -- set tag property to 99
+&gt; (f1 enquire)        --&gt; information
+&gt; (f1 tag)            --&gt; gives tag value 99</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475015_pgfId-273877"></A>It may prove useful to manipulate tag values in this way to perform operations which are not possible with the normal KID functions.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475015_pgfId-273878"></A>9.3	Using enquire to construct complex functions
+
+
+</H1>
+<P>
+<A NAME="50475015_pgfId-273880"></A><A NAME="50475015_marker-273879"></A>Some KID functions result in the tag property of an entity having a LISP list of tags. An example of this is the function <CODE>
+pick_from</CODE>
+. It is often possible to manipulate an object with a list of tags using the same functions as if it had a single tag. This facility is not provided by all KID functions.</P>
+<P>
+<A NAME="50475015_pgfId-280010"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280087"></A>&gt; (define b1 p_block)
+&gt; (b1 x 10; y 20; z 10; create)    -- create block b1
+&gt; (define f1 face)
+&gt; (f1 pick_from &acute;b1)        -- f1 is a list of b1&acute;s 6 faces
+&gt; (f1 pick_using &acute;(f1 clash &acute;(5 5 10)))
+    -- leave only those faces which clash with this point f1
+       now refers to a set of three faces from body b1
+
+&gt; (f1 enquire )                    --&gt; information
+&gt; (f1 direction &acute;(10 9 8); move)
+                       -- this will move all three faces</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475015_pgfId-273882"></A>This form of the <CODE>
+enquire</CODE>
+ function can be used to construct complex functions where the geometry of one surface is used to define the size of another. </P>
+<P>
+<A NAME="50475015_pgfId-280017"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280072"></A>&gt; (define b0 p_cone)
+&gt; (b0 lrad 10; urad 0; height 30; create)
+&gt; (define f1 face)
+&gt; (define s1 surface)
+&gt; (f1 <A NAME="50475015_marker-280073"></A>pick_from b0)
+&gt; (f1<A NAME="50475015_marker-280074"></A> pick_using &acute;(f1 clash &acute;(0 0 30))) 
+           -- see later for clash definition
+&gt; (s1 pick_from f1)
+&gt; (f1 enquire)
+&gt; (s1 enquire)
+&gt; (s1 enquire &acute;sense)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475015_pgfId-273886"></A>The argument type can be used to select specific curve or surface types, which are named as follows:</P>
+<P>
+<A NAME="50475015_pgfId-273936"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273889"></A>Curve</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273891"></A>Surface</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273893"></A>line</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273895"></A>planar</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273897"></A>circle</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273899"></A>cylindrical</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273901"></A>ellipse</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273903"></A>conical</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273905"></A>intersection</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273907"></A>spherical</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273909"></A>B-curve</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273911"></A>toroidal</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273913"></A>SP-curve</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273915"></A>blend</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273917"></A>foreign_geometry</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273919"></A>B-surface</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273921"></A>constant_parameter</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273923"></A>swept</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273925"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273927"></A>spun</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273929"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273931"></A>offset</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273933"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-273935"></A>foreign_geometry</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475015_pgfId-273937"></A>Use of the <CODE>
+enquire</CODE>
+ function within the pick facility using type is described in the section <A HREF="kd_chap.15.html#50475034_35465">&quot;Picking directly from other objects&quot;</A> in <A HREF="kd_chap.15.html#50475034_40721">Chapter 14, &quot;Picking&quot;</A>.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475015_pgfId-273944"></A>9.4	Accessing the KI routine IDCOEN for topological entities
+
+
+</H1>
+<P>
+<A NAME="50475015_pgfId-273946"></A><A NAME="50475015_marker-273945"></A>A convenient way of accessing the KI routine IDCOEN for topological entities is:</P>
+<P>
+<A NAME="50475015_pgfId-280024"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280064"></A>&gt; ( b0 faces )    -- returning a list of b0&acute;s (body) faces
+&gt; ( f0 edges )    -- returning a list of f0&acute;s (face) edges
+&gt; ( a0 bodies )   -- returning a list of a0&acute;s (assembly) bodies</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475015_pgfId-273948"></A>9.5	Enquiring coordinates of box enclosing single item
+
+
+</H1>
+<P>
+<A NAME="50475015_pgfId-273952"></A><A NAME="50475015_marker-273949"></A><A NAME="50475015_marker-273950"></A><A NAME="50475015_marker-273951"></A>The function box returns two vectors defining the extremes of a minimal rectangular box aligned with the axis system, and enclosing the single topology item, or list of topology items of the same type. This is true for assemblies, bodies, faces, edges and vertices. For a single vertex point, the box extremes are identical.</P>
+<P>
+<A NAME="50475015_pgfId-280031"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280280"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280282"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280284"></A>topology</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280286"></A>box</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280054"></A>&gt; (define b1 p_block)
+&gt; (b1 x 10;y 20;z 30; create)
+&gt; (b1 box)        --&gt; ( ( -5.0 -10.0 0.0 ) ( 5.0 10.0 30.0 ) )
+
+&gt; (define v1 vertex)
+&gt; (v1 pick_from &acute;b1)
+&gt; (v1 box)        --&gt; ( ( -5.0 -10.0  0.0 ) ( 5.0 10.0 30.0 ) )
+
+&gt; (v1 pick_using &acute;(v1 clash &acute;(5 10 30)))
+&gt; (v1 box)        --&gt; ( ( 5.0 10.0 30.0 ) ( 5.0 10.0 30.0 ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475015_pgfId-273964"></A>9.6	Enquiring on a supplied point
+
+
+</H1>
+<P>
+<A NAME="50475015_pgfId-273968"></A><A NAME="50475015_marker-273965"></A><A NAME="50475015_marker-273966"></A><A NAME="50475015_marker-273967"></A>Function clash provides a means of testing whether a supplied point is contained in, on or outside a body, face, edge or vertex. Clash uses the KI routine ENCONT.</P>
+<P>
+<A NAME="50475015_pgfId-280038"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280331"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280333"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280335"></A>topology</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475015_pgfId-280337"></A>clash</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475015_pgfId-280044"></A>&gt; (define b1 p_block)
+&gt; (b1 x 20; y 20; z 10; create) -- creates block
+&gt; (b1 help clash)               --&gt; information on clash for b1
+&gt; (b1 clash &acute;(0 0 5))           --&gt; in
+&gt; (b1 clash &acute;(0 0 0))           --&gt; on
+&gt; (b1 clash &acute;(0 0 -5))          --&gt; nil (i.e. outside)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475015_pgfId-110680"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.09.html">Miscellaneous Useful Functions</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.11.html">Attributes in KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_facet_choice_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_facet_choice_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_facet_choice_o_s
+    {
+    int        o_t_version;              --- version of this PK option struct
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> facet_fin;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> fin_fin;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> fin_vertex;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> vertex_point;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> vertex_normal;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> vertex_param;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> point_vec;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> normal_vec;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> param_uv;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> param_dp;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> param_d2p;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> facet_face;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> facet_occ;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> edge_fin;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> edge_occ;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> error_facet;
+    };
+    typedef struct PK_TOPOL_facet_choice_o_s PK_TOPOL_facet_choice_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Selection of which tables are returned. See <A HREF="../chapters/fd_chap.111.html#50409902_pgfId-295196">here</A> for more
+information.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_o_t_version_incorrect  option structure not initialised correctly
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_o_t.html>PK_TOPOL_facet_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+PK_TOPOL_choice_o_t
+The PK_TOPOL_facet_choice_o_t structure specifies which tables the
+application wishes <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A> to return. Each field name of the form
+
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> &lt;from&gt;_&lt;to&gt;
+
+is set by the application to the value PK_LOGICAL_true or PK_LOGICAL_false
+indicating whether or not the application wishes <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A> to return
+this particular table (via the returned <A HREF=../headers/pk_topol_facet_r_t.html>PK_TOPOL_facet_r_t</A> structure).
+
+A support macro PK_TOPOL_facet_choice_o_m sets the version field to the
+current version number of the PK_TOPOL_facet_choice_o_t structure and
+initialises a sample number of specific fields to PK_LOGICAL_true,
+sufficient to demonstrate how to return sample data for a simple
+rendering application.
+
+A facet mesh is defined by tables of facet topology, geometry and associative
+data. Facet topology is described in terms of facet, fin and vertex indices.
+
+The tables of facet vertex data point to tables of coordinate, parameter
+and derivative data. The associative tables match up facets and fins to
+faces and edges in the original part.
+
+FACETS
+The outside of a facet is represented by an ordered sequence of 3 or more fins.
+The fin sequence follows an anti-clockwise order when viewed outside the facet.
+
+
+EXAMPLE
+The anti-clockwise ordering of fins and connected vertex entities is described
+later as their 'conventional order'. The following diagram illustrates the
+ordering of fins, viewed from the outside of a quadrilateral facet mesh.
+
+                ^   |             ^   |
+          F     |   |      F      |   |     F
+                |   v             |   v
+      ---------&gt;     ------------&gt;     --------&gt;         ---------------
+                  V                 V                   |  Key          |
+      &lt;---------     &lt;------------     &lt;-------         | ------------- |
+                ^   |             ^   |                 |               |
+          F     |   |      F      |   |     F           |   F    facet  |
+                |   |             |   |                 |   V    vertex |
+                |   v             |   v                 |  --&gt;   fin    |
+      ---------&gt;     ------------&gt;     -------&gt;         |               |
+                  V                 V                    ---------------
+      &lt;---------     &lt;------------     &lt;------
+                ^   |             ^   |
+          F     |   |      F      |   |     F
+                |   v             |   v
+
+HOLES IN FACETS
+If a facet contains holes (having been created with the <B>'shape'</B> option set to
+<A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_any_c</A>), it is represented by an ordered sequence of exterior
+fins, followed by one or more sequences of interior fins, representing holes
+in the facet. The exterior and interior subsequences of fins are separated
+from each other by a 'null fin' value of `-1'.
+
+The fin sequence of each interior hole in a face follows an clockwise order
+when viewed outside the facet. The relative ordering of each interior fin
+subsequence is arbitrary (other than following the exterior sequence).
+
+
+EXAMPLE
+
+        f1
+   v1---&lt;--------------------------------------------------------------v4
+    |         v5                     v8                       v11       |
+    |      f5/ \                  f8/ \                   f11/ \        ^ f4
+    |       /   \                  /   \                    /   \       |
+    |      /     \f6              /     \f9                /     \f12   |
+ f2 v       -&lt;----                 -&lt;----                   -&lt;----      |
+    |   v7  f7    v6         v10  f10    v9           v13  f13   v12    |
+   v2---------------------------------------------------------------&gt;---v3
+                                                                    f3
+This facet is represented by the sequence
+
+    f1  f2  f3  f4  -1  f5   f6   f7  -1  f8   f9  f10   -1  f11  f12  f13
+
+    \__exterior__/   ^   \_interior_/  ^   \_interior_/   ^    \_interior_/
+                     |                 |                  |
+                 separator         separator          separator
+
+The relative ordering of the interior subsequences "f5 f6 f7", "f8 f9 f10"
+and "f11 f12 f13" is arbitrary.
+
+Facets will not contain holes (and fin sequences will not contain 'null fin'
+separators) if the <B>'shape'</B> option has been set to <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_cut_c</A> or
+<A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_convex_c</A>.
+
+FINS
+Each facet is assigned an integer value from  0 to (number_of_facets - 1).
+
+A fin is represented by an ordered pair of vertices. Each fin follows an
+anti-clockwise direction (from its 'tail' to its 'head') consistent with
+the ordering of fins in a facet. Each fin is assigned an integer value
+from 0 to (<B>'number_of_fins'</B> - 1).
+
+Each fin can be associated with a co-fin (one belonging to an adjacent facet).
+In this case, the co-fin will have a value from 0 to (<B>'number_of_fins'</B> - 1).
+
+If a fin lies on the perimeter of the facet mesh, it has no co-fin. A null
+co-fin value of -1 is used to represent such a case.  -1 is also returned
+for fins that lie on edges between facetted faces in the case where geometry or
+trimmed matching have been requested.
+
+A co-fin value of -2 will be used to represent cases where the associated
+co-fin for a particular fin has not been found but where a co-fin should exist
+(i.e. -1 was not returned in the table).  This may be the result of
+facetting failing on a face (indicated by an entry in the error_facet table),
+otherwise a co-fin value of -2 indicates that an error has occurred in
+fin-fin matching and so the fin-fin table is not correct.
+
+Applications should check explicitly that returned co-fin values lie in this
+range and handle any exceptions as if the fin has no associated co-fin.
+
+This check will allow for the format of the fin_fin table to be extended in
+a later release, using fin values greater than or equal to <B>'number_of_fins'</B>
+to denote multiply coincident fins. This case will not occur in the current
+release because general bodies cannot be facetted using fin_fin matching.
+
+It is recommended that the check be added to the application now to avoid
+the possibility of array bounds errors occurring in the future.
+
+VERTICES
+Each fin is associated with a vertex index, being the vertex at the fin's head.
+Each vertex is assigned an integer value from 0 to (number_of_vertices - 1).
+
+Facet vertices are of three types; those at original model vertices, those
+on original model edges and those representing interior points in a face.
+
+With interior facet vertices, there is one surface normal and a single set
+of parameter and derivative data at each vertex.
+
+With exterior facet vertices part-way along model edges, there are two surface
+normals and two sets of parameter and derivative data at each vertex.
+
+With exterior vertices at original model vertices, there are N such normals
+and N sets of such data for the N faces meeting at the vertex (where N &gt;= 2)
+
+The facet topology tables are defined using separate vertex indices for
+each model face.
+
+
+EXAMPLE
+The diagram shows the top, front and right hand side faces of a cube with
+two triangular facets on each face (shown in an 'exploded' schematic form).
+
+                              ---------
+                            /v4\    v3/  /v11
+                           /    \    /  / |
+                          /v1    \v2/  /  |
+                         '---------'  /   |
+                          _________  v12__|
+                         |v5     v8| |   /v10
+                         |     /   | |  /
+                         |   /     | | /
+                         |v6     v7| |/v9
+                          ---------
+
+  facets on the  top   face are defined as "v1  v2  v4" and "v2   v3  v4"
+  facets on the front  face are defined as "v5  v6  v8" and "v6   v7  v8"
+  facets on the r.h.s. face are defined as "v9 v10 v12" and "v10 v11 v12")
+
+USING THE RETURNED SUBSCRIPT
+Each vertex index can be used as a subscript into the following tables :
+
+    vertex_point                   (for the index of its point value)
+    vertex_normal                  (for the index of its surface normal vector)
+    param_uv, param_dp, param_d2p  (for the index into its parameterisation
+                                    and derivative data)
+
+SHARED GEOMETRY
+Facet vertices from adjacent faces (which have been facetted using the
+topology matching option) which meet at the same position will refer to
+the same vertex_point index.
+
+In the example above, the vertex_point entries at vertex indices v2, v8, v12
+refer to the same integer value, an index in the <B>'point_vec'</B> vector table.
+
+This reduces the volume of geometric data output and allows an application to
+infer this association from vertex indices having the same vertex_point value.
+
+The vertex normal index is provided because the number of vertex normals
+is different from the number of vertex point coordinates (there being more
+than one normal across an model edge or at a model vertex). This level of
+indirection allows Parasolid to identify cases where vertices of planar
+facets refer to the same surface normal value and construct the vertex_normal
+table so that it refers to the same vector entry in the <B>'normal_vec'</B> table.
+
+The <B>'vertex_param'</B> index is provided as a common index to the parameter
+and derivative data tables. Parasolid does not identify common entries
+in these tables and so these have the same number of entries as there
+are distinct fin vertices.
+
+MESH TOPOLOGY
+Each topology entity (facet, fin or vertex) in the facet mesh is connected
+to other entities in the mesh. The complete connectivity data are described
+as the facet mesh topology.
+
+TYPES OF TABLES
+The <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A> function provides a set of "table names" each of which
+causes a specific set of connectivity or geometric data to be returned
+from the facet mesh.  There are two types of table:
+
+LOOKUP TABLES:
+This form of table is implemented as an array of structures, with each
+structure containing two (or more) fields.
+
+If used to represent a 'one to many' mapping (such as <B>'facet_fin'</B> table)
+columns are named after the first and second parts of the table name.  The
+tables are returned sorted by numerical order using the first column, then by
+connectivity order using the second column unless specified otherwise.
+
+The other use is returning tables of compound data (such as error_facet).
+
+In these tables the array index has no specific meaning.
+
+The array length is returned explicitly, with the tabular data.
+
+INDEXED TABLES:
+Indexed tables are implemented as a one dimensional array.  In these tables
+the first part of the table name determines the data that the array index
+represents.  The second part of the table name determines the type of data the
+array index refers to.
+
+The array length is also returned explicitly.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

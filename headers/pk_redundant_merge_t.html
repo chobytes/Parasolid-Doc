@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_redundant_merge_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_redundant_merge_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_redundant_merge_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_delete_redundant_2_o_t.html>PK_TOPOL_delete_redundant_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_identify_redundant_o_t.html>PK_TOPOL_identify_redundant_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype defines the scope of identifying/removing redundant topologies
+from a topological set called <B>'topols'</B>. It has three values:
+
+PK_redundant_merge_in_c  : Consider only redundant topologies whose removal
+                           would not change any neighbouring topology.
+
+PK_redundant_merge_on_c  : Consider only redundant topologies whose removal
+                           would not merge any supplied <B>'topols'</B> with
+                           neighbouring topology.
+
+PK_redundant_merge_out_c : Consider any rendundant topology associated with
+                           the supplied <B>'topols'</B>, including those whose
+                           removal would result in <B>'topols'</B> being merged with
+                           neighbouring topology.
+
+A neighbouring topology is one that is connected to the topology in
+<B>'topols'</B>, but is neither in <B>'topols'</B> itself nor is a sub-topology of a
+topology in <B>'topols'</B>.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

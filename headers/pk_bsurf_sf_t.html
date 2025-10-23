@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BSURF_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BSURF_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BSURF_sf_s
+    {
+    int u_degree;                           --- The degree in u = order-1.
+    int v_degree;                           --- The degree in v = order-1.
+    int n_u_vertices;                       --- The number of vertices in u.
+    int n_v_vertices;                       --- The number of vertices in v.
+    int vertex_dim;                         --- The dimension of each vertex.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> is_rational;               --- True if the surface is rational
+    double *vertex;                         --- The vertices.
+    <A HREF=../headers/pk_bsurf_form_t.html>PK_BSURF_form_t</A> form;                   --- The surface shape.
+    int n_u_knots;                          --- The number of distinct knot
+                                            --- values in u.
+    int n_v_knots;                          --- The number of distinct knot
+                                            --- values in v.
+    int *u_knot_mult;                       --- The multiplicities in u.
+    int *v_knot_mult;                       --- The multiplicities in v.
+    double *u_knot;                         --- The distinct knot values in u.
+    double *v_knot;                         --- The distinct knot values in v.
+    <A HREF=../headers/pk_knot_type_t.html>PK_knot_type_t</A> u_knot_type;             --- Enum describing the u knot set.
+    <A HREF=../headers/pk_knot_type_t.html>PK_knot_type_t</A> v_knot_type;             --- Enum describing the v knot set.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> is_u_periodic;             --- Periodic in u.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> is_v_periodic;             --- Periodic in v.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> is_u_closed;               --- Closed in u.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> is_v_closed;               --- Closed in v.
+    <A HREF=../headers/pk_self_intersect_t.html>PK_self_intersect_t</A> self_intersecting;  --- Yes no or maybe.
+    <A HREF=../headers/pk_convexity_t.html>PK_convexity_t</A> convexity;               --- Yes no or maybe.
+    };
+typedef struct PK_BSURF_sf_s PK_BSURF_sf_t;
+</B>
+<A NAME="description"></A>
+<I>This data structure is the standard form for a b-surface.  See the
+documentation below for the relationship between this data structure and STEP.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+PK_ERROR_bad_value              unreadable value
+PK_ERROR_bad_knots              illegal knot multiplicity
+                                or knot set not monotonic increasing
+PK_ERROR_wrong_number_knots     knots inconsistent with vertices
+PK_ERROR_bad_dimension          dimension &lt; 1 polynomial or &lt; 2 rational
+PK_ERROR_weight_le_0            one of the weights is zero or negative
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bsurf_ask.html>PK_BSURF_ask</A><br>
+    <A HREF=../headers/pk_bsurf_create.html>PK_BSURF_create</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Converting between PK_BSURF_sf_t and STEP:
+
+    This form is easily convertible to the STEP standard, but there are a
+    number of important differences, designed to make its use simpler and more
+    efficient.
+
+
+<B>'vertex_dim'</B>:
+
+    This field gives the number of doubles per vertex in the array <B>'vertex'</B>.
+    Allowable values are 3 and 4. A value of 3 implies a 3-d polynomial
+    surface. A value of 4 implies a 3-d rational surface. The STEP
+    "cartesian_point" entity allows 1, 2 or 3.
+
+
+<B>'is_rational'</B>:
+
+    This field is set to true if the surface is rational. In this case the
+    vertex_dim field must be 4, and the weights must be included in the
+    <B>'vertex'</B> array. The STEP standard uses a distinct entity subtype
+    "rational_b_spline_surface".
+
+
+<B>'vertex'</B>:
+
+    If the surface is polynomial, dimension 3, then the values in this field
+    represent the vertices explicitly, in the order [x1, y1, z1, x2, y2, ...]
+    respectively. If it is rational, dimension 4, then the cartesian points
+    are multiplied by the weights, so that the values in this field represent
+    x1w1, y1w1, z1w1, w1, x2w2, y2w2, ...]. The vertices are so arranged that
+    they vary most quickly with v and then with u. The STEP standard uses a
+    separate array of weights, and does not multiply the cartesian points by
+    the weights.
+
+
+<B>'form'</B>:
+
+    See the documentation of <B>'<A HREF=../headers/pk_bsurf_form_t.html>PK_BSURF_form_t</A>'</B>.
+    This field corresponds to the field of the same name in the STEP
+    "b_spline_surface" entity, except for the <B>'PK_BSURF_form_unset_c'</B> value
+    which does not exist in the STEP standard.
+
+
+<B>'u_knot_mult'</B> <B>'v_knot_mult'</B> <B>'u_knot'</B> and <B>'v_knot'</B>:
+
+    <B>'u_knot_mult'</B> and <B>'v_knot_mult'</B> are arrays of length <B>'n_u_knots'</B> and
+    <B>'n_v_knots'</B> respectively, giving the number of times each knot is to be
+    repeated. The minimum multiplicity allowed for any knot is 1. The maximum
+    multiplicity allowed other than for the first and last knot is the degree
+    in that parameter. The maximum allowed for the first or last knot is the
+    degree+1.
+
+    <B>'u_knot'</B> and <B>'v_knot'</B> are arrays of length <B>'n_u_knots'</B> and <B>'n_v_knots'</B>
+    respectively. The values must be distinct and form a strictly increasing
+    set.
+
+    See the documentation below for an explanation of the required total
+    number of knots.
+
+    These arrays correspond exactly to the fields "u_multiplicities"
+    "v_multiplicities" "u_knots" and "v_knots" in the STEP entity sub-type
+    "b_spline_surface_with_knots".
+
+
+<B>'u_knot_type'</B> and <B>'v_knot_type'</B>:
+
+    See the documentation for <B>'<A HREF=../headers/pk_knot_type_t.html>PK_knot_type_t</A>'</B>. The STEP standard does not
+    contain a field corresponding to these.  The information described is
+    conveyed by the use of entity subtypes, such as "bezier_surface".  The
+    values <B>'PK_knot_bezier_ends_c'</B> and <B>'PK_knot_non_uniform_c'</B> have no
+    corresponding subtype. A surface of one of these types would be translated
+    to STEP as a "bspline_surface_with_knots". For a surface to be translated
+    as, for instance "uniform_surface", both knot types would have to be
+    uniform. Otherwise it would default to the more general
+    "bspline_surface_with_knots".
+
+
+<B>'is_u_periodic'</B> and <B>'is_v_periodic'</B>:
+
+    If either of these fields is set to true, the parametrisation of the
+    surface "wraps around".  It implies that the surface is closed in that
+    direction, with G1 continuity at the seam.  This field does not exist in
+    the STEP standard.
+
+    See the documentation below for additional requirements for the knot sets
+    of a periodic b-surface.
+
+
+<B>'is_u_closed'</B> and <B>'is_v_closed'</B>:
+
+    One or both of these fields being set to true does not necessarily imply
+    that the parametrisation is periodic. They correspond to the fields of the
+    same name in the STEP entity "b_spline_surface".
+
+
+<B>'self_intersecting'</B>:
+
+    See the documentation of <A HREF=../headers/pk_self_intersect_t.html>PK_self_intersect_t</A>.
+    This corresponds to the field "self_intersect" in the STEP entity
+    "b_spline_surface", except that the STEP standard does not provide for an
+    unset value.
+
+<B>'convexity'</B>:
+
+    See the documentation of <A HREF=../headers/pk_convexity_t.html>PK_convexity_t</A>.
+    This field has no correspondence in the STEP "b_spline_surface" entity.
+    Surfaces being converted from STEP should be given a value of
+    <B>'<A HREF=../headers/pk_convexity_t.html>PK_convexity_unset_c</A>'</B>.
+
+
+The number of knots:
+
+The knot set referred to here is the "expanded  knot set" obtained by repeating
+each value in the array <B>'u_knot'</B> or <B>'v_knot'</B> the  number of times given  by the
+corresponding element in <B>'u_knot_mult'</B> or <B>'v_knot_mult'</B>.
+
+A NURBS surface of degree n in one of its parameters defined over k values
+k-1 intervals) in that parameter requires a further n values at either end of
+that knot set in order for the necessary k+n-1 b-spline basis functions to be
+fully defined. These additional values are commonly known as the "imaginary
+knots". Thus the total number of knots p is related to the total number of
+basis functions and hence the number m of control vertices in that direction
+the number of rows or collumns) by the expression p = m+n+1.
+
+
+Periodic Surfaces:
+
+A periodic surface must be so constructed as to preserve G1 continuity
+(of tangent direction) at the seam.
+
+In addition, it is recommended that a periodic surface be constructed
+with C(n-1) continuity at the seam (where n is the degree). This would
+give C2 continuity at the seam for a cubic. This is most easily achieved
+by making the "expanded knot set" "wrap around" in the sense that the
+intervals between the first n+1 knots (n "imaginary" knots and one "real"
+knot) should be the same as the corresponding intervals between the last
+n+1 "real" knots, and the intervals between the last n+1 knots (one "real"
+knot and n "imaginary" knots) should be the same as those between the first
+n+1 "real" knots.
+
+The "period" of such a surface is the parameter interval separating the first
+and last "real" knots in the periodic parameter direction.
+
+if indices begin at 0:
+    period = u_or_v     - u_or_v
+                   k+n-1        n
+
+for i = 0 to n:
+    u_or_v       - period = u_or_v
+          k+n+i-1                 n+i
+
+    u_or_v + period = u_or_v
+          i                 k+i-1
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

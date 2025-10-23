@@ -1,0 +1,400 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Attributes in KID</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Attributes in KID</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.10.html">Enquiries</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.12.html">KID Graphics: Overview</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.11.html#50475016_pgfId-273839">10.1	Using attributes</A>
+<LI> <A HREF="kd_chap.11.html#50475016_pgfId-273844">10.2	Constructing attributes</A>
+<LI> <A HREF="kd_chap.11.html#50475016_pgfId-273860">10.3	Defining attribute structures</A>
+<LI> <A HREF="kd_chap.11.html#50475016_pgfId-273868">10.4	Reading from attributes</A>
+<LI> <A HREF="kd_chap.11.html#50475016_pgfId-273879">10.5	Writing to attributes</A>
+<LI> <A HREF="kd_chap.11.html#50475016_pgfId-273891">10.6	Controlling attribute names</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475016_pgfId-273839"></A>10.1	Using attributes
+
+
+</H1>
+<P>
+<A NAME="50475016_pgfId-273842"></A><A NAME="50475016_marker-273840"></A><A NAME="50475016_marker-273841"></A>An example of the function of an attribute <CODE>
+colour</CODE>
+, given a face set f0 with tags is:</P>
+<P>
+<A NAME="50475016_pgfId-279689"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-280094"></A>&gt; (colour enquire)      --&gt; output information about attribute
+                            definition
+&gt; (f0 colour)           --&gt; delete all colour attributes in f0
+&gt; (f0 colour &acute;(0.3 0.3 0.3))
+                         --&gt; create colour attributes on all f0</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475016_pgfId-273844"></A>10.2	Constructing attributes
+
+
+</H1>
+<P>
+<A NAME="50475016_pgfId-273846"></A><A NAME="50475016_marker-273845"></A>There are 5 ways to create a working attribute.</P>
+
+<H4>
+<A NAME="50475016_pgfId-273847"></A>Activate all current attributes</H4>
+<P>
+<A NAME="50475016_pgfId-279703"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-280074"></A>&gt; ( attribute update )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273849"></A>Interrogates the model for all active attributes and build corresponding objects in KID with matching names.  Only attributes new to the World since the last call to this are re-created.</P>
+
+
+<H4>
+<A NAME="50475016_pgfId-273850"></A>Attach to an existing attribute</H4>
+<P>
+<A NAME="50475016_pgfId-279710"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-280066"></A>&gt; ( colour create )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273852"></A>The effect is as in the first method, but since only a single attribute is processed this is faster.</P>
+
+
+<H4>
+<A NAME="50475016_pgfId-273853"></A>Specify a full attribute definition</H4>
+<P>
+<A NAME="50475016_pgfId-279717"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-280042"></A>&gt; ( define spin_axis attribute )
+&gt; ( spin_axis owners &acute;( face body assembly )) 
+                                     -- or inherit the default
+&gt; ( spin_axis class 5 )
+&gt; ( spin_axis prefix &quot;CUSTOMER/&quot; )   -- optional
+&gt; ( spin_axis name   &quot;rotation_axis&quot; ) -- mandatory
+&gt; ( spin_axis create )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475016_pgfId-273855"></A>Create just from the tag</H4>
+<P>
+<A NAME="50475016_pgfId-279724"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-280006"></A>&gt; ( attribute create 21 )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273857"></A>This path is used to do the work for the first option.</P>
+
+
+<H4>
+<A NAME="50475016_pgfId-273858"></A>Post the attribute name but delay creation until actual use</H4>
+<P>
+<A NAME="50475016_pgfId-279731"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279978"></A>&gt; ( define colour system_attribute )
+&gt; ( colour lazy )      -- only supported for system defined attributes</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475016_pgfId-273860"></A>10.3	Defining attribute structures
+
+
+</H1>
+<P>
+<A NAME="50475016_pgfId-273862"></A><A NAME="50475016_marker-273861"></A>Attribute structures are defined from a list of names, each field in the structure can be of type:  real, integer, string, vector, coordinate, direction or axis. </P>
+<P>
+<A NAME="50475016_pgfId-279748"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279954"></A>&gt; ( define myatt attribute )
+&gt; ( myatt structure &acute;( string vector real vector real ))
+&gt; ( myatt create )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273864"></A>The structure must always be given as a list, even if only one field is needed.</P>
+<P>
+<A NAME="50475016_pgfId-273865"></A>Additionally an attribute with NO fields is valid.  This is indicated in KID by defining the structure to be <CODE>
+t</CODE>
+.</P>
+<P>
+<A NAME="50475016_pgfId-279767"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279930"></A>&gt; ( define marked attribute )
+&gt; ( marked structure t )
+&gt; ( marked create )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273867"></A>If a structure is not defined, KID interrogates the kernel when the attribute is created to try and find an existing structure definition for an attribute of that name.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475016_pgfId-273868"></A>10.4	Reading from attributes
+
+
+</H1>
+<P>
+<A NAME="50475016_pgfId-273870"></A><A NAME="50475016_marker-273869"></A>Values are returned in the order implied by the structure definition, formatted into sublists to reflect the implied structure of axis, coordinate, vector and direction subfields. Since an object may have several tags, each with an attribute attached, or since class 6 and 7 attributes may be attached to a single owner multiple times, each set of attribute data is returned in a separate list. </P>
+<P>
+<A NAME="50475016_pgfId-279780"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279914"></A>&gt; ( f0 hatching )   --&gt; ( ( 0.1 0.2 0.3 4 ) ( 0.2 0.2 0.2 1 ) )
+                    -- data for two tag lists
+</PRE>
+<PRE><A NAME="50475016_pgfId-279915"></A>&gt; ( e0 blend_v5 ) 
+       --&gt; ( ( 0.3 1 ( 0.1 0.2 0.3 ) ( 4.4 5.5 6.6 ) ) )
+       -- an attribute structure with 2 vector fields</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273873"></A>Attributes with a single field return that field without enclosing it in another list.</P>
+<P>
+<A NAME="50475016_pgfId-279787"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279905"></A>&gt; ( f0 name )     --&gt; ( George )one tag with a name attached</PRE>
+<PRE><A NAME="50475016_pgfId-279906"></A>&gt; ( g0 name )     --&gt; ( Peter Bob two tags have a name attached</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273876"></A>Attributes with no fields return a ( t ) for each tag in the object taglist which has the attribute attached and nil if there are none at all.</P>
+<P>
+<A NAME="50475016_pgfId-279794"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-280165"></A>&gt; ( f0 marked )    --&gt; ( t t t t ) 4 of the faces are marked</PRE>
+<PRE><A NAME="50475016_pgfId-280164"></A>&gt; ( f0 marked )    --&gt; nil - none of the faces are marked</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475016_pgfId-273879"></A>10.5	Writing to attributes
+
+
+</H1>
+<P>
+<A NAME="50475016_pgfId-273881"></A><A NAME="50475016_marker-273880"></A>The attribute values should be supplied in the order which corresponds to the structure definition.</P>
+<P>
+<A NAME="50475016_pgfId-279801"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279888"></A>&gt; ( b0 density &acute;( 135.4 kg/m3 ))    
+            -- real before string in this case</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273883"></A>Integer values may be provided in positions in which real values are expected.</P>
+<P>
+<A NAME="50475016_pgfId-279808"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279880"></A>&gt; ( b0 density &acute;( 135 kg/m3 ))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273885"></A>Reflecting embedded structure of the data values using brackets is optional.</P>
+<P>
+<A NAME="50475016_pgfId-273886"></A>Structures with a single field need not be enclosed in a list. So both the following work:</P>
+<P>
+<A NAME="50475016_pgfId-279815"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279872"></A>&gt; ( f0 translucency &acute;( 0.5 ))
+&gt; ( f0 translucency 0.5 )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273888"></A>Structures with no fields can always be set using the value t. All structures can be unset (deleted) by using the value nil.</P>
+<P>
+<A NAME="50475016_pgfId-279822"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279865"></A>&gt; ( f0 marked t )            -- set a logical attribute</PRE>
+<PRE><A NAME="50475016_pgfId-279866"></A>&gt; ( f0 marked nil )          -- delete for any attribute</PRE>
+<PRE><A NAME="50475016_pgfId-279821"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475016_pgfId-273891"></A>10.6	Controlling attribute names
+
+
+</H1>
+<P>
+<A NAME="50475016_pgfId-273893"></A><A NAME="50475016_marker-273892"></A>If the class of attributes has a standard prefix then it would be convenient to take this for granted whilst working with the attributes. This system is already used for system_attributes which have a prefix of SDL/TYSA_.</P>
+<P>
+<A NAME="50475016_pgfId-279829"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279857"></A>&gt; ( define site_attribute attribute )
+&gt; ( site_attribute prefix &quot;EDS/UG_&quot; )
+&gt; ( define system_id  site_attribute )
+&gt; ( system_id structure &acute;( integer ))
+&gt; ( system_id create )         -- New site_attribute system_id:
+                                  full name EDS/UG_SYSTEM_ID</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-273895"></A>Alternatively the full attribute name can be overridden manually before it is first created.</P>
+<P>
+<A NAME="50475016_pgfId-279836"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475016_pgfId-279849"></A>&gt; ( define id attribute )
+&gt; ( id name &quot;EDS/UG_SYSTEM_ID&quot; )
+&gt; ( id structure &acute;( integer ))
+&gt; ( id create )   -- New attribute id:full name EDS/UG_SYSTEM_ID</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475016_pgfId-110680"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.10.html">Enquiries</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.12.html">KID Graphics: Overview</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Fault Reporting in KID</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Fault Reporting in KID</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.15.html">Picking</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.17.html">KID Class Structure</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.16.html#50475014_pgfId-273839">15.1	Introduction</A>
+<LI> <A HREF="kd_chap.16.html#50475014_pgfId-273841">15.2	Fault types</A>
+<LI> <A HREF="kd_chap.16.html#50475014_pgfId-273845">15.3	Fault isolation and simplification</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475014_pgfId-273839"></A>15.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475014_pgfId-273840"></A>One of KID's important functions is as a medium in which to report back any suspected faults in PARASOLID in a consistent and system (both hardware and software) independent manner and in a form which makes it easy for the fault to be investigated. If it is possible to demonstrate the absence or presence of the fault using a KID journal file, there is the additional benefit that the KID journal file can be incorporated into regression tests.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475014_pgfId-273841"></A>15.2	Fault types
+
+
+</H1>
+<P>
+<A NAME="50475014_pgfId-273842"></A>In general, faults fall into two categories:</P>
+<UL>
+<LI>
+<A NAME="50475014_pgfId-273843"></A>Faults which generate an error message. These can normally be reproduced with a journal or KID file.</LI>
+<LI>
+<A NAME="50475014_pgfId-273844"></A>Faults which generate a visual error, or no system error message. These require careful description and an accompanying picture, if appropriate, for diagnosis.</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475014_pgfId-273845"></A>15.3	Fault isolation and simplification
+
+
+</H1>
+<P>
+<A NAME="50475014_pgfId-273846"></A>It is of considerable help if the user can isolate the fault occurrence to the shortest possible KID journal file. In many cases it is possible to trim out irrelevant operations that are not implicated in the fault and this should be done. For example, if a fault is found in the process of building a large model, it may be possible to reproduce the fault with a much simplified version of the model.</P>
+<UL>
+<LI>
+<A NAME="50475014_pgfId-273847"></A>The journal file should not contain all the operations necessary to create the bodies involved in demonstrating the fault. These should be transmitted and the transmit files sent along with the KID journal file, which should contain appropriate receive statements:</LI>
+</UL>
+<P>
+<A NAME="50475014_pgfId-279370"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475014_pgfId-279380"></A>&gt; (define b0 body)<BR>
+&gt; (b0 receive &quot;fault_body.xmt_txt&quot;)</P>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="50475014_pgfId-273849"></A>Frequent use of <CODE>
+(modeller mark) </CODE>
+aids debugging.</LI>
+<LI>
+<A NAME="50475014_pgfId-273850"></A>It helps to understand a fault, and therefore enables a quicker fix to be produced, if the following is completed:  </LI>
+<UL>
+<LI>
+<A NAME="50475014_pgfId-273851"></A>whenever possible simplify the fault</LI>
+<LI>
+<A NAME="50475014_pgfId-273852"></A>keep the KID journal file, that is required to reproduce the fault, as short as possible</LI>
+</UL>
+</UL>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.15.html">Picking</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.17.html">KID Class Structure</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

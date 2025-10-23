@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_check_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_check_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef struct PK_check_fault_s
+    {
+    <A HREF=../headers/pk_check_state_t.html>PK_check_state_t</A>   state;      --- token indicating fault state
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>        entity_1;   --- fault entity (always present)
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>        entity_2;   --- secondary fault entity
+                                   --- (may be PK_ENTITY_null)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>        position;   --- position within faulty geometry or the
+                                   --- entity that the geometry is attached to.
+    } PK_check_fault_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure records a check fault.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_assembly_check_r_t.html>PK_ASSEMBLY_check_r_t</A><br>
+    <A HREF=../headers/pk_body_check.html>PK_BODY_check</A><br>
+    <A HREF=../headers/pk_edge_check.html>PK_EDGE_check</A><br>
+    <A HREF=../headers/pk_entity_check_attribs.html>PK_ENTITY_check_attribs</A><br>
+    <A HREF=../headers/pk_face_check.html>PK_FACE_check</A><br>
+    <A HREF=../headers/pk_face_check_pair.html>PK_FACE_check_pair</A><br>
+    <A HREF=../headers/pk_geom_check.html>PK_GEOM_check</A><br>
+    <A HREF=../headers/pk_transf_check.html>PK_TRANSF_check</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Every check fault contains a <B>'state'</B> and <B>'entity_1'</B>.  Check faults may
+contain an <B>'entity_2'</B> and/or a <B>'position'</B>. This depends upon the <B>'state'</B> as
+shown in the following table.  If <B>'entity_2'</B> is not used it is set to
+PK_ENTITY_null, and if <B>'position'</B> is not used (no description is given in the
+table) it is set to (0.0, 0.0, 0.0). If the position vector does not describe a
+point then its zero values can be ignored and the interpretation of the
+vector elements can be found from the table.
+
+-------------------------------------------------------------------------------
+|         <B>'state'</B>                |    <B>'entity_'</B>    |      <B>'position'</B>          |
+|                                |  <B>'1'</B>   |  <B>'2'</B>   |                          |
+-------------------------------------------------------------------------------
+|PK_ATTDEF_state_bad_name_c      | attdef |        |                          |
+|PK_ATTRIB_state_bad_data_len_c  | attrib | owner  |                          |
+|PK_ATTRIB_state_bad_string_c    | attrib |        |                          |
+|PK_ATTRIB_state_bad_ustring_c   | attrib | owner  |                          |
+|PK_ATTRIB_state_byte_oor_c      | attrib | owner  |                          |
+|PK_ATTRIB_state_empty_field_c   | attrib | owner  |                          |
+|PK_ATTRIB_state_int_oor_c       | attrib | owner  |                          |
+|PK_ATTRIB_state_invalid_att_c   | attrib | owner  |                          |
+|PK_ATTRIB_state_non_unit_vec_c  | attrib | owner  |                          |
+|PK_ATTRIB_state_real_oor_c      | attrib | owner  |                          |
+|PK_ATTRIB_state_short_oor_c     | attrib | owner  |                          |
+|PK_ATTRIB_state_p_vector_oor_c  | attrib | owner  |                          |
+|PK_ASSEMBLY_state_corrupt_c     |assembly|        |                          |
+|PK_ASSEMBLY_state_cyclic_ref_c  |assembly|instance|                          |
+|PK_ASSEMBLY_state_invalid_id_c  |assembly|        |                          |
+|PK_BODY_state_bad_regions_c     | body   |        |                          |
+|PK_BODY_state_bad_type_c        | body   |        |                          |
+|PK_BODY_state_corrupt_c         | body   |        |                          |
+|PK_BODY_state_inside_out_c      | body   |        |                          |
+|PK_BODY_state_invalid_ident_c   | body   |        |                          |
+|PK_BODY_state_no_region_c       | body   |        |                          |
+|PK_BODY_state_no_shell_c        | body   |        |                          |
+|PK_BODY_state_no_solid_reg_c    | body   |        |                          |
+|PK_BODY_state_region_1_solid_c  | body   | region |                          |
+|PK_BODY_state_region_1_framed_c | body   | region |                          |
+|PK_BODY_state_shell_not_first_c | body   | shell  |                          |
+|PK_BODY_state_wrong_ext_reg_c   | body   | region |                          |
+|PK_BODY_state_wrong_num_regs_c  | body   |        |                          |
+|PK_BCURVE_state_close_knots_c   | bcurve | geom   |the x coordinate is the   |
+|                                |        |        |parameter where knots     |
+|                                |        |        |are too close             |
+|PK_BCURVE_state_vx_perodic_c    | geom   |        |control vertex            |
+|PK_BCURVE_state_knot_periodic_c | geom   |        |(t(i),period,0)           |
+|PK_BCURVE_state_knot_bad_mult_c | geom   |        |(t(i),r(i),n) where t(i)  |
+|                                |        |        |is the i'th knot, r(i) is |
+|                                |        |        |its multiplicity and n is |
+|                                |        |        |the degree of the bcurve  |
+|PK_BCURVE_state_knot_vx_count_c | geom   |        |(m, n, 0)                 |
+|                                |        |        |where m is the number of  |
+|                                |        |        |control vertices and n is |
+|                                |        |        |the degree of the bcurve  |
+|PK_BCURVE_state_knot_count_c    | geom   |        |(p, m, n)                 |
+|                                |        |        |where p is the number of  |
+|                                |        |        |knots, m is the number of |
+|                                |        |        |control vertices and n is |
+|                                |        |        |the degree of the bcurve  |
+|PK_BCURVE_state_bad_knot_seq_c  | geom   |        |(t(i-1),t(i),0)           |
+|                                |        |        |the non monotonic knots   |
+|PK_BCURVE_state_bad_dimen_c     | geom   |        |                          |
+|PK_BLENDSF_state_bad_spine_c    | geom   |        |                          |
+|PK_BSURF_state_uknot_vx_count_c | geom   |        |(m, n, 0) where m is the  |
+|                                |        |        | number of control        |
+|                                |        |        | vertices of the bsurf    |
+|                                |        |        | and n is the degree in u |
+|PK_BSURF_state_vknot_vx_count_c | geom   |        |(m, n, 0)                 |
+|                                |        |        | number of control        |
+|                                |        |        | vertices of the bsurf    |
+|                                |        |        | and n is the degree in v |
+|PK_BSURF_state_uknot_count_c    | geom   |        |(p, m, n)                 |
+|                                |        |        |where p is the number of  |
+|                                |        |        |knots in u, m is the      |
+|                                |        |        |number of control vertices|
+|                                |        |        |and n is the degree of the|
+|                                |        |        |bsurf in u                |
+|PK_BSURF_state_vknot_count_c    | geom   |        |(p, m, n)                 |
+|                                |        |        |where p is the number of  |
+|                                |        |        |knots in v, m is the      |
+|                                |        |        |number of control vertices|
+|                                |        |        |and n is the degree of the|
+|                                |        |        |bsurf in v                |
+|PK_BSURF_state_uknot_bad_mult_c | geom   |        |(t(i),r(i),n) where t(i)  |
+|                                |        |        |is the i'th u knot, r(i)  |
+|                                |        |        |its multiplicity and n is |
+|                                |        |        |the degree of the bsurf in|
+|                                |        |        |u                         |
+|PK_BSURF_state_vknot_bad_mult_c | geom   |        |(t(i),r(i),n) where t(i)  |
+|                                |        |        |is the i'th v knot, r(i)  |
+|                                |        |        |its multiplicity and n is |
+|                                |        |        |the degree of the bsurf   |
+|                                |        |        |in v                      |
+|PK_BSURF_state_uknot_periodic_c | geom   |        |(t(i),period,0)           |
+|                                |        |        |where t(i) is the knot of |
+|                                |        |        |the bsurf in u that       |
+|                                |        |        |violates periodicity      |
+|                                |        |        |condition                 |
+|PK_BSURF_state_vknot_periodic_c | geom   |        |(t(i),period,0)           |
+|                                |        |        |where t(i) is the knot of |
+|                                |        |        |bsurf in v that           |
+|                                |        |        |violates periodicity      |
+|                                |        |        |condition                 |
+|PK_BSURF_state_bad_uknot_seq_c  | geom   |        |(t(i-1),t(i),0)           |
+|                                |        |        |the non monotonic u knots |
+|PK_BSURF_state_bad_vknot_seq_c  | geom   |        |(t(i-1),t(i),0)           |
+|                                |        |        |the non monotonic v knots |
+|PK_BSURF_state_bad_vx_uperiod_c | geom   |        |(i1,i2,j) indices of the  |
+|                                |        |        |bsurf control vertices    |
+|                                |        |        |where the periodic        |
+|                                |        |        |condition v(i1,j)!=v(i2,j)|
+|                                |        |        |is violated               |
+|PK_BSURF_state_bad_vx_vperiod_c | geom   |        |(j,i1,i2) the indices of  |
+|                                |        |        |bsurf control vertices    |
+|                                |        |        |where the periodic        |
+|                                |        |        |condition v(j,i1)!=v(j,i2)|
+|                                |        |        |is violated               |
+|PK_BSURF_state_close_u_knots_c  | geom   | geom   |the x coordinate is the   |
+|                                |        |        |u parameter where knots   |
+|                                |        |        |are too close             |
+|PK_BSURF_state_close_v_knots_c  | geom   | geom   |the x coordinate is the   |
+|                                |        |        |v parameter where knots   |
+|                                |        |        |are too close             |
+|PK_BSURF_state_bad_dimen_c      | geom   |        |                          |
+|PK_CIRCLE_state_bad_radius_c    | geom   |        |                          |
+|PK_EDGE_state_bad_face_order_c  | edge   |        |                          |
+|PK_EDGE_state_bad_fins_c        | edge   |        |                          |
+|PK_EDGE_state_bad_polyline_c    | edge   |        |                          |
+|PK_EDGE_state_bad_sp_nmnl_c     | edge   |        |                          |
+|PK_EDGE_state_bad_spcurve_c     | edge   |        |                          |
+|PK_EDGE_state_bad_tol_c         | edge   |        |                          |
+|PK_EDGE_state_bad_vertex_c      | edge   | vertex |                          |
+|PK_EDGE_state_bad_vertex_nmnl_c | edge   | vertex |                          |
+|PK_EDGE_state_bad_wire_ed_ed_c  | edge   | edge   |point in region of        |
+|                                |        |        |inconsistency             |
+|PK_EDGE_state_fin_bad_ring_c    | edge   | fin    |                          |
+|PK_EDGE_state_fin_ed_next_pos_c | edge   | fin    |                          |
+|PK_EDGE_state_fin_ed_not_ed_c   | edge   | fin    |                          |
+|PK_EDGE_state_fin_not_pos_c     | edge   | fin    |                          |
+|PK_EDGE_state_open_c            | edge   |        |                          |
+|PK_EDGE_state_open_nmnl_c       | edge   |        |                          |
+|PK_EDGE_state_reversed_c        | edge   |        |                          |
+|PK_EDGE_state_reversed_nmnl_c   | edge   |        |                          |
+|PK_EDGE_state_single_vertex_c   | edge   |        |                          |
+|PK_EDGE_state_touch_edge_c      | edge   | edge   |point where two edges     |
+|                                |        |        |touch                     |
+|PK_EDGE_state_vertices_touch_c  | edge   |        |                          |
+|PK_EDGE_state_wire_corrupt_c    | edge   |        |                          |
+|PK_ENTITY_state_bad_owner_c     | entity | wanted |                          |
+|                                |        | owner  |                          |
+|PK_ENTITY_state_has_att_group_c | entity | attrib |                          |
+|                                |        | group  |                          |
+|PK_ENTITY_state_in_group_c      | entity | group  |                          |
+|PK_ENTITY_state_invalid_c       | entity |        |                          |
+|PK_ENTITY_state_shared_c        | entity |        |                          |
+|PK_FACE_state_bad_edge_c        | face   | edge   |                          |
+|PK_FACE_state_bad_edge_order_c  | face   |        |                          |
+|PK_FACE_state_bad_face_face_c   | face   | face   |point in region of        |
+|                                |        |        |inconsistency             |
+|PK_FACE_state_bad_loops_c       | face   |        |                          |
+|PK_FACE_state_bad_vertex_c      | face   | vertex |                          |
+|PK_FACE_state_bad_wire_fa_ed_c  | face   | edge   |point in region of        |
+|                                |        |        |inconsistency             |
+|PK_FACE_state_check_fail_c      | face   | face   |                          |
+|PK_FACE_state_diff_sh_same_rg_c | face   |        |                          |
+|PK_FACE_state_disjoint_mesh_c   | face   |        |                          |
+|PK_FACE_state_edge_moebius_c    | face   | edge   |                          |
+|PK_FACE_state_no_vtx_at_sing_c  | face   |        |point at singularity      |
+|PK_FACE_state_self_int_c        | face   |        |point in region of        |
+|                                |        |        |inconsistency             |
+|PK_FACE_state_wrong_sense_c     | face   |        |                          |
+|PK_FIN_state_bad_c              | fin    |        |                          |
+|PK_FIN_state_bad_ed_fins_c      | fin    |        |                          |
+|PK_FIN_state_corrupt_c          | fin    |        |                          |
+|PK_FIN_state_ed_next_is_fin_c   | fin    | fin    |                          |
+|PK_FIN_state_edge_diff_vertex_c | fin    | fin    |                          |
+|PK_FIN_state_no_ed_next_in_sh_c | fin    |        |                          |
+|PK_FIN_state_non_zero_ident_c   | fin    |        |                          |
+|PK_FIN_state_not_ed_next_prev_c | fin    | fin    |                          |
+|PK_FIN_state_not_lp_next_prev_c | fin    | fin    |                          |
+|PK_FIN_state_vx_not_vx_c        | fin    | vertex |                          |
+|PK_FIN_state_wrong_vertex_c     | fin    | vertex |                          |
+|PK_GEOM_state_bad_dep_type_c    | geom   | dep    |                          |
+|PK_GEOM_state_bad_geom_owner_c  | geom   | owning |                          |
+|                                |        | geom   |                          |
+|PK_GEOM_state_bad_owner_c       | geom   | topol  |                          |
+|PK_GEOM_state_bad_topol_owner_c | geom   | topol  |                          |
+|PK_GEOM_state_degenerate_c      | geom   |        |point in degenerate       |
+|                                |        |        |region                    |
+|PK_GEOM_state_dup_geom_owner_c  | geom   | owning |                          |
+|                                |        | geom   |                          |
+|PK_GEOM_state_not_owners_dep_c  | geom   | owning |                          |
+|                                |        | geom   |                          |
+|PK_GEOM_state_not_owning_dep_c  | geom   | geom   |                          |
+|PK_GEOM_state_outside_box_c     | geom   |        |vertex point outside      |
+|                                |        |        |the size box              |
+|PK_GEOM_state_self_int_c        | geom   |        |point on                  |
+|                                |        |        |self-intersection         |
+|PK_GROUP_state_bad_c            | group  |        |                          |
+|PK_INSTANCE_state_bad_transf_c  |instance| transf |                          |
+|PK_INSTANCE_state_bad_type_c    |instance|        |                          |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_graph_c</A>    |lattice |        |                          |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_lball_c</A>    |lattice |        |(n,0,0) where n is the    |
+|                                |        |        |identifier of the         |
+|                                |        |        |<A HREF=../headers/pk_lball_t.html>PK_LBALL_t</A>                |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_lrod_c</A>     |lattice |        |(n,0,0) where n is the    |
+|                                |        |        |identifier of the         |
+|                                |        |        |<A HREF=../headers/pk_lrod_t.html>PK_LROD_t</A>                 |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_corrupt_c</A>      |lattice |        |                          |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_dup_lrod_c</A>     |lattice |        |(m,n,0) where m and n are |
+|                                |        |        |identifiers of <A HREF=../headers/pk_lrod_t.html>PK_LROD_t</A>  |
+|                                |        |        |that are duplicated       |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_isolated_c</A>     |lattice |        |(n,0,0) where n is the    |
+|                                |        |        |identifier of the isolated|
+|                                |        |        |<A HREF=../headers/pk_lball_t.html>PK_LBALL_t</A>                |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_lrod_end_c</A>     |lattice |        |(m,n,0) where m is the    |
+|                                |        |        |identifier of the         |
+|                                |        |        |<A HREF=../headers/pk_lrod_t.html>PK_LROD_t</A> and n is the    |
+|                                |        |        |identifier of the         |
+|                                |        |        |adjoining <A HREF=../headers/pk_lball_t.html>PK_LBALL_t</A>      |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_no_lballs_c</A>    |lattice |        |                          |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_no_lrods_c</A>     |lattice |        |                          |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_self_int_c</A>     |lattice |        |(m,n,0) where m and n are |
+|                                |        |        |identifiers of the        |
+|                                |        |        |<A HREF=../headers/pk_ltopol_t.html>PK_LTOPOL_t</A> that clash    |
+|<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_short_lrod_c</A>   |lattice |        |(n,0,0) where n is the    |
+|                                |        |        |identifier of the         |
+|                                |        |        |<A HREF=../headers/pk_lrod_t.html>PK_LROD_t</A>                 |
+|PK_LOOP_state_isolated_has_cu_c | loop   | curve  |                          |
+|<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_bad_mvx_normal_c</A>  | mesh   |        |(u,v,0) where u,v are the |
+|                                |        |        |parameters of the mvertex |
+|<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_corrupt_c</A>         | mesh   |        |(u,v,0) where u,v are the |
+|                                |        |        |parameters of the         |
+|                                |        |        |corruption if available   |
+|<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_degen_mfacet_c</A>    | mesh   |        |(u,v,0) where u,v are     |
+|                                |        |        |parameters in the mfacet  |
+|<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_flat_mfacet_c</A>     | mesh   |        |(u,v,0) where u,v are     |
+|                                |        |        |parameters in the mfacet  |
+|<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_non_manifold_c</A>    | mesh   |        |(u,v,0) where u,v are     |
+|                                |        |        |parameters in the         |
+|                                |        |        |non-manifold region       |
+|<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_self_int_c</A>        | mesh   |        |position on the           |
+|                                |        |        |self intersection         |
+|<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_slit_c</A>            | mesh   |        |position on the slit      |
+|PK_OFFSET_state_bad_dist_c      | geom   |        |                          |
+|PK_OFFSET_state_under_sense_c   | geom   | geom   |                          |
+|PK_OFFSET_state_under_non_g1_c  | geom   |        |singularity point         |
+|PK_PART_state_bad_attrib_c      | part   | attrib |                          |
+|PK_PART_state_bad_attrib_list_c | part   | list   |                          |
+|PK_PART_state_bad_state_c       | part   |        |                          |
+|PK_PART_state_corrupt_c         | part   |        |                          |
+|PK_PART_state_has_key_c         | part   |        |                          |
+|PK_PART_state_no_key_c          | part   |        |                          |
+|<A HREF=../headers/pk_region_t.html>PK_REGION_state_bad_shells_c</A>    | region |        |                          |
+|<A HREF=../headers/pk_region_t.html>PK_REGION_state_bad_frame_c</A>     | region | frame  |                          |
+|<A HREF=../headers/pk_region_t.html>PK_REGION_state_many_frames_c</A>   | region |        |                          |
+|<A HREF=../headers/pk_region_t.html>PK_REGION_state_no_shell_c</A>      | region |        |                          |
+|<A HREF=../headers/pk_region_t.html>PK_REGION_state_wrongly_solid_c</A> | region |        |                          |
+|PK_SHELL_state_bad_body_c       | shell  | body   |                          |
+|PK_SHELL_state_bad_fa_orient_c  | shell  |        |                          |
+|PK_SHELL_state_bad_sh_sh_c      | shell  | shell  |point in region of        |
+|                                |        |        |inconsistency             |
+|PK_SHELL_state_bad_topol_geom_c | shell  |        |                          |
+|PK_SHELL_state_bad_wf_acorn_c   | shell  | edge   |                          |
+|                                |        | vertex |                          |
+|PK_SHELL_state_bad_wf_c         | shell  |        |                          |
+|PK_SHELL_state_closed_bad_fa_c  | shell  |        |                          |
+|PK_SHELL_state_ed_fa_in_acorn_c | shell  | edge   |                          |
+|                                |        | face   |                          |
+|PK_SHELL_state_eds_fragmented_c | shell  | edge   |                          |
+|PK_SHELL_state_fas_fragmented_c | shell  | face   |                          |
+|PK_SHELL_state_no_vx_ed_fa_c    | shell  |        |                          |
+|PK_SHELL_state_not_owning_vx_c  | shell  | vertex |                          |
+|PK_SHELL_state_open_bad_fa_c    | shell  |        |                          |
+|PK_SHELL_state_reg_meet_at_ed_c | shell  | edge   |                          |
+|PK_SHELL_state_reg_meet_at_vx_c | shell  | vertex |                          |
+|PK_SHELL_state_sheet_no_fa_c    | shell  |        |                          |
+|PK_SHELL_state_too_many_fas_c   | shell  |        |                          |
+|PK_SPCURVE_state_bad_linear_c   | geom   | geom   |                          |
+|PK_SPCURVE_state_surf_span_c    | geom   | geom   |                          |
+|PK_SPCURVE_state_non_g1_x_u_c   | geom   | geom   |                          |
+|PK_SPCURVE_state_non_g1_x_v_c   | geom   | geom   |                          |
+|PK_SPCURVE_state_non_c1_x_u_c   | geom   | geom   |                          |
+|PK_SPCURVE_state_non_c1_x_v_c   | geom   | geom   |                          |
+|PK_SPCURVE_state_non_g1_c       | geom   | geom   |(t,0,0) where t is the    |
+|                                |        |        |parameter where the fault |
+|                                |        |        |has occurred              |
+|PK_SPCURVE_state_bad_dimen_c    | geom   |        |                          |
+|PK_SPUN_state_profle_x_axis_c   | geom   |        |                          |
+|PK_SWEPT_state_bad_min_rad_c    | geom   |        |                          |
+|PK_TOPOL_state_bad_box_c        | topol  |        |                          |
+|PK_TOPOL_state_bad_closed_c     | topol  |        |                          |
+|PK_TOPOL_state_bad_geom_share_c | topol  | topol  |                          |
+|PK_TOPOL_state_bad_owner_type_c | topol  | owning |                          |
+|                                |        | topol  |                          |
+|PK_TOPOL_state_check_fail_c     | topol  |        |                          |
+|PK_TOPOL_state_no_geom_c        | topol  |        |                          |
+|PK_TOPOL_state_not_G1_c         | topol  |        |                          |
+|PK_TOPOL_state_parm_degen_c     | topol  |        |                          |
+|PK_TOPOL_state_u_parm_degen_c   | topol  |        |the x and y coordinates   |
+|                                |        |        |are the low and high u    |
+|                                |        |        |parameters bounding the   |
+|                                |        |        |degenerate region; the z  |
+|                                |        |        |coordinate is the v       |
+|                                |        |        |parameter                 |
+|PK_TOPOL_state_v_parm_degen_c   | topol  |        |the x and y coordinates   |
+|                                |        |        |are the low and high v    |
+|                                |        |        |parameters bounding the   |
+|                                |        |        |degenerate region; the z  |
+|                                |        |        |coordinate is the u       |
+|                                |        |        |parameter                 |
+|PK_TOPOL_state_phys_degen_c     | topol  |        |                          |
+|PK_TOPOL_state_u_phys_degen_c   | topol  |        |the x and y coordinates   |
+|                                |        |        |are the low and high u    |
+|                                |        |        |parameters bounding the   |
+|                                |        |        |degenerate region; the z  |
+|                                |        |        |coordinate is the v       |
+|                                |        |        |parameter                 |
+|PK_TOPOL_state_v_phys_degen_c   | topol  |        |the x and y coordinates   |
+|                                |        |        |are the low and high v    |
+|                                |        |        |parameters bounding the   |
+|                                |        |        |degenerate region; the z  |
+|                                |        |        |coordinate is the u       |
+|                                |        |        |parameter                 |
+|PK_TOPOL_state_share_no_geom_c  | topol  | topol  |                          |
+|PK_TOPOL_state_size_box_c       | topol  |        |                          |
+|PK_TRCURVE_state_ends_open_c    | geom   |        |                          |
+|PK_TRCURVE_state_ends_order_c   | geom   |        |                          |
+|PK_TRCURVE_state_ends_match_c   | geom   |        |                          |
+|PK_VERTEX_state_bad_fin_c       | vertex | fin    |                          |
+|PK_VERTEX_state_bad_isolated_c  | vertex |        |                          |
+|PK_VERTEX_state_bad_tol_c       | vertex |        |                          |
+|PK_VERTEX_state_fin_chains_c    | vertex |        |                          |
+|PK_VERTEX_state_non_manifold_c  | vertex |        |                          |
+|PK_VERTEX_state_not_dep_of_sh_c | vertex | owning |                          |
+|                                |        | shell  |                          |
+|PK_VERTEX_state_owner_not_sh_c  | vertex | owner  |                          |
+|PK_VERTEX_state_sheet_corrupt_c | vertex |        |                          |
+|PK_VERTEX_state_too_many_eds_c  | vertex |        |                          |
+|PK_VERTEX_state_wf_ed_bad_sh_c  | vertex | shell  |                          |
+-------------------------------------------------------------------------------
+
+In the case of PK_BCURVE_state_close_knots_c, PK_BSURF_state_close_u_knots_c
+and PK_BSURF_state_close_v_knots_c:
+  o <B>'entity_1'</B> will store the actual bsurface which has knots that are too
+     close.
+  o <B>'entity_2'</B> will store either the same entity as <B>'entity_1'</B>, or the owning
+    geometry if the bsurface is referenced by some other geometry.
+  o The <B>'position'</B> field is used to store a parameter, in the x coordinate
+    (i.e., `coord[0]'). The other values in the position should be ignored.
+
+In the case of PK_FACE_state_self_int_c, if version 1 or later check fault
+information is being returned, <B>'entity_1'</B> and <B>'entity_2'</B> will be the pair of
+intersecting fins in the face.
+
+In the case of PK_TOPOL_state_not_G1_c, if version 1 or later check fault
+information is being returned and <B>'entity_1'</B> is an edge or fin to which an
+spcurve is attached, <B>'entity_2'</B> will be the bad underlying geometry of that
+spcurve.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

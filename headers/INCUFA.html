@@ -1,0 +1,151 @@
+<HTML>
+<HEAD>
+<TITLE>INCUFA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>INCUFA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_intersect_curve.html>PK_FACE_intersect_curve</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+INCUFA ( cu, bound, face, intpts, cuparm, suparm, incods, topol, nintpt, 
+=========================================================================
+         ifail )
+         =======
+
+  Intersect curve and face
+
+Receives:
+  KI_tag_curve             *cu             --- curve
+  KI_vec_position           bound[2]       --- start and end of curve
+  KI_tag_face              *face           --- face
+
+Returns:
+ &lt;KI_tag_list_dbl&gt;         *intpts         --- points of intersection
+ &lt;KI_tag_list_dbl&gt;         *cuparm         --- curve parameters at ints.
+ &lt;KI_tag_list_dbl&gt;         *suparm         --- surface parameters at ints.
+ &lt;KI_tag_list_int&gt;         *incods         --- tokens describing intersections
+ &lt;KI_tag_list_&lt;entity&gt;&gt;    *topol          --- entity intersected
+ &lt;KI_int_nitems&gt;           *nintpt         --- number of points returned
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cant_do_intersect      cant perform requested intersection
+                            cant do intersect
+  KI_invalid_geometry       curve fails checks
+  KI_not_on_curve           start or end point not on curve
+  KI_bad_end_points         curve not defined between start and end points
+  KI_missing_geom           face lacks geometry
+
+Description:
+
+  INCUFA finds the intersections between a bounded curve and a face. It returns
+  a list of intersection coordinates and a list of tokens classifying the
+  intersections. If the bounded curve passes through an edge or vertex of the
+  face the tag of the appropriate entity is also returned. If the bounded
+  curve does not intersect the face, no tag information is returned, but is
+  deemed to be a successful operation.
+
+  The intersections are ordered along the bounded curve, and are classified
+  according to the direction of the curve.
+
+  The interval of the curve to be intersected with the face is specified
+  by giving the start and end coordinates. These are given in the array 'bound',
+  in the order start and then end. If these points are the same, and the
+  geometry of the curve is closed, the complete curve will be used and the end
+  points will not be treated specially below - i.e. information as to whether
+  they lie in or on the face will not be returned as this is merely a method of
+  specifying the whole curve.
+  If the curve is a trimmed curve the supplied bounds are ignored. However valid
+  vectors should be supplied.
+
+  The intersection coordinates are returned in a list of length 3*'nintpt'; if
+  there are no intersections of the curve and face within the interval of
+  the curve bounded by 'bound', 'nintpt' is returned as zero and 'intpts' is
+  returned as the NULTAG. If 'nintpt' intersections are found the list
+  'cuparm' contains 'nintpt' corresponding curve parameters and 'suparm'
+  contains the corresponding u,v pairs of surface parameters. The curve
+  and surface parametrisations are defined in the documentation of ENCUPA
+  and ENSUPA.
+
+  Any edges or vertices intersected by the curve are returned in a list
+  ('topol') of length 'nintpt'.
+
+  The intersection types are returned in a list ('incods') of length 'nintpt'.
+  There are two codes for points of intersection when the curve and the surface
+  of the face intersect in a single point and eleven codes for intersections
+  where all or part of the curve lies in the surface.
+
+
+
+      Single point intersections between bounded curve and surface of face:
+
+      Code   |  Possible entry  | Description
+             |  in 'topol'      |
+      _______|__________________|____________________________________________
+      CFCLSI | Edge or Vertex   | The curve passes through the surface of the
+             | or NULTAG        | face.
+      CFCLTG | Edge or Vertex   | The curve touches the surface of the face
+             | or NULTAG        | but does not pass through the surface.
+
+
+      Intersections with the bounded curve lying in the surface of the face:
+
+      Code   |  Possible entry  | Description
+             |  in 'topol'      |
+      _______|__________________|____________________________________________
+      CFCLEF | Edge or Vertex   | The curve passes from being outside
+             |                  | the face to being in its interior.
+      CFCLLF | Edge or Vertex   | The curve passes from being in the interior
+             |                  | of the face to being outside the face.
+      CFCLEB | Vertex           | The curve passes from being outside the
+             |                  | face to a region of coincidence with its
+             |                  | boundary.
+      CFCLLB | Vertex           | The curve passes from a region of
+             |                  | coincidence with the boundary of the face
+             |                  | to being outside the face.
+      CFCLEI | Vertex           | The curve passes from a region of
+             |                  | coincidence with the boundary of the face
+             |                  | to being in the interior of the face.
+      CFCLLI | Vertex           | The curve passes from being in the interior
+             |                  | of the face to a region of coincidence with
+             |                  | the boundary of the face.
+      CFCLTI | Edge or Vertex   | The curve is tangent to the inside of an
+             |                  | edge or passes through a vertex but remains
+             |                  | inside the face.
+      CFCLTO | Edge or Vertex   | The curve is tangent to the outside of an
+             |                  | edge or passes through a vertex but remains
+             |                  | outside the face.
+      CFCLUC | Edge or Vertex   | The start or end of the curve is inside
+             | or NULTAG        | the face or lies on its boundary.
+      CFCLSC | Edge or Vertex   | The curve enters the face at the start of a
+             | or NULTAG        | region of coincidence with the surface.
+      CFCLEC | Edge or Vertex   | The curve leaves the face at the end of a
+             | or NULTAG        | region of coincidence with the surface.
+
+  Whether the curve enters or leaves the face is determined by the direction
+  of the curve, 'cu'.
+
+  Any B-curve must be capable of passing the checks imposed by CHCKEN. The self
+  intersection check is only performed if the appropriate option is set
+  (see SEINTP).
+
+
+</PRE>
+</BODY>
+</HTML>

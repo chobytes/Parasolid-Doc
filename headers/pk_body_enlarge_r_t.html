@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_enlarge_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_enlarge_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_enlarge_r_s
+    {
+    int                        r_t_version;  --- version number of return
+                                             --- structure
+    int                        n_bodies;     --- number of bodies
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>                 *bodies;       --- enlarged bodies
+    <A HREF=../headers/pk_entity_track_r_t.html>PK_ENTITY_track_r_t</A>        tracking;     --- tracking information
+    <A HREF=../headers/pk_topol_local_r_t.html>PK_TOPOL_local_r_t</A>         results;      --- status information
+    };
+typedef struct PK_BODY_enlarge_r_s PK_BODY_enlarge_r_t;
+</B>
+<A NAME="description"></A>
+<I>A structure packaging the result from <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A><br>
+    <A HREF=../headers/pk_body_enlarge_r_f.html>PK_BODY_enlarge_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The structure has the following fields:
+
+<B>'n_bodies'</B>    The number of enlarged bodies.
+
+<B>'bodies'</B>      The enlarged bodies.
+
+<B>'tracking'</B>    Mapping between the original and enlarged entities.  This is
+              controlled by the options structure on a class-by-class basis.
+              A record of type PK_TOPOL_track_create_c will be created for each
+              entity of a requested class, and can result in one or more
+              product entities.
+
+              When the enlarged body is trimmed to the size box or the supplied
+              trimming box, Parasolid will indicate the bounding plane used
+              to trim by returning tracking with negative original entities.
+              Each bounding plane returned will have a corresponding original
+              class of type PK_CLASS_plane, and are defined by:
+
+              ------------------------------------
+              | Bounding Plane | Original Entity |
+              ------------------------------------
+              |   Minimum X    |        -1       |
+              |   Minimum Y    |        -2       |
+              |   Minimum Z    |        -3       |
+              |   Maximum X    |        -4       |
+              |   Maximum Y    |        -5       |
+              |   Maximum Z    |        -6       |
+              ------------------------------------
+
+              New trimming faces, created to bound solid regions of the
+              enlarged body, will have a single bounding plane as the original
+              entity.
+
+              New edges and vertices created by trimming can have both entities
+              from the input <B>'body'</B> and bounding planes as original entities.
+
+<B>'results'</B>     If this function returns PK_ERROR_no_errors, the result of the
+              operation will be indicated by the value of the <B>'status'</B> field of
+              the <B>'results'</B> structure. When this value is not
+              <A HREF=../headers/pk_local_status_t.html>PK_local_status_ok_c</A> or <A HREF=../headers/pk_local_status_t.html>PK_local_status_nocheck_c</A>, it indicates
+              an operation failure and an array of entities involved in this
+              failure is returned through the field <B>'error_entities'</B> of the
+              <B>'results'</B> structure, when possible. For more information
+              regarding the failure status code and the error_entities, refer
+              to the PK documentation of the <A HREF=../headers/pk_topol_local_r_t.html>PK_TOPOL_local_r_t</A> structure.
+
+
+The function <A HREF=../headers/pk_body_enlarge_r_f.html>PK_BODY_enlarge_r_f</A> may be used to free associated memory.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

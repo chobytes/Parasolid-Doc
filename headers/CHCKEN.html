@@ -1,0 +1,335 @@
+<HTML>
+<HEAD>
+<TITLE>CHCKEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CHCKEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_check.html>PK_BODY_check</A><BR>
+<A HREF=../headers/pk_face_check.html>PK_FACE_check</A><BR>
+<A HREF=../headers/pk_face_check_pair.html>PK_FACE_check_pair</A><BR>
+<A HREF=../headers/pk_edge_check.html>PK_EDGE_check</A><BR>
+<A HREF=../headers/pk_geom_check.html>PK_GEOM_check</A><BR>
+<A HREF=../headers/pk_transf_check.html>PK_TRANSF_check</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CHCKEN ( entity, mxflts, nopts, option, faults, tags, pdata, nfault, ifail )
+============================================================================
+
+  Checks an entity
+
+Receives:
+  KI_tag_list_entity       *entity         --- entity (or pair of entities) to check
+ &lt;KI_int_nitems&gt;           *mxflts         --- maximum number of faults to return
+ &lt;KI_int_nitems&gt;           *nopts          --- number of option codes
+  KI_cod_chop               option[nopts]  --- array of option codes
+
+Returns:
+ &lt;KI_tag_list_int&gt;         *faults         --- tokens describing faults in body
+ &lt;KI_tag_list_&lt;entity&gt;&gt;    *tags           --- faulty components
+ &lt;KI_tag_list_&lt;list&gt;&gt;      *pdata          --- list of data lists
+ &lt;KI_int_nitems&gt;           *nfault         --- number of faults returned
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_unsuitable_entity      unsuitable entity
+  KI_bad_option_data        option inconsistent with type of entity
+  KI_list_wrong_length      wrong number of items in entity list
+  KI_duplicate_list_item    face appears twice in entity list
+  KI_not_in_same_body       faces are not both from the same body
+
+Description:
+
+  This function performs a series of checks on an entity, or a list of two
+  entities, and returns information about the faults found, if any. 'Entity'
+  may be a body, face, edge, a list of two faces from the same body, or any
+  geometric entity.
+
+  'nfault' gives the number of faults returned, and the lists 'faults',
+  'tags' and 'pdata' all contain 'nfault' elements. Information about each
+  fault is returned in corresponding positions in the three lists.
+
+  If there are no faults found, 'nfault' is zero, and no other information is
+  returned. Otherwise a token describing the fault is returned in 'faults',
+  and for some types of fault there will also be a tag of the faulty entity
+  in 'tags', and associated data in a list whose tag is in 'pdata'. 'pdata' is
+  a list of tags which may be : the tag of a list of 3 reals representing a
+  point; the tag of a list of tags ( of edges or vertices ) or the null tag.
+
+  If there is more than one fault in the entity then the function does not
+  guarantee to return all the faults.
+
+  The caller may set an upper limit on the number of faults found, in
+  'mxflts'; if 'mxflts' is zero, no limit is applied.
+
+  The options allow the caller to control which checks are performed; if
+  no options are supplied, all checks appropriate to the supplied entity will
+  be made. The following table details the options available.
+
+  token   |   meaning                                 |   applies to
+  -----------------------------------------------------------------------
+          |                                           |
+  CHOPCR  |   check for corrupt data structure, and   |   bodies
+          |       check identifiers                   |
+          |                                           |
+  CHOPIG  |   check for invalid, self-intersecting,   |   all entities
+          |   or degenerate geometry                  |
+          |                                           |
+  CHOPPV  |   check for invalid, self-intersecting,   |   all entities
+          |   or degenerate geometry, ignore results  |
+          |   of pre-V5 checks.                       |
+          |                                           |
+  CHOPNO  |   check for invalid, self-intersecting,   |   all entities
+          |   or degenerate geometry, ignore previous |
+          |   checks and interface parameters.        |
+          |                                           |
+  CHOPED  |   check for inconsistencies between       |   topological entities
+          |       topology and geometry of edges      |
+          |                                           |
+  CHOPFA  |   check for inconsistencies between       |   bodies and faces
+          |       topology and geometry of faces      |
+          |                                           |
+  CHOPSX  |   check for self-intersecting faces       |   bodies and faces
+          |                                           |
+  CHOPLC  |   check for loop consistency of faces     |   bodies and faces
+          |                                           |
+  CHOPBX  |   check for size-box violations           |   topological entities
+          |                                           |
+  CHOPFF  |   check for face-face inconsistencies     |   bodies and pairs of
+          |                                           |       faces
+          |                                           |
+  CHOPSH  |   check for inside-out or inconsistent    |   bodies
+          |       shells                              |
+          |                                           |
+
+
+  The option CHOPIG will check for invalid, self-intersecting and degenerate
+  geometry, however the self-intersection checks are performed only if
+  the appropriate interface parameter is set ( see SEINTP ).
+  Geometry which passes these tests is marked so that the cost of these
+  tests need only be incurred once. Geometry which fails is also marked for
+  the same reason.
+
+  The option CHOPPV behaves just like CHOPIG, except that it forces a re-check
+  of geometry marked as valid by pre-V5 versions of Parasolid.
+
+  The option CHOPNO behaves just like CHOPIG, except that it always forces
+  a full check of the geometry, overriding the interface parameter,
+  even if the geometry has been marked as valid by a previous check.
+
+  When some types of check are omitted, an entity which would fail them may
+  produce misleading results or checker failures if checks which appear later
+  in the above table are applied. Very occasionally, checker failures
+  (denoted by tokens RTSTCF and RTSTFC, see table below) are caused by
+  difficult geometric configurations or the unexpected failure of an internal
+  numerical algorithm; such failures should not be taken to indicate that the
+  body is invalid.
+
+
+  The following table shows the tokens that may be returned, and the data
+  associated with them. For more details on these fault types and how they may
+  arise, see the chapter on 'Checking'.
+
+  token   |     meaning         |   associated tag    |   associated data
+  -----------------------------------------------------------------------
+          |                     |                     |
+  RTSTCR  |   data structure    |       null          |       null
+          |        corrupt      |                     |
+          |                     |                     |
+  RTSTID  | invalid or duplicate|       null          |       null
+          |        identifiers  |                     |
+          |                     |                     |
+  RTSTIG  |  invalid geometry   |  invalid geometric  |       null
+          |                     |      entity         |
+          |                     |                     |
+  RTSTGX  |  self-intersection  |  self-intersecting  |   point on the
+          |     in geometry     |  geometric entity   | self-intersection
+          |                     |                     |
+  RTSTDG  | degenerate geometry |  geometric entity   |   point from
+          |                     |                     | degenerate region
+          |                     |                     |
+  RTSTMG  |  missing geometry   | topological entity  |       null
+          |                     |  with no geometry   |
+          |                     |                     |
+  RTSTOC  | open or non-        |       edge          |       null
+          |   periodic curve    |                     |
+          |   on ring edge      |                     |
+          |                     |                     |
+  RTSTON  | open or non-        |       edge          |       null
+          |   periodic nominal  |                     |
+          |   geometry on ring  |                     |
+          |   edge              |                     |
+          |                     |                     |
+  RTSTVC  | vertex not on curve |       edge          |       list of vertices
+          |                     |                     |
+  RTSTVN  | vertex not on       |       edge          |       list of vertices
+          | nominal geometry    |                     |
+          |                     |                     |
+  RTSTER  | edge reversed       |       edge          |       null
+          |                     |                     |
+  RTSTRN  | nominal geometry    |       edge          |       null
+          | in wrong direction  |                     |
+          | for edge            |                     |
+          |                     |                     |
+  RTSTSN  | SP-curves of edge   |       edge          |       null
+          |   not within edge   |                     |
+          |   tolerance of      |                     |
+          |   nominal geometry  |                     |
+          |                     |                     |
+  RTSTSP  | SP-curves of edge   |       edge          |       null
+          |   not within edge   |                     |
+          |   tolerance         |                     |
+          |                     |                     |
+  RTSTVT  | vertices touch      |       edge          |       null
+          |                     |                     |
+          |                     |                     |
+  RTSTFO  | faces incorrectly   |       edge          |       null
+          |  ordered at edge    |                     |
+          |                     |                     |
+  RTSTVS  | vertex not on       |       face          |       list of vertices
+          |   surface           |                     |
+          |                     |                     |
+  RTSTES  | edge not on surface |       face          |       list of edges
+          |                     |                     |
+  RTSTEO  | edges incorrectly   |       face          |       null
+          |   ordered at vertex |                     |
+          |                     |                     |
+  RTSTMV  | missing vertex at   |       face          |       point at
+          | surface singularity |                     |       singularity
+          |                     |                     |
+  RTSTLC  | loops inconsistent  |       face          |       null
+          |                     |                     |
+  RTSTSX  |  self-intersecting  |       face          |  point in region of
+          |        face         |                     |   inconsistency
+          |   (ie edge/edge     |                     |
+          |    inconsistency)   |                     |
+          |                     |                     |
+  RTSTEF  |   wireframe edge/   |   list of tags of   |  point in region of
+          | face inconsistency  |  the edge and face  |   inconsistency
+          |                     |                     |
+  RTSTEE  |   wireframe edge/   |   list of tags of   |  point in region of
+          |   wireframe edge    |  the pair of edges  |   inconsistency
+          |    inconsistency    |                     |
+          |                     |                     |
+  RTSTGC  | geometry not G1     |    face or edge     |       null
+          |   continuous        |                     |
+          |                     |                     |
+  RTSTBX  | size box violation  |    face or edge     |       null
+          |                     |                     |
+  RTSTFF  |     face/face       | list of tags of the |  point in region of
+          |   inconsistency     | pair of faces       |   inconsistency
+          |                     |                     |
+  RTSTNG  | body is inside out  |       body          |       null
+          |                     |                     |
+  RTSTSH  | shells of region    |      region         |       null
+          | are inconsistent    |                     |
+          |                     |                     |
+  RTSTRS  | regions of body     |       body          |       null
+          | are inconsistent    |                     |
+          |                     |                     |
+  RTSTSG  | geometry/topology   |       shell         |       null
+          | inconsistency in    |                     |
+          |      shell          |                     |
+          |                     |                     |
+  RTSTAC  | acorn shell/shell   |   list of tags of   |  point in region of
+          |   inconsistency     |  the pair of shells |   inconsistency
+          |                     |                     |
+  RTSTCF  |   checker failure   | topological entity  |       null
+          |                     |                     |
+  RTSTFC  |   failure during    | list of tags of the |       null
+          |   face-face check   | pair of faces       |
+
+  Note that the tokens RTSTEF, RTSTFO, RTSTSG, RTSTAC can only occur for
+  general bodies.
+
+  There are special checks performed on B-curves and B-surfaces.
+
+  The restrictions on B-curves are:
+
+      i)  A B-curve cannot have any first derivative of zero length.
+
+     ii)  A B-curve cannot self-intersect.
+
+    iii)  A B-curve cannot have a cusp interior to a segment.
+
+     iv)  A B-curve must be at least position (G0) continuous.
+
+  The self intersection check in ii) is only performed if the appropriate
+  interface parameter is set (see SEINTP).
+
+  The restrictions on B-surfaces are:
+
+      i)  A B-surface cannot contain any first derivative of zero length, except
+          at a legal degeneracy (defined below).
+
+     ii)  A B-surface cannot self-intersect.
+
+    iii)  A B-surface cannot have a ridge or a cusp interior to a patch.
+
+     iv)  A B-surface must be at least position (G0) continuous.
+
+      v)  A B-surface may meet itself in either the u or the v direction or both
+          to form a closed surface.  If it does meet itself, it must do so all
+          along the boundary.  It is illegal for for the surface to meet itself
+          at a single point.
+
+     vi)  A legal degeneracy is one which occurs only on a boundary of the
+          surface, and which reduces all the boundary between two
+          or more knot values to a single point.
+
+     vii) A corner of a B-surface cannot be degenerate in both parameters.
+
+  The self intersection check in ii) is only performed if the appropriate
+  interface parameter is set (see SEINTP).
+
+
+  Offset surfaces whose underlying surfaces are B-surfaces are also checked for
+  self intersection only if the appropriate interface parameter is set (see
+  SEINTP).
+  SP-curves are also checked for self intersection only if the appropriate
+  interface parameter is set (see SEINTP).
+  If `entity' is a body, face, or edge and option CHOPFA or CHOPED is selected,
+  then additional checks on the geometry attached to 'entity' are performed.
+
+  The checks performed on curves attached to edges are:
+
+      i)  The curve must be G1 continuous.
+
+     ii)  If the curve is closed then it must have a periodic parameterisation.
+
+  The checks performed on surfaces attached to faces are:
+
+    iii)  The surface must be G1 continuous.
+
+     iv)  The constant parameter lines of the surface must be G1 continuous.
+
+      v)  If the surface is closed in either direction then it must have a
+          periodic parameterisation in that direction.
+
+     vi)  The surface may only contain degeneracies along one of its
+          boundaries if all of that boundary is degenerate.
+
+  Failure to pass these any of these checks will result in an RTSTGC code.
+
+  Checks i), iii), iv) and vi) are only performed if the appropriate interface
+  parameter is set - see SEINTP (SLIPCO).
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,1049 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Using Parasolid</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Using Parasolid</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="in_chap.05.html">Parasolid Release Area</A></TD>
+  <TD><A HREF="../in_index.html">Chapters</A></TD>
+  <TD><A HREF="in_chap.07.html">Environment</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-272953">5.1	Files supplied</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-272977">5.2	Schema Files</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-272979">5.3	Frustrum</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-272996">5.4	Kernel Interface Driver (KID)</A>
+<UL>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-272997">5.4.1	Specifying environment variables</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-273013">5.4.2	Running KID</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-273028">5.4.3	KID graphics</A>
+</UL>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-295549">5.5	Stack sizes</A>
+<UL>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-295717">5.5.1	Platform default thread stack sizes</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-295732">5.5.2	Setting stack sizes for application threads</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-295740">5.5.3	Setting stack sizes for Parasolid internal SMP threads</A>
+</UL>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-110680">5.6	Symmetric Multi-Processing (SMP)</A>
+<UL>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-293430">5.6.1	Guidelines for setting the number of threads</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-298303">5.6.2	Downward interfaces</A>
+<LI> <A HREF="in_chap.06.html#50520099_pgfId-294265">5.6.3	Run-time error handling</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520099_pgfId-272953"></A>5.1	Files supplied
+
+
+</H1>
+
+<H4>
+<A NAME="50520099_pgfId-272954"></A>UNIX, Android</H4>
+<P>
+<A NAME="50520099_pgfId-272955"></A>Parasolid is supplied as</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-293258"></A><STRONG>
+A shared object library.</STRONG> An executable program can be made by linking the object files of a main program, your frustrum, and the Parasolid shared object library in the &#8216;shared_object&#8217; sub-directory. </LI>
+<LI>
+<A NAME="50520099_pgfId-272956"></A><STRONG>
+An archive library.</STRONG> An executable program can be made by linking the object files of a main program, your frustrum, and the Parasolid library.</LI>
+</UL>
+
+
+<H4>
+<A NAME="50520099_pgfId-272967"></A>Windows</H4>
+<P>
+<A NAME="50520099_pgfId-289357"></A>Parasolid is supplied as:</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-293300"></A><STRONG>
+A DLL</STRONG> (<CODE>
+pskernel.dll</CODE>
+) created from the object file library. An executable program can be made by linking the object files of a main program, your frustrum, the Parasolid &#8216;interface library&#8217;, <CODE>
+pskernel.lib</CODE>
+ in the <CODE>
+dll</CODE>
+ directory.</LI>
+<LI>
+<A NAME="50520099_pgfId-272969"></A><STRONG>
+An object file library</STRONG> (<CODE>
+pskernel_archive.lib</CODE>
+). An executable program can be made by linking the object files of a main program, your frustrum, and the Parasolid library.</LI>
+</UL>
+
+
+<H4>
+<A NAME="50520099_pgfId-324352"></A>iOS</H4>
+<P>
+<A NAME="50520099_pgfId-325902"></A>Parasolid is supplied as:</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-314135"></A>An archive library (<CODE>
+libpskernel_archive.a</CODE>
+). This can be linked into an Xcode project that builds an iOS app, which must supply a frustrum.</LI>
+</UL>
+
+
+<H4>
+<A NAME="50520099_pgfId-294228"></A>All platforms</H4>
+<P>
+<A NAME="50520099_pgfId-289421"></A>Function headers for the functions available in the full Parasolid kernel can be found in the file <CODE>
+parasolid_kernel.h</CODE>
+. </P>
+<P>
+<A NAME="50520099_pgfId-272971"></A>In order to use the supplied DLL, your application must register a frustrum - see <A HREF="di_chap.06.html#15203">Chapter 5, &#8220;Registering the Frustrum&#8221;</A> in the <EM><A HREF=../di_index.html>Downward Interfaces</A></EM> manual for further details. See <A HREF="in_chap.07.html#50520100_35855">Chapter 6, &#8220;Environment&#8221;</A>, in this manual, for more details on building and linking Parasolid.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-324735"></A>UNIX, Windows, Android</H4>
+<P>
+<A NAME="50520099_pgfId-272975"></A>The file <CODE>
+parasolid_link.com</CODE>
+, or <CODE>
+parasolid_link.bat</CODE>
+ on Windows platforms, shows examples of linking or binding Parasolid.</P>
+<P>
+<A NAME="50520099_pgfId-305670"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520099_pgfId-305681"></A>Warning: If you link Parasolid using the archive library, it is important that you call only the functions in the supplied headers and do not attempt to call any Parasolid internal functions. The effects of doing so are undefined and unpredictable, and will not be consistent from version to version. Crashes and infinite loops are likely results.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520099_pgfId-272977"></A>5.2	Schema Files
+
+
+</H1>
+<P>
+<A NAME="50520099_pgfId-272978"></A>When transmitting part files using an explicit (non-default) transmit version, the schema file is written to the schema directory of your Parasolid installation if it is not already present. </P>
+<P>
+<A NAME="50520099_pgfId-291779"></A>When receiving part files:</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-291802"></A>If the part was originally transmitted using Parasolid V14.0 or later, using the default transmit version, then no schema file is required to read the part into a Parasolid session.</LI>
+<LI>
+<A NAME="50520099_pgfId-291806"></A>If the part was originally transmitted using a version of Parasolid earlier than V14.0, or if an explicit (non-default) transmit version was used, then the schema file for the relevant version must be present in the schema directory of your Parasolid installation.</LI>
+</UL>
+<P>
+<A NAME="50520099_pgfId-290084"></A>In a Windows application, your frustrum could typically look for schema files in one of two ways:</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-290087"></A>Use a registry setting</LI>
+<LI>
+<A NAME="50520099_pgfId-290092"></A>Use an environment variable</LI>
+</UL>
+<P>
+<A NAME="50520099_pgfId-290093"></A>The dummy frustrum uses an environment variable called P_SCHEMA. Your finished application should not use the dummy frustrum.</P>
+<P>
+<A NAME="50520099_pgfId-314526"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520099_pgfId-290023"></A>Note: If you use the dummy frustrum on Windows, the %P_SCHEMA% environment variable is assumed to point to a directory on an NTFS file system. If %P_SCHEMA% points to a DOS FAT file system instead, you must copy and rename the schema files so that they have the extension <CODE>
+.s_t</CODE>
+.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50520099_pgfId-290024"></A>Take care to preserve schema files when updating Parasolid versions.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520099_pgfId-290025"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520099_pgfId-314536"></A>Note: On iOS, you will have to include the schemas in your application bundle. If you use the dummy frustrum, you will need to call the function <CODE>
+implement_ios_paths()</CODE>
+ to provide this frustrum with the path to the schemas. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520099_pgfId-272979"></A>5.3	Frustrum
+
+
+</H1>
+<P>
+<A NAME="50520099_pgfId-272980"></A>When writing simple Parasolid programs, you may wish to initially use the dummy frustrum provided. While this frustrum works, it is not complete, and is only provided as an outline to help you develop your own frustrum. The notes in the source file <CODE>
+frustrum.c</CODE>
+ provide more guidance. </P>
+<P>
+<A NAME="50520099_pgfId-327432"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520099_pgfId-327439"></A>Warning:  The dummy frustrum is not suitable for use in a robust application. More error checking is required for robust code, but is omitted for the sake of clarity. Do not attempt to use the dummy frustrum as a &#8220;black box.&#8221; It is necessary to understand the purpose of the frustrum, and write one suitable for your application. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520099_pgfId-326474"></A>The command files <CODE>
+frustrum_library.com</CODE>
+ on UNIX platforms. or <CODE>
+frustrum_library.bat</CODE>
+ on Windows platforms, will create a dummy frustrum library from the &#8216;C&#8217; file, although this library is provided with the release.</P>
+<P>
+<A NAME="50520099_pgfId-279397"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520099_pgfId-279462"></A>Note: On Windows platforms, we recommend that your frustrum creates text files as stream, i.e. LF terminated, rather than using the DOS default (CR and LF terminated). Implementation details can be found in the dummy frustrum. UNIX, Android and iOS platforms naturally create files that are LF terminated.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50520099_pgfId-327087"></A>UNIX, Windows, Android</H4>
+<P>
+<A NAME="50520099_pgfId-272984"></A>If you wish to use the dummy frustrum, then you must either set the environment variable P_SCHEMA, to the full pathname of the schema directory or you must modify the code in the dummy frustrum so that the schema directory is specified explicitly, and P_SCHEMA is not used. If you use P_SCHEMA, you must make sure it is set every time you log in. </P>
+
+
+<H4>
+<A NAME="50520099_pgfId-279561"></A>iOS</H4>
+<P>
+<A NAME="50520099_pgfId-315057"></A>As noted above, the location of schemas is an app design decision on iOS. </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520099_pgfId-272996"></A>5.4	Kernel Interface Driver (KID)
+
+
+</H1>
+
+<H4>
+<A NAME="50520099_pgfId-324448"></A>Applies to:</H4>
+<P>
+<A NAME="50520099_pgfId-324649"></A>UNIX, Windows, Android</P>
+<P>
+<A NAME="50520099_pgfId-332689"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520099_pgfId-333522"></A>Note: Running KID on Android requires some knowledge of the ADB tool, and the interactive ADB shell environment, Running KID is not necessary for app development using an IDE.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-272997"></A>	5.4.1 	Specifying environment variables</H2>
+<P>
+<A NAME="50520099_pgfId-272998"></A>In order to run KID, you need to setup some environment variables:</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-272999"></A>PARASOLID refers to the &#8216;base&#8217; directory; it provides a useful shortcut to specifying the full path name to this directory at the command line.</LI>
+<LI>
+<A NAME="50520099_pgfId-273000"></A>P_LISP points to a directory that contains information needed by KID.</LI>
+<LI>
+<A NAME="50520099_pgfId-273001"></A>P_SCHEMA points to the directory that contains the schema files.</LI>
+</UL>
+<P>
+<A NAME="50520099_pgfId-273002"></A>If your application uses the dummy frustrum, then you may have already specified P_SCHEMA.</P>
+
+<H4>
+<A NAME="50520099_pgfId-273003"></A>UNIX</H4>
+<P>
+<A NAME="50520099_pgfId-273004"></A>The environment variables can be set up as follows:</P>
+
+<H4>
+<A NAME="50520099_pgfId-294914"></A>Bourne shell</H4>
+<PRE><A NAME="50520099_pgfId-294915"></A>$ PARASOLID=&quot;<EM>base directory pathname</EM>&quot;</PRE>
+<PRE><A NAME="50520099_pgfId-294928"></A>$ P_LISP=&quot;<EM>full LISP directory pathname</EM>&quot;</PRE>
+<PRE><A NAME="50520099_pgfId-294944"></A>$ P_SCHEMA=&quot;<EM>full SCHEMA directory pathname</EM>&quot;</PRE>
+<PRE><A NAME="50520099_pgfId-294960"></A>$ export PARASOLID P_LISP P_SCHEMA</PRE>
+
+
+<H4>
+<A NAME="50520099_pgfId-273007"></A>&#8216;C&#8217; shell</H4>
+<PRE><A NAME="50520099_pgfId-273008"></A>$ setenv PARASOLID &quot;<EM>base directory pathname</EM>&quot;</PRE>
+<PRE><A NAME="50520099_pgfId-294976"></A>$ setenv P_LISP &quot;<EM>full LISP directory pathname</EM>&quot;</PRE>
+<PRE><A NAME="50520099_pgfId-294992"></A>$ setenv P_SCHEMA &quot;<EM>full schema directory pathname</EM>&quot;</PRE>
+<P>
+<A NAME="50520099_pgfId-294019"></A>You need to make sure these commands are executed before you run KID: you could add the statements shown above to a script, perhaps run from your login script. You should specify full path names so that KID can be run from any directory location.</P>
+
+
+
+<H4>
+<A NAME="50520099_pgfId-273009"></A>Windows</H4>
+<P>
+<A NAME="50520099_pgfId-273010"></A>The environment variables can be set up in a Command Prompt as follows:</P>
+<PRE><A NAME="50520099_pgfId-273011"></A>set PARASOLID=<EM>base directory pathname</EM></PRE>
+<PRE><A NAME="50520099_pgfId-295008"></A>set P_LISP=<EM>full LISPDATA directory pathname</EM></PRE>
+<PRE><A NAME="50520099_pgfId-295024"></A>set P_SCHEMA=<EM>full schema directory pathname</EM></PRE>
+<P>
+<A NAME="50520099_pgfId-332152"></A>You should set up these environment variables as part of your Windows login account, and you should specify full path names so that Parasolid can be run from any folder location.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-332164"></A>Android</H4>
+<P>
+<A NAME="50520099_pgfId-332182"></A>The environment variables can be set up in the ADB shell environment in the same way as for the Bourne shell on UNIX. </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-273013"></A>	5.4.2 	Running KID</H2>
+<P>
+<A NAME="50520099_pgfId-273014"></A>KID is supplied as an executable file and can be invoked as described below</P>
+
+<H4>
+<A NAME="50520099_pgfId-273015"></A>UNIX</H4>
+<P>
+<A NAME="50520099_pgfId-273016"></A>Type the following at a UNIX prompt:</P>
+<PRE><A NAME="50520099_pgfId-273017"></A><STRONG>$</STRONG> $PARASOLID/shared_object/kid.exe</PRE>
+<P>
+<A NAME="50520099_pgfId-273018"></A>You should ensure you have set the library search environment variable appropriately. See <A HREF="in_chap.05.html#50520098_28138">Section 4.2.4, &#8220;Finding shared libraries&#8221;</A>. When executed, KID will attempt to load the file <CODE>
+$P_LISP/bbcini.lsp</CODE>
+.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-273024"></A>Windows</H4>
+<P>
+<A NAME="50520099_pgfId-273025"></A>If you installed Parasolid using the installer provided (see <A HREF="in_chap.04.html#50520097_97466">Section 3.2.1</A>), and you have set up the environment variables in your account, you can run KID by double-clicking <CODE>
+kid.exe</CODE>
+ inside either the <CODE>
+intel_nt&#92;base&#92;dll</CODE>
+ folder or the <CODE>
+x64_win&#92;base&#92;dll</CODE>
+ folder (as appropriate) in your installation directory.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-332323"></A>Android</H4>
+<P>
+<A NAME="50520099_pgfId-335072"></A>You will need to use the ADB tool to transfer files to your device. This must be to a directory where you have write and execute permissions, and you will need to run KID from a directory where you have write permission, since it creates journal files by default. The directory<CODE>
+ /data/local/tmp</CODE>
+ is suitable for both of these purposes, and you can create sub-directories of it if you wish.</P>
+<P>
+<A NAME="50520099_pgfId-332314"></A>Use <CODE>
+adb push</CODE>
+ to transfer the contents of the shared_object directory, the <CODE>
+lispdata</CODE>
+ directory and the <CODE>
+schema</CODE>
+ directory to your device. Start the shell environment with <CODE>
+adb shell</CODE>
+, use <CODE>
+cd</CODE>
+ to move to a directory where you have write permission, set the environment variables, and run <CODE>
+kid.exe</CODE>
+.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-273028"></A>	5.4.3 	KID graphics </H2>
+<P>
+<A NAME="50520099_pgfId-291582"></A>This section provides a quick guide to initializing KID&#8217;s graphics facilities. For more information, see the <EM>
+<A HREF=../kd_index.html>KID Manual</A></EM>.</P>
+
+<H4>
+<A NAME="50520099_pgfId-358831"></A>Opening a graphics window</H4>
+
+<H4>
+<A NAME="50520099_pgfId-292520"></A>Intel Linux, <BR>
+ARM Linux,<BR>
+Intel MacOS<BR>
+</H4>
+<P>
+<A NAME="50520099_pgfId-292522"></A>KID graphics uses the X Windows system. Make sure that X is running before starting KID, then before using any other graphics commands, type one of the following at the LISP prompt:</P>
+<P>
+<A NAME="50520099_pgfId-292640"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520099_pgfId-292650"></A><STRONG>&gt;</STRONG> (graphics open_device &acute;x)</PRE>
+<PRE><A NAME="50520099_pgfId-295040"></A><STRONG>&gt;</STRONG> (graphics open_device &acute;xcolour)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520099_pgfId-293123"></A>To use KID graphics on Intel MacOS, you need to install and start the X11 server. This can be found under <STRONG>
+Applications &gt; Utilities &gt; X11</STRONG> on any Intel MacOS system.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-292528"></A>Windows platforms</H4>
+<P>
+<A NAME="50520099_pgfId-292530"></A>KID graphics uses Microsoft Windows GDI functions. Monochrome and color windows are available as alternatives, by typing either of the following at the LISP prompt:</P>
+<P>
+<A NAME="50520099_pgfId-335599"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520099_pgfId-292665"></A><STRONG>&gt;</STRONG> (graphics open_device &acute;nt)</PRE>
+<PRE><A NAME="50520099_pgfId-295048"></A><STRONG>&gt;</STRONG> (graphics open_device &acute;ntcolour)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50520099_pgfId-335615"></A>ARM MacOS,<BR>
+Android</H4>
+<P>
+<A NAME="50520099_pgfId-331057"></A>KID graphics are not available on these platforms. </P>
+
+
+
+<H4>
+<A NAME="50520099_pgfId-292681"></A>Other graphics commands</H4>
+<P>
+<A NAME="50520099_pgfId-273046"></A>If no graphics are required, use:</P>
+<P>
+<A NAME="50520099_pgfId-331144"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520099_pgfId-292775"></A><STRONG>&gt;</STRONG> (graphics open_device &#8217;null)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520099_pgfId-273048"></A>This will allow you to call Parasolid rendering functions without getting graphics output (for example, for testing purposes</P>
+<P>
+<A NAME="50520099_pgfId-273050"></A>You can ensure KID graphics are set up correctly using</P>
+<P>
+<A NAME="50520099_pgfId-333142"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520099_pgfId-292805"></A><STRONG>&gt;</STRONG> (graphics enquire)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520099_pgfId-295549"></A>5.5	<A NAME="50520099_marker-342746"></A><A NAME="50520099_marker-342747"></A><A NAME="50520099_marker-342748"></A><A NAME="50520099_marker-342749"></A><A NAME="50520099_68496"></A>Stack sizes
+
+
+</H1>
+<P>
+<A NAME="50520099_pgfId-295712"></A>Executing Parasolid code requires enough stack space: at least 1MB for 32-bit platforms, and 2MB for 64-bit platforms. There are currently two platforms where the default stack size for the program's first thread is too small, and several platforms where the default stack size for additional threads (which can be different) is too small. The latter applies both to application threads that call Parasolid, <EM>
+and</EM> to threads that Parasolid creates internally for its SMP functionality. </P>
+<P>
+<A NAME="50520099_pgfId-296332"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520099_pgfId-296369"></A>Note: A thread's stack size cannot be changed once the thread exists: it is fixed when the thread is created.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50520099_pgfId-335732"></A>X64 WIN,<BR>
+ARM WIN</H4>
+<P>
+<A NAME="50520099_pgfId-295715"></A>For these platforms, use the following option to set the minimum default stack size:<CODE>
+ <BR>
+/stack:2097152,131072</CODE>
+. A larger stack size (the first value) will be required if your application uses significant amounts of stack space itself.</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-351667"></A>The KID test harness includes a LISP interpreter, which can require significant amounts of stack space. KID is given 4 MB of stack.</LI>
+<LI>
+<A NAME="50520099_pgfId-351815"></A>The .NET binding does not impose significant stack space overheads.</LI>
+</UL>
+<P>
+<A NAME="50520099_pgfId-351055"></A>You can do this with either <CODE>
+link.exe</CODE>
+, when linking your executable file(s), or <CODE>
+editbin.exe</CODE>
+, to modify them after linking. Note that this is required for all 64-bit Windows programs that use Parasolid, even if they do not use multiple application threads or Parasolid SMP threads. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-295717"></A>	5.5.1 	Platform default thread stack sizes</H2>
+<P>
+<A NAME="50520099_pgfId-296982"></A>The default thread stack sizes for each platform are shown in the table below. Sizes marked with * are too small by default, so any Parasolid-based application must change them.</P>
+<P>
+<A NAME="50520099_pgfId-295720"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296556"></A>Platform</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296558"></A>Required</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-344503"></A>First thread default</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296560"></A>Additional threads default</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296580"></A>X64 WIN</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296582"></A>2MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-344507"></A>1MB*</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296584"></A>1MB*</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-347535"></A>ARM WIN</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-347537"></A>2MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-347539"></A>1MB*</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-347541"></A>1MB*</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-360582"></A>Intel NT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-360584"></A>1MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-360586"></A>1MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-360588"></A>1MB</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296586"></A>Intel Linux</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296588"></A>2MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-344509"></A>8MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296590"></A>2MB</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-355333"></A>ARM Linux</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-355335"></A>2MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-355337"></A>8MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-355339"></A>2MB</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-360592"></A>ARM MacOS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-360594"></A>2MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-360596"></A>8MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-360598"></A>512KB*</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296592"></A>Intel MacOS </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296594"></A>2MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-344511"></A>8MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-296596"></A>512KB*</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-315727"></A>ARM iOS </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-315729"></A>3MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-344513"></A>See below</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-315731"></A>512KB*</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-316383"></A>Intel iOS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-316385"></A>3MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-344515"></A>See below</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-316387"></A>512KB*</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-333251"></A>ARM Android</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-333253"></A>2MB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-344517"></A>See below</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520099_pgfId-333255"></A>1MB*</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-295732"></A>	5.5.2 	Setting stack sizes for application threads</H2>
+<P>
+<A NAME="50520099_pgfId-295734"></A>For X64 WIN and ARM WIN, we recommend that you use the <CODE>
+/stack</CODE>
+ option documented above to change the default stack size for all threads, including application threads.</P>
+<P>
+<A NAME="50520099_pgfId-295736"></A>For UNIX, Android and iOS platforms where the stack size is too small, use <CODE>
+pthread_attr_setstacksize</CODE>
+ to set a stack size attribute in the <CODE>
+pthread_attr_t</CODE>
+ structure that you pass to <CODE>
+pthread_create</CODE>
+ when creating your application threads.</P>
+<P>
+<A NAME="50520099_pgfId-325371"></A>For iOS, we recommend that you should not call Parasolid from the first thread of your app. Some Parasolid calls can take enough time to cause iOS to decide that the app has become unresponsive, and kill it. Create a thread with an appropriate size stack and use that to call Parasolid.</P>
+<P>
+<A NAME="50520099_pgfId-314447"></A>For Android, you should likewise not call Parasolid from the UI thread of your app. As for iOS, Parasolid calls can take enough time to cause Android to decide that the app has become unresponsive, and display an &#8220;Application Not Responding&#8221; message. Create a thread with an appropriate size stack and use that to call Parasolid.</P>
+<P>
+<A NAME="50520099_pgfId-295738"></A>Calling <A HREF=../headers/pk_session_set_smp_stacksize.html>PK_SESSION_set_smp_stacksize</A> has no effect on application threads: that PK function only affects the stack sizes of threads created by Parasolid.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-295740"></A>	5.5.3 	Setting stack sizes for Parasolid internal SMP threads</H2>
+<P>
+<A NAME="50520099_pgfId-295742"></A>Call <A HREF=../headers/pk_session_set_smp_stacksize.html>PK_SESSION_set_smp_stacksize</A> before turning on Parasolid SMP. For example: </P>
+<P>
+<A NAME="50520099_pgfId-295815"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50520099_pgfId-295924"></A>size_t new_stk = 256 * 1024 * sizeof(char*); /* 384, not 256, on iOS */</PRE>
+<PRE><A NAME="50520099_pgfId-298253"></A><A HREF=../headers/pk_session_smp_o_t.html>PK_SESSION_smp_o_t</A> opt;</PRE>
+<PRE><A NAME="50520099_pgfId-298153"></A>PK_SESSION_smp_o_m( opt ); /* Set SMP parameters in opt */</PRE>
+<PRE><A NAME="50520099_pgfId-298124"></A><A HREF=../headers/pk_session_set_smp_stacksize.html>PK_SESSION_set_smp_stacksize</A>( new_stk );</PRE>
+<PRE><A NAME="50520099_pgfId-295926"></A><A HREF=../headers/pk_session_set_smp.html>PK_SESSION_set_smp</A>( &amp;opt );</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520099_pgfId-110680"></A>5.6	<A NAME="50520099_50680"></A>Symmetric Multi-Processing (SMP)
+
+
+</H1>
+<P>
+<A NAME="50520099_pgfId-291635"></A>Parasolid has been adapted for Symmetric Multi-Processing (or parallel processing) via the multi-threading environments supported under Windows and the Posix threads model on UNIX. The following platforms support SMP at this release:</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-292452"></A>X64 WIN</LI>
+<LI>
+<A NAME="50520099_pgfId-360615"></A>Intel NT</LI>
+<LI>
+<A NAME="50520099_pgfId-294015"></A>Intel Linux</LI>
+<LI>
+<A NAME="50520099_pgfId-355400"></A>ARM Linux</LI>
+<LI>
+<A NAME="50520099_pgfId-294465"></A>ARM MacOS</LI>
+<LI>
+<A NAME="50520099_pgfId-360658"></A>Intel MacOS</LI>
+</UL>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-293430"></A>	5.6.1 	<A NAME="50520099_38070"></A>Guidelines for setting the number of threads</H2>
+<P>
+<A NAME="50520099_pgfId-293458"></A>There are several issues that need to be considered when deciding how many threads you should use, some of which are platform-dependent.</P>
+
+<H4>
+<A NAME="50520099_pgfId-293459"></A>Parasolid&#8217;s threads</H4>
+<P>
+<A NAME="50520099_pgfId-298376"></A>Parasolid is thread-safe and can be called from multiple threads in the same application. The Parasolid PK and KI APIs manage multiple application threads to ensure safety. See <A HREF="fd_chap.115.html#90285">Section 114.2, &#8220;How to set up and use application threads&#8221;</A>, in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM> for details. Parasolid can also create and use &#8220;worker&#8221; threads internally, to improve performance. This is described in <A HREF="fd_chap.116.html#23582">Chapter 115, &#8220;Symmetric Multi-Processing In Parasolid&#8221;</A>, in the <EM><A HREF=../fd_index.html>Functional Description</A></EM>, with more details below. </P>
+<P>
+<A NAME="50520099_pgfId-299534"></A>For many Parasolid functions, the thread that enters Parasolid from the calling application does all the work. For functions that use SMP, the caller&#8217;s thread does preparatory work, and then sets Parasolid SMP &#8220;worker&#8221; threads to work. Those threads are created by Parasolid, and perform most of the work of functions that use SMP. The caller&#8217;s thread waits for the worker threads to finish, collects their results, and returns to the application.  The number of these worker threads is set by <A HREF=../headers/pk_session_set_smp.html>PK_SESSION_set_smp</A>. That is the maximum number of such threads that Parasolid will ever be using at one time. Application threads are not included in this number.</P>
+<P>
+<A NAME="50520099_pgfId-297826"></A>The Parasolid functions that use SMP are functions that perform jobs that can be decomposed into many smaller and independent tasks. For example, mass properties such as surface area are calculated by integrating over all the faces of a body. The faces are independent, so separate threads can handle them easily. A side effect of this design is that the worker threads all do similar kinds of calculations. Their performance is limited by the speed of the computer&#8217;s processors and their memory subsystems; the speed of other parts of the computer has little effect. </P>
+<P>
+<A NAME="50520099_pgfId-297827"></A>If Parasolid SMP cannot create internal worker threads, it carries out the work they would have performed in the thread used to call Parasolid. This means that Parasolid continues to operate correctly (though possibly less quickly) if the operating system is unable to create worker threads when Parasolid needs them. Parasolid reports this situation through the Parasolid report mechanism. If worker threads subsequently can be created again, they will be used. This is also reported via the Parasolid report mechanism.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-297828"></A>Limited number of threads</H4>
+<P>
+<A NAME="50520099_pgfId-293466"></A>There is a limit on the number of threads that Parasolid can use, noted in the documentation of <A HREF=../headers/pk_session_smp_o_t.html>PK_SESSION_smp_o_t</A>.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-293467"></A>Multi-core processors</H4>
+<P>
+<A NAME="50520099_pgfId-293468"></A>Symmetrical multi-core processors, with two or more complete and identical physical processors in one package, work very well with Parasolid SMP.</P>
+<P>
+<A NAME="50520099_pgfId-350060"></A>Asymmetrical multi-core processors, such as the Apple M1, used in the first generation of ARM MacOS systems, have a mixture of types of processors. The usual configuration is a mix of high-performance and power-efficient cores, to enable performance to be traded off against battery life. You may need to limit the number of Parasolid SMP worker threads to the number of high-performance cores, but experimentation and benchmarking with your application&#8217;s usage of SMP is advisable.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-293469"></A>Symmetric Multi-Threading (SMT) and HyperThreading</H4>
+<P>
+<A NAME="50520099_pgfId-293470"></A>SMT describes a particular style of processor design. This is useful for some kinds of applications, but not - so far - for Parasolid. The best-known SMT system is Intel&#8217;s HyperThreading. This shares the execution units of a single processor between two &#8220;logical processors&#8221;. Both of these are visible to the operating system, and can be given work to do, but the threads they run only get a share of the processor&#8217;s power, rather than the full use of a processor. This makes SMT most useful for applications that need a large number of threads but where the threads don&#8217;t have to do a lot of calculations. Web serving, file/print serving and similar tasks often benefit from SMT. </P>
+<P>
+<A NAME="50520099_pgfId-309696"></A>HyperThreading isn&#8217;t very beneficial to Parasolid, although they work together correctly. Some Parasolid operations can run faster by using the extra threads that HyperThreading provides, but others run slower, and the overall effect is usually a small loss, on &#8220;NetBurst&#8221; architecture processors, or no benefit with the improved HyperThreading of the Core i-series processors. Parasolid worker threads are limited by processor power, and HyperThreading doesn&#8217;t provide more of that; it only provides a different way of accessing the existing power. Parasolid SMP threads also tend to be doing similar work, and thus competing for the same execution units. </P>
+<P>
+<A NAME="50520099_pgfId-308226"></A>For best Parasolid performance on old NetBurst processors, turn off SMT. For Core i-series and later processors, there is no need to do this. </P>
+
+
+<H4>
+<A NAME="50520099_pgfId-293475"></A><A NAME="50520099_60984"></A>Processor affinity</H4>
+<P>
+<A NAME="50520099_pgfId-293476"></A>We do not recommend that Parasolid-based applications should try to programmatically associate themselves with particular processors in an SMP system. If two or more programs try to do such things simultaneously, the usual result is worse performance.</P>
+<P>
+<A NAME="50520099_pgfId-347693"></A>ARM WIN is a special case. The usual processors for this platform are asymmetric. This works well in interactive usage, but causes problems in Parasolid&#8217;s automated testing. For reasons that are not yet clear to us, if an ARM WIN device has been running test code with no user interface for several days, it tends to run everything on its slow cores, dramatically slowing down testing. We suggest that any automated testing systems you create for applications that run on ARM WIN should use processor affinity to ensure that they run on the fast cores. This solved our problems with Parasolid testing. An example program, <CODE>
+probe_affinity.c</CODE>
+, is supplied with the Parasolid Jumpstart Kit. This examines a Windows computer to discover if any of the cores are significantly faster, and provides examples of setting affinity. We suggest that you experiment with processor affinity in your application(s); we do not yet know enough to recommend that you should, or should not, use it in interactive applications.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-293477"></A>Type of application</H4>
+<P>
+<A NAME="50520099_pgfId-293478"></A>For applications that are the main work of the computer running them, such as interactive CAD on a desktop machine, use as many threads as there are available physical processors, since response time to the user is of primary importance. </P>
+<P>
+<A NAME="50520099_pgfId-293480"></A>For applications such as translators, which may form a small part of the workload of a server, consider the issue more carefully. Parasolid doesn&#8217;t run twice as fast with two threads, so the overall throughput of a heavily loaded server may decrease if you use Parasolid SMP. However, if a server with many processors isn&#8217;t heavily loaded, using Parasolid SMP can be beneficial. For server applications, it is wise to make the use of SMP something that can be configured, rather then being decided automatically by the program. </P>
+
+
+<H4>
+<A NAME="50520099_pgfId-293481"></A>Intel NT and X64 WIN platforms</H4>
+<P>
+<A NAME="50520099_pgfId-309684"></A>There is a wide variety of SMP and SMT hardware that can be used for these platforms. Microsoft Windows provides an API, GetLogicalProcessorInformation, which can be used to identify some of the processor facilities of a computer running Windows, and is recommended for use with Parasolid.</P>
+<P>
+<A NAME="50520099_pgfId-331296"></A>Use this API to find out the number of processor cores available. If this is greater than 1, use that number of threads, to a maximum of the Parasolid limit, with the <A HREF=../headers/pk_thread_t.html>PK_thread_absolute_c</A> thread format. </P>
+<P>
+<A NAME="50520099_pgfId-294207"></A>This method avoids using a thread per logical processor on machines with HyperThreading active. </P>
+
+
+<H4>
+<A NAME="50520099_pgfId-293487"></A>Intel Linux platform</H4>
+<P>
+<A NAME="50520099_pgfId-293488"></A>This platform can use most of the types of hardware that are available for Microsoft Windows platforms. </P>
+<P>
+<A NAME="50520099_pgfId-293490"></A>To discover the processor configuration, first use <CODE>
+sysconf(_SC_NPROCESSORS_ONLN)</CODE>
+ to get the number of processors. If this is greater than 1, read and parse the text file<BR>
+<CODE>
+/proc/cpuinfo</CODE>
+. If the processor entries in that file contain &#8220;core id&#8221; values, then count the number of different &#8220;core id&#8221; values (they are not always consecutive numbers), to find out how many processor cores exist. With no &#8220;core id&#8221; values, you have a machine with single-core processors, so count the number of &#8220;physical id&#8221; values to get the number of processor cores. If there is more than 1 processor core, use that number of threads, to a maximum of the Parasolid limit, with the <A HREF=../headers/pk_thread_t.html>PK_thread_absolute_c</A> thread format.</P>
+<P>
+<A NAME="50520099_pgfId-293492"></A>This method avoids using a thread per logical processor on machines with HyperThreading active. The best Parasolid performance on machines that support HyperThreading is obtained by turning off HyperThreading in the machine&#8217;s BIOS.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-355483"></A>ARM Linux platform</H4>
+<P>
+<A NAME="50520099_pgfId-355745"></A>Use <CODE>
+sysconf(_SC_NPROCESSORS_ONLN)</CODE>
+ to get the number of processors. If this is greater than 1, enable SMP with the default option of 1 thread per processor, and Parasolid will apply its own limit.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-294486"></A>Intel MacOS platform</H4>
+<P>
+<A NAME="50520099_pgfId-294488"></A>Use <CODE>
+sysctl()</CODE>
+ with <CODE>
+CTL_HW</CODE>
+ and <CODE>
+HW_AVAILCPU</CODE>
+ to get the number of available processors. If this is greater than 1, enable SMP with the default options of 1 thread per processor; Parasolid will apply its own limit. </P>
+<P>
+<A NAME="50520099_pgfId-300385"></A>Parasolid uses OS-level locking with POSIX threads, since the OS-level locks have much lower overheads than Apple&#8217;s pthreads mutexes. Parasolid sets the Quality of Service class for threads that it creates to <CODE>
+QOS_CLASS_USER_INITIATED</CODE>
+, using the function <CODE>
+pthread_attr_set_qos_class_np()</CODE>
+. This assists the macOS scheduler in prioritising threads.</P>
+
+
+<H4>
+<A NAME="50520099_pgfId-350426"></A>ARM MacOS platform</H4>
+<P>
+<A NAME="50520099_pgfId-350427"></A>All processors used for this platform are asymmetric. Parasolid SMP works much better when it is limited to a number of threads less than or equal to the number of fast processor cores in the machine. You can establish this number as follows:</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-356353"></A>On macOS 11, it is four. All the machines capable of running ARM macOS 11.x use the M1 processor, with four fast and four slow cores.</LI>
+<LI>
+<A NAME="50520099_pgfId-356514"></A>On macOS 12 and later, you can find the number of processors at performance level zero, the fastest type, by calling <CODE>
+sysctlbyname()</CODE>
+ with the argument <CODE>
+&#168;hw.perflevel0.logicalcpu&#168;</CODE>
+. See &#8220;man sysctlbyname&#8221; for more details.</LI>
+</UL>
+<P>
+<A NAME="50520099_pgfId-350418"></A>Parasolid uses OS-level locking with POSIX threads, since the OS-level locks have much lower overheads than Apple&#8217;s pthreads mutexes. Parasolid sets the Quality of Service class for threads that it creates to <CODE>
+QOS_CLASS_USER_INITIATED</CODE>
+, using the function <CODE>
+pthread_attr_set_qos_class_np()</CODE>
+. This assists the macOS scheduler in prioritising threads.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-298303"></A>	5.6.2 	Downward interfaces</H2>
+<P>
+<A NAME="50520099_pgfId-344392"></A>Please note that when you use Parasolid SMP, Parasolid may call any of its downward interfaces from its SMP &#8220;worker&#8221; threads. This allows SMP threads to work without having to coordinate with the master thread, which improves performance. Similarly, if your application calls Parasolid from multiple threads, then the downward interfaces may be called from any of those threads. For these reasons, the functions you provide for downward interfaces must not make assumptions about which threads will call them, or in which order. </P>
+<P>
+<A NAME="50520099_pgfId-342789"></A>By default, Parasolid will only make one downward interface call at a time, avoiding the need for your functions to be fully thread-safe. If your frustrum is thread-safe, you can allow Parasolid to make multiple simultaneous calls to GO functions with the &#8216;go_thread_safe&#8217; option to <A HREF=../headers/pk_session_register_fru_2.html>PK_SESSION_register_fru_2</A>. Other exceptions to the single-call rule are noted in the documentation for individual functions. For more details, see <A HREF="../fd_book/calling_parasolid_from_multiple_threads.html#73035">Chapter 114, &#8220;Calling Parasolid From Multiple Threads&#8221;</A> and <A HREF="fd_chap.116.html#23582">Chapter 115, &#8220;Symmetric Multi-Processing In Parasolid&#8221;</A> in the <A HREF=../fd_index.html>Functional Description</A>.</P><P>
+<A NAME="50520099_pgfId-294405"></A>The situations where thread safety in your frustrum is important include:</P>
+<UL>
+<LI>
+<A NAME="50520099_pgfId-294419"></A>Freeing and allocating memory in the frustrum, which must continue to work correctly under these conditions.</LI>
+<LI>
+<A NAME="50520099_pgfId-294429"></A>The GO interfaces, where thread safety allows data for one body to be output while data for others is still being generated.</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520099_pgfId-294265"></A>	5.6.3 	<A NAME="50520099_27708"></A>Run-time error handling</H2>
+<P>
+<A NAME="50520099_pgfId-294295"></A>On platforms where the operating system doesn't do this automatically, Parasolid copies the floating-point trap settings in use by your application into its SMP &#8220;worker&#8221; threads. See <A HREF="in_chap.07.html#50520100_47449">Section 6.4, &#8220;Floating-point information&#8221;</A>, for details of floating-point traps on Parasolid platforms. </P>
+<P>
+<A NAME="50520099_pgfId-294301"></A>On UNIX platforms, code run by SMP &#8220;worker&#8221; threads generates run-time errors in the same way as code run by the thread you use to call Parasolid. Your application&#8217;s signal handler should be prepared to deal with this situation. </P>
+<P>
+<A NAME="50520099_pgfId-294306"></A>On Microsoft Windows platforms, Parasolid&#8217;s thread management catches run-time errors in worker threads and re-creates them in the thread that you used to call Parasolid. This allows you to use either signals or Structured Exception Handling to handle run-time errors.</P>
+<P>
+<A NAME="50520099_pgfId-344413"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520099_pgfId-299055"></A>Note: C++ exceptions thrown by frustrum functions called by Parasolid worker threads will not be caught in the thread that called Parasolid. We recommend that you do not use C++ exceptions in frustrum functions, but instead return a failure status. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="in_chap.05.html">Parasolid Release Area</A></TD>
+  <TD><A HREF="../in_index.html">Chapters</A></TD>
+  <TD><A HREF="in_chap.07.html">Environment</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

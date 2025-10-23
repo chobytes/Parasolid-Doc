@@ -1,0 +1,97 @@
+<HTML>
+<HEAD>
+<TITLE>CRBSPC</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRBSPC</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bcurve_create.html>PK_BCURVE_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRBSPC ( dim, order, nctrl, ctrl, knots, nprops, props, bc, ifail )
+===================================================================
+
+  Create B-curve from B-spline data
+
+Receives:
+  KI_int_dimension         *dim            --- dimension of control points
+  KI_int_order             *order          --- order of curve
+  KI_int_nitems            *nctrl          --- number of control points
+  KI_dbl_coefficients       ctrl[dim*nctrl] --- control points
+  KI_dbl_knots              knots[]        --- knot vector
+ &lt;KI_int_nitems&gt;           *nprops         --- number of curve properties
+  KI_cod_papr               props[nprops]  --- array of curve properties
+
+Returns:
+  KI_tag_b_curve           *bc             --- B-curve
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_knots              invalid knot vector
+  KI_weight_le_0            weights are non positive
+  KI_insufficient_points    insufficient control points
+  KI_bad_parametric_prop    property not applicable
+
+Description:
+  This function creates a B-curve from B-spline data - i.e. a set
+  of B-spline vertices (control points), and a knot vector. The curve may be
+  either periodic or non-periodic, and the 'props' array supplies this
+  information.
+
+  Dimension of control points 'dim':
+  . For rational curves 'dim'=4.
+  . For non-rational curves 'dim'=3.
+
+  Order of the curve 'order':
+  . The order of the curve = degree + 1.
+  . The minimum order is 2.
+
+  Number of control points 'nctrl':
+  . For non-periodic curves 'nctrl' >= 'order'.
+  . For periodic curves 'nctrl' >= 3.
+
+  Control points 'ctrl':
+  . For non-rational curves, the control points are points in 3-space and
+    must be supplied [x0,y0,z0,x1,y1,z1,...].
+  . For rational curves each vector contains a point in 3-space followed by a
+    weight for the point. The points are supplied [x0,y0,z0,w0,x1,y1,z1,w1,...].
+    The weight must be positive. Increasing the weight of a control point will
+    pull the curve closer to that point.
+
+  Knot vector 'knots':
+  . The knot values must form a non-decreasing sequence.
+  . For non-periodic curves there must be ('nctrl' + 'order') knot values,
+    the maximum multiplicity of an internal knot value is ('order' - 1), and
+    the maximum multiplicity of an end knot value is 'order'.
+  . For periodic curves there must be ('nctrl' + 1) knot values, and the
+    maximum multiplicity of any knot value is ('order' - 1).  If the periodic
+    knot has multiplicity greater than 1, repetitions must be given at the end
+    of the knot vector.
+
+  Number of properties 'nprops':
+  . Gives the number of properties in the 'props' array.
+  . There is only one property (periodicity) and so 'nprops' must be either 0
+    or 1.
+
+  Properties array 'props':
+  . PAPRPE - the curve is periodic (default is non-periodic).
+
+
+</PRE>
+</BODY>
+</HTML>

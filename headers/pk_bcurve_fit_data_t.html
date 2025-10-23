@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_fit_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_fit_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_fit_data_s
+    {
+    <A HREF=../headers/pk_bcurve_fit_eval_type_t.html>PK_BCURVE_fit_eval_type_t</A>    eval_type; --- what evaluator to use
+                                            --- (PK_BCURVE_fit_eval_chain_c)
+    <A HREF=../headers/pk_bcurve_fit_eval_f_t.html>PK_BCURVE_fit_eval_f_t</A>       eval_fn;   --- user evaluator (NULL)
+    <A HREF=../headers/pk_bcurve_fit_eval_data_t.html>PK_BCURVE_fit_eval_data_t</A>    eval_data; --- evaluator data
+    <A HREF=../headers/pk_bcurve_fit_err_method_t.html>PK_BCURVE_fit_err_method_t</A>   err_method;--- error method for bcurve
+                                            --- (PK_BCURVE_fit_err_parm_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                 rational;  --- if bcurve is to be rational
+                                            --- (PK_LOGICAL_false)
+    };
+
+typedef struct PK_BCURVE_fit_data_s  PK_BCURVE_fit_data_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains the controls for fitting an individual bcurve.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_create_by_fitting_o_t.html>PK_BCURVE_create_by_fitting_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This structure contains the following fields:
+
+<B>'eval_type'</B>     This specifies how sample data should be obtained for this
+                bcurve.  If <B>'PK_BCURVE_fit_eval_user_c'</B> is chosen then an
+                evaluator function of the form <A HREF=../headers/pk_bcurve_fit_eval_f_t.html>PK_BCURVE_fit_eval_f_t</A> should
+                be supplied in <B>'eval_fn'</B>.
+
+<B>'eval_fn'</B>       This field allows an application to supply an evaluator
+                function of form <A HREF=../headers/pk_bcurve_fit_eval_f_t.html>PK_BCURVE_fit_eval_f_t</A>.
+
+<B>'eval_data'</B>     This contains the data required for the chosen
+                evaluator function.  For internal evaluators the application
+                must supply the appropriate associated data.  For external
+                (application-supplied) evaluators the application can provide
+                data in this structure which will be passed to the evaluator
+                function whenever Parasolid calls it.  Such data will not be
+                examined by Parasolid.
+
+<B>'err_method'</B>    This controls how Parasolid measures the error between the
+                bcurve and the sample data.  The value
+                <B>'PK_BCURVE_fit_err_none_c'</B> specifies that the bcurve has no
+                tolerance checking performed on it.  Note that there must be at
+                least one <B>'PK_BCURVE_fit_data_t'</B> structure supplied which does
+                not have this field set to <B>'PK_BCURVE_fit_err_none_c'</B>.
+
+<B>'rational'</B>      This would specify whether the bcurve should be rational.  At
+                present this option is not operational and is for future
+                enhancements.  It should be left at its default value.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

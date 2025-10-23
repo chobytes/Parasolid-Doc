@@ -1,0 +1,132 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.002.html#50409781_pgfId-297996", " useful to use this frustrum until you have <B>implemented</B> a working frustrum of your own, so that", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.004.html#50409783_pgfId-301575", " Of B-Geometry, Appendix C, How the C# Binding is <B>Implemented</B> or Appendix D, Persistent Mesh (PSM) Format for", "Functional Description - Overview Of This Manual");
+top.note("chapters/fd_chap.006.html#50409786_pgfId-294852", " Note: In practice, GO functions are <B>implemented</B> as part of the frustrum. You can think", "Functional Description - Application Design And Architecture");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295349", " the model. If rolling back has not been <B>implemented</B>, it should stop and restart the Parasolid session,", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295356", " Parasolid session has been corrupted; rolling back, if <B>implemented</B>, will not be effective. ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-326994", " If <B>implemented</B>, you can use roll-back in your application in", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-303714", " to dictate that a particular approach must be <B>implemented</B>. ", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-318906", " meeting tangentially is representable. Constant parameter curves are <B>implemented</B> on offset surfaces and are used to: ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-465335", " Note: Multi-scale modelling assumes that the application has <B>implemented</B> or will implement support for different sized parts", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1433729", " option is not <B>implemented</B> for classic geometry. ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-297899", " The value PK_blend_inside_tight_no_c is not currently <B>implemented</B> for PK_BODY_fix_blends and should not be supplied. ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295126", " Incremental graphics can be <B>implemented</B> using faceting and the bulletin board together. For", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295099", " Indexed tables are <B>implemented</B> as one-dimensional arrays: the array index represents the", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295104", " Lookup tables are <B>implemented</B> as an array of structures, in which each", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295203", " table is <B>implemented</B> as a lookup table that groups sets of", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295580", " table is <B>implemented</B> as an indexed table that maps fin indices", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296154", " facet vertex in the series. Both tables are <B>implemented</B> as lookup tables that contain a single column", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297131", " table is <B>implemented</B> as an indexed table that maps fins onto", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297132", " Each table is <B>implemented</B> as an indexed table whose values are indices", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297814", " of the tables described in this section is <B>implemented</B> as an indexed table, and you can associate", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297889", " forms part of the representation for. It is <B>implemented</B> as an indexed table in which each index", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-298008", " forms part of the representation for. It is <B>implemented</B> as an indexed table in which the index", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-298466", " model to that model edge. This table is <B>implemented</B> as a two-column lookup table: ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-298709", " faceting, and where they occurred. The table is <B>implemented</B> as a two-column lookup table: ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295050", " SMP is <B>implemented</B> beneath the API level, typically in low-level internal", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295082", " <B>Implemented</B> at the face level. ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295088", " <B>Implemented</B> for face-face clashing portion of algorithm. ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295094", " <B>Implemented</B> at the body occurrence level ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295100", " <B>Implemented</B> at the body level during initial processing and at", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295112", " <B>Implemented</B> at the body level. You must set the ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-379973", " patch) from the point at which you first <B>implemented</B> the consolidated system. Use the unset behaviour if", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-379977", " emulate Parasolid behaviour from versions released before you <B>implemented</B> the consolidated system. Using this type of behaviour", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-382635", " To update existing features created since you <B>implemented</B> the consolidated system, you need to use the", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-382649", " To update existing features created before you <B>implemented</B> the consolidated system, set session switches and update", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-328789", " created using a version of your application that <B>implemented</B> the consolidated version control system, you must continue", "Functional Description - Update Switches");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-328587", " created using a version of your application that <B>implemented</B> the original version control system, you should use", "Functional Description - Update Switches");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-327584", " for features created using versions of applications that <B>implemented</B> the original version control system. To emulate legacy", "Functional Description - Update Switches");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294855", " the model. If rolling back has not been <B>implemented</B>, it should stop and restart the Parasolid session,", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294862", " Parasolid session has been corrupted; rolling back, if <B>implemented</B>, will not be effective. ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285328", " used in the PK interface have to be <B>implemented</B> as ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-286271", " for functions with persistent arguments, the process is <B>implemented</B> with two functions. The first is to be", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275837", " parameter space of a surface. They are currently <B>implemented</B> as NURBs. ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.03.html#50442274_pgfId-335174", " to your reported problems and all cumulative bug-fixes <B>implemented</B> for all customers. Where appropriate and upon request,", "Overview of Parasolid - About Parasolid");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-739459", " the blends meet. . Setback blends can be <B>implemented</B> with or without collar faces. ", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-280353", " way). Depending on the history facility you have <B>implemented</B> in your application, this can give the user", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.18.html#50442277_pgfId-277398", " SMP is <B>implemented</B> beneath the API level, typically in low-level internal", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.18.html#50442277_pgfId-277493", " <B>Implemented</B> at the face level. ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.18.html#50442277_pgfId-277626", " <B>Implemented</B> for face-face clashing portion of algorithm. ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.18.html#50442277_pgfId-277501", " <B>Implemented</B> at the body occurrence level. ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.18.html#50442277_pgfId-277505", " <B>Implemented</B> at the body level during initial processing and at", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.18.html#50442277_pgfId-277513", " <B>Implemented</B> at the body level. ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " facet geometry only This value is currently not <B>implemented</B> ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " facet geometry only This value is currently not <B>implemented</B> ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_request_not_supported 997 PK_TOPOL_eval_mass_props requested properties not all <B>implemented</B>", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_not_implemented 5000 PK_BODY_extrude option not <B>implemented</B>", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_not_implemented 5000 PK_BODY_extrude option not <B>implemented</B>", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_request_not_supported 997 PK_TOPOL_eval_mass_props requested properties not all <B>implemented</B>", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " PK_BODY_extrude 5000 PK_ERROR_not_implemented option not <B>implemented</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " PK_DEBUG_report_start 5000 PK_ERROR_not_implemented option not <B>implemented</B> (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_SESSION_register 5000 PK_ERROR_not_implemented case not <B>implemented</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_extrude.html#errors", " PK_ERROR_not_implemented option not <B>implemented</B>", "PK Reference - PK_BODY_extrude");
+top.note("headers/pk_body_fix_blends.html#errors", " PK_ERROR_not_implemented user options not <B>implemented</B> (MILD)", "PK Reference - PK_BODY_fix_blends");
+top.note("headers/pk_body_fix_blends_o_t.html#documentation", " PK_blend_inside_tight_no_c is not currently <B>implemented</B> for", "PK Reference - PK_BODY_fix_blends_o_t");
+top.note("headers/pk_body_identify_details.html#errors", " PK_ERROR_not_implemented detail not <B>implemented</B> (MILD)", "PK Reference - PK_BODY_identify_details");
+top.note("headers/pk_body_imprint_cus_shadow.html#documentation", "The function is only <B>implemented</B> for entities of type PK_BODY_type_solid_c or", "PK Reference - PK_BODY_imprint_cus_shadow");
+top.note("headers/pk_body_make_curves_outline.html#documentation", "The function is only <B>implemented</B> for solid, sheet, wire and general bodies.", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_spun_outline.html#documentation", "The function is only <B>implemented</B> for solid and cellular bodies.", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_offset_2.html#errors", " structure is not <B>implemented</B> for this", "PK Reference - PK_BODY_offset_2");
+top.note("headers/pk_body_repair_shells.html#documentation", "The following repairs are <B>implemented</B>:", "PK Reference - PK_BODY_repair_shells");
+top.note("headers/pk_body_thicken_2.html#errors", " PK_ERROR_not_implemented PK_offset_step_site_c not <B>implemented</B> (MILD)", "PK Reference - PK_BODY_thicken_2");
+top.note("headers/pk_change_edge_geom_data_t.html#documentation", " <B>implemented</B> for entities of type PK_SURF_t and", "PK Reference - PK_change_edge_geom_data_t");
+top.note("headers/pk_debug_report_start.html#errors", " PK_ERROR_not_implemented option not <B>implemented</B> (MILD)", "PK Reference - PK_DEBUG_report_start");
+top.note("headers/pk_face_boolean_o_t.html#documentation", "The following options are not currently <B>implemented</B> for", "PK Reference - PK_FACE_boolean_o_t");
+top.note("headers/pk_face_change_offset_o_t.html#errors", " <B>implemented</B> for this function", "PK Reference - PK_FACE_change_offset_o_t");
+top.note("headers/pk_face_classify_details.html#errors", " PK_ERROR_not_implemented (MILD) requested option not <B>implemented</B>", "PK Reference - PK_FACE_classify_details");
+top.note("headers/pk_face_delete.html#errors", " PK_ERROR_not_implemented (MILD) heal_action not <B>implemented</B>", "PK Reference - PK_FACE_delete");
+top.note("headers/pk_face_delete_facesets.html#errors", " PK_ERROR_not_implemented (MILD) requested option not <B>implemented</B>", "PK Reference - PK_FACE_delete_facesets");
+top.note("headers/pk_face_instance_bodies.html#documentation", " <B>implemented</B>", "PK Reference - PK_FACE_instance_bodies");
+top.note("headers/pk_face_make_blend_o_t.html#documentation", " PK_blend_use_master_faces_no_c is <B>implemented</B> only for", "PK Reference - PK_FACE_make_blend_o_t");
+top.note("headers/pk_face_make_solid_bodies.html#errors", " PK_ERROR_not_implemented (MILD) heal_action not <B>implemented</B>", "PK Reference - PK_FACE_make_solid_bodies");
+top.note("headers/pk_face_offset_2.html#errors", " <B>implemented</B> for this function", "PK Reference - PK_FACE_offset_2");
+top.note("headers/pk_face_remove_to_solid_bodies.html#errors", " child_heal_action not <B>implemented</B>", "PK Reference - PK_FACE_remove_to_solid_bodies");
+top.note("headers/pk_face_replace_surfs_2.html#errors", " PK_ERROR_not_implemented user options not <B>implemented</B>", "PK Reference - PK_FACE_replace_surfs_2");
+top.note("headers/pk_face_replace_surfs_o_t.html#documentation", " This option is not <B>implemented</B> for PK_FACE_replace_surfs_2 .", "PK Reference - PK_FACE_replace_surfs_o_t");
+top.note("headers/pk_fcurve_t.html#description", " type represents a Foreign CURVE; that is, one <B>implemented</B> in an", "PK Reference - PK_FCURVE_t");
+top.note("headers/pk_ffoprb_f_t.html#documentation", " purposes only, and should not be <B>implemented</B> for new Parasolid applications.", "PK Reference - PK_FFOPRB_f_t");
+top.note("headers/pk_ffseek_f_t.html#documentation", " purposes only, and should not be <B>implemented</B> for new Parasolid applications.", "PK Reference - PK_FFSEEK_f_t");
+top.note("headers/pk_fftell_f_t.html#documentation", " purposes only, and should not be <B>implemented</B> for new Parasolid applications.", "PK Reference - PK_FFTELL_f_t");
+top.note("headers/pk_fsurf_t.html#description", " type represents a Foreign SURFace; that is, one <B>implemented</B> in an", "PK Reference - PK_FSURF_t");
+top.note("headers/pk_goclpx_f_t.html#description", "purposes only, and should not be <B>implemented</B> for new Parasolid applications.", "PK Reference - PK_GOCLPX_f_t");
+top.note("headers/pk_gooppx_f_t.html#description", "purposes only, and should not be <B>implemented</B> for new Parasolid applications.", "PK Reference - PK_GOOPPX_f_t");
+top.note("headers/pk_gopixl_f_t.html#description", "purposes only, and should not be <B>implemented</B> for new Parasolid applications.", "PK Reference - PK_GOPIXL_f_t");
+top.note("headers/pk_mesh_fix_defects.html#documentation", "function is not <B>implemented</B> for meshes attached to faces.", "PK Reference - PK_MESH_fix_defects");
+top.note("headers/pk_mfacet_find_perimeters.html#documentation", "<B>implemented</B> in the callback function and this can either", "PK Reference - PK_MFACET_find_perimeters");
+top.note("headers/pk_mtopol_make_meshes.html#documentation", "<B>implemented</B> in the callback function and this can either", "PK Reference - PK_MTOPOL_make_meshes");
+top.note("headers/pk_partition_clone_pmark_o_t.html#declaration", " PK_check_fa_fa_t check_fa_fa; --- not <B>implemented</B>", "PK Reference - PK_PARTITION_clone_pmark_o_t");
+top.note("headers/pk_partition_stop_cloning_o_t.html#declaration", " PK_PMARK_t from_pmark; --- not <B>implemented</B>", "PK Reference - PK_PARTITION_stop_cloning_o_t");
+top.note("headers/pk_receive_mixed_t.html#documentation", " This value is currently not <B>implemented</B>", "PK Reference - PK_receive_mixed_t");
+top.note("headers/pk_session_register.html#errors", " PK_ERROR_not_implemented case not <B>implemented</B>", "PK Reference - PK_SESSION_register");
+top.note("headers/pk_topol_eval_mass_props.html#errors", " PK_ERROR_request_not_supported requested properties not all <B>implemented</B>", "PK Reference - PK_TOPOL_eval_mass_props");
+top.note("headers/pk_topol_facet_choice_o_t.html#documentation", "This form of table is <B>implemented</B> as an array of structures, with each", "PK Reference - PK_TOPOL_facet_choice_o_t");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", " Note: This method is not <B>implemented</B> for cases where topols is an array", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#documentation", " Note: This method is not <B>implemented</B> for cases where topols is an array", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_facet_table_t.html#documentation", "This form of table is <B>implemented</B> as an array of structures, with each", "PK Reference - PK_TOPOL_facet_table_t");
+top.note("headers/pk_transf_is_equal.html#documentation", "This function is not <B>implemented</B> for transformations with perspective or non-", "PK Reference - PK_TRANSF_is_equal");
+top.note("chapters/di_chap.02.html#50511934_pgfId-273860", " a feel for how a Frustrum might be <B>implemented</B>, although the complexity of a Frustrum is dependent", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.03.html#50511935_pgfId-273844", " Whilst such facilities could be <B>implemented</B> in a number of ways, they are described", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275327", " RRPIXL. These functions do not need to be <B>implemented</B> to support the PK (they can be supplied", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.11.html#50511943_pgfId-274045", " the application I/O (applio) functions which can be <B>implemented</B> to replace or extend the normal part file", "Downward Interfaces - Application I/O Functions");
+top.note("chapters/di_chap.12.html#50511944_pgfId-274045", " the indexed I/O (indexio) functions which can be <B>implemented</B> to replace or extend the normal part file", "Downward Interfaces - Indexed I/O Functions");
+top.note("chapters/di_chap.13.html#50511945_pgfId-280658", " lists the attribute callback functions that can be <B>implemented</B> to replace or extend the normal attribute handling", "Downward Interfaces - Attribute Callback Functions");
+top.note("chapters/di_chap.16.html#50511948_pgfId-287391", " for legacy purposes only, and should not be <B>implemented</B> for new Parasolid applications. ", "Downward Interfaces - Legacy Functions");
+top.note("chapters/kd_chap.02.html#50475009_pgfId-273854", " The LISP interpreter is <B>implemented</B> in C and is included within the supplied", "KID Manual - Kernel Interface Driver (KID) - an Overview");
+top.note("chapters/kd_chap.19.html#50475024_pgfId-274207", " system function not <B>implemented</B> ", "KID Manual - Error Codes in Parasolid LISP");
+top.note("chapters/fg_chap.02.html#50462725_pgfId-273898", " Once the FG module has been successfully <B>implemented</B> and connected in to Parasolid, the user is", "FG Manual - Introduction and Summary");
+top.note("chapters/fg_chap.03.html#50462724_pgfId-281887", " that any validation of data needs to be <B>implemented</B> - a successful call to FGCRSU should indicate", "FG Manual - Implementing an FG System");
+top.note("chapters/fg_chap.03.html#50462724_pgfId-274704", " through function FGEVSU. In our example this is <B>implemented</B> as : ", "FG Manual - Implementing an FG System");
+top.note("chapters/fg_chap.03.html#50462724_pgfId-274787", " require much of the rollback mechanism to be <B>implemented</B> inside the Frustrum and would force all customers", "FG Manual - Implementing an FG System");
+top.note("chapters/in_chap.07.html#50520100_pgfId-507164", " in an encoded form. This has not been <B>implemented</B> in Parasolid, since it would create a large", "Installation Notes - Environment");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

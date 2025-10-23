@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_make_spcurves_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_make_spcurves_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_make_spcurves_o_s
+    {
+    int                       o_t_version; --- option structure version
+    <A HREF=../headers/pk_make_spcurves_degen_t.html>PK_make_spcurves_degen_t</A>  degenerate;  --- create degenerate SP-curves
+                                           --- (<A HREF=../headers/pk_make_spcurves_degen_t.html>PK_make_spcurves_degen_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              sense;       --- SP-curves in same direction
+                                           --- as the supplied curve
+                                           --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_make_spcurves_method_t.html>PK_make_spcurves_method_t</A> sp_method;   --- method used for generating
+                                           --- SP-curves
+                                           --- (<A HREF=../headers/pk_make_spcurves_method_t.html>PK_make_spcurves_method_dflt_c</A>)
+    };
+typedef struct PK_CURVE_make_spcurves_o_s PK_CURVE_make_spcurves_o_t;
+</B>
+<A NAME="description"></A>
+<I>This options structure holds optional controls for <A HREF=../headers/pk_curve_make_spcurves_2.html>PK_CURVE_make_spcurves_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_make_spcurves_2.html>PK_CURVE_make_spcurves_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'o_t_version'</B>           Version number of option structure.
+
+<B>'degenerate'</B>            SP-curves may start or end on surface degeneracies,
+                        may lie entirely within them, but may not pass through
+                        them. A trimmed curve which passes through a surface
+                        degeneracy will be approximated by at least two
+                        SP-curves. If 1degenerate' is set to the value
+                        <A HREF=../headers/pk_make_spcurves_degen_t.html>PK_make_spcurves_degen_join_c</A> a zero length SP-curve
+                        will be returned which joins the otherwise disjoint
+                        SP-curves in parameter space. Zero length SP-curves
+                        may not be attached to a model.
+                        (<A HREF=../headers/pk_make_spcurves_degen_t.html>PK_make_spcurves_degen_no_c</A>)
+
+<B>'sense'</B>                 If <B>'sense'</B> is PK_LOGICAL_true, then the created
+                        SP-curve(s) will start at the beginning of <B>'range'</B>
+                        and end at the end of <B>'range'</B>.  If <B>'sense'</B> is
+                        PK_LOGICAL_false, then the SP-curve(s) will be
+                        in the opposite direction.
+                        (PK_LOGICAL_true)
+
+<B>'sp_method'</B>             The method used for generating SP-curves. If this
+                        option is set to PK_make_sp_curves_c2_c and it is
+                        not possible to generate an SP-curve which is c2
+                        smooth in parameter space, then the function will fail.
+                        (<A HREF=../headers/pk_make_spcurves_method_t.html>PK_make_spcurves_method_dflt_c</A>)
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

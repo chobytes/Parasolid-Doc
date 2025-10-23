@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.016.html#50409797_pgfId-295405", " 15.5.6 <B>Pierce</B> ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.047.html#50409830_pgfId-379921", " to survive the trim operation, effectively doing a <B>pierce</B> operation on the sheet body: ", "Functional Description - Sheet Modeling");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294744", "<B>pierce</B> faces. During the hollow operation, <B>pierce</B> faces are not offset, and instead the relevant", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294783", " Figure 60-1 Using <B>pierce</B> faces to open up a hollowed body ", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294811", " that should be pierced. See Section 60.3, Specifying <B>pierce</B> faces . ", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294823", ". Zero distances are treated as <B>pierce</B> faces. See Section 60.4, Creating walls of different", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294921", " 60.3 Specifying <B>pierce</B> faces ", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294922", "<B>pierce</B> faces, that is, faces whose offset distance is", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294923", " to leave only the solid portion of the <B>pierce</B> face that remains after hollowing has taken place.", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-298726", " Figure 60-2 Body with several <B>pierce</B> faces, before and after hollowing ", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-298959", " all faces in a body (except for any <B>pierce</B> faces) are offset by the same distance during", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299001", " you have specified tangent <B>pierce</B> faces, where a <B>pierce</B> face is joined smoothly to adjacent faces; side", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299015", " As well as creating side faces for any <B>pierce</B> faces in the resulting body, this option creates", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299019", " Parasolid v18.0 and earlier. If there are no <B>pierce</B> faces, this option produces the same result as", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299023", " if you want to create side faces for <B>pierce</B> faces. ", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299028", " hollowed, with the top two faces specified as <B>pierce</B> faces. The corresponding two faces on the bottom,", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299302", " example of a tangent <B>pierce</B> face. Because the <B>pierce</B> face specified is joined smoothly to all the", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299558", " Figure 60-5 Hollowing a body using a tangent <B>pierce</B> face ", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299565", " the body (except for those you specify as <B>pierce</B> faces). However, if you want, you can choose", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299599", " Note: Local hollowing is independent from the <B>pierce</B> face functionality. For example if you use PK_hollow_local_exclude_c", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299939", " that any faces not specified are treated as <B>pierce</B> faces. ", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-299940", " for example, you have a large number of <B>pierce</B> faces. In the majority of cases, however, PK_BODY_hollow_2", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-298736", " 60.3 ). If you specify one or more <B>pierce</B> faces in a thicken operation, then those faces", "Functional Description - Thickening");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-298740", " You specify <B>pierce</B> faces for thickening using the ", "Functional Description - Thickening");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-298868", " As well as creating side faces for any <B>pierce</B> faces in the resulting body, this option creates", "Functional Description - Thickening");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-298872", " Parasolid v18.0 and earlier. If there are no <B>pierce</B> faces, this option produces the same result as", "Functional Description - Thickening");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275759", " <B>Pierce</B> faces ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275760", " In hollowing operations, <B>pierce</B> faces are those faces in a body that", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206338", " <B>pierce</B> 857 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207334", " hollowing <B>pierce</B> faces 857 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208721", " <B>pierce</B> faces, hollowing 857 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.06.html#50442273_marker-1009589", "<B>pierce</B> faces . ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-400211", " Figure 5-7 Hollowing a body with two <B>pierce</B> faces ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-400216", " share at least one smooth edge with another non-<B>pierce</B> face), creating the additional side faces required to", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-400438", " Figure 5-8 Hollowing a body using a tangent <B>pierce</B> face ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-745842", " Specify <B>pierce</B> faces to open up the thickened body, in", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438026", " <B>pierce</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438192", " <B>pierce</B> faces ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438625", " <B>pierce</B> faces, in hollowing ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " offset or between an offset face and a <B>pierce</B> face ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " offset or between an offset face and a <B>pierce</B> face ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " `<B>pierce</B> faces", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " `<B>pierce</B> faces", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " `<B>pierce</B> faces", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_hollow_2.html#errors", " `<B>pierce</B> faces", "PK Reference - PK_BODY_hollow_2");
+top.note("headers/pk_body_hollow_o_t.html#documentation", " See Specifying <B>pierce</B> faces for more", "PK Reference - PK_BODY_hollow_o_t");
+top.note("headers/pk_face_delete_from_sheet.html#documentation", "a solid. See <B>Pierce</B> for more information.", "PK Reference - PK_FACE_delete_from_sheet");
+top.note("headers/pk_face_delete_from_sheet_body.html#documentation", "profile. See <B>Pierce</B> for more information.", "PK Reference - PK_FACE_delete_from_sheet_body");
+top.note("headers/pk_offset_step_t.html#documentation", " between an offset face and a <B>pierce</B> face", "PK Reference - PK_offset_step_t");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-274289", " An option parameter may be set to <B>pierce</B> some of the faces of the resulting body", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-282593", " ( b0 hollow 0.1 ) -- hollow &amp; <B>pierce</B> ", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

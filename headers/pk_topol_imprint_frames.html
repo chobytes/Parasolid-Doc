@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_imprint_frames</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_imprint_frames</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B><A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A>                     PK_TOPOL_imprint_frames
+(
+<I>--- received arguments ---
+</I>int                                 n_topols,   --- number of topologies
+<A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>                          topols[],   --- regions or body
+const <A HREF=../headers/pk_topol_imprint_frames_o_t.html>PK_TOPOL_imprint_frames_o_t</A>  *options,    --- options
+
+<I>--- returned arguments ---
+</I><A HREF=../headers/pk_topol_imprint_frames_r_t.html>PK_TOPOL_imprint_frames_r_t</A>  *const results     --- results
+)
+</B>
+<A NAME="description"></A>
+<I>This function imprints frames on their owning regions.  The <B>'topols'</B> array may
+contain a set of regions or a single body.
+    o For each region in <B>'topols'</B>, this function imprints all its frames.  The
+      regions must all belong to the same body.
+    o If <B>'topols'</B> contains a body, this function imprints all its frames on
+      their respective regions.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_wrong_entity       One of the <B>'topols'</B> is neither a region nor a
+                                body (MILD)
+    PK_ERROR_not_in_same_body   The <B>'topols'</B> are not all from the same body
+                                (MILD)
+    PK_ERROR_failed_to_facet    Failed to convert a frame's lattice to facet
+                                geometry (MILD)
+    PK_ERROR_cant_do_imprint    Failed to imprint a frame on its region
+                                (SERIOUS)
+
+<A NAME="documentation"></A>
+Definition of imprinting frames
+-------------------------------
+
+Imprinting a frame on its region means that the frame's lattice is converted to
+faces with facet geometry bounded by the region, and edges and vertices are
+added to the region's boundary wherever these new facet faces meet the
+boundary.  The frame is deleted.
+
+
+Region growth
+-------------
+
+If the <B>'grow_void_regions'</B> and <B>'grow_solid_regions'</B> options are both
+<A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_no_c</A>, one or more new regions are created from the
+interior of every region's frame(s), each new region originating from frame(s)
+embedded in a single region.  Otherwise, new regions may be created originating
+from same-sense frames embedded in adjacent regions, existing regions may be
+extended into adjacent frames with compatible senses, and existing regions may
+be extended into adjacent regions of same solidity.
+
+
+Solidity of new regions
+-----------------------
+
+New regions will be solid if the originating frames' senses are
+PK_LOGICAL_true, or void if the frames' senses are PK_LOGICAL_false.
+
+
+Effect on attributes
+--------------------
+
+Every new region gains a density attribute (SDL/TYSA_REGION_DENSITY) with the
+contents of the density attribute (SDL/TYSA_FRAME_DENSITY) of the originating
+frame if it had a density (in the case of a single originator), or of the
+originating frames if they all had the same density (in the case of multiple
+originators).  No other attributes on the frame are transferred.
+
+Every extended region retains its density attribute if it has the same density
+as that of the frames and/or regions that it has been extended into, otherwise
+it loses its density attribute.  Attributes of class 1 to 5, excluding density,
+are deleted from the region if it has been extended into a frame, or merged
+with the attributes of the regions that it has been extended into.  The
+region's attributes of class 6 and 7 are merged with the attributes of the
+regions that it has been extended into.
+
+
+Effect on groups
+----------------
+
+Imprinted frames are removed from any groups they are a member of.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_render_param_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_render_param_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_render_param_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_geom_render_line_o_t.html>PK_GEOM_render_line_o_t</A><br>
+    <A HREF=../headers/pk_geom_render_o_t.html>PK_GEOM_render_o_t</A><br>
+    <A HREF=../headers/pk_topol_render_line_o_t.html>PK_TOPOL_render_line_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This field can take any one of the following values.
+    PK_render_param_no_c        : no parametric hatching (default)
+    PK_render_param_attrib_c    : parametric hatch faces which have
+                                  parametric hatch attribute
+    PK_render_param_spaced_c    : parametric hatch using the u/v spacing
+                                  in <B>'param_u'</B> and <B>'param_v'</B> and
+                                  the start parameters given by
+                                  <B>'param_u_start'</B> and <B>'param_v_start'</B>
+                                  in <A HREF=../headers/pk_topol_render_line_o_t.html>PK_TOPOL_render_line_o_t</A>.
+                                  Behaves as PK_render_param_spaced_free_c
+                                  when used in <A HREF=../headers/pk_geom_render_o_t.html>PK_GEOM_render_o_t</A>, or if
+                                  <B>'param_u_start'</B> and <B>'param_v_start'</B> are not
+                                  set.
+    PK_render_param_spaced_free_c
+                                : parametric hatch using u/v spacing in
+                                  <B>'param_u'</B> and <B>'param_v'</B> in
+                                  <A HREF=../headers/pk_topol_render_line_o_t.html>PK_TOPOL_render_line_o_t</A> or
+                                  <A HREF=../headers/pk_geom_render_o_t.html>PK_GEOM_render_o_t</A> without a fixed
+                                  start parameter.
+    PK_render_param_number_free_c
+                                : parametric hatch with the number of
+                                  u/v hatch lines given by <B>'param_u_number'</B>
+                                  and <B>'param_v_number'</B> in
+                                  <A HREF=../headers/pk_topol_render_line_o_t.html>PK_TOPOL_render_line_o_t</A> or
+                                  <A HREF=../headers/pk_geom_render_o_t.html>PK_GEOM_render_o_t</A> without a fixed
+                                  start parameter.
+
+See <A HREF="../chapters/fd_chap.107.html#50409898_pgfId-294866">Hatching</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

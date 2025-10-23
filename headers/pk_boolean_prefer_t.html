@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_boolean_prefer_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_boolean_prefer_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_boolean_prefer_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_boolean_o_t.html>PK_BODY_boolean_o_t</A><br>
+    <A HREF=../headers/pk_face_boolean_o_t.html>PK_FACE_boolean_o_t</A><br>
+    <A HREF=../headers/pk_face_instance_bodies_o_t.html>PK_FACE_instance_bodies_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype may be used to indicate the preferred type of the resulting body
+of a boolean operation.
+
+It has the values:
+    PK_boolean_prefer_solid_c:        The result of the boolean should be a
+                                      solid body if possible.
+    PK_boolean_prefer_sheet_c:        The result of the boolean should be a
+                                      sheet body if possible.
+    PK_boolean_prefer_wire_c:         The result of the boolean should be a
+                                      wire body if possible.
+    PK_boolean_prefer_general_c:      The resulting body type will be general.
+    PK_boolean_prefer_original_c:     The result of the boolean should be a
+                                      body of the same type as the target if
+                                      possible.
+    PK_boolean_prefer_simplest_c:     The resulting body type will be the
+                                      simplest possible.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

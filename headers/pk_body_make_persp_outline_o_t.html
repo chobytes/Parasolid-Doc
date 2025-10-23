@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_make_persp_outline_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_make_persp_outline_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_make_persp_outline_o_s
+    {
+    int                   o_t_version;       --- version number
+    <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_t</A>  project;           --- whether to project outline
+                                             --- curves onto a projection
+                                             --- surface
+                                             --- (<A HREF=../headers/pk_outline_project_t.html>PK_outline_project_no_c</A>)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>           project_location;  --- the location of the projection
+                                             --- surface
+                                             --- (0, 0, 0)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>          project_direction; --- the direction defining the
+                                             --- projection surface with the
+                                             --- the <B>'project_location'</B> and
+                                             --- the <B>'eye_position'</B>
+                                             --- (0, 0, 1)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>     project_scale;     --- scale to shrink the outlines
+                                             --- returned on a projection plane
+                                             --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    double                tolerance;         --- curve tolerance
+                                             --- (1.0e-6)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          want_tracking;     --- whether to return the tracking
+                                             --- information of outline curves
+                                             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          want_body;         --- whether to create a body from
+                                             --- outline curves
+                                             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_topol_dimension_t.html>PK_TOPOL_dimension_t</A>  body_dimension;    --- whether to request a body of
+                                             --- maximum dimension 1 or 2
+                                             --- (PK_TOPOL_dimension_1_c)
+    <A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_t</A>   clipping;          --- view range type to clip the
+                                             --- outline curves
+                                             --- (<A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_no_c</A>)
+    double                view_angle;        --- viewing angle
+                                             --- (0)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>          view_direction;    --- view direction
+                                             --- (1 0 0)
+    double                spin_angle;        --- spin angle
+                                             --- (0)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>          spin_direction;    --- spin axis direction
+                                             --- (0 0 1)
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>             clipping_body;     --- clipping body
+                                             --- (PK_ENTITY_null)
+    <A HREF=../headers/pk_body_keep_as_facet_t.html>PK_BODY_keep_as_facet_t</A>
+                          keep_as_facet;     --- whether to make a purely facet
+                                             --- body from input that only
+                                             --- contains purely facet bodies
+                                             --- (PK_BODY_keep_as_facet_yes_c)
+    <A HREF=../headers/pk_results_output_t.html>PK_results_output_t</A>   results_output;    --- whether to output results in
+                                             --- returned arguments from the
+                                             --- function or in a report
+                                             --- (<A HREF=../headers/pk_results_output_t.html>PK_results_output_return_c</A>)
+    };
+typedef struct PK_BODY_make_persp_outline_o_s PK_BODY_make_persp_outline_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Controls for the <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A> options structure
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_tolerance        (MILD)  the supplied tolerance is less than
+                                          1.0e-7.
+
+    PK_ERROR_bad_dimension        (MILD)  the value of <B>'body_dimension'</B> is
+                                          neither PK_TOPOL_dimension_1_c nor
+                                          PK_TOPOL_dimension_2_c; or the
+                                          <B>'clipping_body'</B> is neither a sheet
+                                          body nor a solid body.
+
+    PK_ERROR_bad_orientation      (MILD)  the <B>'project_direction'</B> of the
+                                          projection cylinder is not
+                                          perpendicular to the direction from
+                                          the <B>'eye_position'</B> to the
+                                          <B>'project_location'</B>.
+
+    PK_ERROR_bad_combination      (MILD)  the value of <B>'clipping_body'</B> is
+                                          set to PK_ENTITY_null when the
+                                          value of <B>'clipping'</B> is set to
+                                          <A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_body_c</A>; or the
+                                          value of <B>'project_scale'</B> is not
+                                          <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A> and the
+                                          value of <B>'project'</B> is not
+                                          <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_plane_c</A>.
+
+    PK_ERROR_bad_angle            (MILD)  the value of the <B>'view_angle'</B> or
+                                          <B>'spin_angle'</B> is negative or larger
+                                          than pi; or the value of <B>'spin_angle'</B>
+                                          is zero; or the value of <B>'view_angle'</B>
+                                          is zero if the value of <B>'clipping'</B> is
+                                          set to <A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_pyramid_c</A>.
+
+    PK_ERROR_vectors_are_parallel (MILD)  the <B>'view_direction'</B> and the
+                                          <B>'spin_direction'</B> are parallel.
+
+    PK_ERROR_failed_to_project    (MILD)  any part of an outline curve is
+                                          projected outside the size box, or
+                                          cannot be projected, or a face to
+                                          be produced will reach infinity in an
+                                          outline operation to produce a sheet
+                                          body.
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'project'</B>               Whether the outline curves are output as 3-dimensional
+                        curves i.e. their depth information is retained, or if
+                        they are projected onto a specific projection surface
+                        defined by the <B>'project_location'</B>, the <B>'eye_position'</B>
+                        and <B>'project_direction'</B>.
+
+<B>'project_location'</B>      A location vector that defines the surface onto which
+                        the outlines will be projected.
+
+                        If <B>'project'</B> is set to <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_plane_c</A>,
+                        the outlines are projected onto the plane containing
+                        the <B>'project_location'</B> that is perpendicular to the
+                        direction from the <B>'eye_position'</B> to the
+                        <B>'project_location'</B>.
+
+                        If <B>'project'</B> is set to <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_sphere_c</A>,
+                        the outlines are projected onto a sphere containing
+                        the <B>'project_location'</B> and centred at the
+                        <B>'eye_position'</B>.
+
+                        If <B>'project'</B> is set to <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_cylinder_c</A>,
+                        the outlines are projected onto a cylinder containing
+                        the <B>'project_location'</B>, with an axis defined by the
+                        <B>'eye_position'</B> and <B>'project_direction'</B>,
+
+<B>'project_direction'</B>     A direction vector that defines the axis direction of
+                        the cylinder onto which the outlines will be projected.
+
+                        If <B>'project'</B> is set to <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_plane_c</A> or
+                        <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_sphere_c</A>, the <B>'project_direction'</B>
+                        is ignored.
+
+<B>'project_scale'</B>         Scale factor used to shrink outlines projected on
+                        a plane, with the <B>'project_location'</B> used as the
+                        scaling centre. No scaling is applied when the
+                        value is <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+<B>'tolerance'</B>             The accuracy of the outlines. The minimum tolerance
+                        allowed is 1.0e-7.
+
+<B>'want_tracking'</B>         Whether to return the tracking information for
+                        identifying the edges and faces corresponding to
+                        outline curves.
+
+<B>'want_body'</B>             Whether to create a body constructed from the set
+                        of outline curve loops. One has the option to create
+                        either a wire body or a sheet body. This includes the
+                        possibility of a general body.
+
+                        If multiple loops are created, a single body is formed
+                        from the disjoint loops. This option is only valid
+                        when using the projection option with the value of
+                        <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_plane_c</A>, <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_sphere_c</A>
+                        or <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_cylinder_c</A>
+
+                        If the value of projection option is set to
+                        <A HREF=../headers/pk_outline_project_t.html>PK_outline_project_no_c</A>, this option is only valid when
+                        creating a wire body.
+
+                        If this value is set to PK_LOGICAL_true, the curves
+                        returned by the calling function will be incorporated
+                        into a body. The body will be a wire or a sheet
+                        depending on the setting of the <B>'body_dimension'</B>
+                        option. These curves will be incorporated into the body
+                        either as edge curves or (in the case of a tolerant
+                        edge on a sheet body) as nominal edge curves.
+
+<B>'body_dimension'</B>        Whether to request a body of maximum dimension 1 or 2.
+                        If a wire body is desired, then this field should use
+                        the token value of PK_TOPOL_dimension_1_c. It may be
+                        that a general body also of dimension 1 may be created
+                        depending on the body creation output.
+
+                        If a sheet body is to be created with the projection
+                        surface, then this field should use the token value of
+                        PK_TOPOL_dimension_2_c. It may be that a general body
+                        also of maximum dimension 2 may be created depending
+                        on the body creation output.
+
+                        The tokens PK_TOPOL_dimension_0_c and
+                        PK_TOPOL_dimension_any_c are not allowed and are
+                        invalid input for this option.
+
+<B>'clipping'</B>              The types of viewing ranges in 3D space as defined in
+                        the table below, which Parasolid should use to clip the
+                        outline curves.
+
+<B>'view_angle'</B>            The viewing angle.
+
+<B>'view_direction'</B>        The view direction.
+                        NOTE: zero <B>'view_angle'</B> is treated as pi if the
+                              <B>'spin_angle'</B> is not zero.
+
+<B>'spin_angle'</B>            The spin angle between 0 and pi.
+
+<B>'spin_direction'</B>        The spin axis direction.
+
+<B>'clipping_body'</B>         The sheet or solid body for clipping outline curves.
+
+<B>'keep_as_facet'</B>         Whether to make a purely facet body from input that
+                        only contains purely facet bodies.
+                        Note: this option is ignored if the input bodies
+                        contain any classic geometry or if a wire body is
+                        requested.
+
+ ==============================================================================
+ Value of <B>'clipping'</B>         Definition of the viewing range
+ ==============================================================================
+ <A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_cone_c</A>    Inside a cone whose apex is the <B>'eye_position'</B>
+                             with its axis parallel to the <B>'view_direction'</B>.
+                             Its halfangle is specified by the <B>'view_angle'</B>.
+                             See <A HREF="../chapters/fd_chap.038.html#50409820_pgfId-516111">here</A> for more information.
+
+ <A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_sector_c</A>  Inside a spherical sector bounded by a pair of
+                             cones whose apex is the <B>'eye_position'</B> with their
+                             axes parallel to the <B>'spin_direction'</B>. Their
+                             half angles are defined by the <B>'view_angle'</B> with
+                             respect to the <B>'view_direction'</B> and in the plane
+                             that also contains the <B>'spin_direction'</B>.
+                             See <A HREF="../chapters/fd_chap.038.html#50409820_pgfId-516111">here</A> for more information.
+
+ <A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_wedge_c</A>   Inside a wedge whose apex edge is defined by the
+                             <B>'eye_position'</B> and the <B>'spin_direction'</B>.
+                             Its half angle is defined the <B>'spin_angle'</B> with
+                             respect to the centre plane containing the
+                             <B>'view_direction'</B> and the <B>'spin_direction'</B>.
+                             See <A HREF="../chapters/fd_chap.038.html#50409820_pgfId-516111">here</A> for more information.
+
+ <A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_pyramid_c</A> Inside a spherical coordinate pyramid whose apex
+                             is the <B>'eye_position'</B> with a centre line in the
+                             <B>'view_direction'</B>.
+                             Its half angles are defined by the <B>'view_angle'</B>
+                             and <B>'spin_angle'</B> in the centre plane containing
+                             the <B>'view_direction'</B> and the <B>'spin_direction'</B>,
+                             and in another centre plane orthogonal to the
+                             <B>'spin_direction'</B> respectively.
+                             See <A HREF="../chapters/fd_chap.038.html#50409820_pgfId-516111">here</A> for more information.
+
+ <A HREF=../headers/pk_persp_clipping_t.html>PK_persp_clipping_body_c</A>    Inside a generalised cone formed by the outlines
+                             of the <B>'clipping_body'</B> and the <B>'eye_position'</B>.
+                             The <B>'clipping_body'</B> can be single or disjoint,
+                             sheet or solid body.
+                             See <A HREF="../chapters/fd_chap.038.html#50409820_pgfId-516111">here</A> for more information.
+ ==============================================================================
+
+<B>'results_output'</B>        Whether to output the result as returned arguments
+                        from the function, or in report form to the Parasolid
+                        report. The records in the report will be of type
+                        <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A>.
+
+                        Possible values are:
+
+                            <A HREF=../headers/pk_results_output_t.html>PK_results_output_return_c</A>:
+                                The results are output in the <B>'result'</B> and
+                                <B>'tracking'</B> arguments from the function.
+                                This is the default.
+
+                            <A HREF=../headers/pk_results_output_t.html>PK_results_output_report_c</A>:
+                                The <B>'result'</B> and <B>'tracking'</B> arguments
+                                remain empty.
+
+                                If the function succeeds and reports no
+                                error, the results are output in the
+                                Parasolid report in a record with status
+                                <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_outline_result_c</A>.
+
+                                Otherwise, the function reports additional
+                                diagnostic information or failures in the
+                                Parasolid report in a record with status
+                                <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_outline_error_c</A>. If produced, the
+                                results are also output in a record with status
+                                <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_outline_result_c</A>.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

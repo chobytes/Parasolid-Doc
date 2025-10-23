@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE>IDNCEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>IDNCEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+IDNCEN ( entity, contyp, nentys, ifail )
+========================================
+
+  Identify number of connected entities.
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_entity            *entity         --- entity to look in
+  KI_cod_ty                *contyp         --- type of desired entities
+
+Returns:
+ &lt;KI_int_nitems&gt;           *nentys         --- number of entities found
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_type_combn         bad type combination
+  KI_general_body           general body
+  KI_not_a_tag              not an entity
+
+Description:
+  IDNCEN is identical to IDCOEN except it only returns the number of connected
+  entities.
+
+  The valid combinations of the type 'entity' and 'contyp' can be found by
+  examining the table given for the function IDCOEN. In cases where IDCOEN
+  may return duplicated items, these will be included in the count; but
+  where IDCOEN may return NULTAG this is not counted.
+
+  This function is not supported for general bodies.
+
+  If the given type combination matches a blank cell in the table given with
+  IDCOEN, KI_bad_type_combn will be returned in 'ifail'.
+
+</PRE>
+</BODY>
+</HTML>

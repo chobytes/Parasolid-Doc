@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_sweep_law_type_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_sweep_law_type_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_BODY_sweep_law_type_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The value of this token indicates the method by which a twist or scale law
+is being specified through the PK
+
+    PK_BODY_sweep_law_none_c        The law structure is empty/unused.
+
+    PK_BODY_sweep_law_discrete_c    The law is specified by giving a discrete
+                                    set of values to be interpolated at the
+                                    vertices of the path.
+
+    PK_BODY_sweep_law_curve_c       The law is a continuous scalar valued
+                                    function. It is specified by a
+                                    1-dimensional B-spline curve parameterised
+                                    [0 1] that evaluates over this range
+                                    to the values of the scalar law. If the
+                                    path is composed of a single C1 smooth edge
+                                    then the parameter values are mapped
+                                    linearly onto the path's parameterisation.
+
+    PK_BODY_sweep_law_curve_inv_c   The law is a continuous scalar valued
+                                    function. It is specified by a
+                                    1-dimensional B-spline curve that
+                                    represents the inverse of the function,
+                                    i.e. it is parameterised over the values
+                                    of the law and evaluates to values in the
+                                    range [0 1]. If the path is composed of a
+                                    single C1 smooth edge then the evaluated
+                                    values are mapped linearly onto the path's
+                                    parameterisation.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

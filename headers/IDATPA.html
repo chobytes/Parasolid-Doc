@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>IDATPA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>IDATPA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_part_ask_all_attribs.html>PK_PART_ask_all_attribs</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+IDATPA ( part, type, atlist, ifail )
+====================================
+
+  Identify all the attributes of a given type in a part.
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_part              *part           --- part in which to look
+  KI_tag_attrib_def        *type           --- type of attribute to look for
+
+Returns:
+ &lt;KI_tag_list_attribute&gt;   *atlist         --- list of attributes
+  KI_cod_error             *ifail          --- error code
+
+
+Description:
+   Returns a list of all the attributes of the given type attached to
+  entities in the given part, or the null tag if there are no such
+  attributes.
+
+</PRE>
+</BODY>
+</HTML>

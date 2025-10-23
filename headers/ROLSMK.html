@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<TITLE>ROLSMK</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ROLSMK</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_mark_create.html>PK_MARK_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ROLSMK ( ifail )
+================
+
+  Sets a roll-back mark
+
+Returns:
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_rollmark_failed        failed to set rollmark
+  KI_roll_is_off            logging for roll-back is disabled
+
+Description:
+  Records the state of the model so that a later roll-back (using
+  ROLBLM or ROLBFN) may return to it.
+
+  This mark will last until one of the following happens :
+
+      Several later marks are set. The exact number will depend on the
+      size of the roll-back file, as set in the call to SEINTP. Eventually
+      this mark will not be recoverable, and a call to ROLBFN will return
+      a smaller number of steps than requested.
+
+      ROLBFN is called with a sufficient number of steps to roll back
+      further than this mark, then another mark is set by again calling
+      ROLSMK; a call to ROLSMK invalidates any rollmarks which might
+      otherwise be used for a roll-forward.
+
+</PRE>
+</BODY>
+</HTML>

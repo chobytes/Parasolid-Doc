@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<TITLE>OUATDF</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUATDF</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_attdef_ask.html>PK_ATTDEF_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUATDF ( type, bufsiz, name, namlen, option, opdata, ifail )
+============================================================
+
+  Output an attribute type definition.
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_attrib_def        *type           --- attribute type
+ &lt;KI_int_nitems&gt;           *bufsiz         --- amount of space available for
+                                           --- name
+
+Returns:
+  KI_chr_string             name[bufsiz]   --- name of type
+  KI_int_nitems            *namlen         --- length of type name
+  KI_tag_list_int          *option         --- list of option codes
+  KI_tag_list_&lt;list&gt;       *opdata         --- corresponding list of data-lists
+  KI_cod_error             *ifail          --- error code
+
+
+Description:
+   OUATDF returns the data supplied to CRATDF to define the attribute type,
+  or the equivalent data for types not defined by CRATDF.
+
+  Type name and bufsiz:
+   The value to supply in 'bufsiz' is the number of characters that can
+  legitimately be written to the array 'name' without overrunning the space
+  allocated to it.  OUATDF will under no circumstances attempt to write more
+  than 'bufsiz' characters to 'name'.  The value returned in 'namlen' is the
+  actual length of the name of the attribute type.  If this is less than
+  'bufsiz' then the name of the attribute type definition is returned in
+  'name'; otherwise only the first 'bufsiz' characters are returned; if
+  the entire name is required, then the returned value of 'namlen' can be
+  used as the value of 'bufsiz' for a second call to OUATDF which is sure
+  to return the entire name.
+
+   Even when the function returns with 'ifail' zero the entire name will
+  not have been returned in 'name' if the value of 'namlen' is greater
+  than that of 'bufsiz'.
+
+  Option data:
+   The description of the type's fields, legal owners and behaviour under
+  modelling operations is returned in 'option' and 'opdata'.  'option'
+  contains integer option codes, while 'opdata' contains tags of lists of
+  data, each one relating to the option whose code is in the corresponding
+  position in 'option'.  The meanings of the option codes and associated data
+  are explained in the documentation of CRATDF.
+
+
+</PRE>
+</BODY>
+</HTML>

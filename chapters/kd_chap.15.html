@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Picking</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Picking</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.14.html">KID Rendering</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.16.html">Fault Reporting in KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.15.html#50475034_pgfId-273840">14.1	Introduction</A>
+<LI> <A HREF="kd_chap.15.html#50475034_pgfId-273848">14.2	Picking from the screen</A>
+<UL>
+<LI> <A HREF="kd_chap.15.html#50475034_pgfId-273894">14.2.1	Pick with one argument</A>
+<LI> <A HREF="kd_chap.15.html#50475034_pgfId-273901">14.2.2	Pick with two arguments</A>
+</UL>
+<LI> <A HREF="kd_chap.15.html#50475034_pgfId-273928">14.3	Picking directly from other objects</A>
+<LI> <A HREF="kd_chap.15.html#50475034_pgfId-273977">14.4	Picking vector points</A>
+<LI> <A HREF="kd_chap.15.html#50475034_pgfId-274001">14.5	Picking an entity from an assembly</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475034_pgfId-273840"></A>14.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475034_pgfId-273843"></A><A NAME="50475034_marker-273841"></A><A NAME="50475034_marker-273842"></A>Assemblies, bodies, points, edges, faces, vertices, curves and surfaces can be picked from the screen or directly from other entities:</P>
+<UL>
+<LI>
+<A NAME="50475034_pgfId-273844"></A>an assembly can be picked from an assembly</LI>
+<LI>
+<A NAME="50475034_pgfId-273845"></A>a body can be picked from an assembly or body</LI>
+<LI>
+<A NAME="50475034_pgfId-273846"></A>points, edges, faces, vertices, curves and surfaces can be picked from themselves or entities higher in the structure</LI>
+</UL>
+<P>
+<A NAME="50475034_pgfId-273847"></A>Picking makes a connection between the KID object and the tag of the kernel item.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475034_pgfId-273848"></A>14.2	Picking from the screen
+
+
+</H1>
+
+<H4>
+<A NAME="50475034_pgfId-273850"></A><A NAME="50475034_18244"></A>pick</H4>
+<P>
+<A NAME="50475034_pgfId-273854"></A><A NAME="50475034_marker-273851"></A><A NAME="50475034_marker-273852"></A><A NAME="50475034_marker-273853"></A>To pick an item from the screen, the command <CODE>
+pick</CODE>
+ is used. Initially the user has to define the type of entity which is to be picked from the items displayed on the screen. The command:</P>
+<P>
+<A NAME="50475034_pgfId-280060"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280911"></A>&gt; ( &lt;entity&gt; pick )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273856"></A>produces a cursor on the screen, which can then be positioned over the entity (face, edge, body, etc.) which is to be picked. Pressing an appropriate key records the tag or coordinates for the pick. In the case of topological items further calls to <CODE>
+( &lt;entity&gt; pick )</CODE>
+ allow further entities of the same type to be picked and added to the tag list of <CODE>
+&lt;entity&gt;</CODE>
+.</P>
+<P>
+<A NAME="50475034_pgfId-273867"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-280968"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-280970"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-280972"></A>entity</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-280974"></A>pick</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280837"></A>&gt; (b0 sketch)        -- sketch the body
+&gt; (define f1 face)   -- define the object
+&gt; (f1 pick)          -- puts up the moveable crosswires -
+                        press any key to pick the item
+&gt; (f1 sketch)        -- now the object can be used</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273870"></A><CODE>
+pick</CODE>
+ is also a function of<A NAME="50475034_marker-273868"></A> <A NAME="50475034_marker-273869"></A><CODE>
+p_points</CODE>
+, and can be used to pick coordinate sets from the screen in image space, or directly by giving an optional argument of a set of coordinates. This is described in the section <A HREF="kd_chap.15.html#50475034_41073">&quot;Using p_points to create a p_profile&quot;</A>. The function pick can pick indirectly from the screen when used with two optional arguments.</P>
+<P>
+<A NAME="50475034_pgfId-273871"></A>The pick can only be made from a graphics view, so that if a model is not drawn the pick cannot be made. The entity to be picked must first be defined.</P>
+<P>
+<A NAME="50475034_pgfId-273872"></A>To assist the above operations the commands pick2, and pick3 are used, these commands expect multiple picks from the screen to be made.</P>
+
+
+<H4>
+<A NAME="50475034_pgfId-273874"></A><A NAME="50475034_marker-273873"></A><A NAME="50475034_41073"></A>Using p_points to create a p_profile</H4>
+<P>
+<A NAME="50475034_pgfId-273881"></A><A NAME="50475034_marker-273875"></A><A NAME="50475034_marker-273876"></A>The primitive<A NAME="50475034_marker-273877"></A><A NAME="50475034_marker-273878"></A> <A NAME="50475034_marker-273879"></A><A NAME="50475034_marker-273880"></A><CODE>
+p_points</CODE>
+ can be used with the function <A HREF="kd_chap.15.html#50475034_18244">&quot;pick&quot;</A> to build a set of <A NAME="50475034_marker-273885"></A>coordinates in the image plane. The <CODE>
+p_points</CODE>
+ object must first be defined, and the <A NAME="50475034_marker-273886"></A>cursor enabled by the <A HREF="kd_chap.15.html#50475034_18244">&quot;pick&quot;</A> function. A series of points can be picked in the image plane, by pressing an appropriate key, and the sequence terminated by picking a previously picked point. The item of class <CODE>
+p_points</CODE>
+ can be used to create a body from a profile using <A NAME="50475034_marker-273890"></A><CODE>
+p_profile</CODE>
+, which in turn can be swept or swung to produce a new item.</P>
+<P>
+<A NAME="50475034_pgfId-280071"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280817"></A>&gt; (define b0 p_block)
+&gt; (b0 x 10; y 10; z 10; create)
+&gt; (graphics sketch &acute;b0)
+&gt; (define p1 p_points) -- define p1 as p_points
+&gt; (p1 pick)            -- enable cursor for picking coordinate
+                       -- set in the image plane
+&gt; (define b1 p_profile)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273892"></A>The coordinates for b0 can also be given in either of the ways shown:</P>
+<P>
+<A NAME="50475034_pgfId-273893"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280613"></A>&gt; (b1 coordinate (p1 coordinate))  -- implicit coordinate list
+&gt; (b1 coordinate `( (1 2 3 ) (...)))
+    -- explicit coordinate list
+&gt; (b1 create)
+    -- create kernel item (acorn, wire  or sheet body)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475034_pgfId-273894"></A>	14.2.1 	Pick with one argument</H2>
+<P>
+<A NAME="50475034_pgfId-273900"></A><A NAME="50475034_marker-273895"></A><A NAME="50475034_marker-273896"></A>When <A HREF="kd_chap.15.html#50475034_18244">&quot;pick&quot;</A> is invoked with just one argument ( the position vector of the eye point in model space), the nearest entity to that point in the current view direction is picked. Only a face facing toward the <CODE>
+eye_point</CODE>
+ would be picked, assuming a face had been defined.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475034_pgfId-273901"></A>	14.2.2 	Pick with two arguments</H2>
+<P>
+<A NAME="50475034_pgfId-273904"></A><A NAME="50475034_marker-273902"></A><A NAME="50475034_marker-273903"></A>When both arguments are given, the implicit current view direction is overwritten with the second argument, and entities are picked in an identical way. This mode of use could be applied when an eye point and view direction are already known, for example when taken directly from a journal file.</P>
+<P>
+<A NAME="50475034_pgfId-280409"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280475"></A>&gt; (f1 pick `(200 200 200) `(1 1 1) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475034_pgfId-280504"></A>Note: The <A HREF="kd_chap.15.html#50475034_18244">&quot;pick&quot;</A> command actually uses the graphics <A HREF="kd_chap.13.html#50475017_41351">&quot;drawing_list&quot;</A> to determine which entities have been selected.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273916"></A>The <A HREF="kd_chap.13.html#50475017_41351">&quot;drawing_list&quot;</A> is not reset by the (graphics clear) command but needs to be reset independently:</P>
+<P>
+<A NAME="50475034_pgfId-280394"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280432"></A>&gt; (graphics drawing_list nil) </PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273921"></A>If the <A HREF="kd_chap.13.html#50475017_41351">&quot;drawing_list&quot;</A> is not reset then it is possible to pick from objects which no longer appear in the display. Conversely, if <A HREF="kd_chap.15.html#50475034_18244">&quot;pick&quot;</A> is being used with arguments then it is only necessary to add the entities to the drawing_list in order to pick from them - there is no actual need to display them:</P>
+<P>
+<A NAME="50475034_pgfId-280085"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280389"></A>&gt; (define b0 p_block)            -- define a p_block
+&gt; (b0 create)                    -- create the block
+&gt; (graphics drawing_list nil)    -- empty the drawing_list
+&gt; (graphics add &acute;b0)             -- add b0 to the drawing_list
+
+               (graphics drawing_list &acute;(b0)) would be
+               equivalent to the previous two commands
+
+&gt; (define f0 face)        -- define a face
+&gt; (f0 pick &acute;(0 0 11))     -- pick the face nearest to &acute;(0 0 11)
+                              in the current view_direction</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475034_pgfId-273928"></A>14.3	<A NAME="50475034_marker-273926"></A><A NAME="50475034_35465"></A>Picking directly from other objects
+
+
+</H1>
+<P>
+<A NAME="50475034_pgfId-273931"></A><A NAME="50475034_marker-273929"></A><A NAME="50475034_marker-273930"></A>Picking can be done without an image on the screen. This type of logical picking is achieved by successive qualification, for example by picking all the faces in a body, then selecting only those with specified geometric properties. Three functions can be used, <A HREF="kd_chap.15.html#50475034_22941" CLASS="XRef">&quot;pick_from&quot;</A>, <A HREF="kd_chap.15.html#50475034_29458">&quot;pick_using&quot;</A> and <A HREF="kd_chap.15.html#50475034_33285">&quot;pick_node&quot;</A>.</P>
+
+<H4>
+<A NAME="50475034_pgfId-273942"></A><A NAME="50475034_22941"></A>pick_from</H4>
+<P>
+<A NAME="50475034_pgfId-273943"></A>&quot;pick_from&quot; collects all items of a particular type from an object below the entity class. The equivalent statement might be &quot;all edges in the body&quot;. &quot;pick_from&quot; purges any duplicates from the resulting tag list. Unlike <A HREF="kd_chap.15.html#50475034_18244">&quot;pick&quot;</A>, &quot;pick_from&quot; is not cumulative, and a further call to it replaces the tags collected previously with a new set.</P>
+
+
+<H4>
+<A NAME="50475034_pgfId-273948"></A><A NAME="50475034_29458"></A>pick_using</H4>
+<P>
+<A NAME="50475034_pgfId-273949"></A>&quot;pick_using&quot; filters a set of items using a function as a qualifying clause. This is equivalent to a statement such as &quot;only those faces with spherical surfaces&quot;. If &quot;pick_using&quot; finds no items, an empty sublist is returned. A few examples of this are shown next.</P>
+
+
+<H4>
+<A NAME="50475034_pgfId-273951"></A><A NAME="50475034_33285"></A>pick_node</H4>
+<P>
+<A NAME="50475034_pgfId-273952"></A>&quot;pick_node&quot; uses the node identifier of an object to pick it from the body or KI assembly to which it belongs.</P>
+<P>
+<A NAME="50475034_pgfId-280092"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-281046"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-281048"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-281050"></A>entity</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-281063"></A>pick_from, pick_using, pick_node</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280325"></A>&gt; (define b1 p_block)
+&gt; (b1 x 20; y 20; z 10; create)   -- create block b1
+&gt; (define f1 face)
+&gt; (define e1 edge)
+&gt; (define e2 edge)
+&gt; (define v1 vertex)
+&gt; (f1 pick_from &acute;b1)      -- f1 has a list of all 6 face tags
+&gt; (e1 pick_from &acute;b1)      -- e1 has a list of all 12 edge tags
+&gt; (v1 pick_from &acute;b1)      -- v1 has a list of all 8 vertex tags
+
+&gt; (f1 pick_using &acute;(f1 clash &acute;(0 0 0)))
+      -- f1 will now only possess tags of faces which 
+         contain the point &acute;(0 0 0) i.e. 1 tag only
+
+&gt; (e1 pick_using &acute;(e1 clash &acute;(10 10 0)))
+      -- e1 will now only possess tags of edges which 
+         contain the point &acute;(10 10 0) i.e. 3 tags
+
+&gt; (v1 pick_using t)       -- v1 tag list will remain unchanged
+                              as condition is always true</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273964"></A>Assume a body b1 has been created with some toroidal faces. The example which follows shows how to find those faces which are toroidal and have a specific major radius.</P>
+<P>
+<A NAME="50475034_pgfId-280099"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280269"></A>&gt; (define f1 face)
+&gt; (f1 pick_from b1)       -- f1 will contain all faces in b1
+&gt; (f1 pick_using &acute;(eq (f1 enquire &acute;type) &acute;toroidal))
+&gt; (f1 pick_using &acute;(eq (f1 enquire &acute;majrad ) 10.0 ))
+
+&gt; (f1 pick_using &acute;(equal (f1 enquire &acute;point) &acute;(0.0 0.0 0.0)))
+    -- f1  will now only contain toroidal faces with a 
+       major radius of 10.0, and axis point at the origin
+
+   NOTE:  &gt;eq&lt; only works for atoms &gt;equal&lt; for lists and atoms</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273966"></A>The next example shows how the top face of a block can be picked without using the cursor, so that a new surface can be exchanged for this one using <CODE>
+tweak</CODE>
+.</P>
+<P>
+<A NAME="50475034_pgfId-280106"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280245"></A>&gt; (define b1 p_block)
+&gt; (b1 x 10;y 10;z 10;create)
+&gt; (face help tweak)   -- for information on how to tweak a face
+&gt; (define f1 face)
+&gt; (f1 pick_from &acute;b1)  -- f1 now contains all 6 faces of b1
+&gt; (f1 pick_using &acute;(f1 clash &acute;(0 0 10)))
+                      -- f1 is now the top face of b1
+
+&gt; (p_planar help create)    -- information
+&gt; (define s1 p_planar)
+&gt; (s1 point &acute;(0 0 50); direction &acute;(0 0 1); create)
+                 -- s1 is plane at Z = 50 parallel to XY plane
+
+&gt; (f1 tweak &acute;s1) -- this will raise the face up to the surface
+                    s1, and now body b1 has the 
+                     dimensions x 1O, y 10, z 50</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273968"></A>If pick_using finds no items an error message is returned, e.g.</P>
+<P>
+<A NAME="50475034_pgfId-280113"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280228"></A>( error &quot;f2; no match entity&quot; )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273970"></A>and the existing list is left unaltered.</P>
+<P>
+<A NAME="50475034_pgfId-280120"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280220"></A>&gt; ((define f0 face) pick_node 34 &acute;b0)
+&gt; ((define f0 face) pick_node &acute;(34 45 56) &acute;b0)
+&gt; ((define c0 curve) pick_node &acute;(21 23 25) &acute;b0)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475034_pgfId-273972"></A>Using a list of tags to manipulate an object</H4>
+<P>
+<A NAME="50475034_pgfId-273975"></A><A NAME="50475034_marker-273973"></A><A NAME="50475034_marker-273974"></A>Some KID functions result in the tag property of an entity having a LISP list of tags. An example of this is the function <CODE>
+pick_from</CODE>
+. It is often possible to manipulate an object with a list of tags using the same functions as if it had a single tag. This facility is not provided by all KID functions.</P>
+<P>
+<A NAME="50475034_pgfId-280127"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280190"></A>&gt; (define b1 p_block)
+&gt; (b1 x 10; y 20; z 10; create)   -- create block b1
+&gt; (define f1 face)
+&gt; (f1 pick_from &acute;b1)           -- f1 is a list of b1&acute;s 6 faces
+&gt; (f1 pick_using &acute;(f1 clash &acute;(5 5 10)))
+     -- leave only those faces which clash with this point,
+        f1 now refers to a set of two faces from body b1
+
+&gt; (f1 enquire )                  --&gt; information
+&gt; (f1 direction &acute;(10 9 8); move)  -- this will move both faces</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475034_pgfId-273977"></A>14.4	Picking vector points
+
+
+</H1>
+<P>
+<A NAME="50475034_pgfId-273982"></A><A NAME="50475034_marker-273978"></A><A NAME="50475034_marker-273979"></A>A class<A NAME="50475034_marker-273980"></A><A NAME="50475034_marker-273981"></A> <CODE>
+p_points</CODE>
+ exists as a subclass of primitive. The class has a function <A HREF="kd_chap.15.html#50475034_18244">&quot;pick&quot;</A> which allows the user to give a list of vector points as its argument. These are held in the object's coordinate property. The user can either supply the list as an argument to pick, or can supply no argument and thus employ the cursor to select the vector points. Consider the following examples:</P>
+<P>
+<A NAME="50475034_pgfId-280134"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-281106"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-281108"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-281110"></A>p_points</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475034_pgfId-281112"></A>pick</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280180"></A>&gt; (define b0 p_points)
+&gt; (b0 help pick)         --&gt; information
+&gt; (b0 pick &acute;(0 0 0))     -- b0 is set to the origin
+&gt; (b0 coordinate)        --&gt; (0 0 0)</PRE>
+<PRE><A NAME="50475034_pgfId-280181"></A>&gt; (define b0 p_points)
+&gt; (b0 pick &acute;( (0 0 0) (1 1 1) (2 2 2) ) )  -- b0 is set to
+&gt; (b0 coordinate) --&gt; ((0 0 0) (1 1 1) (2 2 2))
+                       coordinate list</PRE>
+<PRE><A NAME="50475034_pgfId-280182"></A>&gt; (define b0 p_points)
+&gt; (b0 pick)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475034_pgfId-273999"></A>This then prompts the user to select the list of points by moving the cursor in the graphics frame with the arrow keys. Points are selected by moving to the desired location and striking any key, the list is terminated when a key is struck without the user having moved the cursor. The selected vector points are located on the graphics viewing plane. (The viewing plane is a plane perpendicular to the current view_direction passing through the current view_to point.)</P>
+<P>
+<A NAME="50475034_pgfId-274000"></A>No other functions are provided; <CODE>
+p_points</CODE>
+ is intended only as a convenient location for storing a list of coordinates.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475034_pgfId-274001"></A>14.5	Picking an entity from an assembly
+
+
+</H1>
+<P>
+<A NAME="50475034_pgfId-274004"></A><A NAME="50475034_marker-274002"></A><A NAME="50475034_marker-274003"></A>To pick from an assembly, first the assembly must be converted from a single layer assembly to a list of bodies (changes the type of entity from an assembly to a body).</P>
+<P>
+<A NAME="50475034_pgfId-280141"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280164"></A>&gt; (a0 disassemble)    -- unpacks bodies from instances and 
+                         applies transforms; a0 is now a body
+&gt; (graphics ske a0)
+&gt; (define e0 edge)
+&gt; (e0 pick)  -- pick the edge from the body a0 using the cursor</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475034_pgfId-274006"></A>assemble function</H4>
+<P>
+<A NAME="50475034_pgfId-274010"></A><A NAME="50475034_marker-274007"></A><A NAME="50475034_marker-274008"></A><A NAME="50475034_marker-274009"></A>The inverse operation, to create the assembly, takes the part with one or more tags and makes each an instance in an assembly, which can then be transmitted as a single entity.</P>
+<P>
+<A NAME="50475034_pgfId-280148"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475034_pgfId-280154"></A>&gt; (a0 tag)
+&gt; (100 174 279 1000)
+&gt; (a0 assemble)           -- a0 is now an assembly
+&gt; (a0 transmit &quot;part_name&quot;)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.14.html">KID Rendering</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.16.html">Fault Reporting in KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

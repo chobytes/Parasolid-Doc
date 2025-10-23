@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ASSEMBLY_check_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ASSEMBLY_check_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_ASSEMBLY_check_o_s
+    {
+    int                       o_t_version; --- version number of option
+                                           --- structure
+    int                       max_faults;  --- limit on fault numbers
+                                           --- (10)
+    <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_t</A>           geom;        --- bad geometry
+                                           --- (<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_yes_c</A>)
+    <A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_t</A>           mesh;        --- bad meshes
+                                           --- (<A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_yes_c</A>)
+    <A HREF=../headers/pk_check_corrupt_t.html>PK_check_corrupt_t</A>        corrupt;     --- corrupt data or identifiers
+                                           --- (<A HREF=../headers/pk_check_corrupt_t.html>PK_check_corrupt_yes_c</A>)
+    <A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_t</A>        attribs;     --- check for validity of system
+                                           --- attributes
+                                           --- (<A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_no_c</A>)
+    };
+
+typedef struct PK_ASSEMBLY_check_o_s PK_ASSEMBLY_check_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls for checking an assembly.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_assembly_check.html>PK_ASSEMBLY_check</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure allows the caller to control which checks are performed;
+if no options are supplied, all checks appropriate to the assembly will be made
+
+
+max_faults
+----------
+The caller may set an upper limit on the number of faults found, in
+the option <B>'max_faults'</B>; if <B>'max_faults'</B> is zero, the first fault found
+is returned as a PK error: PK_ERROR_check_error, with the entity at fault
+returned in the <A HREF=../headers/pk_error_sf_t.html>PK_ERROR_sf_t</A> structure.
+
+
+geom
+----
+This can be set to one of:
+
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_no_c</A>     don't do any construction geometry validity checks
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_basic_c</A>  check for invalid or degenerate construction geometry
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_lazy_c</A>   check for invalid, self-intersecting or
+                       degenerate construction geometry
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_full_c</A>   check for invalid, self-intersecting or
+                       degenerate construction geometry, ignore results of
+                       pre-V5 checks
+<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_yes_c</A>    check for invalid, self-intersecting or
+                       degenerate construction geometry, ignore previous checks
+
+Geometry checks only apply to construction geometry attached to the assembly,
+and not to the geometry of constituent bodies.
+
+Geometry which passes these tests is marked so that the cost of these
+tests need only be incurred once. Geometry which fails is also marked for
+the same reason.
+
+The option <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_full_c</A> behaves just like <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_lazy_c</A>,
+except that it forces a re-check of geometry marked as valid by
+pre-V5 versions of Parasolid.
+
+The option <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_yes_c</A> behaves just like <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_lazy_c</A>,
+except that it always forces a full check of the geometry,
+overriding the interface parameter, even if the geometry has
+been marked as valid by a previous check.
+
+The check faults associated with these checks are as follows
+
+<B>'state'</B>                         | <B>'entity_1'</B>    | <B>'entity_2'</B> | <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_BCURVE_state_close_knots_c   | bcurve        | geom       | the x coordinate
+                                |               |            | is the parameter
+                                |               |            | where knots are
+                                |               |            | too close
+                                |               |            |
+PK_BSURF_state_close_u_knots_c  | geom          | geom       | the x coordinate
+                                |               |            | is the u
+                                |               |            | parameter where
+                                |               |            | knots are too
+                                |               |            | close
+                                |               |            |
+PK_BSURF_state_close_v_knots_c  | geom          | geom       | the x coordinate
+                                |               |            | is the v
+                                |               |            | parameter where
+                                |               |            | knots are too
+                                |               |            | close
+                                |               |            |
+PK_ENTITY_state_invalid_c       | entity        |            |
+                                |               |            |
+PK_GEOM_state_bad_geom_owner_c  | geom          |owning geom |
+                                |               |            |
+PK_GEOM_state_degenerate_c      | geom          |            | point in
+                                |               |            | degenerate
+                                |               |            | region
+                                |               |            |
+PK_GEOM_state_outside_box_c     | geom          |            | vertex point
+                                |               |            | outside the
+                                |               |            | size box
+                                |               |            |
+PK_GEOM_state_self_int_c        | geom          |            | point on self-
+                                |               |            | intersection
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_graph_c</A>    | lattice       |            |
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_lball_c</A>    | lattice       |            | (n,0,0) where
+                                |               |            | n is the
+                                |               |            | identifier of
+                                |               |            | the <A HREF=../headers/pk_lball_t.html>PK_LBALL_t</A>
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_lrod_c</A>     | lattice       |            | (n,0,0) where
+                                |               |            | n is the
+                                |               |            | identifier of
+                                |               |            | the <A HREF=../headers/pk_lrod_t.html>PK_LROD_t</A>
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_corrupt_c</A>      | lattice       |            |
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_disjoint_c</A>     | lattice       |            | (m,n,0) where
+                                |               |            | m and n are
+                                |               |            | identifiers of
+                                |               |            | <A HREF=../headers/pk_lball_t.html>PK_LBALL_t</A> in
+                                |               |            | in two separate
+                                |               |            | components
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_dup_lrod_c</A>     | lattice       |            | (m,n,0) where
+                                |               |            | m and n are
+                                |               |            | identifiers
+                                |               |            | of <A HREF=../headers/pk_lrod_t.html>PK_LROD_t</A>
+                                |               |            | that are
+                                |               |            | duplicated
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_isolated_c</A>     | lattice       |            | (n,0,0) where
+                                |               |            | n is the
+                                |               |            | identifier of
+                                |               |            | the isolated
+                                |               |            | <A HREF=../headers/pk_lball_t.html>PK_LBALL_t</A>
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_lrod_end_c</A>     | lattice       |            | (m,n,0) where m
+                                |               |            | is the
+                                |               |            | identifier of
+                                |               |            | the <A HREF=../headers/pk_lrod_t.html>PK_LROD_t</A>
+                                |               |            | and n is the
+                                |               |            | identifier of
+                                |               |            | the adjoining
+                                |               |            | <A HREF=../headers/pk_lball_t.html>PK_LBALL_t</A>
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_no_lballs_c</A>    | lattice       |            |
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_no_lrods_c</A>     | lattice       |            |
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_self_int_c</A>     | lattice       |            | (m,n,0) where m
+                                |               |            | and n are
+                                |               |            | identifiers of
+                                |               |            | the <A HREF=../headers/pk_ltopol_t.html>PK_LTOPOL_t</A>
+                                |               |            | that clash
+                                |               |            |
+<A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_short_lrod_c</A>   | lattice       |            | (n,0,0) where n
+                                |               |            | is the
+                                |               |            | identifier of
+                                |               |            | the <A HREF=../headers/pk_lrod_t.html>PK_LROD_t</A>
+                                |               |            |
+
+mesh 
+-----
+This can be set to one of:
+
+<A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_no_c</A>      don't do any construction geometry mesh validity checks
+<A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_basic_c</A>   check for invalid mesh topology or geometry for
+                        construction geometry
+<A HREF=../headers/pk_check_mesh_t.html>PK_check_mesh_yes_c</A>     as basic check but also checking construction geometry
+                        mesh for self-intersection
+
+Mesh checks only apply to construction geometry attached to the assembly, and
+not to the geometry of constituent bodies.
+
+
+Special checks on Meshes
+
+There are special checks performed on meshes.
+
+The restrictions on meshes are:
+
+
+    i)  A mesh cannot be non-manifold.
+
+   ii)  A mesh cannot have an mfacet with a zero length mfin
+        (degenerate mfacet).
+
+  iii)  A mesh cannot have an mfacet of zero area (flat mfacet).
+
+   iv)  A mesh cannot have slits, that is laminar mfins that occupy the
+        same position.
+
+    v)  A mesh cannot self-intersect.
+
+   vi)  A mesh cannot have an mvertex normal that is opposed to all adjacent
+        mfacet normals.
+
+
+The check_faults associated with this check are as follows
+
+<B>'state'</B>                        |  <B>'entity_1'</B>  |      <B>'position'</B>
+-------------------------------------------------------------------------------
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_bad_mvx_normal_c</A> |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters of the mvertex
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_corrupt_c</A>        |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters of the
+                               |              |  corruption if available
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_degen_mfacet_c</A>   |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters in the mfacet
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_flat_mfacet_c</A>    |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters in the mfacet
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_non_manifold_c</A>   |     mesh     |  (u, v, 0) where u,v are
+                               |              |  the parameters in the
+                               |              |  non manifold region
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_self_int_c</A>       |     mesh     |  position on the
+                               |              |  self intersection
+<A HREF=../headers/pk_mesh_t.html>PK_MESH_state_slit_c</A>           |     mesh     |  position on the slit
+
+
+corrupt
+-------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_corrupt_t.html>PK_check_corrupt_no_c</A>     don't do data structure checks
+<A HREF=../headers/pk_check_corrupt_t.html>PK_check_corrupt_yes_c</A>    check for corrupt data structure and check
+                          identifiers
+
+The check faults associated with this check are as follows
+
+<B>'state'</B>                           | <B>'entity_1'</B>  | <B>'entity_2'</B>  | <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_ASSEMBLY_state_corrupt_c       | assembly    | null        | null
+                                  |             |             |
+PK_ASSEMBLY_state_cyclic_ref_c    | assembly    | instance    | null
+                                  |             |             |
+PK_ASSEMBLY_state_invalid_id_c    | assembly    | null        | null
+                                  |             |             |
+PK_ENTITY_state_bad_owner_c       | transform   | instance    | null
+                                  |             |             |
+PK_ENTITY_state_has_att_group_c   | entity      | group       | null
+                                  |             |             |
+PK_ENTITY_state_in_group_c        | entity      | group       | null
+                                  |             |             |
+PK_ENTITY_state_shared_c          | entity      | assembly    | null
+                                  |             |             |
+PK_GEOM_state_bad_dep_type_c      | geometry    | dependent   | null
+                                  |             |             |
+PK_GEOM_state_bad_geom_owner_c    | geometry    | owner       | null
+                                  |             |             |
+PK_GEOM_state_bad_owner_c         | geometry    | owner       | null
+                                  |             |             |
+PK_GEOM_state_dup_geom_owner_c    | geometry    | owner       | null
+                                  |             |             |
+PK_GEOM_state_not_owners_dep_c    | geometry    | owner       | null
+                                  |             |             |
+PK_GEOM_state_not_owning_dep_c    | geometry    | dependent   | null
+                                  |             |             |
+PK_GROUP_state_bad_c              | group       | null        | null
+                                  |             |             |
+PK_INSTANCE_state_bad_transf_c    | instance    | transform   | null
+                                  |             |             |
+PK_INSTANCE_state_bad_type_c      | instance    | null        | null
+                                  |             |             |
+PK_PART_state_bad_attrib_c        | assembly    | attribute   | null
+                                  |             |             |
+PK_PART_state_bad_attrib_list_c   | assembly    | attrib list | null
+                                  |             |             |
+PK_PART_state_bad_state_c         | assembly    | null        | null
+                                  |             |             |
+PK_PART_state_corrupt_c           | assembly    | null        | null
+                                  |             |             |
+PK_PART_state_has_key_c           | assembly    | null        | null
+                                  |             |             |
+PK_PART_state_no_key_c            | assembly    | null        | null
+                                  |             |             |
+
+attribs
+-------
+This can be set to one of:
+
+<A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_no_c</A>     Do not perform validity checks on attached system
+                          attributes.
+<A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_yes_c</A>    Perform system attribute validity checks.
+
+The only check fault associated with this check is the following:
+
+<B>'state'</B>                        | <B>'entity_1'</B>  | <B>'entity_2'</B>    | <B>'position'</B>
+-------------------------------------------------------------------------------
+PK_ATTRIB_state_invalid_att_c  |  attribute  |  attrib owner |   null
+
+If any faults are found with the system attributes present, the user is
+encouraged to use <A HREF=../headers/pk_entity_check_attribs.html>PK_ENTITY_check_attribs</A> to discover more information on
+the faulty attribute(s).
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>ENFAPR</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENFAPR</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_is_uvbox.html>PK_FACE_is_uvbox</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENFAPR ( face, rectan, urange, vrange, ifail )
+==============================================
+
+  Enquire whether a face is parametrically rectangular
+
+Receives:
+  KI_tag_face              *face           --- face
+
+Returns:
+  KI_cod_logical           *rectan         --- parametrically rectangular flag
+  KI_dbl                    urange[2]      --- Parameter range in u
+  KI_dbl                    vrange[2]      --- Parameter range in v
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_no_geometry            entity does not have geometry attached
+  KI_wrong_entity           entity is not a face
+
+Description:
+
+      Determines whether a face is parametrically rectangular.
+
+      If 'rectan' is returned as KI_true then 'urange' and 'vrange' will
+      contain the parameter limits of the rectangular area of the surface in
+      which the face is defined.
+
+      For each pair of parameter limits, the following rules apply:
+
+        (i)   The first element will always be less than the second.
+
+        (ii)  Both elements will lie inside the parameter range, as given by
+              ENSUPA, unless the corresponding parameter is periodic.
+              In that case the first will lie in the range, and the difference
+              between the two will not exceed the period.
+
+      If 'rectan' is returned as KI_false then all the elements of 'urange'
+      and 'vrange' will be 0.0.
+
+      ENFAPR does not guarantee to detect that a face is parametrically
+      rectangular but it will never claim a face is parametrically rectangular
+      when it is not.
+
+</PRE>
+</BODY>
+</HTML>

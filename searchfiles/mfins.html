@@ -1,0 +1,138 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.035.html#50409816_pgfId-366589", " does not have a unique normal, i.e the <B>mfins</B> at this mvertex do not share the same", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1460624", " Whether isocline curves are generated along existing <B>mfins</B> using the mfacet normals of the mesh. ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-440206", " Finds and returns the laminar <B>mfins</B> in a mesh. See Chapter 88, Filling Holes", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-482387", " Finds and returns the sharp <B>mfins</B> in a mesh. See Section 89.3.2.3, Finding sharp", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-435014", " Indicates whether the two <B>mfins</B> belong to the same mfacet. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-411645", " If a mesh has no laminar <B>mfins</B> and encloses a watertight volume, the resulting body", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-336169", " if the angle (in radians) between two laminar <B>mfins</B> is greater than the value set by ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-376712", " an mvertex where the angle between adjacent laminar <B>mfins</B> is greater than ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-376421", " the same position. The detection of coincident laminar <B>mfins</B> is carried out either: ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-396572", " within faces, which are formed along the laminar <B>mfins</B>. These edges may be avoided if the mesh", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-341857", " to a face must have all its boundary <B>mfins</B> along each edge of that face matched to", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-341837", " A mesh cannot have slits (laminar <B>mfins</B> that occupy the same position). ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343283", " Finds the laminar <B>mfins</B> in a mesh, returning them in groups of", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-342999", " PK_MESH_find_laminar_mfins finds laminar <B>mfins</B> in a mesh, based on the following options:", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343300", " Section 88.3.1, Choosing holes based on chains of <B>mfins</B> , for more information. ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343304", " of position data to help locate chains of <B>mfins</B> to return. See Section 88.3.2, Choosing holes based", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343308", " a polyline is created for each chain of <B>mfins</B> returned. ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-366264", " cannot be grouped into closed components. Any laminar <B>mfins</B> that are returned as open components should not", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-368187", " If laminar <B>mfins</B> cannot be grouped into closed components the function", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-368191", " Any laminar <B>mfins</B> that cannot be grouped into closed components are", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343005", " a mesh, based on the number of connected <B>mfins</B> in any of the meshs boundaries. In addition,", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343213", " Section 88.3.1, Choosing holes based on chains of <B>mfins</B> , for more information. ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343217", " A list of boundary <B>mfins</B> defining holes to be filled in addition to", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-346618", " all holes with boundaries of 8 or fewer <B>mfins</B>, and also fills the 10 mfin hole specified.", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343013", " to fill by specifying a maximum number of <B>mfins</B> which any hole must contain. ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343016", " 88.3.1 Choosing holes based on chains of <B>mfins</B> ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343017", " mesh). You can specify a maximum number of <B>mfins</B> using either PK_MESH_find_laminar_mfins or PK_MESH_fill_holes , as follows:", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343363", " Specify the maximum number of <B>mfins</B> using the ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343365", " The function returns chains of laminar <B>mfins</B> with at most ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343369", " Specify the maximum number of <B>mfins</B> using the ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-343371", " All chains of <B>mfins</B> containing fewer than ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-358704", " the normal specific to the given mfin. Several <B>mfins</B> at an mvertex can share the same normal.", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-340845", " for every mvertex in the mesh, all the <B>mfins</B> at that mvertex share the same normal as", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-367609", " does not have a unique normal, i.e the <B>mfins</B> at this mvertex do not share the same", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-408419", " 89.3.2.4 Finding sharp <B>mfins</B> in meshes ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-451829", " You can find the sharp <B>mfins</B> in a mesh using PK_MESH_find_sharp_mfins . An mfin", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-446298", " set to PK_LOGICAL_false only the number of sharp <B>mfins</B> is returned. The default value is PK_LOGICAL_true. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339462", " Supply a combination of <B>mfins</B> and mvertices to specify the normals you want", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339507", " Supply a combination of <B>mfins</B> and mvertices to specify the normals you want", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-341181", " Supply a combination of <B>mfins</B> and mvertices to specify the normals you want", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-367276", " of mfacets. A perimeter is a set of <B>mfins</B> that form the boundary of a set of", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-379616", " mloop has to have a minimum of 2 <B>mfins</B> which have to be: ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-413787", " <B>mfins</B> in meshes for more information on sharp <B>mfins</B>.", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-388181", " of an mfacetset. See Section 89.4.1, Including wire <B>mfins</B> in the perimeter of a set of mfacets", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-389605", " 89.4.1 Including wire <B>mfins</B> in the perimeter of a set of mfacets", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-403727", " option to return them by including wire <B>mfins</B> in the perimeter. An mfin that forms part", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-391237", " Wire <B>mfins</B> and their adjacent <B>mfins</B> are included in the perimeter, as illustrated in", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-391241", " Wire <B>mfins</B> are not included in the perimeter, as illustrated", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-397369", " and B) shows the perimeter returned when wire <B>mfins</B> are excluded. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-392560", " Figure 89-3 Including and excluding wire <B>mfins</B> in the perimeter ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-420823", " You can find the mvertices and/or <B>mfins</B> along a given fin using PK_FIN_find_mtopols . ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-424127", " To return just the number of mvertices and/or <B>mfins</B>, these options must be set to PK_LOGICAL_false. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-420831", " Figure 89-4 Finding the <B>mfins</B> and mvertices along a fin ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-294788", " sharp <B>mfins</B> on meshes. See Section 106.3.4, Sharp <B>mfins</B> for", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-688555", " 106.3.4 Sharp <B>mfins</B> ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-688942", " <B>mfins</B> in meshes for more information on sharp <B>mfins</B>.", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-688631", " Do not render sharp <B>mfins</B> (Default) ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-688635", " Render sharp <B>mfins</B> ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-695299", " edge is coincident with a chain of sharp <B>mfins</B>, only the edge is output. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-696850", " See PK_TOPOL_render_line_o_t for more information on how sharp <B>mfins</B> are rendered. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-696156", " the GO, see Section 4.4.2.6, Coincidence with sharp <B>mfins</B> in the Downward Interfaces . ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-688597", " Figure 106-2 Rendering sharp <B>mfins</B> of a mesh cube ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-288688", " mfin along the boundary of a mesh. Laminar <B>mfins</B> have no adjacent mfin. ", "Functional Description - ZGlossary");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_render_sharp_mfins_no_c 20260 dont output sharp <B>mfins</B> (default) ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_MESH_open_comps_allow_c 26331 Any laminar <B>mfins</B> that cannot be grouped into closed components will", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_bad_mfin 5227 PK_MESH_fill_holes_o_t One of the <B>mfins</B> supplied in input_holes is", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_mfin 5227 PK_MESH_fill_holes_o_t One of the <B>mfins</B> supplied in input_holes is", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " <B>mfins</B> mvertex (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " PK_MESH_fill_holes_o_t 5227 PK_ERROR_bad_mfin One of the <B>mfins</B> supplied in input_holes is", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_assembly_check_o_t.html#documentation", " A mesh cannot have slits, that is laminar <B>mfins</B> that occupy the", "PK Reference - PK_ASSEMBLY_check_o_t");
+top.note("headers/pk_body_check_o_t.html#documentation", " A mesh cannot have slits, that is laminar <B>mfins</B> that occupy the", "PK Reference - PK_BODY_check_o_t");
+top.note("headers/pk_fin_find_mtopols.html#declaration", " PK_MFIN_t **const <B>mfins</B>,", "PK Reference - PK_FIN_find_mtopols");
+top.note("headers/pk_fin_find_mtopols.html#description", " This function finds the mvertices and/or <B>mfins</B> along a fin.", "PK Reference - PK_FIN_find_mtopols");
+top.note("headers/pk_fin_find_mtopols.html#documentation", " an array of mvertices and/or an array of <B>mfins</B> which lie", "PK Reference - PK_FIN_find_mtopols");
+top.note("headers/pk_fin_find_mtopols_o_t.html#declaration", " PK_LOGICAL_t want_mfins; --- whether the <B>mfins</B> are", "PK Reference - PK_FIN_find_mtopols_o_t");
+top.note("headers/pk_fin_find_mtopols_o_t.html#documentation", " want_mfins n_mfins , the number of <B>mfins</B>, is always", "PK Reference - PK_FIN_find_mtopols_o_t");
+top.note("headers/pk_gosgmt_f_t.html#documentation", " <B>mfins</B> on meshes will be chained into polylines and", "PK Reference - PK_GOSGMT_f_t");
+top.note("headers/pk_mesh_defect_details_t.html#documentation", "| PK_MESH_defect_slit_c |<B>mfins</B> along slit | yes | yes |", "PK Reference - PK_MESH_defect_details_t");
+top.note("headers/pk_mesh_defect_tolerances_t.html#documentation", " two laminar <B>mfins</B> in the mesh are close enough to be", "PK Reference - PK_MESH_defect_tolerances_t");
+top.note("headers/pk_mesh_fill_holes_o_t.html#declaration", " int max_n_mfins; --- limit on number of <B>mfins</B>", "PK Reference - PK_MESH_fill_holes_o_t");
+top.note("headers/pk_mesh_fill_holes_o_t.html#errors", " PK_ERROR_bad_mfin One of the <B>mfins</B> supplied in input_holes is", "PK Reference - PK_MESH_fill_holes_o_t");
+top.note("headers/pk_mesh_fill_holes_o_t.html#documentation", " an upper bound on the number of laminar <B>mfins</B>", "PK Reference - PK_MESH_fill_holes_o_t");
+top.note("headers/pk_mesh_find_defects_o_t.html#documentation", " is formed from chains of folded or laminar <B>mfins</B> which bound", "PK Reference - PK_MESH_find_defects_o_t");
+top.note("headers/pk_mesh_find_laminar_mfins.html#description", " This function returns the laminar <B>mfins</B> in the given mesh .", "PK Reference - PK_MESH_find_laminar_mfins");
+top.note("headers/pk_mesh_find_laminar_mfins.html#documentation", "The laminar <B>mfins</B> are grouped into components. A component is a", "PK Reference - PK_MESH_find_laminar_mfins");
+top.note("headers/pk_mesh_find_laminar_mfins_o_t.html#declaration", " int max_mfins; --- limit on the number of <B>mfins</B> in", "PK Reference - PK_MESH_find_laminar_mfins_o_t");
+top.note("headers/pk_mesh_find_laminar_mfins_o_t.html#documentation", " group all laminar <B>mfins</B> into closed components", "PK Reference - PK_MESH_find_laminar_mfins_o_t");
+top.note("headers/pk_mesh_find_sharp_mfins.html#declaration", " int *const n_sharp_mfins, --- number of sharp <B>mfins</B>", "PK Reference - PK_MESH_find_sharp_mfins");
+top.note("headers/pk_mesh_find_sharp_mfins.html#description", " This function returns the sharp <B>mfins</B> in the given mesh .", "PK Reference - PK_MESH_find_sharp_mfins");
+top.note("headers/pk_mesh_find_sharp_mfins_o_t.html#declaration", " PK_LOGICAL_t want_sharp_mfins; --- whether the sharp <B>mfins</B>", "PK Reference - PK_MESH_find_sharp_mfins_o_t");
+top.note("headers/pk_mesh_find_sharp_mfins_o_t.html#documentation", " <B>mfins</B> will be returned.", "PK Reference - PK_MESH_find_sharp_mfins_o_t");
+top.note("headers/pk_mesh_find_sharp_mvxs.html#documentation", "A sharp mvertex is one where the <B>mfins</B> at that mvertex do not all share the", "PK Reference - PK_MESH_find_sharp_mvxs");
+top.note("headers/pk_mesh_fix_defects_o_t.html#documentation", " is formed from chains of folded or laminar <B>mfins</B> which bound", "PK Reference - PK_MESH_fix_defects_o_t");
+top.note("headers/pk_mesh_has_unique_normals.html#documentation", " every mvertex in the mesh all of the <B>mfins</B> at", "PK Reference - PK_MESH_has_unique_normals");
+top.note("headers/pk_mesh_make_bodies.html#documentation", "contains laminar <B>mfins</B>, then the corresponding face will be bounded by", "PK Reference - PK_MESH_make_bodies");
+top.note("headers/pk_mesh_make_bodies_o_t.html#documentation", " between two laminar <B>mfins</B> exceeds vertex_angle .", "PK Reference - PK_MESH_make_bodies_o_t");
+top.note("headers/pk_mesh_make_surf_trimmed_o_t.html#documentation", " laminar <B>mfins</B> exceeds the bdry_mvertex_angle . (0.3)", "PK Reference - PK_MESH_make_surf_trimmed_o_t");
+top.note("headers/pk_mesh_open_comps_t.html#documentation", " datatype specifies what will happen if the laminar <B>mfins</B> of a mesh", "PK Reference - PK_MESH_open_comps_t");
+top.note("headers/pk_mesh_store_normals_o_t.html#errors", " <B>mfins</B> mvertex (MILD)", "PK Reference - PK_MESH_store_normals_o_t");
+top.note("headers/pk_mesh_store_normals_o_t.html#documentation", " (<B>mfins</B> and/or mvertices) for which the normal is to", "PK Reference - PK_MESH_store_normals_o_t");
+top.note("headers/pk_mfacet_find_perimeters.html#description", " This function returns the perimeter <B>mfins</B> around a set of given mfacets.", "PK Reference - PK_MFACET_find_perimeters");
+top.note("headers/pk_mfacet_find_perimeters.html#documentation", "A perimeter is defined as the set of <B>mfins</B> forming the boundary of a set of", "PK Reference - PK_MFACET_find_perimeters");
+top.note("headers/pk_mfacet_find_perimeters_o_t.html#declaration", " --- wire <B>mfins</B> in the", "PK Reference - PK_MFACET_find_perimeters_o_t");
+top.note("headers/pk_mfacet_find_perimeters_r_t.html#description", " This structure contains the result of finding perimeter <B>mfins</B> around a supplied", "PK Reference - PK_MFACET_find_perimeters_r_t");
+top.note("headers/pk_mfin_ask_mvx_curvature.html#documentation", "associated with a subset of the <B>mfins</B> at the mvertex. In this case there will", "PK Reference - PK_MFIN_ask_mvx_curvature");
+top.note("headers/pk_mfin_ask_mvx_normal.html#documentation", "Note: If the <B>mfins</B> mvertex has a unique normal, the mvx_normal returned", "PK Reference - PK_MFIN_ask_mvx_normal");
+top.note("headers/pk_mfin_is_laminar.html#documentation", " mfin along the boundary of a mesh. Laminar <B>mfins</B>", "PK Reference - PK_MFIN_is_laminar");
+top.note("headers/pk_mfin_is_same_mfacet.html#declaration", " PK_LOGICAL_t * const is_same_mfacet --- whether the two <B>mfins</B> belong to the", "PK Reference - PK_MFIN_is_same_mfacet");
+top.note("headers/pk_mfin_is_sharp_o_t.html#declaration", " double sharp_angle; --- angle at which <B>mfins</B> are", "PK Reference - PK_MFIN_is_sharp_o_t");
+top.note("headers/pk_mvertex_ask_normals.html#documentation", "for all of the <B>mfins</B> which point at that mvertex. In the case", "PK Reference - PK_MVERTEX_ask_normals");
+top.note("headers/pk_render_sharp_mfins_t.html#documentation", " PK_render_sharp_mfins_no_c : dont output sharp <B>mfins</B> (default)", "PK Reference - PK_render_sharp_mfins_t");
+top.note("headers/pk_session_set_mesh_angle.html#documentation", " single crease at an mvertex all of the <B>mfins</B> at", "PK Reference - PK_SESSION_set_mesh_angle");
+top.note("headers/pk_topol_make_facet_topol_o_t.html#documentation", " the <B>mfins</B> in the meshes created for any supplied", "PK Reference - PK_TOPOL_make_facet_topol_o_t");
+top.note("headers/pk_topol_render_line_o_t.html#declaration", " PK_render_sharp_mfins_t sharp_mfins;--- whether to draw sharp <B>mfins</B> on", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("headers/pk_topol_render_line_o_t.html#documentation", "silhouettes, sharp <B>mfins</B>) and what additional data (e.g. visibility and", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("chapters/di_chap.05.html#50511937_pgfId-322707", " 4.4.2.6 Coincidence with sharp <B>mfins</B> ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-322768", " segment lies on a chain of connected sharp <B>mfins</B> as follows: ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-323325", " CODESF: the edge segment is coincident with sharp <B>mfins</B> ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-323344", " the edge segment is not coincident with sharp <B>mfins</B> ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-323358", " CODUES: the edge segment coincidence with sharp <B>mfins</B> is unknown ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-284975", " be ignored. See Section 4.4.2.6, Coincidence with sharp <B>mfins</B> for more information. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-320744", " If, in PK_TOPOL_render_line , sharp <B>mfins</B> are requested by setting ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.15.html#50511947_pgfId-301950", " Edge is coincident with sharp <B>mfins</B> ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-301975", " Edge is not coincident with sharp <B>mfins</B> ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-302167", " Edge coincidence with sharp <B>mfins</B> is unknown ", "Downward Interfaces - Go Tokens and Error Codes");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

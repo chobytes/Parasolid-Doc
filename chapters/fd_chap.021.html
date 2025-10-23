@@ -1,0 +1,2150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE>Lattice Geometry</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Lattice Geometry</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fd_chap.020.html">Nominal Geometry</A></TD>
+  <TD><A HREF="../fd_index.html">Chapters</A></TD>
+  <TD><A HREF="fd_chap.022.html">Transformations</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-294726">20.1	Introduction </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-425540">20.2	Creating lattice geometry </A>
+<UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-336122">20.2.1	Using the graph reader </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-336128">20.2.2	Graph types </A>
+<UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-336130">20.2.2.1	Cylinder data blocks </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-336144">20.2.2.2	Cone data blocks </A>
+</UL>
+</UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-336171">20.3	Checking lattices </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-422358">20.4	Representing disjoint lattices </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-371760">20.5	Creating a blended lattice </A>
+<UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-377896">20.5.1	Blended lattices with lballs of the same blend size </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-377951">20.5.2	Blended lattices with lballs of various blend sizes </A>
+</UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-368281">20.6	Creating a lattice structure from a core lattice </A>
+<UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-412049">20.6.1	Bounding the pattern </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-391191">20.6.2	Deforming the pattern using a form </A>
+<UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-397420">20.6.2.1	Producing a rectilinear pattern </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-510980">20.6.2.2	Producing an axial pattern </A>
+</UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-509913">20.6.3	Deforming the pattern using a callback </A>
+</UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-368342">20.7	Creating a lattice-like mesh body </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-336173">20.8	Creating a facet body from a lattice </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-342952">20.9	Clipping a lattice to fit your model </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-456434">20.10	Lattices in regions </A>
+<UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-540242">20.10.1	Embedding lattices </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-459673">20.10.2	Frame-lattice sense </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-540196">20.10.3	Removing lattices </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-576068">20.10.4	Imprinting embedded lattices </A>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-570510">20.10.5	Rendering embedded lattices </A>
+</UL>
+<LI> <A HREF="fd_chap.021.html#50409802_pgfId-336180">20.11	Lattice specific operations </A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-294726"></A>20.1	<A NAME="50409802_99370"></A>Introduction 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-275053"></A>Lattices are classified as a geometry type which can be created, enquired of, rendered, embedded in a region and attached to parts as construction geometry. Lattices can be used to create mesh geometry and solid convergent bodies. Furthermore, you can create a lattice structure from patterned repetitions of a supplied smaller core lattice. </P>
+<P>
+<A NAME="50409802_pgfId-426753"></A>Lattices can be rendered as straight lines, or as solid spheres linked by cylindrical or conical rods (as illustrated in <A HREF="fd_chap.021.html#50409802_14304"><EM>
+Figure 20-1</EM></A>).</P>
+<P>
+<A NAME="50409802_pgfId-336019"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-170.gif">
+
+<P>
+<A NAME="50409802_pgfId-356161"></A>Figure 20-1 <A NAME="50409802_14304"></A>Lattice geometry</P>
+<P>
+<A NAME="50409802_pgfId-356162"></A>Lattices are represented as collections of lballs joined by lrods (collectively known as lattice topology or ltopols). The radii of lrods can be different where they meet at a common lball, as illustrated in <A HREF="fd_chap.021.html#50409802_32168"><EM>
+Figure 20-2</EM></A>. </P>
+<P>
+<A NAME="50409802_pgfId-356199"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-171.gif">
+
+<P>
+<A NAME="50409802_pgfId-352400"></A>Figure 20-2 <A NAME="50409802_32168"></A>Lattice with lrods of different radii meeting at a common lball</P>
+<P>
+<A NAME="50409802_pgfId-568849"></A>You can use PK_PARTITION_ask_lattices, or <A HREF=../headers/pk_topol_find_frames.html>PK_TOPOL_find_frames</A> to find out if a partition or model contains lattice geometry. See their respective APIs in the <EM>
+<A HREF=../pk_index.html>PK Interface Programming Reference</A> Manual</EM> for more information.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-425540"></A>20.2	<A NAME="50409802_93659"></A>Creating lattice geometry 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-336067"></A>Parasolid provides the function <A HREF=../headers/pk_lattice_create_by_graph.html>PK_LATTICE_create_by_graph</A> to allow you to create orphan lattice geometry from data supplied by a user-defined callback function. </P>
+<P>
+<A NAME="50409802_pgfId-336072"></A>The function receives the following arguments:</P>
+<P>
+<A NAME="50409802_pgfId-336089"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336075"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336077"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336079"></A><CODE>
+graph_reader</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336083"></A>A user-defined callback function.See <A HREF="fd_chap.021.html#50409802_71450">Section 20.2.1, “Using the graph reader”</A>, for more information.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336086"></A><CODE>
+context</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336088"></A>A pointer to the user supplied data input to <CODE>
+graph_reader</CODE>
+.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-336090"></A>The function has the following options: </P>
+<P>
+<A NAME="50409802_pgfId-359642"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336093"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336095"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336097"></A><CODE>
+lballs_estimate</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336099"></A>Estimated number of all lballs returned by all calls to <CODE>
+graph_reader</CODE>
+.<CODE>
+ </CODE>
+Default: (0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336101"></A><CODE>
+lrods_estimate</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336103"></A>Estimated number of all lrods returned by all calls to <CODE>
+graph_reader</CODE>
+.<CODE>
+ </CODE>
+Default: (0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336105"></A><CODE>
+graph_free</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336107"></A>Function to free data blocks returned by <CODE>
+graph_reader.</CODE>
+ Default: NULL</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336109"></A><CODE>
+thread_safe</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336111"></A>Whether the <CODE>
+graph_reader </CODE>
+callback and the <CODE>
+graph_free</CODE>
+ callback (if supplied) are thread safe. Default: PK_LOGICAL_false</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336113"></A><CODE>
+lball_radius</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336115"></A>The radius of the lballs in the lattices. Default: (0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-337602"></A><CODE>
+lball_min_radius</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-337604"></A>Controls behaviour when a supplied lball radius is smaller than the radius of its largest incident lrod. This can have the following values:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-337858"></A><A HREF=../headers/pk_lball_min_radius_t.html>PK_LBALL_min_radius_fail_c</A>: attempting to create a lattice will fail with PK_ERROR_invalid_geometry.</LI>
+<LI>
+<A NAME="50409802_pgfId-337901"></A><A HREF=../headers/pk_lball_min_radius_t.html>PK_LBALL_min_radius_auto_c</A>: when creating a lattice the lball radius will be automatically increased to the same value as the radius of its largest incident lrod.</LI>
+</UL>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-371309"></A><CODE>
+lball_blend_type</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-371311"></A>Whether the lattices are blended. </P>
+<P>
+<A NAME="50409802_pgfId-403570"></A>Default: <A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_none_c</A></P>
+<P>
+<A NAME="50409802_pgfId-375586"></A>See <A HREF="fd_chap.021.html#50409802_70495">Section 20.5, “Creating a blended lattice”</A> for more information.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-371335"></A><CODE>
+lball_blend_size</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-371337"></A>The size of the lball blends in the lattices. Default: 0</P>
+<P>
+<A NAME="50409802_pgfId-375662"></A>See <A HREF="fd_chap.021.html#50409802_70495">Section 20.5, “Creating a blended lattice”</A> for more information.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336117"></A><CODE>
+lrod_shape_opts</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336119"></A>Optional controls on the shape of the lrods of the lattices.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-357102"></A><CODE>
+have_snap_tolerance<BR>
+snap_tolerance</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-357327"></A>If <CODE>
+have_snap_tolerance</CODE>
+ is PK_LOGICAL_true, <CODE>
+snap_tolerance</CODE>
+ specifies a maximum distance between lball positions, variation in lball radii, and variation in lball_lrod_radii at which multiple lballs can be snapped together into a single combined lball. This is illustrated in <A HREF="fd_chap.021.html#50409802_20532"><EM>
+Figure 20-3</EM></A> where two lballs lie within <CODE>
+snap_tolerance</CODE>
+ and are snapped together to form one lball.</P>
+<P>
+<A NAME="50409802_pgfId-357104"></A>The <CODE>
+have_snap_tolerance</CODE>
+ option should be used whenever you supply a <CODE>
+snap_tolerance</CODE>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-421652"></A><CODE>
+require_connected</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-421654"></A>Whether each resultant lattice is graph-connected (i.e any lball can be reached from any other lball by stepping between lballs that are connected by an lrod). It has the following values:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-421761"></A><A HREF=../headers/pk_lattice_connected_t.html>PK_LATTICE_connected_yes_c</A>: Any resulting lattices will be graph-connected. (Default)</LI>
+<LI>
+<A NAME="50409802_pgfId-421799"></A><A HREF=../headers/pk_lattice_connected_t.html>PK_LATTICE_connected_no_c</A>: A single lattice is returned that may be disjoint.</LI>
+</UL>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-357797"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-172.gif">
+
+<P>
+<A NAME="50409802_pgfId-336120"></A>Figure 20-3 <A NAME="50409802_20532"></A>Snapping lballs together that lie within a supplied <CODE>
+snap_tolerance</CODE>
+</P>
+<P>
+<A NAME="50409802_pgfId-410093"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409802_pgfId-410002"></A>Note: To make use of lattice functionality, facet geometry must be enabled in the Parasolid session. You can do this by setting <A HREF=../headers/pk_session_set_facet_geometry.html>PK_SESSION_set_facet_geometry</A> to <A HREF=../headers/pk_facet_geometry_t.html>PK_facet_geometry_all_c</A>. Facet geometry should only be enabled in a released application if the appropriate additional license costs have been paid. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+<H3>
+<A NAME="50409802_pgfId-336122"></A>	20.2.1 	<A NAME="50409802_71450"></A>Using the graph reader </H3>
+<P>
+<A NAME="50409802_pgfId-336123"></A>This section describes how the callback function, <CODE>
+graph_reader</CODE>
+, is used to create lattice geometry from graph data. The <CODE>
+graph_reader</CODE>
+ takes a block of user supplied context information and should return a block of lattice data and a return status. The block of lattice data can be one of two types; cylinder or cone. See <A HREF="fd_chap.021.html#50409802_99339">Section 20.2.2, “Graph types”</A> for more information.The return status indicates the state of the operation. The <CODE>
+graph_reader</CODE>
+ is called repeatedly by <A HREF=../headers/pk_lattice_create_by_graph.html>PK_LATTICE_create_by_graph</A> until it returns the status <A HREF=../headers/pk_lattice_cb_status_t.html>PK_LATTICE_cb_status_stop_c</A>.</P>
+
+
+<H3>
+<A NAME="50409802_pgfId-336128"></A>	20.2.2 	<A NAME="50409802_99339"></A>Graph types </H3>
+<P>
+<A NAME="50409802_pgfId-336129"></A>This section describes the two types of data blocks (cylinder and cone) that can be returned by each call to <CODE>
+graph_reader</CODE>
+. </P>
+
+<H4>
+<A NAME="50409802_pgfId-336130"></A>20.2.2.1 Cylinder data blocks </H4>
+<P>
+<A NAME="50409802_pgfId-336131"></A>This structure contains the data block for lattices with cylindrical shaped lrods. The lballs are provided by arrays of <CODE>
+lball_positions</CODE>
+ and <CODE>
+lball_radii</CODE>
+. The <CODE>
+lrod_start_indices</CODE>
+ and <CODE>
+lrod_end_indices</CODE>
+ arrays define an array of lrods by specifying the absolute indices of the pair of lballs that each lrod joins. </P>
+<P>
+<A NAME="50409802_pgfId-379445"></A>Individual blend sizes of the lballs within the data block can be supplied via <CODE>
+lball_blend_sizes</CODE>
+. If the lattice is to be blended, these sizes together with the value of the <CODE>
+lball_blend_type </CODE>
+option determine the radii of the blends applied at each of the lballs. See <A HREF="fd_chap.021.html#50409802_87961">Section 20.5.2, “Blended lattices with lballs of various blend sizes”</A> for more information.</P>
+<P>
+<A NAME="50409802_pgfId-336132"></A>The following pseudo-code example shows the data input when using PK_LATTICE_graph_cyl_t to transmit a block of lattice data. </P>
+<P>
+<A NAME="50409802_pgfId-336143"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50409802_pgfId-336135"></A><CODE>n_lball_positions = 7</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336136"></A><CODE>lball_positions = {b0,b1,b2,b3,b4,b5,b6}</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336137"></A><CODE>lball_radii = {br0,br1,br2,br3,b4r,br5,br6}</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-377374"></A>lball_blend_sizes = NULL</PRE>
+<PRE><A NAME="50409802_pgfId-336138"></A><CODE>n_lrod_indices = 12</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336139"></A><CODE>lrod_start_indices = {0,0,0,0,0,0,1,2,3,4,5,1}</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336140"></A><CODE>lrod_end_indices = {1,2,3,4,5,6,2,3,4,5,6,6}</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336141"></A>lrod_radii = {lr0,lr1,lr2,...,lr11}</PRE>
+<PRE><A NAME="50409802_pgfId-336142"></A><CODE>status = <A HREF=../headers/pk_lattice_cb_status_t.html>PK_LATTICE_cb_status_stop_c</A></CODE>
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50409802_pgfId-336144"></A>20.2.2.2 Cone data blocks </H4>
+<P>
+<A NAME="50409802_pgfId-336145"></A>This structure contains the data block for lattices with cone-shaped lrods. The lballs are provided by arrays of <CODE>
+lball_positions</CODE>
+ and <CODE>
+lball_radii</CODE>
+.The <CODE>
+lrod_start_indices</CODE>
+ and <CODE>
+lrod_end_indices</CODE>
+ arrays define an array of lrods by specifying the absolute indices of the pair of lballs that each lrod joins. </P>
+<P>
+<A NAME="50409802_pgfId-379229"></A>Individual blend sizes of the lballs within the data block can be supplied via <CODE>
+lball_blend_sizes</CODE>
+. If the lattice is to be blended, these sizes together with the value of the <CODE>
+lball_blend_type </CODE>
+option determine the radii of the blends applied at each of the lballs. See <A HREF="fd_chap.021.html#50409802_87961">Section 20.5.2, “Blended lattices with lballs of various blend sizes”</A> for more information.</P>
+<P>
+<A NAME="50409802_pgfId-336146"></A>The following pseudo-code example shows the data input when using PK_LATTICE_graph_cone_t to transmit a block of lattice data. </P>
+<P>
+<A NAME="50409802_pgfId-336159"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50409802_pgfId-336149"></A><CODE>n_lball_positions = 7</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336150"></A><CODE>lball_positions = {b0,b1,b2,b3,b4,b5,b6}</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336151"></A><CODE>lball_radii = {br0,br1,br2,br3,b4r,br5,br6}</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-377412"></A>lball_blend_sizes = NULL</PRE>
+<PRE><A NAME="50409802_pgfId-336152"></A><CODE>lball_lrod_radii = NULL</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336153"></A><CODE>n_lrod_indices = 12</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336154"></A><CODE>lrod_start_indices ={0,0,0,0,0,0,1,2,3,4,5,1}</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336155"></A><CODE>lrod_end_indices = {1,2,3,4,5,6,2,3,4,5,6,6}</CODE>
+</PRE>
+<PRE><A NAME="50409802_pgfId-336156"></A>lrod_start_radii = {lsr0,lsr1,lsr2,...,lsr11}</PRE>
+<PRE><A NAME="50409802_pgfId-336157"></A>lrod_end_radii = {ler0,ler1,ler2,...,ler11}</PRE>
+<PRE><A NAME="50409802_pgfId-336158"></A><CODE>status = <A HREF=../headers/pk_lattice_cb_status_t.html>PK_LATTICE_cb_status_stop_c</A></CODE>
+</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-336163"></A><A HREF="fd_chap.021.html#50409802_27298"><EM>
+Figure 20-4</EM></A> shows an example of a lattice structure</P>
+<P>
+<A NAME="50409802_pgfId-336167"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-173.gif">
+
+<P>
+<A NAME="50409802_pgfId-336169"></A>Figure 20-4 <A NAME="50409802_27298"></A>Example of lattice structure </P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-336171"></A>20.3	<A NAME="50409802_60230"></A>Checking lattices 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-336172"></A>You can use <A HREF=../headers/pk_geom_check.html>PK_GEOM_check</A> to check lattice structures for invalidities. See <A HREF=../headers/pk_check_fault_t.html>PK_check_fault_t</A>, for a list of faults that may be returned.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-422358"></A>20.4	<A NAME="50409802_53232"></A>Representing disjoint lattices 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-444120"></A>A lattice is graph-connected if any lball can be reached from any other lball by stepping between lballs that are connected by an lrod. A disjoint lattice is one that is not graph-connected.</P>
+<P>
+<A NAME="50409802_pgfId-441381"></A>Disjoint lattices can be supplied to <A HREF=../headers/pk_lattice_disjoin.html>PK_LATTICE_disjoin</A> to create multiple lattices which are disjoint from each other. With this function, you can specify the minimum number of lrods in any of the returned lattices using the <CODE>
+min_n_lrods</CODE>
+ option. This ensures that only lattices with more than this number of lrods in their graphs are returned.</P>
+<P>
+<A NAME="50409802_pgfId-425859"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-174.gif">
+
+<P>
+<A NAME="50409802_pgfId-425814"></A>Figure 20-5 <A NAME="50409802_76080"></A>Returning separate lattices from a single disjoint lattice using <A HREF=../headers/pk_lattice_disjoin.html>PK_LATTICE_disjoin</A></P>
+<P>
+<A NAME="50409802_pgfId-431740"></A>You can also take an array of lattices and combine them into a single, possibly disjoint lattice using <A HREF=../headers/pk_lattice_combine.html>PK_LATTICE_combine</A>. With this function, you can optionally supply a <CODE>
+snap_tolerance</CODE>
+. For information on snap tolerance, see <A HREF="fd_chap.021.html#50409802_20532"><EM>
+Figure 20-3</EM></A> which illustrates two lballs lying within <CODE>
+snap_tolerance</CODE>
+ being snapped together to form one lball.</P>
+<P>
+<A NAME="50409802_pgfId-440672"></A>Using the <CODE>
+require_connected</CODE>
+ option in <A HREF=../headers/pk_lattice_create_by_graph.html>PK_LATTICE_create_by_graph</A> (<A HREF="fd_chap.021.html#50409802_93659">Section 20.2, “Creating lattice geometry”</A>) and <A HREF=../headers/pk_lattice_clip.html>PK_LATTICE_clip</A> (<A HREF="fd_chap.057.html#50409620_88599">Section 56.6, “Clipping Lattices”</A>), you can specify whether you want to return a single possibly disjoint lattice, or multiple connected lattices.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-371760"></A>20.5	<A NAME="50409802_70495"></A>Creating a blended lattice 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-378099"></A>You can optionally choose to create a blended lattice using a number of options in <A HREF=../headers/pk_lattice_create_by_graph.html>PK_LATTICE_create_by_graph</A>. Blending a lattice allows you to increase the stiffness of the lattice thereby improving its structural strength. </P>
+<P>
+<A NAME="50409802_pgfId-378448"></A>Lattices can be blended in the following ways:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-377597"></A>Create a blended lattice where the blend size applies globally to all lballs in the lattice. See <A HREF="fd_chap.021.html#50409802_68243">Section 20.5.1, “Blended lattices with lballs of the same blend size”</A>, for more information. </LI>
+<LI>
+<A NAME="50409802_pgfId-377711"></A>Create a blended lattice where the blend size applies locally to lballs in the lattice. See <A HREF="fd_chap.021.html#50409802_87961">Section 20.5.2, “Blended lattices with lballs of various blend sizes”</A>, for more information.</LI>
+</UL>
+
+<H3>
+<A NAME="50409802_pgfId-377896"></A>	20.5.1 	<A NAME="50409802_68243"></A>Blended lattices with lballs of the same blend size </H3>
+<P>
+<A NAME="50409802_pgfId-377818"></A>Using the <CODE>
+lball_blend_type</CODE>
+ and the <CODE>
+lball_blend_size</CODE>
+ options, you can create a blended lattice whose lballs have the same blend size, where each lball’s blend radius is either a constant or a constant multiple of the lball’s radius. The <CODE>
+lball_blend_type</CODE>
+ option has the following values:</P>
+<P>
+<A NAME="50409802_pgfId-403990"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-372153"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-372155"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-372157"></A><A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_none_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-372159"></A>There are no blends on the lattice. Default</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-372161"></A><A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_absolute_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-372163"></A>The lattice has blends and each lball’s blend radius is equal to the blend size. This is illustrated in <A HREF="fd_chap.021.html#50409802_88980"><EM>
+Figure 20-6</EM></A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-372165"></A><A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_relative_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-372167"></A>The lattice has blends and each lball’s blend radius is the product of the lball’s radius and the blend size. This is illustrated in <A HREF="fd_chap.021.html#50409802_88980"><EM>
+Figure 20-6</EM></A>.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-372840"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-175.gif">
+
+<P>
+<A NAME="50409802_pgfId-378391"></A>Figure 20-6 <A NAME="50409802_88980"></A>Blended lattices whose lballs have the same blend size</P>
+
+
+<H3>
+<A NAME="50409802_pgfId-377951"></A>	20.5.2 	<A NAME="50409802_87961"></A>Blended lattices with lballs of various blend sizes </H3>
+<P>
+<A NAME="50409802_pgfId-374698"></A>Alternatively you can vary the blend size of lballs within the lattice by using the <CODE>
+lball_blend_sizes</CODE>
+ option in the <CODE>
+graph_reader </CODE>
+callback. In this case, each lball’s blend radius is the corresponding value in <CODE>
+lball_blend_sizes</CODE>
+, optionally multiplied by the lball’s radius depending on the value of the <CODE>
+lball_blend_type</CODE>
+ option (see table in <A HREF="fd_chap.021.html#50409802_68243" CLASS="XRef">Section 20.5.1, “Blended lattices with lballs of the same blend size”</A> for a list of these values). <A HREF="fd_chap.021.html#50409802_40332"><EM>
+Figure 20-7</EM></A>, illustrates where the blends are applied locally with smaller blend radii applied at the larger lballs. See <A HREF="fd_chap.021.html#50409802_99339">Section 20.2.2, “Graph types”</A> for more information on the graph reader callback function.</P>
+<P>
+<A NAME="50409802_pgfId-379075"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-176.gif">
+
+<P>
+<A NAME="50409802_pgfId-379043"></A>Figure 20-7 <A NAME="50409802_40332"></A>Blended lattice whose lballs have different blend sizes </P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-368281"></A>20.6	<A NAME="50409802_50136"></A>Creating a lattice structure from a core lattice 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-368421"></A>You can create a new lattice from patterned repetitions of a supplied core lattice using <A HREF=../headers/pk_lattice_make_patterned.html>PK_LATTICE_make_patterned</A>. The resultant lattice may be disjoint if the pattern repetitions do not form a single connected graph.</P>
+<P>
+<A NAME="50409802_pgfId-370349"></A>It has the following options:</P>
+<P>
+<A NAME="50409802_pgfId-379980"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-370403"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-370405"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-370411"></A><CODE>
+cell</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-370413"></A>Contains the standard form <A HREF=../headers/pk_skewbox_sf_t.html><A HREF=../headers/pk_skewbox_sf_t.html>PK_SKEWBOX_sf_t</A></A> which holds the data on the cell to be repeated. This structure also determines how neighbouring cell repetitions connect to each other. See <A HREF=../headers/pk_skewbox_sf_t.html><A HREF=../headers/pk_skewbox_sf_t.html>PK_SKEWBOX_sf_t</A></A> for more information on the standard form of a skewbox.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-370415"></A><CODE>
+bound</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-370417"></A>Constrains the repetitions of the <CODE>
+cell</CODE>
+ in each of the pattern directions. See <A HREF="fd_chap.021.html#50409802_21521">Section 20.6.1, “Bounding the pattern”</A> for more information.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-434434"></A><CODE>
+clip</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-434436"></A>Contains clipping options that take effect when the <CODE>
+trim_type</CODE>
+ field of the <CODE>
+bound</CODE>
+ option allows partial pattern repetitions to be created. See <A HREF="fd_chap.057.html#50409620_79012">Section 56.6.4, “Controlling the behaviour of clipped ltopology”</A> for more information.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-385523"></A><CODE>
+form</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-385525"></A>Contains information about the type of pattern to be used. See <A HREF="fd_chap.021.html#50409802_80383">Section 20.6.2, “Deforming the pattern using a form”</A> for more information.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-385533"></A><CODE>
+callback</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-385535"></A>A user-defined callback function used to deform the pattern. See <A HREF="fd_chap.021.html#50409802_21109">Section 20.6.3, “Deforming the pattern using a callback”</A> for more information.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-385096"></A>The <CODE>
+cell</CODE>
+, which contains the core input lattice that is to be repeated, tessellates to create a pattern of cells which come together to form a new lattice. This is illustrated in <A HREF="fd_chap.021.html#50409802_38715"><EM>
+Figure 20-8</EM></A>, with repetition bounds in the <CODE>
+bound</CODE>
+ option set to (-2 2) in all three directions.</P>
+<P>
+<A NAME="50409802_pgfId-401556"></A>&nbsp;</P>
+<P>
+<A NAME="50409802_pgfId-388552"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-177.gif">
+
+<P>
+<A NAME="50409802_pgfId-388525"></A>Figure 20-8 <A NAME="50409802_38715"></A>Creating a new lattice from a patterned repetition of a supplied lattice</P>
+
+<H3>
+<A NAME="50409802_pgfId-412049"></A>	20.6.1 	<A NAME="50409802_21521"></A>Bounding the pattern </H3>
+<P>
+<A NAME="50409802_pgfId-412089"></A>To create a finite patterned result the pattern repetitions must be constrained using the controls in the <CODE>
+bound</CODE>
+ option. This option contains the following fields:</P>
+<P>
+<A NAME="50409802_pgfId-412993"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-412968"></A>Field</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-412970"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-412972"></A><CODE>
+have_repetitions_i<BR>
+repetitions_i</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-412974"></A>Whether limits are set on the number of repetitions in the i_axis direction of the <CODE>
+cell</CODE>
+, and the repetition interval in that direction.</P>
+<P>
+<A NAME="50409802_pgfId-435076"></A>Defaults: PK_LOGICAL_true, (0, 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-413283"></A><CODE>
+have_repetitions_j<BR>
+repetitions_j</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-435109"></A>Whether limits are set on the number of repetitions in the j_axis direction of the <CODE>
+cell</CODE>
+, and the repetition interval in that direction.</P>
+<P>
+<A NAME="50409802_pgfId-435110"></A>Defaults: PK_LOGICAL_true, (0, 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-413310"></A><CODE>
+have_repetitions_k<BR>
+repetitions_k</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-435136"></A>Whether limits are set on the number of repetitions in the k_axis direction of the <CODE>
+cell</CODE>
+, and the repetition interval in that direction.</P>
+<P>
+<A NAME="50409802_pgfId-435137"></A>Defaults: PK_LOGICAL_true, (0, 0)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-412987"></A><CODE>
+trim_curves</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-412991"></A>A structure containing loops of polylines that provide spatial limits in the i_axis and j_axis directions of the <CODE>
+cell</CODE>
+.</P>
+<P>
+<A NAME="50409802_pgfId-435164"></A>Default: NULL</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-413339"></A><CODE>
+trim_type</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-413341"></A>How pattern repetitions that interact with the <CODE>
+trim_curves</CODE>
+ should behave. This field takes the following values:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-447466"></A><A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_none_c</A> - the <CODE>
+trim_curves</CODE>
+ control is not being used.</LI>
+<LI>
+<A NAME="50409802_pgfId-447854"></A><A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_exclude_c</A> - any repetitions that coincide with the boundary of the extruded <CODE>
+trim_curves</CODE>
+ are excluded in full.</LI>
+<LI>
+<A NAME="50409802_pgfId-447544"></A><A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_partial_c</A> - any repetitions that coincide with the boundary of the extruded <CODE>
+trim_curves</CODE>
+ are trimmed at the boundary, and become partial repetitions.</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-447387"></A>See the <EM>
+<A HREF=../pk_index.html>PK Interface Programming Reference</A> Manual</EM> for more information.</P>
+<P>
+<A NAME="50409802_pgfId-435223"></A>Default: <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_none_c</A></P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-412875"></A>At least one constraint must be set for each of the <CODE>
+cell</CODE>
+’s three axis directions, unless the pattern is periodic in that direction. The i_axis and j_axis directions may be constrained by:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-414041"></A>the number of repetitions in that direction,</LI>
+<LI>
+<A NAME="50409802_pgfId-414140"></A>or one or more loops of polylines supplied using the <CODE>
+trim_curves</CODE>
+ structure,</LI>
+<LI>
+<A NAME="50409802_pgfId-414252"></A>or both constraints applied in combination, in which case neither will be exceeded.</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-537878"></A>To restrict the pattern to fewer than three dimensions, so that only one layer of repetitions occurs in any particular direction, the values in the associated repetitions interval should be equal, for example (0, 0) or (2, 2).</P>
+<P>
+<A NAME="50409802_pgfId-414525"></A>If <CODE>
+trim_curves</CODE>
+ are supplied, the trimming loops should be specified using polylines whose interpretation depends on the pattern <CODE>
+form</CODE>
+ being used, see <A HREF="fd_chap.021.html#50409802_80383">Section 20.6.2, “Deforming the pattern using a form”</A> for more details. Repetitions in the i_axis and j_axis directions are excluded, either partially or fully, when they intersect with the extruded bound, with the behaviour at the intersection defined by the <CODE>
+trim_type</CODE>
+ control and the <CODE>
+clip</CODE>
+ option. See <A HREF="fd_chap.057.html#50409620_79012">Section 56.6.4, “Controlling the behaviour of clipped ltopology”</A> for more information.</P>
+<P>
+<A NAME="50409802_pgfId-435415"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409802_pgfId-440267"></A>Note: If you are supplying <CODE>
+trim_curves</CODE>
+ then the <CODE>
+trim_type</CODE>
+ must be set to a value other than <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_none_c</A>, and vice versa.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-415670"></A><A HREF="fd_chap.021.html#50409802_32746"><EM>
+Figure 20-9</EM></A> shows a core lattice being patterned using two closed polyline loops to bound the i_axis and j_axis directions, which creates a gap in the lattice around the smaller loop. The view direction is parallel to the k_axis direction, so the pattern depth in this direction is not shown. The <CODE>
+trim_type</CODE>
+ has been set to <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_exclude_c</A>.</P>
+<P>
+<A NAME="50409802_pgfId-452046"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-178.gif">
+
+<P>
+<A NAME="50409802_pgfId-417537"></A>Figure 20-9 <A NAME="50409802_32746"></A>Patterning a core lattice using trim curve loops to bound repetitions</P>
+<P>
+<A NAME="50409802_pgfId-415750"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409802_pgfId-415823"></A>Note: The intersections and exclusions of pattern repetitions with the extruded <CODE>
+trim_curves</CODE>
+ are calculated after the pattern <CODE>
+form</CODE>
+ deformation has been applied but before any <CODE>
+callback</CODE>
+ deformation is applied.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H3>
+<A NAME="50409802_pgfId-391191"></A>	20.6.2 	<A NAME="50409802_80383"></A>Deforming the pattern using a form </H3>
+<P>
+<A NAME="50409802_pgfId-390022"></A>Optionally, you can relocate and/or deform the pattern by supplying a pattern form . The <CODE>
+form</CODE>
+ option specifies the type of pattern deformation that will be applied to the cell, and supplies data that defines the pattern. The type can be one of the following values:</P>
+<P>
+<A NAME="50409802_pgfId-510851"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-391385"></A>Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-391387"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-391389"></A><A HREF=../headers/pk_pattern_type_t.html>PK_pattern_type_rectilinear_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-391391"></A>The pattern deformation is rectilinear</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-510594"></A><A HREF=../headers/pk_pattern_type_t.html>PK_pattern_type_axial_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-510596"></A>The pattern deformation is defined by an axis, producing a result that wraps around a cylinder</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-391393"></A><A HREF=../headers/pk_pattern_type_t.html>PK_pattern_type_original_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-391395"></A>The pattern does not deform or relocate the cell. Default</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50409802_pgfId-397420"></A>20.6.2.1 Producing a rectilinear pattern </H4>
+<P>
+<A NAME="50409802_pgfId-511008"></A>A rectilinear pattern is used to map the repetitions of the <CODE>
+cell</CODE>
+ onto a different basis set, which can provide any combination of translation, rotation or shearing in the result. The pattern is defined by the <A HREF=../headers/pk_pattern_rectilinear_o_t.html>PK_pattern_rectilinear_o_t</A>, which contains the following fields:</P>
+<P>
+<A NAME="50409802_pgfId-526544"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-512614"></A>Field</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-512616"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-512618"></A><CODE>
+origin</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-512620"></A>The origin of the pattern, specifying the location that the minimum corner of the skewbox of the <CODE>
+cell</CODE>
+ will be relocated to.</P>
+<P>
+<A NAME="50409802_pgfId-514514"></A>The effect of this option is to translate the pattern repetitions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-512622"></A><CODE>
+direction1<BR>
+direction2<BR>
+direction3</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-512624"></A>The directions of the rectilinear pattern, which reorient the axes of the skewbox of the <CODE>
+cell</CODE>
+. The i_axis of the skewbox corresponds to <CODE>
+direction1</CODE>
+, the j_axis to <CODE>
+direction2</CODE>
+ and the k_axis to <CODE>
+direction3</CODE>
+.</P>
+<P>
+<A NAME="50409802_pgfId-514505"></A>The effect of these options is to rotate and/or shear the pattern repetitions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-512626"></A><CODE>
+length1<BR>
+length2<BR>
+length3</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-514385"></A>The lengths between adjacent pattern instances in the associated directions.</P>
+<P>
+<A NAME="50409802_pgfId-514496"></A>The effect of these options is also to shear the pattern repetitions.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-512629"></A>When <CODE>
+trim_curves</CODE>
+ are supplied, the polylines must lie in a plane containing the i_axis and j_axis directions of the pattern <CODE>
+form</CODE>
+. Internally, during the patterning operation, Parasolid applies the bound by extruding the loops of polylines in the normal direction of the plane.</P>
+
+
+<H4>
+<A NAME="50409802_pgfId-510980"></A>20.6.2.2 <A NAME="50409802_68039"></A>Producing an axial pattern </H4>
+<P>
+<A NAME="50409802_pgfId-511056"></A>An axial pattern is used to map the repetitions of the <CODE>
+cell</CODE>
+ into a cylindrical parameter space, producing a pattern that is periodic in one direction. An example of such a pattern is shown in <A HREF="fd_chap.021.html#50409802_59023"><EM>
+Figure 20-10</EM></A> where two repetitions have been used in each of the axial and radial directions, and a full period of repetitions has been specified in the direction around the axis.</P>
+<P>
+<A NAME="50409802_pgfId-516926"></A>&nbsp;</P>
+<P>
+<A NAME="50409802_pgfId-516631"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-179.gif">
+
+<P>
+<A NAME="50409802_pgfId-515018"></A>Figure 20-10 <A NAME="50409802_59023"></A>A lattice created using an axial pattern</P>
+<P>
+<A NAME="50409802_pgfId-515053"></A>The pattern is defined by the <A HREF=../headers/pk_pattern_axial_o_t.html>PK_pattern_axial_o_t</A>, which contains the following fields:</P>
+<P>
+<A NAME="50409802_pgfId-515214"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515192"></A>Field</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515194"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515196"></A><CODE>
+axis</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515198"></A>The axis of the pattern.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515201"></A><CODE>
+origin</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515205"></A>The origin of the pattern, corresponding to the (u, v) = (0, 0) location in the pattern’s cylindrical parameter space.</P>
+<P>
+<A NAME="50409802_pgfId-526217"></A>The minimum corner of the skewbox of the <CODE>
+cell</CODE>
+ will be relocated to this position and, through a mapping of the <CODE>
+cell</CODE>
+ axes onto the cylindrical parameter space, this position defines the zeroth repetition in each of the pattern directions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515208"></A><CODE>
+radial_length</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515213"></A>The length between adjacent pattern repetitions in the radial direction. The k_axis of the skewbox of the <CODE>
+cell</CODE>
+ is mapped onto the radial direction of the pattern.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515720"></A>axial_length</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515722"></A>The length between adjacent pattern repetitions in the direction along the axis. The j_axis of the skewbox of the <CODE>
+cell</CODE>
+ is mapped onto the axial direction of the pattern.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515716"></A>reps_per_period</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-515718"></A>The number of pattern repetitions in a complete period around the axis. The i_axis of the skewbox of the <CODE>
+cell</CODE>
+ is mapped onto the direction around the axis.</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-526425"></A>When <CODE>
+trim_curves</CODE>
+ are supplied, the polylines are interpreted in the context of the pattern’s cylindrical parameter space, rather than in 3D space. That is, the polylines act similarly to the 2D B-curves that define an SP-curve. <A HREF="fd_chap.021.html#50409802_69894"><EM>
+Figure 20-11</EM></A> shows an example where a trimming polyline has been created by sampling around an edge that bounds a hole through a cylindrical model, constraining the lattice to fit the hole. The <CODE>
+trim_type</CODE>
+ has been set to <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_partial_c</A>.</P>
+<P>
+<A NAME="50409802_pgfId-520438"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-180.gif">
+
+<P>
+<A NAME="50409802_pgfId-516241"></A>Figure 20-11 <A NAME="50409802_69894"></A>An example of a lattice created using an axial pattern and a trim curve</P>
+
+
+
+<H3>
+<A NAME="50409802_pgfId-509913"></A>	20.6.3 	<A NAME="50409802_21109"></A>Deforming the pattern using a callback </H3>
+<P>
+<A NAME="50409802_pgfId-385944"></A>The <CODE>
+callback</CODE>
+ option can be also be used to geometrically deform the supplied pattern. The option takes user-supplied information to deform patterned positions. <A HREF="fd_chap.021.html#50409802_78963"><EM>
+Figure 20-12</EM></A> shows a core lattice being deformed using the <CODE>
+callback</CODE>
+ to create a patterned lattice, with the repetition bounds in the <CODE>
+bound</CODE>
+ option set to (0 4) in two directions and (0 0) in the other direction. See the <EM>
+<A HREF=../pk_index.html>PK Interface Programming Reference</A> Manual</EM> for more information on the <CODE>
+callback</CODE>
+ option.</P>
+<P>
+<A NAME="50409802_pgfId-511104"></A>When a <CODE>
+callback</CODE>
+ function is supplied, the interpretation of the positions passed by Parasolid to your application’s code depends on the <CODE>
+form</CODE>
+ that is being used:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-528968"></A>For patterns of type <A HREF=../headers/pk_pattern_type_t.html>PK_pattern_type_original_c</A> or <A HREF=../headers/pk_pattern_type_t.html>PK_pattern_type_rectilinear_c</A>, the <CODE>
+receive_positions</CODE>
+ will be lball locations in 3D world coordinates.</LI>
+<LI>
+<A NAME="50409802_pgfId-529185"></A>For patterns of type <A HREF=../headers/pk_pattern_type_t.html>PK_pattern_type_axial_c</A>, the <CODE>
+receive_positions</CODE>
+ will be lball locations in the pattern’s parameter space, which is formed by the <CODE>
+axis</CODE>
+ and <CODE>
+origin</CODE>
+ of the axial pattern form.</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-533359"></A>Your application’s callback code should provide the <CODE>
+return_positions</CODE>
+ for the lballs to Parasolid in 3D world coordinates.</P>
+<P>
+<A NAME="50409802_pgfId-386054"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409802_pgfId-386064"></A>Note: If both a pattern <CODE>
+form</CODE>
+ and a <CODE>
+callback</CODE>
+ are supplied, the callback is applied after any deformation is applied from the pattern.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-394767"></A>&nbsp;</P>
+<P>
+<A NAME="50409802_pgfId-369181"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-181.gif">
+
+<P>
+<A NAME="50409802_pgfId-369154"></A>Figure 20-12 <A NAME="50409802_78963"></A>Creating a lattice by relocating and deforming a pattern using the <CODE>
+callback</CODE>
+ option</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-368342"></A>20.7	<A NAME="50409802_73207"></A>Creating a lattice-like mesh body 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-368782"></A>You can use <A HREF=../headers/pk_body_make_patterned.html>PK_BODY_make_patterned</A> to create a lattice-like mesh body by patterning a facet body as illustrated in <A HREF="fd_chap.021.html#50409802_21433"><EM>
+Figure 20-13</EM></A> with repetition bounds in the <CODE>
+bound</CODE>
+ option set to (-2 2) in all three directions. If you supply a sheet body then it must be open such that its laminar edges match neighbouring repetitions.This function shares many options with <A HREF=../headers/pk_lattice_make_patterned.html>PK_LATTICE_make_patterned</A>. For more information on these options, see <A HREF="fd_chap.021.html#50409802_50136">Section 20.6, “Creating a lattice structure from a core lattice”</A>.</P>
+<P>
+<A NAME="50409802_pgfId-395026"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409802_pgfId-395056"></A>Note: The input body must only contain facet geometry.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-393445"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-182.gif">
+
+<P>
+<A NAME="50409802_pgfId-370124"></A>Figure 20-13 <A NAME="50409802_21433"></A>Creating a lattice-like mesh body</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-336173"></A>20.8	Creating a facet body from a lattice 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-336174"></A>You can create a solid body from lattice geometry using <A HREF=../headers/pk_lattice_make_bodies.html>PK_LATTICE_make_bodies</A>.<A NAME="50409802_87599"></A> The solid body can have one or more closed mesh faces. See the <EM>
+<A HREF=../pk_index.html>PK Interface Programming Reference</A> Manual</EM> for more information on this function.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-342952"></A>20.9	Clipping a lattice to fit your model 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-343133"></A>The process of trimming or cutting down a lattice to fit a model, or a sub-set of a model, is referred to as <STRONG>
+clipping</STRONG>. You can clip a lattice with one or more clip entities using <A HREF=../headers/pk_lattice_clip.html>PK_LATTICE_clip</A>. See <A HREF="fd_chap.057.html#50409620_88599">Section 56.6, “Clipping Lattices”</A>, for more information.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-456434"></A>20.10	<A NAME="50409802_30303"></A>Lattices in regions 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-467487"></A>Lattices can be embedded in regions to provide additional context and information about the construction of the associated body. For example, a lattice with a solid interior in an otherwise void region could be used as a lightweight but strong structure.</P>
+<P>
+<A NAME="50409802_pgfId-580302"></A>&nbsp;</P>
+<P>
+<A NAME="50409802_pgfId-566353"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-183.gif">
+
+<P>
+<A NAME="50409802_pgfId-566310"></A>Figure 20-14 Example of a region containing an embedded lattice</P>
+<P>
+<A NAME="50409802_pgfId-460924"></A>Parasolid supports the following relationships between regions and the lattices embedded in them:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-459543"></A>Each individual lattice-region relationship is defined by a frame. See <A HREF="fd_chap.015.html#50409796_99429">Section 14.2.9, “Frame”</A>, for more information on frames.</LI>
+<LI>
+<A NAME="50409802_pgfId-459544"></A>A lattice may be embedded in multiple regions. This can be used, for example, if you have a cellular model where distinct regions share the same lattice structure.</LI>
+<LI>
+<A NAME="50409802_pgfId-459545"></A>A region may embed a single lattice.</LI>
+<LI>
+<A NAME="50409802_pgfId-576936"></A>A region and its embedded lattice must be of opposite solidity.</LI>
+<LI>
+<A NAME="50409802_pgfId-576918"></A>The lattice may be smaller or larger than the region.</LI>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-577378"></A>There is no requirement that the lattice fills or fits the region perfectly.</LI>
+<LI>
+<A NAME="50409802_pgfId-577399"></A>If a lattice is larger than its region, the embedded portion is considered to be bounded by the shells of the region. This is analogous to surfaces that are larger than faces, where the edges of the face delineate a bounded area of the surface.</LI>
+</UL>
+</UL>
+<P>
+<A NAME="50409802_pgfId-564934"></A>When an application wishes to embed one or more lattices in a body, internal partition faces may need to be introduced so that regions can be kept separate allowing neighbouring regions to have different material properties. See <A HREF="fd_chap.016.html#50409797_34460">Section 15.7.1, “Cellular bodies”</A>, for more information.</P>
+<P>
+<A NAME="50409802_pgfId-568182"></A>If you want to treat the part as a manifold solid after you have embedded lattices, you can do this using the <A HREF=../headers/pk_session_set_cellular_guise.html>PK_SESSION_set_cellular_guise</A> function. See <A HREF="fd_chap.016.html#50409797_67963">Section 15.10, “Treating cellular bodies as manifold bodies”</A> for more information.</P>
+
+<H3>
+<A NAME="50409802_pgfId-540242"></A>	20.10.1 	<A NAME="50409802_95227"></A>Embedding lattices </H3>
+<P>
+<A NAME="50409802_pgfId-468330"></A>You can embed a lattice in a region using <A HREF=../headers/pk_region_embed_lattices.html>PK_REGION_embed_lattices</A>, which takes a solid <CODE>
+region</CODE>
+ into which the lattice will be embedded, and parallel arrays of <CODE>
+lattices</CODE>
+ and their associated <CODE>
+senses</CODE>
+, which specify the solidity of the corresponding lattice in the region. These arrays must be of length 1. See <A HREF="fd_chap.021.html#50409802_97771">Section 20.10.2, “Frame-lattice sense”</A> for more information.</P>
+<P>
+<A NAME="50409802_pgfId-542682"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409802_pgfId-542681"></A>Note: The region passed to <A HREF=../headers/pk_region_embed_lattices.html>PK_REGION_embed_lattices</A> must be solid, as enquired by <A HREF=../headers/pk_region_is_solid.html>PK_REGION_is_solid</A>.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-553634"></A>When you embed a lattice in a region, Parasolid will do as follows:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-554334"></A>The region’s owning body’s type will be changed to PK_BODY_type_general_c if it is not already.</LI>
+<LI>
+<A NAME="50409802_pgfId-547407"></A>If the associated sense of the embedded lattice is PK_LOGICAL_true (i.e. the lattice contains solid material), the region will be made void in order to preserve opposite solidity.</LI>
+<LI>
+<A NAME="50409802_pgfId-547548"></A>If the region possessed a density attribute (SDL/TYSA_REGION_DENSITY) and the associated sense of the embedded lattice is PK_LOGICAL_true, the region density is copied to a new frame density attribute (SDL/TYSA_FRAME_DENSITY) that is attached to the frame. (Region density attributes will remain unchanged regardless of the sense of the embedded lattice.)</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-562371"></A>See <A HREF="fd_chap.124.html#50409918_55007">Section A.3.4, “Density attributes”</A> for more information on the region and frame density attributes.</P>
+<P>
+<A NAME="50409802_pgfId-468443"></A><A HREF=../headers/pk_region_embed_lattices.html>PK_REGION_embed_lattices</A> takes the following options:</P>
+<P>
+<A NAME="50409802_pgfId-565059"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544636"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544638"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544640"></A><CODE>
+want_frames</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544642"></A>Whether to return the tags of the frames created by embedding. Default: PK_LOGICAL_false</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544644"></A><CODE>
+attr_transfer</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544646"></A>Controls the transfer of attributes between the region and the newly created frame. This can take the following values</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-545796"></A>PK_ATTRIB_transfer_no_c: no attributes should be transferred. (Default)</LI>
+<LI>
+<A NAME="50409802_pgfId-545988"></A>PK_ATTRIB_transfer_copy_c: Copy all or some of the region’s attributes to the frame, depending on the values of the <CODE>
+n_attdefs</CODE>
+ and <CODE>
+attdefs</CODE>
+ options.</LI>
+<LI>
+<A NAME="50409802_pgfId-546015"></A>PK_ATTRIB_transfer_move_c: Move all or some of the region’s attributes to the frame, depending on the values of the <CODE>
+n_attdefs</CODE>
+ and <CODE>
+attdefs</CODE>
+ options.</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-561796"></A>Attributes are only eligible for transfer if they may be owned by both regions and frames.</P>
+<P>
+<A NAME="50409802_pgfId-545812"></A>See the <EM>
+<A HREF=../pk_index.html>PK Interface Programming Reference</A> Manual</EM> for more information on attribute transfer.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544651"></A><CODE>
+n_attdefs<BR>
+attdefs</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544653"></A>The number of attribute definitions, and the list of attribute definitions, specifying which set of attributes should be transferred from the region to the frame during embedding. These options only take effect when the <CODE>
+attr_transfer</CODE>
+ option is set to a non-default value.</P>
+<P>
+<A NAME="50409802_pgfId-561489"></A>When <CODE>
+n_attdefs</CODE>
+ is 0, all attributes that are eligible for transfer to the region will be transferred</P>
+<P>
+<A NAME="50409802_pgfId-546638"></A>Defaults: 0, NULL</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-544665"></A><CODE>
+group_transfer</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-546801"></A>Whether the newly created frame should be added to groups that the region belongs to, and whether the region should remain in those groups. This can take the following values</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-546802"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_no_c</A>: the frame is not added to any groups. (Default)</LI>
+<LI>
+<A NAME="50409802_pgfId-546803"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_add_c</A>: the frame is added to each of the groups that the region is a member of, and that can contain both regions and groups.</LI>
+<LI>
+<A NAME="50409802_pgfId-546855"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_replace_c</A>: the frame will replace the region in each of the groups that the region is a member of, and that can contain both regions and groups</LI>
+<LI>
+<A NAME="50409802_pgfId-554588"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_remove_c</A>: the region is removed from any groups that it is a member of. The frame is not added to any groups.</LI>
+</UL>
+</TD>
+</TR>
+</TABLE>
+
+
+<H3>
+<A NAME="50409802_pgfId-459673"></A>	20.10.2 	<A NAME="50409802_97771"></A>Frame-lattice sense </H3>
+<P>
+<A NAME="50409802_pgfId-461860"></A>When a lattice is embedded in a region, the lattice’s solidity is controlled by the sense of the associated frame. See <A HREF="fd_chap.015.html#50409796_99429">Section 14.2.9, “Frame”</A>, for more information on frames. When the sense is:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-459885"></A>PK_LOGICAL_true, the interior volume of the lattice is considered to be solid within the limits of the region.</LI>
+<LI>
+<A NAME="50409802_pgfId-462739"></A>PK_LOGICAL_false, the interior volume of the lattice is considered to be void within the limits of the region.</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-462671"></A>The sense of the frame is set when calling <A HREF=../headers/pk_region_embed_lattices.html>PK_REGION_embed_lattices</A>, and can be enquired using <A HREF=../headers/pk_frame_ask_sense.html>PK_FRAME_ask_sense</A>, <A HREF=../headers/pk_lattice_ask_regions.html>PK_LATTICE_ask_regions</A> or <A HREF=../headers/pk_region_ask_lattices.html>PK_REGION_ask_lattices</A>, the latter two of which will optionally return arrays of senses and/or frames.</P>
+<P>
+<A NAME="50409802_pgfId-462627"></A>The effect of the sense of the frame when embedding a lattice in regions of different solidity is shown in <A HREF="fd_chap.021.html#50409802_91756"><EM>
+Figure 20-15</EM></A>. Examples where these configurations may arise are:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-472490"></A>A solid region embedding a false sense frame has material type “partial solid”. This may represent an internal, lattice-shaped void within the region, which could allow a reduction in mass without reducing strength.</LI>
+<LI>
+<A NAME="50409802_pgfId-472690"></A>A void region embedding a true sense frame has material type “partial void”. This may represent a solid lattice that adds strength to an internal void in a model.</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-544772"></A>See <A HREF=../headers/pk_region_ask_type.html>PK_REGION_ask_type</A> for more details on the material type of a region.</P>
+<P>
+<A NAME="50409802_pgfId-463452"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-184.gif">
+
+<P>
+<A NAME="50409802_pgfId-463425"></A>Figure 20-15 <A NAME="50409802_91756"></A>The effect of frame sense</P>
+
+
+<H3>
+<A NAME="50409802_pgfId-540196"></A>	20.10.3 	Removing lattices </H3>
+<P>
+<A NAME="50409802_pgfId-540332"></A>A lattice can be removed from a region using <A HREF=../headers/pk_region_remove_lattice.html>PK_REGION_remove_lattice</A>, which receives an input <CODE>
+region</CODE>
+ and the <CODE>
+lattice</CODE>
+ that is to be removed. When you remove a lattice from a region, Parasolid will do as follows:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-548648"></A>The frame that connects the owning region to the lattice is deleted.</LI>
+<LI>
+<A NAME="50409802_pgfId-548929"></A>If the lattice is no longer owned by any frames, it will become orphan geometry in its partition.</LI>
+<LI>
+<A NAME="50409802_pgfId-548840"></A>If the operation removes the final lattice from a void region, the region will be made solid. If, as a result of the change of solidity, the body becomes a manifold solid its type will be converted to PK_BODY_type_solid_c.</LI>
+<LI>
+<A NAME="50409802_pgfId-549353"></A>Transfer of density attributes is as follows:</LI>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-554955"></A>If the region has a density attribute (SDL/TYSA_REGION_DENSITY) before removal, this is unchanged.</LI>
+<LI>
+<A NAME="50409802_pgfId-549327"></A>If the region has no density attribute before removal and the frame has a frame density attribute (SDL/TYSA_FRAME_DENSITY), the frame density will be converted to a region density that is attached to the region.</LI>
+<LI>
+<A NAME="50409802_pgfId-549722"></A>Any frame density attributes are deleted with their frame.</LI>
+</UL>
+</UL>
+<P>
+<A NAME="50409802_pgfId-561391"></A>See <A HREF="fd_chap.124.html#50409918_55007">Section A.3.4, “Density attributes”</A> for more information on the region and frame density attributes.</P>
+<P>
+<A NAME="50409802_pgfId-548696"></A><A HREF=../headers/pk_region_remove_lattice.html>PK_REGION_remove_lattice</A> takes the following options:</P>
+<P>
+<A NAME="50409802_pgfId-572301"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-550164"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-550166"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-550172"></A><CODE>
+attr_transfer</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-550174"></A>Controls the transfer of attributes from the frame to the region. This can take the following values</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-550175"></A>PK_ATTRIB_transfer_no_c: no attributes should be transferred. (Default)</LI>
+<LI>
+<A NAME="50409802_pgfId-550177"></A>PK_ATTRIB_transfer_move_c: Move all or some of the frame’s attributes to the region, depending on the values of the <CODE>
+n_attdefs</CODE>
+ and <CODE>
+attdefs</CODE>
+ options.</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-562606"></A>Attributes are only eligible for transfer if they may be owned by both regions and frames.</P>
+<P>
+<A NAME="50409802_pgfId-550181"></A>See the <EM>
+<A HREF=../pk_index.html>PK Interface Programming Reference</A> Manual</EM> for more information on attribute transfer.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-550183"></A><CODE>
+n_attdefs<BR>
+attdefs</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-562894"></A>The number of attribute definitions, and the list of attribute definitions, specifying which set of attributes should be transferred from the frame to the region during removal. These options only take effect when the <CODE>
+attr_transfer</CODE>
+ option is set to a non-default value.</P>
+<P>
+<A NAME="50409802_pgfId-562739"></A>When <CODE>
+n_attdefs</CODE>
+ is 0, all attributes that are eligible for transfer to the region will be transferred.</P>
+<P>
+<A NAME="50409802_pgfId-562740"></A>Defaults: 0, NULL</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-550188"></A><CODE>
+group_transfer</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-550190"></A>Whether the region should replace the frame in any groups that the frame belongs to before removal. This can take the following values</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-550191"></A><A HREF=../headers/pk_remove_frame_group_t.html>PK_remove_frame_group_discard_c</A>: the region is not added to any groups. (Default)</LI>
+<LI>
+<A NAME="50409802_pgfId-550193"></A><A HREF=../headers/pk_remove_frame_group_t.html>PK_remove_frame_group_replace_c</A>: if the frame is a member of any groups that the region is not already a member of, and the groups may contain both frames and regions, the region will replace the frame in each of those groups.</LI>
+</UL>
+</TD>
+</TR>
+</TABLE>
+
+
+<H3>
+<A NAME="50409802_pgfId-576068"></A>	20.10.4 	<A NAME="50409802_81954"></A>Imprinting embedded lattices </H3>
+<P>
+<A NAME="50409802_pgfId-576069"></A>You can create facet geometry from regions containing frames using <A HREF=../headers/pk_topol_imprint_frames.html>PK_TOPOL_imprint_frames</A>. This function takes an array of regions or a single body and imprints all frames onto their respective regions. See <A HREF="fd_chap.015.html#50409796_27838">Section 14.2, “Topological entities”</A>, for more information on regions and frames.</P>
+<P>
+<A NAME="50409802_pgfId-576073"></A><A HREF=../headers/pk_topol_imprint_frames.html>PK_TOPOL_imprint_frames</A> has the following options:</P>
+<P>
+<A NAME="50409802_pgfId-576091"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-576076"></A>Option</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-576078"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-576080"></A><CODE>
+distance_tolerance</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-576082"></A>Tolerance used when creating new facet faces from a frame’s lattice. Default: 0.0</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-576084"></A><CODE>
+grow_void_regions</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-576086"></A>Whether to extend or merge void material regions during the imprint operation. Default: <A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_always_c</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-576088"></A><CODE>
+grow_solid_regions</CODE>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-576090"></A>Whether to extend or merge solid material regions during the imprint operation. Default: <A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_always_c</A></P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-576092"></A>When the frame is imprinted onto its region, the lattice attached to the frame is converted to faces with facet geometry bounded by the region. The frame itself is deleted.</P>
+<P>
+<A NAME="50409802_pgfId-576093"></A>If both the <CODE>
+grow_void_regions</CODE>
+ and <CODE>
+grow_solid_regions</CODE>
+ options are set to <A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_always_c</A>, regions are extended into adjacent regions of the same solidity and into adjacent imprinted frames with the same frame sense.</P>
+<P>
+<A NAME="50409802_pgfId-576097"></A><A HREF="fd_chap.021.html#50409802_54324"><EM>
+Figure 20-16</EM></A> illustrates this with a void lattice (with a frame sense of PK_LOGICAL_false) embedded in a solid region and a solid lattice (with a frame sense of PK_LOGICAL_true) embedded in a void region. </P>
+<P>
+<A NAME="50409802_pgfId-576101"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-185.gif">
+
+<P>
+<A NAME="50409802_pgfId-576103"></A>Figure 20-16 <A NAME="50409802_54324"></A>Creating facet geometry by imprinting frames onto their respective regions</P>
+<P>
+<A NAME="50409802_pgfId-576432"></A>Setting the <CODE>
+grow_void_regions</CODE>
+ option to <A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_always_c</A> ensures that outside faces and partition faces do not become sheet faces. For more information on face types see <A HREF="fd_chap.016.html#50409797_64113">Section 15.10.1, “Face and region types”</A>.</P>
+<P>
+<A NAME="50409802_pgfId-576104"></A>If both the <CODE>
+grow_void_regions</CODE>
+ and <CODE>
+grow_solid_regions</CODE>
+ options are set to <A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_no_c</A>, regions are not merged or extended and imprinted frames in adjacent regions produce multiple regions. This ensures that all region attributes and any frame densities (which are converted to region densities) remain on the result. </P>
+<P>
+<A NAME="50409802_pgfId-576108"></A>See the <EM>
+<A HREF=../pk_index.html>PK Interface Programming Reference</A> Manual</EM> for more information on merging or extending regions and its effect on attribute transfer and group behaviour.</P>
+<P>
+<A NAME="50409802_pgfId-578301"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-578335"></A>Related Topics: </P>
+<UL>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-578317"></A><A HREF="fd_chap.016.html#50409797_64113">Section 15.10.1, “Face and region types”</A></LI>
+<LI>
+<A NAME="50409802_pgfId-578353"></A><A HREF="fd_chap.016.html#50409797_34460">Section 15.7.1, “Cellular bodies”</A></LI>
+<LI>
+<A NAME="50409802_pgfId-578371"></A><A HREF="fd_chap.124.html#50409918_55007">Section A.3.4, “Density attributes”</A></LI>
+</UL>
+</UL>
+</TD>
+</TR>
+</TABLE>
+
+
+<H3>
+<A NAME="50409802_pgfId-570510"></A>	20.10.5 	<A NAME="50409802_27972"></A>Rendering embedded lattices </H3>
+<P>
+<A NAME="50409802_pgfId-570511"></A><A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A> allows you to visualise lattices embedded in a body by rendering a 3-D representation of the lattice geometry from an input array of bodies or regions. </P>
+<P>
+<A NAME="50409802_pgfId-570512"></A>The embedded lattice geometry is rendered using primitives (cones, cylinders, spheres). For each region that contains a lattice, facets will be returned for all boundary faces of the region. The facet normals for these facets point out of the region.</P>
+<P>
+<A NAME="50409802_pgfId-570552"></A><A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A> will only render the geometry of the part of the lattice embedded in the input bodies or regions. Lrods that lie in or partially in the region and all of their lballs will be returned as illustrated in <A HREF="fd_chap.021.html#50409802_38656"><EM>
+Figure 20-17</EM></A>. In your graphics pipeline you should combine the rendering primitives and the trimming facets to display only the parts of the primitives that are within the region itself.</P>
+<P>
+<A NAME="50409802_pgfId-570549"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-186.gif">
+
+<P>
+<A NAME="50409802_pgfId-570551"></A>Figure 20-17 <A NAME="50409802_38656"></A>Rendering the embedded lattice only via your graphics pipeline</P>
+<P>
+<A NAME="50409802_pgfId-570556"></A>If you want to render the body which contains the lattice as well as the embedded part of the lattice, your application needs to first call <A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A> to render the faces of the body, followed by a call to <A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A>. An example of what this may look like is illustrated in <A HREF="fd_chap.021.html#50409802_37475"><EM>
+Figure 20-18</EM></A>.</P>
+<P>
+<A NAME="50409802_pgfId-571927"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-187.gif">
+
+<P>
+<A NAME="50409802_pgfId-571852"></A>Figure 20-18 <A NAME="50409802_37475"></A>A graphical representation of rendering a solid body and only the embedded lattice geometry</P>
+<P>
+<A NAME="50409802_pgfId-570557"></A><A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A> contains options to let you control:</P>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-570560"></A>the minimum and maximum width of facets in the boundary faces. See <A HREF="fd_chap.109.html#50409900_75842">Section 108.2.7.1, “Minimum and maximum facet width”</A> for more information. </LI>
+<LI>
+<A NAME="50409802_pgfId-570562"></A>the distance and angular tolerances between the model geometry and its associated facets.</LI>
+<LI>
+<A NAME="50409802_pgfId-570565"></A>working with bodies created in different scales. See <A HREF="fd_chap.107.html#50409898_39251">Section 106.3.25, “Rendering bodies created in different scales”</A> for more information.</LI>
+</UL>
+<P>
+<A NAME="50409802_pgfId-570874"></A>If you wish to render the whole lattice, then your application needs to call <A HREF=../headers/pk_geom_render.html>PK_GEOM_render</A> with its <CODE>
+lattice</CODE>
+ option set appropriately. See <A HREF="fd_chap.107.html#50409898_90929">Section 106.2.4, “Lattice”</A> for more information on using this option.</P>
+<P>
+<A NAME="50409802_pgfId-575813"></A>For more information on volume rendering and the GO output, see <A HREF="di_chap.05.html#42323">Chapter 4, “Graphical Output”</A> in the <EM><A HREF=../di_index.html>Downward Interfaces</A></EM>.</P>
+<P>
+<A NAME="50409802_pgfId-570570"></A><A NAME="50409802_78624"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409802_pgfId-570569"></A>Note: When using <A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A>, the value of <A HREF=../headers/pk_session_set_cellular_guise.html>PK_SESSION_set_cellular_guise</A> is ignored.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-570574"></A>Related Topics: </P>
+<UL>
+<UL>
+<LI>
+<A NAME="50409802_pgfId-570578"></A><A HREF="fd_chap.021.html#50409802_95227">Section 20.10.1, “Embedding lattices”</A></LI>
+<LI>
+<A NAME="50409802_pgfId-570582"></A><A HREF="fd_chap.016.html#50409797_34460">Section 15.7.1, “Cellular bodies”</A></LI>
+</UL>
+</UL>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409802_pgfId-336180"></A>20.11	<A NAME="50409802_46164"></A>Lattice specific operations 
+
+
+</H1>
+<P>
+<A NAME="50409802_pgfId-336184"></A>Parasolid provides the following functions for enquiring about lattices and their substructures:</P>
+<P>
+<A NAME="50409802_pgfId-336242"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336187"></A>Function</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336189"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-422114"></A><A HREF=../headers/pk_lattice_ask_connectivity.html>PK_LATTICE_ask_connectivity</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-422116"></A>Queries whether or not the lattice is disjoint</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336191"></A><A HREF=../headers/pk_lattice_ask_n_lballs.html>PK_LATTICE_ask_n_lballs</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336193"></A>Returns the number of lballs in the given lattice</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336195"></A><A HREF=../headers/pk_lattice_ask_n_lrods.html>PK_LATTICE_ask_n_lrods</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336197"></A>Returns the number of lrods in the given lattice</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-338946"></A><A HREF=../headers/pk_lattice_ask_part.html>PK_LATTICE_ask_part</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-338948"></A>Returns the part that owns the given lattice</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-342300"></A><A HREF=../headers/pk_lattice_do_for_all_lballs.html>PK_LATTICE_do_for_all_lballs</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-342302"></A>Calls the given callback function for every lball in the given lattice</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-463273"></A><A HREF=../headers/pk_lattice_ask_regions.html>PK_LATTICE_ask_regions</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-463275"></A>Returns the set of regions in which the given lattice is embedded</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336203"></A><A HREF=../headers/pk_lattice_do_for_all_lrods.html>PK_LATTICE_do_for_all_lrods</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336205"></A>Calls the given callback function for every lrod in the given lattice</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-347068"></A><A HREF=../headers/pk_lattice_find_box.html>PK_LATTICE_find_box</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-347070"></A>Finds the axis-aligned bounding box of the given lattice</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-363541"></A><A HREF=../headers/pk_lattice_find_nabox.html>PK_LATTICE_find_nabox</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-363543"></A>Returns a non axis-aligned bounding box of the given lattice. See <A HREF="fd_chap.028.html#50409808_32464">Section 27.6.1.1, “Axis-aligned and non axis-aligned boxes”</A> for more information.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-371670"></A><A HREF=../headers/pk_lball_ask_blend.html>PK_LBALL_ask_blend</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-371672"></A>Returns information about the blend on the given lball</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336207"></A><A HREF=../headers/pk_lball_ask_lballs_adj.html>PK_LBALL_ask_lballs_adj</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336209"></A>Returns the adjacent lballs of a given lball</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336211"></A><A HREF=../headers/pk_lball_ask_lrods.html>PK_LBALL_ask_lrods</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336213"></A>Queries the lrods of an lball in a lattice</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336215"></A><A HREF=../headers/pk_lball_ask_position.html>PK_LBALL_ask_position</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336217"></A>Queries the position of the given lball</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336219"></A><A HREF=../headers/pk_lball_ask_radius.html>PK_LBALL_ask_radius</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336221"></A>Returns the radius of the given lball</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336223"></A><A HREF=../headers/pk_lrod_ask_geometry.html>PK_LROD_ask_geometry</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336225"></A>Returns the geometric form of a given lrod</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336227"></A><A HREF=../headers/pk_lrod_ask_lballs.html>PK_LROD_ask_lballs</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336229"></A>Queries the lballs of a given lrod</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336231"></A><A HREF=../headers/pk_ltopol_ask_box.html>PK_LTOPOL_ask_box</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336233"></A>Returns the bounding box of the given ltopols</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336235"></A><A HREF=../headers/pk_ltopol_ask_class.html>PK_LTOPOL_ask_class</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336237"></A>Returns the class of an element of lattice topology</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336239"></A><A HREF=../headers/pk_ltopol_is.html>PK_LTOPOL_is</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-336241"></A>Queries the existence of an ltopol</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-339452"></A><A HREF=../headers/pk_part_ask_con_lattices.html>PK_PART_ask_con_lattices</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-339454"></A>Returns the set of lattices that are attached to the given part as construction geometry</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-503361"></A><A HREF=../headers/pk_partition_has_lattices.html>PK_PARTITION_has_lattices</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-503363"></A>Returns whether the partition contains lattice geometry</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-463383"></A><A HREF=../headers/pk_region_ask_lattices.html>PK_REGION_ask_lattices</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409802_pgfId-463379"></A>Returns the set of lattices that are embedded in the given region</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409802_pgfId-570510"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fd_chap.020.html">Nominal Geometry</A></TD>
+  <TD><A HREF="../fd_index.html">Chapters</A></TD>
+  <TD><A HREF="fd_chap.022.html">Transformations</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

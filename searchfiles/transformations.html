@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.014.html#50409795_pgfId-309454", " Chapter 21, <B>transformations</B> describes the homogenous coordinate <B>transformations</B> that are supported", "Functional Description - Introduction To Basic Concepts In Parasolid");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-531735", " working with these <B>transformations</B>, see Section 21.2, Creating <B>transformations</B> . ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-296496", " can then be combined to give more general <B>transformations</B>. ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-296497", " applied to individual geometrical entities or to whole bodies. <B>Transformations</B> can also be checked for validity, and classified by", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-380906", " Note: Throughout this chapter, <B>transformations</B> are assumed to be supplied in the form", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-296500", " 21.2 Creating <B>transformations</B> ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-296502", " Many of the basic <B>transformations</B> are available directly via: ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-381828", " Parasolid currently does not allow perspective terms in <B>transformations</B> used in modeling operations. This means that the", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-296516", " <B>Transformations</B> can be combined and manipulated using PK_TRANSF_transform_2 . ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-411584", " Parasolid supports large <B>transformations</B> (i.e where the entity lies within the size", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-411586", " be passed into certain Parasolid API that accept <B>transformations</B> as input. These include: ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-411592", " , PK_TRANSF_create_reflection and PK_TRANSF_create_rotation to create the necessary <B>transformations</B> and PK_TRANSF_transform_2 to combine them. ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-410635", " If you are interested in implementing large <B>transformations</B> in your application, please contact Parasolid Support for", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-396506", " 21.3 Applying <B>transformations</B> ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-396508", " <B>Transformations</B> can be applied to geometry, bodies, assemblies, instances, vectors", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-296573", " Note: The order in which <B>transformations</B> are applied is important, e.g. a rotation of", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-296576", " well as bodies and geometry, you can apply <B>transformations</B> to other entities using the following functions: ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-373814", " 21.7 Checking and classifying <B>transformations</B> ", "Functional Description - Transformations");
+top.note("chapters/fd_chap.022.html#50409803_pgfId-377409", " PK functions that receive <B>transformations</B> as arguments have their own requirements on the", "Functional Description - Transformations");
+top.note("chapters/fd_chap.023.html#50409804_pgfId-314480", " Chapter 21, <B>Transformations</B> ", "Functional Description - Assemblies And Instances");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-475954", " calculations involving the creation or manipulation of large <B>transformations</B> to guarantee retaining a session precision of 1.0e", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-460938", " Combining <B>transformations</B> ", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-461640", " order to maintain accuracy when working with large <B>transformations</B> Parasolid requires that: ", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-461774", " and PK_TRANSF_transform_2 to combine them. See Chapter 21, <B>transformations</B> for more information on these functions. ", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-758173", " topologies themselves or the <B>transformations</B> of the topologies. <B>transformations</B> can be supplied via", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-309908", " Tests whether two <B>transformations</B> are equal. ", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-309912", " Note: <B>Transformations</B> can only be compared if they do not contain", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.029.html#50409809_pgfId-366373", " An array of <B>transformations</B> used to transform topologies passed into ", "Functional Description - Mass Properties");
+top.note("chapters/fd_chap.029.html#50409809_pgfId-295133", " 28.7 Calculating the mass properties of topologies with <B>transformations</B> ", "Functional Description - Mass Properties");
+top.note("chapters/fd_chap.029.html#50409809_pgfId-366739", " properties of topologies with rigid <B>transformations</B> and reflection <B>transformations</B>. This option takes an array (of size ", "Functional Description - Mass Properties");
+top.note("chapters/fd_chap.030.html#50409810_pgfId-378427", " arguments. General <B>transformations</B> with no perspective component are supported. ", "Functional Description - Calculating Minimum And Maximum Distance ");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308831", "that contains <B>transformations</B> to apply to each body in ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308833", " If the entire array is PK_ENTITY_null, then no <B>transformations</B> are applied to any of the specified bodies.", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-643542", " Note: <B>Transformations</B> may contain translation, rotation and reflection but not perspective", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.056.html#50409840_pgfId-511657", " Chapter 21, <B>Transformations</B> ", "Functional Description - Instancing And Patterning ");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-329604", " 63.2.1.1 <B>Transformations</B> ", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.072.html#50409858_pgfId-294820", " convexities overflow each other as a result of <B>transformations</B>, you can control which of the clashing features", "Functional Description - Moving Faces");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-541953", " Chapter 21, <B>Transformations</B> ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295101", " 96.4.3 <B>Transformations</B> ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295114", " to decompose it into a combination of primitive <B>transformations</B> and look at their individual effects on the", "Functional Description - Attributes");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-309849", " 105.3.3 Entity <B>transformations</B> ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.112.html#50409903_pgfId-294734", " 111.2 Viewing <B>transformations</B> ", "Functional Description - Parasolid View Matrices");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-300016", " Large <B>transformations</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-299994", " A term used to describe <B>transformations</B> that can position an entity outside of the", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203508", " <B>transformations</B> 295 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203629", " and <B>transformations</B> 1391 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209135", " <B>transformations</B> 1471 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210378", " <B>transformations</B> 295, 834 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210632", " viewing <B>transformations</B> 1471, 1509, 1567 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.04.html#50442254_marker-314303", "Transforms , or <B>transformations</B>, which are used to express geometric operations such", "Overview of Parasolid - Model Structure");
+top.note("chapters/ov_chap.04.html#50442254_pgfId-648857", " Parasolid also supports the use of large <B>transformations</B> in situations where a body lies within the", "Overview of Parasolid - Model Structure");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-276168", " Figure 5-24 <B>Transformations</B> applied to a list of faces ", "Overview of Parasolid - Local Operations");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " topologies old_class_arrays[ N+i ] - class of body <B>transformations</B> NOTE: Each curve must have at least one", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " old_class_arrays[ 1 ] - class of the body <B>transformations</B> int_arrays[ 0 ] - outline error types Outline", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_body_imprint_cus_shadow.html#documentation", "If the transfs argument is NULL, no <B>transformations</B> are applied to the", "PK Reference - PK_BODY_imprint_cus_shadow");
+top.note("headers/pk_body_make_persp_outline.html#documentation", "If applicable, the <B>transformations</B> associated with the entities in", "PK Reference - PK_BODY_make_persp_outline");
+top.note("headers/pk_body_make_persp_outline_r_t.html#documentation", " original_error_transfs The <B>transformations</B> associated with the entities", "PK Reference - PK_BODY_make_persp_outline_r_t");
+top.note("headers/pk_body_make_swept_body.html#documentation", " o Twist and scale <B>transformations</B>", "PK Reference - PK_BODY_make_swept_body");
+top.note("headers/pk_body_make_swept_body_2.html#documentation", " o Twist and scale <B>transformations</B>", "PK Reference - PK_BODY_make_swept_body_2");
+top.note("headers/pk_body_pick_topols.html#declaration", "const PK_TRANSF_t *body_transfs, --- <B>transformations</B>", "PK Reference - PK_BODY_pick_topols");
+top.note("headers/pk_body_transform_o_t.html#declaration", " --- scaling <B>transformations</B>", "PK Reference - PK_BODY_transform_o_t");
+top.note("headers/pk_change_edge_geom_data_t.html#documentation", " offsets and <B>transformations</B> supplied will be", "PK Reference - PK_change_edge_geom_data_t");
+top.note("headers/pk_face_is_coincident.html#documentation", "equivalent when they are not. General affine <B>transformations</B> or those with a", "PK Reference - PK_FACE_is_coincident");
+top.note("headers/pk_face_pattern.html#declaration", "const PK_TRANSF_t transforms[], --- pattern <B>transformations</B>", "PK Reference - PK_FACE_pattern");
+top.note("headers/pk_face_pattern_2.html#declaration", "const PK_TRANSF_t transforms[], --- pattern <B>transformations</B>", "PK Reference - PK_FACE_pattern_2");
+top.note("headers/pk_face_transform.html#declaration", "const PK_TRANSF_t transfs[], --- face <B>transformations</B>", "PK Reference - PK_FACE_transform");
+top.note("headers/pk_face_transform_2.html#declaration", "const PK_TRANSF_t transfs[], --- face <B>transformations</B>", "PK Reference - PK_FACE_transform_2");
+top.note("headers/pk_geom_render.html#declaration", "const PK_TRANSF_t transfs[], --- <B>transformations</B> to be applied to geoms", "PK Reference - PK_GEOM_render");
+top.note("headers/pk_geom_render_line.html#declaration", " --- <B>transformations</B> to be applied to", "PK Reference - PK_GEOM_render_line");
+top.note("headers/pk_geom_transform.html#documentation", "created as <B>transformations</B> of these.", "PK Reference - PK_GEOM_transform");
+top.note("headers/pk_geom_transform_2.html#documentation", "This function has two distinct modes of operation: <B>transformations</B> which modify", "PK Reference - PK_GEOM_transform_2");
+top.note("headers/pk_report_3_t.html#documentation", " the originating topologies classes, an array of <B>transformations</B> and an", "PK Reference - PK_REPORT_3_t");
+top.note("headers/pk_topol_eval_mass_props.html#documentation", " on the <B>transformations</B> specified by n_transfs and transfs . A set", "PK Reference - PK_TOPOL_eval_mass_props");
+top.note("headers/pk_topol_eval_mass_props_o_t.html#declaration", " int n_transfs; --- number of <B>transformations</B> (0)", "PK Reference - PK_TOPOL_eval_mass_props_o_t");
+top.note("headers/pk_topol_eval_mass_props_o_t.html#documentation", " n_transfs Specifies the number of <B>transformations</B> supplied to be", "PK Reference - PK_TOPOL_eval_mass_props_o_t");
+top.note("headers/pk_topol_facet.html#declaration", "const PK_TRANSF_t topol_transfs[], --- applied <B>transformations</B>", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet_2.html#declaration", "const PK_TRANSF_t topol_transfs[], --- applied <B>transformations</B>", "PK Reference - PK_TOPOL_facet_2");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#declaration", " int n_cull_transfs; --- array of view <B>transformations</B> in", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", " set to contain viewing <B>transformations</B> which may contain perspective.", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_find_box_2.html#declaration", "const PK_TRANSF_t transfs[], --- <B>transformations</B> to be applied", "PK Reference - PK_TOPOL_find_box_2");
+top.note("headers/pk_topol_find_box_2.html#documentation", " entries in topols may be transformed by providing <B>transformations</B> in", "PK Reference - PK_TOPOL_find_box_2");
+top.note("headers/pk_topol_find_nabox.html#declaration", "const PK_TRANSF_t transfs[], --- <B>transformations</B> to be applied", "PK Reference - PK_TOPOL_find_nabox");
+top.note("headers/pk_topol_find_nabox.html#documentation", " entities in topols may be transformed by providing <B>transformations</B> in", "PK Reference - PK_TOPOL_find_nabox");
+top.note("headers/pk_topol_render_facet.html#declaration", "const PK_TRANSF_t topol_transfs[], --- applied <B>transformations</B>", "PK Reference - PK_TOPOL_render_facet");
+top.note("headers/pk_topol_render_line.html#declaration", "const PK_TRANSF_t topol_transfs[], --- applied <B>transformations</B>", "PK Reference - PK_TOPOL_render_line");
+top.note("headers/pk_topol_render_volume.html#declaration", "const PK_TRANSF_t topol_transfs[],--- applied <B>transformations</B>", "PK Reference - PK_TOPOL_render_volume");
+top.note("headers/pk_transf_array_t.html#documentation", " PK_TRANSF_t *array; --- array of <B>TRANSFormations</B>", "PK Reference - PK_TRANSF_array_t");
+top.note("headers/pk_transf_is_equal.html#declaration", " PK_LOGICAL_t *const is_equal --- whether <B>transformations</B> are equal", "PK Reference - PK_TRANSF_is_equal");
+top.note("headers/pk_transf_is_equal.html#description", " This function determines whether two <B>transformations</B> are equal.", "PK Reference - PK_TRANSF_is_equal");
+top.note("headers/pk_transf_is_equal.html#documentation", "Two <B>transformations</B> are considered to be equal if, when one", "PK Reference - PK_TRANSF_is_equal");
+top.note("headers/pk_transf_sf_t.html#documentation", " Must be zero in <B>transformations</B> used for modelling.", "PK Reference - PK_TRANSF_sf_t");
+top.note("chapters/kd_chap.08.html#50475021_marker-273865", " also apply a transformation or a list of <B>transformations</B> to either a list of faces or a", "KID Manual - Local Operation Functions");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

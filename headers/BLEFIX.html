@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<TITLE>BLEFIX</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BLEFIX</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BLEFIX ( body, nblend, blends, faces, edges, error, err_ed, topol, ifail )
+==========================================================================
+
+  Fix blends in a body.
+
+Receives:
+  KI_tag_body              *body           --- body to fix blends in
+
+Returns:
+  KI_int_nitems            *nblend         --- number of blend faces
+ &lt;KI_tag_list_face&gt;        *blends         --- list of created blend faces
+ &lt;KI_tag_list_list&gt;        *faces          --- list of underlying faces
+ &lt;KI_tag_list_int&gt;         *edges          --- list of (dead) tags of edges
+  KI_cod_blcc              *error          --- first error from blending body
+ &lt;KI_tag_edge&gt;             *err_ed         --- edge associated with error
+ &lt;KI_tag_topology&gt;         *topol          --- topology associated with error
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_cant_fix_blends        could not fix blends in body
+  KI_general_body           general body
+
+Description:
+  Any edges of the  body which have blend attributes are changed into  full faces
+  with the appropriate blending surface geometry.
+
+  BLEFIX returns the number of  created blend faces,  and three parallel lists
+  containing the created blend face tags, lists of tags of the associated
+  underlying faces of the blend faces, and the tags of the edges which were
+  blended to produce this set of blend faces.
+
+  'blends' will contain 'nblend'  faces, which are the created blend faces.
+
+  'faces' will  contain 'nblend' lists of faces. These are the underlying faces
+  associated with the blends. The underlying faces of a blend are the faces whose
+  geometry determines the blend surface geometry. Some of the face tags may be
+  null. This occurs if there is no face in the final body with the appropriate
+  surface geometry, which can be the case if a face has been entirely blended
+  away, or for the cliff side of a cliffedge blend.
+
+  'edges' will  contain 'nblend' integers. These integers are the (dead) tags of
+  the edges which were blended to produce this set of blends. The same value
+  may occur several times in this list if , for example, a blend has overflowed,
+  since all the corresponding faces in 'blends' were caused by the same blend
+  attribute.
+
+
+  Note that  the number  of tags in  each list of underlying faces is
+  the number  of original   underlying faces  for  that  blend, but that the tags
+  returned are  those of the faces after the blend has been fixed, and so some of
+  them may be null (if the face has been completely blended out).
+
+  If  the attempt to fix  the blend fails due to an error which would be detected
+  by BLECHK, the  edge associated with the  error will be returned as 'err_ed'
+  and 'error' and 'topol'   are the same as would be returned if  BLECHK was
+  called with 'err_ed'. These can be used to locate the  reason for  failure to
+  fix the blend. Note  that  only the  first  error  will  be returned. If no
+  errors are found 'error' will be zero and 'err_ed' and 'topol' will be null
+  tags.
+
+  Note  that blends created with the property BLECDF will not be fixed.
+
+  This function is not supported for general bodies.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_EDGE_find_deviation_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_EDGE_find_deviation_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_EDGE_find_deviation_o_s
+    {
+    int             o_t_version;            --- Version number of option
+                                            --- structure
+
+    int             max_samples;            --- How many distances to find(0)
+
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    bound_at_split_vertex;  --- Whether vertices of split ring
+                                            --- edges are used to bound overlap
+                                            --- regions (PK_LOGICAL_false)
+
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    have_upper_bound;       --- An upper bound is provided
+                                            --- (PK_LOGICAL_false)
+
+    double          upper_bound;            --- Upper bound for deviation(0.0)
+
+    };
+
+typedef struct PK_EDGE_find_deviation_o_s PK_EDGE_find_deviation_o_t;
+</B>
+<A NAME="description"></A>
+<I>This options structure holds optional controls for <A HREF=../headers/pk_edge_find_deviation_2.html>PK_EDGE_find_deviation_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_edge_find_deviation_2.html>PK_EDGE_find_deviation_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It has the following fields:
+
+<B>'max_samples'</B>
+            Controls the maximum number of samples returned by
+            PK_EDGE_deviation_2. The value of <B>'max_samples'</B> produces three
+            different sampling behaviours detailed below:
+
+            ----------------------------------------------------------------
+            |  Value      |                                                |
+            |    of       |                    Behaviour                   |
+            |<B>'max_samples'</B>|                                                |
+            ----------------------------------------------------------------
+            |     0       | <A HREF=../headers/pk_edge_find_deviation_2.html>PK_EDGE_find_deviation_2</A> determines            |
+            |             | the appropriate set of points in each region   |
+            |             | ( both in number and position. ) Distances are |
+            |             | measured and returned at all these points.     |
+            ----------------------------------------------------------------
+            |     1       | <A HREF=../headers/pk_edge_find_deviation_2.html>PK_EDGE_find_deviation_2</A> chooses the same set  |
+            |             | of points as for the case <B>'max_samples'</B> == 0.  |
+            |             | However in this case only the pair of points   |
+            |             | producing the greatest distance is returned.   |
+            ----------------------------------------------------------------
+            |   N &gt; 1     | For point-like regions a single sample is      |
+            |             | returned. For Extended overlap regions N       |
+            |             | samples are returned.                          |
+            ----------------------------------------------------------------
+
+<B>'bound_at_split_vertex'</B>
+            When the vertex of a split ring edge lies within an overlap
+            region, the region may span the vertex, for instance if the
+            vertex does not lie at the parameter seam of the periodic edge
+            curve.  If this option is set to PK_LOGICAL_true, then such an
+            overlap region is adjusted so that the vertex lies at the
+            boundary of the region, and may result in the region being split
+            into two.  This gives results more similar to those of an open
+            edge, where the vertices always bound the overlap regions.
+
+<B>'have_upper_bound'</B>
+            An <B>'upper_bound'</B> has been provided.
+
+<B>'upper_bound'</B>
+            If an <B>'upper_bound'</B> is provided, PK_EDGE_deviation_2 will not
+            return any overlap region which has sample distances
+            greater than the <B>'upper_bound'</B>. This may result in no
+            overlaps being found.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

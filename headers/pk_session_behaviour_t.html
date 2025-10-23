@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SESSION_behaviour_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SESSION_behaviour_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SESSION_behaviour_s
+    {
+    <A HREF=../headers/pk_session_behave_as_t.html>PK_SESSION_behave_as_t</A>      behaviour_type;    --- type of behaviour
+    int                         behaviour_value;   --- specific behaviour value
+    };
+typedef struct PK_SESSION_behaviour_s PK_SESSION_behaviour_t;
+</B>
+<A NAME="description"></A>
+<I>Parameters of <A HREF=../headers/pk_session_ask_behaviour.html>PK_SESSION_ask_behaviour</A> and <A HREF=../headers/pk_session_set_behaviour.html>PK_SESSION_set_behaviour</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_behaviour.html>PK_SESSION_ask_behaviour</A><br>
+    <A HREF=../headers/pk_session_ask_latest_behaviour.html>PK_SESSION_ask_latest_behaviour</A><br>
+    <A HREF=../headers/pk_session_set_behaviour.html>PK_SESSION_set_behaviour</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'behaviour_type'</B>  The value of a token specifying the type of behaviour that is
+                  requested or set. See the documentation of
+                  <A HREF=../headers/pk_session_behave_as_t.html>PK_SESSION_behave_as_t</A>.
+
+
+<B>'behaviour_value'</B> This is an integer representing an explicit behaviour value.
+
+                  It is zero if <B>'behaviour_type'</B> is
+                  <A HREF=../headers/pk_session_behave_as_t.html>PK_SESSION_behave_as_unset_c</A>.
+
+                  It must be set to zero when calling <A HREF=../headers/pk_session_set_behaviour.html>PK_SESSION_set_behaviour</A>
+                  if <B>'behaviour_type'</B> is not <A HREF=../headers/pk_session_behave_as_t.html>PK_SESSION_behave_as_value_c</A>.
+
+                  Otherwise it is a non-zero value in the form MMmmpp where MM
+                  is the major version number, mm is the minor version number
+                  and pp is a two-digit number indicating the sub-minor version
+                  of the behaviour.
+
+                  For example, in Parasolid V28.1 this is an integer of the
+                  form "2801pp". "pp" is "00" if the behaviour is that at FCS
+                  and non-zero, eg "01", if it varies from that.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

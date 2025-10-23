@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<TITLE>ENEQGE</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENEQGE</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_geom_is_coincident.html>PK_GEOM_is_coincident</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENEQGE ( geom1, geom2, same, ifail )
+====================================
+
+  Enquire whether two geometries are equivalent.
+
+Receives:
+  KI_tag_geometry          *geom1          --- first geometric item
+  KI_tag_geometry          *geom2          --- second geometric item
+
+Returns:
+  KI_cod_logical           *same           --- result. KI_true if same
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_wrong_sub_type         only surfaces curves and points valid
+  KI_invalid_geometry       curve fails to pass checks
+                            surface fails to pass checks
+  KI_bad_type_combn         geom1 and 2 are of different types
+
+Description:
+  ENEQGE will compare two points, two curves, or two surfaces. If they
+  occupy the same position(s) in space, 'same' will return KI_true,
+  otherwise 'same' will return KI_false.
+
+  All comparisons of length or position are made to within a fixed
+  resolution (see OUMODP).
+
+  ENEQGE is not guaranteed to detect equivalence but it will never claim two
+  entities are equivalent when they are not.
+
+  Any curve or surface must be capable of passing the checks imposed by CHCKEN.
+  The self intersection check is only performed if the appropriate option is set
+  (see SEINTP).
+
+</PRE>
+</BODY>
+</HTML>

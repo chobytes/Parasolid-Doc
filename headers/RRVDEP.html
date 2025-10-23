@@ -1,0 +1,126 @@
+<HTML>
+<HEAD>
+<TITLE>RRVDEP</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>RRVDEP</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+RRVDEP ( nopts, iopts, optdta, entys, transf, vmatrx, ifail )
+=============================================================
+
+  Generate view dependent rendering data.
+
+Receives:
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in 'iopts'
+  KI_cod_rrop               iopts[nopts]   --- rendering options
+ &lt;KI_tag_list_dbl&gt;          optdta[nopts]  --- option data lists
+  KI_tag_list_entity       *entys          --- entities to render
+ &lt;KI_tag_list_&lt;transform&gt;&gt; *transf         --- entity transforms
+  KI_dbl_view_mx            vmatrx[16]     --- viewing transform matrix
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_missing_geom           A topological entity has no associated geometry
+  KI_abort_from_go          Rendering aborted by GO
+  KI_bad_view_mx            Invalid view matrix
+  KI_wrong_transf           Unsuitable transform
+  KI_not_same_length        Entity and transform lists are of different lengths
+  KI_wrong_entity_in_list   Entity is not a part, face or edge
+  KI_bad_option_data        Option data incorrect for specified options
+
+Description:
+  RRVDEP outputs, through the Graphical Output interface (GO), data for a
+  picture of the entities which is dependent on the viewing angle and
+  distance (e.g. silhouettes); view independent data is not output.
+
+  RRVDEP can render assemblies, complete bodies and/or individual faces. Edges
+  are ignored.
+
+  Transforms may only contain translation and rotation components.  Reflections,
+  scales and shears are not allowed.
+
+  The data output is selected by options in 'iopts'. For some options the output
+  is further controlled by data in a real list whose tag is passed in the
+  corresponding entry in 'optdta'. If no data is required for an option a null
+  tag should be passed.
+
+  Options accepted are:-
+
+      Option                   Contents of option data
+      ===================================================================
+      RROPSI: SIlhouette-data  none
+      RROPTR: TRansform        none
+      RROPPS: PerSpective      none
+      RROPCT: Curve Tolerance  (1) Chord tolerance in model units
+                               (2) Maximum chord length in model units
+                               (3) Angular tolerance in radians
+      RROPVP: ViewPort         (1,2,3) Centre of viewport in model coordinates
+                               (4,5,6)    1st axis of viewport in model
+                                          coordinates
+                               (7,8,9)    2nd axis
+                               (10,11,12) 3rd axis
+                               (13) Length of viewport along 1st axis in model
+                                    units
+                               (14) Length along 2nd axis
+                               (15) Length along 3rd axis
+
+  Option RROPSI causes silhouette lines to be output. If not present no data
+  will be produced by RRVDEP. Silhouettes coincident with real edges are not
+  output.
+
+  Option RROPTR is required if any of the entities is to be rendered in a
+  transformed position (e.g. as part of an assembly). If it is not specified,
+  the contents of 'transf' are ignored, and entities are rendered in their
+  local coordinate system.
+
+  Option RROPPS should be specified if a perspective view is required; by
+  default the system will produce a view from infinity, taking only the
+  view direction from 'vmatrx'.
+
+  Option RROPCT controls the representation of curves as polylines. A curved
+  edge is approximated by a number of straight lines called chords. The first
+  value in the option data is a chord tolerance. This is an upper bound on
+  the distance from each chord to the curve it is approximating. The second
+  value is a chord limit. This is an upper bound on the length of a chord
+  used in the approximation of a curved edge. The third value is an angular
+  tolerance. This limits the angular error between a curve and a chord used
+  in its approximation. This is an upper bound on the sum of the two angles
+  formed between the chord and the curve tangent at each chord end. If this
+  option is not specified a default angular tolerance is used.
+  If the option RROPVP is supplied then the system will attempt only to render
+  those bodies/faces which are inside or partly inside the viewport supplied.
+
+  The viewport is a cuboid region of model space and should be supplied in the
+  option data as a real list consisting of a centre, three axes, and lengths in
+  model units along these axes. The axes must be orthogonal but need not be
+  normalised.
+
+  While all faces that are inside or partly inside the viewport will be
+  rendered, no attempt is made to trim the output to the boundaries of the
+  viewport, and bodies or faces lying entirely outside, but close to it may be
+  rendered.
+
+
+</PRE>
+</BODY>
+</HTML>

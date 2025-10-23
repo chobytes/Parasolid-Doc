@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_loft_vector_clamp_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_loft_vector_clamp_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_loft_vector_clamp_s
+    {
+    int                n_tangents;   --- number of derivative vectors (0)
+    const <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A> *tangents;     --- array of derivative vectors (NULL)
+    int                n_vertices;   --- number of vertices to be clamped (0)
+    const <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A> *vertices;     --- array of vertices to be clamped (NULL)
+    int                n_magnitudes; --- number of vector magnitudes (0)
+    const double      *magnitudes;   --- array of vector magnitudes (NULL)
+    };
+
+typedef struct PK_BODY_loft_vector_clamp_s PK_BODY_loft_vector_clamp_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds an array of derivative vectors and an optional array
+of corresponding vertices where the derivative vectors are to be applied.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_loft_deriv_conds_t.html>PK_BODY_loft_deriv_conds_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+See <A HREF="../chapters/fd_chap.042.html#50409824_pgfId-534212">Supplying derivative conditions</A> for more information about
+vector clamps.
+
+The vector clamp structure has the following fields :
+
+<B>'n_tangents'</B>        The number of derivatives held in the structure. This must
+                    equal the value of <B>'n_vertices'</B>, or be 1.
+
+<B>'tangents'</B>          An array of derivatives one for each vertex of <B>'vertices'</B>,
+                    or a single vector "constant". If <B>'vertices'</B> is set to
+                    NULL, they are then taken in order to correspond with
+                    the vertices ordered around the profile commencing with
+                    the start vertex. Note that <B>'vertices'</B> may not be set to
+                    NULL in the case of a guide wire.
+
+                    The start vertex will be understood to be the first vertex
+                    on an open profile, and the specified start vertex on a
+                    closed profile.
+
+                    If the <B>'magnitudes'</B> array is supplied, then a default value
+                    for the derivative magnitudes is calculated, which is then
+                    scaled according to the values in the <B>'magnitudes'</B> array.
+                    In this case, all of the entries in the <B>'tangents'</B> array
+                    must be unit vectors.
+
+                    Note that for backwards compatibility purposes,
+                    <B>'magnitudes'</B> may be set to NULL, which indicates that the
+                    magnitudes of the derivatives on the resultant lofted
+                    surface will be taken directly from the supplied tangents.
+                    In this case, the tangents do not have to be unit vectors,
+                    and should be supplied with respect to a parameter which:
+                        - for a clamped start profile on a non-periodic loft
+                          varies from 0 to 1 between the first two profiles.
+                        - for a clamped end profile on a non-periodic loft
+                          varies from 0 to 1 between the last two profiles.
+                        - for a clamped intermediate profile, or the start
+                          profile of a periodic loft, varies from 0 to 2
+                          between the two adjacent profiles.
+
+<B>'n_vertices'</B>        The number of vertices where the loft derivative is given.
+
+<B>'vertices'</B>          An optional array of vertices where the loft derivative
+                    is specified as the corresponding entry in <B>'tangents'</B>.
+                    Setting <B>'vertices'</B> to NULL has the same effect as setting
+                    it to be the collection of all vertices of the profile.
+
+                    When specifying a vector clamp on a profile, if there are
+                    guide wires specified for the loft, the loft derivative
+                    along any guide wire is completely determined. Thus, those
+                    vertices of the profile that have matches on guide wires
+                    must not be included as entries of <B>'vertices'</B>. Due to the
+                    effect of setting it to NULL, <B>'vertices'</B> must be explicitly
+                    assigned to exclude profile vertices that have matches on
+                    guide wires.
+
+                    Similarly, when specifying a vector clamp on a guide wire,
+                    the derivative along any profile is completely determined.
+                    Thus, those vertices of the guide that have matches on
+                    profiles must not be included as entries of <B>'vertices'</B>, and
+                    <B>'vertices'</B> may not be set to NULL.
+
+                    For vertices of the profile that are not specified in the
+                    <B>'vertices'</B> array and do not have matches on guide wires,
+                    the loft derivatives are interpolated from the supplied
+                    vertex directions and guide wire directions.
+
+<B>'n_magnitudes'</B>      The number of vertices where the magnitude is supplied.
+                    This should be equal to 0, 1 or <B>'n_tangents'</B>.
+
+<B>'magnitudes'</B>        An optional array of magnitudes. If this is supplied, then
+                    a default value for the derivative magnitudes is
+                    calculated. The entries in <B>'magnitudes'</B> specify a scaling
+                    factor for the loft derivative at the vertex relative to
+                    the internally determined default value. If <B>'n_magnitudes'</B>
+                    equals 1, then this indicates that all tangents should be
+                    scaled by the single supplied magnitude.
+
+                    Note that setting this field to NULL is not equivalent to
+                    supplying an array with all the entries equal to 1;
+                    instead it indicates to revert to the older behaviour of
+                    taking derivative magnitudes directly from the magnitudes
+                    of the supplied <B>'tangents'</B> as described above, rather than
+                    calculating an internal default value.
+
+                    If declaring a vector clamp on a profile whose vertices
+                    or edges touch those of an adjacent profile, a magnitude
+                    must be supplied for each clamped vertex.
+
+                    If the vector clamp is to be used in conjunction with a
+                    face or planar clamp as a composite clamp then <B>'magnitudes'</B>
+                    must be supplied and set to 1 for all <B>'vertices'</B>.
+                    Additionally, the supplied <B>'tangents'</B> must be perpendicular
+                    to the face or planar clamp normals at all the <B>'vertices'</B>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

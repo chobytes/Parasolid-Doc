@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<TITLE>IDSCLS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>IDSCLS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+IDSCLS ( entys, contyp, conent, nitems, ifail )
+===============================================
+
+  Identify single connected entities of a list of entities.
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_list_entity       *entys          --- entities to look in
+  KI_cod_ty                *contyp         --- type of desired entity
+
+Returns:
+  KI_tag_list_entity       *conent         --- entities found
+  KI_int_nitems            *nitems         --- Number of items returned
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_type_combn         bad type combination
+  KI_general_body           general body
+  KI_not_a_tag              not an entity
+
+Description:
+  IDSCLS is similar to IDCOEN except it returns one entity or NULTAG in 'conent'
+  for every entity in the list 'entys'.  These entities may be from different
+  parts.
+
+  The valid combinations of the type of entities in 'entys' and 'contyp' can be
+  found by examining the table given for the function IDCOEN; only those
+  combinations marked by 1 or 1* are valid for IDSCLS.
+
+  This function is not supported for general bodies.
+
+  If, in the type combination table given with IDCOEN, the cell for the type
+  combination given is marked other than 1 or 1*, KI_bad_type_combn will be
+  returned in 'ifail'.
+
+
+</PRE>
+</BODY>
+</HTML>

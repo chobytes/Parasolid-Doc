@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_PARTITION_receive_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_PARTITION_receive_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_PARTITION_receive_o_s
+    {
+    int                       o_t_version;
+                                  --- version number
+    <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_t</A>      transmit_format;
+                                  --- (<A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_neutral_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              receive_user_fields;
+                                  --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_partition_rcv_deltas_t.html>PK_PARTITION_rcv_deltas_t</A> receive_deltas;
+                                  --- (PK_PARTITION_rcv_deltas_no_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              receive_prev_version_deltas;
+                                  --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_attdef_name_cb_f_t.html>PK_ATTDEF_name_cb_f_t</A>     attdef_callback;
+                                  --- (NULL)
+    <A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>              attdef_context;
+                                  --- (NULL)
+    <A HREF=../headers/pk_attdef_cb_on_t.html>PK_ATTDEF_cb_on_t</A>         attdef_callback_on;
+                                  --- (PK_ATTDEF_cb_on_mismatch_c)
+    const <A HREF=../headers/pk_memory_block_t.html>PK_MEMORY_block_t</A>  *deltas_block;
+                                  --- (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              receive_all_attdefs;
+                                  --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              allow_missing_deltas;
+                                  --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_t</A>     receive_compound;
+                                  --- (<A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_split_c</A>)
+    <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_t</A>   receive_using_seek;
+                                  --- (<A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_no_c</A>)
+    <A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_t</A>        receive_mixed;
+                                  --- (<A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_fail_c</A>)
+    <A HREF=../headers/pk_receive_locked_t.html>PK_receive_locked_t</A>       receive_locked;
+                                  --- (<A HREF=../headers/pk_receive_locked_t.html>PK_receive_locked_auto_c</A>)
+    };
+typedef struct PK_PARTITION_receive_o_s PK_PARTITION_receive_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is supplied to <A HREF=../headers/pk_partition_receive.html>PK_PARTITION_receive</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_partition_receive.html>PK_PARTITION_receive</A><br>
+    <A HREF=../headers/pk_partition_receive_b.html>PK_PARTITION_receive_b</A><br>
+    <A HREF=../headers/pk_partition_receive_u.html>PK_PARTITION_receive_u</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'transmit_format'</B>        Format of the 'file'. Permitted values are
+
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_text_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_binary_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_typed_binary_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_neutral_c</A>
+                         <A HREF=../headers/pk_transmit_format_t.html>PK_transmit_format_applio_c</A>
+
+
+<B>'receive_user_fields'</B>    PK_LOGICAL_true if user fields are to be received
+
+
+<B>'receive_deltas'</B>         Whether to receive no deltas, delay receiving deltas
+                         until a later call to <A HREF=../headers/pk_partition_receive_deltas.html>PK_PARTITION_receive_deltas</A>, or
+                         receive deltas with the partition.
+
+
+<B>'receive_prev_version_deltas'</B>
+                         Used to indicate that deltas transmitted from
+                         earlier compatible versions of Parasolid may be
+                         received. This field is ignored if <B>'receive_deltas'</B>
+                         is set to PK_PARTITION_rcv_deltas_no_c
+
+
+<B>'attdef_callback'</B>        Applications which intend to use this option should
+                         contact Parasolid Technical Support for advice.
+
+
+<B>'attdef_context'</B>         Context used to pass any application information to
+                         <B>'attdef_callback'</B>.
+
+
+<B>'attdef_callback_on'</B>     This option is ignored unless <B>'attdef_callback'</B> is
+                         non-null.  Applications which intend to use this
+                         option should contact Parasolid Technical Support
+                         for advice.
+
+
+<B>'deltas_block'</B>           Memory chain used by <A HREF=../headers/pk_partition_receive_b.html>PK_PARTITION_receive_b</A> when
+                         <B>'receive_deltas'</B> is not PK_PARTITION_rcv_deltas_no_c,
+                         otherwise ignored.
+
+
+<B>'receive_all_attdefs'</B>    Whether to receive all attribute definitions or only
+                         those used in the partition and/or its deltas.
+                         This field is ignored unless <B>'receive_deltas'</B> is set
+                         to PK_PARTITION_rcv_deltas_later_c.
+                         See <A HREF="../chapters/fd_chap.102.html#50409892_pgfId-295271">here</A> for more information.
+
+
+<B>'allow_missing_deltas'</B>   Whether to receive a partition without its delta file
+                         instead of failing with PK_ERROR_deltas_not_available.
+                         This field is ignored unless <B>'receive_deltas'</B> is set
+                         to PK_PARTITION_rcv_deltas_yes_c.
+                         See <A HREF="../chapters/fd_chap.102.html#50409892_pgfId-295271">here</A> for more information.
+
+
+<B>'receive_compound'</B>       Controls receiving partition and delta files
+                         containing compound bodies. Allowed values are:
+
+                         <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_split_c</A>:
+                         Compound bodies in the partition are split into
+                         individual bodies. This only has effect if
+                         'receive_deltas' is set to
+                         PK_PARTITION_rcv_deltas_no_c - otherwise the behaviour
+                         is the same as with <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_fail_c</A>.
+
+                         <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_keep_c</A>:
+                         Receive compound bodies as they are.
+
+                         <A HREF=../headers/pk_receive_compound_t.html>PK_receive_compound_fail_c</A>:
+                         Fail with PK_ERROR_compound_body if the file
+                         contains compound bodies.
+
+                         If any compound bodies have been split then a
+                         report will be returned via the Parasolid Report
+                         mechanism containing a record of <B>'type'</B>
+                         <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A>.
+                         This record will have a <B>'status'</B> of
+                         <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_compound_split_c</A> and will contain
+                         information on the compound bodies that were
+                         split when the file was received:
+                         - <B>'n_int_arrays'</B> and <B>'n_item_arrays'</B>
+                            the number of bodies received from the partition
+                            file.
+                         - <B>'int_arrays'</B>
+                            for each body received from the partition file,
+                            an array of child body identifiers if the body
+                            was a compound body, otherwise an empty array.
+                         - <B>'item_arrays'</B>
+                            for each body received from the partition file,
+                            an array of split bodies if the body was a
+                            compound body, otherwise an array containing
+                            just that body.
+
+
+<B>'receive_using_seek'</B>     How any lazily received model data in the partition
+                         are handled if they are not immediately needed.
+
+                         If this option is <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_no_c</A> then
+                         lazily received model data in the file will all be
+                         read sequentially in the same Parasolid call.
+
+                         If this option is <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_yes_c</A> then
+                         only data needed for individual pieces of the model
+                         will be received, which will be faster in many
+                         scenarios and avoids unneeded model data taking up
+                         internal memory.
+
+                         To support <A HREF=../headers/pk_receive_using_seek_t.html>PK_receive_using_seek_yes_c</A> for mesh
+                         data, the partition file must have been transmitted
+                         with the option <B>'transmit_meshes'</B> set to
+                         <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_embedded_c</A> and the Frustrum
+                         seek function <B>'ffskxt'</B> must be registered using
+                         <A HREF=../headers/pk_session_register_fru_2.html>PK_SESSION_register_fru_2</A>. If the partition file
+                         was transmitted with <A HREF=../headers/pk_transmit_meshes_t.html>PK_transmit_meshes_separate_c</A>
+                         then this option is ignored for mesh data.
+
+                         This option is ignored for <A HREF=../headers/pk_partition_receive_b.html>PK_PARTITION_receive_b</A>.
+
+
+<B>'receive_mixed'</B>          Controls receiving transmitted files that contain
+                         parts with both facet and classic geometry.
+
+                         If this option is set to the default
+                         <A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_fail_c</A> and the file contains mixed
+                         parts, then receive will fail with
+                         PK_ERROR_mixed_geometry.
+
+                         To allow receiving mixed parts, this option should
+                         be set to <A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_allow_c</A>.
+
+                         <A HREF=../headers/pk_receive_mixed_t.html>PK_receive_mixed_make_facet_c</A> is for future
+                         enhancement and will return
+                         PK_ERROR_not_implemented.
+
+
+<B>'receive_locked'</B>         Whether to lock the received partition to the calling
+                         thread.
+
+                         If this option is <A HREF=../headers/pk_receive_locked_t.html>PK_receive_locked_auto_c</A>, then the
+                         received partition is only locked if the calling
+                         thread already had at least one partition locked.
+
+                         If this option is <A HREF=../headers/pk_receive_locked_t.html>PK_receive_locked_always_c</A> and the
+                         thread already had at least one partition locked,
+                         then the received partition will also become locked
+                         to this thread. If the thread did not have any
+                         partitions locked, then the received partition will
+                         become locked and will be the current and only usable
+                         partition in the calling thread.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

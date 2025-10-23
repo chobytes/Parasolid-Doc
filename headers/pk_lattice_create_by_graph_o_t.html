@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_LATTICE_create_by_graph_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_LATTICE_create_by_graph_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_LATTICE_create_by_graph_o_s
+    {
+    int                   o_t_version;        --- version number of options
+                                              --- structure
+    int                   lballs_estimate;    --- An estimate for the
+                                              --- total number of lballs
+                                              --- returned by all calls to
+                                              --- <B>'graph_reader'</B>. (0)
+    int                   lrods_estimate;     --- An estimate for the
+                                              --- total number of lrods
+                                              --- returned by all calls to
+                                              --- <B>'graph_reader'</B>. (0)
+    <A HREF=../headers/pk_lattice_graph_f.html>PK_LATTICE_graph_f</A>    graph_free;         --- Function provided by the
+                                              --- application to free data
+                                              --- returned by <B>'graph_reader'</B>.
+                                              --- (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          thread_safe;        --- Whether the <B>'graph_reader'</B>
+                                              --- and the <B>'graph_free'</B>
+                                              --- callbacks are thread safe.
+                                              --- (PK_LOGICAL_false)
+    double                lball_radius;       --- The radius of the lballs in
+                                              --- the lattices. (0)
+    <A HREF=../headers/pk_lball_min_radius_t.html>PK_LBALL_min_radius_t</A> lball_min_radius;   --- Controls the behaviour when
+                                              --- a supplied lball radius is
+                                              --- too small.
+                                              --- (<A HREF=../headers/pk_lball_min_radius_t.html>PK_LBALL_min_radius_fail_c</A>)
+    <A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_t</A>      lball_blend_type;   --- Whether the lattices are
+                                              --- blended and how to convert
+                                              --- <B>'lball_blend_size'</B> to a blend
+                                              --- radius.
+                                              --- (<A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_none_c</A>)
+    double                lball_blend_size;   --- The size of the blends in
+                                              --- the lattices. (0)
+    <A HREF=../headers/pk_lrod_shape_opts_t.html>PK_LROD_shape_opts_t</A>  lrod_shape_opts;    --- Control on the shape of the
+                                              --- lrods in the lattices.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          have_snap_tolerance;
+                                              --- Whether a snapping tolerance
+                                              --- value is provided.
+                                              --- (PK_LOGICAL_false)
+    double                snap_tolerance;     --- The tolerance used for lball
+                                              --- snapping.
+    <A HREF=../headers/pk_lattice_connected_t.html>PK_LATTICE_connected_t</A>
+                          require_connected;  --- Whether the lattices must
+                                              --- be connected.
+                                              --- (<A HREF=../headers/pk_lattice_connected_t.html>PK_LATTICE_connected_yes_c</A>)
+    };
+typedef struct PK_LATTICE_create_by_graph_o_s PK_LATTICE_create_by_graph_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_lattice_create_by_graph.html>PK_LATTICE_create_by_graph</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_lattice_create_by_graph.html>PK_LATTICE_create_by_graph</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+
+<B>'lballs_estimate'</B>           When positive, an estimate for the total
+                            number of lballs that will be returned
+                            by all calls to <B>'graph_reader'</B>.
+
+<B>'lrods_estimate'</B>            When positive, an estimate for the total
+                            number of lrods that will be returned by
+                            all calls to <B>'graph_reader'</B>.
+
+<B>'graph_free'</B>                When not NULL, is a function provided by
+                            the application that will free the data
+                            returned by <B>'graph_reader'</B>. <B>'graph_free'</B>
+                            is called as soon as the application data
+                            has been copied into Parasolid's memory,
+                            before the next call to <B>'graph_reader'</B>.
+                            When <B>'graph_free'</B> is NULL, Parasolid will
+                            not attempt to free the memory allocated
+                            by the application for the graph blocks.
+
+<B>'thread_safe'</B>               Indicates whether the <B>'graph_reader'</B> callback
+                            and the <B>'graph_free'</B> callback (if supplied) are
+                            thread safe.
+
+<B>'lball_radius'</B>              The radius of the lballs in the lattices. If no
+                            value is provided, the <B>'graph_reader'</B> expects to
+                            receive the radius of each lball.
+
+<B>'lball_min_radius'</B>          Controls the behaviour when a supplied lball radius
+                            is not as large as the radius of its largest
+                            incident lrod.
+
+<B>'lball_blend_type'</B>          If not <A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_none_c</A>, the lattices are
+                            blended with blend radii determined by the value of
+                            this option, together with either the value of
+                            <B>'lball_blend_size'</B> if provided, or the values of
+                            <B>'lball_blend_sizes'</B> received by <B>'graph_reader'</B>.
+
+<B>'lball_blend_size'</B>          The size of the lball blends in the lattices. If no
+                            value is provided and <B>'lball_blend_type'</B> is not
+                            <A HREF=../headers/pk_lball_blend_t.html>PK_LBALL_blend_none_c</A>, the <B>'graph_reader'</B> expects
+                            to receive the blend size of each lball.
+
+<B>'lrod_shape_opts'</B>           Optional controls on the shape of the lrods of the
+                            lattices.
+
+<B>'have_snap_tolerance'</B>       Whether a snapping tolerance value is provided. If
+                            this is PK_LOGICAL_true, then <B>'snap_tolerance'</B> sets
+                            the maximum distance between lball positions,
+                            variation in lball radii, and variation in
+                            lball_lrod_radii at which multiple lballs can be
+                            snapped together into a single, combined lball. If
+                            this is PK_LOGICAL_false, then <B>'snap_tolerance'</B> is
+                            ignored and snapping will be performed to session
+                            precision.
+
+<B>'snap_tolerance'</B>            The tolerance used for lball snapping.
+
+<B>'require_connected'</B>         If <A HREF=../headers/pk_lattice_connected_t.html>PK_LATTICE_connected_yes_c</A>, any resulting
+                            lattices will each be graph-connected. If the data
+                            returned by <B>'graph_reader'</B> specifies a disjoint
+                            graph, <B>'n_lattices'</B> will be greater than one. If
+                            <A HREF=../headers/pk_lattice_connected_t.html>PK_LATTICE_connected_no_c</A>, a single lattice will be
+                            returned that may be disjoint.
+
+When supplying <B>'lballs_estimate'</B> or <B>'lrods_estimate'</B>, it is recommended
+that applications moderately overestimate (by ~20%) the number of lballs
+and lrods they will need, as the overhead of allocating additional memory
+following an underestimate is more significant than the wasted memory of
+an overestimate.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,136 @@
+<HTML>
+<HEAD>
+<TITLE>ENSUPA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENSUPA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_surf_ask_params.html>PK_SURF_ask_params</A><BR>
+<A HREF=../headers/pk_surf_ask_uvbox.html>PK_SURF_ask_uvbox</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENSUPA ( surf, urange, vrange, ubound, vbound, uprops, nuprop, vprops, nvprop, 
+===============================================================================
+         ifail )
+         =======
+
+  Enquire surface parametrisation
+
+Receives:
+  KI_tag_surface           *surf           --- Surface for enquiry
+
+Returns:
+  KI_dbl                    urange[2]      --- Parameter range in u
+  KI_dbl                    vrange[2]      --- Parameter range in v
+  KI_cod_papr               ubound[2]      --- Types of bound for u
+  KI_cod_papr               vbound[2]      --- Types of bound for v
+  KI_tag_list_int          *uprops         --- u parametrisation properties
+  KI_int_nitems            *nuprop         --- Number of properties in u
+  KI_tag_list_int          *vprops         --- v parametrisation properties
+  KI_int_nitems            *nvprop         --- Number of properties in v
+  KI_cod_error             *ifail          --- Failure code
+
+Specific errors:
+  KI_invalid_geometry       surface not supported
+
+Description:
+  This function returns details about the parametrisation of a specific
+  surface.
+
+  'urange', 'vrange':
+    The u parameter of any point on the surface (as returned by ENPAPS) will
+    lie between 'urange[0]' and 'urange[1]'; the v parameter will lie between
+    'vrange[0]' and 'vrange[1]'.
+
+    'urange[0]' < 'urange[1]'    and
+    'vrange[0]' < 'vrange[1]' always.
+
+    If the range is infinite, then finite values will be returned, and these
+    will be large enough to ensure that the portion of the surface inside
+    the size box is contained within the bounds.
+
+  'ubound', 'vbound':
+    The parametrisation may behave in various ways at the end of its ranges.
+    The 'ubound' and 'vbound' arrays each return two tokens, describing the
+    behaviour at the start and end of the ranges respectively. The tokens may
+    take the following values:
+
+          PAPRIF - infinite
+          PAPRXT - extendable
+          PAPRNX - not extendable
+          PAPRPE - periodic
+          PAPRDP - periodic, but not continuously differentiable across
+                   the boundary
+          PAPRDG - degenerate
+
+    If either end of the range is classified as extendable, then the range of
+    the parameter can be altered by subsequent modelling operations, and the
+    classification of the bounds can also change. In this case, it is
+    advisable to call ENSUPA again. For all other bound classifications, the
+    range and bound classification remain unchanged by modelling operations.
+
+    The periodic classifications (PAPRPE, PAPRDP) apply to both ends of the
+    range - the bounds will be of the same type in these cases. If the type
+    is PAPRDP, then the parametrisation function may have a derivative which
+    is discontinuous in magnitude across the range boundary.
+
+    If the bound classification is infinite or periodic (PAPRIF, PAPRPE or
+    PAPRDP), then the KI function ENPOPS will work on values beyond the
+    corresponding range bound. Otherwise (if the classification is PAPRXT
+    or PAPRNX) ENPOPS will only work for values within the range, unless the
+    surface is b-surface or an offset b-surface.
+
+    If the 'ubound[0]' classification is degenerate, for example, then the
+    v parameter is degenerate when u='urange[0]'. In other words, the
+    derivative of the parametrisation function with respect to v is zero
+    whenever u='urange[0]', for all values of v, and the parameter curve
+    corresponding to u='urange[0]' degenerates to a single point. Note that
+    a parametrisation can only degenerate at the end of its range.
+
+
+
+  'uprops', 'vprops', 'nuprop', 'nvprop':
+    One or more properties of the parametrisation will be returned, for both
+    u and v, in two lists: 'uprops' of length 'nuprop', and 'vprops' of
+    length 'nvprop'. The lists contain tokens, which can take the
+    following values:
+
+          PAPRPE - periodic
+          PAPRCN - all derivatives continuous  )  exactly one of these two
+          PAPRDC - derivatives not necessarily )  properties will be returned
+                                   continuous  )
+          PAPRLI - linear
+          PAPRCI - circular
+          PAPRBC - boundaries at the ends of the parameter range are coincident
+
+    The PAPRLI property indicates that the corresponding parameter is
+    proportional to the distance along a straight line. The straight line
+    corresponds to a constant value of the other parameter.
+
+    The PAPRCI property indicates that the corresponding parameter represents
+    an angle around a circle. The circle corresponds to a constant value of
+    the other parameter.
+
+    The PAPRPE property indicates a periodic parametrisation.
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

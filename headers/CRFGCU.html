@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<TITLE>CRFGCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRFGCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRFGCU ( keylen, key, nspace, nints, ivals, nreals, rvals, curve, ifail )
+=========================================================================
+
+  Creates a Foreign Geometry curve.
+
+Receives:
+  KI_int_nchars            *keylen         --- Length of curve key
+  KI_chr_key                key[keylen]    --- curve key
+  KI_int_nitems            *nspace         --- Space required by foreign curve
+                                           --- (specified in doubles)
+ &lt;KI_int_nitems&gt;           *nints          --- Number of integer values
+  int                       ivals[nints]   --- Array of integer values
+ &lt;KI_int_nitems&gt;           *nreals         --- Number of real values
+  double                    rvals[nreals]  --- Array of real values
+
+Returns:
+  KI_tag_curve             *curve          --- curve.
+  KI_cod_error             *ifail          --- Failure indicator
+
+Specific errors:
+  KI_FG_evaluator_error     Curve evaluator failure
+  KI_FG_modelling_error     Cannot model with this curve
+  KI_FG_data_not_found      Curve evaluator data not found
+  KI_FG_integer_data_error  Curve evaluator integer data error
+  KI_FG_real_data_error     Curve evaluator real data error
+  KI_FG_data_alloc_error    Curve evaluator data allocation fault
+  KI_FG_evaluator_not_found Curve evaluator not found
+
+Description:
+  This function creates a foreign curve, i.e. one whose evaluator is external to
+  Parasolid. This function call will only produce a curve if an appropriate
+  curve evaluator has been linked to Parasolid. The curve is identified
+  by its key. Any additional data required by the evaluator is supplied in
+  arrays containing integer and real values.
+
+  This KI call will result in the execution of the initialisation routines of
+  the FG evaluator system. Function arguments are as follow:
+
+  'keylen'  is the length or number of characters contained within the 'key'.
+
+  'key'     to uniquely identify the curve evaluator.
+
+  'nspace'  specifies the length of the block of data to be initialised by the
+            foreign curve loader.
+
+  'nints', 'ivals', 'nreals', 'rvals' specify the numerical data supplied to
+            the curve evaluator.
+
+  'curve'   is the returned tag of a foreign curve, if the operation succeeds.
+
+
+</PRE>
+</BODY>
+</HTML>

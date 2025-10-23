@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_render_volume</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_render_volume</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B><A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A>                     PK_TOPOL_render_volume
+(
+<I>--- received arguments ---
+</I>int                                 n_topols,       --- number of topols
+const <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>                    topols[],       --- topols to be rendered
+const <A HREF=../headers/pk_transf_t.html>PK_TRANSF_t</A>                   topol_transfs[],--- applied transformations
+const <A HREF=../headers/pk_topol_render_volume_o_t.html>PK_TOPOL_render_volume_o_t</A>   *options,        --- options
+
+<I>--- returned arguments ---
+</I><A HREF=../headers/pk_topol_render_volume_r_t.html>PK_TOPOL_render_volume_r_t</A>   *const results         --- results
+)
+</B>
+<A NAME="description"></A>
+<I>This function generates a view-independent representation of the volumetric
+geometry of an array of bodies or regions.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_duplicate_array_item   <B>'topol'</B> has duplicates but no
+                                    <B>'topol_transfs'</B> array was supplied. (MILD)
+    PK_ERROR_unsuitable_topology    <B>'topols'</B> array is not an array of bodies or
+                                    an array of regions. (MILD)
+                                    <B>'topols'</B> is an array of regions but at
+                                    least one of these regions does not have
+                                    any lattices embedded in it. (MILD)
+    PK_ERROR_bad_component          a transform in <B>'topol_transfs'</B> contains
+                                    scale, shear or perspective components.
+                                    (MILD)
+
+<A NAME="documentation"></A>
+
+Action on received topols
+-------------------------
+
+This function produces a 3D render of topological entities in the world
+coordinate system via GO. The topology will be rendered by a combination of
+rendering primitives representing the lattices and facets representing the
+boundary geometry.
+
+<B>'topols'</B> can be an array of bodies or an array of regions. If this is not the
+case the error PK_ERROR_unsuitable_topology will be returned.
+
+This function will ignore the cellular guise.
+
+
+Rendering topology with transforms
+----------------------------------
+
+If <B>'topol_transfs'</B> is set to NULL the <B>'topols'</B> entities are not transformed
+(and the <B>'topols'</B> array cannot contain duplicates).
+
+If <B>'topol_transfs'</B> is not NULL, it is an array of transforms of length
+<B>'n_topols'</B>. The <B>'topols'</B> array can contain duplicates in this case. Each entity
+in <B>'topols'</B> is transformed by its corresponding entity in <B>'topol_transfs'</B>.
+Any entry in the <B>'topol_transfs'</B> array can be PK_ENTITY_null, indicating that
+the corresponding entity in <B>'topols'</B> is not to be transformed.
+Transforms may only contain translation, rotation and reflection components;
+scales, shears and perspective components are not allowed.
+
+
+Volumetric geometry
+-------------------
+
+Lattices will be rendered via rendering primitives corresponding to spheres,
+cylinders and cones. Lrods will be rendered if they clash with the region, and
+lballs will be rendered if they clash with the region or cap a rendered lrod.
+If a lattice is embedded into multiple regions that are being rendered, a
+separate GO segment will be opened for each such region.
+
+
+Boundary faces
+--------------
+
+For each region with embedded volumetric geometry, facets will be returned for
+all boundary faces of the region unless the face is contained within a single
+region.
+
+A complete set of facet data will be returned for the boundary of each region,
+so the facets for a face may be returned twice if the (distinct) regions on
+either side of a face are rendered. Only the vertex coordinate data and normals
+will be returned through the GO. The normals will be oriented to point out of
+the region.
+
+
+Reports
+-------
+
+If a blended lattice is rendered by this function, the lattice will be
+rendered with the blends ignored and a report of type
+<A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> will be returned. This record will have a
+<B>'status'</B> of <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_render_lattice_c</A> which contains all such lattices
+rendered by this function.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

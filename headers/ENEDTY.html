@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+<TITLE>ENEDTY</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENEDTY</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_ask_type.html>PK_EDGE_ask_type</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENEDTY ( edge, edtype, ifail )
+==============================
+
+  Enquire edge type
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_edge              *edge           --- edge
+
+Returns:
+  KI_cod_ened              *edtype         --- type-code of edge,
+                                           --- from range ENED00
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_general_body           general body
+
+Description:
+  The given edge is classified according to whether it is:
+
+  a)  open, closed or a ring.
+      An open edge has different vertices at either end.
+      A closed edge has the same vertex at either end.
+      A ring edge has no vertices.
+
+  b)  'wire', 'biwire' or normal.
+      A normal edge has different faces and loops on either side.
+      A wire has the same face on both sides: it may however have different
+      loops on either side and in this case is termed a 'biwire'.
+
+  The type of edge is returned as one of the following codes:
+
+      ENEDON  ---  Open, normal edge
+      ENEDCN  ---  Closed, normal edge
+      ENEDRN  ---  Ring, normal edge
+      ENEDOW  ---  Open, wire edge
+      ENEDCW  ---  Closed, wire edge
+      ENEDOB  ---  Open, biwire edge
+      ENEDCB  ---  Closed, biwire edge
+      ENEDRB  ---  Ring, biwire edge
+
+  This is not supported for edges of general bodies.
+
+</PRE>
+</BODY>
+</HTML>

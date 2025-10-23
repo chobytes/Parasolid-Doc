@@ -1,0 +1,162 @@
+<HTML>
+<HEAD>
+<TITLE>CRSPPC</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRSPPC</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bcurve_create_splinewise.html>PK_BCURVE_create_splinewise</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRSPPC ( npts, pts, nprops, props, pdata, bc, ifail )
+=====================================================
+
+  Create B-curve by splining
+
+Receives:
+  KI_int_nitems            *npts           --- number of points supplied
+  KI_vec_position           pts[npts]      --- array of points to spline
+ &lt;KI_int_nitems&gt;           *nprops         --- number of curve properties
+  KI_cod_papr               props[nprops]  --- array of curve properties
+ &lt;KI_tag_list&gt;              pdata[nprops]  --- array of tags of data lists
+
+Returns:
+  KI_tag_b_curve           *bc             --- B-curve
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_wrong_number_knots     wrong number of knots
+  KI_repeated_knots         repeated knots
+  KI_bad_knots              bad parameterisation
+  KI_bad_derivative         derivative too big
+                            not enough coordinates in derivative
+  KI_bad_position           a spline point lies outside modeller size box
+  KI_coincident_points      repeated spline points
+  KI_insufficient_points    not enough spline points
+  KI_incompatible_props     periodic end condition with coincident end points
+                            incompatible end conditions
+  KI_bad_parametric_prop    inappropriate property
+  KI_bad_tag_in_list        invalid null tag in pdata list
+
+Description:
+  This function creates a B-curve by splining through a set of points.
+  The curve will be continuous in slope and curvature. It may be periodic, in
+  which case the end meets the start with slope and curvature continuity.
+
+  Number of points to spline 'npts':
+  . For non-periodic curves the minimum number of points is 2.
+  . For periodic curves the minimum number of points is 3.
+
+  Points to spline 'pts':
+  . Consecutive points should not coincide.
+  . To make a closed non-periodic curve the start point must be repeated at
+    the end.
+  . If the curve is periodic the start and end points should not coincide.
+
+  Curve properties 'nprops', 'props', 'pdata'
+    There are several controls that may be applied to the splining operation.
+    For example, the curve may be periodic or a knot vector may be supplied.
+    Each action has a default, and each default can be overridden by giving a
+    token in the 'props' arrray. 'nprops' is the number of tokens that have
+    been supplied in 'props'.
+
+    A particular action may require additional data; if so, this must be
+    supplied in a list. The tag of the list must be entered in the array
+    'pdata', in the position corresponding to the token in 'props'. If the
+    action does not require additional data, then the null tag should be
+    entered in the appropriate position in 'pdata'.
+
+  Property tokens:
+    The 'props' array contains 'nprops' tokens from the sequence PAPR00. The
+    table shows which tokens may be used, and the data associated with them.
+
+    There are some pairs (or sets) of tokens which are alternatives; if both are
+    supplied they may be contradictory, and in this case the last one to be
+    supplied is the one which is used.
+
+    There are also cases in which the presence of a token implies a particular
+    structure, and another implies a different structure. Use of both tokens is
+    inconsistent, and raises an error.
+
+      token   |           meaning                 |       real data
+      ---------------------------------------------------------------------
+              |                                   |
+      PAPRPE  |       curve is periodic           |       none
+              |                                   |
+      PAPRNS  |  no curvature at start of curve   |       none
+              |   i.e. natural end condition      |
+              |                                   |
+      PAPRNE  |   no curvature at end of curve    |       none
+              |   i.e. natural end condition      |
+              |                                   |
+      PAPRCS  |   derivative supplied at start    | derivative vector
+              |    i.e. clamped end condition     |
+              |                                   |
+      PAPRCE  |    derivative supplied at end     | derivative vector
+              |    i.e. clamped end condition     |
+              |                                   |
+      PAPRKT  |     knot vector supplied          |   knot vector
+              |                                   |
+      PAPRCU  |       force cubic curve           |       none
+              |                                   |
+
+  End conditions PAPRPE, PAPRNS, PAPRNE, PAPRCS, PAPRCE:
+    There are three end conditions available to control the splining: natural,
+    clamped and periodic. Natural and clamped conditions refer to either the
+    start or end of the splined curve, whereas the periodic end condition refers
+    to both.
+
+  . Natural end conditions imply that the curve has no curvature at either
+    the start or end of the curve. Natural end conditions are the default.
+
+  . Clamped end conditions allow the user to specify derivatives at either the
+    start or the end of the curve, or both. Each derivative is supplied in a
+    real list of length three.
+
+    The derivatives should be supplied with respect to a parameter which varies
+    from 0 to 1 between the first or last two points (as appropriate). In other
+    words, the derivatives should have dimensions of length. The magnitude is
+    significant, and supplying vectors which are too large may cause the
+    curve to loop or kink.
+
+  . Periodic end conditions imply that the curve is closed, so that the curve
+    will return to the start point after the final point has been splined. The
+    curve will meet itself with continuity of tangent and curvature. If periodic
+    end conditions are used, then at least three points must be supplied
+    ('npts' >= 3).
+
+  Knot vector PAPRKT:
+    If a knot vector is supplied then it must satisfy the following conditions:
+    . The knot values must form an increasing sequence; repeated knots are
+      not permitted.
+    . For non-periodic splining there must be 'npts' knot values.
+    . For periodic splining there must be ('npts'+1) knot values.
+
+    If the knot vector is not supplied then an accumulated chord length
+    parameterisation is used.
+
+  Curve degree PAPRCU:
+    In general, the curve will be cubic. However, if only two points are given
+    and the end conditions are natural, then a straight line (degree 1) will be
+    produced by default. This default can be overridden by supplying the token
+    PAPRCU, which forces the curve to be cubic.
+
+
+</PRE>
+</BODY>
+</HTML>

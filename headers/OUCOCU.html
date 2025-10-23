@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+<TITLE>OUCOCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUCOCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_output_vectors.html>PK_CURVE_output_vectors</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUCOCU ( curve, start, end, ctol, atol, stol, posns, npos, ifail )
+==================================================================
+
+  Output coordinates on curve.
+
+Receives:
+  KI_tag_curve             *curve          --- curve to be output
+  KI_vec_position           start          --- starts from here
+  KI_vec_position           end            --- ends here
+  double                   *ctol           --- max permitted chordal error
+  double                   *atol           --- max permitted angular error
+  double                   *stol           --- max permitted step length
+
+Returns:
+ &lt;KI_tag_list_dbl&gt;         *posns          --- list of vector components
+  KI_int_nitems            *npos           --- number of items in list
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_tolerances_too_tight   failed to meet tolerances
+  KI_stol_too_small         invalid step length control set
+  KI_atol_too_small         invalid angular control set
+  KI_ctol_too_small         invalid chordal control set
+  KI_wrong_direction        start and end in wrong order
+  KI_coincident             start and end coincide but curve not closed
+  KI_not_on_curve           coords not within resolution distance of curve
+
+Description:
+
+  This routine outputs coordinates along 'curve' from 'start' to 'end'.
+  The user may specify the controls that govern the output of the
+  coordinates or request that coordinates be output to default controls.
+
+  To help explain the meaning of 'ctol', 'atol', and 'stol', a chord is
+  defined to be the straight line between adjacent coordinates. A step is
+  the process of progressing from one location to the next.
+
+  'ctol' is the max permitted chordal error. That is the maximum permitted
+         distance from a chord to the curve between the ends of the chord.
+
+  'atol' is the max permitted angular error. It is the maximum permitted
+         sum of the angles between the chord and the tangents to the curve
+         at the ends of the chord.
+
+  'stol' is the max permitted chordal length.
+
+  'ctol', 'atol', and 'stol' are independent means of controlling the
+  output of the points. There will be no step where a valid 'ctol',
+  'atol', or 'stol' limit is exceeded. There is no guarantee that 'ctol',
+  'atol' or 'stol' will actually be attained.
+
+  There are lower limits to the values of 'ctol', 'atol' and 'stol' that
+  can be used as controls. These values are not specified here as they
+  depend upon the model resolution. Where these limits are exceeded
+  suitable failure codes are returned.
+
+  If all the controls are set to <= 0.0, default controls are applied
+  which capture the shape of the curve. Where some of the controls are set
+  to <= 0.0, those controls that are <= 0.0 are ignored and coordinates
+  are output to the remaining valid controls.
+
+  The positions stepped to are returned in 'posns', a list of doubles in
+  the form
+
+  Xn, Yn, Zn, X(n+1), Y(n+1), Z(n+1), X(n+2) ......
+
+  where n varies from 0 to 'npos'/3 - 1.
+
+  X0,Y0,Z0 is 'start' first location stepped to and
+  XL,YL,ZL is 'end'   last location  stepped to.
+        where L = 'npos'/3 - 1
+
+  'start' to 'end' must follow the natural direction of the curve as indicated in
+  the appropriate KI curve creation routine. If the curve is a trimmed curve the
+  bounds are ignored. However valid vectors should be supplied.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_properties_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_properties_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_blend_properties_s
+    {
+    <A HREF=../headers/pk_blend_propagate_t.html>PK_blend_propagate_t</A>    propagate;     --- DEPRECATED
+                                           --- (<A HREF=../headers/pk_blend_propagate_t.html>PK_blend_propagate_no_c</A>) [NF]
+    <A HREF=../headers/pk_blend_vary_t.html>PK_blend_vary_t</A>         vary;          --- form of variation
+                                           --- (<A HREF=../headers/pk_blend_vary_t.html>PK_blend_vary_smooth_c</A>) [NF]
+    <A HREF=../headers/pk_blend_render_rib_t.html>PK_blend_render_rib_t</A>   render_rib;    --- enable rendering of ribs
+                                           --- (<A HREF=../headers/pk_blend_render_rib_t.html>PK_blend_render_rib_no_c</A>) [NF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            draw_fix;      --- whether blend will be drawn
+                                           --- and fixed (PK_LOGICAL_true) [NF]
+    <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_t</A>    ov_smooth;     --- enable smooth overflow
+                                           --- (<A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_diff_c</A>) [PF]
+    <A HREF=../headers/pk_blend_ov_cliff_t.html>PK_blend_ov_cliff_t</A>     ov_cliff;      --- enable cliff edge overflow
+                                           --- (<A HREF=../headers/pk_blend_ov_cliff_t.html>PK_blend_ov_cliff_diff_c</A>) [PF]
+    <A HREF=../headers/pk_blend_ov_cliff_end_t.html>PK_blend_ov_cliff_end_t</A> ov_cliff_end;  --- enable cliff edge end overflow
+                                           --- (<A HREF=../headers/pk_blend_ov_cliff_end_t.html>PK_blend_ov_cliff_end_no_c</A>)
+                                           --- [NF]
+    <A HREF=../headers/pk_blend_ov_notch_t.html>PK_blend_ov_notch_t</A>     ov_notch;      --- enable notch overflow
+                                           --- (<A HREF=../headers/pk_blend_ov_notch_t.html>PK_blend_ov_notch_yes_c</A>)
+    double                  tolerance;     --- tolerance for blended edge
+                                           --- (1.0e-5)
+    double                  ribspace;      --- approx separation of rib lines
+                                           --- (0.0) [NF]
+    };
+typedef struct PK_blend_properties_s PK_blend_properties_t;
+
+
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_edge_ask_blend.html>PK_EDGE_ask_blend</A><br>
+    <A HREF=../headers/pk_edge_set_blend_chamfer_o_t.html>PK_EDGE_set_blend_chamfer_o_t</A><br>
+    <A HREF=../headers/pk_edge_set_blend_constant_o_t.html>PK_EDGE_set_blend_constant_o_t</A><br>
+    <A HREF=../headers/pk_edge_set_blend_variable_o_t.html>PK_EDGE_set_blend_variable_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This structure records a set of blend properties.
+
+Description of fields:
+
+<B>'propagate'</B>
+    This option is deprecated. If you wish to propagate you are strongly
+    recommended to use <A HREF=../headers/pk_edge_find_g1_edges.html>PK_EDGE_find_g1_edges</A> to find smoothly connected edges
+    and pass these into <A HREF=../headers/pk_edge_set_blend_constant.html>PK_EDGE_set_blend_constant</A> or <A HREF=../headers/pk_edge_set_blend_chamfer.html>PK_EDGE_set_blend_chamfer</A>
+    rather than set this option to <A HREF=../headers/pk_blend_propagate_t.html>PK_blend_propagate_yes_c</A>.
+
+<B>'vary'</B>
+    This field is only applicable to blends set by
+    <A HREF=../headers/pk_edge_set_blend_variable.html>PK_EDGE_set_blend_variable</A>. Causes the blend ranges to vary naturally.
+    The default behaviour is for the range variation to be constrained in
+    such a way as to ensure that they would meet other blends smoothly at
+    the vertices. (<A HREF=../headers/pk_blend_vary_t.html>PK_blend_vary_smooth_c</A>)
+
+<B>'render_rib'</B>
+    Whether ribs will be drawn by the rendering functions.
+
+<B>'draw_fix'</B>
+    When <B>'draw_fix'</B> is PK_LOGICAL_true, the created unfixed blends are
+    fixed, checked and rendered when required.
+    Setting <B>'draw_fix'</B> to PK_LOGICAL_false causes the unfixed blends
+    to be ignored by <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A>, <A HREF=../headers/pk_edge_check_blends.html>PK_EDGE_check_blends</A> and
+    <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A>, which will all treat the edges as unblended.
+
+Overflow: The default overflow behaviour of a blend is as follows;
+When fixing a blend, it is possible that the blend as defined by
+its basic parameters would lie outside the faces adjacent
+to the edge being blended. If this is so, the blend must <B>'overflow'</B>.
+
+<B>'ov_smooth'</B>
+    If the configuration allows us, we smoothly overflow and
+    create a blend one of whose underlying faces is the
+    one it has overflowed onto.
+    This option must be set to either <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_no_c</A> or
+    <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_any_c</A> for facet geometry.
+
+<B>'ov_cliff'</B>
+    If the configuration is unsuitable for smooth overflow,
+    we try to cliff overflow - that is replace the
+    appropriate section of the blend by a cliffedge blend
+    running along the appropriate edges. Cliff overflows are not
+    possible for blends set by <A HREF=../headers/pk_edge_set_blend_chamfer.html>PK_EDGE_set_blend_chamfer</A>.
+    This option must be set to <A HREF=../headers/pk_blend_ov_cliff_t.html>PK_blend_ov_cliff_no_c</A> for facet geometry.
+
+<B>'ov_cliff_end'</B>
+    If the configuration is unsuitable for cliff overflow,
+    we try to cliff and overflow - that is replace the
+    appropriate section of the blend by a cliffedge blend
+    at the ends of the appropriate edges. End cliff overflows are not
+    possible for blends set by <A HREF=../headers/pk_edge_set_blend_chamfer.html>PK_EDGE_set_blend_chamfer</A>.
+
+<B>'ov_notch'</B>
+    If the configuration is unsuitable for cliff overflow too,
+    we will then notch overflow - that is, merely trim the blend
+    by the other faces in the region, leaving its surface geometry
+    unchanged. If the configuration is unsuitable
+    for this as well, the blend will not fix.
+
+By default neither cliffedge nor smooth overflows will occur when
+the edge being overflowed is of the same convexity as the
+edge being blended.
+
+By default also, cliffedge overflows will not occur
+at the ends of blends, except where they meet another blend smoothly.
+
+Overflow Type  | Prevent
+--------------------------------------------
+SMOOTH         | <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_no_c</A>
+CLIFFEDGE      | <A HREF=../headers/pk_blend_ov_cliff_t.html>PK_blend_ov_cliff_no_c</A>
+NOTCH          | <A HREF=../headers/pk_blend_ov_notch_t.html>PK_blend_ov_notch_no_c</A>
+--------------------------------------------
+
+Overflow Type  | Allow when Same Convexity
+--------------------------------------------
+SMOOTH         | <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_any_c</A>
+CLIFFEDGE      | <A HREF=../headers/pk_blend_ov_cliff_t.html>PK_blend_ov_cliff_any_c</A>
+--------------------------------------------
+
+Overflow Type  | Allow at End
+--------------------------------------------
+CLIFFEDGE END  | <A HREF=../headers/pk_blend_ov_cliff_end_t.html>PK_blend_ov_cliff_end_yes_c</A>
+--------------------------------------------
+
+Overflow Type  | Default
+--------------------------------------------
+SMOOTH         | <A HREF=../headers/pk_blend_ov_smooth_t.html>PK_blend_ov_smooth_diff_c</A>
+CLIFFEDGE      | <A HREF=../headers/pk_blend_ov_cliff_t.html>PK_blend_ov_cliff_diff_c</A>
+CLIFFEDGE END  | <A HREF=../headers/pk_blend_ov_cliff_end_t.html>PK_blend_ov_cliff_end_no_c</A>
+NOTCH          | <A HREF=../headers/pk_blend_ov_notch_t.html>PK_blend_ov_notch_yes_c</A>
+--------------------------------------------
+
+<B>'tolerance'</B>
+    Sets the tolerance for the blended edge. The default tolerance is 1000 *
+    modeller resolution. This field does not apply to conic blends set by
+    <A HREF=../headers/pk_edge_set_blend_constant.html>PK_EDGE_set_blend_constant</A> on a classic body.
+
+<B>'ribspace'</B>
+    The approximate separation of rib lines.
+    ( 0 &lt;  ribspace &lt; size )
+
+For further explanation, and examples, of the use of these options,
+please refer to the blending section of the manual.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

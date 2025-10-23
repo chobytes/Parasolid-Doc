@@ -1,0 +1,121 @@
+<HTML>
+<HEAD>
+<TITLE>SAVMOD</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SAVMOD</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_part_transmit.html>PK_PART_transmit</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SAVMOD ( part, keylen, key, ifail )
+===================================
+
+  Save model in archive.
+
+Receives:
+  KI_tag_part              *part           --- part to transmit
+  KI_int_nchars            *keylen         --- length of key
+  KI_chr_key                key[keylen]    --- key of part
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_text_conversion    invalid value for text output
+  KI_applio_not_registered  application i/o functions not registered
+  KI_disc_full              disc full
+  KI_file_access_error      error writing or closing the transmit file
+  KI_cant_open_file         error opening the transmit file
+  KI_schema_access_error    error opening, closing or writing the schema file
+  KI_modified_sub_part      part has modified sub-part
+  KI_part_not_isolated      part not isolated
+  KI_already_saved          part is already stored in archive
+  KI_key_in_use             key already used in archive
+                            can't transmit modified part with same key
+  KI_bad_key                invalid key syntax
+
+Description:
+  SAVMOD transmits 'part' and its true-sub-parts into the archive with the given
+  'key'.
+
+  The part must be new or modified (by definition stored, anonymous and unloaded
+  parts are already in the archive).
+
+  Whether parts are transmitted in text or in binary depends on the value of the
+  SLIPBT interface parameter (see SEINTP for details).
+
+  If 'part' is modified 'key' must not match the key already attached to the
+  part. In fact if the key matches the key of any other part in memory
+  KI_key_in_use will be returned in 'ifail'. This error code may also be
+  returned if the key is already used in the archive.
+
+  We define the true-sub-parts of a part P to be all sub-parts of P which can
+  be reached without encountering a keyed (i.e. stored, unloaded or modified)
+  part.
+
+  The part and all true-sub-parts of the part are transmitted into the archive
+  under the same key. When transmitted the part is changed to stored and all
+  true-sub-parts are changed to anonymous. For example (the parts marked * are
+  the true-sub-parts of P, and ST represents a stored part and its
+  true-sub-parts):
+
+      Before transmit of P              After transmit of P
+
+           P->md                    P->st                   ST
+             /  \                     /  \                 /  \
+           *nw *nw                   an  an               ST  ST
+           /  \/  \                 /  \/  \                 /  \
+         *nw *nw  ST               an  an  ST      OR       ST  ST
+         /       /  \             /       /  \                \/
+        ST      ST  ST           ST      ST  ST               ST
+                  \/                       \/
+                  ST                       ST
+
+  If the part is to be transmitted it must be the root of an isolated sub-graph
+  which references only stored or unloaded parts. If these conditions are not
+  met the state changes would cause EITHER a new or modified part to become
+  a sub-part of a stored part OR a stored part to become the root of a
+  non-isolated sub-graph. For example:
+
+
+      Before transmit of P      After transmit P is stored but has modified
+                                sub-part and thus SAVMOD will fail returning
+                                KI_modified_sub_part in 'ifail'.
+
+           P->md                    P->st
+             /  \                     /  \
+            nw  nw                   an  an
+           /  \/                    /  \/
+          nw  md                   an  md
+
+
+      Before transmit of P      After transmit P is stored but is not root of
+                                isolated sub-graph and thus SAVMOD will fail
+                                returning KI_part_not_isolated in 'ifail'.
+
+           P->md                    P->st
+             /  \                     /  \
+            nw  nw  md               an  an  md
+           /  \/  \ /               /  \/  \ /
+          nw  nw  nw               an  an  an
+
+
+</PRE>
+</BODY>
+</HTML>

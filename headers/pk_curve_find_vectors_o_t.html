@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_find_vectors_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_find_vectors_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_find_vectors_o_s
+    {
+    int                 o_t_version;        --- option structure version
+    int                 n_measurements;     --- number of measurements
+                                            --- (1)
+    double             *measurements;       --- values of the measurements
+                                            --- (0.5)
+    <A HREF=../headers/pk_measure_t.html>PK_measure_t</A>        measurement_method; --- what <B>'measurements'</B> measure
+                                            --- (<A HREF=../headers/pk_measure_t.html>PK_measure_chord_ratio_c</A>)
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_t</A>  error_on_failure;   --- when to return error
+                                            --- indicating failure.
+                                            --- (<A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_no_c</A>)
+    };
+typedef struct PK_CURVE_find_vectors_o_s PK_CURVE_find_vectors_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure holds controls for <A HREF=../headers/pk_curve_find_vectors.html>PK_CURVE_find_vectors</A>
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_find_vectors.html>PK_CURVE_find_vectors</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure allows the caller to control how the position vectors
+on the curve are determined.
+
+Notation: The "start point" of the curve is the position vector corresponding
+          to evaluating the curve at the lower boundary of the supplied
+          interval <B>'t_int'</B>.
+          The "end point" of the curve is the position vector corresponding
+          to evaluating the curve at the upper boundary of the supplied
+          interval <B>'t_int'</B>.
+          The "bounded length" of the curve is the length of the curve measured
+          along the curve from the start point to the end point.
+
+n_measurements:
+---------------
+
+The number of values supplied in <B>'measurements'</B>.
+
+
+measurements:
+-------------
+
+The values supplied are either distances or ratios of distances measured in
+3-space. If they are distance measurements they may neither be negative nor
+exceed the length of their reference object ( see below ). If they are ratios
+they may neither be negative nor greater than 1.
+
+
+measurement_method:
+-------------------
+This enum determines what the values in <B>'measurements'</B> represent.
+<B>'measurement_method'</B> can be set to one of:
+
+<A HREF=../headers/pk_measure_t.html>PK_measure_distance_c</A>
+    All values in <B>'measurements'</B> are distances measured along the curve from
+    the start point.
+    For each distance in <B>'measurements'</B> a position vector will be returned
+    such that the distance along the curve from the start point to the
+    position vector equals the given distance.
+    Note that no position vector will be returned for values in
+    <B>'measurements'</B> that are negative or larger than the bounded length of the
+    curve.
+
+
+<A HREF=../headers/pk_measure_t.html>PK_measure_distance_ratio_c</A>
+    All values in <B>'measurements'</B> are ratios of distances measured along the
+    curve from the start point to the bounded length of the curve.
+    For each ratio of distances in <B>'measurements'</B> a position vector will be
+    returned such that the ratio of the distance along the curve from the
+    start point to the position vector to the bounded length of the curve
+    equals the given ratio.
+    Note that no position vector will be returned for values in
+    <B>'measurements'</B> that are negative or larger than 1.
+
+
+<A HREF=../headers/pk_measure_t.html>PK_measure_chord_c</A>
+    The chord is the straight line from the start point to the end point.
+    All values in <B>'measurements'</B> are distances measured along the chord
+    from the start point.
+    For each distance in <B>'measurements'</B> all position vectors on the curve
+    that satisfy the following condition will be returned:
+        they lie
+        i)  on the curve between the start and end points
+        AND
+        ii) in the plane which is orthogonal to the chord and which is
+            located at the given distance from the start point.
+
+    Note that there may be several position vectors returned for each value
+    in <B>'measurements'</B>.
+    Furthermore, no position vector will be returned for values in
+    <B>'measurements'</B> that are negative or larger than the length of the
+    chord.
+
+
+<A HREF=../headers/pk_measure_t.html>PK_measure_chord_ratio_c</A>
+    The chord is the straight line from the start point to the end point.
+    All values in <B>'measurements'</B> are ratios of distances measured along the
+    chord from the start point to the bounded length of the chord.
+    For each ratio in <B>'measurements'</B> all position vectors on the curve
+    that satisfy the following condition will be returned:
+        they lie
+        i)  on the curve between the start and end points
+        AND
+        ii) in the plane which is orthogonal to the chord and which is
+            located at a distance from the start point such that the ratio
+            of this distance to the bounded length of the chord equals the
+            given ratio.
+
+    Note that there may be several position vectors returned for each value
+    in <B>'measurements'</B>.
+    Furthermore, no position vector will be returned for values in
+    <B>'measurements'</B> that are negative or larger than 1.
+
+
+<A HREF=../headers/pk_measure_t.html>PK_measure_2_chords_ratio_c</A>
+    Let P be any point on the curve. Let A be the length of the chord from
+    the start point to P, and let B be the length of the chord from P to
+    the end point.
+    All values in <B>'measurements'</B> are ratios A / ( A + B ).
+    For each ratio in <B>'measurements'</B> all position vectors S on the curve
+    that satisfy the following condition will be returned:
+        i)  S lies on the curve between the start and end points
+        AND
+        ii) the ratio of the lengths of the chord from the start point
+            to S to the bounded length of the two chords from the start
+            point to S and from S to the end point is equal to the given
+            ratio.
+
+    Note that there may be several position vectors returned for each value
+    in <B>'measurements'</B>.
+    Furthermore, no position vector will be returned for values in
+    <B>'measurements'</B> that are negative or larger than 1.
+
+
+In general the computational cost of the methods involving chord measurements
+is lower than the methods involving true curve lengths or ratios of such.
+
+
+error_on_failure:
+-----------------
+This enum determines when the error PK_ERROR_cant_get_vectors will be
+returned. It can be set to:
+
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_any_c</A>
+    The error PK_ERROR_cant_get_vectors will be returned unless the
+    operation is successful for all values in <B>'measurements'</B>.
+
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_all_c</A>
+    The error PK_ERROR_cant_get_vectors will be returned if the
+    operation is successful for none of the values in <B>'measurements'</B>.
+
+    <A HREF=../headers/pk_error_on_fail_t.html>PK_ERROR_on_fail_no_c</A>
+    The error PK_ERROR_cant_get_vectors will not be returned.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

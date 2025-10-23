@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_extrude_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_extrude_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_extrude_o_s
+    {
+    int                   o_t_version;    --- options structure version number
+    <A HREF=../headers/pk_bound_def_t.html>PK_bound_def_t</A>        start_bound;    --- starting bound of swept body
+                                          --- ( <A HREF=../headers/pk_bound_t.html>PK_bound_distance_c</A>,
+                                          ---   PK_LOGICAL_true,
+                                          ---   0.0,
+                                          ---   PK_ENTITY_null,
+                                          ---   PK_LOGICAL_true,
+                                          ---   1,
+                                          ---   <A HREF=../headers/pk_bound_side_t.html>PK_bound_side_both_c</A>
+                                          --- )
+    <A HREF=../headers/pk_bound_def_t.html>PK_bound_def_t</A>        end_bound;      --- ending bound of swept body
+                                          --- ( <A HREF=../headers/pk_bound_t.html>PK_bound_distance_c</A>,
+                                          ---   PK_LOGICAL_true,
+                                          ---   1.0,
+                                          ---   PK_ENTITY_null,
+                                          ---   PK_LOGICAL_true,
+                                          ---   1,
+                                          ---   <A HREF=../headers/pk_bound_side_t.html>PK_bound_side_both_c</A>
+                                          --- )
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>             extruded_body;  --- body to use instead of swept
+                                          --- profile( PK_ENTITY_null )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          allow_disjoint; --- swept body can have a disjoint
+                                          --- division ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_param_consistent_t.html>PK_PARAM_consistent_t</A> consistent_params;
+                                          --- whether to ensure consistent
+                                          --- parameterisation
+                                          --- ( <A HREF=../headers/pk_param_consistent_t.html>PK_PARAM_consistent_unset_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          have_pline_angle;
+                                          --- whether <B>'pline_angle'</B> is
+                                          --- supplied ( PK_LOGICAL_true )
+    double                pline_angle;    --- angle used for controlling the
+                                          --- splitting of the resulting
+                                          --- extrude ( pi/2 )
+    <A HREF=../headers/pk_body_keep_as_facet_t.html>PK_BODY_keep_as_facet_t</A>
+                          keep_as_facet;  --- whether to keep the resultant
+                                          --- extrude as a facet body when the
+                                          --- input body is purely facet
+                                          --- (PK_BODY_keep_as_facet_yes_c)
+    };
+typedef struct PK_BODY_extrude_o_s PK_BODY_extrude_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure provides options for a linear extrusion of a body.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_unsuitable_entity     <B>'extruded_body'</B> is provided but is either
+                                   not a solid body when the <B>'profile'</B> is a
+                                   sheet body, or is not a sheet body when the
+                                   <B>'profile'</B> is a wire body (MILD)
+
+    PK_ERROR_bad_angle             <B>'pline_angle'</B> is provided but isn't within
+                                   the interval ( 0.0, pi ) (MILD)
+
+    PK_ERROR_inconsistent_geom     <B>'keep_as_facet'</B> is
+                                   PK_BODY_keep_as_facet_yes_c, the profile
+                                   contains only facet geometry, and either
+                                   (a) the bound method is not
+                                   <A HREF=../headers/pk_bound_t.html>PK_bound_surf_c</A>, or (b) the bound entity
+                                   is a classic surface of a class other than
+                                   PK_CLASS_plane (MILD)
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_extrude.html>PK_BODY_extrude</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Its fields are:
+
+<B>'start_bound'</B>         How the extruded body is to be bound at the start bound.
+                      See documentation for <A HREF=../headers/pk_bound_def_t.html>PK_bound_def_t</A>.
+
+<B>'end_bound'</B>           How the extruded body is to be bound at the end bound.
+                      See documentation for <A HREF=../headers/pk_bound_def_t.html>PK_bound_def_t</A>.
+
+Note: <B>'start_bound'</B> and <B>'end_bound'</B> must occur in that order along
+the given <B>'path'</B> vector.
+
+
+<B>'extruded_body'</B>       Perform the bounding on this body instead of the swept
+                      profile.
+
+<B>'allow_disjoint'</B>      Whether the resulting extruded body can have disjoint
+                      components.
+
+<B>'consistent_params'</B>   Whether or not to always make the parameterisation
+                      consistent with the sweep direction.
+
+<B>'have_pline_angle'</B>    Whether <B>'pline_angle'</B> is supplied.
+
+<B>'pline_angle'</B>         For profiles with facet geometry, if the angle (in
+                      radians) between polyline segments, when viewed down
+                      the direction of extrusion, is greater than or equal to
+                      <B>'pline_angle'</B> then an additional edge will be introduced
+                      in the resulting body, extruded from that position. On
+                      wire profiles this applies to any polyline, and on sheet
+                      profiles this applies only to polylines on laminar
+                      edges.
+                      If <B>'have_pline_angle'</B> is set to PK_LOGICAL_false, the
+                      angle criterion won't be used to split edges.
+                      See also #here#DOCXXXX# for more information.
+                      Note: this option has no effect if an <B>'extruded_body'</B> is
+                      supplied.
+
+<B>'keep_as_facet'</B>       Whether the resultant extrude body is to contain only
+                      facet geometry.
+                      Note: this option has no effect if the extrude profile
+                      contains any classic geometry.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>PTRLLI</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PTRLLI</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+PTRLLI ( list, startx, nvals, rvals, ifail )
+============================================
+
+  Put values into a list of reals
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_list_dbl          *list           --- list in which to put items
+ &lt;KI_int_index&gt;            *startx         --- position in list where first
+                                           --- value is to be put
+  KI_int_nitems            *nvals          --- number of values to be put
+                                           --- into list
+  double                    rvals[nvals]   --- values to put into list
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_index              'startx' not in range 1 to list length + 1
+
+Description:
+  The given values are put into the list. The first value goes into the
+  'startx' position, the second into 'startx' + 1 and so on. The first element
+  in the list is number 1.
+
+  'startx' must not be greater then the current length of the list plus 1.
+
+  If 'startx' is zero then the given values are appended to the end of the list.
+
+  If 'startx' is in the range[1, length of list], existing elements will be
+  overwritten.
+
+</PRE>
+</BODY>
+</HTML>

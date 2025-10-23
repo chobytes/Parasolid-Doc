@@ -1,0 +1,117 @@
+<HTML>
+<HEAD>
+<TITLE>PICKEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PICKEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_pick_topols.html>PK_BODY_pick_topols</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+PICKEN ( palist, transf, point, axis, rad, opt, entype, nhiten, hitlis, 
+========================================================================
+         indlis, dislis, hitpts, ifail )
+         ===============================
+
+  Pick entities inside a cylindrical volume.
+
+Receives:
+  KI_tag_list_part         *palist         --- part or list of parts
+ &lt;KI_tag_list_&lt;transform&gt;&gt; *transf         --- transformation or
+                                           --- list of transformations
+  KI_vec                    point          --- point through which axis passes
+  KI_vec_direction          axis           --- axis of cylindrical volume
+  KI_dbl_radius            *rad            --- radius of cylindrical volume
+  KI_cod_slpk              *opt            --- ray options
+  KI_cod_ty                *entype         --- type of entity to pick
+
+Returns:
+ &lt;KI_int_nitems&gt;           *nhiten         --- number of picked entities
+ &lt;KI_tag_list_entity&gt;      *hitlis         --- list of picked entities
+ &lt;KI_tag_list_int&gt;         *indlis         --- list of indices of the
+                                           --- owning parts
+ &lt;KI_tag_list_dbl&gt;         *dislis         --- list of minimum distances
+                                           --- from picked entities to ray
+ &lt;KI_tag_list_dbl&gt;         *hitpts         --- points on ray axis
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_type               check ray type is correct
+                            entity in part list is of incorrect type
+  KI_wrong_transf           unsuitable transform
+  KI_wrong_entity_in_list   entity in part list is of incorrect type
+  KI_not_same_length        part and transform lists are of different lengths
+
+Description:
+  PICKEN provides assistance in selecting entities from a display.  PICKEN fires
+  a thick ray at a list of parts and can return any edge, vertex, construction
+  curve or construction point hit. The inverse of a transform in 'transf' is
+  applied to the ray before it is fired at the corresponding part in 'entys';
+  i.e. PICKEN acts as if each part in 'entys' is transformed (by the
+  corresponding transform in 'transf') before firing the ray, without actually
+  transforming them.
+
+  If none of the parts are to be transformed, 'transf' may be specified as a
+  null tag. A null tag in 'transf' is interpreted as the identity
+  transformation.
+
+  The volume from which the entities will be picked is defined as a cylinder of
+  infinite length. The axis of the cylinder passes through 'point' and runs
+  parallel to 'axis'. The radius of the cylinder is 'rad'.
+
+  'entype' is the type code which determines what type of entity to look for.
+  If a body or list of bodies is given, vertices, edges, construction points and
+  construction curves can be found, so either TYTOVX, TYTOED, TYGEPT or TYGECU
+  can be given. If an assembly or list of assemblies is given, only construction
+  points and construction curves can be found, so either TYGEPT or TYGECU can be
+  given.
+
+  'opts' is the type code which determines whether the ray is to be infinite
+  SLPKIR or semi_infinite SLPKSR. If SLPKIR is selected then PICKEN will return
+  all entities along the whole ray. If SLPKSR is selected then PICKEN will
+  return entities along a ray starting at 'point' and in the direction 'axis'.
+
+  All the entities of the correct type which lie within the defined region will
+  be found. The data will be returned in three lists of length 'nhiten' as
+  follows:
+
+      'hitlis' - A list of tags of picked entities
+      'indlis' - A list of indices of the owning bodies or assemblies
+      'dislis' - A list of minimum distances from picked entity
+                 to the defined axis
+      'hitpts' - A list of points on the axis corresponding to the
+                 minimum distances in 'dislis'.  These points are the
+                 projections of the minimum distance points on to the axis.
+
+  The entries in the lists will be sorted according to the values in the
+  'dislis' list, so that the nearest entity comes first.
+
+  If no suitable entities are found, the value of 'nhiten' will be zero and
+  'hitlis', 'indlis', 'dislis' and 'hitpts' will be returned as the null tag.
+
+  The distances are not determined to modelling accuracy, and so this routine
+  should only be used for operations such as picking from a display, and not for
+  modelling calculations.
+
+  If transforms are supplied they may only contain translation and rotation
+  components. Reflections, scales and shears are not allowed.
+
+
+</PRE>
+</BODY>
+</HTML>

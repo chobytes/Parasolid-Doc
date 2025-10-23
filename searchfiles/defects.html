@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.083.html#50409871_pgfId-360146", " that mesh data is valid and repair any <B>defects</B> found. ", "Functional Description - Introduction To Convergent Modeling");
+top.note("chapters/fd_chap.084.html#50409872_pgfId-592934", " for more information on detecting and repairing mesh <B>defects</B>. Any holes in the mesh can be filled", "Functional Description - Overview Of Convergent Modeling");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-321354", " is recommended that you attempt to repair any <B>defects</B> on a mesh before any topology is added:", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-396563", " to find and fix <B>defects</B> in a mesh. <B>defects</B> include invalidities and additionally other sub-optimal properties of", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-393436", " of good quality by attempting repair on any <B>defects</B> that may exist. ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-396956", " Note: It is recommended that any <B>defects</B> present on a mesh are removed prior to", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-342502", " how you can use Parasolid functionality to manage <B>defects</B> and invalidities in mesh data. ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-339908", " 87.2 Finding and fixing <B>defects</B> in meshes ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-339910", " on a mesh, and to attempt to fix <B>defects</B> found, as follows: ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-340030", " return a structure that contains details of any <B>defects</B> found. ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-340034", " the repair operation, together with details of any <B>defects</B> still existing in the mesh. ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-339926", " structure that provides details about the types of <B>defects</B> found, the entities affected and position and parameter", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-339928", " for each mesh returned), providing details about any <B>defects</B> that remain in that mesh. ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-396572", " If a mesh component containing slit <B>defects</B> (interior laminar mfins) is used to create a", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-340307", " Note: PK_MESH_fix_defects may introduce new <B>defects</B> into the fixed meshes returned. ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-433515", " modification that Parasolid can make when fixing mesh <B>defects</B> can be controlled by the following options: ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-339934", " In addition to finding and fixing mesh <B>defects</B>, you can check for invalidity in mesh data", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/ov_chap.09.html#50442280_pgfId-316994", " Checking the mesh for <B>defects</B> such as invalidities or other sub-optimal mesh properties", "Overview of Parasolid - Convergent Modeling");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_MTOPOL_find_defect_yes_c 25951 examine the mesh topology for <B>defects</B> ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " <B>defects</B> could not be fixed, or some new <B>defects</B>", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_face_fix_mesh_defects.html#documentation", "This function fixes <B>defects</B> on meshes of the supplied faces, keeping the", "PK Reference - PK_FACE_fix_mesh_defects");
+top.note("headers/pk_face_fix_mesh_defects_r_t.html#declaration", " PK_MESH_defect_array_t <B>defects</B>; --- <B>defects</B>", "PK Reference - PK_FACE_fix_mesh_defects_r_t");
+top.note("headers/pk_face_fix_mesh_defects_r_t.html#documentation", " <B>defects</B> : An array of remaining and introduced <B>defects</B>.", "PK Reference - PK_FACE_fix_mesh_defects_r_t");
+top.note("headers/pk_face_fix_result_t.html#documentation", " PK_FACE_fix_result_incomplete_c Some <B>defects</B> could not be fixed, or", "PK Reference - PK_FACE_fix_result_t");
+top.note("headers/pk_imprint_vecs_t.html#documentation", " <B>defects</B> in the resultant mesh.", "PK Reference - PK_imprint_vecs_t");
+top.note("headers/pk_mesh_defect_array_t.html#declaration", " PK_MESH_defect_details_t *<B>defects</B>;", "PK Reference - PK_MESH_defect_array_t");
+top.note("headers/pk_mesh_defect_array_t.html#description", " A structure packaging any remaining <B>defects</B> of the mesh.", "PK Reference - PK_MESH_defect_array_t");
+top.note("headers/pk_mesh_defect_array_t.html#documentation", " n_defects Number of <B>defects</B> on the resultant mesh", "PK Reference - PK_MESH_defect_array_t");
+top.note("headers/pk_mesh_defect_details_f.html#declaration", " PK_MESH_defect_details_t *const <B>defects</B> --- structure to free", "PK Reference - PK_MESH_defect_details_f");
+top.note("headers/pk_mesh_defect_details_f.html#documentation", " free all the PK memory referenced by the <B>defects</B> structure.", "PK Reference - PK_MESH_defect_details_f");
+top.note("headers/pk_mesh_find_defects.html#declaration", " PK_MESH_t mesh, --- mesh in which to find <B>defects</B>", "PK Reference - PK_MESH_find_defects");
+top.note("headers/pk_mesh_find_defects.html#description", " This function finds <B>defects</B> on a mesh.", "PK Reference - PK_MESH_find_defects");
+top.note("headers/pk_mesh_find_defects.html#documentation", " examines a mesh and returns information about the <B>defects</B> found,", "PK Reference - PK_MESH_find_defects");
+top.note("headers/pk_mesh_find_defects_o_t.html#declaration", " --- <B>defects</B> are found", "PK Reference - PK_MESH_find_defects_o_t");
+top.note("headers/pk_mesh_find_defects_o_t.html#documentation", "The option structure defines options applicable to finding <B>defects</B> in the mesh.", "PK Reference - PK_MESH_find_defects_o_t");
+top.note("headers/pk_mesh_fix_defects.html#declaration", " --- <B>defects</B>", "PK Reference - PK_MESH_fix_defects");
+top.note("headers/pk_mesh_fix_defects.html#description", " This function fixes <B>defects</B> on a mesh.", "PK Reference - PK_MESH_fix_defects");
+top.note("headers/pk_mesh_fix_defects.html#documentation", " PK_MESH_find_defects , and fixes the <B>defects</B> found, if any. This function may", "PK Reference - PK_MESH_fix_defects");
+top.note("headers/pk_mesh_fix_defects_o_t.html#declaration", " --- <B>defects</B> are found", "PK Reference - PK_MESH_fix_defects_o_t");
+top.note("headers/pk_mesh_fix_defects_o_t.html#documentation", "The option structure defines options applicable to fixing <B>defects</B> in the mesh.", "PK Reference - PK_MESH_fix_defects_o_t");
+top.note("headers/pk_mesh_fix_result_t.html#documentation", " <B>defects</B>", "PK Reference - PK_MESH_fix_result_t");
+top.note("headers/pk_mesh_imprint_vectors.html#documentation", "The function does not attempt to repair any <B>defects</B> in the resultant_mesh ,", "PK Reference - PK_MESH_imprint_vectors");
+top.note("headers/pk_mesh_imprint_vectors_r_t.html#declaration", "int n_defects; --- number of <B>defects</B> in the", "PK Reference - PK_MESH_imprint_vectors_r_t");
+top.note("headers/pk_mesh_imprint_vectors_r_t.html#description", "of <B>defects</B> in the resultant_mesh .", "PK Reference - PK_MESH_imprint_vectors_r_t");
+top.note("headers/pk_mesh_imprint_vectors_r_t.html#documentation", " <B>defects</B> in the resultant_mesh .", "PK Reference - PK_MESH_imprint_vectors_r_t");
+top.note("headers/pk_mtopol_find_defect_t.html#documentation", "be performed. Any <B>defects</B> in mesh topology render the mesh invalid.", "PK Reference - PK_MTOPOL_find_defect_t");
+top.note("headers/pk_mvertex_find_defect_t.html#documentation", " PK_MVERTEX_find_defect_all_c find all <B>defects</B> with mvertex normals", "PK Reference - PK_MVERTEX_find_defect_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

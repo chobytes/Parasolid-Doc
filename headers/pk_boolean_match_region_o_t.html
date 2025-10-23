@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_boolean_match_region_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_boolean_match_region_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_boolean_match_region_o_s
+    {
+    int                    o_t_version; --- version number
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>             regions[2];  --- (PK_ENTITY_null, PK_ENTITY_null)
+    <A HREF=../headers/pk_boolean_match_t.html>PK_boolean_match_t</A>     match_type;  --- (<A HREF=../headers/pk_boolean_match_t.html>PK_boolean_match_exact_c</A>)
+    double                 tolerance;   --- (0.0)
+    };
+typedef struct PK_boolean_match_region_o_s PK_boolean_match_region_o_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is used to specify and describe matched regions
+of the target and tool body.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This options structure provides a mechanism to inform the boolean
+functions of known matched topological regions. A matched region
+is a region of overlap between two topological entities which are
+geometrically coincident to a specified tolerance. The entities in the
+matched region must be in the target or tools of the boolean operation.
+
+The following combinations of topological entities may be
+provided as matched regions :
+  o Vertex - Vertex
+  o Edge   - Edge
+  o Face   - Edge
+  o Face   - Face
+
+The matched entities or regions are associated with a <B>'match_type'</B>
+which classifies the relationship between the entities :
+
+
+Vertex-Vertex Regions
+
+o Exact     : The vertex points are coincident to within the specified
+              tolerance.
+
+o Contains  : Invalid classification.
+
+o Overlap   : Invalid classification.
+
+o Imprinted : The vertices are matched due to being paired via an imprinting
+              operation.
+
+
+Edge-Edge Regions
+
+o Exact     : The edge curves are coincident to within the specified
+              tolerance. Equivalent edge vertices are coincident to
+              within the specified tolerance.
+
+o Contains  : The edge curves are coincident to within the specified
+              tolerance. The bounds of the second edge lie
+              completely within the first edge.
+
+o Overlap   : The edge curves are coincident to within the specified
+              tolerance. There is at least some form of overlap between
+              the two edges.
+
+o Imprinted : The edges are matched due to being paired via an imprinting
+              operation.
+
+
+Face-Edge Regions
+
+o Exact     : Invalid classification.
+
+o Contains  : The edge curve is coincident to within the specified
+              tolerance of the face surface. The edge lies completely
+              within the face. The edge may be coincident with an edge
+              of the face.
+
+o Overlap   : The edge curve is coincident to within the specified
+              tolerance of the face surface. The edge may intersect
+              the boundary (edges) of the face. The edge may be
+              coincident with an edge of the face.
+
+o Imprinted : Invalid classification.
+
+
+Face-Face Regions
+
+o Exact     : The face surfaces are coincident to within the specified
+              tolerance. For every edge on the first face there is a
+              matching edge on the second face. The edge matches are
+              not required to be exact.
+
+o Contains  : The face surfaces are coincident to within the specified
+              tolerance. The second face lies completely within the
+              first face. None of the edges of the second face may
+              intersect the boundary of the first face. Although edges
+              of the second face are allowed to be coincident with
+              those of the first face.
+
+o Overlap   : The face surfaces are coincident to within the specified
+              tolerance. The boundary of one face may intersect the
+              boundary of the other face. Edges of one face may be
+              coincident with edges of the other face.
+
+o Imprinted : Invalid classification.
+
+
+Matched Region Operation
+
+o The topological entities supplied with a matched region may only
+  consist of vertices, edges or faces.
+
+o The topological entities supplied with a matched region must belong
+  to different bodies. Matched regions between two tool bodies is
+  permitted.
+
+o The matched regions may be specified in any order. Internally,
+  the matched regions are sorted into groups of vertex-vertex,
+  edge-edge, face-edge and face-face regions. The matched regions
+  are then processed in this order. The order of processing within
+  a group depends on the input order.
+
+o A matched region may be specified more than once :
+  o Directly   : For example, two edge-edge matches may be input,
+                 where the edges specified are the same.
+                 The first occurrence of the matched region will be
+                 processed and the second will be ignored.
+
+  o Indirectly : For example, if two matched regions are specified,
+                 an edge-edge and a face-face. The edges may form
+                 part of the boundary of the faces.
+                 The order of processing is dictated by the internal
+                 ordering of the matched regions, described above.
+                 In this case, the edge-edge match will be processed
+                 first and then the face-face match; the face-face
+                 match will ignore the specified edges when they
+                 are encountered.
+
+o Edges may be <B>'tolerantised'</B> as a result of the matching operation.
+
+
+Matched Region Assumption
+
+The specification of matched regions ultimately specifies an edge
+(or two edges) which forms the intersection between a number of
+faces. If the <B>'match_style'</B> field in the PK_boolean_match_o_s structure
+is <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_basic_c</A> then the implementation of matched regions
+assumes that the edge (or edges) specifies a unique intersection between
+all the faces that meet at that edge (or edges). The faces that are
+adjacent to the edges involved in the matched region are not tested
+for intersection. This means, if the faces intersect elsewhere, those
+intersections will not be detected (unless those intersections are
+specified by additional matched regions).
+
+This assumption is not made if <B>'match_style'</B> is set to
+<A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_relax_c</A> or <A HREF=../headers/pk_boolean_match_style_t.html>PK_boolean_match_style_auto_c</A> and
+Parasolid will find any further interactions.
+
+
+Description of fields:
+
+
+
+<B>'regions'</B>            The matched topological entities. Only vertices, edges
+                     and faces are considered valid topological entities
+                     for matching.
+
+
+<B>'match_type'</B>         Classifies the topological match, permitted values
+                     are,
+
+                     <A HREF=../headers/pk_boolean_match_t.html>PK_boolean_match_exact_c</A>
+                     <A HREF=../headers/pk_boolean_match_t.html>PK_boolean_match_contains_c</A>
+                     <A HREF=../headers/pk_boolean_match_t.html>PK_boolean_match_overlap_c</A>
+                     <A HREF=../headers/pk_boolean_match_t.html>PK_boolean_match_imprinted_c</A>
+
+
+<B>'tolerance'</B>          The value of the tolerance specifies the maximum
+                     deviation between the matched topological entities
+                     in the region of overlap.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

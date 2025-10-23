@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_hole_component_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_hole_component_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_hole_component_s
+    {
+    <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_t</A> hole_comp;  --- type of hole component
+    double         depth;      --- depth at bottom of component
+    double         data;       --- a parameter of component (eg radius)
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>    entity;     --- entity associated with component
+    };
+typedef struct PK_hole_component_s PK_hole_component_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains information defining a hole component.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_detail_def_hole_t.html>PK_detail_def_hole_t</A><br>
+    <A HREF=../headers/pk_face_details_hole_o_t.html>PK_FACE_details_hole_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Its fields are:
+
+<B>'hole_comp'</B>     this specifies the type of the hole component.  For its values
+                see <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_t</A>
+
+<B>'depth'</B>         the distance along the hole's <B>'origin'</B>s <B>'axis'</B> from the hole's
+                <B>'origin'</B>s <B>'location'</B> to the bottom of the component.  Note
+                that since the hole's <B>'origin'</B>s axis points out of the hole,
+                all depths are negative.  Components for which no
+                meaningful depth can be calculated will have the <B>'depth'</B> set to
+                0.0
+
+<B>'data'</B>          a parameter of the component; see table below
+
+<B>'entity'</B>        an entity associated with the component; see table below
+
+The <B>'data'</B> and <B>'entity'</B> associated with each hole component type are:
+
+    <B>'hole_comp'</B>                   <B>'data'</B>              <B>'entity'</B>
+
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_cyl_c</A>              radius              cylindrical surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_cone_in_c</A>          semi-vertical angle conical surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_cone_out_c</A>         semi-vertical angle conical surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_blnd_in_concave_c</A>  blend radius        blend surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_blnd_out_concave_c</A> blend radius        blend surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_blnd_in_convex_c</A>   blend radius        blend surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_blnd_out_convex_c</A>  blend radius        blend surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_zero_depth_in_c</A>    annular width       surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_zero_depth_out_c</A>   annular width       surface
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_open_end_c</A>         radius (Note 1)     face    (Note 2)
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_closed_end_c</A>       radius              surface (Note 3)
+  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_unknown_c</A>          N/A                 face
+
+If the option <B>'face_tracking'</B> is PK_LOGICAL_true, the surface entities will
+instead be new groups containing the surface and all faces making up the
+component. Applications should delete these groups after use.
+
+Note 1: In cases where the bounding edge or edges of the hole at the open end
+        do not form a circle orthogonal to the hole's axis, the value given
+        here is the distance from the hole's axis to the extreme point on
+        those bounding edges in the direction of the hole's axis.  For the
+        bottom open end of a through hole the point is the extreme in the
+        opposite direction to the hole's axis.
+
+Note 2: Generally this is the face into which the hole is drilled.  If the
+        open end of a hole is not within a single face then the face is
+        selected which maximises the depth of the hole (ie such that all of
+        the hole is "below" the face).  If more than one face satisfies this
+        condition then one is arbitrarily selected.
+
+Note 3: If a closed hole is closed by a face bounded by a single loop, then
+        that face's surface will be returned.  A blind drilled hole will have a
+        <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_cone_in_c</A> component which reduces the radius to zero and
+        the following <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_closed_end_c</A> component will have its
+        entity set to its conical surface and the data will be zero.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285968", " <B>PK_BCURVE_t</B> * const *bcurve, /* B-curve fit to input */", "Functional Description - How the C# Binding is Implemented");
+top.note("headers/pk_bcurve_add_knot.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- bcurve", "PK Reference - PK_BCURVE_add_knot");
+top.note("headers/pk_bcurve_array_t.html#description", " This structure contains an array of entities of type <B>PK_BCURVE_t</B> ", "PK Reference - PK_BCURVE_array_t");
+top.note("headers/pk_bcurve_array_t.html#documentation", " <B>PK_BCURVE_t</B> *array; --- array of B geometry CURVEs", "PK Reference - PK_BCURVE_array_t");
+top.note("headers/pk_bcurve_ask.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- b-curve", "PK Reference - PK_BCURVE_ask");
+top.note("headers/pk_bcurve_ask_knots.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- b-curve to query", "PK Reference - PK_BCURVE_ask_knots");
+top.note("headers/pk_bcurve_ask_piecewise.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- b-curve", "PK Reference - PK_BCURVE_ask_piecewise");
+top.note("headers/pk_bcurve_ask_splinewise.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- b-curve", "PK Reference - PK_BCURVE_ask_splinewise");
+top.note("headers/pk_bcurve_clamp_knots.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- bcurve", "PK Reference - PK_BCURVE_clamp_knots");
+top.note("headers/pk_bcurve_combine.html#declaration", "const <B>PK_BCURVE_t</B> bcurves[], --- bcurves", "PK Reference - PK_BCURVE_combine");
+top.note("headers/pk_bcurve_create.html#declaration", " <B>PK_BCURVE_t</B> *const bcurve --- b-curve", "PK Reference - PK_BCURVE_create");
+top.note("headers/pk_bcurve_create_by_fitting.html#declaration", " <B>PK_BCURVE_t</B> bcurves[],--- array of b-curves, some", "PK Reference - PK_BCURVE_create_by_fitting");
+top.note("headers/pk_bcurve_create_fitted.html#declaration", " <B>PK_BCURVE_t</B> *const bcurve, --- b-curve fit to input", "PK Reference - PK_BCURVE_create_fitted");
+top.note("headers/pk_bcurve_create_piecewise.html#declaration", " <B>PK_BCURVE_t</B> *const bcurve --- b-curve", "PK Reference - PK_BCURVE_create_piecewise");
+top.note("headers/pk_bcurve_create_spline.html#declaration", " <B>PK_BCURVE_t</B> *const bcurve, --- B-curve", "PK Reference - PK_BCURVE_create_spline");
+top.note("headers/pk_bcurve_create_splinewise.html#declaration", " <B>PK_BCURVE_t</B> *const bcurve", "PK Reference - PK_BCURVE_create_splinewise");
+top.note("headers/pk_bcurve_extend.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- bcurve to extend", "PK Reference - PK_BCURVE_extend");
+top.note("headers/pk_bcurve_extend_r_t.html#declaration", " <B>PK_BCURVE_t</B> res_bcurve;", "PK Reference - PK_BCURVE_extend_r_t");
+top.note("headers/pk_bcurve_find_g1_discontinuity.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- bcurve", "PK Reference - PK_BCURVE_find_g1_discontinuity");
+top.note("headers/pk_bcurve_join.html#declaration", "const <B>PK_BCURVE_t</B> bcurves[], --- bcurves", "PK Reference - PK_BCURVE_join");
+top.note("headers/pk_bcurve_lower_degree.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- bcurve", "PK Reference - PK_BCURVE_lower_degree");
+top.note("headers/pk_bcurve_make_bsurf_lofted.html#declaration", "const <B>PK_BCURVE_t</B> bcurves[], --- bcurves", "PK Reference - PK_BCURVE_make_bsurf_lofted");
+top.note("headers/pk_bcurve_make_matched.html#declaration", "const <B>PK_BCURVE_t</B> bcurves[], --- unmatched bcurves", "PK Reference - PK_BCURVE_make_matched");
+top.note("headers/pk_bcurve_raise_degree.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- b-curve", "PK Reference - PK_BCURVE_raise_degree");
+top.note("headers/pk_bcurve_remove_knots.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- b-curve", "PK Reference - PK_BCURVE_remove_knots");
+top.note("headers/pk_bcurve_reparameterise.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- Query curve", "PK Reference - PK_BCURVE_reparameterise");
+top.note("headers/pk_bcurve_spin.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- bcurve", "PK Reference - PK_BCURVE_spin");
+top.note("headers/pk_bcurve_spline_cu_t.html#declaration", " <B>PK_BCURVE_t</B> bcurve; --- the resultant B-curve", "PK Reference - PK_BCURVE_spline_cu_t");
+top.note("headers/pk_bcurve_sweep.html#declaration", " <B>PK_BCURVE_t</B> bcurve, --- bcurve", "PK Reference - PK_BCURVE_sweep");
+top.note("headers/pk_blend_shape_t.html#declaration", " <B>PK_BCURVE_t</B> depth; --- 2D law curve; curvature cts blends", "PK Reference - PK_blend_shape_t");
+top.note("headers/pk_bsurf_make_bcurve_u_isoparam.html#declaration", " <B>PK_BCURVE_t</B> *const bcurve --- b-curve", "PK Reference - PK_BSURF_make_bcurve_u_isoparam");
+top.note("headers/pk_bsurf_make_bcurve_v_isoparam.html#declaration", " <B>PK_BCURVE_t</B> *const bcurve --- b-curve", "PK Reference - PK_BSURF_make_bcurve_v_isoparam");
+top.note("headers/pk_curve_make_bcurve.html#declaration", " <B>PK_BCURVE_t</B> *const b_curve, --- created BCURVE", "PK Reference - PK_CURVE_make_bcurve");
+top.note("headers/pk_curve_make_bcurve_2.html#declaration", " <B>PK_BCURVE_t</B> *const bcurve, --- created BCURVE", "PK Reference - PK_CURVE_make_bcurve_2");
+top.note("headers/pk_curve_make_bcurve_res_t.html#declaration", " <B>PK_BCURVE_t</B> bcurve;", "PK Reference - PK_CURVE_make_bcurve_res_t");
+top.note("headers/pk_curve_t.html#documentation", " - <B>PK_BCURVE_t</B> : a B geometry curve", "PK Reference - PK_CURVE_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

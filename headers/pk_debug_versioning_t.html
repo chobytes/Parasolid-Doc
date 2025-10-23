@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_DEBUG_versioning_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_DEBUG_versioning_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_DEBUG_versioning_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_behaviours_start_o_t.html>PK_DEBUG_behaviours_start_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A token specifying what happens if mixed or incorrect versioning controls are
+used.
+
+"Mixed" versioning is when both behaviour versioning controls (set by
+<A HREF=../headers/pk_session_set_behaviour.html>PK_SESSION_set_behaviour</A>) and legacy versioning controls (update options or
+session software options of the form PK_SESSION_pre_vXXX_switch_0_c) are being
+used. This can be used to check that your application is only using one method
+of versioning at any one time.
+
+"Incorrect" versioning is when the combination of versioning controls used does
+not indicate a consistent version. Examples would be:
+- setting the software option PK_SESSION_pre_v281_switch_0_c to 0 and an update
+option to _update_v280_c. The session software option indicates a version of
+28.1 or later but the update option indicates version 28.0.
+- setting the software option PK_SESSION_pre_vXXX_switch_0_c to 1, where XXX is
+281 or earlier, and setting the behaviour versioning controls.
+- setting the behaviour versioning controls to <A HREF=../headers/pk_session_behave_as_t.html>PK_SESSION_behave_as_latest_c</A>
+and setting any legacy version control.
+
+Session software options of the form PK_SESSION_pre_vXXX_switch_N_c with N &gt; 0,
+and other session software options that should not be set without advice, are
+independent of the behaviour versioning controls and are not considered during
+incorrect or mixed versioning checks. A list of such session software options
+can be found <A HREF="../chapters/fd_chap.118.html#50409910_pgfId-378094">here</A>.
+
+It has the values:
+
+    PK_DEBUG_versioning_behaviour_c    The behaviours setting is used to
+                                       control versioning behaviour if mixed
+                                       versioning is detected. Legacy
+                                       versioning controls are ignored.
+
+    PK_DEBUG_versioning_incorrect_c    A specific error with code
+                                       PK_ERROR_versioning_clash (MILD or
+                                       SERIOUS) is returned from any function
+                                       at which incorrect versioning is
+                                       detected.
+
+    PK_DEBUG_versioning_mixed_c        A specific error with code
+                                       PK_ERROR_versioning_mixed (MILD) is
+                                       returned from any function at which
+                                       mixed versioning is detected.
+
+See also <A HREF=../headers/pk_session_set_behaviour.html>PK_SESSION_set_behaviour</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

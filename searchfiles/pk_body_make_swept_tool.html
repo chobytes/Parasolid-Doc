@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.040.html#50409822_pgfId-1047562", " <B>PK_BODY_make_swept_tool</B> ", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-1042050", " a solid tool body along a wire path using <B>PK_BODY_make_swept_tool</B> . This can be used to construct bodies that", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-395276", " <B>PK_BODY_make_swept_tool</B> takes a tool body, spins it about an axis,", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-393578", " can create a region to be cut out using <B>PK_BODY_make_swept_tool</B> and then subtract this region from the solid body", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-299888", " <B>PK_BODY_make_swept_tool</B> receives and returns the following arguments: ", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-325547", " <B>PK_BODY_make_swept_tool</B> contains an options structure that provides the following options:", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-299941", " supplied to <B>PK_BODY_make_swept_tool</B> has the following restrictions: ", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-299947", ". By default, <B>PK_BODY_make_swept_tool</B> positions the ", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-299953", " supplied to <B>PK_BODY_make_swept_tool</B> : ", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-317260", " As discussed in Section 40.1 , you can use <B>PK_BODY_make_swept_tool</B> to construct bodies that represent regions to be cut", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-328814", " option in <B>PK_BODY_make_swept_tool</B> . When simulating lathing operations for example, the volume", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317181", " <B>PK_BODY_make_swept_tool</B> ", "Functional Description - Update Switches");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_bad_type 30 <B>PK_BODY_make_swept_tool</B> The tool, path, or target is of the", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_bad_tolerance 1043 <B>PK_BODY_make_swept_tool</B> The value of tolerance is invalid. (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_sweep_failed 5118 <B>PK_BODY_make_swept_tool</B> PK_BODY_make_swept_tool suffered an", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 <B>PK_BODY_make_swept_tool</B> A turn_axis is supplied when", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_disjoint 5134 <B>PK_BODY_make_swept_tool</B> The swept tool has split the target body.", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_sweep_failed 5118 <B>PK_BODY_make_swept_tool</B> PK_BODY_make_swept_tool suffered an", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " <B>PK_BODY_make_swept_tool</B> 5145 PK_ERROR_bad_combination A turn_axis is supplied when", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_axis1_sf_t.html#description", " <B>PK_BODY_make_swept_tool</B> ", "PK Reference - PK_AXIS1_sf_t");
+top.note("headers/pk_body_make_swept_tool.html#declaration", " PK_ERROR_code_t <B>PK_BODY_make_swept_tool</B>", "PK Reference - PK_BODY_make_swept_tool");
+top.note("headers/pk_body_make_swept_tool.html#errors", " PK_ERROR_sweep_failed <B>PK_BODY_make_swept_tool</B> suffered an", "PK Reference - PK_BODY_make_swept_tool");
+top.note("headers/pk_body_make_swept_tool_o_t.html#description", " <B>PK_BODY_make_swept_tool</B> ", "PK Reference - PK_BODY_make_swept_tool_o_t");
+top.note("headers/pk_body_sweep_tool_r_t.html#description", " <B>PK_BODY_make_swept_tool</B> ", "PK Reference - PK_BODY_sweep_tool_r_t");
+top.note("headers/pk_body_sweep_tool_r_t.html#documentation", " <B>PK_BODY_make_swept_tool</B> returns PK_ERROR_no_errors.", "PK Reference - PK_BODY_sweep_tool_r_t");
+top.note("headers/pk_body_sweep_tool_status_r_t.html#documentation", " <B>PK_BODY_make_swept_tool</B> returns PK_ERROR_no_errors, then a", "PK Reference - PK_BODY_sweep_tool_status_r_t");
+top.note("headers/pk_body_t.html#description", " <B>PK_BODY_make_swept_tool</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_BODY_make_swept_tool</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_topol_track_r_t.html#description", " <B>PK_BODY_make_swept_tool</B> ", "PK Reference - PK_TOPOL_track_r_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

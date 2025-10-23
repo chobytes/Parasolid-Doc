@@ -1,0 +1,177 @@
+<HTML>
+<HEAD>
+<TITLE>BLECVR</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BLECVR</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_set_blend_variable.html>PK_EDGE_set_blend_variable</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BLECVR ( edge, npts, points, values, nprops, props, pvals, blends, nblend, 
+===========================================================================
+         ifail )
+         =======
+
+  Define a variable radius blend.
+
+Receives:
+  KI_tag_edge              *edge           --- edge to be blended
+  KI_int_nitems            *npts           --- number of data points
+  KI_vec_position           points [npts]  --- data points
+  double                    values [npts*3] --- data values
+ &lt;KI_int_nitems&gt;           *nprops         --- number of blend properties
+  KI_cod_blec               props[nprops]  --- array of blend properties
+ &lt;KI_tag_list&gt;              pvals[nprops]  --- array of tags of data lists
+
+Returns:
+  KI_tag_list_edge         *blends         --- list of edges to which blends
+                                           --- have been attached
+  int                      *nblend         --- number of edges to which blends
+                                           --- have been attached
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_bad_blend_param        blend parameter out of range
+                            illegal blend property
+  KI_general_body           general body
+
+Description:
+  Attaches a variable radius blend with the given parameters to an edge. Any
+  existing attribute is replaced by one with the given parameters.
+
+  'npts' is the number of data points on the edge at which the blend ranges and
+  rho value are defined. 'points' is an array containing the positions of the
+  data points and 'values' is an array of the associated values. These must be
+  given in the order: range of blend off left face at first point, range of
+  blend off right face at first point, rho value at first point, then the values
+  for subsequent points in the same order. All ranges must be greater than twice
+  the maximum tolerance of the edge and its associated vertices.
+  NOTE that currently The two ranges must be equal and the rho value zero
+  at each data point.
+
+  'props' consists of an array of blend property tokens, of length 'nprops', and
+  'pvals' consists of a parallel array  of tags of lists of values - for several
+  properties this can be a null tag.
+
+  BLECTL  set tolerance
+
+      associated value in pvals: real list containing tolerance.
+
+      Sets the tolerance for the blended edge. The default tolerance is
+      1000 * modeller resolution.
+
+
+  BLECCR circular crossection
+
+      associated value in pvals: null tag.
+
+      Forces the blend to have circular crossection at all points.The two
+      ranges must be equal and the rho value zero at each data point.
+      This property is currently default behaviour and does not need to be set.
+
+
+  BLECLI linear radius variation
+
+      associated value in pvals: null tag.
+
+      Causes the blend ranges to vary naturally. The default behaviour is for the
+      range variation to be constrained in such a way as to ensure that they
+      would meet other blends smoothly at the vertices.
+
+
+  BLECPR  propagate flag
+
+      associated value in pvals: null tag.
+
+      Blend will be propagated over tangent edges, or past other unfixed blends
+      if the resultant combination of blends at a vertex would be invalid, and
+      blending the third edge results in a valid combination. The propagation
+      will consist of exact rolling ball blends.
+      Note that if a blend does propagate, and you wish to remove the resulting
+      blend attributes, BLEREM will need to be passed the tags of the edges
+      propagated on to as well as that of the original edge.
+
+      Default behaviour is no propagation.
+
+
+  BLECDF      draw and fix flag
+
+      associated value in  pvals: null tag.
+
+      Causes the blend to be ignored by BLEFIX, BLECHK and RRVIND, which will
+      all treat the edge as unblended.
+
+      Note that that an unfixed blend will only be  drawn in RRVIND if
+      RRVIND has been called with option RROPUB, and this property is not set.
+
+
+  There are  also some tokens relating to overflow behaviour.
+
+  The default overflow behaviour of a blend is as follows;
+
+  When fixing a blend, it is possible that the blend as defined by its basic
+  parameters would lie outside the faces adjacent to the edge being blended. If
+  this is so, the blend must 'overflow'.
+
+  If the configuration allows us, we do this by 'smoothly overflowing' and
+  creating a blend one of whose underlying faces is the one it has overflowed
+  onto.
+
+  If the configuration is unsuitable for this, we try  to 'cliff overflow' -
+  that is replace the appropriate section of the blend by a cliffedge blend
+  running along the appropriate edges.
+
+  If the configuration is unsuitable for this as well, we will then 'notch
+  overflow' - that is, merely trim the blend by the other faces in the region,
+  leaving its surface geometry unchanged. If the configuration is unsuitable
+  for this as well, the blend will not fix.
+
+  By default neither cliffedge or smooth overflows will occur when the edge being
+  overflowed is of the same convexity as the edge being blended.
+
+  By default also, cliffedge overflows will not occur at the ends of blends,
+  except where they meet another blend smoothly.
+
+
+    Overflow Type    Prevent     Allow when Same Convexity     Allow at End
+  ---------------------------------------------------------------------------
+    SMOOTH       |   BLECNS    |          BLECSM           |      *         |
+    CLIFFEDGE    |   BLECNC    |          BLECSC           |    BLECEC      |
+    NOTCH        |   BLECNN    |            *              |      *         |
+  ---------------------------------------------------------------------------
+
+  A * means that this behaviour is always possible.
+
+  All these tokens have an associated value in pvals of a null tag.
+  Note that while any combination of these tokens is allowed the preventative
+  tokens will, of course, negate the effects of the other overflow tokens.
+  For further explanation, and examples, of the use of these tokens, please
+  refer to the blending section of the manual.
+
+
+  A successful result will produce a new blend attribute. It will return the tag
+  of the edge(s) to which the blend attribute is attached.
+
+  See BLEFIX for making the blends a part of the topology.
+
+  This function is not supported for edges on general bodies.
+
+</PRE>
+</BODY>
+</HTML>

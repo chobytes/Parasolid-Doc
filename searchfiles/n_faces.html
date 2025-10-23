@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.010.html#50409790_pgfId-556522", " int * const <B>n_faces</B>, // number of faces (>= 0) ", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.047.html#50409830_pgfId-296729", "<B>n_faces</B> ", "Functional Description - Sheet Modeling");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-297695", " <B>n_faces</B> ", "Functional Description - Thickening");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-297817", " <B>n_faces</B> ", "Functional Description - Thickening");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-297824", "<B>n_faces</B> ", "Functional Description - Thickening");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-297828", "<B>n_faces</B> ", "Functional Description - Thickening");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-420750", " <B>n_faces</B> ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1394547", "<B>n_faces</B> ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1395213", " <B>n_faces</B> ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-302259", " <B>n_faces</B> ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-427496", "<B>n_faces</B> ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " <B>n_faces</B> is greater than zero. (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " <B>n_faces</B> is greater than zero. (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " <B>n_faces</B> is greater than zero. (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_ask_faces.html#declaration", " int *const <B>n_faces</B>, --- number of faces (>= 0)", "PK Reference - PK_BODY_ask_faces");
+top.note("headers/pk_body_hollow.html#declaration", " int *const <B>n_faces</B>, --- number of faces", "PK Reference - PK_BODY_hollow");
+top.note("headers/pk_body_imprint_faces.html#declaration", "int <B>n_faces</B>, --- number of faces", "PK Reference - PK_BODY_imprint_faces");
+top.note("headers/pk_body_imprint_faces_2.html#declaration", "int <B>n_faces</B>, --- number of tool faces", "PK Reference - PK_BODY_imprint_faces_2");
+top.note("headers/pk_body_loft_face_clamp_t.html#declaration", " int <B>n_faces</B>; --- number of clamping faces and clamped", "PK Reference - PK_BODY_loft_face_clamp_t");
+top.note("headers/pk_body_loft_face_clamp_t.html#documentation", " <B>n_faces</B> The number of faces held in the structure.", "PK Reference - PK_BODY_loft_face_clamp_t");
+top.note("headers/pk_body_pick_topols_r_t.html#declaration", " int <B>n_faces</B>;", "PK Reference - PK_BODY_pick_topols_r_t");
+top.note("headers/pk_body_thicken_o_t.html#declaration", " int <B>n_faces</B>; --- number of non-default faces", "PK Reference - PK_BODY_thicken_o_t");
+top.note("headers/pk_body_thicken_o_t.html#documentation", " <B>n_faces</B> Length of faces , front_offsets and `back_offsets", "PK Reference - PK_BODY_thicken_o_t");
+top.note("headers/pk_body_trim.html#declaration", "int <B>n_faces</B>, --- number of faces", "PK Reference - PK_BODY_trim");
+top.note("headers/pk_detail_hole_cb_f_t.html#declaration", " int <B>n_faces</B>, --- number of faces in hole detail", "PK Reference - PK_detail_hole_cb_f_t");
+top.note("headers/pk_edge_ask_faces.html#declaration", " int *const <B>n_faces</B>, --- number of faces (>= 0)", "PK Reference - PK_EDGE_ask_faces");
+top.note("headers/pk_edge_find_blend_topol.html#declaration", "int *const <B>n_faces</B>, --- number of affected faces", "PK Reference - PK_EDGE_find_blend_topol");
+top.note("headers/pk_face_ask_faces_adjacent.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_ask_faces_adjacent");
+top.note("headers/pk_face_attach_surfs.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_attach_surfs");
+top.note("headers/pk_face_attach_surfs.html#documentation", " surfs and senses are all of the length <B>n_faces</B> .", "PK Reference - PK_FACE_attach_surfs");
+top.note("headers/pk_face_change.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_change");
+top.note("headers/pk_face_cover.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_cover");
+top.note("headers/pk_face_delete.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_delete");
+top.note("headers/pk_face_delete_2.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_delete_2");
+top.note("headers/pk_face_delete_blends.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_delete_blends");
+top.note("headers/pk_face_delete_from_gen_body.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_delete_from_gen_body");
+top.note("headers/pk_face_delete_from_sheet.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_delete_from_sheet");
+top.note("headers/pk_face_emboss.html#declaration", " int <B>n_faces</B>, --- number of target faces > 0", "PK Reference - PK_FACE_emboss");
+top.note("headers/pk_face_fix_mesh_defects.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_fix_mesh_defects");
+top.note("headers/pk_face_hollow.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_hollow");
+top.note("headers/pk_face_hollow_2.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_hollow_2");
+top.note("headers/pk_face_hollow_2.html#documentation", " n_new_faces is returned equal to <B>n_faces</B> then no splitting has occurred.", "PK Reference - PK_FACE_hollow_2");
+top.note("headers/pk_face_hollow_3.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_hollow_3");
+top.note("headers/pk_face_identify_blends.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_identify_blends");
+top.note("headers/pk_face_install_surfs_isocline.html#declaration", " int <B>n_faces</B>, --- number of target faces (>0)", "PK Reference - PK_FACE_install_surfs_isocline");
+top.note("headers/pk_face_make_sheet_bodies.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_make_sheet_bodies");
+top.note("headers/pk_face_make_sheet_body.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_make_sheet_body");
+top.note("headers/pk_face_make_solid_bodies.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_make_solid_bodies");
+top.note("headers/pk_face_offset.html#declaration", " int <B>n_faces</B>, --- number of faces > 0", "PK Reference - PK_FACE_offset");
+top.note("headers/pk_face_offset_2.html#declaration", " int <B>n_faces</B>, --- number of faces > 0", "PK Reference - PK_FACE_offset_2");
+top.note("headers/pk_face_remove_to_solid_bodies.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_remove_to_solid_bodies");
+top.note("headers/pk_face_reparameterise_surf.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_reparameterise_surf");
+top.note("headers/pk_face_reparameterise_surf_r_t.html#declaration", " int <B>n_faces</B>;", "PK Reference - PK_FACE_reparameterise_surf_r_t");
+top.note("headers/pk_face_replace_surfs.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_replace_surfs");
+top.note("headers/pk_face_replace_surfs_2.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_replace_surfs_2");
+top.note("headers/pk_face_replace_surfs_3.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_replace_surfs_3");
+top.note("headers/pk_face_replace_with_sheet.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_replace_with_sheet");
+top.note("headers/pk_face_reverse.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_reverse");
+top.note("headers/pk_face_set_approx.html#declaration", " int <B>n_faces</B>, --- number of faces to process (>0)", "PK Reference - PK_FACE_set_approx");
+top.note("headers/pk_face_simplify_geom.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_simplify_geom");
+top.note("headers/pk_face_spin.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_spin");
+top.note("headers/pk_face_sweep.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_sweep");
+top.note("headers/pk_face_taper.html#declaration", " int <B>n_faces</B>, --- number of target faces (>0)", "PK Reference - PK_FACE_taper");
+top.note("headers/pk_face_taper_o_t.html#declaration", " int <B>n_faces</B>; --- number of faces, which are", "PK Reference - PK_FACE_taper_o_t");
+top.note("headers/pk_face_taper_o_t.html#documentation", " <B>n_faces</B> Number of faces in the taper_faces array.", "PK Reference - PK_FACE_taper_o_t");
+top.note("headers/pk_face_transform.html#declaration", " int <B>n_faces</B>, --- number of faces", "PK Reference - PK_FACE_transform");
+top.note("headers/pk_face_transform_2.html#declaration", " int <B>n_faces</B>, --- number of faces > 0", "PK Reference - PK_FACE_transform_2");
+top.note("headers/pk_face_unset_approx.html#declaration", " int <B>n_faces</B>, --- number of faces to process (>0)", "PK Reference - PK_FACE_unset_approx");
+top.note("headers/pk_mtopol_make_meshes.html#documentation", "the <B>n_faces</B> option is non zero.", "PK Reference - PK_MTOPOL_make_meshes");
+top.note("headers/pk_mtopol_make_meshes_o_t.html#declaration", " int <B>n_faces</B>; --- number of faces (0)", "PK Reference - PK_MTOPOL_make_meshes_o_t");
+top.note("headers/pk_mtopol_make_meshes_o_t.html#errors", " <B>n_faces</B> is greater than zero. (MILD)", "PK Reference - PK_MTOPOL_make_meshes_o_t");
+top.note("headers/pk_mtopol_make_meshes_o_t.html#documentation", " <B>n_faces</B> The number of elements in the faces ,", "PK Reference - PK_MTOPOL_make_meshes_o_t");
+top.note("headers/pk_shell_ask_oriented_faces.html#declaration", " int *const <B>n_faces</B>, --- number of faces (>= 0)", "PK Reference - PK_SHELL_ask_oriented_faces");
+top.note("headers/pk_surf_ask_faces.html#declaration", " int *const <B>n_faces</B>, --- number of faces (>= 0)", "PK Reference - PK_SURF_ask_faces");
+top.note("headers/pk_vertex_ask_faces.html#declaration", " int *const <B>n_faces</B>, --- number of faces (>= 0)", "PK Reference - PK_VERTEX_ask_faces");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

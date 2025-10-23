@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_check_state_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_check_state_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_check_state_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_check_fault_t.html>PK_check_fault_t</A><br>
+    <A HREF=../headers/pk_create_fault_t.html>PK_create_fault_t</A><br>
+    <A HREF=../headers/pk_debug_check_fault_t.html>PK_DEBUG_check_fault_t</A><br>
+    <A HREF=../headers/pk_surf_make_sheet_trimmed.html>PK_SURF_make_sheet_trimmed</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Note that the tokens PK_BODY_state_ok_but_alt_type_c
+                     PK_LOOP_state_not_closed_c
+                     PK_TOPOL_state_extra_child_c
+                     PK_TOPOL_state_extra_parent_c
+                     PK_TOPOL_state_missing_parent_c
+                     PK_TOPOL_state_wrong_child_c
+are returned by <A HREF=../headers/pk_body_create_topology_2.html>PK_BODY_create_topology_2</A> only.
+
+
+    PK_BODY_state_ok_c                OK
+    PK_BODY_state_ok_but_alt_type_c   Body is ok but of an alternative type
+                                      to that specified
+    PK_ASSEMBLY_state_corrupt_c       assembly data structure is corrupt
+    PK_ASSEMBLY_state_cyclic_ref_c    assembly structure contains cyclic
+                                      references
+    PK_ASSEMBLY_state_invalid_id_c    assembly has invalid or duplicate
+                                      identifiers
+    PK_ATTDEF_state_bad_name_c        an attribute definition name is not
+                                      transmissible in text XT format
+    PK_ATTRIB_state_bad_data_len_c    a field of a system attribute has an
+                                      invalid amount of data filled
+    PK_ATTRIB_state_bad_string_c      an attribute string field is not
+                                      transmissible in text XT format
+    PK_ATTRIB_state_bad_ustring_c     a Unicode string in a system attribute
+                                      is invalid
+    PK_ATTRIB_state_byte_oor_c        a byte field of a system attribute is
+                                      out of (valid) range
+    PK_ATTRIB_state_empty_field_c     a required field in a system attribute
+                                      contains no data
+    PK_ATTRIB_state_int_oor_c         an integer field of a system attribute
+                                      is out of (valid) range
+    PK_ATTRIB_state_invalid_att_c     a system attribute has invalid data
+    PK_ATTRIB_state_non_unit_vec_c    a vector field required to be of unit
+                                      length is not
+    PK_ATTRIB_state_real_oor_c        a real field of a system attribute is
+                                      out of (valid) range
+    PK_ATTRIB_state_short_oor_c       a short field of a system attribute is
+                                      out of (valid) range
+    PK_ATTRIB_state_p_vector_oor_c    a position vector field is out of range
+                                      (usually outside size box)
+    PK_BB_state_corrupt_c             bulletin board is corrupt
+    PK_BCURVE_state_close_knots_c     bcurve has knot values closer than
+                                      allowed.
+    PK_BCURVE_state_vx_periodic_c     The control vertices do not satisfy
+                                      the periodic condition
+    PK_BCURVE_state_knot_periodic_c   The knot periodicity condition
+                                      is violated
+    PK_BCURVE_state_knot_bad_mult_c   bad multiplicity for the given knot
+    PK_BCURVE_state_knot_vx_count_c   number of vertices &lt; degree + 1
+    PK_BCURVE_state_knot_count_c      number of knots != number of vertices +
+                                      degree + 1
+    PK_BCURVE_state_bad_knot_seq_c    Knot sequence is not monotonic
+    PK_BCURVE_state_bad_dimen_c       Control vertex dimension should be 3 or 4
+    PK_BODY_state_bad_regions_c       regions of body are inconsistent
+    PK_BODY_state_bad_type_c          body is of wrong type
+    PK_BODY_state_corrupt_c           data structure is corrupt
+    PK_BODY_state_inside_out_c        body is inside out
+    PK_BODY_state_invalid_ident_c     body has invalid or duplicate
+                                      identifiers
+    PK_BODY_state_no_region_c         body has no regions
+    PK_BODY_state_no_shell_c          body has no shell
+    PK_BODY_state_no_solid_reg_c      body is solid but has no solid region
+    PK_BODY_state_region_1_solid_c    body's first region is not void ( i.e.
+                                      most likely solid but could be empty )
+    PK_BODY_state_region_1_framed_c   body's first region contains a frame
+    PK_BODY_state_shell_not_first_c   the first shell of the body is not the
+                                      returned first shell of a solid region
+    PK_BODY_state_wrong_ext_reg_c     manifold solid body has wrong external
+                                      region, the returned region is the
+                                      region of the first shell of a face in
+                                      the first shell of the body. This
+                                      region should coincide with the first
+                                      region of the body
+    PK_BODY_state_wrong_num_regs_c    body has wrong number of regions
+    PK_BLENDSF_state_bad_spine_c      The spine does not lie on the offset
+                                      surface
+    PK_BSURF_state_knot_vx_count_c    number of control vertices &lt; degree + 1
+    PK_BSURF_state_vx_periodic_c      The control vertices do not satisfy
+                                      the periodic condition
+    PK_BSURF_state_uknot_periodic_c   The u knot periodicity condition
+                                      is violated
+    PK_BSURF_state_vknot_periodic_c   The v knot periodicity condition
+                                      is violated
+    PK_BSURF_state_uknot_bad_mult_c   bad multiplicity for the given u knot
+    PK_BSURF_state_vknot_bad_mult_c   bad multiplicity for the given v knot
+    PK_BSURF_state_uknot_count_c      number of u knots != number of vertices +
+                                      degree + 1
+    PK_BSURF_state_vknot_count_c      number of v knots != number of vertices +
+                                      degree + 1
+    PK_BSURF_state_bad_uknot_seq_c    u knots sequence is not monotonic
+    PK_BSURF_state_bad_vknot_seq_c    v knots sequence is not monotonic
+    PK_BSURF_state_bad_vx_uperiod_c   The periodicity condition in u for the
+                                      control vertices is violated
+    PK_BSURF_state_bad_vx_vperiod_c   The periodicity condition in v for the
+                                      control vertices is violated
+    PK_BSURF_state_close_u_knots_c    bsurface has u knot values closer than
+                                      allowed.
+    PK_BSURF_state_close_v_knots_c    bsurface has v knot values closer than
+                                      allowed.
+    PK_BSURF_state_bad_dimen_c        Control vertex dimension should be 3 or 4
+    PK_CIRCLE_state_bad_radius_c      Radius outside of the accepted range
+    PK_CURVE_state_inconsistent_c     inconsistent directions of loops of
+                                      curves
+    PK_EDGE_state_bad_face_order_c    on a non-manifold edge, the face order
+                                      around the edge does not match the
+                                      order of the faces' surfaces around the
+                                      edge
+    PK_EDGE_state_bad_fins_c          edge has bad fins
+    PK_EDGE_state_bad_order_c         edges incorrectly ordered at vertex
+    PK_EDGE_state_bad_polyline_c      polyline not valid for edge
+    PK_EDGE_state_bad_sp_nmnl_c       spcurve not within edge's tolerance of
+                                      nominal geometry
+    PK_EDGE_state_bad_spcurve_c       spcurves not within edge's tolerance
+    PK_EDGE_state_bad_tol_c           edge has tolerance but it is smaller than
+                                      the working precision
+    PK_EDGE_state_bad_vertex_c        vertex does not lie on edge's curve
+    PK_EDGE_state_bad_vertex_nmnl_c   vertex does not lie on nominal geometry
+    PK_EDGE_state_bad_wire_ed_ed_c    two wireframe edges intersect at a
+                                      position other than a vertex
+    PK_EDGE_state_fin_bad_ring_c      edge is ring edge ( has no vertex) but
+                                      the returned fin has a next or previous
+                                      fin of edge which is not a fin of this
+                                      ring edge.
+    PK_EDGE_state_fin_ed_next_pos_c   next fin of edge has same sense as fin
+    PK_EDGE_state_fin_ed_not_ed_c     edge has a fin (which is returned) whose
+                                      owner is not the edge
+    PK_EDGE_state_fin_not_pos_c       the first fin of the edge does not have
+                                      positive sense
+    PK_EDGE_state_open_c              open or non-periodic curve on ring edge
+    PK_EDGE_state_open_nmnl_c         open or non-periodic nominal geometry
+                                      on ring edge
+    PK_EDGE_state_reversed_c          curve in wrong direction for edge
+    PK_EDGE_state_reversed_nmnl_c     nominal geometry in wrong direction
+    PK_EDGE_state_single_vertex_c     edge has one fin with vertex and one fin
+                                      without vertex
+    PK_EDGE_state_touch_edge_c        two edges which share common vertices
+                                      touch at a position other than at those
+                                      vertices
+    PK_EDGE_state_vertices_touch_c    vertices of edge touch
+    PK_EDGE_state_wire_corrupt_c      wire frame edge is corrupt
+    PK_ENTITY_state_bad_owner_c       entity has wrong owner, should be the
+                                      returned one
+    PK_ENTITY_state_has_att_group_c   entity has an attribute or group which
+                                      it is not allowed to own
+    PK_ENTITY_state_in_group_c        entity is a member of a group of which it
+                                      is not allowed to be a member
+    PK_ENTITY_state_invalid_c         the entity, usually geometric, is invalid
+    PK_ENTITY_state_shared_c          entity wrongly has more than one owners
+    PK_FACE_state_bad_edge_c          edge does not lie on face's surface
+    PK_FACE_state_bad_edge_order_c    the edge order around the face does not
+                                      match the order of the edges' curves
+                                      around the face.
+    PK_FACE_state_bad_face_face_c     face face inconsistency, where there is
+                                      an intersection between two faces that
+                                      is not along a shared edge or vertex.
+    PK_FACE_state_bad_loops_c         loops inconsistent
+    PK_FACE_state_bad_vertex_c        vertex does not lie on face's surface
+    PK_FACE_state_bad_wire_fa_ed_c    a wireframe edge intersects a face at a
+                                      position other than a vertex
+    PK_FACE_state_check_fail_c        checker failure during face/face check
+    PK_FACE_state_diff_sh_same_rg_c   face has two distinct shells which
+                                      incorrectly belong to the same region
+    PK_FACE_state_disjoint_mesh_c     face has a disjoint mesh attached
+    PK_FACE_state_edge_moebius_c      face is a moebius strip, the orientation
+                                      of the edge's two fins are the same when
+                                      the face meets them
+    PK_FACE_state_no_vtx_at_sing_c    a surface singularity has no
+                                      accompanying vertex
+    PK_FACE_state_redundant_c         face redundant with respect to tolerances
+    PK_FACE_state_self_int_c          face is self intersecting
+    PK_FACE_state_wrong_sense_c       face has badly defined sense
+    PK_FIN_state_bad_c                fin in bad state
+    PK_FIN_state_bad_ed_fins_c        repeatedly asking for the next fin of
+                                      the edge does not return to the first
+                                      fin
+    PK_FIN_state_corrupt_c            fin is corrupt
+    PK_FIN_state_ed_next_is_fin_c     next fin of edge (entity_2) is the fin
+                                      itself
+    PK_FIN_state_edge_diff_vertex_c   the two fins have the same sense, belong
+                                      to the same edge but point to different
+                                      vertices
+    PK_FIN_state_no_ed_next_in_sh_c   no next fin of edge even though both are
+                                      known to lie in the same shell
+    PK_FIN_state_non_zero_ident_c     fin must not have identifier
+    PK_FIN_state_not_ed_next_prev_c   previous fin of (next fin of edge) is
+                                      not the fin itself despite the body
+                                      being either solid or a sheet body
+    PK_FIN_state_not_lp_next_prev_c   previous fin of (next fin in loop) is
+                                      not the fin itself
+    PK_FIN_state_vx_not_vx_c          positive fin of edge terminating at
+                                      vertex does not point to the vertex
+    PK_FIN_state_wrong_vertex_c       fin should be pointing to the returned
+                                      vertex
+    PK_GEOM_state_outside_box_c       The geometry is outside the size box
+    PK_GEOM_state_bad_dep_type_c      geometry has a dependent which is not
+                                      geometry
+    PK_GEOM_state_bad_geom_owner_c    geometry has a geometric owner which
+                                      is neither curve nor surface
+    PK_GEOM_state_bad_owner_c         geometry has wrong owner, the required
+                                      owner is returned
+    PK_GEOM_state_bad_topol_owner_c   geometry's owner is of wrong type
+    PK_GEOM_state_corrupt_c           geometry is corrupt
+    PK_GEOM_state_degenerate_c        degenerate geometry
+    PK_GEOM_state_dup_geom_owner_c    geometry's owner appears more than once
+                                      as owner of the geometry
+    PK_GEOM_state_not_owners_dep_c    geometry is not a geometric dependant of
+                                      its geometric owner
+    PK_GEOM_state_not_owning_dep_c    geometry is not a geometric owner of its
+                                      geometric dependant
+    PK_GEOM_state_self_int_c          self intersecting geometry
+    PK_GROUP_state_bad_c              group in bad state
+    PK_INSTANCE_state_bad_transf_c    instance transform invalid
+    PK_INSTANCE_state_bad_type_c      instance is of wrong type
+    <A HREF=../headers/pk_item_t.html>PK_ITEM_state_unattached_c</A>        item is not attached to any owner
+    PK_KI_LIST_state_corrupt_c        KI list is corrupt
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_graph_c</A>      lattice has an invalid graph
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_lball_c</A>      geometry of an lball is invalid
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_bad_lrod_c</A>       geometry of an lrod is invalid
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_corrupt_c</A>        lattice is corrupt
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_dup_lrod_c</A>       lattice has more than one lrod between
+                                      the same pair of lballs.
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_isolated_c</A>       lattice has an isolated lball
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_lrod_end_c</A>       lrod radius at the end of an lrod is
+                                      greater than that of the lball
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_no_lballs_c</A>      lattice has no lballs
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_no_lrods_c</A>       lattice has no lrods
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_self_int_c</A>       lattice is self-intersecting
+    <A HREF=../headers/pk_lattice_t.html>PK_LATTICE_state_short_lrod_c</A>     lballs of an lrod intersect
+    PK_LINE_state_bad_unit_vec_c      The direction vector is not a unit vector
+    PK_LOOP_state_invalid_c           invalid loop combination for surface type
+    PK_LOOP_state_isolated_has_cu_c   the curve belongs to an isolated vertex
+    PK_LOOP_state_not_closed_c        the start and end vertices of the edges
+                                      in the loop, taking sense into account,
+                                      do not match
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_bad_mvx_normal_c</A>    mesh vertex normal opposed to adjacent
+                                      mfacet normals
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_corrupt_c</A>           mesh is corrupt
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_degen_mfacet_c</A>      mfacet has a zero length mfin
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_flat_mfacet_c</A>       mfacet has zero area
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_non_manifold_c</A>      mesh is non-manifold
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_not_created_c</A>       mesh could not be created from facets
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_not_loaded_c</A>        mesh could not be received
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_self_int_c</A>          mesh is self-intersecting
+    <A HREF=../headers/pk_mesh_t.html>PK_MESH_state_slit_c</A>              mesh has a slit
+    PK_OFFSET_state_bad_dist_c        the offset distance parameter is less
+                                      than the accepted minimum.
+    PK_OFFSET_state_under_sense_c     the senses of the offset and its
+                                      underlying surface disagree
+    PK_OFFSET_state_under_non_g1_c    the underlying surface has a singularity
+                                      region
+    PK_PART_state_bad_attrib_c        part has faulty attribute
+    PK_PART_state_bad_attrib_list_c   part has faulty attribute list
+    PK_PART_state_bad_state_c         part's state is badly defined
+    PK_PART_state_corrupt_c           corrupt part
+    PK_PART_state_has_key_c           part wrongly has key
+    PK_PART_state_no_key_c            part wrongly lacks key
+    PK_PARTITION_state_corrupt_c      partition is corrupt
+    PK_PARTITION_state_xref_c         two partitions reference a single item
+    <A HREF=../headers/pk_region_t.html>PK_REGION_state_bad_shells_c</A>      inconsistent shells
+    <A HREF=../headers/pk_region_t.html>PK_REGION_state_bad_frame_c</A>       region solidity and frame sense
+                                      incompatible
+    <A HREF=../headers/pk_region_t.html>PK_REGION_state_many_frames_c</A>     region contains multiple frames
+    <A HREF=../headers/pk_region_t.html>PK_REGION_state_no_shell_c</A>        region has no shell and it is not the
+                                      unique region of an infinite void body
+    <A HREF=../headers/pk_region_t.html>PK_REGION_state_wrongly_solid_c</A>   sheet or wire body has solid region
+    PK_SESSION_state_corrupt_c        session is corrupt
+    PK_SHELL_state_bad_body_c         shell's body inconsistent with shell
+    PK_SHELL_state_bad_fa_orient_c    shell has face which is inconsistent with
+                                      the shell
+    PK_SHELL_state_bad_topol_geom_c   a topological entity belonging to a
+                                      shell is not geometrically within the
+                                      shell
+    PK_SHELL_state_bad_sh_sh_c        shell shell inconsistency
+    PK_SHELL_state_bad_wf_acorn_c     shell of solid body or sheet body but has
+                                      a wireframe edge and/or acorn vertex (one
+                                      of which is returned)
+    PK_SHELL_state_bad_wf_c           shell of wire body either has an
+                                      inconsistent face or neither a vertex nor
+                                      an edge
+    PK_SHELL_state_closed_bad_fa_c    shell's face fields are inconsistent
+                                      with a closed shell
+    PK_SHELL_state_ed_fa_in_acorn_c   shell has a vertex and should be an acorn
+                                      shell, however the shell also has faces
+                                      and or edges (one of which is returned)
+    PK_SHELL_state_eds_fragmented_c   shell has a wireframe edge which does not
+                                      belong to the set of connected faces and
+                                      wireframe edges of the shell
+    PK_SHELL_state_fas_fragmented_c   shell has a face which does not belong to
+                                      the set of connected faces and wireframe
+                                      edges of the shell
+    PK_SHELL_state_no_vx_ed_fa_c      shell does not have any vertices, edges
+                                      or faces
+    PK_SHELL_state_not_owning_vx_c    acorn shell contains vertex, however the
+                                      the owner of the vertex is not the shell
+    PK_SHELL_state_open_bad_fa_c      shell's face fields are inconsistent
+                                      with an open shell
+    PK_SHELL_state_reg_meet_at_ed_c   two shells (one of which is returned) of
+                                      the same region meet at an edge
+    PK_SHELL_state_reg_meet_at_vx_c   two shells (one of which is returned) of
+                                      the same region meet at a vertex
+    PK_SHELL_state_sheet_no_fa_c      shell belongs to sheet body but has no
+                                      face
+    PK_SHELL_state_too_many_fas_c     shell belongs to wire body but has face
+    PK_SPCURVE_state_bad_linear_c     The linear bcurve has more than one
+                                      segment
+    PK_SPCURVE_state_surf_span_c      A section of the spcurve is outside
+                                      the surface
+    PK_SPCURVE_state_non_g1_x_u_c     The spcurve crosses a constant u
+                                      parameter line where the surface is non
+                                      G1
+    PK_SPCURVE_state_non_g1_x_v_c     The spcurve crosses a constant v
+                                      parameter line where the surface is non
+                                      G1
+    PK_SPCURVE_state_non_c1_x_u_c     The spcurve crosses a constant u
+                                      parameter line where the surface is non
+                                      C1
+    PK_SPCURVE_state_non_c1_x_v_c     The spcurve crosses a constant v
+                                      parameter line where the surface is non
+                                      C1
+    PK_SPCURVE_state_non_g1_c         The spcurve is not G1
+    PK_SPCURVE_state_bad_dimen_c      The spcurve has invalid control vertex
+                                      point dimension. It can have the values
+                                      2 or 3.
+    PK_SPUN_state_profile_x_axis_c    The spun profile should not cross its
+                                      axis.
+    PK_SWEPT_state_bad_min_rad_c      The swept surface minimal radius
+                                      of curvature is smaller than the
+                                      accepted minimum.
+    PK_TOPOL_state_bad_box_c          topology has invalid box (a box is
+                                      defined by a high and low coordinate,
+                                      in this case one of the high coordinate
+                                      values is lower than its corresponding
+                                      low coordinate value)
+    PK_TOPOL_state_bad_closed_c       topology's geometry is closed but not
+                                      periodic
+    PK_TOPOL_state_bad_geom_share_c   two edges or two faces share the
+                                      same geometry, where their mutual order
+                                      is inconsistent
+    PK_TOPOL_state_bad_owner_type_c   topology has owner of bad type
+    PK_TOPOL_state_check_fail_c       checker failure
+    PK_TOPOL_state_extra_child_c      parent has too many children
+    PK_TOPOL_state_extra_parent_c     child has too many parents
+    PK_TOPOL_state_missing_parent_c   child has too few parents
+    PK_TOPOL_state_no_geom_c          missing geometry
+    PK_TOPOL_state_not_G1_c           topology's geometry is not G1 continuous
+    PK_TOPOL_state_parm_degen_c       topology's geometry has an invalid
+                                      parametric degeneracy in the u and v
+                                      parameter directions
+    PK_TOPOL_state_u_parm_degen_c     topology's geometry has an invalid
+                                      parametric degeneracy in the u parameter
+                                      direction
+    PK_TOPOL_state_v_parm_degen_c     topology's geometry has an invalid
+                                      parametric degeneracy in the v parameter
+                                      direction
+    PK_TOPOL_state_phys_degen_c       topology's geometry has an invalid
+                                      physical degeneracy in the u and v
+                                      parameter directions
+    PK_TOPOL_state_u_phys_degen_c     topology's geometry has an invalid
+                                      physical degeneracy in the u parameter
+                                      direction
+    PK_TOPOL_state_v_phys_degen_c     topology's geometry has an invalid
+                                      physical degeneracy in the v parameter
+                                      direction
+    PK_TOPOL_state_share_no_geom_c    the returned edge or face does not have
+                                      any geometry attached however it
+                                      believes it is sharing some geometry
+                                      with at least one other (returned)
+                                      edge or face.
+    PK_TRCURVE_state_ends_open_c      Open trimmed curve has the same bounds
+    PK_TRCURVE_state_ends_order_c     Trimmed curve end points not in order
+    PK_TRCURVE_state_ends_match_c     Trimmed curve parameters do not match end
+                                      points
+    PK_TOPOL_state_size_box_c         some or all of entity is outside size box
+    PK_TOPOL_state_wrong_child_c      child is of the wrong class
+    PK_TRANSF_state_corrupt_c         transform is corrupt
+    PK_VERTEX_state_bad_fin_c         vertex has inconsistent fins
+    PK_VERTEX_state_bad_isolated_c    vertex declared isolated vertex of a
+                                      solid body but is not isolated
+    PK_VERTEX_state_bad_tol_c         vertex has tolerance but it is smaller
+                                      than working precision
+    PK_VERTEX_state_fin_chains_c      traversing the chain of fins entering a
+                                      vertex gives inconsistent results
+    PK_VERTEX_state_non_manifold_c    vertex is not manifold
+    PK_VERTEX_state_not_dep_of_sh_c   vertex is acorn vertex but its owning
+                                      shell does not admit to owning it
+    PK_VERTEX_state_owner_not_sh_c    vertex is acorn but its owner is not a
+                                      shell
+    PK_VERTEX_state_sheet_corrupt_c   vertex is a vertex of a sheet body, the
+                                      data structure is corrupt
+    PK_VERTEX_state_too_many_eds_c    vertex is vertex of wire body and it has
+                                      more than two edges
+    PK_VERTEX_state_wf_ed_bad_sh_c    at vertex there is a wireframe edge which
+                                      should belong to the returned shell
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

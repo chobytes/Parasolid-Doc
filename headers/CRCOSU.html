@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<TITLE>CRCOSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRCOSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_cone_create.html>PK_CONE_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRCOSU ( posn, axis, radpsn, angle, cone, ifail )
+=================================================
+
+  Create a conical surface.
+
+Receives:
+  KI_vec_centre             posn           --- position on cone axis
+  KI_vec_axis               axis           --- axis direction
+ &lt;KI_dbl_radius&gt;           *radpsn         --- radius of cone at 'posn'
+  KI_dbl_angle             *angle          --- half-angle of cone ( radians )
+
+Returns:
+  KI_tag_surface           *cone           --- conical surface
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_radius_lt_0            radius negative
+  KI_bad_angle              cone angle incorrect
+  KI_radius_too_large       invalid radius value
+
+Description:
+  A conical surface is created according to the parameters specified.
+
+  The mathematical definition of a cone defines two half cones, apex to
+  apex on a common axis. Only one of the pair is created by this routine.
+
+  The half cone is fixed in space by 'axis', the axis direction; 'posn', a
+  position on the cone axis and 'radpsn', the radius of the cone at
+  'posn'. 'radpsn' may be given as zero, so that 'posn' is the cone apex.
+
+  The sign of 'angle' determines which of the two possible half cones
+  through the circle defined by 'posn', 'axis' and 'radius' is created.
+
+  sign of angle     axis direction
+  --------------------------------
+  positive          towards apex
+  negative          away from apex
+
+  Parasolid will, however, convert the cone representation internally to one
+  with a positive angle, with axis pointing towards the apex.
+
+  The surface normal points away from the axis.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,204 @@
+<HTML>
+<HEAD>
+<TITLE>GETMOD</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>GETMOD</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_part_receive.html>PK_PART_receive</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+GETMOD ( keylen, key, part, ifail )
+===================================
+
+  Get archived model.
+
+Receives:
+  KI_int_nchars            *keylen         --- length of key
+  KI_chr_key                key[keylen]    --- key of part
+
+Returns:
+  KI_tag_part              *part           --- received part
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_field_conversion   oversize data read
+  KI_applio_not_registered  application i/o functions not registered
+  KI_file_read_corruption   corrupt data read, perhaps an NFS problem
+  KI_FG_receive_failure     part contains irretrievable foreign geometry
+  KI_withdrawn_surface      part contains a withdrawn blend surface
+  KI_schema_incompatible    schema contents in newer format
+  KI_schema_corrupt         contents of schema file not as expected
+  KI_schema_access_error    error opening, closing or reading the schema file
+  KI_wrong_format           receiving binary archive as text or vice-versa
+  KI_wrong_version          part archived by incompatible version of modeller
+  KI_more_than_one_part     more than one part
+  KI_corrupt_file           invalid file contents but requires roll
+                            invalid file contents
+  KI_usfd_mismatch          archive has wrong user-field size
+  KI_keyed_part_mismatch    archived part not same type as part with same key
+  KI_cyclic_assy            receiving part would create cyclic reference
+  KI_attr_defn_mismatch     archived attribute definitions don't match current
+  KI_size_mismatch          archived part created with different size settings
+  KI_already_loaded         part with key already loaded
+  KI_file_access_error      error reading or closing archive
+  KI_cant_open_file         error opening archive
+  KI_key_not_found          key not found in archive
+  KI_bad_key                key has invalid syntax
+
+Description:
+  GETMOD loads into internal memory a part which exists in an archive and which
+  is identified with the given key.
+
+  Whether parts are received in text or in binary depends on the value of the
+  SLIPBT interface parameter (see SEINTP for details). Error KI_wrong_format
+  will result if an attempt is made either to receive in text a part
+  transmitted in binary, or to receive in binary a part transmitted in text.
+
+  Whether or not user fields are received from an archive depends on the value
+  of the SLIPUF interface parameter (see SEINTP for details). If user fields
+  are not received, the user field of every entity in the archive will be filled
+  with zeros. If they are received, all user fields will be restored at their
+  values when the archive was made. A possible reason for not receiving user
+  fields is that the current user-field size (as set by STAMOD) is not the
+  same as when the archive was created - attempting to receive such an archive
+  with user fields would give error KI_usfd_mismatch.
+
+  If the key is invalid (in the context of the archive system in use) KI_bad_key
+  will be returned in 'ifail'.
+
+  If a part with the key cannot be found in the archive KI_key_not_found will
+  be returned in 'ifail'.
+
+  We define the true-sub-parts of a stored (ENSTST) part S as those anonymous
+  (ENSTAN) sub-parts of S reachable from S without encountering other stored
+  parts.
+
+  A stored part is received with all its true-sub-parts, and any references
+  between these newly received parts and those already in memory are resolved.
+
+  If any part, P, which they reference is not loaded a part node representing P
+  is attached to the world as unloaded (ENSTUN).
+
+  If the given key does not match the key of any other part in internal memory
+  the part in the archive with that key is received and attached to the world.
+  The state of the newly received part will be stored.
+
+  If the given key matches that of an unloaded part the unloaded part is
+  replaced with the newly received part.
+
+  If the key matches that of a modified (ENSTMD) part it is received as normal
+  and attached to the world. There are then two parts with the same key in the
+  world, one stored and the other modified.
+
+  If the key matches that of a stored part KI_already_loaded will be returned
+  in 'ifail'.
+
+  R, an anonymous true-sub-part of P may instance another part, S, which is not
+  a true-sub-part of P. If S is not in memory a node representing S is attached
+  to the world as an unloaded part.
+
+  If S is in memory then R is made to instance S except if S is modified in
+  which case a new unloaded part with the same key as S is attached to the
+  world and instanced by R. For example; if we have the following parts in the
+  archive:
+
+          st-key1
+            \
+            st-key2
+
+  and load the part with key2 into memory, modify it and then load the part with
+  key1, we would have the following parts in memory:
+
+              st-key1
+                \
+       md-key2  un-key2
+
+  If it is desired that the part with key1 actually instance the modified part
+  with key2 REDINS can be used to redirect the instance; i.e. to achieve:
+
+              md-key1
+             /
+           md-key2  un-key2
+
+  For an assembly, GETMOD will only explicitly load the assembly,
+  its instances, and its true-sub-parts; stored-sub-parts referenced by the
+  assembly will be loaded implicitly as required by later modeller operations.
+  This has two implications:
+
+     Modeller operations other than GETMOD may result in part-retrieval errors.
+
+     Changes to interface parameters subsequent to the call to GETMOD on the
+     owning-assembly may affect later retrieval of sub-parts referenced by
+     that assembly. This may lead to errors, because, for example, sub-parts
+     are being received in text rather than binary.
+
+  Note that it is always possible to force-load all sub-parts of an assembly by
+  calling GETMOD explicitly on each one.
+
+  It is possible that receiving a part would cause a cyclic instance to be
+  created. For example; imagine part P with key "k1" instances unloaded part
+  Q; when Q is received it is discovered that it instances a part with the key
+  "k1"; if the receive was completed P would instance Q which would instance
+  P. In such a case KI_cyclic_assy is returned in 'ifail'.
+
+  As shown above it is possible to receive a part, P, with the same key as
+  another modified or unloaded part, Q, already in memory. If after receiving P
+  the modeller discovers that P and Q are not both assemblies or both bodies
+  KI_keyed_part_mismatch is returned in 'ifail'.
+
+  When a part is created the modeller stores in the part the current values for
+  the linear and angular resolution of the modeller and these values will be
+  saved with the part in an archive. If, whilst receiving a saved part, the
+  modeller discovers that the resolution values saved with the part are
+  different from the current values, KI_size_mismatch will be returned in
+  'ifail'.
+
+  The definitions of any attributes attached to a part are stored with a part
+  in the archives. When a part is received the modeller may discover a mismatch
+  between an existing attribute definition and the stored definition for a
+  particular attribute. If this occurs KI_attr_defn_mismatch will be returned in
+  'ifail'.
+
+  If the modeller discovers the contents of the archive to be corrupt
+  KI_corrupt_file will be returned in 'ifail'.
+
+  Normally the parts in the archive will have been created with the same
+  version of the modeller. However the modeller may discover a part created
+  by a different version. In most cases the modeller will be able to cope and
+  will receive the part without error. However if the version of the archived
+  part is newer or much older than the current version the modeller will be
+  unable to receive it and KI_wrong_version will be returned in 'ifail'.
+  If the part contains foreign geometry for which an evaluator is not available,
+  the offending surfaces or curves are identified by having a system attribute
+  of type SDL/TYSA_BAD_FG attached. Bodies containing such geometry must not be
+  used. This mechanism allows individual bodies in an assembly to be used despite
+  the presence of other bodies in the assembly containing unusable foreign
+  geometry. Applications using foreign geometry must check for the presence of
+  this attribute and delete such bodies.
+  If the transmit file contains more than one part (and so must have been
+  transmitted by <A HREF=../headers/pk_part_transmit.html>PK_PART_transmit</A>), the ifail KI_more_than_one_part will be
+  returned.
+
+  If, for any other reason, the modeller fails to successfully retrieve the
+  part from the archive, KI_receive_failed will be returned in 'ifail'.
+
+
+</PRE>
+</BODY>
+</HTML>

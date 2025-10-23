@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_facet_index_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_facet_index_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_facet_index_s
+    {
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        is_relative_index;      --- Indicates whether
+                                                --- <B>'facet_indices'</B> are
+                                                --- relative to this block.
+    int                 n_vertex_positions;     --- Number of vertices in
+                                                --- block.
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>        *vertex_positions;       --- Positions of vertices.
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>       *vertex_normals;         --- Normals of vertices
+                                                --- (may be NULL).
+    int                 n_facet_indices;        --- Number of facet indices
+                                                --- in block.
+    int                *facet_indices;          --- Indices of vertices of
+                                                --- facets. Indices should
+                                                --- be in groups of three.
+    };
+typedef struct PK_MESH_facet_index_s PK_MESH_facet_index_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains the data for a block of facets described in an
+indexed form.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_facet_t.html>PK_MESH_facet_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is the datatype for a facet index block of mesh data. The
+facet indexed format describes each facet as a triple of vertex indices,
+relative to the <B>'vertex_positions'</B> array ordering.
+
+If <B>'is_relative_index'</B> is PK_LOGICAL_true, then the facet_indices must be
+set in the same block.
+See <A HREF="../chapters/fd_chap.087.html#50409875_pgfId-339498">here</A> for more information.
+
+Description of fields:
+
+
+<B>'is_relative_index'</B>     Indicates whether the indices <B>'facet_indices'</B> are
+                        relative or absolute. When set to PK_LOGICAL_true,
+                        it is not possible to define <B>'facet_indices'</B> that
+                        refer to <B>'vertex_positions'</B> defined in previous
+                        blocks. An absolute index is relative to the first
+                        vertex added to the mesh in the first facet block
+                        returned by the application callback function.
+
+
+<B>'n_vertex_positions'</B>    The number of vertices in the array
+                        <B>'vertex_positions'</B>. If <B>'vertex_normals'</B> is not NULL
+                        then it is also the number of vertex normals.
+
+
+<B>'vertex_positions'</B>      The positions of the vertices of the mesh in this
+                        block. There can be duplicates if the vertex has
+                        multiple normals.
+
+
+<B>'vertex_normals'</B>        If not NULL, the normals of the vertices of the mesh
+                        in this block.
+
+
+<B>'n_facet_indices'</B>       The number of facet indices in the array
+                        <B>'facet_indices'</B>. Must be a multiple of three.
+
+
+<B>'facet_indices'</B>         The indices of the vertices of a facet in the
+                        <B>'vertex_positions'</B> array. Each group of three
+                        indices defines one facet.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

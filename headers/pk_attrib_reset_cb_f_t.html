@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ATTRIB_reset_cb_f_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ATTRIB_reset_cb_f_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef void                (*PK_ATTRIB_reset_cb_f_t)
+(
+<I>--- received arguments ---
+</I><A HREF=../headers/pk_attrib_t.html>PK_ATTRIB_t</A>                   attrib,      --- the attribute with a changed
+                                           --- field
+<A HREF=../headers/pk_attdef_t.html>PK_ATTDEF_t</A>                   attdef,      --- attribute definition of <B>'attrib'</B>
+<A HREF=../headers/pk_pmark_t.html>PK_PMARK_t</A>                    pmark,       --- current pmark
+<A HREF=../headers/pk_attrib_field_id_t.html>PK_ATTRIB_field_id_t</A>          field_id,    --- identifier of field within
+                                           --- attribute
+<A HREF=../headers/pk_attrib_field_t.html>PK_ATTRIB_field_t</A>             field_type,  --- field type
+int                           n_values,    --- length of field
+<A HREF=../headers/pk_attrib_field_values_t.html>PK_ATTRIB_field_values_t</A>      values,      --- current contents of field
+<A HREF=../headers/pk_attrib_field_change_t.html>PK_ATTRIB_field_change_t</A>      change_type, --- whether the field is new
+                                           --- or modified
+<A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>                  context,     --- pointer to user data
+<I>--- returned arguments ---
+</I><A HREF=../headers/pk_attrib_reset_cb_r_t.html>PK_ATTRIB_reset_cb_r_t</A> *const result       --- result
+);
+
+</B>
+<A NAME="description"></A>
+<I>This declares the type of the callback function which is given to
+<A HREF=../headers/pk_partition_reset_attribs.html>PK_PARTITION_reset_attribs</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_partition_reset_attribs.html>PK_PARTITION_reset_attribs</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+When this function is called, the partition has been rolled to <B>'pmark'</B>
+from its preceding pmark. The attribute definition of <B>'attrib'</B> is one
+of those given to <A HREF=../headers/pk_partition_reset_attribs.html>PK_PARTITION_reset_attribs</A> and, during the roll, the
+field identified by <B>'field_id'</B> has been created or modified
+(<B>'change_type'</B> indicates which). The current contents of the field are
+given in <B>'values'</B>. The callback function can, if required, supply
+revised values for the field by setting the contents of <B>'result'</B>.  If
+the status field of <B>'result'</B> is PK_ATTRIB_reset_continue_c and the
+<B>'n_values'</B> field is not zero, then, on return from the callback, the
+contents of the values field are used to reset attribute's field
+values, without the change being recorded in a delta. After this, in
+all following states of the partition for which the field does not
+change it will now have these revised values.  The number and type of
+the replacement values must be the same as the original values in the
+field.
+
+If the field values do not need to be changed, the <B>'status'</B> field of
+<B>'result'</B> should be set to PK_ATTRIB_reset_continue_c and its
+<B>'n_values'</B> field should be set to zero.
+
+If the status returned is PK_ATTRIB_reset_failed_c, then the scan of
+the partition will stop, and <A HREF=../headers/pk_partition_reset_attribs.html>PK_PARTITION_reset_attribs</A> will return
+PK_ERROR_reset_failed.
+
+If the field in the attribute is of type PK_ATTRIB_field_string_c,
+then <B>'values'</B> is an array of <B>'n_values'</B> characters which does not
+include a null character. It is not permitted to reduce the length of
+the string by inserting a null char in the <B>'values'</B> field of the
+result.  Similar remarks apply to fields of type
+PK_ATTRIB_field_ustring_c.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

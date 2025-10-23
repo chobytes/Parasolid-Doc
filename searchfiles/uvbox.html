@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.018.html#50409799_pgfId-298134", " Returns a <B>uvbox</B> indicating the bounds of the given surface. ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-484090", " be used to find the parameter box (or <B>uvbox</B>) of a face: ", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-496746", " face is parametrically rectangular and returns a tight <B>uvbox</B> if so. ", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-496758", " is a reasonably tight approximation of the exact <B>uvbox</B>. ", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-309343", " PK_FACE_find_uvbox can locate a <B>uvbox</B> which bounds the given face in the parameter", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-489858", " addition, you can use PK_FIN_find_uvbox to find a <B>uvbox</B> which bounds the given fin in the parameter", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-310073", " An interval (for curves) or <B>uvbox</B> (for surfaces) that you want to examine. By", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " facet vertices may not lie inside the faces <B>uvbox</B>. ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_deform_uv_all_c 24441 For bounded geometry, the entire <B>uvbox</B> of the original surface will be evaluated over.", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_missing_geom 96 PK_FACE_find_uvbox insufficient geometry to calculate <B>uvbox</B> (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " provided a <B>uvbox</B> . (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_bad_uvbox 5038 PK_SURF_find_box the input <B>uvbox</B> is invalid on surface .", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 PK_SURF_find_box a <B>uvbox</B> has been provided for a mesh.", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " 5224 PK_FIN_find_uvbox function has failed to find the <B>uvbox</B> (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_missing_geom 96 PK_FACE_find_uvbox insufficient geometry to calculate <B>uvbox</B> (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " provided a <B>uvbox</B> . (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " PK_FACE_find_uvbox 96 PK_ERROR_missing_geom insufficient geometry to calculate <B>uvbox</B> (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_SURF_find_box 5145 PK_ERROR_bad_combination a <B>uvbox</B> has been provided for a mesh.", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_deform_uv_t.html#documentation", " faces <B>uvbox</B>. The deformed b-surfaces <B>uvbox</B>", "PK Reference - PK_deform_uv_t");
+top.note("headers/pk_face_find_uvbox.html#declaration", " PK_FACE_t face, --- face for which <B>uvbox</B> required", "PK Reference - PK_FACE_find_uvbox");
+top.note("headers/pk_face_find_uvbox.html#description", " This function finds a <B>uvbox</B> which bounds the given face in the parameter", "PK Reference - PK_FACE_find_uvbox");
+top.note("headers/pk_face_find_uvbox.html#errors", " PK_ERROR_missing_geom insufficient geometry to calculate <B>uvbox</B> (MILD)", "PK Reference - PK_FACE_find_uvbox");
+top.note("headers/pk_face_intersect_face_o_t.html#declaration", " PK_UVBOX_t uvbox_1; --- <B>uvbox</B> for face_1 [NF]", "PK Reference - PK_FACE_intersect_face_o_t");
+top.note("headers/pk_face_intersect_surf_o_t.html#declaration", " PK_UVBOX_t uvbox_1; --- <B>uvbox</B> for face [NF]", "PK Reference - PK_FACE_intersect_surf_o_t");
+top.note("headers/pk_face_is_uvbox.html#declaration", " PK_FACE_t face, --- face for which <B>uvbox</B> required", "PK Reference - PK_FACE_is_uvbox");
+top.note("headers/pk_face_is_uvbox.html#documentation", "If is_uvbox is returned as PK_LOGICAL_true then <B>uvbox</B> will", "PK Reference - PK_FACE_is_uvbox");
+top.note("headers/pk_facet_consistent_parms_t.html#documentation", " <B>uvbox</B>, as returned from", "PK Reference - PK_facet_consistent_parms_t");
+top.note("headers/pk_fin_find_uvbox.html#declaration", " PK_FIN_t fin, --- fin for which <B>uvbox</B> required", "PK Reference - PK_FIN_find_uvbox");
+top.note("headers/pk_fin_find_uvbox.html#description", " This function finds a <B>uvbox</B> which bounds the given fin in the parameter", "PK Reference - PK_FIN_find_uvbox");
+top.note("headers/pk_fin_find_uvbox.html#errors", " PK_ERROR_missing_geom insufficient geometry to calculate <B>uvbox</B>", "PK Reference - PK_FIN_find_uvbox");
+top.note("headers/pk_range_param_bound_t.html#declaration", " PK_UVBOX_t <B>uvbox</B>;", "PK Reference - PK_range_param_bound_t");
+top.note("headers/pk_range_param_bound_t.html#documentation", " PK_CLASS_uvbox : the parameter range is a <B>uvbox</B>", "PK Reference - PK_range_param_bound_t");
+top.note("headers/pk_report_3_t.html#documentation", " n double arrays. Each double array represents a <B>uvbox</B> on", "PK Reference - PK_REPORT_3_t");
+top.note("headers/pk_surf_ask_uvbox.html#declaration", " PK_UVBOX_t *const <B>uvbox</B> --- parametric bounds of the surf", "PK Reference - PK_SURF_ask_uvbox");
+top.note("headers/pk_surf_ask_uvbox.html#description", " This function returns a <B>uvbox</B> indicating the parametric bounds of the", "PK Reference - PK_SURF_ask_uvbox");
+top.note("headers/pk_surf_degen_t.html#declaration", " PK_UVBOX_t <B>uvbox</B>;", "PK Reference - PK_SURF_degen_t");
+top.note("headers/pk_surf_degen_t.html#documentation", " <B>uvbox</B> The range of the degeneracy in parameter space.", "PK Reference - PK_SURF_degen_t");
+top.note("headers/pk_surf_find_box.html#declaration", " --- or surface bounded by <B>uvbox</B> ", "PK Reference - PK_SURF_find_box");
+top.note("headers/pk_surf_find_box.html#description", "The application can provide a <B>UVBOX</B> to limit the surface to be boxed. If the", "PK Reference - PK_SURF_find_box");
+top.note("headers/pk_surf_find_box.html#errors", " PK_ERROR_bad_combination a <B>uvbox</B> has been provided for a mesh.", "PK Reference - PK_SURF_find_box");
+top.note("headers/pk_surf_find_box_o_t.html#declaration", " PK_LOGICAL_t have_uvbox; --- whether a <B>uvbox</B> is provided", "PK Reference - PK_SURF_find_box_o_t");
+top.note("headers/pk_surf_find_box_o_t.html#documentation", " have_uvbox Specifies if a <B>uvbox</B> of the surface to box is to be", "PK Reference - PK_SURF_find_box_o_t");
+top.note("headers/pk_surf_find_discontinuity_o_t.html#declaration", " PK_UVBOX_t <B>uvbox</B>; --- sub-domain of surface", "PK Reference - PK_SURF_find_discontinuity_o_t");
+top.note("headers/pk_surf_find_discontinuity_o_t.html#documentation", " <B>uvbox</B> Specifies the parametric bounds of a sub-domain of", "PK Reference - PK_SURF_find_discontinuity_o_t");
+top.note("headers/pk_surf_intersect_surf_o_t.html#declaration", " PK_UVBOX_t uvbox_1; --- <B>uvbox</B> for surf_1 [NF]", "PK Reference - PK_SURF_intersect_surf_o_t");
+top.note("headers/pk_surf_make_bsurf.html#declaration", " PK_UVBOX_t <B>uvbox</B>, --- parameter bounds: required part of surf", "PK Reference - PK_SURF_make_bsurf");
+top.note("headers/pk_surf_make_bsurf.html#description", " <B>uvbox</B> of the given surf .", "PK Reference - PK_SURF_make_bsurf");
+top.note("headers/pk_surf_make_bsurf.html#errors", " PK_ERROR_bad_uvbox <B>uvbox</B> does not define valid extent", "PK Reference - PK_SURF_make_bsurf");
+top.note("headers/pk_surf_make_bsurf_2.html#declaration", " PK_UVBOX_t <B>uvbox</B>, --- required parameter bounds", "PK Reference - PK_SURF_make_bsurf_2");
+top.note("headers/pk_surf_make_bsurf_2.html#description", " <B>uvbox</B> of the given surf .", "PK Reference - PK_SURF_make_bsurf_2");
+top.note("headers/pk_surf_make_bsurf_2.html#errors", " PK_ERROR_bad_uvbox <B>uvbox</B> does not define valid extent", "PK Reference - PK_SURF_make_bsurf_2");
+top.note("headers/pk_surf_make_bsurf_res_t.html#documentation", "the supplied <B>uvbox</B> cannot be used to make a valid surface", "PK Reference - PK_SURF_make_bsurf_res_t");
+top.note("headers/pk_surf_make_bsurf_t.html#documentation", " supplied <B>uvbox</B> does not define valid extent", "PK Reference - PK_SURF_make_bsurf_t");
+top.note("headers/pk_surf_make_curves_isocline.html#declaration", " PK_UVBOX_t <B>uvbox</B>, --- surf parameter box", "PK Reference - PK_SURF_make_curves_isocline");
+top.note("headers/pk_surf_make_curves_isocline.html#documentation", " part of any isocline curve which enters the <B>uvbox</B> . As a corollary,", "PK Reference - PK_SURF_make_curves_isocline");
+top.note("headers/pk_surf_make_cus_isocline.html#declaration", " PK_UVBOX_t <B>uvbox</B>, --- surf parameter box", "PK Reference - PK_SURF_make_cus_isocline");
+top.note("headers/pk_surf_make_cus_isocline.html#documentation", " part of any isocline curve which enters the <B>uvbox</B> . As a corollary,", "PK Reference - PK_SURF_make_cus_isocline");
+top.note("headers/pk_surf_make_sheet_body.html#errors", " PK_ERROR_bad_uvbox <B>uvbox</B> is invalid on this surface", "PK Reference - PK_SURF_make_sheet_body");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#documentation", " value. Facet vertices that fall within the face <B>uvbox</B>, as", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_render_facet_go_o_t.html#documentation", " value. Facet vertices that fall within the face <B>uvbox</B>, as", "PK Reference - PK_TOPOL_render_facet_go_o_t");
+top.note("headers/pk_uvbox_t.html#documentation", "If these two values are equal, the <B>uvbox</B> has a zero extent in the U direction.", "PK Reference - PK_UVBOX_t");
+top.note("chapters/kd_chap.17.html#50475020_pgfId-291504", " <B>uvbox</B> ", "KID Manual - KID Class Structure");
+top.note("chapters/kd_chap.17.html#50475020_pgfId-291506", " surface parameter <B>uvbox</B> ", "KID Manual - KID Class Structure");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

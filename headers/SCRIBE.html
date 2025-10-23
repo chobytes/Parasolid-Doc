@@ -1,0 +1,191 @@
+<HTML>
+<HEAD>
+<TITLE>SCRIBE</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SCRIBE</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_imprint_curve.html>PK_BODY_imprint_curve</A><BR>
+<A HREF=../headers/pk_face_imprint_curve.html>PK_FACE_imprint_curve</A><BR>
+<A HREF=../headers/pk_region_imprint_curve.html>PK_REGION_imprint_curve</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SCRIBE ( topol, curve, startp, endp, newedg, nedges, newfac, nfaces, ifail )
+============================================================================
+
+  Scribe line on a face, a region or a wire body
+
+Receives:
+  KI_tag_topology          *topol          --- face, region or body to scribe curve on
+  KI_tag_curve             *curve          --- curve to scribe
+  KI_vec_position           startp         --- start position
+  KI_vec_position           endp           --- end position
+
+Returns:
+  KI_tag_list_edge         *newedg         --- list of new edges
+  KI_int_nitems            *nedges         --- number of new edges
+ &lt;KI_tag_list_face&gt;        *newfac         --- list of new faces, if any
+ &lt;KI_int_nitems&gt;           *nfaces         --- number of new faces
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_missing_geom           given face has no surface
+  KI_general_body           given region is from general body
+  KI_non_manifold           body would become general
+  KI_not_in_region          no new edges created
+  KI_bad_sharing            attempt to illegally share curve
+  KI_not_on_curve           start or end point not on curve
+  KI_bad_end_points         curve not defined between 'startp' and 'endp'
+  KI_not_on_surface         curve does not lie on surface of face
+  KI_not_on_face            no new edges created
+  KI_crossing_face          curve crosses face
+  KI_crossing_edge          curve crosses edge
+  KI_unsuitable_entity      Topology is not a face, a region, or a wire body
+                            Mixed body
+                            cant do intersect
+  KI_bad_basis_surf         SP-curve basis surface differs from face surface
+  KI_invalid_geometry       curve does not pass checks
+  KI_not_in_same_partition  Topol and curve are in different partitions
+
+Description:
+
+  The given curve, between the start and end points, is inscribed on
+  'topol'.
+
+  If 'topol' is a face, each section of the curve that lies in the
+  interior of the face gives rise to a new edge or edges: this may have
+  the effect of dividing the face into several pieces, all but one of
+  which will be new faces. The face must have a surface attached to it,
+  or the ifail KI_missing_geometry will be returned.
+
+  If 'topol' is a region, each section of the curve that lies in the
+  interior of the region gives rise to a new edge or edges. Under
+  certain circumstances a new face will also be made; see below.
+
+  If 'topol' is a body, it must be a wire body or a minimal body and the
+  curve will be scribed as if the region (which is unique in this case)
+  of the body had been given.
+
+  If 'topol' is of any other type, the ifail KI_unsuitable_entity will
+  be returned.
+
+  If the curve is a B-curve (TYCUPA) then it must be capable of passing
+  the checks imposed by CHCKEN. The self intersection check is only
+  performed if SLIPSI not zero (see SEINTP). The composite geometry
+  checks are only performed if SLIPCO (see SEINTP) is set to 0.
+
+  A list of the new edges created will be returned in 'newedg'. If new
+  faces are created, they are returned in the list 'newfac'; if no new
+  faces are created, 'newfac' will be the null tag.
+
+  The start and end points must lie on the curve or the ifail
+  KI_not_on_curve will be returned. If they are in the same position the
+  complete closed curve is scribed. If they are not, the start point
+  must precede the end point or the ifail KI_bad_end_points will be
+  returned. If the curve is a trimmed curve the bounds are ignored,
+  though valid vectors should still be supplied.
+
+  If a trimmed curve is supplied, it will be deleted and the underlying
+  curve attached to the resulting edge or fin.
+
+  If local checking is on (see SEINTP), the result body is checked for
+  edge-edge and edge-face inconsistencies between the new edges and the
+  rest of the body. If any edge fails these checks one of the ifails
+  KI_crossing_edge or KI_crossing_face will be returned.
+
+
+  Scribe may be used in the following cases:
+
+  Region of a minimal body or a minimal body):
+    If the start and end points differ, an open wire body will
+    result. If they are the same, the result depends on the setting of
+    SLIPGT (see SEINTP):
+
+      if SLIPGT is zero, the result will be a sheet body with a single
+      face without a surface attached; the face will lie on the left of
+      the new edge, which will go in the direction of the curve.
+
+      if SLIPGT is one, the result will be a closed wire body.
+
+    The position of the point of the single vertex of the body is irrelevant.
+
+
+  Region of a wire body or a wire body:
+    If SLIPGT is zero:
+
+      The start and end points must be different, and one or both must
+      be an end vertex of the (open) wire or the ifail KI_non_manifold
+      will be returned. If it joins the end vertices of a wire, then the
+      result is a sheet body with a single face without a surface
+      attached; the face will lie on the left of the new edge, which
+      will go in the direction of the curve.  The new edges may not
+      touch or cross the interior of an edge of the wire or the ifail
+      KI_crossing_edge will be returned. The new edges may not touch or
+      cross an interior vertex of the wire or the ifail KI_non_manifold
+      will be returned.
+
+    If SLIPGT is one:
+
+      The bounded curve may or may not cross the existing vertices of
+      the body.  It may not be coincident with the existing edges of the
+      body, or cross them except at the vertices or the ifail
+      KI_crossing_edge will be returned.
+
+    This operation will in some cases (ie unless the rules which apply
+    when SLIPGT is zero are followed) result in a non-manifold or
+    disconnected body; if it does, the body type will change to general.
+
+
+  Any region of a sheet, solid, or general body:
+    SLIPGT must be set to one, or one of the ifails KI_non_manifold or
+    KI_general_body will be returned.
+
+    If the curve, between the start and end points, does not lie in the
+    region, the ifail KI_not_in_region will be returned.
+
+    The bounded curve may or may not cross the existing vertices of the
+    body. It may not coincide with existing edges or faces of the body,
+    or cross them except at the vertices or one of the ifails
+    KI_crossing_edge or KI_crossing_face will be returned.
+
+    One or more wireframe edges will be created in the given region. If
+    the region is in a sheet or solid body, this operation will always
+    result in a non-manifold or disconnected body, and so the body type
+    of a sheet or solid body will change to general. If the region is in
+    a general body the operation may result in a wire body, in which
+    case the body type will change to wire. The operation may involve
+    the creation of a new shell in the given region, or even the merging
+    of two of its existing shells.
+
+
+  A non-rubber face of a sheet, solid or general body:
+    The curve must lie in the surface of the face or the ifail
+    KI_not_on_surface will be returned. At least one new edge must be
+    created by the scribe, or the ifail KI_not_on_face will be
+    returned. If new faces are created, the old face will lie on the
+    right of one of the scribed edges, which will all go in the
+    direction of the curve.
+
+
+  Scribing SP-curves is supported, providing they reference the surface of
+  the face being scribed or a copy of this surface.
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<TITLE>OUBSPC</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUBSPC</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bcurve_ask.html>PK_BCURVE_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUBSPC ( bc, ctrl, dim, order, nctrl, knots, props, nprops, ifail )
+===================================================================
+
+  Output B-curve in B-spline form
+
+Receives:
+  KI_tag_b_curve           *bc             --- B-curve
+
+Returns:
+  KI_tag_list_dbl          *ctrl           --- control points
+  KI_int_dimension         *dim            --- dimension of control points
+  KI_int_order             *order          --- order of curve
+  KI_int_nitems            *nctrl          --- number of control points
+  KI_tag_list_dbl          *knots          --- knot values
+ &lt;KI_tag_list_int&gt;         *props          --- list of curve properties
+ &lt;KI_int_nitems&gt;           *nprops         --- number of curve properties
+  KI_cod_error             *ifail          --- failure indicator
+
+
+Description:
+  This function outputs a B-curve in B-spline form.
+
+  Dimension of control points 'dim':
+  . For rational curves 'dim'=4.
+  . For non-rational curves 'dim'=3.
+
+  Order of the curve 'order':
+  . The order of the curve = degree + 1.
+  . The minimum order is 2.
+
+  Control points 'ctrl':
+  . This is a real list containing 'nctrl' vectors of dimension 'dim'.
+  . For non-rational curves, the vectors are points in 3-space and are
+    returned [x0,y0,z0,x1,y1,z1,...].
+  . For rational curves each vector contains a point in 3-space followed by a
+    weight for the point. The points are returned [x0,y0,z0,w0,x1,y1,z1,w1,...].
+    The weights are positive.
+
+  Number of control points 'nctrl':
+  . For non-periodic curves 'nctrl' >= 'order'.
+  . For periodic curves 'nctrl' >= 3.
+
+  Knot vector 'knots':
+  . The knot values form a non-decreasing sequence.
+  . For non-periodic curves there are ('nctrl' + 'order') knot values.
+  . For periodic curves there are ('nctrl' + 1) knot values.
+  . The knot values follow the rules described in CRBSPC.
+
+  Properties list 'props':
+    At most one property token will be returned -
+    . PAPRPE - the curve is periodic. If this token is not present then the
+      curve is not periodic.
+
+  Number of properties 'nprops':
+  . Gives the number of properties in the 'props' array.
+  . There is only one property that could apply (periodicity) and so 'nprops'
+    is always either 0 or 1.
+
+
+</PRE>
+</BODY>
+</HTML>

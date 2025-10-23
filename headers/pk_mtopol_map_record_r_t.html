@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MTOPOL_map_record_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MTOPOL_map_record_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MTOPOL_map_record_r_s
+    {
+    <A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_t</A>                      map;
+    int                                  n_original_mtopols;
+    <A HREF=../headers/pk_mtopol_t.html>PK_MTOPOL_t</A>                         *original_mtopols;
+    <A HREF=../headers/pk_class_t.html>PK_CLASS_t</A>                          *original_classes;
+    int                                  n_product_mtopols;
+    <A HREF=../headers/pk_mtopol_t.html>PK_MTOPOL_t</A>                         *product_mtopols;
+    };
+typedef struct PK_MTOPOL_map_record_r_s PK_MTOPOL_map_record_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>This data structure encapsulates the association between mtopols before
+and after the modelling operation.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mtopol_map_r_t.html>PK_MTOPOL_map_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'map'</B>                 The value of this field indicates what type of mapping
+                      information the record represents. Permitted values
+                      are :
+
+                        <A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_copy_c</A>
+                        <A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_split_c</A>
+                        <A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_merge_c</A>
+                        <A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_derive_c</A>
+
+<B>'n_original_mtopols'</B>  The length of the <B>'original_mtopols'</B> and
+                      <B>'original_mtopol_classes'</B> arrays.
+
+<B>'original_mtopols'</B>    These were the mtopols which participated in the
+                      modelling operation. These mtopols may no longer exist.
+                      The class that each mtopol was before the operation is
+                      held in the corresponding element of the
+                      <B>'original_classes'</B> array.
+
+<B>'original_classes'</B>    The class of each participating mtopol within the
+                      <B>'original_mtopols'</B> array.
+
+<B>'n_product_mtopols'</B>   The length of the <B>'product_mtopols'</B> array.
+
+<B>'product_mtopols'</B>     The mtopols resulting from the modelling operation.
+
+The expectations on the contents of the structure for each map type :
+
+
+<A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_copy_c</A>
+
+ o <B>'original_mtopols'</B> holds the list of mtopols that have been copied to create
+    the products. These mtopols exist.
+
+ o The class of the original mtopols can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o <B>'product_mtopols'</B> holds the newly created mtopols.
+
+ o The entries in the <B>'original_mtopols'</B> and <B>'product_mtopols'</B> arrays are in
+   one to one correspondence. The nth item in <B>'product_mtopols'</B> is derived from
+   the nth item in <B>'original_mtopols'</B>.
+
+
+<A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_split_c</A>
+
+ o <B>'original_mtopols'</B> holds a single mtopol that has been split to create the
+    products. These mtopols may not exist.
+
+ o The class of the original mtopols can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o <B>'product_mtopols'</B> holds the newly created mtopols.
+
+ o All entries in <B>'product_mtopols'</B> have been split from the entry in
+   <B>'original_mtopols'</B>.
+
+
+<A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_merge_c</A>
+
+ o <B>'original_mtopols'</B> holds the list of mtopols that have been merged to create
+    the single product mtopol. These mtopols may not exist.
+
+ o The class of the original mtopols can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o <B>'product_mtopols'</B> holds the single mtopol created by merging the mtopols in
+   <B>'original_mtopols'</B>.
+
+
+<A HREF=../headers/pk_mtopol_map_t.html>PK_MTOPOL_map_derive_c</A>
+
+ o <B>'original_mtopols'</B> holds the list of mtopols from which the products have
+   been derived. These mtopols may not exist.
+
+ o The class of the original mtopols can be determined from the
+   corresponding entry in the <B>'original_classes'</B> array.
+
+ o All entries in <B>'product_mtopols'</B> have been derived from the entries in
+   <B>'original_mtopols'</B>.
+
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

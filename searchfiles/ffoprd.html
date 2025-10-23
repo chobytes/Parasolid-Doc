@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.007.html#50409787_marker-399919", "<B>FFOPRD</B> ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-313024", " returns sample name keys (used for testing <B>FFOPRD</B> and FFOPWR) ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206536", " <B>ffoprd</B> function 87, 88, 100 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206708", " <B>ffoprd</B> 87, 88, 100 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206823", " <B>ffoprd</B> 87, 88, 100 ", "Functional Description - ZGlossary");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_key_not_found 58 PK_PARTITION_receive Frustrum (<B>FFOPRD</B>) returned FR_not_found", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_bad_key 565 PK_PARTITION_receive Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_deltas_not_available 5057 PK_PARTITION_receive Frustrum (<B>FFOPRD</B>) returned FR_not_found for", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_key 565 PK_PARTITION_receive Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_cant_open_file 928 PK_PARTITION_receive Frustrum (<B>FFOPRD</B>) returned FR_open_fail", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_key_not_found 58 PK_PARTITION_receive Frustrum (<B>FFOPRD</B>) returned FR_not_found", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " PK_PARTITION_receive 565 PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_SESSION_receive 565 PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_ffclos_f_t.html#documentation", " closes a frustrum file which has been opened with <B>FFOPRD</B>,", "PK Reference - PK_FFCLOS_f_t");
+top.note("headers/pk_ffseek_f_t.html#documentation", " files (i.e. those which were opened by <B>FFOPRD</B> or FFOPWR)", "PK Reference - PK_FFSEEK_f_t");
+top.note("headers/pk_ffskxt_f_t.html#documentation", " relative to the position immediately after <B>FFOPRD</B> or FFOPWR. Subsequent", "PK Reference - PK_FFSKXT_f_t");
+top.note("headers/pk_fftell_f_t.html#documentation", " (i.e. those which were opened by <B>FFOPRD</B> or FFOPWR).", "PK Reference - PK_FFTELL_f_t");
+top.note("headers/pk_part_receive.html#errors", " PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK_PART_receive");
+top.note("headers/pk_part_receive.html#documentation", "The frustrum routine <B>FFOPRD</B> is called with guise FFCXMT (transmit file", "PK Reference - PK_PART_receive");
+top.note("headers/pk_part_receive_meshes.html#errors", " PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK_PART_receive_meshes");
+top.note("headers/pk_partition_receive.html#errors", " PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK_PARTITION_receive");
+top.note("headers/pk_partition_receive.html#documentation", "The frustrum routine <B>FFOPRD</B> is called with guise FFCXMP (transmit file", "PK Reference - PK_PARTITION_receive");
+top.note("headers/pk_partition_receive_deltas.html#errors", " PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK_PARTITION_receive_deltas");
+top.note("headers/pk_partition_receive_deltas.html#documentation", "The frustrum routine <B>FFOPRD</B> is called with guise FFCXMD (transmit file", "PK Reference - PK_PARTITION_receive_deltas");
+top.note("headers/pk_partition_receive_deltas_2.html#errors", " PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK_PARTITION_receive_deltas_2");
+top.note("headers/pk_partition_receive_deltas_2.html#documentation", "The frustrum routine <B>FFOPRD</B> is called with guise FFCXMD (transmit file", "PK Reference - PK_PARTITION_receive_deltas_2");
+top.note("headers/pk_partition_receive_meshes.html#errors", " PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK_PARTITION_receive_meshes");
+top.note("headers/pk_session_ask_fru_o_t.html#declaration", " PK_FFOPRD_f_t *<B>ffoprd</B>; --- (NULL)", "PK Reference - PK_SESSION_ask_fru_o_t");
+top.note("headers/pk_session_frustrum_t.html#declaration", " PK_FFOPRD_f_t <B>ffoprd</B>;", "PK Reference - PK_SESSION_frustrum_t");
+top.note("headers/pk_session_indexio_t.html#declaration", " int (*<B>ffoprd</B>)(int guise, const char name[], void *context);", "PK Reference - PK_SESSION_indexio_t");
+top.note("headers/pk_session_indexio_t.html#documentation", " <B>ffoprd</B> This routine opens the FFBNRY file specified by", "PK Reference - PK_SESSION_indexio_t");
+top.note("headers/pk_session_receive.html#errors", " PK_ERROR_bad_key Frustrum (<B>FFOPRD</B>) returned FR_bad_name", "PK Reference - PK_SESSION_receive");
+top.note("headers/pk_session_receive.html#documentation", "The frustrum routine <B>FFOPRD</B> is called with guise FFCSNP (snapshot file", "PK Reference - PK_SESSION_receive");
+top.note("headers/pk_session_receive_u.html#documentation", "The transmit format option affects the format argument to <B>FFOPRD</B> as follows:", "PK Reference - PK_SESSION_receive_u");
+top.note("headers/pk_session_register_fru_o_t.html#declaration", " PK_FFOPRD_f_t *<B>ffoprd</B>; --- (NULL)", "PK Reference - PK_SESSION_register_fru_o_t");
+top.note("chapters/di_chap.02.html#50511934_pgfId-282641", " <B>FFOPRD</B> ", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.02.html#50511934_pgfId-282741", " does not support Unicode filenames, then you must provide <B>FFOPRD</B> and FFOPWR functions. See Section 2.2, Unicode filenames ,", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.02.html#50511934_pgfId-273981", " check the key name arguments which are passed to <B>FFOPRD</B> and FFOPWR and the file size argument which is", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.02.html#50511934_pgfId-274004", " used as arguments in the test calls made to <B>FFOPRD</B> and FFOPWR. The key name server is not otherwise", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.03.html#50511935_pgfId-286306", " which is passed by Parasolid as an argument to <B>FFOPRD</B> and FFOPWR (or UCOPRD and UCOPWR for Unicode keys)", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-273911", " The following guises are opened for reading by <B>FFOPRD</B> and UCOPRD. The file should already exist, and its", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-286172", " FFCJNL journal file (<B>FFOPRD</B> only) ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-286174", " FFCSCH schema file (<B>FFOPRD</B> only) ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-282201", " achieved by using the following frustrum functions instead of <B>FFOPRD</B> and FFOPWR: ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-282321", " then supply valid UCOPRD and UCOPWR functions instead of <B>FFOPRD</B> and FFOPWR functions when registering the frustrum. For more", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-285456", " require this guise of file to be supported by <B>FFOPRD</B> &amp; FFOPWR, so that the licence checking capability can", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.03.html#50511935_pgfId-285220", " <B>FFOPRD</B> ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.06.html#50511938_pgfId-280404", " <B>FFOPRD</B> FFOPWR FFSKXT FFREAD FFWRIT FFCLOS ", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.07.html#50511939_pgfId-298373", "<B>FFOPRD</B> ", "Downward Interfaces - Frustrum Functions");
+top.note("chapters/di_chap.12.html#50511944_pgfId-290245", "<B>ffoprd</B> ", "Downward Interfaces - Indexed I/O Functions");
+top.note("chapters/di_chap.12.html#50511944_pgfId-290289", "<B>ffoprd</B> ", "Downward Interfaces - Indexed I/O Functions");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

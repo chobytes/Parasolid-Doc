@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_delete_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_delete_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_delete_o_s
+    {
+    int                   o_t_version;  --- version number of option structure
+    <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_t</A> update;       --- update flag
+                                        --- (<A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>)
+    <A HREF=../headers/pk_face_heal_t.html>PK_FACE_heal_t</A>        heal_action;  --- how to heal wounds
+                                        --- (PK_FACE_heal_shrink_c)
+    <A HREF=../headers/pk_face_heal_loops_t.html>PK_FACE_heal_loops_t</A>  heal_loops;   --- how to process the loops of
+                                        --- the wound [PF]
+                                        --- (PK_FACE_heal_loops_auto_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          local_check;  --- whether to perform local checking
+                                        --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          allow_disjoint;
+                                        --- whether to allow disjoint results
+                                        --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_repair_fa_fa_t.html>PK_repair_fa_fa_t</A>     repair_fa_fa; --- whether to repair face-face
+                                        --- inconsistencies
+                                        --- (<A HREF=../headers/pk_repair_fa_fa_t.html>PK_repair_fa_fa_no_c</A>)
+    <A HREF=../headers/pk_delete_track_t.html>PK_delete_track_t</A>     track;        --- whether to track new entities
+                                        --- (<A HREF=../headers/pk_delete_track_t.html>PK_delete_track_no_c</A>)
+    };
+typedef struct PK_FACE_delete_o_s PK_FACE_delete_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_face_delete_2.html>PK_FACE_delete_2</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_not_implemented        (MILD)    <B>'heal_action'</B> not implemented.
+
+    PK_ERROR_bad_combination        (MILD)    <B>'local_check'</B> is set to
+                                              PK_LOGICAL_true and <B>'heal_action'</B>
+                                              is set to PK_FACE_heal_no_c.
+
+                                              <B>'allow_disjoint'</B> is set to
+                                              PK_LOGICAL_true, <B>'heal_action'</B>
+                                              is set to PK_FACE_heal_no_c and
+                                              <B>'heal_loops'</B> is set to
+                                              PK_FACE_heal_loops_separate_c.
+
+                                              <B>'repair_fa_fa'</B> is set to
+                                              <A HREF=../headers/pk_repair_fa_fa_t.html>PK_repair_fa_fa_yes_c</A> and
+                                              <B>'local_check'</B> is set to
+                                              PK_LOGICAL_false.
+
+                                              <B>'heal_loops'</B> is set to
+                                              PK_FACE_heal_loops_auto_c and
+                                              <B>'heal_action'</B> is set to
+                                              PK_FACE_heal_no_c or
+                                              PK_FACE_heal_cap_c.
+
+                                              <B>'track'</B> is set to
+                                              <A HREF=../headers/pk_delete_track_t.html>PK_delete_track_rubber_c</A> and
+                                              <B>'heal_action'</B> is not set to
+                                              PK_FACE_heal_no_c.
+
+                                              <B>'track'</B> is set to
+                                              <A HREF=../headers/pk_delete_track_t.html>PK_delete_track_cap_c</A> and
+                                              <B>'heal_action'</B> is not set to
+                                              PK_FACE_heal_cap_c.
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_delete_2.html>PK_FACE_delete_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'update'</B>            The default value allows applications to take
+                    advantage of the latest enhancements of the generic
+                    algorithms supporting Parasolid local operations
+                    functions. To maintain consistency when rebuilding
+                    models created in a previous version of Parasolid,
+                    a non-default value should be specified.
+
+                    The default value is <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>.
+
+<B>'heal_action'</B>       Controls how to heal the wound. This may take the
+                    values:
+                        PK_FACE_heal_no_c
+                        PK_FACE_heal_cap_c,
+                        PK_FACE_heal_grow_from_parent_c
+                        PK_FACE_heal_shrink_c
+
+                    Other values are not allowed.
+
+                    If <B>'heal_loops'</B> is set to PK_FACE_heal_loops_auto_c
+                    then a <B>'heal_action'</B> of PK_FACE_heal_no_c or
+                    PK_FACE_heal_cap_c is not permitted.
+
+                    The default value is PK_FACE_heal_shrink_c.
+
+<B>'heal_loops'</B>        Controls how to heal loops of the wound.
+
+                    Note that the combination of PK_FACE_heal_cap_c and
+                    PK_FACE_heal_loops_together_c is not supported for
+                    facet geometry. If the options have these values,
+                    PK_ERROR_facet_geometry will be returned.
+
+                    The default value is PK_FACE_heal_loops_auto_c.
+
+<B>'local_check'</B>       Whether to perform checks on newly created topology
+                    and geometry.  If this option is set to
+                    PK_LOGICAL_true, a report of type <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_t</A> will be
+                    returned via the Parasolid Report mechanism in these
+                    circumstances:
+
+                    - If a body failed local checking, then a record
+                      with a <B>'status'</B> of <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_check_fail_c</A> and
+                      <B>'new_items'</B> containing the failing body will
+                      be returned. This record is not returned if the
+                      option <B>'repair_fa_fa'</B> is set to
+                      <A HREF=../headers/pk_repair_fa_fa_t.html>PK_repair_fa_fa_yes_c</A> and the repair is successful.
+                    - If after the initial deletion of faces any shell
+                      of the body was inside out, was subsequently
+                      negated, and the body is now valid, then a
+                      record with a <B>'status'</B> of <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_negated_c</A>
+                      and <B>'new_items'</B> containing the negated shell(s)
+                      will be returned.
+
+                    This option may not be set to PK_LOGICAL_true if
+                    the <B>'heal_action'</B> is PK_FACE_heal_no_c. If the
+                    options have these values, PK_ERROR_bad_combination
+                    will be returned.
+
+                    The default value is PK_LOGICAL_true.
+
+<B>'allow_disjoint'</B>    Whether to allow a disjoint result body.  If this
+                    option is set to PK_LOGICAL_false and healing splits
+                    the original body into multiple components,
+                    these will become separate bodies and be reported
+                    in a tracking record of type PK_TOPOL_track_split_c.
+
+                    This option may not be set to PK_LOGICAL_true if
+                    the <B>'heal_action'</B> is PK_FACE_heal_no_c and
+                    <B>'heal_loops'</B> is PK_FACE_heal_loops_separate_c. If the
+                    options have these values, PK_ERROR_bad_combination
+                    will be returned.
+
+                    The default value is PK_LOGICAL_false.
+
+<B>'repair_fa_fa'</B>      Controls whether face-face inconsistencies found by local
+                    checking are repaired. Repairs will be done when it is set
+                    to <A HREF=../headers/pk_repair_fa_fa_t.html>PK_repair_fa_fa_yes_c</A>. If the repairs are successful, a
+                    report of type <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_t</A> will be returned via the
+                    Parasolid Report mechanism. This will contain a record
+                    with a <B>'status'</B> of <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_fa_repair_c</A> and
+                    <B>'new_items'</B> containing the edges which were created by
+                    intersecting the pairs of clashing faces.
+
+                    This option may not be set to <A HREF=../headers/pk_repair_fa_fa_t.html>PK_repair_fa_fa_yes_c</A> if
+                    the <B>'local_check'</B> is set to PK_LOGICAL_false. If the
+                    options have these values, PK_ERROR_bad_combination
+                    will be returned.
+
+                    The default value is <A HREF=../headers/pk_repair_fa_fa_t.html>PK_repair_fa_fa_no_c</A>.
+
+<B>'track'</B>             Whether to track new entities resulting from the delete
+                    operation.
+
+                    This option can be set to <A HREF=../headers/pk_delete_track_t.html>PK_delete_track_rubber_c</A> only
+                    when the <B>'heal_action'</B> is set to PK_FACE_heal_no_c.
+                    Similarly, it can be set to <A HREF=../headers/pk_delete_track_t.html>PK_delete_track_cap_c</A> only
+                    when the <B>'heal_action'</B> is set to PK_FACE_heal_cap_c.
+
+                    The default value is <A HREF=../headers/pk_delete_track_t.html>PK_delete_track_no_c</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

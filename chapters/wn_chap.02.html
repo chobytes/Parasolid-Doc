@@ -1,0 +1,1686 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>What&#8217;s New in Parasolid V36.0</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>What&#8217;s New in Parasolid V36.0</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD><A HREF="../wn_index.html">Chapters</A></TD>
+
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-3350934">1.1	Introduction</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7242857">1.2	Lattices</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7732198">1.2.1	Embedding a lattice in a region</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7733150">1.2.2	Using cylindrical patterns to create a patterned lattice</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7745719">1.2.3	Enlarging a lattice</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7858912">1.2.4	Creating facet geometry from lattice geometry</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7797685">1.2.5	Returning lattice geometry that exists in a given partition</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7792392">1.2.6	Functional areas that support lattices</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7745767">1.3	Cellular body support</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7744588">1.3.1	Enquiring if a general body is a cellular body</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7742384">1.3.2	Treating cellular bodies as manifold bodies</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7882044">1.3.3	Functional areas that support cellular bodies</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7466920">1.4	Distant and multi-scale modelling support</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7745161">1.4.1	Documentation support for working with models of different scales</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7656048">1.4.2	Supporting models created at different scales</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7729598">1.4.3	Scaling the output results of multi-scale modelling</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7834935">1.5	Faceting and rendering</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7836708">1.5.1	Rendering lattice geometry embedded in a body</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7789965">1.6	Modelling support</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7793099">1.6.1	Improved support when enlarging bodies</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7601548">1.7	Model interrogation</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7753940">1.7.1	Improvements when calculating distances between topology and arrays of vectors</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7568772">1.8	Blending</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7732383">1.8.1	Creating constant-width edge blends</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7835085">1.9	Application support</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7842452">1.9.1	Receiving a partition as locked to the calling thread</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7790511">1.10	New system attributes</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7730127">1.11	Functionality announced in previous releases and now available</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7790578">1.12	Changes to the Parasolid documentation</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7790597">1.13	Changes to support applications</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-4117192">1.14	Platforms</A>
+<UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7002939">1.14.1	Changes for Parasolid V36.0</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7002956">1.14.2	Plans for Parasolid V36.1</A>
+</UL>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-7883862">1.15	New PK interface tokens</A>
+<LI> <A HREF="wn_chap.02.html#50466820_pgfId-6651887">1.16	New PK interface error codes</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-3350934"></A>1.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-3646384"></A>This document describes functional enhancements and interface changes that have been added to Parasolid V36.0 and gives information on any other matters that are specific to this release. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7242857"></A>1.2	Lattices 
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7242861"></A>This section describes improvements that have been made to Parasolid&#8217;s support for representing lattices in Parasolid V36.0. Full details on Parasolid lattices can be found in <A HREF="fd_chap.021.html#36208">Chapter 20, &#8220;Lattice Geometry&#8221;</A>, of the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+<P>
+<A NAME="50466820_pgfId-7774953"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50466820_pgfId-7774959"></A>Note: A Convergent Modelling license is required for all operations on lattices.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7732198"></A>	1.2.1 	Embedding a lattice in a region</H2>
+<P>
+<A NAME="50466820_pgfId-7733054"></A>In V36.0 lattices can be embedded in a region as boundary geometry. This functionality can provide additional context and information about the construction of the associated body. For example, a lattice with a solid interior in a void region could be used as a lightweight but strong structure.</P>
+<P>
+<A NAME="50466820_pgfId-7738443"></A>Parasolid also provides additional support in allowing you to enquire if a given lattice is embedded in a region, and if a given region has an embedded lattice. </P>
+<P>
+<A NAME="50466820_pgfId-7774534"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50466820_pgfId-7774541"></A>Note:  Please be aware there will be limited scope as we implement the first stages of this functionality in V36.0. Many modelling operations and other enquiries work on bodies with embedded lattices, though modelling operations will not alter a region with an embedded lattice in this release. Operations that are restricted from working on embedded lattices will return PK_ERROR_lattice_geometry. In future releases we aim to implement a full set of functions to work on bodies with embedded lattices.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7733197"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/wn_chap-4.gif">
+
+<P>
+<A NAME="50466820_pgfId-7734719"></A>Figure 1-1 A lattice embedded in the internal void of a hollowed cube</P>
+<P>
+<A NAME="50466820_pgfId-7733203"></A>For more information see <A HREF="fd_chap.021.html#50409802_pgfId-456434">Section 20.10, &#8220;Lattices in regions&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7734783"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7734793"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7734786"></A><STRONG>
+Changed</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7734788"></A><A HREF=../headers/pk_frame_t.html>PK_FRAME_t</A>, <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>, <A HREF=../headers/pk_attdef_sf_2_t.html>PK_ATTDEF_sf_2_t</A>, <A HREF=../headers/pk_group_create_from_entities.html>PK_GROUP_create_from_entities</A>, <A HREF=../headers/pk_group_create_from_entities_2.html>PK_GROUP_create_from_entities_2</A>, <A HREF=../headers/pk_part_delete_attribs.html>PK_PART_delete_attribs</A>, <A HREF=../headers/pk_topol_ask_entities_by_attdef.html>PK_TOPOL_ask_entities_by_attdef</A>, <A HREF=../headers/pk_topol_categorise_geom.html>PK_TOPOL_categorise_geom</A>, <A HREF=../headers/pk_part_find_entity_by_ident.html>PK_PART_find_entity_by_ident</A>,</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7734790"></A>New</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7734792"></A><A HREF=../headers/pk_face_ask_type.html>PK_FACE_ask_type</A>, <A HREF=../headers/pk_frame_ask_owner.html>PK_FRAME_ask_owner</A>, <A HREF=../headers/pk_frame_ask_geometry.html>PK_FRAME_ask_geometry</A>, <A HREF=../headers/pk_frame_ask_sense.html>PK_FRAME_ask_sense</A>, <A HREF=../headers/pk_frame_ask_body.html>PK_FRAME_ask_body</A>, <A HREF=../headers/pk_body_ask_frames.html>PK_BODY_ask_frames</A>, <A HREF=../headers/pk_frame_reverse.html>PK_FRAME_reverse</A>, <A HREF=../headers/pk_region_ask_lattices.html>PK_REGION_ask_lattices</A>, <A HREF=../headers/pk_lattice_ask_regions.html>PK_LATTICE_ask_regions</A>, <A HREF=../headers/pk_region_ask_type.html>PK_REGION_ask_type</A>, <A HREF=../headers/pk_region_embed_lattices.html>PK_REGION_embed_lattices</A>, <A HREF=../headers/pk_region_remove_lattice.html>PK_REGION_remove_lattice</A>, <A HREF=../headers/pk_topol_find_frames.html>PK_TOPOL_find_frames</A>, SDL/TYSA_FRAME_DENSITY</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7733150"></A>	1.2.2 	Using cylindrical patterns to create a patterned lattice</H2>
+<P>
+<A NAME="50466820_pgfId-7733257"></A>In V36.0, Parasolid has extended its support for patterned lattices by enabling the creation of a patterned lattice based on a cylindrical pattern rather than a rectilinear one. This is useful where you wish to pattern over periodic surfaces. </P>
+<P>
+<A NAME="50466820_pgfId-7880129"></A>In addition, the errors returned from <A HREF=../headers/pk_lattice_make_patterned.html>PK_LATTICE_make_patterned</A> and <A HREF=../headers/pk_body_make_patterned.html>PK_BODY_make_patterned</A> have been refined to provide more guidance on the nature of the problems with the inputs.</P>
+<P>
+<A NAME="50466820_pgfId-7834714"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/wn_chap-5.gif">
+
+<P>
+<A NAME="50466820_pgfId-7834715"></A>Figure 1-2 Creating a patterned lattice using cylindrical patterns</P>
+<P>
+<A NAME="50466820_pgfId-7834722"></A>For more information, see <A HREF="fd_chap.021.html#50409802_pgfId-510980">Section 20.6.2.2, &#8220;Producing an axial pattern&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7735261"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7735271"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7735264"></A><STRONG>
+Changed</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7735266"></A><A HREF=../headers/pk_lattice_make_patterned_o_t.html>PK_LATTICE_make_patterned_o_t</A>, <A HREF=../headers/pk_body_make_patterned.html>PK_BODY_make_patterned</A>: new value pk_pattern_axial_c</P>
+<P>
+<A NAME="50466820_pgfId-7735479"></A><A HREF=../headers/pk_pattern_form_t.html>PK_pattern_form_t</A>: new union member <A HREF=../headers/pk_pattern_axial_o_t.html>PK_pattern_axial_o_t</A></P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7745719"></A>	1.2.3 	Enlarging a lattice</H2>
+<P>
+<A NAME="50466820_pgfId-7749702"></A>In Parasolid V36.0, you can enlarge a supplied lattice. The resultant enlarged lattice will be trimmed to fit inside the size box or a user supplied trimming box. </P>
+
+<H4>
+<A NAME="50466820_pgfId-7750392"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7750455"></A>None, but <A HREF=../headers/pk_geom_enlarge.html>PK_GEOM_enlarge</A> now supports lattices.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7858912"></A>	1.2.4 	Creating facet geometry from lattice geometry</H2>
+<P>
+<A NAME="50466820_pgfId-7858919"></A>Parasolid V36.0 allows you to convert an array of regions or a single input body containing lattice geometry, into a collection of non-lattice regions bounded by mesh faces. This functionality can be useful if, for example, you want to export the input body to a format that does not support lattices or you want to use other functionality that supports meshes but does not support lattice geometry.</P>
+<P>
+<A NAME="50466820_pgfId-7858954"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/wn_chap-6.gif">
+
+<P>
+<A NAME="50466820_pgfId-7858955"></A>Figure 1-3 Creating facet geometry by imprinting the frames associated with a region</P>
+<P>
+<A NAME="50466820_pgfId-7858959"></A>For more information, see <A HREF="fd_chap.021.html#50409802_pgfId-576068">Section 20.10.4, &#8220;Imprinting embedded lattices&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7797685"></A>	1.2.5 	Returning lattice geometry that exists in a given partition</H2>
+<P>
+<A NAME="50466820_pgfId-7797902"></A>In V36.0, Parasolid can return whether a partition contains lattice geometry. You can optionally return parts that contain lattice geometry or orphan lattices.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7809091"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7809002"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7797984"></A>New</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7797986"></A><A HREF=../headers/pk_partition_has_lattices.html>PK_PARTITION_has_lattices</A></P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7792392"></A>	1.2.6 	Functional areas that support lattices</H2>
+<P>
+<A NAME="50466820_pgfId-7792492"></A>In Parasolid V36.0 bodies containing lattice geometry can be transformed if the transform is rigid or uniform scale.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7792682"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7792753"></A>None, but changes also affect <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A> and <A HREF=../headers/pk_body_transform_2.html>PK_BODY_transform_2</A> </P>
+<P>
+<A NAME="50466820_pgfId-7802897"></A>&nbsp;</P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7745767"></A>1.3	Cellular body support
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7745803"></A>This section describes improvements that have been made to Parasolid&#8217;s cellular body support functionality for Parasolid V36.0. Further details can be found in Volume 3: Basic Concepts.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7744588"></A>	1.3.1 	Enquiring if a general body is a cellular body</H2>
+<P>
+<A NAME="50466820_pgfId-7744595"></A>A cellular body is a manifold or general body that has one or more solid regions potentially separated by partition faces. As of V36.0, Parasolid now allows you to query if a given body is a cellular body.</P>
+<P>
+<A NAME="50466820_pgfId-7733756"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/wn_chap-7.gif">
+
+<P>
+<A NAME="50466820_pgfId-7735305"></A>Figure 1-4 Cellular body</P>
+<P>
+<A NAME="50466820_pgfId-7840200"></A>For more information, <A HREF="fd_chap.016.html#50409797_pgfId-295965">Section 15.7.1, &#8220;Cellular bodies&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7775988"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7744855"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7744850"></A>New</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7744853"></A><A HREF=../headers/pk_body_is_cellular.html>PK_BODY_is_cellular</A></P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7742384"></A>	1.3.2 	Treating cellular bodies as manifold bodies</H2>
+<P>
+<A NAME="50466820_pgfId-7742277"></A>Parasolid has enhanced its support of cellular bodies by allowing your application to choose to treat cellular bodies either as general bodies or as manifold bodies during a Parasolid session. </P>
+<P>
+<A NAME="50466820_pgfId-7767625"></A>When treating a cellular body as manifold, all geometric and many topological enquiries will work and return results that are consistent with the manifold view of the model. If your application supplies an entity that is not consistent with this manifold view, PK_ERROR_hidden_by_guise will be returned.</P>
+<P>
+<A NAME="50466820_pgfId-7834830"></A>For more information on cellular guises, see <A HREF="fd_chap.016.html#50409797_pgfId-989563">Section 15.10, &#8220;Treating cellular bodies as manifold bodies&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+<P>
+<A NAME="50466820_pgfId-7774011"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50466820_pgfId-7774075"></A>Note: Please be aware there will be limited scope as we implement the first stages of this functionality in V36.0. Modelling operations and other enquiries, such as region and shell may not be called when cellular bodies are being treated as manifold. Operations that are restricted from working when a manifold guise is set will return PK_ERROR_cellular_body or PK_ERROR_guise_not_supported. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50466820_pgfId-7752237"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7767146"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7742689"></A>New</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7742691"></A><A HREF=../headers/pk_session_ask_cellular_guise.html>PK_SESSION_ask_cellular_guise</A>, <A HREF=../headers/pk_session_set_cellular_guise.html>PK_SESSION_set_cellular_guise</A></P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7742692"></A>Changes span across many of the Parasolid APIs, too numerous to mention.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7882044"></A>	1.3.3 	Functional areas that support cellular bodies </H2>
+<P>
+<A NAME="50466820_pgfId-7753471"></A>Parasolid V36.0 has improved its support for cellular bodies in the following areas:</P>
+<UL>
+<LI>
+<A NAME="50466820_pgfId-7743236"></A>Simple boolean operations are allowed on cellular bodies with a manifold guise</LI>
+<LI>
+<A NAME="50466820_pgfId-7743324"></A>You can create outlines from faces of cellular bodies selected by the guise</LI>
+<LI>
+<A NAME="50466820_pgfId-7743543"></A>Improved support for locally manifold blending on cellular bodies</LI>
+<LI>
+<A NAME="50466820_pgfId-7794475"></A>Parasolid functions associated with attributes and groups operate appropriately with cellular bodies </LI>
+<LI>
+<A NAME="50466820_pgfId-7792862"></A>Support has been added for enlarging general bodies including cellular bodies</LI>
+</UL>
+
+<H4>
+<A NAME="50466820_pgfId-7735313"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7735323"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7735316"></A><STRONG>
+Changed</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7735318"></A><A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A>, <A HREF=../headers/pk_body_make_curves_outline.html>PK_BODY_make_curves_outline</A>, <A HREF=../headers/pk_body_intersect_bodies.html>PK_BODY_intersect_bodies</A>, <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A>, <A HREF=../headers/pk_body_make_spun_outline.html>PK_BODY_make_spun_outline</A>, <A HREF=../headers/pk_body_subtract_bodies.html>PK_BODY_subtract_bodies</A>, <A HREF=../headers/pk_body_unite_bodies.html>PK_BODY_unite_bodies</A>, </P>
+<P>
+<A NAME="50466820_pgfId-7794239"></A><A HREF=../headers/pk_curve_find_surfs_common.html>PK_CURVE_find_surfs_common</A>,<A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A>, <A HREF=../headers/pk_face_make_3_face_blend.html>PK_FACE_make_3_face_blend</A>, <A HREF=../headers/pk_body_fix_blends.html>PK_BODY_fix_blends</A>, <A HREF=../headers/pk_surf_find_curves_common.html>PK_SURF_find_curves_common</A><CODE>
+</CODE>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7735320"></A>New</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7735322"></A><A HREF=../headers/pk_body_is_cellular.html>PK_BODY_is_cellular</A><CODE>
+</CODE>
+</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7466920"></A>1.4	Distant and multi-scale modelling support
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7585585"></A>This section describes the improvements that have been made to Parasolid&#8217;s support for models of different scales in Parasolid V36.0.</P>
+<P>
+<A NAME="50466820_pgfId-7745336"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/wn_chap-8.gif">
+
+<P>
+<A NAME="50466820_pgfId-7747974"></A>Figure 1-5 Real world example of a multi-scale scenario</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7745161"></A>	1.4.1 	Documentation support for working with models of different scales</H2>
+<P>
+<A NAME="50466820_pgfId-7745181"></A>Parasolid supports models whose parts are of different scales (enquiry functions such as rendering, faceting, boxing and measurement). It also allows geometry and parts created at a larger scale to be scaled and trimmed so they can interact with entities at a smaller scale. In V36.0 a new chapter that provides information on what distant and multi-scale modelling are, and how Parasolid uses these distinct but complementary mechanisms to enable your application to work with large scale models.</P>
+<P>
+<A NAME="50466820_pgfId-7745323"></A>For more information see, <A HREF="fd_chap.024.html#36208">Chapter 23, &#8220;Distant and Multi-scale Modelling&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7656048"></A>	1.4.2 	Supporting models created at different scales</H2>
+<P>
+<A NAME="50466820_pgfId-7471216"></A>Parasolid V35.0 provided initial support for models whose parts are of different scales (enquiry functions such as rendering, faceting, boxing and measurement). It also allows geometry and parts created at a larger scale to be scaled and trimmed so they can interact with entities at a smaller scale. </P>
+<P>
+<A NAME="50466820_pgfId-7747359"></A>In V36.0 support for collections of parts of different scales has been added to mass properties and hidden line rendering.</P>
+<P>
+<A NAME="50466820_pgfId-7840368"></A>For more information, see <A HREF="fd_chap.029.html#50409809_pgfId-294761">Section 28.1.3, &#8220;Summary of options&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7746769"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7747387"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7746772"></A><STRONG>
+Changed</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7746774"></A><A HREF=../headers/pk_topol_eval_mass_props_o_t.html>PK_TOPOL_eval_mass_props_o_t</A> new options: <CODE>
+parts_with_scales</CODE>
+, <CODE>
+scale_factors</CODE>
+</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7729598"></A>	1.4.3 	Scaling the output results of multi-scale modelling</H2>
+<P>
+<A NAME="50466820_pgfId-7746981"></A>Options to scale the output of operations involving models of different scales have also been added to mass properties and hidden line rendering.</P>
+<P>
+<A NAME="50466820_pgfId-7840454"></A>For more information, see <A HREF="fd_chap.029.html#50409809_pgfId-294761">Section 28.1.3, &#8220;Summary of options&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7746977"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7747027"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7747020"></A><STRONG>
+Changed</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7747022"></A><A HREF=../headers/pk_topol_eval_mass_props_o_t.html>PK_TOPOL_eval_mass_props_o_t</A> new option: <CODE>
+output_scale</CODE>
+</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7834935"></A>1.5	Faceting and rendering
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7834939"></A>This section describes improvements that have been made to Parasolid&#8217;s faceting and rendering functionality for Parasolid V36.0. Full details on Parasolid&#8217;s faceting and rendering functionality are given in Volume 15: Graphics Support, of the Parasolid <EM>
+<A HREF=../fd_index.html>Functional Description</A></EM></P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7836708"></A>	1.5.1 	Rendering lattice geometry embedded in a body</H2>
+<P>
+<A NAME="50466820_pgfId-7837013"></A>In V36.0 Parasolid allows you to visualise lattices embedded in a body by outputting a collection of display primitives representing the lattice geometry along with a bounding set of facets. </P>
+<P>
+<A NAME="50466820_pgfId-7839796"></A>&nbsp;</P>
+<P>
+<A NAME="50466820_pgfId-7837339"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/wn_chap-9.gif">
+
+<P>
+<A NAME="50466820_pgfId-7838313"></A>Figure 1-6 Rendering only the part of the lattice embedded in the body</P>
+<P>
+<A NAME="50466820_pgfId-7837259"></A>For more information, see <A HREF="fd_chap.021.html#50409802_pgfId-576068">Section 20.10.4, &#8220;Imprinting embedded lattices&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7836757"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7836819"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7836816"></A><STRONG>
+New</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7836818"></A><A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A></P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7789965"></A>1.6	Modelling support
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7789969"></A>This section describes improvements that have been made to Parasolid&#8217;s modelling support functionality for Parasolid V36.0. Further details can be found in Volume 3: Basic Concepts.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7793099"></A>	1.6.1 	Improved support when enlarging bodies</H2>
+<P>
+<A NAME="50466820_pgfId-7793302"></A>In V36.0 you can now enlarge general bodies (including cellular) as well as wireframe bodies and minimal bodies.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7793403"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7793514"></A>None, but changes effect <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A>.</P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7601548"></A>1.7	Model interrogation
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7601552"></A>This section describes improvements that have been made to Parasolid&#8217;s model interrogation functionality for Parasolid V36.0. Full details on Parasolid&#8217;s interrogation functionality are given in Volume 4: Model Interrogation, of the Parasolid <EM>
+<A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7753940"></A>	1.7.1 	Improvements when calculating distances between topology and arrays of vectors</H2>
+<P>
+<A NAME="50466820_pgfId-7753876"></A>In V36.0, you can now calculate distances between an array of vectors and a single topology. This can offer significant performance improvements when working with large numbers of vector positions. Previously, you could only supply a single geometry with multiple vectors.</P>
+<P>
+<A NAME="50466820_pgfId-7838469"></A>For more information, see <A HREF="fd_chap.030.html#50409810_pgfId-296970">Section 29.2.1, &#8220;Calculating the distance between transformed entity arrays&#8221;</A>, in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7754498"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7754617"></A>None, but changes effect <A HREF=../headers/pk_entity_range_vector.html>PK_ENTITY_range_vector</A>.</P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7568772"></A>1.8	Blending
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7568779"></A>This section describes improvements that have been made to Parasolid&#8217;s blending functionality for Parasolid V36.0. Full details on Parasolid&#8217;s blending functionality are given in Volume 11: Blending, of the Parasolid <EM>
+<A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7732383"></A>	1.8.1 	Creating constant-width edge blends</H2>
+<P>
+<A NAME="50466820_pgfId-7732547"></A>In V36.0, you can set constant-width edge blends on a single chain of edges.</P>
+<P>
+<A NAME="50466820_pgfId-7732604"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/wn_chap-10.gif">
+
+<P>
+<A NAME="50466820_pgfId-7732525"></A>Figure 1-7 Example showing the difference between a constant-size blend and a constant-width blend</P>
+<P>
+<A NAME="50466820_pgfId-7838621"></A>For more information, see <A HREF="fd_chap.077.html#50409864_pgfId-1193351">Section 76.2.4, &#8220;Options for constant-width blends&#8221;</A>, in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7732474"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7732487"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7732477"></A><STRONG>
+Changed</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7732482"></A><A HREF=../headers/pk_edge_set_blend_chain.html>PK_EDGE_set_blend_chain</A>: new values <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A>, <A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A></P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7835085"></A>1.9	Application support
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7835089"></A>This section describes improvements that have been made to Parasolid&#8217;s application support functionality for Parasolid V36.0. Full details on Parasolid&#8217;s support for application development are given in Volume 2 Application Development Essentials and Volume 14 Application Support of the Parasolid <EM>
+<A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7842452"></A>	1.9.1 	Receiving a partition as locked to the calling thread</H2>
+<P>
+<A NAME="50466820_pgfId-7842707"></A>In Parasolid V36.0, you can choose to receive a partition as locked to the calling thread, ensuring it is private to that thread and can benefit from the performance of locally exclusive Parasolid calls. Previously, your application would have to make multiple calls to achieve this behaviour.</P>
+<P>
+<A NAME="50466820_pgfId-7843164"></A>For more information, see <A HREF="fd_chap.102.html#50409892_pgfId-486650">Section 101.5.2, &#8220;Locking a received partition&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>.</P>
+
+<H4>
+<A NAME="50466820_pgfId-7842419"></A>Interface changes</H4>
+<P>
+<A NAME="50466820_pgfId-7842511"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7842508"></A><STRONG>
+Changed</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7842510"></A><A HREF=../headers/pk_partition_receive.html>PK_PARTITION_receive</A>: new option <CODE>
+receive_locked</CODE>
+</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7790511"></A>1.10	New system attributes
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7790518"></A>This section lists the new system attributes that have been added to Parasolid V36.0. </P>
+<UL>
+<LI>
+<A NAME="50466820_pgfId-7796504"></A>SDL/TYSA_FRAME_DENSITY</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7730127"></A>1.11	Functionality announced in previous releases and now available
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7730131"></A>The functionality below was announced in previous versions of Parasolid but was blocked at the time of release. The following have now been unblocked.</P>
+<UL>
+<LI>
+<A NAME="50466820_pgfId-7744553"></A><A HREF=../headers/pk_transf_enlarge.html>PK_TRANSF_enlarge</A></LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7790578"></A>1.12	<A NAME="50466820_18042"></A>Changes to the Parasolid documentation
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7790582"></A>In addition to documentation covering the changes and additions to Parasolid functionality described elsewhere in this chapter, the following changes have been made to the Parasolid documentation suite:</P>
+<UL>
+<LI>
+<A NAME="50466820_pgfId-7796070"></A>A selection of edge blending images and face tapering images have been updated. For more information, see <A HREF="fd_chap.078.html#50409865_pgfId-296233">Section 77.4.4, &#8220;Internal overflows&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM> and <A HREF="fd_chap.068.html#50409854_pgfId-298929">Section 67.3.2, &#8220;Curve-based and surface-based tapering&#8221;</A> in the Parasolid <EM><A HREF=../fd_index.html>Functional Description</A></EM>. </LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7790597"></A>1.13	Changes to support applications
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7790604"></A>This section describes improvements that have been made to Parasolid&#8217;s support applications for Parasolid V36.0. </P>
+<P>
+<A NAME="50466820_pgfId-7795151"></A>The following applications now ship as a Visual Studio 2022 solution and now build as 64-bit application by default:</P>
+<UL>
+<LI>
+<A NAME="50466820_pgfId-7795307"></A>C++ Example Application for Windows</LI>
+<LI>
+<A NAME="50466820_pgfId-7795358"></A>Parasolid Workshop.Net (using .Net Framework version 4.8)</LI>
+<LI>
+<A NAME="50466820_pgfId-7795437"></A>C# Example Application</LI>
+</UL>
+<P>
+<A NAME="50466820_pgfId-7795649"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50466820_pgfId-7795667"></A>Note: You can also build these as a 32-bit application by making minor changes to the configuration and source code (for information see the documentation for C# and C++ Example Applications and for the Workshop.Net Source Code Overview documentation in your installation folder).</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7795063"></A>In addition, the C++ Example Application for Windows has been updated to use the following functions:</P>
+<UL>
+<LI>
+<A NAME="50466820_pgfId-7840005"></A><A HREF=../headers/pk_topol_find_box_2.html>PK_TOPOL_find_box_2</A></LI>
+<LI>
+<A NAME="50466820_pgfId-7840036"></A><A HREF=../headers/pk_geom_render.html>PK_GEOM_render</A></LI>
+<LI>
+<A NAME="50466820_pgfId-7840058"></A><A HREF=../headers/pk_face_pattern_2.html>PK_FACE_pattern_2</A></LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-4117192"></A>1.14	Platforms
+
+
+</H1>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7002939"></A>	1.14.1 	Changes for Parasolid V36.0</H2>
+<P>
+<A NAME="50466820_pgfId-7002946"></A>This section describes changes to the platforms on which Parasolid ships that are relevant to the V36.0 release. For full details of changes to platforms, please see the customer letter accompanying the Parasolid V36.0 release.</P>
+<UL>
+<LI>
+<A NAME="50466820_pgfId-7840666"></A>The default builds for Intel NT and X64 WIN platforms will be built with Visual Studio 2022.</LI>
+<LI>
+<A NAME="50466820_pgfId-7840667"></A>The default builds for the Intel Linux and ARM Linux platforms will be built on Red Hat Enterprise Linux 8, or an equivalent Linux distribution, using GCC 11.2. These builds are supported on Red Hat Linux Enterprise Linux 8.8 onwards, AlmaLinux 8.8 onwards, Rocky Linux 8.8 onwards, SUSE Enterprise Linux 15sp3 onwards, Amazon Linux 2023 onwards, and Ubuntu LTS 20.04 onwards. They should run on any 64-bit Linux for the relevant processor architecture with GCC 8 or later run-times and glibc 2.28 or later that runs on the relevant processor.</LI>
+<LI>
+<A NAME="50466820_pgfId-7840668"></A>The Intel Linux build with GCC 11.2 on CentOS 7.9 will be supported until CentOS 7.9 and Red Hat Enterprise Linux 7.9 leave support at the end of June 2024, after which it will no longer be supported. </LI>
+<LI>
+<A NAME="50466820_pgfId-7840901"></A>The ARM Android platform is now built using NDK23b and is supported on Android 9 onwards.</LI>
+<LI>
+<A NAME="50466820_pgfId-7840672"></A>This will be the last version of Parasolid that supports Windows Server 2012 R2. Support for Parasolid and related software on Windows Server 2012 R2 will end on 10th October 2023.</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50466820_pgfId-7002956"></A>	1.14.2 	Plans for Parasolid V36.1</H2>
+<P>
+<A NAME="50466820_pgfId-7700378"></A>This section describes our current plans for Parasolid V36.0. For more details, please see the customer letter accompanying the Parasolid V36.0 release.</P>
+<P>
+<A NAME="50466820_pgfId-7835401"></A>We intend to replace:</P>
+<UL>
+<LI>
+<A NAME="50466820_pgfId-7835403"></A>The ARM MacOS and ARM iOS builds, built on macOS 11, with new builds on macOS 13, supporting macOS 12 and later and iPadOS 15 and later. </LI>
+<LI>
+<A NAME="50466820_pgfId-7835404"></A>The Intel MacOS and Intel iOS builds, built on macOS 11, with new builds done on macOS 13 and supporting macOS 12 and later and iPadOS 15 and later. These builds are intended to set the final build standard for these platforms; we do not intend to update them again before they are dropped. </LI>
+</UL>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-7883862"></A>1.15	<A NAME="50466820_37422"></A>New PK interface tokens
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7875075"></A><A HREF=../headers/pk_attrib_transfer_t.html>PK_ATTRIB_transfer_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7877294"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876437"></A>PK_ATTRIB_transfer_no_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875080"></A>27190</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875082"></A>PK_ATTRIB_transfer_move_c</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875084"></A>27191</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877408"></A>PK_ATTRIB_transfer_copy_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877410"></A>27192</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876504"></A><A HREF=../headers/pk_blend_size_t.html>PK_blend_size_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876517"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876345"></A><A HREF=../headers/pk_blend_size_t.html>PK_blend_size_width_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876512"></A>26313</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876514"></A><A HREF=../headers/pk_blend_size_t.html>PK_blend_size_ratio_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876516"></A>26314</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876528"></A><A HREF=../headers/pk_body_cellular_t.html>PK_BODY_cellular_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876541"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876369"></A>PK_BODY_cellular_no_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876536"></A>27120</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876538"></A>PK_BODY_cellular_yes_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876540"></A>27121</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7877693"></A><A HREF=../headers/pk_body_patterned_t.html>PK_BODY_patterned_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876565"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876558"></A>PK_BODY_patterned_touch_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876560"></A> 26991</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876576"></A><A HREF=../headers/pk_boolean_report_t.html>PK_boolean_report_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876589"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876339"></A><A HREF=../headers/pk_boolean_report_t.html>PK_boolean_report_blend_failed_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876584"></A>21611</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876602"></A><A HREF=../headers/pk_clip_result_t.html>PK_clip_result_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878027"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876608"></A><A HREF=../headers/pk_clip_result_t.html>PK_clip_result_invalid_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876610"></A>26915</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876615"></A><A HREF=../headers/pk_cellular_guise_t.html>PK_cellular_guise_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878178"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876359"></A><A HREF=../headers/pk_cellular_guise_t.html>PK_cellular_guise_general_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877882"></A>27110</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877884"></A><A HREF=../headers/pk_cellular_guise_t.html>PK_cellular_guise_outside_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877886"></A>27111</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878085"></A><A HREF=../headers/pk_cellular_guise_t.html>PK_cellular_guise_solid_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878087"></A>27112</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7877887"></A><A HREF=../headers/pk_check_state_t.html>PK_check_state_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878227"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877901"></A>PK_BODY_state_region_1_framed_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877903"></A> 26776</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7877908"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878434"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878252"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_no_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877924"></A>27240</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877926"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_add_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877928"></A>27241</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878311"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_replace_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878313"></A>27242</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878315"></A><A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_remove_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878317"></A>27243</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7877929"></A><A HREF=../headers/pk_face_material_t.html>PK_FACE_material_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878646"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876392"></A>PK_FACE_material_bounding_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877945"></A>27150</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877947"></A>PK_FACE_material_containing_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877949"></A>27151</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878559"></A>PK_FACE_material_none_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878561"></A>27152</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7877950"></A><A HREF=../headers/pk_face_region_t.html>PK_FACE_region_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7877971"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876404"></A>PK_FACE_region_within_c</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877966"></A>27160</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876405"></A>PK_FACE_region_between_c </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7877970"></A>27161</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876626"></A><A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876639"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876426"></A><A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_always_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876634"></A>27180</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876636"></A><A HREF=../headers/pk_frame_grow_region_t.html>PK_FRAME_grow_region_no_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876638"></A>27181</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876650"></A><A HREF=../headers/pk_frame_handling_t.html>PK_FRAME_handling_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876663"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876449"></A><A HREF=../headers/pk_frame_handling_t.html>PK_FRAME_handling_ignore_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876658"></A>27230</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876660"></A><A HREF=../headers/pk_frame_handling_t.html>PK_FRAME_handling_include_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876662"></A>27231</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878819"></A><A HREF=../headers/pk_frame_handling_t.html>PK_FRAME_handling_fail_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878821"></A>27232</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876679"></A><A HREF=../headers/pk_pattern_type_t.html>PK_pattern_type_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876700"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876693"></A><A HREF=../headers/pk_pattern_type_t.html>PK_pattern_type_axial_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876695"></A>26982</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7878893"></A><A HREF=../headers/pk_receive_locked_t.html>PK_receive_locked_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878906"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876415"></A><A HREF=../headers/pk_receive_locked_t.html>PK_receive_locked_auto_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878901"></A>27170</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878903"></A><A HREF=../headers/pk_receive_locked_t.html>PK_receive_locked_always_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878905"></A>27171</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7878921"></A><A HREF=../headers/pk_region_material_t.html>PK_REGION_material_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878934"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876379"></A><A HREF=../headers/pk_region_material_t.html>PK_REGION_material_solid_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878929"></A>27140</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878931"></A><A HREF=../headers/pk_region_material_t.html>PK_REGION_material_part_solid_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878933"></A>27141</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7879230"></A><A HREF=../headers/pk_region_material_t.html>PK_REGION_material_void_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7879232"></A>27142</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7879234"></A><A HREF=../headers/pk_region_material_t.html>PK_REGION_material_part_void_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7879236"></A>27143</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7878945"></A><A HREF=../headers/pk_check_state_t.html>PK_check_state_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878958"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876342"></A><A HREF=../headers/pk_region_t.html>PK_REGION_state_bad_frame_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878953"></A>26774</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878955"></A><A HREF=../headers/pk_region_t.html>PK_REGION_state_many_frames_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878957"></A>26775</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7878969"></A><A HREF=../headers/pk_remove_frame_group_t.html>PK_remove_frame_group_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7878982"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876474"></A><A HREF=../headers/pk_remove_frame_group_t.html>PK_remove_frame_group_remove_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878977"></A>27250</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878979"></A><A HREF=../headers/pk_remove_frame_group_t.html>PK_remove_frame_group_replace_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7878981"></A>27251</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876714"></A><A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876727"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876720"></A><A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_hidden_by_guise_c</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876722"></A>23932</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-7876738"></A><A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7876751"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876744"></A><A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_picked_frames_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7876746"></A>26843</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50466820_pgfId-6651887"></A>1.16	<A NAME="50466820_30455"></A>New PK interface error codes
+
+
+</H1>
+<P>
+<A NAME="50466820_pgfId-7875090"></A><A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A></P>
+<P>
+<A NAME="50466820_pgfId-7875100"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875093"></A>PK_ERROR_size_too_large </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875095"></A>5289</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875097"></A>PK_ERROR_acorn_body </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875099"></A>5290</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875541"></A>PK_ERROR_hidden_by_guise </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875543"></A>5291</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875545"></A>PK_ERROR_cant_embed_lattice </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875547"></A>5292</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875549"></A>PK_ERROR_bad_trim_curves </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875551"></A>5293</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875553"></A>PK_ERROR_bad_form </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875555"></A>5294</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875716"></A>PK_ERROR_bad_loop </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875718"></A>5295</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875720"></A>PK_ERROR_bad_loop_config </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875738"></A>5296</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875753"></A>PK_ERROR_core_breach </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875755"></A>5297</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875757"></A>PK_ERROR_no_lattice </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875759"></A>5298</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875820"></A>PK_ERROR_guise_not_supported </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875822"></A>5299</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875846"></A>PK_ERROR_no_body </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50466820_pgfId-7875848"></A>5300</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50466820_pgfId-5538652"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD><A HREF="../wn_index.html">Chapters</A></TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

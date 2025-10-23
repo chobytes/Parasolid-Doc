@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SPUN_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SPUN_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_SPUN_sf_s
+    {
+    <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>            curve;         --- curve to spin
+    <A HREF=../headers/pk_axis1_sf_t.html>PK_AXIS1_sf_t</A>         axis;          --- axis defn for spin
+    };
+
+typedef struct PK_SPUN_sf_s PK_SPUN_sf_t;
+
+
+</B>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_unsuitable_entity      curve is not of allowed class
+    PK_ERROR_su_self_intersect      surface would be self intersecting
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_spun_ask.html>PK_SPUN_ask</A><br>
+    <A HREF=../headers/pk_spun_create.html>PK_SPUN_create</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This standard form represents a spun surface, that is, the surface obtained by
+spinning the given <B>'curve'</B> round the given <B>'axis'</B>.
+
+The curve must be of one of the following classes:
+
+    PK_CLASS_line
+    PK_CLASS_circle
+    PK_CLASS_ellipse
+    PK_CLASS_bcurve
+
+The surface is parameterised as:
+
+    C = curve
+    P = axis.location
+    A = axis.axis
+
+    Z(u) = P + (( C(u) - P ).A)A
+    R(u) = C(u) - Z(u)
+
+    S(u,v) = Z(u) + R(u)cos(v) + A X R(u)sin(v)
+
+The range for u is the parameter range of <B>'curve'</B>, and the range of v is
+[0, 2Pi]
+
+The curve may not cross the axis, but it may just touch the axis at either end.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

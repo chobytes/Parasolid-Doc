@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<TITLE>ENPAPS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENPAPS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_surf_parameterise_vector.html>PK_SURF_parameterise_vector</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENPAPS ( surf, coords, u, v, ifail )
+====================================
+
+  Find parameters of point on surface
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_surface           *surf           --- surface
+  KI_vec_position           coords         --- coordinates of point on surface
+
+Returns:
+  KI_dbl                   *u              --- u parameter of 'coords'
+  KI_dbl                   *v              --- v parameter of 'coords'
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_not_on_surface         point is not on the surface
+                            point lies outside the valid parameter range
+  KI_invalid_geometry       the surface fails to pass checks
+                            surface not supported
+
+Description:
+
+  Returns the parameters of the given point, provided that it lies on the
+  given surface. The parameters will lie in the range given in ENSUPA for
+  this surface. At parametric singularities, such as sphere poles, the
+  non-degenerate parameter is returned as the lowest value in its range.
+  The function works for any surface type.
+
+  The surface must be capable of passing the checks imposed by CHCKEN.
+  The self intersection check is only performed if the appropriate option is set
+  (see SEINTP).
+
+
+</PRE>
+</BODY>
+</HTML>

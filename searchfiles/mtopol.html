@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.085.html#50409873_pgfId-321925", " An <B>mtopol</B> (PK_CLASS_mtopol) represents any mesh topology entity. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-352222", " PK_MTOPOL_t and PK_MTOPOL_is_null_m to check if a given <B>mtopol</B> is null. See the ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-443569", " Returns the position, the mfacet and the <B>mtopol</B> at a given uv position in a mesh.", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-435162", " Indicates whether the given <B>mtopol</B> is valid <B>mtopol</B> element. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-384035", " The class type of the input <B>mtopol</B> used in ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-431145", " How the <B>mtopol</B> selection should be interpreted via the ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-382822", " The class type of the input <B>mtopol</B> to pass to ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_wrong_mtopol 5231 PK_MTOPOL_ask_box <B>mtopol</B> is of wrong type (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_wrong_mtopol 5231 PK_MTOPOL_ask_box <B>mtopol</B> is of wrong type (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " PK_MTOPOL_ask_box 5231 PK_ERROR_wrong_mtopol <B>mtopol</B> is of wrong type (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_mesh_eval_with_mtopol.html#declaration", " PK_MTOPOL_t *const <B>mtopol</B> --- <B>mtopol</B> returned", "PK Reference - PK_MESH_eval_with_mtopol");
+top.note("headers/pk_mesh_eval_with_mtopol.html#description", " position , mfacet and <B>mtopol</B> at that position.", "PK Reference - PK_MESH_eval_with_mtopol");
+top.note("headers/pk_mesh_eval_with_mtopol.html#documentation", " inside an mfacet both the mfacet and the <B>mtopol</B> ", "PK Reference - PK_MESH_eval_with_mtopol");
+top.note("headers/pk_mesh_imprint_vectors.html#documentation", "session precision of its corresponding parameter or <B>mtopol</B> (given in the", "PK Reference - PK_MESH_imprint_vectors");
+top.note("headers/pk_mesh_imprint_vectors_o_t.html#declaration", " PK_MTOPOL_t *mtopols; --- <B>mtopol</B> containing each vector", "PK Reference - PK_MESH_imprint_vectors_o_t");
+top.note("headers/pk_mesh_imprint_vectors_r_t.html#documentation", " precision of their corresponding <B>mtopol</B>/parameter given", "PK Reference - PK_MESH_imprint_vectors_r_t");
+top.note("headers/pk_mesh_store_normals_o_t.html#documentation", " array. For each <B>mtopol</B> in mtopols , the corresponding entry in", "PK Reference - PK_MESH_store_normals_o_t");
+top.note("headers/pk_mfacet_find_perimeters_o_t.html#declaration", " --- <B>mtopol</B> of the callback", "PK Reference - PK_MFACET_find_perimeters_o_t");
+top.note("headers/pk_mfacet_find_perimeters_o_t.html#documentation", " select_mtopol_class This determines the class of <B>mtopol</B> passed to", "PK Reference - PK_MFACET_find_perimeters_o_t");
+top.note("headers/pk_mtopol_ask_box.html#declaration", " PK_MTOPOL_t <B>mtopol</B>, --- the <B>mtopol</B>", "PK Reference - PK_MTOPOL_ask_box");
+top.note("headers/pk_mtopol_ask_box.html#description", " This function returns the bounding box of <B>mtopol</B> . A bounding box is", "PK Reference - PK_MTOPOL_ask_box");
+top.note("headers/pk_mtopol_ask_box.html#errors", " PK_ERROR_wrong_mtopol <B>mtopol</B> is of wrong type (MILD)", "PK Reference - PK_MTOPOL_ask_box");
+top.note("headers/pk_mtopol_ask_class.html#declaration", " PK_MTOPOL_t <B>mtopol</B>,", "PK Reference - PK_MTOPOL_ask_class");
+top.note("headers/pk_mtopol_is.html#declaration", " PK_MTOPOL_t may_be_mtopol, --- the (possibly invalid) <B>mtopol</B>", "PK Reference - PK_MTOPOL_is");
+top.note("headers/pk_mtopol_is.html#description", " This function indicates whether may_be_mtopol is a valid <B>mtopol</B> element.", "PK Reference - PK_MTOPOL_is");
+top.note("headers/pk_mtopol_is_null_m.html#description", " This macro tests if an <B>mtopol</B> is null.", "PK Reference - PK_MTOPOL_is_null_m");
+top.note("headers/pk_mtopol_make_meshes.html#errors", " PK_ERROR_wrong_mtopol An input <B>mtopol</B> is not an mfacet (MILD)", "PK Reference - PK_MTOPOL_make_meshes");
+top.note("headers/pk_mtopol_make_meshes_o_t.html#declaration", " --- input <B>mtopol</B> of the", "PK Reference - PK_MTOPOL_make_meshes_o_t");
+top.note("headers/pk_mtopol_make_meshes_o_t.html#documentation", " select_mtopol_class This determines the class of <B>mtopol</B> passed to", "PK Reference - PK_MTOPOL_make_meshes_o_t");
+top.note("headers/pk_mtopol_map_r_t.html#description", " This data structure contains all the generic <B>mtopol</B> mapping records for", "PK Reference - PK_MTOPOL_map_r_t");
+top.note("headers/pk_mtopol_map_record_r_t.html#documentation", " The class that each <B>mtopol</B> was before the operation is", "PK Reference - PK_MTOPOL_map_record_r_t");
+top.note("headers/pk_mtopol_null_m.html#documentation", " null <B>mtopol</B> is a PK_MTOPOL_t with mesh=PK_ENTITY_null and <B>mtopol</B>=0.", "PK Reference - PK_MTOPOL_null_m");
+top.note("headers/pk_mtopol_select_cb_f_t.html#declaration", " const PK_MTOPOL_t <B>mtopol</B>, --- mfacet or mfin", "PK Reference - PK_MTOPOL_select_cb_f_t");
+top.note("headers/pk_mtopol_select_cb_f_t.html#documentation", "whether the <B>mtopol</B> is selected or not according to the callback", "PK Reference - PK_MTOPOL_select_cb_f_t");
+top.note("headers/pk_mtopol_t.html#declaration", " PK_MESH_t mesh; --- mesh to which <B>mtopol</B> belongs", "PK Reference - PK_MTOPOL_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

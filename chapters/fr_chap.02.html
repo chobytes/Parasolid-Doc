@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Introduction</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Introduction</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD><A HREF="../fr_index.html">Chapters</A></TD>
+  <TD><A HREF="fr_chap.03.html">Data To Include In Fault Reports</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fr_chap.02.html#50462722_pgfId-275053">1.1	Content of this manual</A>
+<LI> <A HREF="fr_chap.02.html#50462722_pgfId-278322">1.2	Summary of fault reporting procedure</A>
+<LI> <A HREF="fr_chap.02.html#50462722_pgfId-278338">1.3	Response from Parasolid support</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462722_pgfId-275053"></A>1.1	Content of this manual
+
+
+</H1>
+<P>
+<A NAME="50462722_pgfId-278363"></A>This manual explains how to generate and submit the data required to report a fault or make an enquiry to Parasolid Support for investigation. By following the guidelines in this document, you can create the best possible set of data to describe a given issue. This in turn can help speed up the time between reporting the issue and getting a PR (Problem Report) reference number for that issue; once you have been given a PR number, you can be assured that Parasolid development have all the information required to investigate the issue.</P>
+<P>
+<A NAME="50462722_pgfId-278809"></A>In addition, this manual explains how you can download the latest full and update (patch) releases of Parasolid for the versions and platforms you are including in your products. </P>
+<P>
+<A NAME="50462722_pgfId-278365"></A>The first priority for Parasolid Support is always to reproduce the problem you are reporting. If possible, reproducing the problem within the Parasolid test and debugging environment is preferable, since this is much more efficient for the subsequent identification and resolution of the issue within the Parasolid Development team. </P>
+<UL>
+<LI>
+<A NAME="50462722_pgfId-278585"></A><A HREF="fr_chap.03.html#50462723_19280">Chapter 2, &#8220;Data To Include In Fault Reports&#8221;</A>, describes the data that you need to provide to Parasolid Support when reporting a fault or making an enquiry.</LI>
+<LI>
+<A NAME="50462722_pgfId-278602"></A><A HREF="fr_chap.04.html#50462721_35719">Chapter 3, &#8220;How To Report A Fault&#8221;</A>, describes how to send required data to Parasolid Support. </LI>
+<LI>
+<A NAME="50462722_pgfId-278612"></A><A HREF="fr_chap.05.html#50462724_96474">Chapter 4, &#8220;Downloading Full and Patch Releases&#8221;</A>, tells you where you can download Parasolid using an internet connection. </LI>
+<LI>
+<A NAME="50462722_pgfId-278622"></A><A HREF="fr_chap.06.html#50462725_71366">Appendix A, &#8220;Updating The Frustrum&#8221;</A>, describes how you can update legacy frustrum functions that were created prior to Parasolid V13.2 in order to take advantage of Parasolid&#8217;s native debug format. </LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462722_pgfId-278322"></A>1.2	Summary of fault reporting procedure
+
+
+</H1>
+<P>
+<A NAME="50462722_pgfId-278677"></A>This section provides an overview of the steps typically required when reporting an issue to Parasolid Support. It does not cover all possible scenarios, and is intended only as a quick reference.</P>
+<P>
+<A NAME="50462722_pgfId-278740"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462722_pgfId-278766"></A>Step</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462722_pgfId-278768"></A>Notes</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462722_pgfId-278820"></A>Identify the failing function</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462722_pgfId-278822"></A>If you are reporting a problem with Parasolid functionality, identify the PK or KI function call that is causing the problem. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462722_pgfId-278770"></A>Gather relevant data</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462722_pgfId-278772"></A>Generate debug information by wrapping calls to Parasolid debug functions around the failing PK or KI function. </P>
+<P>
+<A NAME="50462722_pgfId-278840"></A>Optionally, create screenshots, mock-ups, result bodies, etc. to clarify any potentially ambiguous details and provide additional useful information. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462722_pgfId-278774"></A>Report the problem to Parasolid Support </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50462722_pgfId-278776"></A>If you have access to the GTAC online support service, create a new IR and upload all relevant data.</P>
+<P>
+<A NAME="50462722_pgfId-278799"></A>Otherwise, contact Parasolid Support via <EM>
+<A HREF="mailto:ps-support.plm@siemens.com ">email</A></EM>, and either attach relevant data or upload it to the secure FTP server. </P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462722_pgfId-278725"></A>For more detailed information about any of the steps above, refer to the rest of this manual. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462722_pgfId-278338"></A>1.3	Response from Parasolid support
+
+
+</H1>
+<P>
+<A NAME="50462722_pgfId-278377"></A>Once a member of the Parasolid Support team has investigated your fault they will respond to you, quoting the Parasolid database reference number (e.g. IR1234567). You will also be contacted if the issue has been rejected (i.e. because Parasolid is behaving as designed, or the fault is caused by incorrect usage), or if more information is required to reproduce the issue. If you receive no response within a few days then please re-send the e-mail. </P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD><A HREF="../fr_index.html">Chapters</A></TD>
+  <TD><A HREF="fr_chap.03.html">Data To Include In Fault Reports</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

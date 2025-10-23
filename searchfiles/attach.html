@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.011.html#50409791_pgfId-303652", " changes are made to a model. You can <B>attach</B> attributes to topology and to any geometry that", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-311418", " body from the curves, make a face, and <B>attach</B> a surface. ", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-318525", " Figure 10-9 Function call to <B>attach</B> a surface to the profiles face ", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-324209", " into PK_FACE_attach_surf_fitting to create a suitable surface and <B>attach</B> it to the face, thereby completing the sheet", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.015.html#50409796_marker-295631", " the body. For example, you might want to <B>attach</B> a point to a body that represents its", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-295828", " are other Parasolid entities available that manipulate and <B>attach</B> additional data to a model, or define extra", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-295838", "group , rather than having to <B>attach</B> attributes to each of the individual entities. ", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-295216", " as orphan geometry can also be used to <B>attach</B> construction geometry to a part using PK_PART_add_geoms .", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-295358", " surface attached - use PK_FACE_attach_surfs or PK_FACE_attach_surf_fitting to <B>attach</B> a surface to the face and sweep or", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-295394", " PK_EDGE_make_faces_from_wire can be used to <B>attach</B> rubber faces (faces with no geometry) to loops", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-296336", " PK_EDGE_make_faces_from_wire can be used to <B>attach</B> rubber faces to loops of wire-frame edges in", "Functional Description - Body Types");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-309591", " are fully integrated into Parasolid so you can <B>attach</B> them to edges and faces and apply any", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-383983", " The following functions are used to <B>attach</B> geometry to edges, fins, faces and vertices: ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-383986", " <B>Attach</B> functions ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-384000", " Creates a surface to fit and <B>attach</B> to a face ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-486578", " and B-surfaces. By this, we mean you can <B>attach</B> the curves and surfaces to edges and faces,", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.023.html#50409804_pgfId-294782", " (SDL/TYSA_NAME) may be used by applications wishing to <B>attach</B> a textual name to identify parts in a", "Functional Description - Assemblies And Instances");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-469286", " argument in PK_BODY_enlarge , then Parasolid will <B>attach</B> a new scale factor attribute to the newly", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-294724", " of topology. Used in conjunction with functions to <B>attach</B> and detach geometry, these functions allow you to", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-294725", " resulting body is normally invalid, and you must <B>attach</B> suitable geometry to make the model valid yourself.", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-294726", " PK functions. With the exception of functions to <B>attach</B> and detach geometry, other PK functions always return", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-357699", " to take some other action (for example, to <B>attach</B> attributes to anything your application does not consider", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-324683", " You might, for instance, use this function to <B>attach</B> an attribute to all topologies found to be", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295294", " feature separately , for more information. Default: PK_emboss_unite_sidewall_yes_c (<B>attach</B> features to target). ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-507555", " Whether to <B>attach</B> projected curves to tolerant imprinted edges as nominal", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-510554", " You can choose whether to <B>attach</B> the projected curves as nominal geometry using the", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-510709", " Do not <B>attach</B> the projected curves as nominal geometry. (Default) ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.054.html#50409838_pgfId-680039", " on the target which you are trying to <B>attach</B> the tool to. Therefore, you should use oversize", "Functional Description - Manifold Booleans");
+top.note("chapters/fd_chap.063.html#50409849_pgfId-309449", " Surfaces Of Faces describes how to create and <B>attach</B> a surface to a face ", "Functional Description - Introduction To Model Editing");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-319529", " a suitable planar surface (where one exists) and <B>attach</B> it to the face. See Section 69.5, Attaching", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.070.html#50409856_pgfId-310744", " body. In such cases, Parasolid can create and <B>attach</B> a surface that fits the rubber face for", "Functional Description - Patching");
+top.note("chapters/fd_chap.070.html#50409856_pgfId-310735", " PK_FACE_attach_surf_fitting creates a surface to fit and <B>attach</B> to a face. This function replaces any existing", "Functional Description - Patching");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-295015", " Whether to <B>attach</B> the fill sheet to the body. Default: PK_LOGICAL_true.", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-295349", " whether or not to <B>attach</B> the patch face to the result body. ", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-295657", " option to choose whether or not to <B>attach</B> the fill sheet to the body or not.", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-295706", " Figure 70-13 Choosing whether to <B>attach</B> a patch to the result body ", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-524301", " Trims both walls, but does not <B>attach</B> the blend to the walls. The blend is", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-713953", " the blends. If you do not want to <B>attach</B> a blend (i.e., if ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-314349", " option was set to PK_blend_walls_attach_c in order to <B>attach</B> the blend faces to the specified walls, so", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295589", " Whether to <B>attach</B> supplied 3D curves as nominal geometry. ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295697", " based on the supplied curve, and then can <B>attach</B> the supplied 3D curve as nominal geometry (depending", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295899", " To create a valid body, you must <B>attach</B> geometry of the correct class to all of", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295901", " You should <B>attach</B> the geometry to topology using the following functions", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295903", " <B>Attach</B> points to vertices with PK_VERTEX_<B>attach</B>_points ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295905", " <B>Attach</B> curves to edges with PK_EDGE_<B>attach</B>_curves_2 ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295907", " <B>Attach</B> surfaces to faces with PK_FACE_<B>attach</B>_surfs ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295930", " temporarily. When this is on, Parasolid does not <B>attach</B> a curve or surface if that causes a", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295938", " If you use these functions to <B>attach</B> geometry, then you should turn the settings off", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295126", " are provided for use by the application to <B>attach</B> attributes which can then be used by the", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295388", " the part. Thus it is not possible to <B>attach</B> attributes to orphan geometry and if geometry with", "Functional Description - Attributes");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-303920", " <B>Attach</B> a system attribute of type SDL/TYSA_TRANSPARENCY to the body.", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-333074", " well as specifying global facet tolerances, you can <B>attach</B> local facet tolerance to individual or groups of", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-333094", " (faces or bodies) to which you want to <B>attach</B> local tolerances. ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.117.html#50409909_pgfId-294941", " in the session. It is not possible to <B>attach</B> further user fields to entities. ", "Functional Description - Session Support");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205078", " surfaces to <B>attach</B> to faces 1021 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206303", " creating surfaces to <B>attach</B> to 1021 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210008", " to <B>attach</B> to faces, creating 1021 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.02.html#50442241_pgfId-274067", " related to modelling. This includes the ability to <B>attach</B> arbitrary information to entities, support for recording the", "Overview of Parasolid - Introduction");
+top.note("chapters/ov_chap.04.html#50442254_pgfId-285315", " You can also <B>attach</B> geometry directly to a body to form ", "Overview of Parasolid - Model Structure");
+top.note("chapters/ov_chap.04.html#50442254_marker-285313", " the body. For example, you might want to <B>attach</B> a point to a body that represents its", "Overview of Parasolid - Model Structure");
+top.note("chapters/ov_chap.04.html#50442254_pgfId-274455", " other entities so that you can manipulate and <B>attach</B> additional data to a model. The most useful", "Overview of Parasolid - Model Structure");
+top.note("chapters/ov_chap.04.html#50442254_pgfId-286244", " instances of the same part. You can also <B>attach</B> construction geometry to an assembly. ", "Overview of Parasolid - Model Structure");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-403220", " Specify a surface to <B>attach</B> to side faces. ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-306140", " has no geometry attached), you can create and <B>attach</B> a surface that fits it. Rubber surfaces can", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.08.html#50442268_pgfId-288957", " are fully integrated into Parasolid, so you can <B>attach</B> them to edges and faces, and apply any", "Overview of Parasolid - B-Spline Curves and Surfaces");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-281881", " attributes and attribute definitions. You can create attributes, <B>attach</B> them to entities, add information to them, retrieve", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-279645", " are performed by various operations, and whether to <B>attach</B> discontinuous or self-intersecting geometry to topology. See Section", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_blend_walls_attach_c 17404 Trim the side walls and <B>attach</B> blend. Only the side walls will be trimmed", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_blend_walls_attach_c 17404 Trim the side walls and <B>attach</B> blend. Only the side walls will be trimmed", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_attrib_create_empty.html#declaration", " PK_ENTITY_t entity, --- entity to <B>attach</B> to", "PK Reference - PK_ATTRIB_create_empty");
+top.note("headers/pk_blend_walls_t.html#documentation", " PK_blend_walls_attach_c Trim the side walls and <B>attach</B> blend. Only the", "PK Reference - PK_blend_walls_t");
+top.note("headers/pk_body_fill_hole_o_t.html#declaration", " --- <B>attach</B> created sheet", "PK Reference - PK_BODY_fill_hole_o_t");
+top.note("headers/pk_body_fill_hole_o_t.html#documentation", " attach_sheet Whether to <B>attach</B> the fill sheet to the body or not.", "PK Reference - PK_BODY_fill_hole_o_t");
+top.note("headers/pk_curve_project_o_t.html#declaration", " PK_proj_nominal_t nominal; --- whether to <B>attach</B> as nominal", "PK Reference - PK_CURVE_project_o_t");
+top.note("headers/pk_curve_project_o_t.html#documentation", " nominal Whether to <B>attach</B> the projected curve as nominal", "PK Reference - PK_CURVE_project_o_t");
+top.note("headers/pk_edge_attach_curves_2.html#declaration", "const PK_CURVE_t curves[], --- curves to <B>attach</B> to edges", "PK Reference - PK_EDGE_attach_curves_2");
+top.note("headers/pk_edge_set_precision.html#documentation", "<B>attach</B> SP-curves to its fins. If precision is less", "PK Reference - PK_EDGE_set_precision");
+top.note("headers/pk_edge_set_precision_2.html#documentation", "the ability to <B>attach</B> SP-curves to its fins. If precision is less", "PK Reference - PK_EDGE_set_precision_2");
+top.note("headers/pk_edge_set_precision_o_t.html#documentation", " sp_method The method used for generating SP-curves to <B>attach</B> to", "PK Reference - PK_EDGE_set_precision_o_t");
+top.note("headers/pk_face_attach_surf_fitting.html#description", " This function creates a surface to fit and <B>attach</B> to face.", "PK Reference - PK_FACE_attach_surf_fitting");
+top.note("headers/pk_face_delete.html#documentation", " lie and <B>attach</B> this to a face covering the", "PK Reference - PK_FACE_delete");
+top.note("headers/pk_face_heal_t.html#documentation", " lie and <B>attach</B> this to a face covering the", "PK Reference - PK_FACE_heal_t");
+top.note("headers/pk_face_make_solid_bodies.html#documentation", " lie and <B>attach</B> this to a face covering the", "PK Reference - PK_FACE_make_solid_bodies");
+top.note("headers/pk_face_remove_to_solid_bodies.html#documentation", " lie and <B>attach</B> this to a face covering the", "PK Reference - PK_FACE_remove_to_solid_bodies");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", " It is possible to <B>attach</B> local tolerances to individual or groups of", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#documentation", " It is possible to <B>attach</B> local tolerances to individual or groups of", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_render_line_o_t.html#documentation", "1 - <B>Attach</B> a transparency system attribute SDL/TYSA_TRANSPARENCY", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("chapters/di_chap.04.html#50511936_pgfId-273862", " a method by which the Frustrum developer can <B>attach</B> user specific data to the file. ", "Downward Interfaces - File Header Structure");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-274023", "<B>attach</B> ", "KID Manual - LISP in KID");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-274006", " to <B>attach</B> the blend to the edge. ", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-283211", "walls <B>attach</B>; --- FXFTAT", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-274068", " To <B>attach</B> the blend attribute to the model, the function", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-281881", " Note: The name of the edge to <B>attach</B> the blend to must be quoted. The default", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.07.html#50475033_marker-274224", " is finally used to <B>attach</B> a planar surface to one of the faces", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.11.html#50475016_pgfId-273850", " <B>Attach</B> to an existing attribute ", "KID Manual - Attributes in KID");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-35861", " <B>Attach</B> ", "KID Manual - Machine Dependency in KID");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-36151", " <B>attach</B> ", "KID Manual - Machine Dependency in KID");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-36182", " fix, <B>attach</B> surface to face ", "KID Manual - Machine Dependency in KID");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-36211", " <B>attach</B> surface to face ", "KID Manual - Machine Dependency in KID");
+top.note("chapters/fg_chap.04.html#50462726_pgfId-276324", " Repeat the above PK_BODY_boolean_2 to <B>attach</B> the second planar sheet body to the current", "FG Manual - Modeling using Foreign Geometry");
+top.note("chapters/fr_chap.02.html#50462722_pgfId-278799", " email , and either <B>attach</B> relevant data or upload it to the secure", "Reporting Faults to Parasolid - Introduction");
+top.note("chapters/fr_chap.04.html#50462721_pgfId-284247", " Either <B>attach</B> a single compressed file containing all your data,", "Reporting Faults to Parasolid - How To Report A Fault");
+top.note("chapters/fr_chap.04.html#50462721_pgfId-278424", " of data, or you do not wish to <B>attach</B> data to an email, you can place the", "Reporting Faults to Parasolid - How To Report A Fault");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

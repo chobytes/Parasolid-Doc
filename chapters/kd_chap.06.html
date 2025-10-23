@@ -1,0 +1,871 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Creation of Primitives</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Creation of Primitives</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.05.html">Calling the KI/PK Using KID (FLICK)</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.07.html">Operations on Bodies, Curves, Surfaces, etc.</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-273840">5.1	Introduction</A>
+<UL>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-273842">5.1.1	Solid Primitives</A>
+</UL>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-273893">5.2	Additional Primitive Options</A>
+<UL>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-273895">5.2.1	p_pyramid</A>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-273897">5.2.2	p_block, p_cone and p_cylinder</A>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-273900">5.2.3	p_sphere and p_torus</A>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-273902">5.2.4	Profiling</A>
+</UL>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-274043">5.3	Transformation Primitives</A>
+<UL>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-274057">5.3.1	p_equal_scaling</A>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-274061">5.3.2	p_reflection</A>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-274065">5.3.3	p_rotation</A>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-274069">5.3.4	p_translation</A>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-274073">5.3.5	p_general_transform</A>
+</UL>
+<LI> <A HREF="kd_chap.06.html#50475013_pgfId-274077">5.4	Assemblies and Instances</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475013_pgfId-273840"></A>5.1	Introduction<A NAME="50475013_marker-273839"></A>
+
+
+</H1>
+<P>
+<A NAME="50475013_pgfId-273841"></A>The following sections deal with the creation of primitives which include assemblies, points, acorns, wires, sheets, solids, curves and surfaces. The primitive classes are temporary storage for data about an object before a kernel item is created. When created, the objects are transferred to an appropriate subclass of entity i.e. assembly, vertex, body, curve or surface.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-273842"></A>	5.1.1 	Solid Primitives</H2>
+<P>
+<A NAME="50475013_pgfId-273845"></A><A NAME="50475013_marker-273843"></A><A NAME="50475013_marker-273844"></A>Various types of solid can be created from primitive objects. Note that all primitive bodies inherit pre-defined properties from the class <A NAME="50475013_marker-273846"></A><A NAME="50475013_marker-273847"></A>p_body. These are <CODE>
+point</CODE>
+, with a value of <CODE>
+'(0 0 0)</CODE>
+, and <CODE>
+direction</CODE>
+, with a value of <CODE>
+'(0 0 1)</CODE>
+. These properties are used as defaults for the creation of some of the primitives unless they are superseded by locally defined properties.</P>
+<P>
+<A NAME="50475013_pgfId-273886"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281566"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281568"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281664"></A><A NAME="50475013_marker-281652"></A><A NAME="50475013_marker-281653"></A>p_acorn, <A NAME="50475013_marker-281654"></A><A NAME="50475013_marker-281655"></A>p_block, <A NAME="50475013_marker-281656"></A><A NAME="50475013_marker-281657"></A>p_cone, <A NAME="50475013_marker-281658"></A><A NAME="50475013_marker-281659"></A>p_cylinder, <A NAME="50475013_marker-281660"></A><A NAME="50475013_marker-281661"></A>p_prism, <A NAME="50475013_marker-281662"></A><A NAME="50475013_marker-281663"></A>p_sphere, <A NAME="50475013_marker-281665"></A><A NAME="50475013_marker-281666"></A>p_torus,  <A NAME="50475013_marker-281667"></A><A NAME="50475013_marker-281668"></A>p_paracurve, <A NAME="50475013_marker-281669"></A><A NAME="50475013_marker-281670"></A>p_parasurf, <A NAME="50475013_marker-281671"></A><A NAME="50475013_marker-281672"></A>p_sheet, <A NAME="50475013_marker-281673"></A><A NAME="50475013_marker-281674"></A>p_wire, <A NAME="50475013_marker-281675"></A><A NAME="50475013_marker-281676"></A>p_profile, <A NAME="50475013_marker-281677"></A><A NAME="50475013_marker-281678"></A>p_pyramid</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281572"></A><A NAME="50475013_marker-281708"></A><A NAME="50475013_marker-281709"></A><A NAME="50475013_marker-281710"></A>create</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475013_pgfId-273887"></A>Creating a block</H4>
+<P>
+<A NAME="50475013_pgfId-273888"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281485"></A>&gt; (p_block help create)  -- information on property names and
+                            defaults
+&gt; (define b0 p_block)    -- define the primitive
+&gt; (b0 x 10; y 20; z 30)  -- and direction gets default values
+&gt; (b0 create)
+&gt; (b0 is)                --&gt; body</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-273889"></A>Creating a sphere</H4>
+<P>
+<A NAME="50475013_pgfId-280539"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281381"></A>&gt; (define b1 p_sphere)
+&gt; (b1 help create)                          --&gt; information
+&gt; (b1 radius 20; point &acute;(10 10 10); create
+                                        -- change default point</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475013_pgfId-273891"></A>Each newly created primitive body carries properties, top and bottom, which can be used to position further primitives.</P>
+<P>
+<A NAME="50475013_pgfId-280574"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281301"></A>&gt; ( define cube p_block )
+&gt; ( define bar  p_cylinder )
+&gt; ( cube z 50; direction &acute;( 1 0 0 ); create )
+&gt; ( bar height 30; radius 5; point ( cube top ); create )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475013_pgfId-273893"></A>5.2	Additional Primitive Options
+
+
+</H1>
+<P>
+<A NAME="50475013_pgfId-273894"></A>Additional primitive options which create non-convex bodies, self obscuring bodies, or those with many edges meeting at a vertex, and profiles are supported as follows for:</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-273895"></A>	5.2.1 	p_pyramid</H2>
+<P>
+<A NAME="50475013_pgfId-273896"></A>The primitive type <CODE>
+p_pyramid</CODE>
+ parameters are sides, radius, height (mandatory) point, direction (default table). The radius may be omitted if the parameter &quot;length&quot; specifying length of side is provided instead.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-273897"></A>	5.2.2 	p_block, p_cone and p_cylinder</H2>
+<P>
+<A NAME="50475013_pgfId-273898"></A>The <CODE>
+p_block</CODE>
+, <CODE>
+p_cone</CODE>
+ and <CODE>
+p_cylinder</CODE>
+ recognize the defining parameter &quot;thickness&quot;, which defines the wall thickness of the primitive. Hollow pipes of various cross section can be defined using this.</P>
+<P>
+<A NAME="50475013_pgfId-280605"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281241"></A>&gt; ( define pipe p_cylinder )
+&gt; ( pipe height 10; radius 5; thickness 1.5 ; create)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-273900"></A>	5.2.3 	p_sphere and p_torus</H2>
+<P>
+<A NAME="50475013_pgfId-273901"></A>If the thickness parameter is applied to <CODE>
+p_sphere</CODE>
+ or <CODE>
+p_torus</CODE>
+ a simple sphere or torus is created containing an internal void.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-273902"></A>	5.2.4 	Profiling</H2>
+
+<H4>
+<A NAME="50475013_pgfId-273903"></A>p_profile class</H4>
+<P>
+<A NAME="50475013_pgfId-273906"></A>Primitive contains a class<A NAME="50475013_marker-273904"></A><A NAME="50475013_marker-273905"></A> <CODE>
+p_profile</CODE>
+. This class allows the user to define a facial profile on a body, from a given list of vector points. The user can create a minimum body from a single point, a wire body from a list of unconnected points, or a sheet body from a list of connected points (points are connected if they define a closed loop.) An attempt to create a sheet body may fail if the points are not co-planar. All the edges of the wire body are straight. The examples below illustrate each case:</P>
+<P>
+<A NAME="50475013_pgfId-273921"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281768"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281770"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281796"></A><A NAME="50475013_marker-281794"></A><A NAME="50475013_marker-281795"></A>p_profile</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281808"></A><A NAME="50475013_marker-281805"></A><A NAME="50475013_marker-281806"></A><A NAME="50475013_marker-281807"></A>create</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475013_pgfId-273922"></A>To create a minimum body and move it to coordinates (1 2 3):</H4>
+<P>
+<A NAME="50475013_pgfId-280620"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281225"></A>&gt; (define b0 p_profile)
+&gt; (b0 coordinate &acute;(1 2 3))
+&gt; (b0 create)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-273924"></A>To create a sheet body with a triangular profile:</H4>
+<P>
+<A NAME="50475013_pgfId-280627"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281217"></A>&gt; (define b1 p_profile)
+&gt; (b1 coordinate &acute;( (0 0 0) (0 1 0) (1 1 0) (0 0 0) ))
+&gt; (b1 create)</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475013_pgfId-282726"></A>Note: Had the set of coordinates not been closed then a wire body would have resulted.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475013_pgfId-273927"></A>scribe function</H4>
+<P>
+<A NAME="50475013_pgfId-273931"></A><A NAME="50475013_marker-273928"></A><A NAME="50475013_marker-273929"></A><A NAME="50475013_marker-273930"></A>The scribe function may be used to scribe the bounded portion of the curve onto a specified face, region or body.</P>
+<P>
+<A NAME="50475013_pgfId-273943"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281849"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281851"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281877"></A><A NAME="50475013_marker-281875"></A><A NAME="50475013_marker-281876"></A>p_bounded_curve</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-281886"></A>scribe</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475013_pgfId-280650"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281200"></A>&gt; (( define b0 p_acorn) create )
+&gt; (( define c0 p_line ) point &acute;( 0 0 0 ); 
+   direction &acute;( 0 0 1 ); create )
+&gt; (( define bc0 p_bounded_curve )
+        body &acute;b0;
+        curve &acute;c0;
+        startp ( c0 deparameterise 0 );
+        endp ( c0 deparameterise 1 );
+        scribe)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-273945"></A>Geometric Primitives</H4>
+<P>
+<A NAME="50475013_pgfId-273948"></A><A NAME="50475013_marker-273946"></A><A NAME="50475013_marker-273947"></A>Simple geometric properties such as points, vectors, curves and surfaces can also be created from primitives. Primitive curves and surfaces inherit pre-defined properties from the class<A NAME="50475013_marker-273949"></A><A NAME="50475013_marker-273950"></A> <CODE>
+p_geometry</CODE>
+.</P>
+<P>
+<A NAME="50475013_pgfId-273971"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282077"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282079"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282085"></A><A NAME="50475013_marker-282081"></A><A NAME="50475013_marker-282082"></A>p_circle,<A NAME="50475013_marker-282083"></A><A NAME="50475013_marker-282084"></A> p_ellipse, <A NAME="50475013_marker-282086"></A><A NAME="50475013_marker-282087"></A>p_intersection, <A NAME="50475013_marker-282088"></A><A NAME="50475013_marker-282089"></A>p_line</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282094"></A><A NAME="50475013_marker-282091"></A><A NAME="50475013_marker-282092"></A><A NAME="50475013_marker-282093"></A>create</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475013_pgfId-273972"></A>Creating a circle:</H4>
+<P>
+<A NAME="50475013_pgfId-280666"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281162"></A>&gt; (p_circle help create)    --&gt; information
+&gt; (define c1 p_circle)
+&gt; (c1 point &acute;(3 2 0))       -- center of circle
+&gt; (c1 radius 10)
+&gt; (c1 direction &acute;(1 1 1))   -- axis direction
+&gt; (c1 create)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-273974"></A>Creating an ellipse:</H4>
+<P>
+<A NAME="50475013_pgfId-280673"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281128"></A>&gt; (define c2 p_ellipse)
+&gt; (c2 point &acute;(0 10 0))     -- center of ellipse
+&gt; (c2 direction &acute;(1 0 0)) -- normal, i.e. ellipse in YZ plane
+&gt; (c2 majrad 10;minrad 5)
+&gt; (c2 majaxi &acute;(0 1 0))     -- major axis along Y axis
+&gt; (c2 create)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475013_pgfId-273976"></A>Creating a p_wire from a p_line</H4>
+<P>
+<A NAME="50475013_pgfId-273979"></A><CODE>
+p_wire</CODE>
+<A NAME="50475013_marker-273977"></A><A NAME="50475013_marker-273978"></A> creates a wire body from a bounded region of a curve. The range property is optional if the curve is bounded.</P>
+<P>
+<A NAME="50475013_pgfId-273989"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282151"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282153"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282155"></A>p_wire</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282157"></A>create</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475013_pgfId-280680"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281096"></A>&gt; (( define c0 p_line ) point &acute;( 0 0 0 ); 
+   direction &acute;( 0 0 1 ); create )
+&gt; (( define b0 p_wire ) curve &acute;c0; urange &acute;( 0 1 ); create )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475013_pgfId-274019"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282215"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282217"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282279"></A><A NAME="50475013_marker-282273"></A><A NAME="50475013_marker-282274"></A>p_planar, <A NAME="50475013_marker-282275"></A><A NAME="50475013_marker-282276"></A>p_cylindrical, <A NAME="50475013_marker-282277"></A><A NAME="50475013_marker-282278"></A>p_conical, <A NAME="50475013_marker-282280"></A><A NAME="50475013_marker-282281"></A>p_spherical, <A NAME="50475013_marker-282282"></A><A NAME="50475013_marker-282283"></A>p_toroidal,<A NAME="50475013_marker-282284"></A><A NAME="50475013_marker-282285"></A> p_swept, <A NAME="50475013_marker-282286"></A><A NAME="50475013_marker-282287"></A>p_spun, <A NAME="50475013_marker-282288"></A><A NAME="50475013_marker-282289"></A>p_offset</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282321"></A><A NAME="50475013_marker-282318"></A><A NAME="50475013_marker-282319"></A><A NAME="50475013_marker-282320"></A>create</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475013_pgfId-274020"></A>Creating a planar surface:</H4>
+<P>
+<A NAME="50475013_pgfId-280697"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281068"></A>&gt; (p_planar help create)        --&gt;information
+&gt; (define s1 p_planar)
+&gt; (s1 point &acute;(0 0 0); direction &acute;(1 0 0))
+&gt; (s1 create)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-274022"></A>Creating a swept surface from a given curve:</H4>
+<P>
+<A NAME="50475013_pgfId-280716"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281047"></A>&gt; (( define c0 p_line ) point &acute;( 0 0 0 ); 
+   direction &acute;( 0 0 1 ); create )
+&gt; (( define s0 p_swept ) curve &acute;c0; 
+   direction &acute;( 1 0 0 ); create )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-274024"></A>Creating a spun surface from a given curve:</H4>
+<P>
+<A NAME="50475013_pgfId-280730"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281039"></A>&gt; (( define c0 p_line ) point &acute;( 0 0 0 ); 
+   direction &acute;( 0 0 1 ); create )
+&gt; (( define s0 p_spun ) curve &acute;c0; point &acute;( 0 2 0 );
+   direction &acute;( 1 0 0 ); create )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-274026"></A>Creating an offset from a given surface, which if possible, is simplified:</H4>
+<P>
+<A NAME="50475013_pgfId-280737"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-281030"></A>&gt; (( define s0 p_planar ) point &acute;(0 0 0); </PRE>
+<PRE><A NAME="50475013_pgfId-281035"></A>   direction &acute;(0 0 1); create)
+&gt; (( define off0 p_offset ) surface &acute;s0; distance 5; create )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-274028"></A>Creating a p_sheet from a p_planar surface:</H4>
+<P>
+<A NAME="50475013_pgfId-274031"></A><CODE>
+p_sheet</CODE>
+<A NAME="50475013_marker-274029"></A><A NAME="50475013_marker-274030"></A> creates a sheet body from a bounded region of a surface. The range properties are optional bounded parameters.</P>
+<P>
+<A NAME="50475013_pgfId-274041"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282442"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282444"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282446"></A>p_sheet</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282448"></A>create</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475013_pgfId-280744"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280992"></A>&gt; (( define s0 p_planar ) point &acute;( 0 0 0 ); 
+   direction &acute;( 0 0 1 ); create)
+
+&gt; (( define b0 p_sheet ) surface &acute;s0; 
+   urange &acute;( 0 1 ); vrange &acute;( 0 1 ); create )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475013_pgfId-274043"></A>5.3	Transformation Primitives
+
+
+</H1>
+<P>
+<A NAME="50475013_pgfId-274044"></A>For all of the following, the transform is first defined and then applied to the given entity.</P>
+<P>
+<A NAME="50475013_pgfId-274054"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282474"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282476"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282496"></A>p_equal_scaling, p_reflection, p_rotation, p_translation, p_general_transform</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282480"></A>apply</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-274057"></A>	5.3.1 	<A NAME="50475013_marker-274055"></A><A NAME="50475013_marker-274056"></A>p_equal_scaling</H2>
+<P>
+<A NAME="50475013_pgfId-280759"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280936"></A>&gt; ( ( define b0 p_block ) create )
+&gt; ( ( define t0 p_equal_scaling ) 
+    scale 1.5; centre &acute;( 0 0 5 ); create )
+&gt; ( graphics ske &acute;b0; ar )
+&gt; ( t0 apply &acute;b0 )
+&gt; ( graphics sketch &acute;b0; ar )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-274061"></A>	5.3.2 	<A NAME="50475013_marker-274059"></A><A NAME="50475013_marker-274060"></A>p_reflection</H2>
+<P>
+<A NAME="50475013_pgfId-280770"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280912"></A>&gt; ( ( define b0 p_block ) create )
+&gt; ( ( define t0 p_reflection ) 
+    point &acute;( 11 0 0 ); normal &acute;( 1 0 0 ); create )
+&gt; ( graphics ske &acute;b0; ar )
+&gt; ( t0 apply &acute;b0 )
+&gt; ( graphics sketch &acute;b0; ar )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-274065"></A>	5.3.3 	<A NAME="50475013_marker-274063"></A><A NAME="50475013_marker-274064"></A>p_rotation</H2>
+<P>
+<A NAME="50475013_pgfId-280785"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280878"></A>&gt; (( define b0 p_block ) create )
+&gt; (( define t0 p_rotation ) point &acute;( 11 0 0 ); 
+   direction &acute;( 1 0 0 ); angle 3.1415926; create )
+&gt; ( graphics ske &acute;b0; ar )
+&gt; ( t0 apply &acute;b0 )
+&gt; ( graphics sketch &acute;b0; ar )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-274069"></A>	5.3.4 	<A NAME="50475013_marker-274067"></A><A NAME="50475013_marker-274068"></A>p_translation</H2>
+<P>
+<A NAME="50475013_pgfId-280799"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280865"></A>&gt; ( ( define b0 p_block ) create )
+&gt; (( define t0 p_translation ) 
+   direction &acute;(0 0 1); distance 30; create)
+&gt; ( graphics ske &acute;b0; ar )
+&gt; ( t0 apply &acute;b0 )
+&gt; ( graphics sketch &acute;b0; ar )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475013_pgfId-274073"></A>	5.3.5 	<A NAME="50475013_marker-274071"></A><A NAME="50475013_marker-274072"></A>p_general_transform</H2>
+<P>
+<A NAME="50475013_pgfId-274074"></A>With this function the transformation is specified explicitly by the transform matrix. Therefore, this primitive may be used to create more complicated transforms, e.g. general affine. Note, this can only be applied to a limited subset of the usual entities.</P>
+<P>
+<A NAME="50475013_pgfId-274075"></A>A combination translation and general affine deformation:</P>
+<P>
+<A NAME="50475013_pgfId-280806"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280857"></A>&gt; ( ( define b0 p_block ) create )
+&gt; ( ( define t0 p_general_transform ) 
+    matrix &acute; ( 1 0 0 1 0 2 0 1 0 0 3 1 0 0 0 1 ); create )
+&gt; ( graphics ske &acute;b0; ar )
+&gt; ( t0 apply &acute;b0 )
+&gt; ( graphics sketch &acute;b0; ar )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475013_pgfId-274077"></A>5.4	Assemblies and Instances
+
+
+</H1>
+
+<H4>
+<A NAME="50475013_pgfId-274078"></A>assembly and instance functions</H4>
+<P>
+<A NAME="50475013_pgfId-274079"></A>Assemblies and instances can be created from primitives.</P>
+<P>
+<A NAME="50475013_pgfId-274097"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282581"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282583"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282599"></A><A NAME="50475013_marker-282595"></A><A NAME="50475013_marker-282596"></A>p_assembly, <A NAME="50475013_marker-282597"></A><A NAME="50475013_marker-282598"></A>p_instance</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475013_pgfId-282612"></A><A NAME="50475013_marker-282608"></A><A NAME="50475013_marker-282609"></A><A NAME="50475013_marker-282610"></A><A NAME="50475013_marker-282611"></A>create</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475013_pgfId-274098"></A>Creating an empty assembly:</P>
+<P>
+<A NAME="50475013_pgfId-280813"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280849"></A>&gt; (define a0 p_assembly)
+&gt; (a0 create)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475013_pgfId-274100"></A>Creating an instance within an assembly:</P>
+<P>
+<A NAME="50475013_pgfId-280820"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280841"></A>&gt; (define i1 p_instance)
+&gt; (i1 assembly &acute;a0; part &acute;b0)
+&gt; (i1 create)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475013_pgfId-274102"></A>disassemble function</H4>
+<P>
+<A NAME="50475013_pgfId-274106"></A><A NAME="50475013_marker-274103"></A><A NAME="50475013_marker-274104"></A><A NAME="50475013_marker-274105"></A>To convert a flat assembly (a0) to the class body, where a0's tag list contains all those Parasolid bodies in the assembly, use:</P>
+<P>
+<A NAME="50475013_pgfId-280827"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475013_pgfId-280833"></A>&gt; (a0 disassemble)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475013_pgfId-110680"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.05.html">Calling the KI/PK Using KID (FLICK)</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.07.html">Operations on Bodies, Curves, Surfaces, etc.</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

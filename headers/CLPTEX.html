@@ -1,0 +1,252 @@
+<HTML>
+<HEAD>
+<TITLE>CLPTEX</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CLPTEX</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_geom_range_array_vector.html>PK_GEOM_range_array_vector</A><BR>
+<A HREF=../headers/pk_geom_range_vector.html>PK_GEOM_range_vector</A><BR>
+<A HREF=../headers/pk_topol_range_array_vector.html>PK_TOPOL_range_array_vector</A><BR>
+<A HREF=../headers/pk_topol_range_vector.html>PK_TOPOL_range_vector</A><BR>
+<A HREF=../headers/pk_geom_range_local_vector.html>PK_GEOM_range_local_vector</A><BR>
+<A HREF=../headers/pk_topol_range_local_vector.html>PK_TOPOL_range_local_vector</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CLPTEX ( point, ents, nopts, iopts, optdta, nmins, min_dists, elists, entpts, 
+==============================================================================
+         parms, props, nprops, ifail )
+         =============================
+
+  Finds the closest point on an entity to a given point.
+
+Receives:
+  KI_vec_position           point          --- point
+  KI_tag_list_entity       *ents           --- entity/list of entities
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options
+  KI_cod_clop               iopts[nopts]   --- options
+ &lt;KI_tag_list_dbl&gt;          optdta[nopts]  --- option data
+
+Returns:
+ &lt;KI_int_nitems&gt;           *nmins          --- number of minima returned
+ &lt;KI_tag_list_dbl&gt;         *min_dists      --- distances
+ &lt;KI_tag_list_&lt;list&gt;&gt;      *elists         --- lists of entities
+ &lt;KI_tag_list_list&gt;        *entpts         --- point on entity
+ &lt;KI_tag_list_list&gt;        *parms          --- parameter/s related to entity
+ &lt;KI_tag_list_&lt;list&gt;&gt;      *props          --- properties ( 1st entity)
+ &lt;KI_tag_list_int&gt;         *nprops         --- no of properties in props
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_missing_geom           Topology without geometry supplied
+  KI_wrong_entity_in_list   Unsupported entity type supplied in list
+  KI_wrong_entity           Unsupported entity type supplied
+  KI_bad_option_data        bad option data supplied
+  KI_closest_approach_failed failed to find closest approach
+
+Description:
+  CLPTEX will find global or local closest approaches between a 'point' and
+  'ents'. Where a single global closest approach is requested 'ents' can
+  either be a single entity or list of entities. If all local closest approaches
+  are required then 'ents' must be a single entity.
+
+  The following entity types are supported:
+      - Geometrical: point, curve, and surface.
+      - Topological: vertex, edge, face, and body.
+
+  Curves and surfaces must be legally attachable to edges and faces, and must
+  be G1 continuous.
+
+
+  The entities supplied must either all be geometry or all be topology.
+
+  The function returns the number of closest approaches found and a collection
+  of lists all of the same length. Taken together the n'th entries of these
+  lists form a description of the n'th closest approach found, as follows:
+
+  The entry from the list 'min_dists' is a real value for the distance of the
+  closest approach, and 'entpts' corresponding entry holds the point at
+  which the closest approach is achieved (as lists of 3 reals). The entry in
+  'elists' is a list, of length 2, which identifies the entity and sub-topology
+  upon which the solution point lies. This list will be structured as follows:
+
+       - The first list component will be the tag of the (received) entity
+         upon which the solution point was found to lie.
+
+       - The second list component will indicate a sub-topology upon which the
+         solution point was found to lie. This sub-topology will be either a
+         face, edge or vertex, belonging to a received entity. If the solution
+         does not lie on sub-topology a 'NULTAG' will be returned.
+
+  If either of the entities in the list has a tolerance associated with it, the
+  solution on that entity will only be accurate and unique up to the tolerance
+  of the entity.
+
+  Solution parametrisation is provided by the entries in the 'parms' list
+  when appropriate. These entries are real lists of length 2 holding curve
+  or surface parameter/s. What parametrisation is used is firstly
+  dependent upon the geometry of entity returned and secondly upon the
+  geometry of the sub-topology (if identified). If curve parametrisation is
+  used the 2nd list component should be ignored.
+
+  The table below indicates what parametrisation is used and when:
+
+     ----------------------------------------------------------------------
+    |   Entity    |  Identified Sub-topology  |     Geometry used for      |
+    |             |                           |  solution parametrisation  |
+    |-------------|---------------------------|----------------------------|
+    |             |                           |                            |
+    |   point     |         none              |          none              |
+    |   curve     |         none              |          curve             |
+    |  surface    |         none              |         surface            |
+    |             |                           |                            |
+    |   vertex    |         none              |          none              |
+    |             |                           |                            |
+    |    edge     |         none              |     curve of the edge      |
+    |    edge     |        vertex             |     curve of the edge      |
+    |             |                           |                            |
+    |    face     |         none              |    surface of the face     |
+    |    face     |         edge              |    surface of the face     |
+    |    face     |        vertex             |    surface of the face     |
+    |             |                           |                            |
+    |    body     |         face              |    surface of the face     |
+    |    body     |         edge              |     curve of the edge      |
+    |    body     |        vertex             |          none              |
+    |             |                           |                            |
+     ----------------------------------------------------------------------
+
+   The curve and surface parameter values returned, will be the same as would
+  be returned by the parametrisation functions ENPAPC, and ENPAPS.
+
+  Properties:
+
+  Properties of the closest approach are returned through the entries in the
+  'props' list. Each entry is a list of tokens ( of variable length given by the
+  entry in 'nprops' ). These properties and their tokens are as follows:
+
+      - RTCLRS: The solution is a regional solution upon the entity (i.e it
+        is possible to move from solution point pair without the distance
+        changing )
+        The identification of such a regional solution is not guaranteed.
+
+      - RTCLND: For a body only, the distance as being negative. The distance
+        will be classified as negative if the solution point on the other
+        entity lies inside the body
+
+  In the case that there are no solutions, i.e. upper or lower bounds have
+  been set ( see below ) that rule out all closest approaches, 'nmins' will
+  be set to 0 and the list 'props' will be of length 1. The only entry in
+  this list will be a list holding a single token indicating why no
+  solutions could be found:
+
+      - RTCLLB No solution being returned because the distance was found to
+        be less than the lower bound
+
+      - RTCLUB: No solution being returned because no distance was found to be
+        less than the upper bound
+
+  Options:
+
+  Various options are available through the use of 'nopts' 'iopts' & 'optdta'.
+  'nopts' specifies the number of options requested, 'iopts' is an array of
+  option types, and 'optdta' is an array of lists of corresponding option data.
+  Some options are only available for restricted cases.
+
+  The following option, 'CLOPTL', is available under all circumstances:
+
+      - A tolerance on the accuracy of the minimum distance measurement. This
+        will allow slacker computation of minimum distance, when the
+        default accuracy is not required. The default accuracy will be the
+        linear precision of the modeller (set up by SEMODP).
+
+  An option, 'CLOPFA', is available to request that all local closest approaches
+  should be returned. At present this option is incompatible with all the other
+  options mentioned below. It is also only available in the case that 'ents'
+  is a single entity
+
+  If the option for searching for all closest approaches is omitted, then
+  the following options are available. Some of these do have restrictions of
+  their own.
+
+  The following  options are available regardless of how many entities
+  or what entity types are supplied:
+
+      - An upper bound on the minimum distance to be computed may be supplied.
+        If such a bound is supplied the minimum distance achieved will only be
+        identified if it is less than the bound.
+
+      - A lower bound on the minimum distance. For this option, if the closest
+        approach between an entity and 'point' is found to be less than this
+        bound, no solution will be determined and a token will be returned to
+        indicate that the minimum distance is less than this bound.
+
+
+  The following additional options will be available but only for limited
+  cases. These options must only be allowed to refer to a single entity,
+  and not a list of entities nor a single component of an entity list.
+
+      - For a single curve or edge, a curve parameter estimate may be
+        supplied.
+
+      - For a single surface or face, surface parameter estimates may be
+        supplied.
+
+      - For a single curve, surface, edge, or face, a position vector estimate
+        may be supplied. Such an estimate is expected to be on or close to the
+        entity.
+
+  Both parameter and position vector estimates cannot be supplied for an entity.
+
+  The use of any of the above estimates is not allowed if the minimum distance
+  computation involves a body (e.g. a face cannot be given estimates for
+  a face-body computation).
+
+
+  The table below details the tokens and data required for the options.
+
+
+      ------------------------------------------------------------------------
+     |            Option         |  Token   |    Option Data (real values)    |
+     |---------------------------|--------- |---------------------------------|
+     |                           |          |                                 |
+     | 1. To supply an upper     |  CLOPUP  |  1 real: the upper bound        |
+     |    distance bound         |          |                                 |
+     |                           |          |                                 |
+     | 2. To supply a lower      |  CLOPLW  |  1 real: the lower bound        |
+     |    distance bound         |          |                                 |
+     |                           |          |                                 |
+     | 3. To supply a tolerance  |  CLOPTL  |  1 real: the tolerance          |
+     |                           |          |                                 |
+     | 4. To supply a pvec       |  CLOPPT  |  3 reals: vector estimate       |
+     |    estimate               |          |                                 |
+     |                           |          |                                 |
+     | 5. To supply a parameter  |  CLOPP1  |  1 or 2 reals:                  |
+     |    estimate               |          |  1 curve                        |
+     |                           |          |  or 2 surface parameters        |
+     |                           |          |                                 |
+     | 6. To request that all    |  CLOPFA  |  No data required.              |
+     |    local closest          |          |                                 |
+     |    approaches be          |          |                                 |
+     |    returned               |          |                                 |
+     |                           |          |                                 |
+      ------------------------------------------------------------------------
+
+
+</PRE>
+</BODY>
+</HTML>

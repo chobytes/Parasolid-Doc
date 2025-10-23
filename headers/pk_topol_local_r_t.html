@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_local_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_local_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_local_r_s
+    {
+    <A HREF=../headers/pk_local_status_t.html>PK_local_status_t</A>    status;
+    int                  n_error_entities;
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>         *error_entities;
+    };
+typedef struct PK_TOPOL_local_r_s PK_TOPOL_local_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure is used to return the status of the local operation
+and in the case of a failure, any associated entities.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_emboss.html>PK_BODY_emboss</A><br>
+    <A HREF=../headers/pk_body_enlarge_r_t.html>PK_BODY_enlarge_r_t</A><br>
+    <A HREF=../headers/pk_body_extend.html>PK_BODY_extend</A><br>
+    <A HREF=../headers/pk_body_extrude.html>PK_BODY_extrude</A><br>
+    <A HREF=../headers/pk_body_hollow_2.html>PK_BODY_hollow_2</A><br>
+    <A HREF=../headers/pk_body_offset_2.html>PK_BODY_offset_2</A><br>
+    <A HREF=../headers/pk_body_taper.html>PK_BODY_taper</A><br>
+    <A HREF=../headers/pk_body_thicken_3.html>PK_BODY_thicken_3</A><br>
+    <A HREF=../headers/pk_body_thicken_r_t.html>PK_BODY_thicken_r_t</A><br>
+    <A HREF=../headers/pk_body_transform_2.html>PK_BODY_transform_2</A><br>
+    <A HREF=../headers/pk_edge_delete.html>PK_EDGE_delete</A><br>
+    <A HREF=../headers/pk_face_change.html>PK_FACE_change</A><br>
+    <A HREF=../headers/pk_face_delete_blends.html>PK_FACE_delete_blends</A><br>
+    <A HREF=../headers/pk_face_emboss.html>PK_FACE_emboss</A><br>
+    <A HREF=../headers/pk_face_hollow_3.html>PK_FACE_hollow_3</A><br>
+    <A HREF=../headers/pk_face_offset_2.html>PK_FACE_offset_2</A><br>
+    <A HREF=../headers/pk_face_replace_surfs_3.html>PK_FACE_replace_surfs_3</A><br>
+    <A HREF=../headers/pk_face_replace_with_sheet.html>PK_FACE_replace_with_sheet</A><br>
+    <A HREF=../headers/pk_face_taper.html>PK_FACE_taper</A><br>
+    <A HREF=../headers/pk_face_transform_2.html>PK_FACE_transform_2</A><br>
+    <A HREF=../headers/pk_topol_local_r_f.html>PK_TOPOL_local_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+When a call to the local operation returns a value of PK_ERROR_no_errors,
+then the actual status of the operation is given by the <B>'status'</B>
+field.
+
+If a fault is indicated by the <B>'status'</B> field, then the number of
+entities associated with the fault are given by the field
+<B>'n_error_entities'</B>, and the entities are returned in the array
+<B>'error_entities'</B>.
+
+Description of fields:
+
+
+
+<B>'status'</B>            This field indicates the overall state of
+                    the local operation. See <A HREF=../headers/pk_local_status_t.html>PK_local_status_t</A> for
+                    values and meanings.
+
+
+<B>'n_error_entities'</B> The number of topological or geometric entities in
+                   the <B>'error_entities'</B> array.
+
+
+<B>'error_entities'</B>   If the <B>'status'</B> field of this return structure indicates a
+                   failure, this array may contain topological or geometric
+                   entities which are associated with the failure.
+
+Error entities returned:
+
+The <B>'error_entities'</B> array will contain the following entities according
+to the value of the <B>'status'</B> field. The typical class of error entities for
+each value of <B>'status'</B> is given, however exceptions do exist.
+
+Error entities relate to pre-operation topologies and status_values refer
+to the class of post-operation topologies derived from them. Options for
+some local operations may involve class migration, for instance the option
+'<A HREF=../headers/pk_edge_offset_blend_t.html>PK_EDGE_offset_blend_t</A>' used in thicken operations indicates that the
+desired offset representation of an EDGE is a blend FACE derived from
+that edge. An error condition arising from such a face will return an entity
+of type PK_CLASS_edge and a <B>'status'</B> value usually associated with FACES.
+
+Similarly, if we encounter an error in determining the vertex or edge geometry
+during offset operations, and the error is deemed to have resulted from a
+self intersection or failure to offset face, the error entities correspond to
+the pre-operation faces which failed to offset, and a <B>'status'</B> value
+<B>'<A HREF=../headers/pk_local_status_t.html>PK_local_status_cant_offset_c</A>'</B>.
+
+The documentation accompanying a local operation or the options used by that
+operation will indicate whether class migration may occur.
+
+It is recommended practice to always check the class of error entities before
+processing them (after first restoring the modeller to a previous roll mark).
+
+NOTE: Entity classes given in the following represent typical cases.
+
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_ok_c</A>              : No entities
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_nocheck_c</A>         : No entities
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_fail_c</A>            : No entities
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_cant_get_pt_c</A>     : 1 VERTEX   Failed to find new geometry
+                                                 for existing vertex.
+                                      n FACEs    Failed to find geometry for
+                                                 new vertex.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_cant_get_cu_c</A>     : 1 EDGE     Failed to find new geometry
+                                                 for existing edge.
+                                      n FACEs    Failed to find geometry for
+                                                 new edge.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_cant_get_su_c</A>     : n FACEs    Unable to produce offset
+                                                 surfaces for these faces.
+                                                 No surface replacement is
+                                                 performed.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_cant_offset_c</A>     : n FACEs    Failed to offset the face or
+                                                 the face is only partially
+                                                 offset. Likely causes are
+                                                 self intersection or regions
+                                                 of tight curvature on offset
+                                                 surfaces.
+                                    : n EDGEs    Failed to offset the
+                                                 associated entities to provide
+                                                 the geometry for these edges.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_side_cu_fail_c</A>    : 1 EDGE     Failed to find side curve.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_side_su_fail_c</A>    : 1 FACE     Failed to create a side
+                                                 surface.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_not_same_by_c</A>     : n/a        Not currently returned.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_fa_fail_c</A>         : 1 FACE     Face which failed check.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_fa_fa_fail_c</A>      : 2 FACEs    Pair of faces where
+                                                 inconsistency found.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_ed_remains_c</A>      : 1 EDGE     An existing edge should have
+                                                 disappeared
+                                      n FACEs    A transient edge should have
+                                                 disappeared
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_point_contact_c</A>   : 1 VERTEX   Vertex where point contact has
+                                                 has been found.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_bad_reference_c</A>   : 1 EDGE     Taper reference edge is not
+                                                 valid.
+                                      1 FACE     Taper reference face is not
+                                                 valid.
+                                      1 SURF     Taper reference surface is not
+                                                 valid.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_not_supported_c</A>   : 1 FACE     Face that has currently
+                                                 unsupported combination of
+                                                 reference entities.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_cant_extend_c</A>     : n VERTEXs  Side edges could not be
+                                                 extended at the vertices.
+                                      1 EDGE     Geometry attached to returned
+                                                 edge could not be extended.
+                                      1 FACE     Geometry attached to returned
+                                                 face could not be extended.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_sheet_small_c</A>     : 1 FACE     Given sheet is too small.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_cant_use_cu_c</A>     : 1 EDGE     The supplied/existing curve
+                                                 for this edge lies more than
+                                                 <B>'tolerance'</B> away from the
+                                                 resulting face surfaces.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_eds_unconnected_c</A> : n VERTEXs  The vertices at which the
+                                                 boundary is not simply
+                                                 connected.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_non_laminar_c</A>     : n EDGEs    The non-laminar edges.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_reference_loop_c</A>  : n EDGEs    Reference edges in the
+                                                 inconsistent boundary.
+                                      n FACEs    Reference faces in the
+                                                 inconsistent regions.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_lp_outside_fa_c</A>   : n LOOPs    Loops which are outside a
+                                                 face.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_target_missed_c</A>   : n EDGEs    Target entity cannot bound
+                                                 the regions that originate
+                                                 from these boundary edges.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_wrong_side_c</A>      : n EDGEs    the side of target entity
+                                                 has been specified and the
+                                                 boundary formed by these
+                                                 edges lies completely on the
+                                                 wrong side of the target.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_miter_fail_c</A>      : n EDGEs    The reference edges where
+                                                 mitering has failed.
+
+  <A HREF=../headers/pk_local_status_t.html>PK_local_status_self_shadowing_c</A>  : n EDGEs    The reference edges where
+                                                 self-shadowing occurs.
+
+Any space allocated by Parasolid within this structure may be freed by
+calling <A HREF=../headers/pk_topol_local_r_f.html>PK_TOPOL_local_r_f</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

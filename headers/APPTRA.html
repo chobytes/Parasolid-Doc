@@ -1,0 +1,125 @@
+<HTML>
+<HEAD>
+<TITLE>APPTRA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>APPTRA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_assembly_transform.html>PK_ASSEMBLY_transform</A><BR>
+<A HREF=../headers/pk_body_transform.html>PK_BODY_transform</A><BR>
+<A HREF=../headers/pk_face_transform.html>PK_FACE_transform</A><BR>
+<A HREF=../headers/pk_geom_transform.html>PK_GEOM_transform</A><BR>
+<A HREF=../headers/pk_instance_transform.html>PK_INSTANCE_transform</A><BR>
+<A HREF=../headers/pk_transf_transform.html>PK_TRANSF_transform</A><BR>
+<A HREF=../headers/pk_vector_transform.html>PK_VECTOR_transform</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+APPTRA ( entity, transf, ifail )
+================================
+
+  Apply transformation
+
+Receives:
+  KI_tag_list_entity       *entity         --- entity or list of entities
+  KI_tag_transform         *transf         --- transformation to apply
+
+Returns:
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_is_attached            geometric entity is attached to topology
+  KI_bad_sharing            sharing prevents transformation
+  KI_wrong_transf           invalid transformation
+                            unsuitable entity for transformation
+  KI_different_types        entities in list are not all of same type
+  KI_wrong_entity_in_list   list contains entity of wrong type
+
+Description:
+  Applies a transformation to an entity or list of entities. The types of
+  entity permitted are:
+
+      Assembly
+      Instance
+      Body
+      Point
+      Curve
+      Surface
+      Transformation
+
+  If the transformation is non-orthogonal (see CRETFM) it can only be applied to
+  the following entities:
+
+      B-surface
+      B-curve
+      foreign surface
+      foreign curve
+      SP curve on B-surface or foreign surface
+      line
+      trimmed curve of the above
+      point
+      transform
+      body containing only the above
+
+  If a list of entities is given all the entities in the list must be of the
+  same type.
+
+  The specified transformation is applied to the entity or entities as follows:
+
+  Assembly:
+    The transformation is applied to any instances and construction geometry
+    in the assembly.
+
+  Instance:
+    If the instance does not have a transformation attached a copy of the given
+    transformation is attached to the instance. Otherwise, the transformation
+    is applied to the transformation attached to the instance (see below).
+
+  Body:
+    The transformation is applied to all geometric entities in the body.
+
+  Point:
+    The transformation is applied to the point. The point must not be attached
+    to a vertex.
+
+  Curve:
+    The transformation is applied to the curve. If the curve is an intersection
+    curve its underlying surfaces are also transformed. The curve must not be
+    attached to an edge (nor must any of its dependents be attached to any
+    topology). Furthermore neither the curve nor any of its dependents may be
+    shared with another geometric entity which is not a member of the list of
+    entities being transformed.
+
+  Surface:
+    The transformation is applied to the surface. Any dependent curves and
+    sufaces are also transformed. The surface must not be attached to a face
+    (nor its dependents, if present, to faces or edges.) Furthermore neither
+    the surface nor any of its dependents may be shared with another geometric
+    entity which is not a member of the list of entities being transformed.
+
+  Transformations:
+    The two transformations are multiplied. If A and B are transformations,
+    the result of applying A to B is a transformation which applies B and
+    then A. The transformation being altered must not be attached to an
+    instance.
+
+  Note - Only rotation and translation transformations can be applied to
+  assemblies or instances.
+
+</PRE>
+</BODY>
+</HTML>

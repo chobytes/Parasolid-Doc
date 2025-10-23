@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_detail_def_hole_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_detail_def_hole_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_detail_def_hole_s
+    {
+    <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A>        origin;         --- hole's position and orientation
+    double               total_depth;    --- total depth of hole
+    double               smallest_radius;--- smallest radius of hole
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>            profile;        --- wire body profile
+    int                  cb_result;      --- result of callback function
+    int                  n_components;   --- number of hole components
+    <A HREF=../headers/pk_hole_component_t.html>PK_hole_component_t</A> *components;     --- hole components
+    };
+typedef struct PK_detail_def_hole_s PK_detail_def_hole_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains information defining a hole detail.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_detail_def_t.html>PK_detail_def_t</A><br>
+    <A HREF=../headers/pk_detail_hole_cb_f_t.html>PK_detail_hole_cb_f_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Its fields are:
+
+<B>'origin'</B>          this defines the position and orientation of the hole.
+                  The <B>'origin'</B>s <B>'location'</B> lies at the intersection between the
+                  hole's axis and the surface in its initial
+                  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_open_end_c</A> component.
+                  The <B>'origin'</B>s <B>'axis'</B> points out of the hole.
+                  The <B>'origin'</B>s <B>'ref_direction'</B> is a vector orthogonal to the
+                  <B>'origin'</B>s axis.
+
+<B>'total_depth'</B>     the distance along the hole's axis from the <B>'origin'</B>s
+                  <B>'location'</B> to the other end of the hole.  Note that since
+                  the <B>'origin'</B>s <B>'axis'</B> points out of the hole, the
+                  <B>'total_depth'</B> is negative.
+
+<B>'smallest_radius'</B> this is the smallest radius of the hole not including either
+                  a <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_closed_end_c</A> component or a
+                  <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_cone_in_c</A> component which reduces the radius to
+                  zero.
+
+<B>'profile'</B>         if <B>'want_profiles'</B> in the <A HREF=../headers/pk_face_details_hole_o_t.html>PK_FACE_details_hole_o_t</A> is set to
+                  PK_LOGICAL_true, then this <B>'profile'</B> will be a wire body
+                  which, if spun around the hole's axis, produces the shape of
+                  the hole.  If <B>'want_profiles'</B> is set to PK_LOGICAL_false, or
+                  the shape of the hole cannot be produced by spinning a wire
+                  body, then <B>'profile'</B> will be set to PK_ENTITY_null.  See
+                  further notes below.
+
+<B>'cb_result'</B>       if the <B>'cb'</B> field of the <A HREF=../headers/pk_face_details_hole_o_t.html>PK_FACE_details_hole_o_t</A> has been
+                  set to a callback function, this <B>'cb_result'</B> field will have
+                  the value of the integer return from that function.
+
+<B>'n_components'</B>    number of hole components in the hole.
+
+<B>'components'</B>      array of hole components (<A HREF=../headers/pk_hole_component_t.html>PK_hole_component_t</A>).  These
+                  components are ordered from a <A HREF=../headers/pk_hole_comp_t.html>PK_hole_comp_open_end_c</A>
+                  component at zero depth into the hole (therefore at the
+                  <B>'location'</B> of the hole's <B>'origin'</B>) by increasing depth into
+                  the hole.
+
+Profile
+
+The position of the <B>'profile'</B> in space is where the plane containing the
+<B>'origin'</B>s <B>'location'</B>, the <B>'origin'</B>s <B>'axis'</B> and the <B>'origin'</B>s <B>'ref_direction'</B>
+intersects the surfaces of the hole in the direction of the <B>'origin'</B>s
+<B>'ref_direction'</B>.
+
+The end vertices of the profile will both lie on the hole axis.  At an open end
+of a hole, this is achieved by adding an edge to the profile at right angles to
+the hole axis.  Thus, if the profile is spun about the hole axis ( using
+<A HREF=../headers/pk_body_spin.html>PK_BODY_spin</A> ) by an angle of 2 pi a sheet body bounding a volume will be
+created which may be converted to a solid by <A HREF=../headers/pk_region_make_solid.html>PK_REGION_make_solid</A>.
+
+At an open end of a hole, where the face into which the hole is drilled is not
+a plane orthogonal to the hole axis, the profile will extend far enough out of
+the hole so that every part of the hole's side face will be swept out by
+spinning the profile.
+
+
+RESTRICTION
+
+A hole will not be recognized if no <B>'origin'</B> can be found for it.  A typical
+case of this is where the open end of a hole has been blended onto some
+curved face and the blend face has not been included in the faceset.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

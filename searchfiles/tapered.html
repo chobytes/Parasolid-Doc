@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.039.html#50409821_pgfId-295103", " a sweep or extrusion operation (for instance, a <B>tapered</B> extrusion created using PK_BODY_sweep and PK_BODY_taper ), and", "Functional Description - Creating Extruded Bodies");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-301783", " curve using PK_POINT_make_helical_curve and PK_CURVE_make_helical_surf .Spirals, helices, and <B>tapered</B> helices are all created using the same basic", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-302004", " For <B>tapered</B> helices, ", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295340", " <B>Tapered</B> sidewalls can be created based on a specified draw", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295349", " 43.2.3.1 <B>Tapered</B> sidewalls ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295350", " PK_emboss_sidewall_tapered_c , then Parasolid creates sidewalls that are <B>tapered</B> between the specified target and end cap, usually", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295400", " Figure 43-3 Pad emboss feature with <B>tapered</B> sidewalls ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295401", " For <B>tapered</B> sidewalls, you should also set the following fields", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295410", " The method used to created <B>tapered</B> sidewalls. Any of the following taper methods are", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295412", " Normal: the sidewall is <B>tapered</B> with respect to the normals of the faces", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295581", " Figure 43-4 Pad emboss feature with normal <B>tapered</B> sidewalls ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295583", " <B>Tapered</B> sidewalls (when ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295588", " 43.2.3.2 Specifying multiple angles for <B>tapered</B> sidewalls ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295589", " By default, if <B>tapered</B> sidewalls are created then a single taper angle", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-295663", " Figure 43-5 Pad emboss feature with <B>tapered</B> sidewalls using different angles ", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.044.html#50409826_pgfId-297639", " direction specified, whether it is used for a <B>tapered</B> sidewall or a swept sidewall, must be a", "Functional Description - Creating Emboss Features");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1394114", " Figure 67-1 Removing a <B>tapered</B> and untapered part from a mold ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1394568", " The maximum tolerance of the <B>tapered</B> surface. ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1395020", " f1 and f2. These three faces are then <B>tapered</B> appropriately. ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1395155", " Whether <B>tapered</B> faces should be merged with their neighbouring faces.", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1395166", " step tapers, a list of edges that produce <B>tapered</B> step faces, and a list of edges that", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1395198", " <B>tapered</B> and a face that is not being <B>tapered</B>. See Section 67.4.2, Automatic step tapering for more", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1395215", " A list of faces that are <B>tapered</B> using different taper angles for each face. See", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298894", " Isocline-based tapering is the default method. It calculates <B>tapered</B> faces with reference to the taper direction and", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298898", " Curve-based tapering calculates <B>tapered</B> faces with reference to the taper direction, and", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298905", " Surface-based tapering calculates <B>tapered</B> faces with reference to the taper direction and", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298912", " direction. This method is useful when creating a <B>tapered</B> surface against a single curved top surface.See Section", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298919", " surface. This method is useful for creating a <B>tapered</B> surface that is independent of the global taper", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-797721", " the taper input condition: for all faces being <B>tapered</B>, the angle between the taper direction and the", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298930", " Curve-based tapering lets you create <B>tapered</B> surfaces in cases where the taper condition is", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298931", " Surface-based tapering also lets you create <B>tapered</B> surfaces in cases where the taper condition is", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-299115", " Offset tapering lets you create <B>tapered</B> surfaces in which the curve of the reference", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-299225", " Normal-to-surface tapering produces <B>tapered</B> surfaces that are not dependent on the draw", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-297100", " which extends from the reference edge to the <B>tapered</B> face. ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-297450", "<B>Tapered</B> surfaces These surfaces are generated from ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-635689", " <B>tapered</B> and a face that is not being <B>tapered</B>,", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298568", " occurs, for example, when smoothly connected faces are <B>tapered</B> using multiple angles, as described in Section 67.5,", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-298576", " that step faces have been created between each <B>tapered</B> face and any adjacent non-taper faces that are", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-864590", " examples of bodies where several faces have been <B>tapered</B> using different angles. ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-296673", " Very often, specifying multiple taper angles causes adjacent <B>tapered</B> faces to become separated as a result of", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-296760", " geometry attached to any laminar edges in a <B>tapered</B> face is created using the ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-296769", " the untapered face along the normal of the <B>tapered</B> face. This is the default. ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-296773", " the intersection of this ruled surface with the <B>tapered</B> face. ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-296778", " the alternative method. Using the alternative value, a <B>tapered</B> face with the same height as the cylindrical", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-297047", " 67-19 Controlling the position of laminar edges in <B>tapered</B> faces ", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1416892", " taper is applied to the body to be <B>tapered</B> both above and below the parting body. ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-308987", " is added to the <B>tapered</B> body such that <B>tapered</B> faces in the resulting body meet at the", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-308991", " some parts of the block need to be <B>tapered</B> ( ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-309186", " Figure 68-2 Mitering a block so that <B>tapered</B> surfaces meet ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-309189", " face will no longer be present in the <B>tapered</B> body. ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417204", " to intersect the <B>tapered</B> faces in the final <B>tapered</B> body. ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-621462", " If you use a solid parting body, the <B>tapered</B> body unites the parting body after the tapering", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-309821", " must be edges on the body to be <B>tapered</B>, with the following constraints: ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417483", " whether you miter the taper so that the <B>tapered</B> faces meet at the parting body. ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1603530", " the taper surface cuts into the body being <B>tapered</B> and creates self-shadowing reference edges. ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1419132", " Whether <B>tapered</B> faces should be merged with their neighbours. ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1419187", " all the edges of the body to be <B>tapered</B> that lie on the parting body, together with", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1419320", " the parting body that would protrude from the <B>tapered</B> faces. See Section 68.10, Keeping protruding material for", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417542", " is added to the <B>tapered</B> body so that <B>tapered</B> faces in the resulting body meet at the", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-310442", " two <B>tapered</B> faces. Miter faces ensure that the <B>tapered</B> surfaces added to the body above and below", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-310447", " achieve a mitering effect. The boundary of each <B>tapered</B> face includes a reference edge or an edge", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-623658", " whenever possible. The reference edges corresponding to these <B>tapered</B> faces are deleted and replaced by edges that", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-310627", " methods is used. In order to ensure that <B>tapered</B> faces meet at the parting body, miter faces", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1577110", " the results of applying these values to the <B>tapered</B> body in ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417969", " created in the corners between the resulting adjacent <B>tapered</B> faces using the ", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-311895", " are not used to generate <B>tapered</B> surfaces, producing an improved result. This is illustrated", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-905892", " If a body to be <B>tapered</B> does not contain suitable reference edges you can", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1418598", " portions of the body would protrude from the <B>tapered</B> faces, this is not always desirable. The keep_material", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-303128", " while other faces in the body have been <B>tapered</B> during the same call to PK_FACE_change . ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-303544", " in orange) of a pocket-like body have been <B>tapered</B>, and the inside faces (shown in red) have", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-303983", " The edges from which <B>tapered</B> step faces are created. The surfaces on which", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-304019", " Control the position of laminar edges on <B>tapered</B> faces. See Section 67.6, Controlling laminar edges ,", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-304045", " For more information about creating <B>tapered</B> surfaces, see Section 64.2, Adding draft . ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-868500", "Figure 73-30 , where a specified face is <B>tapered</B> and a step face is created. ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275599", " A helix, a <B>tapered</B> helix, or a spiral. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-293093", " in tapering when material is added to the <B>tapered</B> body so that each edge created on a", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-293275", " indicate a division in the body to be <B>tapered</B> during a body taper operation. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205781", " <B>tapered</B> sidewalls 557 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209639", " emboss, <B>tapered</B> 557 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210136", " <B>tapered</B> sidewalls, emboss 557 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-407727", " drawn out of a mold need to be <B>tapered</B> inwards slightly with respect to the direction they", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-407959", " afterwards, rather than requiring the designer to build <B>tapered</B> faces into the part from early on in", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-407963", " As well as providing the functionality to create <B>tapered</B> faces, Parasolid provides tools to help you decide", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-407968", " First, the face to be <B>tapered</B> is analysed with respect to the taper angle", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-665524", " Normal-to-surface tapering produces <B>tapered</B> surfaces that are not dependent on the draw", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-408681", " step face extending from the edge to the <B>tapered</B> face is created. Step tapering is illustrated in", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_marker-457168", "<B>tapered</B> surfaces are themselves <B>tapered</B> with respect to the", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-409027", " Figure 5-17 <B>Tapered</B> and normal step faces ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-279038", " Figure 9-6 Creating a <B>tapered</B> helix using sweep rotation and size controls ", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-309622", " <B>Tapered</B> sidewalls can be created based on a specified draw", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-309674", " example of a pad emboss feature with sidewalls <B>tapered</B> at different angles is shown in ", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-309736", " Figure 9-25 Pad emboss feature with <B>tapered</B> sidewalls using different angles ", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438177", " helix, <B>tapered</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438961", " <B>tapered</B>, in tapering ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438991", " <B>tapered</B> helix ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438993", " <B>tapered</B> surfaces, in tapering ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5439003", " <B>tapered</B> surfaces ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_step_tapered_c 21840 Produce <B>tapered</B> step surfaces (default). These surfaces will satisfy the", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_step_tapered_c 21840 Produce <B>tapered</B> step surfaces (default). These surfaces will satisfy the", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_body_emboss.html#documentation", " It is used as the draw direction for <B>tapered</B>", "PK Reference - PK_BODY_emboss");
+top.note("headers/pk_body_taper.html#declaration", " const PK_BODY_t body, --- body to be <B>tapered</B>", "PK Reference - PK_BODY_taper");
+top.note("headers/pk_body_taper.html#documentation", "If resulting <B>tapered</B> faces from two halves do not meet at", "PK Reference - PK_BODY_taper");
+top.note("headers/pk_body_taper_o_t.html#declaration", " PK_LOGICAL_t merge_face; --- whether <B>tapered</B> faces", "PK Reference - PK_BODY_taper_o_t");
+top.note("headers/pk_body_taper_o_t.html#documentation", " to be <B>tapered</B>) that lie on the parting body.", "PK Reference - PK_BODY_taper_o_t");
+top.note("headers/pk_curve_make_helical_surf.html#description", " This function creates a helix, <B>tapered</B> helix or spiral surface by sweeping a", "PK Reference - PK_CURVE_make_helical_surf");
+top.note("headers/pk_curve_make_helical_surf.html#documentation", " swept around the axis to form a helix, <B>tapered</B>", "PK Reference - PK_CURVE_make_helical_surf");
+top.note("headers/pk_emboss_sidewall_data_t.html#declaration", " --- <B>tapered</B> and swept sidewall,", "PK Reference - PK_emboss_sidewall_data_t");
+top.note("headers/pk_emboss_sidewall_data_t.html#documentation", " draw_direction The outward draw direction of emboss. For <B>tapered</B>", "PK Reference - PK_emboss_sidewall_data_t");
+top.note("headers/pk_face_change_taper_o_t.html#declaration", " PK_EDGE_array_t tapered_edges; --- <B>tapered</B> step edges [NF]", "PK Reference - PK_FACE_change_taper_o_t");
+top.note("headers/pk_face_change_taper_o_t.html#documentation", " tapered_edges Edges which will give rise to <B>tapered</B> step faces.", "PK Reference - PK_FACE_change_taper_o_t");
+top.note("headers/pk_face_emboss.html#documentation", " It is used as the draw direction for <B>tapered</B>", "PK Reference - PK_FACE_emboss");
+top.note("headers/pk_face_install_surfs_isocline.html#documentation", "<B>tapered</B> face. These new step faces are connected to", "PK Reference - PK_FACE_install_surfs_isocline");
+top.note("headers/pk_face_taper.html#documentation", " are two types of step reference edges, the <B>tapered</B> edges and", "PK Reference - PK_FACE_taper");
+top.note("headers/pk_face_taper_o_t.html#declaration", " PK_LOGICAL_t merge_face; --- whether <B>tapered</B> faces are to", "PK Reference - PK_FACE_taper_o_t");
+top.note("headers/pk_face_taper_o_t.html#documentation", " tapered_edges Edges which will give rise to <B>tapered</B> step faces.", "PK Reference - PK_FACE_taper_o_t");
+top.note("headers/pk_loop_ask_type.html#documentation", "surface can also be treated as a <B>tapered</B> cylinder if it has a winding", "PK Reference - PK_LOOP_ask_type");
+top.note("headers/pk_point_make_helical_curve.html#description", " This function creates a helix, <B>tapered</B> helix or spiral by sweeping a point", "PK Reference - PK_POINT_make_helical_curve");
+top.note("headers/pk_point_make_helical_curve.html#documentation", " swept around the axis to form a helix, <B>tapered</B> helix or spiral.", "PK Reference - PK_POINT_make_helical_curve");
+top.note("headers/pk_step_surf_t.html#documentation", " PK_step_tapered_c Produce <B>tapered</B> step surfaces (default). These", "PK Reference - PK_step_surf_t");
+top.note("headers/pk_taper_keep_material_t.html#documentation", "the <B>tapered</B> faces.", "PK Reference - PK_taper_keep_material_t");
+top.note("headers/pk_taper_method_t.html#documentation", " and the <B>tapered</B> faces surface normal.", "PK Reference - PK_taper_method_t");
+top.note("headers/pk_taper_undercut_t.html#documentation", "of the face to be <B>tapered</B> and will require some material to be removed", "PK Reference - PK_taper_undercut_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

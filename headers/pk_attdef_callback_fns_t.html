@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ATTDEF_callback_fns_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ATTDEF_callback_fns_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef struct PK_ATTDEF_callback_fns_s
+    {
+    <A HREF=../headers/pk_attdef_split_callback_f_t.html>PK_ATTDEF_split_callback_f_t</A>    split_fn;    --- split callback function
+    <A HREF=../headers/pk_attdef_merge_callback_f_t.html>PK_ATTDEF_merge_callback_f_t</A>    merge_fn;    --- merge callback function
+    <A HREF=../headers/pk_attdef_delete_callback_f_t.html>PK_ATTDEF_delete_callback_f_t</A>   delete_fn;   --- delete callback function
+    <A HREF=../headers/pk_attdef_copy_callback_f_t.html>PK_ATTDEF_copy_callback_f_t</A>     copy_fn;     --- copy callback function
+    <A HREF=../headers/pk_attdef_transmit_callback_f_t.html>PK_ATTDEF_transmit_callback_f_t</A> transmit_fn; --- transmit callback function
+    <A HREF=../headers/pk_attdef_receive_callback_f_t.html>PK_ATTDEF_receive_callback_f_t</A>  receive_fn;  --- receive callback function
+    }
+    PK_ATTDEF_callback_fns_t;
+
+</B>
+<A NAME="description"></A>
+<I>This data structure holds pointers to the functions the application wishes to
+register with the PK using <A HREF=../headers/pk_attdef_register_callbacks.html>PK_ATTDEF_register_callbacks</A> or
+<A HREF=../headers/pk_attdef_register_cb.html>PK_ATTDEF_register_cb</A>. Any of these may be NULL.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_attdef_ask_callbacks.html>PK_ATTDEF_ask_callbacks</A><br>
+    <A HREF=../headers/pk_attdef_register_callbacks.html>PK_ATTDEF_register_callbacks</A><br>
+    <A HREF=../headers/pk_attdef_register_cb.html>PK_ATTDEF_register_cb</A><br>
+  </p>
+</blockquote>
+<PRE>
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

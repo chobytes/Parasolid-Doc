@@ -1,0 +1,126 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.002.html#50409781_pgfId-297759", " Interfaces - a complete description of the frustrum, the <B>Graphical</B> Output (GO), and the functions, tokens and error codes", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_marker-297847", "<B>Graphical</B> Output (GO) and ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298517", " <B>Graphical</B> Output ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-297939", " different interfaces and Parasolid is bi-directional, the exception being <B>Graphical</B> Output. ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298009", " 1.4.3 <B>Graphical</B> output ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298010", "<B>Graphical</B> Output (GO) functions alongside the frustrum functions. In general, in order to draw pictures requested by the kernel, the GO functions output instructions to a graphics system (such as OpenGL) provided by your application. Like frustrum functions, GO functions are called by the kernel. ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298014", " functions available in the PK. The kernel prepares <B>graphical</B> data piecemeal, so one call to a PK", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-339501", " For more information on <B>Graphical</B> Output see the ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298063", "Rendering - creating <B>graphical</B> information from part and view information ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.006.html#50409786_pgfId-323005", " Chapter 4, <B>Graphical</B> Output of the Downward Interfaces manual ", "Functional Description - Application Design And Architecture");
+top.note("chapters/fd_chap.006.html#50409786_pgfId-323009", " Appendix B, <B>Graphical</B> Output Functions of the Downward Interfaces manual ", "Functional Description - Application Design And Architecture");
+top.note("chapters/fd_chap.006.html#50409786_pgfId-294847", " <B>Graphical</B> Output (GO) - required for displaying models ", "Functional Description - Application Design And Architecture");
+top.note("chapters/fd_chap.006.html#50409786_pgfId-294863", " 5.2.2 <B>Graphical</B> output ", "Functional Description - Application Design And Architecture");
+top.note("chapters/fd_chap.006.html#50409786_pgfId-294865", " or more parts. The GO functions encapsulate the <B>graphical</B> information output by Parasolid, and pass it to", "Functional Description - Application Design And Architecture");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-326382", " <B>Graphical</B> output ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-350766", " Chapter 4, <B>Graphical</B> Output in the Downward Interfaces manual ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-294757", " Section 6.5, Memory management , and Section 6.6, <B>Graphical</B> output later on in this chapter. ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-313030", " <B>Graphical</B> output (see Section 6.6, <B>Graphical</B> output ) ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295203", " 6.6 <B>Graphical</B> output ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295208", " a set of functions known as the GO (<B>Graphical</B> Output) interface to interpret that information. ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295210", " to one of the PK rendering functions, the <B>graphical</B> data output by Parasolid is passed to the", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295249", " functions uses the supplied GO functions to pass <B>graphical</B> data to the appropriate graphics library. ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295250", " The PK outputs <B>graphical</B> information in the form of ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295303", " can be used in conjunction with many different <B>graphical</B> libraries. You must supply a graphics library for", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-327017", " Update <B>graphical</B> display information ", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.009.html#50409789_pgfId-464519", " demonstrations ranging from primitive model creation through to <B>graphical</B> output and importing data. ", "Functional Description - Parasolid Source Code Collateral");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-571852", " Figure 20-18 A <B>graphical</B> representation of rendering a solid body and only", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-575813", " rendering and the GO output, see Chapter 4, <B>Graphical</B> Output in the Downward Interfaces . ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295125", " application to remember (usually in some sort of <B>graphical</B> data structure) what entities are being displayed, and", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.104.html#50409895_pgfId-316707", " Parasolid supports a wide range of <B>graphical</B> output capabilities that allow users to accurately render", "Functional Description - Introduction To Graphic Support");
+top.note("chapters/fd_chap.104.html#50409895_pgfId-309453", " GO describes the output of facet geometry via the <B>Graphical</B> Output interface ", "Functional Description - Introduction To Graphic Support");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-386104", " Chapter 4, <B>Graphical</B> Output in the Downward Interfaces manual ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-386108", " Appendix B, <B>Graphical</B> Output Functions in the Downward Interfaces manual ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-294822", " two functions which produce the following types of <B>graphical</B> data when rendering geometric and topological entities: ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-294845", " In its simplest form, the <B>graphical</B> data consist of polyline, circular and elliptical line", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298809", " PK_TOPOL_render_facet outputs facets through the <B>Graphical</B> Output (GO) interface, defining each facet as a closed", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-379241", " 104.5 <B>Graphical</B> output (GO) ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298877", " <B>Graphical</B> data are output when the PK rendering functions call", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-350542", " Chapter 4, <B>Graphical</B> Output . ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-350543", " and GOCLSG function header descriptions in Appendix B, <B>Graphical</B> Output Functions . ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-305676", " that is needed by your application to process <B>graphical</B> output from PK_TOPOL_render_line . ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-302062", " blended edge is drawn in isolation, no other <B>graphical</B> information about the attached faces is output. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.110.html#50409901_pgfId-294747", " chapter describes the output of facet geometry through the <B>Graphical</B> Output (GO) interface. This is the output method used", "Functional Description - Faceting Output Via GO ");
+top.note("chapters/fd_chap.110.html#50409901_pgfId-294752", " this method of <B>graphical</B> output in Chapter 4, <B>graphical</B> Output , of the Parasolid Downward Interfaces Manual.", "Functional Description - Faceting Output Via GO ");
+top.note("chapters/fd_chap.110.html#50409901_pgfId-329742", " Chapter 4, <B>Graphical</B> Output in the Downward Interfaces manual ", "Functional Description - Faceting Output Via GO ");
+top.note("chapters/fd_chap.110.html#50409901_pgfId-329765", " Appendix B, <B>Graphical</B> Output Functions in the Downward Interfaces manual ", "Functional Description - Faceting Output Via GO ");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294780", " For information on the <B>graphical</B> output of facet geometry, see Chapter 109, Faceting", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295016", " When generating wire-frame data via the <B>Graphical</B> Output (GO) with SMP enabled, Parasolid does not guarantee", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275594", " with Parasolid and are used for data input/output, <B>graphical</B> output and memory management. These functions separate Parasolid", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275605", " by the system builder in order to provide <B>graphical</B> output from the Parasolid rendering functions on the", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275606", " <B>Graphical</B> output ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275607", " The process of passing <B>graphical</B> data to the application for display. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275788", " The process of producing <B>graphical</B> data for specified entities in order to produce", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207158", "See <B>graphical</B> output ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207175", " <B>graphical</B> output 84, 91 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207193", " <B>Graphical</B> Output. ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.02.html#50442241_pgfId-274063", " displaying your model on screen, and for storing <B>graphical</B> information for later display. ", "Overview of Parasolid - Introduction");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-282960", " Parasolid generates rendering, faceting and <B>graphical</B> data that you can use to produce pictures", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-280878", "rendered: Parasolid generates <B>graphical</B> data for a particular entity or set of", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-280929", " Next, Parasolid passes the <B>graphical</B> data to your application via the ", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_marker-312002", "<B>Graphical</B> Output , or ", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-289287", " describes the steps required in order to generate <B>graphical</B> data and render it on an output device.", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-288622", " 14.2 Processing <B>graphical</B> data", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-548604", " of the steps involved in creating and processing <B>graphical</B> data for use on an output device. ", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-289081", " Figure 14-1 Processing <B>graphical</B> data for display on an output device ", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-288893", " that you to supply. These functions encapsulate the <B>graphical</B> data created by Parasolid, and Parasolid calls them", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-288958", " if hidden-line data was requested, then Parasolid outputs <B>graphical</B> data with visibility information attached to each data", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-289004", " order to do this, you must pass the <B>graphical</B> data to a suitable graphics library in order", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-289946", " Parasolid can generate <B>graphical</B> data in facet form so that your application", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-276513", " need to track entities in order to update <B>graphical</B> display information. ", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-280295", " <B>Graphical</B> Output (GO) ", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-280297", " Functions that encapsulate the <B>graphical</B> information output by Parasolid&#8217;s rendering functions in a", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-279602", " Update <B>graphical</B> display information ", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437830", " <B>graphical</B>, processing ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438142", " <B>graphical</B> data, processing ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438144", " <B>Graphical</B> Output ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438646", " processing <B>graphical</B> data ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/di_chap.02.html#50511934_pgfId-273845", " <B>Graphical</B> output ", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274039", " a set of functions known as the GO (<B>graphical</B> Output) Interface ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-299936", " must write your own GO functions, or no <B>graphical</B> data is forthcoming. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274047", " 4.2 <B>Graphical</B> output functions", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274054", " CONTIN, if the <B>graphical</B> operation is to continue ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274072", " Hierarchical segments usually contain other segments. Note that <B>graphical</B> data is always output hierarchically: using the ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274074", " When creating hidden line <B>graphical</B> data the body segment SGTPBY is hierarchical. If", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274080", " 4.3.2 <B>Graphical</B> data for assemblies ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274258", " See Appendix B, <B>Graphical</B> Output Functions , for detailed descriptions of each function.", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274920", " body segment afterwards. This lets you build a <B>graphical</B> data structure and subsequently update it. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274927", " a model. GOOPSG allows you to build a <B>graphical</B> data structure in the same way as for", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-341089", " a model. GOOPSG allows you to build a <B>graphical</B> data structure in the same way as for", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-341123", " a model. GOOPSG allows you to build a <B>graphical</B> data structure in the same way as for", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-341184", " a model. GOOPSG allows you to build a <B>graphical</B> data structure in the same way as for", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275326", " 4.6 <B>Graphical</B> output of pixel data", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.06.html#50511938_pgfId-273845", " in Appendix A, Frustrum Functions and Appendix B, <B>Graphical</B> Output Functions . ", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.06.html#50511938_pgfId-294216", " functions concurrently, or to use SMP when generating <B>graphical</B> output, you can indicate that the GO functions,", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.08.html#50511940_pgfId-274045", " with Parasolid using PK_SESSION_register_fru_2 ; these functions render <B>graphical</B> data generated by the PK line drawing functions:", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.08.html#50511940_pgfId-287299", " B.2 Registering the <B>Graphical</B> Output functions", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.08.html#50511940_pgfId-287354", " The <B>Graphical</B> Output functions must be registered with Parasolid by calling", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.08.html#50511940_pgfId-287409", " You can register <B>Graphical</B> Output functions independently of the other frustrum functions or", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.08.html#50511940_pgfId-287253", " B.3 <B>Graphical</B> Output functions that can be registered", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.08.html#50511940_pgfId-287273", " This section lists the <B>Graphical</B> Output functions that you can register during a Parasolid", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274045", " all the tokens and error codes used by the <B>Graphical</B> Output functions. ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.16.html#50511948_pgfId-287388", " The Frustrum and <B>Graphical</B> Output functions documented in this appendix relate to functionality", "Downward Interfaces - Legacy Functions");
+top.note("chapters/di_chap.18.html#50511950_pgfId-731145", " <B>Graphical</B> Data ", "Downward Interfaces - ZIndex");
+top.note("chapters/kd_chap.02.html#50475009_pgfId-273872", " KID is supplied with its own <B>graphical</B> system and device drivers. Functions are available to", "KID Manual - Kernel Interface Driver (KID) - an Overview");
+top.note("chapters/kd_chap.04.html#50475012_pgfId-273861", " When a <B>graphical</B> pick is made with the cursor, a point", "KID Manual - Object-Oriented KID");
+top.note("chapters/kd_chap.04.html#50475012_pgfId-273890", " All GO (<B>Graphical</B> Output) functions are now logged in the journal file.", "KID Manual - Object-Oriented KID");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-273840", " a picture on the screen, or transmission of <B>graphical</B> output to a file. ", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-273843", " To open an X window for <B>graphical</B> display, type: ", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-273880", " These graphics functions are designed to write <B>graphical</B> output to a file in a specified format.", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.12.html#50475019_pgfId-273910", " Once a device has been opened the <B>graphical</B> output is sent, in addition to any open", "KID Manual - KID Graphics: Overview");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-273897", " procedure for opening an Xwindow for a shaded <B>graphical</B> display differs from that described previously. When using", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-274564", " the NURB curve data to be presented to the <B>Graphical</B> Output in B-spline form. ", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-274616", " allowing the B-curve data to be presented to the <B>Graphical</B> Output in Bezier form or as poly lines. ", "KID Manual - KID Rendering");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

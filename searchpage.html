@@ -1,0 +1,293 @@
+<HTML>
+<HEAD>
+<TITLE>Search the Parasolid Documentation</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+  <!-- opening HTML comment starts hiding Javascript from old browsers
+
+  // This script is used by the Parasolid Development group with
+  //       Microsoft IE Explorer 4.0 4.72.2106.8 on Intel NT4.0/Win95
+  //       Netscape Communicator 4.04 on Intel NT 4.0
+  //       Netscape Communicator 4.05 on HP-UX 10.2
+
+  // It does not work using Microsoft IE Explorer 3.02 4.70.1300
+  //       on Intel NT4.0/Win95
+  // The above meta tag <SCRIPT LANGUAGE=JavaScript=1.1> prevents the
+  // script from being run from an IE3.0 or a Navigator 2.0 browser.
+
+  // This script is not a supported part of the Parasolid release
+  //       and it may not work with other browser /versions.
+
+  // References are made from "index.html" to the following files :
+  //       welcome.html
+  //       navigationframe.html (refers to images in graphics/*     )
+  //       searchformframe.html (search dialogue                    )
+  //       hiddenframe.html     (scratchpad for searchfiles/<keyword>.html)
+  //       validateframe.html   (define and check valid keywords    )
+  // and a set of generated files searchfiles/<keyword.html> which identify
+  // paragraphs in Parasolid documentation where a <keyword> is used.
+
+  // Three types of search are provided:
+  //       search for paragraphs containing 'all' of the given keywords
+  //                  e.g.       facet initialisation
+  //       search for paragraphs containing 'any' of the given keywords
+  //                  e.g. modeller modeler modelling modeling
+  //       search for paragraphs which contain an exact 'phrase'
+  //                  e.g. ruled surface
+
+  var this_url_str = top.window.location.href;
+  var last_slash   = this_url_str.lastIndexOf('/');
+  var base_href    = this_url_str;
+  if ( last_slash != -1 )
+      base_href = this_url_str.substring(0, last_slash+1);
+
+  // this section defines functions which declare run-time tables
+  function maketable2(rows, cols)
+    {
+    var i;
+    this.actlength = 0;
+    this.maxlength = rows;
+    for ( i = 0 ; i < rows ; i++ )
+        this[i] = new maketable1(cols);
+    return (this);
+    }
+  function maketable1(cols)
+     {
+     var i;
+     for ( i = 0 ; i < cols ; i++ )
+         this[i] = 0;
+     return (this);
+     }
+
+  // this section defines a fixed length table which stores:
+  //                   [i][0]      [i][1]      [i][2]      [i][3]
+  // infotable [0]       url       context     rating      document
+  // infotable [1]       url       context     rating      document
+  // infotable [2]       ..          ..          ..          ..
+  var maxrows = 500; // impose a reasonable upper limit in case users
+  var maxcols =   4; //  ask for 'any' of a long list of common words
+  var infotable = new maketable2(maxrows, maxcols);
+  var keywords;      // space separated list of user-supplied keywords
+  var keyworda;      // the above, converted to array and reversed
+  var keywordl;      // current length of keyworda (decremented)
+  var keyword;       // current keyword being processed
+  var keywordn;      // index of current keyword 1, 2, ...
+  var subdir;        // subdirectory name
+  function inittable()
+      {
+      // initialise infotable before adding any entries to it
+      infotable.actlength = 0; // actual length of the table
+      }
+  function note(urlinfo, context, doctitle)
+      {
+      // callback function referenced by all searchfiles/*.html documents
+      // The global variable 'keywordn' will be set
+      //     to 1 when noting URLs relating to keyword1
+      //     to 2 when noting URLs relating to keyword2 etc.
+      var actlength = infotable.actlength;
+      var maxlength = infotable.maxlength;
+      if ( actlength < maxlength ) // restrain length of the table
+          {
+          infotable[actlength][0]=urlinfo;
+          infotable[actlength][1]=context;
+          infotable[actlength][2]=keywordn;
+          infotable[actlength][3]=doctitle;
+          infotable.actlength++;
+          }
+      }
+  function process()
+      {
+      // process infotable data before display according to search type
+      var i;
+      var j;
+      if ( top.searchformframe.document.forms[0].elements[0].checked )
+          {
+          // left button - search for paragraphs containing 'all' of keywords
+          // method: look through the first block of keywords, where
+          //             infotable[i][2] tells us that keywordn == 1
+          //             when the 'note()' function was called.
+          //         then look through all the other blocks of keywords
+          //             ensuring there is at least one occurence within each
+          //             block which has the same URL reference as infotable[i][0]
+          var resetlength = false;
+          for ( i = 0 ; i < infotable.actlength ; i++ )
+              {
+              if ( infotable[i][2] == 1 )
+                  {
+                  var accept = true;
+                  var targetindex = 2;
+                  for ( j = i+1 ; j < infotable.actlength && accept; j++ )
+                      {
+                      // retain infotable[i][2] == 1 if we find at least
+                      // one case of infotable[j][2] == targetindex per
+                      // targetindex in the range from 2 to keywordn.
+                      if ( infotable[j][2] == targetindex )
+                          {
+                          // possible match - compare the URLs
+                          if ( infotable[i][0] == infotable[j][0] )
+                              targetindex++;
+                          }
+                      else if ( infotable[j][2] > targetindex )
+                          // we must have failed to match the keyword
+                          // which sits at a position of 'targetindex'
+                          accept = false;
+                      }
+                  if ( targetindex <= keywordn || ! accept )
+                      infotable[i][2] = 0;
+                  }
+              else
+                  {
+                  if ( ! resetlength )
+                      infotable.actlength = i;
+                  resetlength = true;
+                  infotable[i][2] = 0;
+                  }
+              }
+          }
+	  <!-- *** Radio Button for 'the phrase' removed as part of project ID 63110 JW 05/09/2022*** -->
+      <!-- else if ( top.searchformframe.document.forms[0].elements[2].checked ) -->
+         <!-- { -->
+          <!-- // right button - search for the given phrase -->
+          <!-- // method: look at the context strings, remove 'bold' meta data tags -->
+          <!-- //         and check whether the phrase appears in the string. -->
+          <!-- //         add spaces around phrase and string to ensure exact match -->
+          <!-- for ( i = 0 ; i < infotable.actlength ; i++ ) -->
+              <!-- { -->
+              <!-- var context = " " + infotable[i][1] + " "; // context string -->
+              <!-- var startbold = context.indexOf("<B>"); -->
+              <!-- if ( startbold != -1 ) -->
+                  <!-- { -->
+                  <!-- var endbold = context.indexOf("</B>", startbold+3); -->
+                  <!-- if ( endbold != -1 ) -->
+                      <!-- { -->
+                      <!-- context = context.substring(0, startbold) + -->
+                                <!-- context.substring(startbold+3, endbold) + -->
+                                <!-- context.substring(endbold+4);                                      context.toLowerCase(); -->
+                      <!-- } -->
+                  <!-- } -->
+              <!-- // we canot assume phrase will be enclosed by spaces -->
+              <!-- if ( context.indexOf(keywords) == -1 ) -->
+                  <!-- infotable[i][2] = 0; -->
+              <!-- } -->
+          <!-- } -->
+      // else
+          // middle button - search for any of the keywords (default)
+          // all infotable[i][2] > 0 so we don't need to do anything
+
+      // purge duplicate URLs from the resulting entries
+      // note: this is inefficient if many potential matches were found
+      //       ( which is why the 'all' method reset the table length )
+		  for ( i = 0 ; i < infotable.actlength ; i++ )
+			 if ( infotable[i][2] > 0 )
+				 for ( j = i+1 ; j < infotable.actlength ; j++ )
+					 if ( infotable[j][2] > 0 &&
+						  infotable[i][0] == infotable[j][0] )
+						 infotable[j][2] = 0;
+     }
+  function display()
+      {
+      // callback function referenced by all searchfiles/<keyword>.html files
+      // to indicate that there is no more data to note for a <keyword>.
+      // if there are more keywords to search for, we append data to infotable
+      // otherwise we process the results and output them in resultsframe.
+      // this method ensures that multiple searchfiles/<keyword>.html files
+      // don't try to update infotable data simultaneously.
+      if ( keywordl > 0 )
+          search("");
+      else
+          {
+          top.resultsframe.document.open();
+          top.resultsframe.document.writeln("<HTML>");
+          top.resultsframe.document.writeln("<HEAD>");
+          top.resultsframe.document.writeln("</HEAD>");
+          top.resultsframe.document.writeln("<BODY BGCOLOR=#ffffff LINK=#006633>");
+          top.resultsframe.document.write(  "<H2>References to &quot;");
+          top.resultsframe.document.writeln(keywords + "&quot;</H2>");
+          process(); // take account of type of search used (any/all/phrase)
+          var i;
+          var number_of_links = 0;
+          for ( i = 0 ; i < infotable.actlength ; i++ )
+              {
+              if ( infotable[i][2] > 0 )
+                  // ignore deleted entries
+                  {
+                  top.resultsframe.document.write("<P><A HREF=");
+
+                  // // needs '../' in path in anything but Netscape 4???
+                  // if (!(( navigator.appName.substring(0,8) == "Netscape") &&
+                  //      ( navigator.appVersion.substring(0,1) == "4")))
+                  //     top.resultsframe.document.write("../");
+
+                  top.resultsframe.document.write(base_href);
+
+                  top.resultsframe.document.write(infotable[i][0] + " target=\"text\">");
+                  top.resultsframe.document.writeln(infotable[i][1] + "</A>");
+                  top.resultsframe.document.write("<BR><SMALL>(");
+                  top.resultsframe.document.write(infotable[i][3]);
+                  top.resultsframe.document.writeln(")</SMALL>");
+                  number_of_links++;
+                  }
+              }
+          if ( number_of_links == 0 )
+              top.resultsframe.document.write("&nbsp;none<br>");
+          top.resultsframe.document.writeln("</BODY>");
+          top.resultsframe.document.writeln("</HTML>");
+          top.resultsframe.document.close();
+          top.defaultStatus = "";
+          }
+      }
+
+  function search(keywordf)
+      {
+      // initially, search() is called from searchformframe with a list of keywords.
+      // subsequent calls, made at the start of display(), pass in an empty string.
+      if ( keywordf != "" )
+          {
+          keywords = keywordf.toLowerCase();
+          keyworda = keywords.split(" ");
+          keyworda.reverse();
+          keywordl = keyworda.length;
+          inittable();
+          subdir="searchfiles/";
+          keywordn = 0;
+          }
+      if ( keywordl == 0 )
+	  {	  
+          display();	   
+		  }
+      else
+          {
+          keywordl--;
+          keywordn++;
+          keyword = keyworda[keywordl];
+          top.defaultStatus = "searching for " + keyword;
+          if ( top.window["validateframe"].validkey(keyword) ) // this must be failing for p's
+              {
+              top.hiddenframe.window.location.href = subdir + keyword + ".html";
+              // this little kludge is necessary because the first document is
+              // referenced the directory containing this script but subsequent
+              // documents are referenced from the 'searchfiles' subdirectory.
+              subdir = "";
+              }
+          else 
+		  {
+              display();  
+			  }
+          }
+      }
+   // comment ending with closing HTML comment ends hiding Javascript -->
+  </SCRIPT>
+</HEAD>
+<FRAMESET FRAMEBORDER="0" FRAMESPACING="0" BORDER="0" ROWS="*,80,1,1" cols="*"> 
+  <FRAME NAME="resultsframe" SRC="help_search.html"
+      SCROLLING="yes" MARGINWIDTH=10 MARGINHEIGHT=10>
+  <FRAME NAME="searchformframe" SRC="searchformframe.html" 
+	  BORDER=1 FRAMEBORDER="1" FRAMESPACING="1"
+      SCROLLING="no" MARGINWIDTH=10 MARGINHEIGHT=10>
+  <FRAME NAME="hiddenframe" SRC="hiddenframe.html"
+      NORESIZE SCROLLING="no" MARGINWIDTH=0 MARGINHEIGHT=0>
+  <FRAME NAME="validateframe" SRC="validateframe.html"
+      NORESIZE SCROLLING="no" MARGINWIDTH=0 MARGINHEIGHT=0>
+</FRAMESET>
+<noframes> 
+</noframes> 
+</HTML>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_fit_chain_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_fit_chain_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_fit_chain_s
+    {
+    int              n_curves_in_chain; --- number of curves in this chain (0)
+    <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>      *curves_in_chain;   --- curves in the chain (NULL)
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>   *curve_intervals;   --- parameter intervals for each
+                                        --- chain-curve (NULL)
+    double          *fit_parameters;    --- parameters for bcurve at ends
+                                        --- of each chain-curve (NULL)
+    };
+
+typedef struct PK_BCURVE_fit_chain_s PK_BCURVE_fit_chain_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains the data to define a "chain" for the chain-of-curves
+evaluator function.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_fit_eval_data_t.html>PK_BCURVE_fit_eval_data_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This structure contains the following fields:
+
+<B>'n_curves_in_chain'</B> The number of curves in the chain.
+
+<B>'curves_in_chain'</B>   An ordered array of <B>'n_curves_in_chain'</B> curves.
+
+<B>'curve_intervals'</B>   A parallel array of parameter intervals on the curves
+                    denoting the sections of the curves that make up the
+                    chain.  Together with the <B>'curves_in_chain'</B> field this
+                    specifies a chain of trimmed curves.
+
+<B>'fit_parameters'</B>    A strictly increasing array of <B>'n_curves_in_chain'</B> + 1
+                    doubles representing the parameters for the fitting
+                    bcurves at the end points of the trimmed curves.  If
+                    the curve-chain is periodic then the last value of
+                    <B>'fit_parameters'</B> should be equal to the first plus the
+                    required period.
+
+
+A chain is a connected set of trimmed curves defined by an ordered array of
+curves and a matching array of parameter intervals.  The curves should meet
+each other with G1 continuity at the points specified by the parameter
+intervals.  Each curve should be oriented so that its parameter increases
+in the forward direction along the chain.
+
+The parameterisation of the fitted bcurve with respect to the chain
+is defined by the <B>'fit_parameters'</B> field.  The fit-parameters specify the
+parameter values taken by the fitted bcurve at the ends of each of the trimmed
+curves.  Evaluation at the intermediate parameters on the bcurve is by cubic
+interpolation of the chain-curve parameterisation between the fit-parameters.
+If a set of break-parameters is provided to <A HREF=../headers/pk_bcurve_create_by_fitting.html>PK_BCURVE_create_by_fitting</A> then
+each of these break-parameters must lie at the end of a trimmed curve and the
+corresponding fit-parameter must equal the break-parameter.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_DEBUG_BODY_compare_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_DEBUG_BODY_compare_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_DEBUG_BODY_compare_o_s
+    {
+    int                         o_t_version;       --- version number
+                                                   --- of option structure
+    int                         max_diffs;         --- maximum no. face pairs
+                                                   --- returned (0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                all_tests;         --- perform all local tests
+                                                   --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                num_tests;         --- perform numerical tests
+                                                   --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                acc_dev_tests;     --- perform accurate
+                                                   --- deviation tests
+                                                   --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                tol_dev_tests;     --- perform tolerant
+                                                   --- deviation tests
+                                                   --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                tol_tests;         --- perform tolerance tests
+                                                   --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                class_tests;       --- perform class tests
+                                                   --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                sense_tests;       --- perform sense tests
+                                                   --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                missing_tests;     --- perform missing entity
+                                                   --- tests
+                                                   --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                non_match_tests;   --- perform non-matched
+                                                   --- pairs tests
+                                                   --- (PK_LOGICAL_true)
+    };
+
+typedef struct PK_DEBUG_BODY_compare_o_s PK_DEBUG_BODY_compare_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This option structure contains the optional controls for
+<A HREF=../headers/pk_debug_body_compare.html>PK_DEBUG_BODY_compare</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_body_compare.html>PK_DEBUG_BODY_compare</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'max_diffs'</B>         If <B>'max_diffs'</B> = 0, only global comparison tests will
+                    be performed on the bodies, for instance, comparison of
+                    the number of vertices/edges or faces in the body.
+                    If <B>'max_diffs'</B> &gt; 0, then more expensive tests will
+                    first attempt to match face pairs, each pair consisting
+                    of one face selected from each body on the basis of
+                    broad similarities. Analysis will then be performed to
+                    detect any differences between each face of a matched pair.
+                    Analysis of remaining matched pairs will continue until
+                    <B>'max_diffs'</B> matched face pairs have been found which are
+                    considered non-identical by those comparison tests which
+                    have been specified.
+                    The faces which remain unmatched represent a significant
+                    difference between the bodies, therefore the option to
+                    return non-matched faces is recommended. The default
+                    value of the field is zero.
+                    Note that since only matched face pairs are checked, it
+                    follows that local differences between wire edges will not
+                    be detected.
+
+
+<B>'all_tests'</B>         Perform all local comparison tests. If <B>'max_diffs'</B> = 0,
+                    this argument will be ignored.
+
+
+<B>'num_tests'</B>         Perform <B>'max_diffs'</B> numerical comparison tests.
+
+
+<B>'acc_dev_tests'</B>     Perform <B>'max_diffs'</B> accurate deviation comparison tests.
+
+
+<B>'tol_dev_tests'</B>     Perform <B>'max_diffs'</B> deviation comparison tests to within
+                    session precision.
+
+
+<B>'tol_tests'</B>         Perform <B>'max_diffs'</B> tolerance comparison tests.
+
+
+<B>'class_tests'</B>       Perform <B>'max_diffs'</B> class comparison tests.
+
+
+<B>'sense_tests'</B>       Perform <B>'max_diffs'</B> sense comparison tests.
+
+
+<B>'missing_tests'</B>     Perform <B>'max_diffs'</B> missing entity comparison tests.
+
+
+<B>'non_match_tests'</B>   Perform <B>'max_diffs'</B> non-matched entity pairs comparison
+                    tests.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

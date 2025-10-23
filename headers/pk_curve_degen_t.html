@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_degen_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_degen_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_degen_s
+    {
+    <A HREF=../headers/pk_curve_degen_type_t.html>PK_CURVE_degen_type_t</A> type;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          have_position;
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>           position;
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>         range;
+    <A HREF=../headers/pk_geom_t.html>PK_GEOM_t</A>             geom;
+    };
+
+typedef struct PK_CURVE_degen_s PK_CURVE_degen_t;
+
+</B>
+<A NAME="description"></A>
+<I>A structure packaging information about a degeneracy on a curve.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_degens_t.html>PK_CURVE_degens_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Each structure contains information on a single region where the curve is
+degenerate.
+
+The structure has the following fields:
+
+<B>'type'</B>              Indicates the type of degeneracy.
+
+<B>'have_position'</B>     If set to PK_LOGICAL_true, then a three-space position is
+                    returned in <B>'position'</B>.
+
+<B>'position'</B>          If <B>'have_position'</B> is set to PK_LOGICAL_true, this
+                    indicates the position of the degeneracy in three-space.
+                    If <B>'range'</B> is not zero-width, then the position corresponds
+                    to the parametric centre.
+
+<B>'range'</B>             The range of the degeneracy in parameter space. Note that
+                    it is possible to have zero-width parameter ranges.
+
+<B>'geom'</B>              The geometric node containing the degeneracy. If <B>'type'</B> is
+                    PK_CURVE_degen_type_phys_c or PK_CURVE_degen_type_param_c,
+                    this will be the input <B>'curve'</B>. Otherwise if <B>'type'</B> is
+                    PK_CURVE_degen_type_on_surf_c, this will be the underlying
+                    surface containing the degeneracy.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

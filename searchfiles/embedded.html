@@ -1,0 +1,117 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.007.html#50409787_pgfId-418588", " data of a facet body can either be <B>embedded</B> in the XT file, or stored externally in", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-928612", " A frame is created when a lattice is <B>embedded</B> in a region, and deleted when its associated", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-669544", " type that can be created, enquired of, rendered, <B>embedded</B> in a region and attached to a part", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-1002747", " PK_REGION_remove_lattice removes only the lattice <B>embedded</B> in a body and will convert it to", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989610", " regions and void regions, irrespective of any lattices <B>embedded</B> in the regions. ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-275053", " type which can be created, enquired of, rendered, <B>embedded</B> in a region and attached to parts as", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-467487", " Lattices can be <B>embedded</B> in regions to provide additional context and information", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-566310", " Figure 20-14 Example of a region containing an <B>embedded</B> lattice ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-460924", " the following relationships between regions and the lattices <B>embedded</B> in them: ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-459544", " A lattice may be <B>embedded</B> in multiple regions. This can be used, for", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-576936", " A region and its <B>embedded</B> lattice must be of opposite solidity. ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-577399", " a lattice is larger than its region, the <B>embedded</B> portion is considered to be bounded by the", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-568182", " part as a manifold solid after you have <B>embedded</B> lattices, you can do this using the PK_SESSION_set_cellular_guise", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-468330", " into which the lattice will be <B>embedded</B>, and parallel arrays of ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-547407", " If the associated sense of the <B>embedded</B> lattice is PK_LOGICAL_true (i.e. the lattice contains solid", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-547548", " remain unchanged regardless of the sense of the <B>embedded</B> lattice.) ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-461860", " When a lattice is <B>embedded</B> in a region, the lattices solidity is controlled", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-576068", " 20.10.4 Imprinting <B>embedded</B> lattices ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-576097", " solid lattice (with a frame sense of PK_LOGICAL_true) <B>embedded</B> in a void region. ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-570510", " 20.10.5 Rendering <B>embedded</B> lattices ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-570511", " PK_TOPOL_render_volume allows you to visualise lattices <B>embedded</B> in a body by rendering a 3-D representation", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-570512", " The <B>embedded</B> lattice geometry is rendered using primitives (cones, cylinders,", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-570552", " the geometry of the part of the lattice <B>embedded</B> in the input bodies or regions. Lrods that", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-570551", " Figure 20-17 Rendering the <B>embedded</B> lattice only via your graphics pipeline ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-570556", " which contains the lattice as well as the <B>embedded</B> part of the lattice, your application needs to", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-571852", " of rendering a solid body and only the <B>embedded</B> lattice geometry ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-463275", " of regions in which the given lattice is <B>embedded</B> ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-463379", " Returns the set of lattices that are <B>embedded</B> in the given region ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-801129", " Which set of regions is the given lattice <B>embedded</B> in? ", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-801157", " Which lattices are <B>embedded</B> in the given region? ", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.070.html#50409856_pgfId-323606", " the target (the bottom face of a cone <B>embedded</B> in a box) is replaced by multiple faces", "Functional Description - Patching");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-425562", " facet parts, the PSM mesh data may be <B>embedded</B> in the XT data or saved in a", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-415855", " data in the PSM format, which may be <B>embedded</B> in the XT data or stored externally in", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.087.html#50409875_pgfId-362457", " files used to store the model data, or <B>embedded</B> in the XT data itself. PK_MESH_create_from_facets also enables", "Functional Description - Creating PSM Data From Foreign Facet Data");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-294819", " <B>Embedded</B> schemas ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-382604", " ignored in PK_PART_transmit_b as the meshes are always <B>embedded</B> within the application memory block. ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-378322", " into a session depends on whether it is <B>embedded</B> in the XT file or is in a", "Functional Description - Archives");
+top.note("chapters/fd_chap.127.html#50409921_pgfId-337327", " PSM_MESH node and its associated structures may be <B>embedded</B> in the XT data, or transmitted to a", "Functional Description - Persistent Mesh (PSM) Format");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-302294", " associated with a body as frame-attached principal geometry <B>embedded</B> in a region, or as construction geometry. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275786", " is void. A region may have a lattice <B>embedded</B> in it. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275812", " or fin-curve pairings, or the solidity of an <B>embedded</B> lattice. Senses can apply to faces, edges, fins", "Functional Description - ZGlossary");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_not_connected 20 PK_REGION_remove_lattice The lattice is not <B>embedded</B> in region ", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " from being <B>embedded</B> in surf to create valid", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " any lattices <B>embedded</B> in it. (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " 5276 PK_REGION_embed_lattices A lattice in lattices is already <B>embedded</B>", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " 5276 PK_REGION_embed_lattices A lattice in lattices is already <B>embedded</B>", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " 5292 PK_REGION_embed_lattices A lattice in lattices cannot be <B>embedded</B>", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " from being <B>embedded</B> in surf to create valid", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " any lattices <B>embedded</B> in it. (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>embedded</B> in surf (SERIOUS)", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " 5276 PK_ERROR_already_embedded A lattice in lattices is already <B>embedded</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_is_cellular.html#documentation", "any lattices <B>embedded</B> in the regions; setting the cellular guise using", "PK Reference - PK_BODY_is_cellular");
+top.note("headers/pk_curve_embed_in_surf.html#errors", " <B>embedded</B> in surf (SERIOUS)", "PK Reference - PK_CURVE_embed_in_surf");
+top.note("headers/pk_curve_embed_in_surf_2.html#errors", " <B>embedded</B> in surf (SERIOUS)", "PK Reference - PK_CURVE_embed_in_surf_2");
+top.note("headers/pk_curve_embed_in_surf_2.html#documentation", " which it is to be <B>embedded</B> will be copied.", "PK Reference - PK_CURVE_embed_in_surf_2");
+top.note("headers/pk_curve_embed_in_surf_o_t.html#declaration", " --- be <B>embedded</B> (0.0, 1.0)", "PK Reference - PK_CURVE_embed_in_surf_o_t");
+top.note("headers/pk_curve_embed_in_surf_o_t.html#documentation", " <B>embedded</B> into the surface.", "PK Reference - PK_CURVE_embed_in_surf_o_t");
+top.note("headers/pk_debug_report_start_o_t.html#declaration", " --- <B>embedded</B> into a journal file", "PK Reference - PK_DEBUG_report_start_o_t");
+top.note("headers/pk_debug_report_start_o_t.html#documentation", " will be <B>embedded</B> into a new journal file, otherwise", "PK Reference - PK_DEBUG_report_start_o_t");
+top.note("headers/pk_embed_adjust_t.html#documentation", "to be <B>embedded</B> in a surface leaves the parameter space", "PK Reference - PK_embed_adjust_t");
+top.note("headers/pk_ffskxt_f_t.html#documentation", " transmitting and individual delayed loading of <B>embedded</B> model data.", "PK Reference - PK_FFSKXT_f_t");
+top.note("headers/pk_lattice_ask_part.html#documentation", "The lattice will be construction geometry or <B>embedded</B> in a region of the part.", "PK Reference - PK_LATTICE_ask_part");
+top.note("headers/pk_lattice_ask_regions_o_t.html#description", " controls for querying which regions a lattice is <B>embedded</B> in.", "PK Reference - PK_LATTICE_ask_regions_o_t");
+top.note("headers/pk_part_find_entity_by_ident.html#documentation", " PK_CLASS_lattice either <B>embedded</B> in a region or construction geometry", "PK Reference - PK_PART_find_entity_by_ident");
+top.note("headers/pk_part_transmit_o_t.html#documentation", " Part files with <B>embedded</B> mesh data can still be", "PK Reference - PK_PART_transmit_o_t");
+top.note("headers/pk_partition_has_lattices_r_t.html#documentation", " with <B>embedded</B> or construction lattices.", "PK Reference - PK_PARTITION_has_lattices_r_t");
+top.note("headers/pk_partition_transmit_o_t.html#documentation", " Partition files with <B>embedded</B> mesh data can still", "PK Reference - PK_PARTITION_transmit_o_t");
+top.note("headers/pk_region_ask_lattices.html#description", " This function returns the set of lattices <B>embedded</B> in the given region .", "PK Reference - PK_REGION_ask_lattices");
+top.note("headers/pk_region_ask_lattices_o_t.html#description", " Holds optional controls for querying which lattices are <B>embedded</B> in the region.", "PK Reference - PK_REGION_ask_lattices_o_t");
+top.note("headers/pk_region_ask_lattices_r_t.html#documentation", " n_lattices The number of lattices <B>embedded</B> in region .", "PK Reference - PK_REGION_ask_lattices_r_t");
+top.note("headers/pk_region_embed_lattices.html#errors", " PK_ERROR_already_embedded A lattice in lattices is already <B>embedded</B>", "PK Reference - PK_REGION_embed_lattices");
+top.note("headers/pk_region_embed_lattices.html#documentation", "Currently only a single lattice may be <B>embedded</B> in a region (i.e. n_lattices ", "PK Reference - PK_REGION_embed_lattices");
+top.note("headers/pk_region_remove_lattice.html#errors", " PK_ERROR_not_connected The lattice is not <B>embedded</B> in region ", "PK Reference - PK_REGION_remove_lattice");
+top.note("headers/pk_region_remove_lattice.html#documentation", "<B>Embedded</B> lattices are attached to frames, which are attached to regions. When", "PK Reference - PK_REGION_remove_lattice");
+top.note("headers/pk_spcurve_create.html#errors", " spcurve when <B>embedded</B> in", "PK Reference - PK_SPCURVE_create");
+top.note("headers/pk_spcurve_sf_t.html#errors", " spcurve when <B>embedded</B> in surf (SERIOUS)", "PK Reference - PK_SPCURVE_sf_t");
+top.note("headers/pk_topol_categorise_geom.html#documentation", " queries related to lattice geometry, use PK_TOPOL_find_frames for <B>embedded</B>", "PK Reference - PK_TOPOL_categorise_geom");
+top.note("headers/pk_topol_imprint_frames.html#documentation", "<B>embedded</B> in a single region. Otherwise, new regions may", "PK Reference - PK_TOPOL_imprint_frames");
+top.note("headers/pk_topol_render_volume.html#errors", " any lattices <B>embedded</B> in it. (MILD)", "PK Reference - PK_TOPOL_render_volume");
+top.note("headers/pk_topol_render_volume.html#documentation", "If a lattice is <B>embedded</B> into multiple regions that are being rendered, a", "PK Reference - PK_TOPOL_render_volume");
+top.note("chapters/di_chap.05.html#50511937_pgfId-342408", " See Section 20.10.4, Imprinting <B>embedded</B> lattices in the Parasolid Functional Description for more", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.06.html#50511938_pgfId-288661", " and receiving of binary XT files that contain <B>embedded</B> meshes. You can identify the installed frustrum using", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.08.html#50511940_pgfId-331691", " Section 20.10.5, Rendering <B>embedded</B> lattices ", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-273859", " as lists can be <B>embedded</B>, the innermost lists are evaluated first, and their", "KID Manual - LISP in KID");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-273890", " <B>Embedded</B> car and cdr calls ", "KID Manual - LISP in KID");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-273891", " can be <B>embedded</B> in a single call, for example: ", "KID Manual - LISP in KID");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-273897", " is a shorthand for <B>embedded</B> ", "KID Manual - LISP in KID");
+top.note("chapters/kd_chap.11.html#50475016_pgfId-273885", " Reflecting <B>embedded</B> structure of the data values using brackets is", "KID Manual - Attributes in KID");
+top.note("chapters/in_chap.05.html#50520098_pgfId-306608", " default, since Parasolid V14.0, the relevant schema is <B>embedded</B> inside every Parasolid part file. This ensures that", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.05.html#50520098_pgfId-306769", " guarantees downward compatibility of part files with an <B>embedded</B> schema to at least the previous major version.", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.05.html#50520098_pgfId-304050", " for part files that do not contain an <B>embedded</B> schema by copying the schema file for a", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.05.html#50520098_pgfId-273083", " KID linked against the Parasolid shared library contains <B>embedded</B> information about where to look for the Parasolid", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.07.html#50520100_pgfId-718540", " under support from Microsoft, including their server and <B>embedded</B> versions, where provided. We will cease supporting Parasolid", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-431714", " is replaced by the string(s) <B>embedded</B> in the application using the ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-325239", " Version information is <B>embedded</B> into Parasolid DLLs (for Windows platforms), shared libraries", "Installation Notes - Environment");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7733054", " In V36.0 lattices can be <B>embedded</B> in a region as boundary geometry. This functionality", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7738443", " region, and if a given region has an <B>embedded</B> lattice. ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7774541", " set of functions to work on bodies with <B>embedded</B> lattices. ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7734719", " Figure 1-1 A lattice <B>embedded</B> in the internal void of a hollowed cube", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7858959", " For more information, see Section 20.10.4, &#8220;Imprinting <B>embedded</B> lattices&#8221; in the Parasolid Functional Description . ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7836708", " 1.5.1 Rendering lattice geometry <B>embedded</B> in a body ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7837013", " In V36.0 Parasolid allows you to visualise lattices <B>embedded</B> in a body by outputting a collection of", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7838313", " 1-6 Rendering only the part of the lattice <B>embedded</B> in the body ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7837259", " For more information, see Section 20.10.4, &#8220;Imprinting <B>embedded</B> lattices&#8221; in the Parasolid Functional Description . ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

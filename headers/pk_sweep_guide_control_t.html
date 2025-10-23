@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_sweep_guide_control_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_sweep_guide_control_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_sweep_guide_control_s
+    {
+    <A HREF=../headers/pk_vertex_array_t.html>PK_VERTEX_array_t</A>             profile_matches;
+                                              --- guide start vertices
+    <A HREF=../headers/pk_sweep_guide_clamp_type_t.html>PK_sweep_guide_clamp_type_t</A>   clamp_type; --- clamp type
+                                              --- (PK_sweep_guide_clamp_none_c)
+    <A HREF=../headers/pk_sweep_guide_clamp_dirn_t.html>PK_sweep_guide_clamp_dirn_t</A>   dirn_clamp; --- direction clamp
+    <A HREF=../headers/pk_vertex_array_t.html>PK_VERTEX_array_t</A>             guide_matches;
+                                              --- corresponding profile
+                                              --- vertices
+    };
+
+typedef struct PK_sweep_guide_control_s PK_sweep_guide_control_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds options specific to each guide in sweeping.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_swept_body_2_o_t.html>PK_BODY_make_swept_body_2_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This structure has the following fields :
+
+<B>'profile_matches'</B>   An array of vertices, the length of which should be equal
+                    to the number of profiles. For each profile, a guide vertex
+                    should be specified which indicates the point on the guide
+                    which corresponds to that profile.
+
+<B>'clamp_type'</B>        The clamp to apply to this guide. If any guides have a
+                    clamp type other than PK_sweep_guide_clamp_none_c, then:
+                      o These guides must have the same clamp type.
+                      o <B>'guide_scale'</B> must be set to PK_sweep_guide_uniform_c.
+                      o The number of guides must be less than or equal to two.
+
+                    The selection of the clamp type indicates which of the
+                    following fields actually holds the description of the
+                    constraint.
+
+                    For <A HREF=../headers/pk_sweep_guide_clamp_dirn_t.html>PK_sweep_guide_clamp_dirn_c</A>, the <B>'dirn_clamp'</B> field
+                    is examined for the description.
+
+                    For PK_sweep_guide_clamp_fixed_c, no field is examined for
+                    the description.
+
+                    For PK_sweep_guide_clamp_none_c, no field is examined for
+                    the description.
+
+                    (PK_sweep_guide_clamp_none_c)
+
+<B>'dirn_clamp'</B>        A clamp direction may be specified at any or all of the
+                    guide wire vertices, and these are used to define a clamp
+                    direction at each point on the guide wire.
+
+                    A clamp direction is swept so that it follows the path by
+                    keeping at a fixed angle to the sweep direction. If there
+                    is more than one clamp direction, the supplied clamp
+                    directions are interpolated.
+
+                    The swept cross-section will be transformed so that it
+                    preserves its angular relationship to the clamp directions
+                    at each guide.
+
+<B>'guide_matches'</B>     An array of vertices, the length of which should be equal
+                    to the number of profiles. For each profile, a vertex
+                    should be specified which indicates the point on
+                    that profile corresponding to the relevant guide vertex
+                    in <B>'profile_matches'</B>. This array is required if
+                    <B>'guide_scope'</B> has been set to <A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_local_c</A>;
+                    otherwise, it should not be set.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_REPORT_record_3_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_REPORT_record_3_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_REPORT_record_3_s
+    {
+    <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_t</A>      status;            --- status code
+    int                n_int_arrays;      --- number of int arrays
+    <A HREF=../headers/pk_int_array_t.html>PK_int_array_t</A>    *int_arrays;        --- int arrays
+    int                n_double_arrays;   --- number of double arrays
+    <A HREF=../headers/pk_double_array_t.html>PK_double_array_t</A> *double_arrays;     --- double arrays
+    int                n_strings;         --- number of strings
+    char             **strings;           --- strings
+    int                n_old_item_arrays; --- number of original item arrays
+    <A HREF=../headers/pk_int_array_t.html>PK_int_array_t</A>    *old_item_arrays;   --- original item arrays
+    <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A>  *old_class_arrays;  --- original class arrays
+    int                n_item_arrays;     --- number of item arrays
+    <A HREF=../headers/pk_item_array_t.html>PK_ITEM_array_t</A>   *item_arrays;       --- new item arrays
+    };
+typedef struct PK_REPORT_record_3_s PK_REPORT_record_3_t;
+</B>
+<A NAME="description"></A>
+<I>This datatype is that of a generic REPORT record.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_report_record_t.html>PK_REPORT_record_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It has the fields:
+
+<B>'status'</B>            this indicates the status represented by the information
+                    in this record.  The items contained in this record depend
+                    upon the <B>'status'</B>.
+
+<B>'n_int_arrays'</B>      the number of integer arrays
+
+<B>'int_arrays'</B>        the integer arrays
+
+<B>'n_double_arrays'</B>   the number of double arrays
+
+<B>'double_arrays'</B>     the double arrays
+
+<B>'n_strings'</B>         the number of character strings
+
+<B>'strings'</B>           the character strings
+
+<B>'n_old_item_arrays'</B> the number of pre-existing item arrays
+
+<B>'old_item_arrays'</B>   an array of length <B>'n_old_item_arrays'</B> of <A HREF=../headers/pk_int_array_t.html>PK_int_array_t</A>
+                    structs.  Each struct contains items which existed before
+                    the operation for which the report was created and which
+                    may no longer exist
+
+<B>'old_class_arrays'</B>  an array of length <B>'n_old_item_arrays'</B> of <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A>
+                    structs. Each struct of <B>'old_class_arrays'</B>
+                    has the same length as the corresponding struct of
+                    <B>'old_item_arrays'</B>
+
+<B>'n_item_arrays'</B>     the number of item arrays
+
+<B>'item_arrays'</B>       an array of length <B>'n_item_arrays'</B> of <A HREF=../headers/pk_item_array_t.html>PK_ITEM_array_t</A>
+                    structs. Each struct contains items which exist after
+                    the operation.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

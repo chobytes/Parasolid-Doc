@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE>IDKYPA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>IDKYPA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+IDKYPA ( keylen, key, parts, states, nparts, ifail )
+====================================================
+
+  Identify keyed parts.
+
+Receives:
+  KI_int_nchars            *keylen         --- length of key
+  KI_chr_key                key[keylen]    --- key of part to find
+
+Returns:
+  KI_tag_list_part         *parts          --- parts found with given key
+  KI_tag_list_int          *states         --- states of parts found
+  KI_int_nitems            *nparts         --- number of parts found
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_key_not_found          part with key not found in memory
+
+Description:
+  IDKYPA returns a list of the parts with the given key which are attached to
+  the world. A list of the states of the parts is also returned.
+
+  All parts in the world are scanned until a stored, modified or unloaded
+  part with the given key is found. New and anonymous parts do not have
+  keys and cannot be found with this function.
+
+  There may actually be more than one part with the same key. They are either
+  all modified or one is stored/unloaded. In this situation the tags of all the
+  parts will be returned.
+
+  If no part with the given key is attached to the world, KI_key_not_found will
+  be returned in 'ifail'.
+
+
+</PRE>
+</BODY>
+</HTML>

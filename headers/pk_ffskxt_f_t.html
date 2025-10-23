@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FFSKXT_f_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FFSKXT_f_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int (*PK_FFSKXT_f_t)
+(
+<I>--- received arguments ---
+</I>const int          guise,
+const int          strid,
+const unsigned int pos_high,
+const unsigned int pos_low
+<I>--- returned arguments ---
+</I>);
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_fru_o_t.html>PK_SESSION_ask_fru_o_t</A><br>
+    <A HREF=../headers/pk_session_register_fru_o_t.html>PK_SESSION_register_fru_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+  Seek within a binary XT file by resetting the file pointer for C-transmit
+  and partition guises. This function is only required to support optimised
+  transmitting and individual delayed loading of embedded model data.
+  Receiving only data needed for individual pieces of the model will be
+  faster in many scenarios and avoids unneeded model data taking up internal
+  memory.
+
+Receives:
+  int                       guise          --- class of file:
+                                           ---  FFCXMT,FFCXMP
+                                           ---  C-transmit,partition
+  int                       strid          --- frustrum strid
+  unsigned int              pos_high       --- high order 32-bits of
+                                           --- pointer into file stream
+  unsigned int              pos_low        --- low order 32-bits of
+                                           --- pointer into file stream
+
+Return codes:               FR_no_errors
+                            FR_seek_fail
+
+Description:
+  This function resets the file pointer within a binary XT file to a value
+  relative to the position immediately after FFOPRD or FFOPWR. Subsequent
+  reading or writing starts from this position. The high and low order bits
+  combine to a 64-bit value to support large files. Note that this function
+  will only be called for files that were opened by FFOPRD or FFOPWR using
+  <B>'format'</B> FFBNRY.
+
+  If FR_seek_fail is returned, Parasolid may be able to continue if the
+  current file pointer is before the reset position value, but with degraded
+  performance.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

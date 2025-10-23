@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_BODY_fault_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_create_minimum_topology.html>PK_BODY_create_minimum_topology</A><br>
+    <A HREF=../headers/pk_body_create_sheet_topology.html>PK_BODY_create_sheet_topology</A><br>
+    <A HREF=../headers/pk_body_create_solid_topology.html>PK_BODY_create_solid_topology</A><br>
+    <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A><br>
+    <A HREF=../headers/pk_body_create_topology_o_t.html>PK_BODY_create_topology_o_t</A><br>
+    <A HREF=../headers/pk_body_create_wire_topology.html>PK_BODY_create_wire_topology</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This type indicates a fault in one of the PK_BODY_create_&lt;body_type&gt;_topology
+or <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A> functions.  In most cases a `fault-index' is also
+returned which is the index in the <B>'classes'</B> array of the faulty entity.
+
+   PK_BODY_fault_t                     Meaning                      fault_index
+
+PK_BODY_fault_bad_body_c        PK_CLASS_body appears in classes      none
+                                array but not at the first position
+PK_BODY_fault_unknown_c         unknown fault                         none
+PK_BODY_fault_unknown_child_c   unknown child                         none
+PK_BODY_fault_duplicate_child_c a parent-child relation is repeated   parent
+PK_BODY_fault_wrong_child_c     a child is of the wrong class         child
+PK_BODY_fault_missing_child_c   a parent has too few children         parent
+PK_BODY_fault_extra_child_c     a parent has too many children        parent
+PK_BODY_fault_wrong_parent_c    a vertex has edge and loop parents    vertex
+PK_BODY_fault_missing_parent_c  a child has too few parents           child
+PK_BODY_fault_extra_parent_c    a child has too many parents          child
+PK_BODY_fault_bad_wire_c        disconnected wire - in a wire with    none
+                                two loops, the loops do not match
+PK_BODY_fault_bad_loop_c        the start and end vertices of the     loop
+                                edges in a loop, taking sense into
+                                account, do not match up
+PK_BODY_fault_bad_shells_c      two faces sharing an edge are in      edge
+                                different shells
+PK_BODY_fault_disjoint_shell_c  the faces in a shell are not all      shell
+                                connected
+PK_BODY_fault_non_manifold_c    non-manifold vertex                   vertex
+PK_BODY_fault_bad_region_c      the outer region of the body is       region
+                                solid
+PK_BODY_fault_no_fault_c        success - valid topological body      none
+                                created
+PK_BODY_fault_bad_fa_sh_rg_c    see "Extra Faults" below              face
+PK_BODY_fault_empty_region_c    see "Extra Faults" below              region
+
+Note that for PK_BODY_create_&lt;body_type&gt;_topology the faults are checked for
+in the order given in the above table, and only the first fault found is
+returned.  Thus if a particular fault is returned, it is known that no faults
+which precede this in the table are present.  This is not the case for
+<A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A> in which non-manifold topology is allowed to be
+created.
+
+The following applies to the PK_BODY_create_&lt;body_type&gt;_topology functions:
+    If an edge is used twice as a child with the same sense
+    PK_BODY_fault_extra_parent_c is returned.  If an edge is not used with both
+    senses, PK_BODY_fault_missing_parent_c is returned.
+
+    If a loop has a mixture of edges and vertices as children
+    PK_BODY_fault_wrong_child_c is returned.  If a loop has more than one
+    vertex as children PK_BODY_fault_extra_child_c is returned.
+
+    If a vertex has edges and loops as parents,
+    PK_BODY_fault_wrong_parent_c is returned.  If a vertex has more than one
+    loop as parent, PK_BODY_fault_extra_parent_c is returned.
+
+    If a loop has as children a ring edge (one with zero or one vertices) and
+    another edge, PK_BODY_fault_bad_loop_c is returned.
+
+    PK_BODY_fault_bad_region_c is not returned by these functions
+
+
+The following applies to the <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A> function:
+    If a face is used twice with the same sense PK_BODY_fault_extra_parent_c
+    is returned.  If a face is not used with both senses,
+    PK_BODY_fault_missing_parent_c is returned.
+
+    If an edge has fins in the same face with the same sense, or if an edge
+    has more than two fins in the same face, then PK_BODY_fault_extra_parent_c
+    is returned.
+
+    If a loop has a mixture of edges and vertices as children or has more than
+    one vertex as children PK_BODY_fault_extra_child_c is returned.
+
+    If a shell has a vertex and a face or an edge, or it has more than one
+    vertex then PK_BODY_fault_extra_child_c is returned.
+
+    If a vertex has a shell parent and any other parent then
+    PK_BODY_fault_extra_parent_c is returned.
+
+Extra Faults:
+The faults:
+    PK_BODY_fault_bad_fa_sh_rg_c
+    PK_BODY_empty_region_c
+are only returned from <A HREF=../headers/pk_body_create_topology.html>PK_BODY_create_topology</A> and only if their return has
+been requested in the options structure <A HREF=../headers/pk_body_create_topology_o_t.html>PK_BODY_create_topology_o_t</A>.
+
+PK_BODY_fault_bad_fa_sh_rg_c:  the front shell and back shell of the face
+                               are different shells but they belong to the
+                               same region.
+
+PK_BODY_fault_empty_region_c:  the region contains no shells and is not the
+                               sole region in the body.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

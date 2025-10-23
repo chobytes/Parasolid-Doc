@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FIN_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FIN_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B></B>
+<A NAME="description"></A>
+<I>This type represents a FIN.  A fin is the junction between an edge and a face.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_ask_fins.html>PK_BODY_ask_fins</A><br>
+    <A HREF=../headers/pk_curve_ask_fin.html>PK_CURVE_ask_fin</A><br>
+    <A HREF=../headers/pk_edge_ask_fins.html>PK_EDGE_ask_fins</A><br>
+    <A HREF=../headers/pk_edge_ask_first_fin.html>PK_EDGE_ask_first_fin</A><br>
+    <A HREF=../headers/pk_edge_curve_direction_t.html>PK_EDGE_curve_direction_t</A><br>
+    <A HREF=../headers/pk_edge_euler_open_zip.html>PK_EDGE_euler_open_zip</A><br>
+    <A HREF=../headers/pk_edge_set_blend_chain.html>PK_EDGE_set_blend_chain</A><br>
+    <A HREF=../headers/pk_edge_set_blend_chain_o_t.html>PK_EDGE_set_blend_chain_o_t</A><br>
+    <A HREF=../headers/pk_fin_ask_body.html>PK_FIN_ask_body</A><br>
+    <A HREF=../headers/pk_fin_ask_curve.html>PK_FIN_ask_curve</A><br>
+    <A HREF=../headers/pk_fin_ask_edge.html>PK_FIN_ask_edge</A><br>
+    <A HREF=../headers/pk_fin_ask_face.html>PK_FIN_ask_face</A><br>
+    <A HREF=../headers/pk_fin_ask_geometry.html>PK_FIN_ask_geometry</A><br>
+    <A HREF=../headers/pk_fin_ask_loop.html>PK_FIN_ask_loop</A><br>
+    <A HREF=../headers/pk_fin_ask_next_in_loop.html>PK_FIN_ask_next_in_loop</A><br>
+    <A HREF=../headers/pk_fin_ask_next_of_edge.html>PK_FIN_ask_next_of_edge</A><br>
+    <A HREF=../headers/pk_fin_ask_oriented_curve.html>PK_FIN_ask_oriented_curve</A><br>
+    <A HREF=../headers/pk_fin_ask_previous_in_loop.html>PK_FIN_ask_previous_in_loop</A><br>
+    <A HREF=../headers/pk_fin_ask_previous_of_edge.html>PK_FIN_ask_previous_of_edge</A><br>
+    <A HREF=../headers/pk_fin_ask_type.html>PK_FIN_ask_type</A><br>
+    <A HREF=../headers/pk_fin_attach_curves.html>PK_FIN_attach_curves</A><br>
+    <A HREF=../headers/pk_fin_euler_glue.html>PK_FIN_euler_glue</A><br>
+    <A HREF=../headers/pk_fin_find_curve_parameter.html>PK_FIN_find_curve_parameter</A><br>
+    <A HREF=../headers/pk_fin_find_interval.html>PK_FIN_find_interval</A><br>
+    <A HREF=../headers/pk_fin_find_mtopols.html>PK_FIN_find_mtopols</A><br>
+    <A HREF=../headers/pk_fin_find_surf_parameters.html>PK_FIN_find_surf_parameters</A><br>
+    <A HREF=../headers/pk_fin_find_uvbox.html>PK_FIN_find_uvbox</A><br>
+    <A HREF=../headers/pk_fin_is_positive.html>PK_FIN_is_positive</A><br>
+    <A HREF=../headers/pk_loop_ask_fins.html>PK_LOOP_ask_fins</A><br>
+    <A HREF=../headers/pk_loop_ask_first_fin.html>PK_LOOP_ask_first_fin</A><br>
+    <A HREF=../headers/pk_loop_euler_create_edge.html>PK_LOOP_euler_create_edge</A><br>
+    <A HREF=../headers/pk_loop_euler_delete_make_edge.html>PK_LOOP_euler_delete_make_edge</A><br>
+    <A HREF=../headers/pk_loop_euler_make_edge.html>PK_LOOP_euler_make_edge</A><br>
+    <A HREF=../headers/pk_loop_euler_make_edge_face.html>PK_LOOP_euler_make_edge_face</A><br>
+    <A HREF=../headers/pk_loop_euler_make_edge_loop.html>PK_LOOP_euler_make_edge_loop</A><br>
+    <A HREF=../headers/pk_vertex_euler_split.html>PK_VERTEX_euler_split</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A fin is a type of topology (PK_CLASS_fin is a subclass of PK_CLASS_topol).
+
+See <A HREF="../chapters/fd_chap.015.html#50409796_pgfId-295412">Fin</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

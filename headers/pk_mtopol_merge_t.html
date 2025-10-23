@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MTOPOL_merge_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MTOPOL_merge_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_MTOPOL_merge_t;
+</B>
+<A NAME="documentation"></A>
+This datatype is used to select the level of smoothness at which a mesh-mesh
+or polyline-polyline interface is considered redundant. It takes the values
+
+    <A HREF=../headers/pk_mtopol_t.html>PK_MTOPOL_merge_g0_c</A>     allow merging of all topological entities with
+                             facet geometry, irrespective of interface
+                             smoothness
+    <A HREF=../headers/pk_mtopol_t.html>PK_MTOPOL_merge_g1_c</A>     allow only smooth edges/vertices on facet bodies
+                             to be considered as redundant
+
+Two polylines are considered to meet smoothly if their end tangents agree to
+within the value returned by <A HREF=../headers/pk_session_ask_mesh_angle.html>PK_SESSION_ask_mesh_angle</A>.
+
+Two meshes with dynamic normals are considered to meet smoothly if their
+vertex normals agree along the mesh-mesh interface agree to within the value
+returned by <A HREF=../headers/pk_session_ask_mesh_angle.html>PK_SESSION_ask_mesh_angle</A>. If either mesh has stored normals,
+the angular tolerance used is, instead, the value returned by
+<A HREF=../headers/pk_session_ask_angle_precision.html>PK_SESSION_ask_angle_precision</A>. Edge smoothness can be tested by calling
+<A HREF=../headers/pk_edge_is_smooth.html>PK_EDGE_is_smooth</A> on the edge, using the indicated angular tolerances.
+
+The <A HREF=../headers/pk_mtopol_t.html>PK_MTOPOL_merge_g1_c</A> option does not force all smooth mesh-mesh interfaces
+to be deleted, as the decision to delete depends on the collection of all
+edges with the same face pair.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

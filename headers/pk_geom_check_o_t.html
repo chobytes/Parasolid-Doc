@@ -1,0 +1,480 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_GEOM_check_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_GEOM_check_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_GEOM_check_o_s
+    {
+    int                      o_t_version;   --- version number of option
+                                            --- structure
+    int                      max_faults;    --- limit on fault numbers (1)
+    <A HREF=../headers/pk_check_geom_t.html>PK_check_geom_t</A>          geom;          --- bad geometry
+                                            --- (<A HREF=../headers/pk_check_geom_t.html>PK_check_geom_yes_c</A>)
+    <A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_t</A>       attribs;       --- system attribute validity
+                                            --- checks (<A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_no_c</A>)
+    <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_t</A>  extra_faults;  --- expand
+                                            --- PK_ENTITY_state_invalid_c
+                                            --- (<A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_0_c</A>)
+
+    };
+
+typedef struct PK_GEOM_check_o_s PK_GEOM_check_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for checking a geometrical entity.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_geom_check.html>PK_GEOM_check</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure defines options applicable to checking a geometrical
+entity.
+
+
+
+option structure
+------ ---------
+The option structure allows the caller to control which checks are performed;
+if no options are supplied, all checks appropriate to the geometric entity
+will be made.
+
+The option structure allows the following to be set:
+
+    <B>'max_faults'</B>
+        maximum number of faults to be returned and whether to force checking
+        to raise a PK error instead of returning check faults.
+
+    <B>'geom'</B>
+        what general geometry checking is to be performed
+
+    <B>'attribs'</B>
+        This can be set to one of:
+
+        <A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_no_c</A>     Do not perform validity checks on
+                                  attached system attributes.
+
+        <A HREF=../headers/pk_check_attribs_t.html>PK_check_attribs_yes_c</A>    Perform system attribute validity checks.
+
+        The only check fault associated with this check is the following:
+
+        PK_ATTRIB_state_invalid_att_c
+                    Description: invalid attribute
+                                (If any faults are found with the system
+                                 attributes present, the user is encouraged
+                                 to use <A HREF=../headers/pk_entity_check_attribs.html>PK_ENTITY_check_attribs</A> to discover
+                                 more information on the faulty attribute)
+                    entity_1   : attribute
+                    entity_2   : attribute owner
+
+
+    <B>'extra_faults'</B>
+        This option can be set to one of these values:
+        <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_0_c</A>      returns version 0 check fault states
+        <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_1_c</A>      returns version 1 check fault states
+        <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_latest_c</A> returns latest check fault states
+
+        When <B>'extra_faults'</B> is set to <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_0_c</A> the following
+        tokens are returned
+
+
+        <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_0_c</A> tokens:
+
+        bcurve:
+        PK_BCURVE_state_close_knots_c
+                        Description: The knots are closer than the
+                                     accepted minimum.
+                        entity_1   : bcurve
+                        Position   : a vector (t,0,0) where the parameter t
+                                     is where the knots are too close
+
+        bsurface:
+        PK_BSURF_state_close_u_knots_c
+                        Description: The u knots are closer than the
+                                     accepted minimum.
+                        entity_1   : bsurface
+                        Position   : a vector (u,0,0) where the parameter u
+                                     is where the u knots are too close
+        
+        
+        PK_BSURF_state_close_v_knots_c
+                        Description: The v knots are closer than the
+                                     accepted minimum.
+                        entity_1   : bsurface
+                        Position   : a vector (v,0,0) where the  parameter v
+                                     is where the v knots are too close
+
+        Geometry:
+        PK_GEOM_state_self_int_c
+                        Description: The surface is self intersecting
+                        entity_1   : surface
+                        Position   : A point from the intersecting region
+        
+        PK_GEOM_state_degenerate_c
+                        Description: The geometry has a degenerate region
+                        entity_1   : geometry
+                        Position   : point from degenerate region
+        
+
+        Entity (default):
+        PK_ENTITY_state_invalid_c
+                        Description: The entity is invalid
+                        entity_1   : entity
+        
+
+        When <B>'extra_faults'</B> is set to <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_1_c</A> or
+        <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_latest_c</A> then the faults which are
+        returned as PK_ENTITY_state_invalid_c under
+        <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_0_c</A> are expanded and
+        returned as
+
+
+        <A HREF=../headers/pk_check_extra_faults_t.html>PK_check_extra_faults_1_c</A> tokens:
+           (notation for bcurve and bsurf
+            ------------------------------------------
+            |the bcurve degree                |n     |
+            |the bsurf degree in u            |nu    |
+            |the bsurf degree in v            |nv    |
+            ------------------------------------------
+            |number of control vertices       |m     |
+            |number of control vertices in u  |mu    |
+            |number of control vertices in v  |mv    |
+            ------------------------------------------
+            |The bcurve i'th control vertex   |v(i)  |
+            |The bsurf control vertex with    |v(i,j)|
+            |index (i,j)                      |      |
+            ------------------------------------------
+            |number of bcurve knots           |p     |
+            |number of bsurf knots in u       |pu    |
+            |number of bsurf knots in v       |pv    |
+            ------------------------------------------
+            |multiplicity of bcurve knot i    |r(i)  |
+            |multiplicity of bsurf knot i in u|ru(i) |
+            |multiplicity of bsurf knot i in v|rv(i) |
+            ------------------------------------------
+            |bcurve knot[i]                   |t(i)  |
+            |bsurf  knot[i] in u              |tu(i) |
+            |bsurf  knot[i] in v              |tv(i) |
+            ------------------------------------------
+           )
+        
+        
+        
+        
+        
+        
+        PK_BCURVE_state_vx_periodic_c
+                        Description: The control vertices do not satisfy the
+                                     periodic condition
+                                     v(j) = v(j + m - period)  where
+                                     j=1,...,period
+                                     period = 1 + n - r(n)
+                        entity_1   : bcurve
+                        Position   : the control vertex v(j) which is
+                                     faulty
+        
+        PK_BCURVE_state_knot_periodic_c
+                        Description: The i'th knot periodicity condition
+                                     is violated
+                                     period = t(p-n) - t(n)
+                                     t(i) + period = t(i+p-n): i=1,...,n
+                        entity_1   : bcurve
+                        Position   : (t(i), period, 0)
+        
+        PK_BCURVE_state_knot_bad_mult_c
+                        Description: bad multiplicity knot (for a non
+                                     periodic curve)
+                                     No knot should have
+                                     r(i) &gt; n,   for an internal knot
+                                     r(i) &gt; n+1, for an end knot
+                        entity_1   : bcurve
+                        Position   : (t(i), r(i), n)
+        
+        PK_BCURVE_state_knot_vx_count_c
+                        Description: number of control vertices is inconsistent
+                                     with the curve degree ( m &lt; n + 1)
+                        entity_1   : bcurve
+                        Position   : (m, n, 0)
+        
+        PK_BCURVE_state_knot_count_c
+                        Description: number of vertices is inconsistent with
+                                     number of knots (p != m + n + 1)
+                        entity_1   : bcurve
+                        Position   : (p, m, n)
+        
+        PK_BCURVE_state_bad_knot_seq_c
+                        Description: The knot sequence is non monotonic
+                        entity_1   : bcurve
+                        Position   : (t(i-1), t(i), 0) the non monotonic knots
+        
+        PK_BCURVE_state_bad_dimen_c
+                        Description: The control vertex dimension should be 3
+                                     for non rational bcurve or 4
+                                     for rational bcurve
+                        entity_1   : bcurve
+        
+        PK_BLENDSF_state_bad_spine_c
+                        Description: The spine does not lie on the
+                                     the offset of the supporting geometries
+                                     with offset distance equal to the blendsf
+                                     radius
+                        entity_1   : blendsf
+        
+        PK_BSURF_state_bad_vx_uperiod_c
+                        Description: The control vertices do not satisfy the
+                                     periodic condition in u
+                                     v(i, j) = v(i + mu - period, j) where
+                                     i=1,...,period
+                                     j=1,...,mv
+                                     period = 1 + nu - ru(nu)
+                        entity_1   : bsurf
+                        Position   : (i,i+mu-period,j) the indices of the
+                                     faulty vertices
+        
+         PK_BSURF_state_bad_vx_vperiod_c
+                        Description: The control vertices do not satisfy the
+                                     periodic condition in v
+                                     v(j, i) = v(j, i + mu - period) where
+                                     i=1,...,period
+                                     j=1,...,mu
+                                     period = 1 + nv - rv(nv)
+                        entity_1   : bsurf
+                        Position   : (j,i,i+mv-period), the indices of the
+                                     faulty vertices.
+        
+        
+        PK_BSURF_state_uknot_vx_count_c
+                        Description: number of control vertices in u is
+                                     inconsistent with the bsurf degree in u
+                                     (mu &lt; nu + 1)
+                        entity_1   : bsurf
+                        Position   : (mu, nu, 0)
+        
+        PK_BSURF_state_vknot_vx_count_c
+                        Description: number of control vertices in v is
+                                     inconsistent with the bsurf degree in v
+                                     (mv &lt; nv + 1)
+                        entity_1   : bsurf
+                        Position   : (mv, nv, 0)
+        
+        PK_BSURF_state_uknot_periodic_c
+                        Description: The i'th u knot periodicity condition
+                                     is violated
+                                     period = tu(pu - nu) - tu(nu)
+                                     tu(i) + period = tu(i + pu - nu)
+                                     i=1,...,nu
+                        entity_1   : bsurf
+                        Position   : (tu(i), period, 0)
+        
+        PK_BSURF_state_vknot_periodic_c
+                        Description: The i'th v knot periodicity condition
+                                     is violated
+                                     period = tv(pv - nv) - tv(nv)
+                                     tv(i) + period = tv(i + pv - nv)
+                                     i=1,...,nv
+                        entity_1   : bsurf
+                        Position   : (tv(i), period, 0)
+        
+        PK_BSURF_state_uknot_bad_mult_c
+                        Description: bad multiplicity of u knot (for a non
+                                     periodic curve)
+                                     No knot should have
+                                     ru(i) &gt;  nu,     for an internal u knot
+                                     ru(i) &gt;  nu + 1, for an end u knot
+                        entity_1   : bsurf
+                        Position   : (tu(i), ru(i), nu)
+        
+        PK_BSURF_state_vknot_bad_mult_c
+                        Description: bad multiplicity of v knot (for a non
+                                     periodic curve)
+                                     No knot should have
+                                     rv(i) &gt; nv,     for an internal v knot
+                                     rv(i) &gt; nv + 1, for an end v knot
+                        entity_1   : bsurf
+                        Position   : (tv(i), rv(i), nv)
+        
+        PK_BSURF_state_uknot_count_c
+                        Description: number of control vertices is
+                                     inconsistent with the number of
+                                     knots in u   (pu != mu + nu + 1)
+                        entity_1   : bsurf
+                        Position   : (pu, mu, nu)
+        
+        PK_BSURF_state_vknot_count_c
+                        Description: number of control vertices is
+                                     inconsistent with the number of
+                                     knots in v    (pv != mv + nv + 1)
+                        entity_1   : bsurf
+                        Position   : (pv, mv, nv)
+        
+        PK_BSURF_state_bad_uknot_seq_c
+                        Description: non monotonic knot sequence in u
+                        entity_1   : bsurf
+                        Position   : (tu(i-1), tu(i), 0) the faulty knots
+        
+        PK_BSURF_state_bad_vknot_seq_c
+                        Description: non monotonic knot sequence in v
+                        entity_1   : bsurf
+                        Position   : (tv(i-1), tv(i), 0) the faulty knots
+        
+        PK_BSURF_state_bad_dimen_c
+                        Description: The control vertex dimension should be 3
+                                     or 4.
+                        entity_1   : bsurf
+        
+        PK_CIRCLE_state_bad_radius_c
+                        Description: Radius outside of the accepted range
+                        entity_1   : circle
+        
+        PK_GEOM_state_outside_box_c
+                        Description: The geometry is outside the size box
+                        entity_1   : geometry
+                        Position   : vertex position outside the box.
+        
+        PK_LINE_state_bad_unit_vec_c
+                        Description: The direction vector is not a unit vector
+                        entity_1   : line
+                        Position   : direction vector
+        
+        PK_OFFSET_state_bad_dist_c
+                        Description: The offset distance parameter is less than
+                                     the accepted minimum.
+                        entity_1   : offset surface
+        
+        PK_OFFSET_state_under_sense_c
+                        Description: The senses of the offset and its
+                                     underlying surfaces disagree
+                        entity_1   : offset surface
+                        entity_2:  : underlying surface
+        
+        PK_OFFSET_state_under_non_g1_c
+                        Description: The underlying surface has a degenerate
+                                     region
+                        entity_1   : offset surface
+                        entity_2   : underlying surface
+                        Position   : A position from the degenerate region
+        
+         PK_SPCURVE_state_bad_linear_c
+                        Description: The linear bcurve has more than one
+                                     segment (The number of control vertices
+                                     is different from two).
+                        entity_1   : spcurve
+                        entity_2   : bcurve
+        
+        PK_SPCURVE_state_surf_span_c
+                        Description: A section of the spcurve is outside the
+                                     surface boundary
+                        entity_1   : spcurve
+                        entity_2   : bcurve
+        
+        PK_SPCURVE_state_non_g1_x_u_c
+                        Description: The spcurve crosses a constant u
+                                     parameter line where the surface
+                                     is non G1.
+                        entity_1   : spcurve
+                        entity_2   : surface
+        
+        PK_SPCURVE_state_non_c1_x_u_c
+                        Description: The spcurve crosses a constant u
+                                     parameter line where the surface
+                                     is non C1
+                        entity_1   : spcurve
+                        entity_2   : surface
+        
+        PK_SPCURVE_state_non_g1_x_v_c
+                        Description: The spcurve crosses a constant v
+                                     parameter line where the surface
+                                     is non G1.
+                        entity_1   : spcurve
+                        entity_2   : surface
+        
+        PK_SPCURVE_state_non_c1_x_v_c
+                        Description: The spcurve crosses a constant v
+                                     parameter line where the surface
+                                     is non C1
+                        entity_1   : spcurve
+                        entity_2   : surface
+        
+        PK_SPCURVE_state_non_g1_c
+                        Description: spcurve is non G1
+                        entity_1   : spcurve
+                        entity_2   : bcurve
+                        Position   : (t,0,0) where
+                                     t is a parameter where the fault
+                                     occurred
+        
+        PK_SPCURVE_state_bad_dimen_c
+                        Description: spcurve has invalid control vertex
+                                     dimension (dimension should be 3 for
+                                     rational curve and 2 for non rational)
+                        entity_1   : spcurve
+                        entity_2   : bcurve
+        
+        PK_SPUN_state_profile_x_axis_c
+                        Description: The spun profile should not cross the spun
+                                     axis but it may just touch axis at either
+                                     ends
+                        entity_1   : spun
+        
+        PK_SWEPT_state_bad_min_rad_c
+                        Description: The swept surface minimal radius of
+                                     curvature is smaller than the accepted
+                                     minimum
+                        entity_1   : swept surface
+                        Position   : (tu,0,0) where the fault occurs
+        
+        PK_TRCURVE_state_ends_open_c
+                        Description: The open curve has equal bounds
+                        entity_1   : trimmed curve
+        
+        PK_TRCURVE_state_ends_order_c
+                        Description: The curve end points are not in order
+                        entity_1   : trimmed curve
+        
+        PK_TRCURVE_state_ends_match_c
+                        Description: The end curve parameters do not
+                                     match the end points
+                        entity_1   : trimmed curve
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

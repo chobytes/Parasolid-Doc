@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BSURF_splinewise_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BSURF_splinewise_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BSURF_splinewise_sf_s
+    {
+    int                 u_degree;      --- The u degree = order -1
+    int                 v_degree;      --- The u degree = order -1
+    int                 n_u_positions; --- The number of positions in u
+    int                 n_v_positions; --- The number of positions in v
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>        *positions;     --- The positions
+    <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_t</A>      u_end;         --- End condition at lower u
+    <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_t</A>      v_end;         --- End condition at lower v
+    <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_t</A>      U_end;         --- End condition at upper U
+    <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_t</A>      V_end;         --- End condition at upper V
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>        *u_derivs;      --- Derivatives at lower u
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>        *v_derivs;      --- Derivatives at lower v
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>        *U_derivs;      --- Derivatives at upper U
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>        *V_derivs;      --- Derivatives at upper V
+    <A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_t</A>     u_how_knot;    --- How u knot vector defined
+    <A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_t</A>     v_how_knot;    --- How v knot vector defined
+    double             *u_knot;        --- u Knot vector
+    double             *v_knot;        --- v Knot vector
+    <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_t</A>    u_v;           --- how lower u lower v
+                                       --- twist vector defined
+    <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_t</A>    u_V;           --- how lower u upper V
+                                       --- twist vector defined
+    <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_t</A>    U_v;           --- how upper U lower v
+                                       --- twist vector defined
+    <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_t</A>    U_V;           --- how upper U upper V
+                                       --- twist vector defined
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>         u_v_twist;     --- lower u lower v twist vector
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>         u_V_twist;     --- lower u upper V twist vector
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>         U_v_twist;     --- upper U lower v twist vector
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>         U_V_twist;     --- upper U upper V twist vector
+    };
+typedef struct PK_BSURF_splinewise_sf_s PK_BSURF_splinewise_sf_t;
+</B>
+<A NAME="description"></A>
+<I>This structure is the splinewise standard form of a b-surface.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_incompatible_props     only one end is periodic or a periodic
+                                    surface has coincident end points (MILD)
+    PK_ERROR_bad_derivative         a derivative is too large (MILD)
+    PK_ERROR_insufficient_points    not enough spline points (MILD)
+    PK_ERROR_coincident_points      repeated spline points (MILD)
+    PK_ERROR_bad_position           a spline point is outside size box (MILD)
+    PK_ERROR_bad_knots              bad parameterisation (MILD)
+    PK_ERROR_repeated_knots         repeated knots (MILD)
+    PK_ERROR_wrong_number_knots     wrong number of knots (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bsurf_ask_splinewise.html>PK_BSURF_ask_splinewise</A><br>
+    <A HREF=../headers/pk_bsurf_create_splinewise.html>PK_BSURF_create_splinewise</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+<B>'u_degree'</B>       Surface degree in the u direction.
+                 When the standard form is input to
+                 Parasolid (<A HREF=../headers/pk_bsurf_create_splinewise.html>PK_BSURF_create_splinewise</A>), <B>'u_degree'</B> may only be
+                 set to 3 to produce cubic curves or 0 in which case
+                 Parasolid will select an appropriate degree.
+
+<B>'v_degree'</B>       Surface degree in the v direction.
+                 When the standard form is input to
+                 Parasolid (<A HREF=../headers/pk_bsurf_create_splinewise.html>PK_BSURF_create_splinewise</A>), <B>'v_degree'</B> may only be
+                 set to 3 to produce cubic curves or 0 in which case
+                 Parasolid will select an appropriate degree.
+
+<B>'n_u_positions'</B>  Number of positions in the u direction.
+                 If <B>'u_end'</B> is <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_periodic_c</A> then <B>'n_u_positions'</B>
+                 must be at least 3, otherwise <B>'n_u_positions'</B> must be at
+                 least 2.
+
+<B>'n_v_positions'</B>  Number of positions in the v direction.
+                 If <B>'v_end'</B> is <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_periodic_c</A> then <B>'n_v_positions'</B>
+                 must be at least 3, otherwise <B>'n_v_positions'</B> must be at
+                 least 2.
+
+<B>'positions'</B>      Array of positions.
+                 <B>'positions'</B> are supplied in the order with u changing most
+                 rapidly.
+                 Positions consecutive in either the u or v direction must not
+                 coincide.
+                 For a surface which is closed but not periodic in the u
+                 direction, the start and end u positions must coincide.
+                 For a surface which is closed but not periodic in the v
+                 direction, the start and end v positions must coincide.
+                 For a surface which is periodic in the u direction, the start
+                 and end u positions must not coincide.
+                 For a surface which is periodic in the v direction, the start
+                 and end v positions must not coincide.
+
+<B>'u_end'</B>          End condition at lower u.
+                 If this is PK_PARAM_end_periodic_t then <B>'U_end'</B> must also be
+                 PK_PARAM_end_periodic_t.
+                 If this is <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A> then <B>'u_derivs'</B>
+                  must be set to the u start derivatives.
+
+<B>'v_end'</B>          end condition at lower v.
+                 If this is PK_PARAM_end_periodic_t then <B>'V_end'</B> must also be
+                 PK_PARAM_end_periodic_t.
+                 If this is <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A> then <B>'v_derivs'</B>
+                 must be set to the v start derivatives.
+
+<B>'U_end'</B>          End condition at upper U.
+                 If this is PK_PARAM_end_periodic_t then <B>'u_end'</B> must also be
+                 PK_PARAM_end_periodic_t.
+                 If this is <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A> then <B>'U_derivs'</B>
+                 must be set to the U end derivatives.
+
+<B>'V_end'</B>          End condition at upper V.
+                 If this is PK_PARAM_end_periodic_t then <B>'v_end'</B> must also be
+                 PK_PARAM_end_periodic_t.
+                 If this is <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A> then <B>'V_derivs'</B>
+                 must be set to the V end derivatives.
+
+<B>'u_derivs'</B>       Derivatives at lower u if <B>'u_end'</B> is
+                 <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A>.
+
+<B>'v_derivs'</B>       Derivatives at lower v if <B>'v_end'</B> is
+                 <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A>.
+
+<B>'U_derivs'</B>       Derivatives at upper U if <B>'U_end'</B> is
+                 <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A>.
+
+<B>'V_derivs'</B>       Derivatives at upper V if <B>'V_end'</B> is
+                 <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A>.
+
+                 The derivatives in <B>'u_derivs'</B>, <B>'v_derivs'</B>, <B>'U_derivs'</B>,
+                 <B>'V_derivs'</B> should be supplied with respect to a parameter
+                 which varies from 0 to 1 between the first or last two rows or
+                 columns of <B>'positions'</B> (as appropriate). In other words, the
+                 derivatives should have dimensions of length. The magnitude is
+                 significant, and supplying vectors which are too large may
+                 cause the surface to loop or have tight curvature.
+
+<B>'u_how_knot'</B>     How the u knot vector is defined.
+
+<B>'v_how_knot'</B>     How the v knot vector is defined.
+
+<B>'u_knot'</B>         If <B>'u_how_knot'</B> is <A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_defined_c</A> then <B>'u_knot'</B> is
+                 the knot vector of length <B>'n_u_positions'</B> if the surface is
+                 not periodic in the u direction, or <B>'n_u_positions'</B> + 1 if
+                 the surface is periodic in the u direction.
+                 If <B>'u_how_knot'</B> is <A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_auto_c</A> then <B>'u_knot'</B> is
+                 ignored.
+
+<B>'v_knot'</B>         If <B>'v_how_knot'</B> is <A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_defined_c</A> then <B>'v_knot'</B> is
+                 the knot vector of length <B>'n_v_positions'</B> if the surface is
+                 not periodic in the v direction, or <B>'n_v_positions'</B> + 1 if
+                 the surface is periodic in the v direction.
+                 If <B>'v_how_knot'</B> is <A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_auto_c</A> then <B>'v_knot'</B> is
+                 ignored.
+
+<B>'u_v'</B>            How twist vector defined at lower u lower v.
+
+<B>'u_V'</B>            How twist vector defined at lower u upper V.
+
+<B>'U_v'</B>            How twist vector defined at upper U lower v.
+
+<B>'U_V'</B>            How twist vector defined at upper U upper V.
+
+<B>'u_v_twist'</B>      If <B>'u_v'</B> is <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_yes_c</A> the <B>'u_v_twist'</B> is
+                 the twist vector at lower u lower v.
+
+<B>'u_V_twist'</B>      If <B>'u_V'</B> is <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_yes_c</A> the <B>'u_V_twist'</B> is
+                 the twist vector at lower u upper V.
+
+<B>'U_v_twist'</B>      If <B>'U_v'</B> is <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_yes_c</A> the <B>'U_v_twist'</B> is
+                 the twist vector at upper U lower v.
+
+<B>'U_V_twist'</B>      If <B>'U_V'</B> is <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_yes_c</A> the <B>'U_V_twist'</B> is
+                 the twist vector at upper U upper V.
+
+                 A twist vector is the mixed partial derivative with respect to
+                 both u and v. The twist vectors may be supplied at any of the
+                 four corners, but only when both adjacent boundaries have
+                 clamped boundary conditions. If the twist vectors are supplied
+                 when they are not required then they are ignored. If the twist
+                 vectors are not supplied then a suitable default value is
+                 used.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

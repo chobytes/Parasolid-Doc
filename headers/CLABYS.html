@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<TITLE>CLABYS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CLABYS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_topol_clash.html>PK_TOPOL_clash</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CLABYS ( body1, trans1, body2, trans2, lfull, fclst1, fclst2, nclash, ifail )
+=============================================================================
+
+  Clash bodies
+
+Receives:
+  KI_tag_body              *body1          --- first body
+ &lt;KI_tag_transform&gt;        *trans1         --- transformation for 'body1'
+  KI_tag_body              *body2          --- second body
+ &lt;KI_tag_transform&gt;        *trans2         --- transformation for 'body2'
+  KI_cod_logical           *lfull          --- true if exhaustive test required
+
+Returns:
+  KI_tag_list_face         *fclst1         --- list of faces in 'body1' which
+                                           --- clash with 'body2'
+  KI_tag_list_face         *fclst2         --- list of faces in 'body2' which
+                                           --- clash with 'body1'
+ &lt;KI_int_nitems&gt;           *nclash         --- length of face lists
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cant_do_clash          clash failure
+  KI_wire_body              one of the bodies is a wire
+  KI_wrong_transf           trans2 has shearing or non-uniform scaling
+                            trans1 has shearing or non-uniform scaling
+
+Description:
+  If 'lfull' is true, then 'body1', transformed by 'trans1', is compared with
+  'body2', transformed by 'trans2'. Every clash between a face of 'body1' and
+  a face of 'body2' is entered in the lists, the face from 'body1' going into
+  'fclst1', and the face from 'body2' going into 'fclst2'. 'nclash' is set to
+  the number of such clashes. A face may occur many times in one of the lists,
+  paired with different faces from the other body. Two face lists will be
+  returned even if 'nclash' is 1.
+
+  If 'lfull' is false, the test will proceed only until the first clash is
+  found. If a clash is found, it will return the clashing faces (NOT lists)
+  in 'fclst1' and 'fclst2', and return 'nclash' as 1.
+
+  If no clashes are found, irrespective of 'lfull', 'nclash' will be returned as
+  0 and 'fclst1' and 'fclst2' as the null tag.
+
+  If either of the transformations is given as the null tag, it will be taken
+  to mean the identity transformation.
+
+  Only clashes between faces are found, therefore it is possible that no clashes
+  will be found when one body is completely contained in the other.
+  Also, if either body is a general body, clashes between a wireframe
+  edge in one body and a face or wireframe edge in the other will not be
+  found.
+
+  If either of the transformations is supplied it may only contain translation,
+  rotation, reflection and global scale components. Local scales and shears are
+  not allowed.
+
+</PRE>
+</BODY>
+</HTML>

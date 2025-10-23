@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_find_box_2_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_find_box_2_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_find_box_2_o_s
+    {
+    int             o_t_version;        --- version number of option structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    want_topol_boxes;   --- whether boxes of individual
+                                        --- topologies are required
+                                        --- ( PK_LOGICAL_false )
+    int             n_parts_with_scales;--- number of parts for which a
+                                        --- scale factor is specified
+                                        --- (0)
+    <A HREF=../headers/pk_part_t.html>PK_PART_t</A>      *parts_with_scales;  --- array of parts for which a
+                                        --- scale factor is specified
+                                        --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>
+                   *scale_factors;      --- scale factor associated with the
+                                        --- corresponding part in
+                                        --- <B>'parts_with_scales'</B>
+                                        --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>
+                    output_scale_factor;--- Scale by which to shrink the
+                                        --- resulting boxes
+                                        --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+
+    };
+typedef struct PK_TOPOL_find_box_2_o_s PK_TOPOL_find_box_2_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains option controls for <A HREF=../headers/pk_topol_find_box_2.html>PK_TOPOL_find_box_2</A>
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_find_box_2.html>PK_TOPOL_find_box_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+
+<B>'want_topol_boxes'</B>      whether the application requires individual boxes
+                        for each topology.
+
+<B>'parts_with_scales'</B>     This array, of length <B>'n_parts_with_scales'</B>, contains
+                        unique parts which are to be considered at the scale
+                        factors provided in <B>'scale_factors'</B>. If this array
+                        is NULL, no scale factors are applied.
+
+<B>'scale_factors'</B>         This array should match the length of
+                        <B>'parts_with_scales'</B>. Each element of the array should
+                        be a <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A> corresponding to each part
+                        specified in <B>'parts_with_scales'</B>.
+
+<B>'output_scale_factor'</B>   This is a scale factor used to shrink the
+                        resulting box(es), where the origin is used as
+                        the centre of scaling. No scaling is applied when the
+                        value is set to <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+
+SCALE FACTORS
+It is possible to associate a scale factor with a part so that any topology
+in <B>'topols'</B> that is provided from such a part is treated at the scale factor
+of that part. The centre of scaling is the origin.
+
+In order to supply scale factors for parts it is necessary to fill in the
+following fields: <B>'parts_with_scales'</B> and <B>'scale_factors'</B>. Additionally,
+<B>'n_parts_with_scales'</B> must be non-zero.
+
+Topologies other than assemblies are treated with the scale factor of their
+owner body. The topology's transformation, if given in <B>'transfs'</B>, is applied
+after the owner body has been scaled. When a scale factor is provided for an
+assembly, it will be applied only to the translation component of the
+transforms of the assembly's constituent instances.  The scale factor will not
+apply to the parts contained within these instances.  Optionally scale factors
+can be supplied within <B>'parts_with_scales'</B> and <B>'scale_factors'</B> for any part
+referenced within the assembly structure. In which case, these parts will be
+scaled by the provided scale factor. In this way, scale factors can be supplied
+to nested assembly structures, scaling bodies or other assemblies contained
+within instances inside a parent assembly.
+
+See #here#DOCxxxx# for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

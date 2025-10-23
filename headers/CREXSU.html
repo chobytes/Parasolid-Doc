@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<TITLE>CREXSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CREXSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_sweep.html>PK_CURVE_sweep</A><BR>
+<A HREF=../headers/pk_swept_create.html>PK_SWEPT_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CREXSU ( profil, direct, smplfy, extsur, ifail )
+================================================
+
+  Create an extruded surface
+
+Receives:
+  KI_tag_curve             *profil         --- curve to be extruded
+  KI_vec_direction          direct         --- extrusion direction vector
+  KI_cod_logical           *smplfy         --- simplification flag
+
+Returns:
+  KI_tag_surface           *extsur         --- resulting extruded surface
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_impossible_sweep       Cannot determine extruded geometry
+  KI_unsuitable_entity      Not one of the allowed curve types
+  KI_invalid_geometry       Invalid curve
+
+Description:
+
+  This function creates an extruded or swept surface.
+
+  The curve 'profil' is extruded along the direction vector 'direct', the
+  new surface being the envelope of the curve.
+
+  If 'smplfy' is KI_false then the function will always return a surface
+  of type TYSUSE. If 'smplfy' is KI_true then, if possible, the function
+  will return an analytic surface which is equivalent to the extruded
+  surface. For example, an extruded line is almost always equivalent to
+  a plane.
+
+  The curve must be of one of the following types:
+
+  line
+  circle
+  ellipse
+  B-curve
+
+  A self intersecting surface may be returned, but it is not possible to
+  sweep a line along its own direction vector.
+
+  If 'profil' is not an orphan, the resulting surface will be created as
+  construction geometry in the owning part. A curve which is a dependent of
+  another entity may be extruded - for example, a single curve may be the
+  underlying curve of two swept surfaces.
+
+
+</PRE>
+</BODY>
+</HTML>

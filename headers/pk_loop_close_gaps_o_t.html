@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_LOOP_close_gaps_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_LOOP_close_gaps_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_LOOP_close_gaps_o_s
+    {
+    int                    o_t_version;     --- options structure version.
+    <A HREF=../headers/pk_loop_3_space_gap_t.html>PK_LOOP_3_space_gap_t</A>  gap_in_3_space;  --- controls model space gaps at
+                                            --- tolerant vertices in the loop
+                                            --- (PK_LOOP_3_space_gap_close_c)
+    <A HREF=../headers/pk_loop_2_space_gap_t.html>PK_LOOP_2_space_gap_t</A>  gap_in_2_space;  --- controls parameter space gaps
+                                            --- at tolerant vertices in the
+                                            --- loop
+                                            --- (PK_LOOP_2_space_gap_no_c)
+    double                 tol_in_2_space;  --- tolerance value for
+                                            --- controlling parameter space
+                                            --- gap at tolerant vertices
+                                            --- in the loop (1.0e-06)
+    <A HREF=../headers/pk_loop_trim_geom_t.html>PK_LOOP_trim_geom_t</A>    trim_fin_geom;   --- shorten the SP-curve geometry
+                                            --- to the bounds of the fin
+                                            --- (PK_LOOP_trim_geom_no_c)
+    };
+
+typedef struct PK_LOOP_close_gaps_o_s PK_LOOP_close_gaps_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for closing gaps at tolerant vertices in the loop.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_loop_close_gaps.html>PK_LOOP_close_gaps</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options structure contains the following options:
+
+<B>'gap_in_3_space'</B>   Option for controlling model space gaps at tolerant
+                   vertices in the loop.
+
+                   Permitted values are:
+                        PK_LOOP_3_space_gap_close_c
+                        PK_LOOP_3_space_gap_no_c
+
+                   If the value is set to PK_LOOP_3_space_gap_close_c,
+                   model space gaps at tolerant vertices of the loop will be
+                   closed where possible by modifying the SP-curves.
+                   Geometry attached to accurate edges will not be modified.
+
+                   The default value is PK_LOOP_3_space_gap_close_c.
+
+<B>'gap_in_2_space'</B>   Option for controlling parameter space gaps at tolerant
+                   vertices in the loop.
+
+                   Permitted values are:
+                        PK_LOOP_2_space_gap_no_c
+                        PK_LOOP_2_space_gap_minimise_c
+                        PK_LOOP_2_space_gap_close_cu_c
+                        PK_LOOP_2_space_gap_close_all_c
+
+                   If the value is set to PK_LOOP_2_space_gap_minimise_c, the
+                   parameter space gaps between adjacent fin geometries will
+                   be minimised where possible by transforming the SP-curves
+                   to meet in the same period. This option only comes into
+                   effect when the surface attached to loop's face is periodic.
+
+                   If the value is set to PK_LOOP_2_space_gap_close_cu_c, the
+                   parameter space gaps between adjacent fin geometries will
+                   be closed where possible by extending or retrimming
+                   the SP-curves to meet within the tolerance specified by
+                   <B>'tol_in_2_space'</B>.
+
+                   If the value is set to PK_LOOP_2_space_gap_close_all_c,
+                   the parameter space gaps between adjacent fin geometries
+                   will be closed where possible by extending or retrimming
+                   the SP-curves to meet within the tolerance specified by
+                   <B>'tol_in_2_space'</B> and by reparameterising the underlying
+                   surface if required.
+
+                   The default value is PK_LOOP_2_space_gap_no_c.
+
+<B>'tol_in_2_space'</B>   tolerance value for identifying parameter space gap at
+                   tolerant vertices in the loop. The default value is 1.0e-06.
+
+<B>'trim_fin_geom'</B>    if the value is set to PK_LOOP_trim_geom_yes_c then that
+                   portion of the fin's SP-curve that lies outside the
+                   bounds of the fin will be discarded.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

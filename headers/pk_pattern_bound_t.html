@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_pattern_bound_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_pattern_bound_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_pattern_bound_s
+    {
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           have_repetitions_i;
+                            --- whether a bound has been provided in the ith
+                            --- direction (PK_LOGICAL_true)
+    int                    repetitions_i[2];
+                            --- repetition bounds in the ith direction (0, 0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           have_repetitions_j;
+                            --- whether a bound has been provided in the jth
+                            --- direction (PK_LOGICAL_true)
+    int                    repetitions_j[2];
+                            --- repetition bounds in the jth direction (0, 0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           have_repetitions_k;
+                            --- whether a bound has been provided in the kth
+                            --- direction (PK_LOGICAL_true)
+    int                    repetitions_k[2];
+                            --- repetition bounds in the kth direction (0, 0)
+    <A HREF=../headers/pk_pattern_trim_data_t.html>PK_pattern_trim_data_t</A> trim_curves;
+                            --- outline bounds for the ith and jth direction
+                            --- (0, NULL, NULL, NULL, NULL, 0, NULL)
+    <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_t</A> trim_type;
+                            --- how to interpret the bounds of <B>'trim_curves'</B>
+                            --- (<A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_none_c</A>)
+    };
+typedef struct PK_pattern_bound_s PK_pattern_bound_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains data on the bounds of a given pattern
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_failed_to_bound        The combination of provided arguments
+                                    would result in at least one invalid
+                                    unbounded direction. (MILD)
+    PK_ERROR_inconsistent_data      Inconsistent options specified as
+                                    follows:
+                                    - <B>'trim_type'</B> has been set to
+                                      <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_none_c</A> and
+                                      <B>'trim_curves'</B> have been provided.
+                                      (MILD)
+                                    - <B>'trim_type'</B> has been set to a value
+                                      other than <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_none_c</A>
+                                      and no <B>'trim_curves'</B> have been provided.
+                                      (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_patterned_o_t.html>PK_BODY_make_patterned_o_t</A><br>
+    <A HREF=../headers/pk_lattice_make_patterned_o_t.html>PK_LATTICE_make_patterned_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'have_repetitions_i'</B>   Whether <B>'repetitions_i'</B> is used. If this is set to
+                       PK_LOGICAL_true then the pattern is bound by the
+                       provided number of repetitions in the direction
+                       corresponding to the <B>'i_axis'</B> within the <B>'skewbox'</B>.
+                       If this is set to PK_LOGICAL_false, then
+                       <B>'repetitions_i'</B> is ignored.
+
+
+<B>'repetitions_i'</B>        Repetition bounds in the ith direction.
+
+
+<B>'have_repetitions_j'</B>   Whether <B>'repetitions_j'</B> is used. If this is set to
+                       PK_LOGICAL_true then the pattern is bound by the
+                       provided number of repetitions in the direction
+                       corresponding to the <B>'j_axis'</B> within the <B>'skewbox'</B>.
+                       If this is set to PK_LOGICAL_false, then
+                       <B>'repetitions_j'</B> is ignored.
+
+
+<B>'repetitions_j'</B>        Repetition bounds in the jth direction.
+
+
+<B>'have_repetitions_k'</B>   Whether <B>'repetitions_k'</B> is used. If this is set to
+                       PK_LOGICAL_true then the pattern is bound by the
+                       provided number of repetitions in the direction
+                       corresponding to the <B>'k_axis'</B> within the <B>'skewbox'</B>.
+                       If this is set to PK_LOGICAL_false, then
+                       <B>'repetitions_k'</B> is ignored.
+
+
+<B>'repetitions_k'</B>        Repetition bounds in the kth direction.
+
+
+<B>'trim_curves'</B>          Loops of curves that bound the pattern in the ith and
+                       jth pattern directions.
+
+
+<B>'trim_type'</B>            Controls how <B>'trim_curves'</B> data is interpreted to trim
+                       the bounds.
+
+Considering that the <B>'trim_curves'</B> provides the bounding in the ith and jth
+direction, the combination of the values provided for the fields must result
+in at least one bound per direction, unless the pattern is periodic in that
+direction.
+
+If <B>'have_repetitions_i'</B> and/or <B>'have_repetitions_j'</B> is true and <B>'trim_type'</B> is
+set to a value other than <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_none_c</A> then both bounds will
+apply, the pattern will have no more than the provided number of repetitions
+and will be bounded by the <B>'trim_curves'</B>.
+
+For instance, if repetitions in all three directions are set to { -1, 1 }, and
+their corresponding have_repetitions are set to PK_LOGICAL_true, then the
+result has 27 duplicates of the original (i.e. 3x3x3). Alternatively, if
+<B>'trim_type'</B> is not set to <A HREF=../headers/pk_pattern_trim_type_t.html>PK_pattern_trim_type_none_c</A>, and
+<B>'have_repetitions_i'</B> and <B>'have_repetitions_j'</B> are set to PK_LOGICAL_false, then
+the pattern will be bound in i and j by the <B>'trim_curves'</B> and have a depth of 3
+repetitions in k.
+
+For more information see #here#DOC#.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

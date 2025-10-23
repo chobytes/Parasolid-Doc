@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<TITLE>SEBBCO</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SEBBCO</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bb_create.html>PK_BB_create</A><BR>
+<A HREF=../headers/pk_bb_set_status.html>PK_BB_set_status</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SEBBCO ( nents, ents, events, nopts, opts, ifail )
+==================================================
+
+  Set bulletin board controls.
+
+Receives:
+ &lt;KI_int_nitems&gt;           *nents          --- length of 'ents' array
+  KI_cod_ty                 ents[nents]    --- entity types to be bulletined
+  KI_tag_list_int           events[nents]  --- corresponding events to record
+ &lt;KI_int_nitems&gt;           *nopts          --- no of control options
+  KI_cod_bbop               opts[nopts]    --- control options
+
+Returns:
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_cod_bbev               invalid event code
+  KI_bad_selection_code     invalid event code
+  KI_bad_entity_event_comb  event/entity mismatch
+  KI_bad_type               invalid type token supplied
+  KI_no_user_fields         can't bulletin user fields when there are none
+  KI_bad_state_combn        option inconsistent with state of bulletin board
+
+Description:
+  SEBBCO controls how information, if any, is recorded by the bulletin board
+  and turns it on and off.  Control is specified by means of control options
+  held in the array 'opts'.  Information on when an entity should be recorded
+  on the bulletin board is specified by means of data held in arrays 'ents'
+  and 'events'.
+
+  Controlling when entities are to be recorded is acheived by associating
+  with an entity type a list of event tokens (taken from the range BBEV00).
+
+  For a given entity type the event tokens instruct Parasolid to record
+  an entity (of the given type) on the bulletin board when a specified
+  event occurs to that entity.
+
+         Event Token        Interpretation
+         ================================================================
+         BBEVCR             Record on creation
+         BBEVDE             Record on deletion
+         BBEVCO             Record when copied
+         BBEVTR             Record when transfered
+         BBEVME             Record when merged
+         BBEVSP             Record when split
+         BBEVTF             Record when transformed
+         BBEVAC             Record when attribute owned by entity changes
+         BBEVCH             Record when changed
+
+
+  The arrays 'ents' and 'events', each of size 'nents', hold corresponding
+  data; each entry in 'events' is a list indicating which events are to be
+  recorded for entities of the type whose code is given in the corresponding
+  position in the array 'ents'.
+
+  Certain event types cannot apply to certain entity types (for instance,
+  a point (type TYTOPT) is never merged or split (event types BBEVME and
+  BBEVSP) and some are not recorded for certain entities (for
+  instance, a body (type TYTOBY) is not recorded as changed (event type
+  BBEVCH).  A request for the bulletin board to record an event for an entity
+  for which it is innappropriate for either of these reasons is an error and
+  will result in KI_bad_entity_event_comb being returned in 'ifail'.  The valid
+  events for entities are indicated by crosses in the following table; a blank
+  space in the table indicates that the event code may not be supplied for the
+  given entity types.
+
+                                        BBEV..
+                   | CR  | DE  | CO  | TR  | ME  | SP  | TF  | AC  | CH  |
+              -----|-----------------------------------------------------|
+      TYTO..       |     |     |     |     |     |     |     |     |     |
+            BY, AS |  X  |  X  |  X  |     |  X  |  X  |  X  |  X  |     |
+                   |     |     |     |     |     |     |     |     |     |
+              -----|-----------------------------------------------------|
+      TYTO..IN, SH,|     |     |     |     |     |     |     |     |     |
+            FA, LO,|  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
+            ED, VX,|     |     |     |     |     |     |     |     |     |
+            RG     |     |     |     |     |     |     |     |     |     |
+              -----|-----------------------------------------------------|
+                   |     |     |     |     |     |     |     |     |     |
+          TYADFE   |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
+                   |     |     |     |     |     |     |     |     |     |
+              -----|-----------------------------------------------------|
+      TYGE..       |     |     |     |     |     |     |     |     |     |
+            SU, CU,|  X  |  X  |  X  |  X  |     |     |  X  |  X  |  X  |
+            PT, TF |     |     |     |     |     |     |     |     |     |
+              -----|-----------------------------------------------------|
+                   |     |     |     |     |     |     |     |     |     |
+          TYADAD   |  X  |     |     |     |     |     |     |     |     |
+                   |     |     |     |     |     |     |     |     |     |
+              -----|-----------------------------------------------------|
+           BBEV..  | CR  | DE  | CO  | TR  | ME  | SP  | TF  | AC  | CH  |
+
+
+  In the array 'opts' codes specifying further detail about what information
+  the bulletin board is to record may be supplied.  These are specified by
+  tokens from the  reange BBOP00.  At present there is only one option which
+  can take three possible values.  These are:
+
+    o Switch bulletin board off                                (token BBOPOF)
+    o Switch bulletin board on to record tags only             (token BBOPON)
+    o Switch bulletin board on to record tags and user fields  (token BBOPUF)
+
+  If more than one code is supplied in 'opts', the codes will be applied
+  successively, starting with 'opts[0]' and continuing to 'opts['nopts'-1]'.
+
+  If userfields are not being allocated (ie STAMOD was called with
+  'usrfld' = 0) and option code BBOPUF is received then KI_no_user_fields is
+  returned in 'ifail'.  If an option code is received which clashes with, or
+  is meaningless given, the current state of the bulletin board,
+  KI_bad_request_code is returned in 'ifail'.  When the board is off, only a
+  request to switch it off is invalid.  When the board is on, whether with user
+  fields or not, it is possible to switch it off.  The only other legitimate
+  option is when the board is on but not recording user fields and there is no
+  information held in it; in this case, it is permissible to supply code BBOPUF
+  to switch on recording of user fields.  The bulletin board may be empty either
+  because no events have occurred since it was switched on, or because it has
+  been emptied in the course of reading it.
+
+
+</PRE>
+</BODY>
+</HTML>

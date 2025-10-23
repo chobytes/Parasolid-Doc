@@ -1,0 +1,123 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.085.html#50409873_pgfId-321917", " An <B>mfin</B> (PK_CLASS_mfin) represents a fin on a facet boundary.", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-435018", " mfacet and a specified <B>mfin</B>. For a laminar <B>mfin</B>, returns a zero identifier, indicating that there is", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-435022", " Returns the <B>mfin</B> of the mfacet with the given mfin_index. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-434982", " Returns the <B>mfin</B> coincident with the given <B>mfin</B> in the adjacent", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-434986", " Returns the index of the given <B>mfin</B> in its mfacet. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-434994", " Returns the next <B>mfin</B> in the given mfacet. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-434998", " Returns the next <B>mfin</B> around the given mvertex. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-435002", " Returns the previous <B>mfin</B> in the given mfacet. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-435006", " Returns the previous <B>mfin</B> around the given mvertex. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-435010", " Indicates whether the <B>mfin</B> is laminar. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-510124", " Indicates whether the <B>mfin</B> is sharp. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-412842", " Returns an <B>mfin</B> which points to the given mvertex. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-393242", " adjacent mfacet or the mfacet of the adjacent <B>mfin</B> respectively as illustrated in ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-394797", " function specifies propagation across the <B>mfin</B> and into its mfacet. If ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-376411", " An mfacet with at least one <B>mfin</B> shorter than either: ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-341774", " cannot have an mfacet with a zero length <B>mfin</B> (degenerate mfacet). ", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.089.html#50409877_pgfId-346618", " or fewer mfins, and also fills the 10 <B>mfin</B> hole specified. ", "Functional Description - Filling Holes In Facet Bodies");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339098", " across every <B>mfin</B>, and every point on an <B>mfin</B> has multiple parameterisations. Meshes, of course, can be", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339106", " U or V. Parasolid does not guarantee which <B>mfin</B> is which. This means that there is no", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-354387", " can call PK_MFIN_ask_mvx_normal or PK_MFIN_ask_mvx_curvature on the appropriate <B>mfin</B> of the mvertex. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-352953", " a mesh and returns the mfacet and any <B>mfin</B> or mvertex at the position evaluated. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-451829", " for the mvertices at either end of the <B>mfin</B>, the two adjacent mfacets do not share a", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-440510", " Controls the angle at which an <B>mfin</B> is considered sharp. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-448118", " Note: The decision over whether an <B>mfin</B> is considered sharp when ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339568", " it is an error to supply both an <B>mfin</B> and its mvertex ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-372593", " Laminar or have an adjacent <B>mfin</B> that belongs to another mfacet that is not", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-382808", " polylines that represent the mloop and the tracking <B>mfin</B> for each polyline are returned. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-403727", " both it and its adjacent <B>mfin</B> (i.e the <B>mfin</B> returned from PK_MFIN_ask_mfin_adjacent ) lie on the perimeter.", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-294788", " sharp <B>mfin</B> lines - indicate chains of connected sharp mfins", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-688942", " use PK_MFIN_is_sharp to find out if a given <B>mfin</B> is sharp. See Section 89.3.2.4, Finding sharp mfins", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-695299", " polyline lies along a silhouette, only the sharp <B>mfin</B> polyline is output. If an edge is coincident", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-288586", " Laminar <B>mfin</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-288688", " of a mesh. Laminar mfins have no adjacent <B>mfin</B>. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-289683", " a mesh surface that describe its structure: mfacet, <B>mfin</B> and mvertex. Often shortened to mtopology or mtopol.", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-291078", " <B>Mfin</B> ", "Functional Description - ZGlossary");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_MESH_state_degen_mfacet_c 25932 mfacet has a zero length <B>mfin</B> ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_MESH_state_degen_mfacet_c 25932 mfacet has a zero length <B>mfin</B> ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " mtopols contains a <B>mfin</B> and also the", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " mtopols contains a <B>mfin</B> and also the", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " mtopols contains a <B>mfin</B> and also the", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_assembly_check_o_t.html#documentation", " cannot have an mfacet with a zero length <B>mfin</B>", "PK Reference - PK_ASSEMBLY_check_o_t");
+top.note("headers/pk_body_check_o_t.html#documentation", " cannot have an mfacet with a zero length <B>mfin</B>", "PK Reference - PK_BODY_check_o_t");
+top.note("headers/pk_check_state_t.html#documentation", " PK_MESH_state_degen_mfacet_c mfacet has a zero length <B>mfin</B>", "PK Reference - PK_check_state_t");
+top.note("headers/pk_gosgmt_f_t.html#documentation", " lntp[11] - Coincidence with a sharp <B>mfin</B> polyline; one of the values", "PK Reference - PK_GOSGMT_f_t");
+top.note("headers/pk_mesh_defect_details_t.html#documentation", "| |degenerate <B>mfin</B> | | |", "PK Reference - PK_MESH_defect_details_t");
+top.note("headers/pk_mesh_defect_tolerances_t.html#documentation", " an mfacet or an <B>mfin</B> in the mesh is to be considered degenerate.", "PK Reference - PK_MESH_defect_tolerances_t");
+top.note("headers/pk_mesh_eval_with_mtopol.html#documentation", "If the position is on an <B>mfin</B> or an mvertex, it is considered to lie", "PK Reference - PK_MESH_eval_with_mtopol");
+top.note("headers/pk_mesh_fill_holes_o_t.html#declaration", " --- is a laminar <B>mfin</B> on a", "PK Reference - PK_MESH_fill_holes_o_t");
+top.note("headers/pk_mesh_find_laminar_mfins.html#documentation", "at least one <B>mfin</B>, but the number of components may be zero.", "PK Reference - PK_MESH_find_laminar_mfins");
+top.note("headers/pk_mesh_find_sharp_mfins.html#documentation", "A sharp <B>mfin</B> is defined in PK_MFIN_is_sharp .", "PK Reference - PK_MESH_find_sharp_mfins");
+top.note("headers/pk_mesh_find_sharp_mfins_o_t.html#documentation", " sharp_angle An <B>mfin</B> is considered sharp if PK_MFIN_is_sharp returns", "PK Reference - PK_MESH_find_sharp_mfins_o_t");
+top.note("headers/pk_mesh_fix_defects_o_t.html#documentation", " each resultant mesh is <B>mfin</B> connected.", "PK Reference - PK_MESH_fix_defects_o_t");
+top.note("headers/pk_mesh_store_normals_o_t.html#errors", " mtopols contains a <B>mfin</B> and also the", "PK Reference - PK_MESH_store_normals_o_t");
+top.note("headers/pk_mesh_store_normals_o_t.html#documentation", " For mfins the mvertex normal of the <B>mfin</B> will be replaced. For mvertices", "PK Reference - PK_MESH_store_normals_o_t");
+top.note("headers/pk_mfacet_ask_mfacet_adjacent.html#declaration", " PK_MFIN_index_t mfin_index, --- index of <B>mfin</B> within mfacet ", "PK Reference - PK_MFACET_ask_mfacet_adjacent");
+top.note("headers/pk_mfacet_ask_mfacet_adjacent.html#description", " <B>mfin</B> with the given mfin_index . If the <B>mfin</B>", "PK Reference - PK_MFACET_ask_mfacet_adjacent");
+top.note("headers/pk_mfacet_ask_mfin.html#declaration", " PK_MFIN_index_t mfin_index, --- index of <B>mfin</B> within mfacet ", "PK Reference - PK_MFACET_ask_mfin");
+top.note("headers/pk_mfacet_ask_mfin.html#description", " This function returns the <B>mfin</B> of mfacet with the given mfin_index .", "PK Reference - PK_MFACET_ask_mfin");
+top.note("headers/pk_mfacet_ask_mvertices.html#documentation", "`mvertices[0] is the mvertex pointed to by the <B>mfin</B> with mfin_index = 0.", "PK Reference - PK_MFACET_ask_mvertices");
+top.note("headers/pk_mfacet_ask_mvx_normals.html#documentation", " normal at the mvertex pointed to by the <B>mfin</B> with", "PK Reference - PK_MFACET_ask_mvx_normals");
+top.note("headers/pk_mfacet_ask_positions.html#documentation", " vector at the mvertex pointed to by the <B>mfin</B>", "PK Reference - PK_MFACET_ask_positions");
+top.note("headers/pk_mfacet_find_perimeters.html#documentation", " an <B>mfin</B> topology criterion, this boundary comprises every <B>mfin</B> of", "PK Reference - PK_MFACET_find_perimeters");
+top.note("headers/pk_mfacet_find_perimeters_o_t.html#documentation", " wire <B>mfin</B> portions of perimeters will", "PK Reference - PK_MFACET_find_perimeters_o_t");
+top.note("headers/pk_mfin_ask_mfacet.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B> ", "PK Reference - PK_MFIN_ask_mfacet");
+top.note("headers/pk_mfin_ask_mfacet.html#description", " This function returns the mfacet which contains the <B>mfin</B> .", "PK Reference - PK_MFIN_ask_mfacet");
+top.note("headers/pk_mfin_ask_mfin_adjacent.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B> ", "PK Reference - PK_MFIN_ask_mfin_adjacent");
+top.note("headers/pk_mfin_ask_mfin_adjacent.html#description", " the <B>mfin</B> from the adjacent facet to this <B>mfin</B> s", "PK Reference - PK_MFIN_ask_mfin_adjacent");
+top.note("headers/pk_mfin_ask_mfin_index.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B>", "PK Reference - PK_MFIN_ask_mfin_index");
+top.note("headers/pk_mfin_ask_mfin_index.html#description", " This function returns the index of <B>mfin</B> within its mfacet.", "PK Reference - PK_MFIN_ask_mfin_index");
+top.note("headers/pk_mfin_ask_mvertex.html#declaration", " PK_MFIN_t <B>mfin</B>, --- The <B>mfin</B> ", "PK Reference - PK_MFIN_ask_mvertex");
+top.note("headers/pk_mfin_ask_mvertex.html#description", " This function returns the mvertex towards which <B>mfin</B> points.", "PK Reference - PK_MFIN_ask_mvertex");
+top.note("headers/pk_mfin_ask_mvx_curvature.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B> ", "PK Reference - PK_MFIN_ask_mvx_curvature");
+top.note("headers/pk_mfin_ask_mvx_curvature.html#description", "associated with the mvertex of the given <B>mfin</B> . Where the mvertex of the", "PK Reference - PK_MFIN_ask_mvx_curvature");
+top.note("headers/pk_mfin_ask_mvx_curvature.html#documentation", "If the mvertex of the <B>mfin</B> has a unique normal the sign of the", "PK Reference - PK_MFIN_ask_mvx_curvature");
+top.note("headers/pk_mfin_ask_mvx_normal.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B> ", "PK Reference - PK_MFIN_ask_mvx_normal");
+top.note("headers/pk_mfin_ask_mvx_normal.html#description", " the mvx_normal at the mvertex of the given <B>mfin</B> .", "PK Reference - PK_MFIN_ask_mvx_normal");
+top.note("headers/pk_mfin_ask_mvx_normal.html#documentation", " are not stored, an averaged normal for the <B>mfin</B> at the mvertex is", "PK Reference - PK_MFIN_ask_mvx_normal");
+top.note("headers/pk_mfin_ask_next_in_mfacet.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B>", "PK Reference - PK_MFIN_ask_next_in_mfacet");
+top.note("headers/pk_mfin_ask_next_in_mfacet.html#description", " This function returns the <B>mfin</B> following <B>mfin</B> in the same mfacet.", "PK Reference - PK_MFIN_ask_next_in_mfacet");
+top.note("headers/pk_mfin_ask_next_of_mvertex.html#declaration", " PK_MFIN_t <B>mfin</B>, ---the <B>mfin</B>", "PK Reference - PK_MFIN_ask_next_of_mvertex");
+top.note("headers/pk_mfin_ask_next_of_mvertex.html#description", " This function returns the next <B>mfin</B> around the mvertex pointed at by", "PK Reference - PK_MFIN_ask_next_of_mvertex");
+top.note("headers/pk_mfin_ask_previous_in_mfacet.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B>", "PK Reference - PK_MFIN_ask_previous_in_mfacet");
+top.note("headers/pk_mfin_ask_previous_in_mfacet.html#description", " This function returns the <B>mfin</B> preceding <B>mfin</B> in the same mfacet.", "PK Reference - PK_MFIN_ask_previous_in_mfacet");
+top.note("headers/pk_mfin_ask_previous_of_mvertex.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B>", "PK Reference - PK_MFIN_ask_previous_of_mvertex");
+top.note("headers/pk_mfin_ask_previous_of_mvertex.html#description", " previous <B>mfin</B> around the mvertex pointed at by <B>mfin</B> .", "PK Reference - PK_MFIN_ask_previous_of_mvertex");
+top.note("headers/pk_mfin_index_t.html#description", " This type identifies a particular <B>mfin</B> of an mfacet.", "PK Reference - PK_MFIN_index_t");
+top.note("headers/pk_mfin_is_laminar.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B>", "PK Reference - PK_MFIN_is_laminar");
+top.note("headers/pk_mfin_is_laminar.html#description", " indicates whether or not <B>mfin</B> is a laminar <B>mfin</B>.", "PK Reference - PK_MFIN_is_laminar");
+top.note("headers/pk_mfin_is_laminar.html#documentation", "A laminar <B>mfin</B> is an <B>mfin</B> along the boundary of a mesh. Laminar mfins", "PK Reference - PK_MFIN_is_laminar");
+top.note("headers/pk_mfin_is_same_mfacet.html#declaration", " PK_MFIN_t mfin_1, --- the first <B>mfin</B>", "PK Reference - PK_MFIN_is_same_mfacet");
+top.note("headers/pk_mfin_is_sharp.html#declaration", " PK_MFIN_t <B>mfin</B>, --- the <B>mfin</B>", "PK Reference - PK_MFIN_is_sharp");
+top.note("headers/pk_mfin_is_sharp.html#description", " indicates whether or not <B>mfin</B> is a sharp <B>mfin</B>.", "PK Reference - PK_MFIN_is_sharp");
+top.note("headers/pk_mfin_is_sharp.html#documentation", "An <B>mfin</B> between two adjacent mfacets in a mesh is", "PK Reference - PK_MFIN_is_sharp");
+top.note("headers/pk_mfin_t.html#documentation", "An <B>mfin</B> is a type of mesh topology (PK_CLASS_mfin is", "PK Reference - PK_MFIN_t");
+top.note("headers/pk_mloop_details_r_t.html#declaration", " PK_MFIN_t *pline_mfins; --- tracking <B>mfin</B> for each pline", "PK Reference - PK_mloop_details_r_t");
+top.note("headers/pk_mloop_details_r_t.html#documentation", " than one perimeter <B>mfin</B> pointing into them will have more", "PK Reference - PK_mloop_details_r_t");
+top.note("headers/pk_mtopol_make_meshes.html#documentation", "The mesh components produced by PK_MTOPOL_make_meshes are maximal <B>mfin</B>", "PK Reference - PK_MTOPOL_make_meshes");
+top.note("headers/pk_mtopol_select_cb_f_t.html#declaration", " const PK_MTOPOL_t mtopol, --- mfacet or <B>mfin</B>", "PK Reference - PK_MTOPOL_select_cb_f_t");
+top.note("headers/pk_mvertex_ask_mfin.html#declaration", " PK_MFIN_t *const <B>mfin</B> --- an <B>mfin</B> which points towards mvertex ", "PK Reference - PK_MVERTEX_ask_mfin");
+top.note("headers/pk_mvertex_ask_mfin.html#description", " This function returns an <B>mfin</B> which points towards mvertex .", "PK Reference - PK_MVERTEX_ask_mfin");
+top.note("headers/pk_mvertex_ask_mvertices_ring.html#documentation", "<B>mfin</B> which has mvertex at one end.", "PK Reference - PK_MVERTEX_ask_mvertices_ring");
+top.note("headers/pk_render_sharp_mfins_t.html#documentation", " to determine whether or not to output sharp <B>mfin</B>", "PK Reference - PK_render_sharp_mfins_t");
+top.note("headers/pk_session_set_mesh_angle.html#documentation", " the mesh_angle to 0 will result in each <B>mfin</B> for which the mvertex", "PK Reference - PK_SESSION_set_mesh_angle");
+top.note("headers/pk_topol_render_line_o_t.html#documentation", " Where a sharp <B>mfin</B> polyline lies along a", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("chapters/di_chap.05.html#50511937_pgfId-326329", " when rendering sharp mfins. It indicates that the <B>mfin</B> line (which is sharp) is coincident with a", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-323218", " See Section 4.4.4.24, Sharp <B>mfin</B> line: SGTPSF for more information. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-321695", " array explaining viewport codes and sharp <B>mfin</B> codes ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-320756", " 4.4.4.24 Sharp <B>mfin</B> line: SGTPSF ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.15.html#50511947_pgfId-302036", " Sharp <B>mfin</B> segment is not smooth but coincident with silhouette", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-302307", " Sharp <B>mfin</B> line ", "Downward Interfaces - Go Tokens and Error Codes");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

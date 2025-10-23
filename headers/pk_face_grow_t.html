@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_grow_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_grow_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_FACE_grow_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_hollow_o_t.html>PK_BODY_hollow_o_t</A><br>
+    <A HREF=../headers/pk_body_offset_o_t.html>PK_BODY_offset_o_t</A><br>
+    <A HREF=../headers/pk_body_thicken_o_t.html>PK_BODY_thicken_o_t</A><br>
+    <A HREF=../headers/pk_face_change_o_t.html>PK_FACE_change_o_t</A><br>
+    <A HREF=../headers/pk_face_hollow_o_t.html>PK_FACE_hollow_o_t</A><br>
+    <A HREF=../headers/pk_face_offset_o_t.html>PK_FACE_offset_o_t</A><br>
+    <A HREF=../headers/pk_face_taper_o_t.html>PK_FACE_taper_o_t</A><br>
+    <A HREF=../headers/pk_face_transform_o_t.html>PK_FACE_transform_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype controls the behaviour when features clash in such a way that
+faces may be required to grow in order to be repaired.
+
+See <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-307195">here</A> for more information.
+
+    PK_FACE_grow_update_c    For updating models created in an older version of
+                             Parasolid.  See the options structure
+                             documentation of the relevant function for
+                             details.
+
+    PK_FACE_grow_auto_c      Parasolid determines which faces to grow.
+
+    PK_FACE_grow_moving_c    Grow the faces that are moved by the operation.
+                             If faces from both sides of the clash are moving,
+                             the result will be the same as
+                             PK_FACE_grow_auto_c.
+
+    PK_FACE_grow_fixed_c     Grow the faces that are not moving.
+
+    PK_FACE_grow_no_c        No faces are grown, but the wound is capped
+                             with faces of opposite normal at the clash
+                             location.
+
+    PK_FACE_grow_fail_c      Do not attempt to resolve the clash, but
+                             instead fail if this situation occurs.
+
+    When Parasolid determines which faces to grow, the action taken can
+    be accessed via the Parasolid Report mechanism.  A report of type
+    <A HREF=../headers/pk_report_2_t.html>PK_REPORT_2_t</A> is created for each clash.   This report consists 3 arrays of
+    old items, contianing both sets of clashing faces and the site faces.
+
+    A status of <A HREF=../headers/pk_report_2_t.html>PK_REPORT_2_grow_1_c</A> means the faces in the first
+    old_items_array were grown to resolve the clash.
+
+    A status of <A HREF=../headers/pk_report_2_t.html>PK_REPORT_2_grow_2_c</A> means the faces in the second
+    old_items_array were grown to resolve the clash.
+
+    A status of <A HREF=../headers/pk_report_2_t.html>PK_REPORT_2_grow_no_c</A> means the faces in the third
+    old_items_array where negated to resolve the clash.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

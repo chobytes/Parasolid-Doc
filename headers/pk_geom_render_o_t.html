@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_GEOM_render_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_GEOM_render_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_GEOM_render_o_s
+    {
+    int                  o_t_version;         --- Option structure version
+    <A HREF=../headers/pk_render_param_t.html>PK_render_param_t</A>    param;               --- Whether to draw parametric
+                                              --- hatch lines
+                                              --- (<A HREF=../headers/pk_render_param_t.html>PK_render_param_no_c</A>)
+    double               param_u;             --- Spacing of hatch lines in
+                                              --- surface u directions
+                                              --- (0.0)
+    double               param_v;             --- Spacing of hatch lines in
+                                              --- surface v directions
+                                              --- (0.0)
+    int                  param_u_number;      --- Number of u direction hatch
+                                              --- lines. Used only when <B>'param'</B>
+                                              --- set to
+                                              --- <A HREF=../headers/pk_render_param_t.html>PK_render_param_number_free_c</A>
+                                              --- ( 0 )
+    int                  param_v_number;      --- Number of v direction hatch
+                                              --- lines. Used only when <B>'param'</B>
+                                              --- set to
+                                              --- <A HREF=../headers/pk_render_param_t.html>PK_render_param_number_free_c</A>
+                                              --- ( 0 )
+    <A HREF=../headers/pk_render_boundary_t.html>PK_render_boundary_t</A> boundary;            --- Whether to render surface
+                                              --- boundaries
+                                              --- (<A HREF=../headers/pk_render_boundary_t.html>PK_render_boundary_yes_c</A>)
+    <A HREF=../headers/pk_render_bcurve_t.html>PK_render_bcurve_t</A>   bcurve;              --- Method for rendering bcurves
+                                              --- (<A HREF=../headers/pk_render_bcurve_t.html>PK_render_bcurve_polyline_c</A>)
+    <A HREF=../headers/pk_render_lattice_t.html>PK_render_lattice_t</A>  lattice;             --- Method for rendering lattices
+                                              --- (<A HREF=../headers/pk_render_lattice_t.html>PK_render_lattice_line_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>         have_curve_chord_tol;--- Whether curve_chord_tol is
+                                              --- set
+                                              --- (PK_LOGICAL_false)
+    double               curve_chord_tol;     --- Chordal tolerance between
+                                              --- a curve and its rendered
+                                              --- representation in model units
+                                              --- (0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>         have_curve_chord_max;--- Whether curve_chord_max is
+                                              --- set
+                                              --- (PK_LOGICAL_false)
+    double               curve_chord_max;     --- Maximum chord length in model
+                                              --- units
+                                              --- (0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>         have_curve_chord_ang;--- Whether curve_chord_ang is
+                                              --- set
+                                              --- (PK_LOGICAL_false)
+    double               curve_chord_ang;     --- Maximum angle between
+                                              --- adjacent chords
+                                              --- (0.0)
+    int                  n_entities_with_scales;
+                                              --- Number of entities with
+                                              --- scales specified (0)
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>         *entities_with_scales;--- Array of entities for which a
+                                              --- scale factor is specified
+                                              --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>   *scale_factors;       --- Array of scale factors
+                                              --- associated with the
+                                              --- corresponding entries in
+                                              --- <B>'entities_with_scales'</B> (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>    output_scale_factor; --- Scale by which to shrink the
+                                              --- resulting representation
+                                              --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    };
+typedef struct PK_GEOM_render_o_s PK_GEOM_render_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Controls for the <A HREF=../headers/pk_geom_render.html>PK_GEOM_render</A> options structure.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+
+    PK_ERROR_bad_parameter          <B>'param'</B> is <A HREF=../headers/pk_render_param_t.html>PK_render_param_spaced_c</A> or
+                                    <A HREF=../headers/pk_render_param_t.html>PK_render_param_spaced_free_c</A> but <B>'param_u'</B>
+                                    and <B>'param_v'</B> have not been specified
+                                    OR
+                                    <B>'param'</B> is <A HREF=../headers/pk_render_param_t.html>PK_render_param_number_free_c</A>
+                                    but <B>'param_u_number'</B> and <B>'param_v_number'</B>
+                                    have not been specified
+                                    (MILD)
+    PK_ERROR_bad_tolerance          <B>'have_curve_chord_tol'</B> is PK_LOGICAL_true
+                                    and <B>'curve_chord_tol'</B> is less than the
+                                    value returned by <A HREF=../headers/pk_session_ask_precision.html>PK_SESSION_ask_precision</A>
+                                    OR
+                                    <B>'have_curve_chord_max'</B> is PK_LOGICAL_true
+                                    and <B>'curve_chord_max'</B> is less than the
+                                    value returned by <A HREF=../headers/pk_session_ask_precision.html>PK_SESSION_ask_precision</A>
+                                    OR
+                                    <B>'have_curve_chord_ang'</B> is PK_LOGICAL_true
+                                    and <B>'curve_chord_ang'</B> is less than the
+                                    value returned by
+                                    <A HREF=../headers/pk_session_ask_angle_precision.html>PK_SESSION_ask_angle_precision</A>
+                                    (MILD)
+    PK_ERROR_has_parent             <B>'entities_with_scales'</B> contains an entity
+                                    of type <A HREF=../headers/pk_geom_t.html>PK_GEOM_t</A> that is not an orphan
+                                    geometry (MILD)
+    PK_ERROR_wrong_entity           <B>'entities_with_scales'</B> contains an entity
+                                    that is not of type <A HREF=../headers/pk_geom_t.html>PK_GEOM_t</A> or <A HREF=../headers/pk_part_t.html>PK_PART_t</A>
+                                    (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_geom_render.html>PK_GEOM_render</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This structure provides control over:
+
+    - whether surface boundary and hatch lines are required
+    - the rendering style to be used for B-curves
+    - the rendering style to be used for lattices
+    - the tolerances to be used when generating geometric information for GO
+    - the scale by which to shrink the resulting representation
+
+Each control tolerance is passed as a pair of values, consisting of a
+<A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> flag and a double precision value. If a specific tolerance
+is required, the variable is set to a strictly positive value and the
+associated flag set to PK_LOGICAL_true.
+
+If Parasolid is to use its internal tolerance defaults, the associated flag is
+set to PK_LOGICAL_false (and no use made of the associated tolerance argument).
+This is the default state set by the PK_GEOM_render_o_m macro.
+
+It is possible to associate a scale factor with an entity so that any geometry
+of that entity is enlarged by the supplied scale factor in the rendering.
+- If the geometry is construction (i.e. it would return an owning part if
+  passed to PK_*_ask_part), then its owning part should be specified in
+  <B>'entities_with_scales'</B>.
+- If the geometry is orphan, the geometry should be specified in
+  <B>'entities_with_scales'</B>
+
+If a scale factor is specified for an assembly, it will only apply to
+construction geometry directly attached to that assembly.
+
+In order to supply scale factors for entities it is necessary to fill in the
+following fields:
+
+<B>'n_entities_with_scales'</B>
+This is the number of entities with which a scale factor will be associated. If
+this is 0, no scaling will occur.
+
+<B>'entities_with_scales'</B>
+This field must be of length <B>'n_entities_with_scales'</B>, it takes an array of
+unique entities which are to have a scale factor applied. If this is empty no
+scaling will occur. If this is not empty the parallel array <B>'scale_factors'</B>
+must be filled in. All elements of this array must be either a part or an
+orphan geometry.
+
+<B>'scale_factors'</B>
+This field must be of length <B>'n_entities_with_scales'</B>, each <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>
+in this array is the scale associated with the corresponding entity in
+<B>'entities_with_scales'</B>.
+
+Note: If <B>'transfs'</B> are supplied any translation component of the transform
+will be applied to the geometries after they have been scaled.
+
+The <B>'output_scale_factor'</B> is the scale factor used to shrink the resulting
+representation, with the origin used as the scaling centre. No scaling is
+applied when the value is <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<TITLE>ENPBEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENPBEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_find_uvbox.html>PK_FACE_find_uvbox</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENPBEN ( entity, ulimit, vlimit, ifail )
+========================================
+
+  Calculates the parametric box of the given entity.
+
+Receives:
+  KI_tag_topology          *entity         --- entity whose parametric box
+                                           --- is required
+
+Returns:
+  KI_dbl                    ulimit[2]      --- u parametric limits
+  KI_dbl                    vlimit[2]      --- v parametric limits
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_missing_geom           QTP_param_rubber
+  KI_no_geometry            entity does not have geometry attached
+  KI_wrong_entity           entity is not a face
+
+Description:
+
+  The entity must be a face.
+
+  U and v parametric limits are returned in two arrays. Element
+  zero of 'ulimit'  will contain the lower u value and element one
+  the upper u. Element zero of 'vlimit' will contain the lower v
+  and element one the upper v.
+
+  The u and v limits will bound an area of the surface in which the
+  face is defined. The surface parameter space is defined by ENSUPA
+  in two arrays 'urange' and 'vrange'. The parameter box is defined
+
+  (1)
+                   'ulimit[0]' < 'ulimit[1]'  and
+                   'vlimit[0]' < 'vlimit[1]'
+
+  (2)
+           'ulimit[1]' - 'ulimit[0]' <= 'urange[1]' - 'urange[0]'
+           'vlimit[1]' - 'vlimit[0]' <= 'vrange[1]' - 'vrange[0]'
+
+  Hence for surfaces with periodic parameters the parameter box can
+  never be larger than the period of the corresponding surface
+  parameter.
+
+  (3)
+              'urange[0]' <= 'ulimit[0]' < 'urange[1]'
+              'vrange[0]' <= 'vlimit[0]' < 'vrange[1]'
+
+  So for a face that 'straddles' the boundary of a periodic
+  parameter, the upper parameter value will be greater than the
+  upper parameter range.
+
+  An attempt to find the parametric box of a face with no surface
+  attached or insufficient geometry will fail.
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<TITLE>CRETFM</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRETFM</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_transf_create.html>PK_TRANSF_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRETFM ( matrix, transf, ifail )
+================================
+
+  Creates a general transformation from the given matrix.
+
+Receives:
+  double                    matrix[16]     --- transformation components
+
+Returns:
+  KI_tag_transform         *transf         --- the transformation
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wrong_transf           determinant is zero
+  KI_sc_factor_le_0         scale must be greater than zero
+  KI_bad_component          array positions 12, 13, 14 must be zero
+
+Description:
+  The array 'matrix' contains the components that make up the
+  transformation.
+
+  The matrix operates as a post-multiplier on row vectors containing
+  homogenous coordinates thus:
+
+  (x',y',z',s') = (x,y,z,s) T
+
+  where the conventional 3-d coordinates are
+
+  (x/s,y/s,z/s).
+
+  The matrix thus consists of
+
+      (             , 0 )
+      (      R      , 0 )
+      (             , 0 )
+      ( Tx, Ty, Tz,   S )
+
+  R = a non singular transformation matrix. This matrix contains the rotation,
+      reflection, local scaling and shearing components.
+  T = a translation vector.
+  S = a global scaling factor. It has to be greater than zero.
+
+  'matrix' should be filled as follows:
+
+           Positions in array         Contents
+           ------------------        ----------
+             0 through 2,           transformation elements r    r    r
+                                                             11   21   31
+
+             4 through 6,                   "         "     r    r    r
+                                                             12   22   32
+
+         and 8 through 10                   "         "     r    r    r
+                                                             13   23   33
+             3,7, and 11            translation vector
+
+            12 through 14           0.0
+
+                 15                 scale
+
+
+
+  Note that only rotation and translation are permitted in transformations
+  attached to instances.
+
+  Note that transformations where R is non-orthogonal (contains shearing or
+  local scaling) cannot be applied to many entities (see APPTRA).
+
+</PRE>
+</BODY>
+</HTML>

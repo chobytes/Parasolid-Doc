@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_create_spline_2_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_create_spline_2_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_create_spline_2_o_s
+    {
+    int                     o_t_version;   --- options structure version
+
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>           param_interval;--- parameter range for the
+                                           --- B-curve(s) (0,1)
+
+    int                     n_parameters;  --- number of parameters (0)
+    const double           *parameters;    --- parameters for <B>'positions'</B>
+                                           --- (NULL)
+    const int              *param_indices; --- indices linking <B>'parameters'</B> to
+                                           --- <B>'positions'</B> (NULL)
+
+    int                     n_derivs;      --- number of derivatives (0)
+    const <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>      *derivs;        --- derivatives at <B>'positions'</B>
+                                           --- (NULL)
+    const int              *deriv_orders;  --- order of each derivative (NULL)
+    const int              *deriv_indices; --- indices linking <B>'derivs'</B> to
+                                           --- <B>'positions'</B> (NULL)
+
+    <A HREF=../headers/pk_spline_method_t.html>PK_spline_method_t</A>      spline_method; --- the default behaviour for each
+                                           --- <B>'position'</B>
+                                           --- (<A HREF=../headers/pk_spline_method_t.html>PK_spline_method_interpolate_c</A>)
+    int                     n_special;     --- number of <B>'positions'</B> to have
+                                           --- non-default behaviour (0)
+    const int              *special_indices;
+                                           --- indices of <B>'positions'</B> that have
+                                           --- behaviour different to the
+                                           --- default (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_fit_tol;  --- whether a fitted tolerance is
+                                           --- supplied (PK_LOGICAL_false)
+    double                  fit_tol;       --- fit tolerance
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_chordal_tol;
+                                           --- whether a chordal tolerance is
+                                           --- supplied (PK_LOGICAL_false)
+    double                  chordal_tol;   --- the maximum distance between a
+                                           --- chord between two consecutive
+                                           --- <B>'positions'</B>, and the resultant
+                                           --- B-curve(s)
+    int                     n_breaks;      --- number of break points (0)
+    const int              *break_indices; --- indices of <B>'positions'</B> that are
+                                           --- to be break points (NULL)
+
+    int                     degree;        --- degree for B-curve(s) (0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            is_periodic;   --- whether spline is periodic
+                                           --- (PK_LOGICAL_false)
+
+    int                     n_knots;       --- number of knots supplied (0)
+    const double           *knots;         --- the knots (NULL)
+    const int              *knot_mults;    --- multiplicities of the knots
+                                           --- (NULL)
+    <A HREF=../headers/pk_bcurve_overdefined_t.html>PK_BCURVE_overdefined_t</A> overdefined;   --- behaviour if overdefined
+                                           --- (PK_BCURVE_overdefined_fail_c)
+    <A HREF=../headers/pk_bcurve_clamp_t.html>PK_BCURVE_clamp_t</A>       clamp;         --- clamp to apply to the
+                                           --- B-curve(s)
+                                           --- (PK_BCURVE_clamp_no_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_clamp_axes;
+                                           --- whether <B>'clamp_axes'</B> are
+                                           --- supplied (PK_LOGICAL_false)
+    <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A>           clamp_axes;    --- clamp axes
+    <A HREF=../headers/pk_spline_update_t.html>PK_spline_update_t</A>      update;        --- update flag
+                                           --- (<A HREF=../headers/pk_spline_update_t.html>PK_spline_update_default_c</A>)
+    };
+
+typedef struct PK_BCURVE_create_spline_2_o_s PK_BCURVE_create_spline_2_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This options structure defines optional controls for creating one or more
+B-curves by splining.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_create_spline_2.html>PK_BCURVE_create_spline_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It contains the following options:
+
+<B>'param_interval'</B>    Parameter interval for the B-curve(s). If <B>'break_indices'</B>
+                    are supplied, then more than one B-curve will be returned,
+                    in which case the low end of <B>'param_interval'</B> will
+                    correspond to the low end of the first B-curve's parameter
+                    interval, and the high end of <B>'parameter_interval'</B> will
+                    correspond to the high end of the last B-curve's parameter
+                    interval. (0,1)
+
+<B>'n_parameters'</B>      Number of parameters supplied. It must be no greater than
+                    <B>'n_positions'</B>.  (0)
+
+<B>'parameters'</B>        An array of length <B>'n_parameters'</B>. If this option is not
+                    NULL then the resultant B-curve(s) will interpolate the
+                    specified <B>'positions'</B> at the corresponding <B>'parameters'</B>.
+                    The parameters must lie in the interval <B>'param_interval'</B>
+                    and be monotonically increasing with respect to the order
+                    of the <B>'positions'</B>. If <B>'is_periodic'</B> is PK_LOGICAL_true,
+                    the start and end of the parameter range should not both be
+                    supplied as parameters. (NULL)
+
+<B>'param_indices'</B>     An array of length <B>'n_parameters'</B> giving the index of the
+                    position in <B>'positions'</B> that has the parameter given by the
+                    corresponding entry in <B>'parameters'</B>. (NULL)
+
+<B>'n_derivs'</B>          Number of derivatives supplied. (0)
+
+<B>'derivs'</B>            An array of length <B>'n_derivs'</B>. If this option is not NULL
+                    then the resultant B-curve(s) will have the specified
+                    derivatives at the corresponding <B>'positions'</B>. The order of
+                    the derivatives is specified in <B>'deriv_orders'</B>. (NULL)
+
+<B>'deriv_orders'</B>      An array of length <B>'n_derivs'</B> giving the order of the
+                    corresponding derivative in <B>'derivs'</B>. Values must be less
+                    than four. (NULL)
+
+<B>'deriv_indices'</B>     An array of length <B>'n_derivs'</B> giving the index of the
+                    position in <B>'positions'</B> that has the derivative given by
+                    the corresponding entry in <B>'derivs'</B>.
+
+                    The maximum number of derivatives of a particular order
+                    that can be supplied is <B>'n_positions'</B>.  First order
+                    derivatives with magnitude zero are not allowed, except at
+                    the start or end positions. (NULL)
+
+<B>'spline_method'</B>     The default behaviour of each position. Each position may
+                    be interpolated, or fitted to within <B>'fit_tol'</B>.
+                    (<A HREF=../headers/pk_spline_method_t.html>PK_spline_method_interpolate_c</A>)
+
+<B>'n_special'</B>         The number of <B>'positions'</B> with behaviour different to the
+                    default <B>'spline_method'</B>. (0)
+
+<B>'special_indices'</B>   An array of length <B>'n_special'</B> giving the indices of the
+                    positions in <B>'positions'</B> that do not follow the default
+                    <B>'spline_method'</B>. If <B>'spline_method'</B> is set to
+                    <A HREF=../headers/pk_spline_method_t.html>PK_spline_method_interpolate_c</A>, then the positions
+                    specified by <B>'special_indices'</B> will be fitted. If
+                    <B>'spline_method'</B> is set to <A HREF=../headers/pk_spline_method_t.html>PK_spline_method_fit_c</A>, then the
+                    positions specified by <B>'special_indices'</B> will be
+                    interpolated.
+
+                    The positions at indices 0 and <B>'n_positions'</B>-1 may not be
+                    fitted. If any positions are specified as being fitted,
+                    then:
+                      o <B>'n_knots'</B> must be equal to zero.
+                      o <B>'degree'</B> must be equal to zero or three.
+                      o <B>'clamp'</B> must be set to PK_BCURVE_clamp_no_c.
+                    (NULL)
+
+<B>'have_fit_tol'</B>      Whether a fit tolerance is supplied in <B>'fit_tol'</B>. This must
+                    be set to PK_LOGICAL_true if and only if at least one
+                    position is specified as fitted. (PK_LOGICAL_false)
+
+<B>'fit_tol'</B>           The maximum distance between the resultant B-curve(s) and
+                    any <B>'positions'</B> which are fitted.
+
+<B>'have_chordal_tol'</B>  If set to PK_LOGICAL_true, then the resultant B-curve(s)
+                    will be within a distance <B>'chordal_tol'</B> of the chords
+                    between consecutive <B>'positions'</B>. If this option is enabled
+                    then:
+                       o <B>'n_knots'</B> must be set to zero.
+                       o <B>'degree'</B> must be equal to zero or three.
+                       o <B>'clamp'</B> must be set to PK_BCURVE_clamp_no_c.
+                    (PK_LOGICAL_false)
+
+<B>'chordal_tol'</B>       The tolerance value used for the chordal tolerance, if
+                    <B>'have_chordal_tol'</B> is set to PK_LOGICAL_false. If
+                    <B>'have_fit_tol'</B> is set to PK_LOGICAL_true, then this value
+                    must be equal to or greater than <B>'fit_tol'</B>.
+
+<B>'n_breaks'</B>          The number of breaks supplied. (0)
+
+<B>'break_indices'</B>     An array of length <B>'n_breaks'</B>. If no breaks are supplied,
+                    a single B-curve will be returned. Otherwise, the number of
+                    B-curves returned will be equal to <B>'n_breaks'</B>+1, and the
+                    break between each consecutive pair of B-curves will be at
+                    the position in <B>'positions'</B> that is at the index given by
+                    the corresponding entry in <B>'break_indices'</B>. At a break, the
+                    B-curves will join with C2 smoothness. No index in
+                    <B>'break_indices'</B> may be equal to 0 or <B>'n_positions'</B>-1. If
+                    any <B>'break_indices'</B> are supplied, then <B>'n_knots'</B> must be
+                    equal to zero. (NULL)
+
+<B>'degree'</B>            The degree of the B-curve(s).  If this is zero, Parasolid
+                    will choose an appropriate degree.  Otherwise it must be
+                    greater than zero. (0)
+
+<B>'is_periodic'</B>       If no <B>'break_indices'</B> are returned, then this specifies the
+                    resultant B-curve should be periodic. Otherwise more than
+                    one B-curve will be returned which will each be
+                    non-periodic, however if <B>'is_periodic'</B> is set to
+                    PK_LOGICAL_true, then the end of the last B-curve will join
+                    the start of the first B-curve with C2 smoothness.
+                    (PK_LOGICAL_false)
+
+<B>'n_knots'</B>           Number of knots supplied. (0)
+
+<B>'knots'</B>             An array of length <B>'n_knots'</B> of distinct knot values for
+                    the B-curve. (NULL)
+
+<B>'knot_mults'</B>        An array of length <B>'n_knots'</B> specifying the multiplicities
+                    of the knots. (NULL)
+
+<B>'overdefined'</B>       If a knotset is provided using the <B>'knots'</B> and <B>'knot_mults'</B>
+                    arrays, then this option controls the behaviour if the
+                    position, parameter and derivative conditions (locally)
+                    overdefine a spline with the given knotset. Possible values
+                    are:
+
+                        PK_BCURVE_overdefined_fail_c: Fail if the spline is
+                        overdefined. Therefore sufficient knots must be
+                        provided to allow the imposition of the given
+                        <B>'positions'</B> and <B>'derivs'</B>.
+
+                        PK_BCURVE_overdefined_insert_c: The resultant B-curve
+                        will have additional knots inserted in order to match
+                        the requested <B>'positions'</B> and <B>'derivs'</B>. Therefore the
+                        supplied knotset will be a subset of the knots in the
+                        resultant B-curve.
+
+                    If a knotset is not provided, then this option has no
+                    effect. (PK_BCURVE_overdefined_fail_c)
+
+<B>'clamp'</B>             Optionally applies a clamp to the resultant B-curve(s).
+                    Clamping the spline can make it behave in a more controlled
+                    manner by restricting it to the box of the supplied
+                    <B>'positions'</B>.
+
+                    If <B>'clamp'</B> is set to a value other than
+                    PK_BCURVE_clamp_no_c, then:
+                      o <B>'n_knots'</B> must be set to zero.
+                      o <B>'degree'</B> must be equal to zero, two or three.
+                      o No derivative conditions are allowed, except setting
+                        the first derivative of the first or last positions of
+                        the spline to the zero vector.
+
+                    The clamp planes will be a set of three orthogonal planes,
+                    whose orientation is specified by <B>'clamp_axes'</B>.
+                    (PK_BCURVE_clamp_no_c)
+
+<B>'have_clamp_axes'</B>   This option must be set to PK_LOGICAL_true if and only if
+                    <B>'clamp'</B> is set to a value other than PK_BCURVE_clamp_no_c.
+                    (PK_LOGICAL_false)
+
+<B>'clamp_axes'</B>        If <B>'clamp'</B> is set to a value other than
+                    PK_BCURVE_clamp_no_c, then this field controls the
+                    orientation of the clamp plane axes. The <B>'location'</B> field
+                    is ignored.
+
+<B>'update'</B>            The default value allows applications to take advantage of
+                    the latest enhancements to the splining algorithm. To
+                    maintain consistency when rebuilding models created in a
+                    previous version of Parasolid, a non-default value should
+                    be specified.
+                    (<A HREF=../headers/pk_spline_update_t.html>PK_spline_update_default_c</A>)
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

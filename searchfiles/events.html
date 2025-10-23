@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.008.html#50409788_pgfId-327028", " Setting up a bulletin board to record certain <B>events</B> within a Parasolid session. See Chapter 100, Bulletin", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-327228", " 10.2.4 ), which would allow split and merge <B>events</B> to be accurately tracked for all topology classes.", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-297698", " a full description of the behaviour of merge <B>events</B> in attributes, see Section 96.4.5, Merge . ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296365", " Section 96.4.4, Split , for information about split <B>events</B>. ", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.056.html#50409840_pgfId-294958", " is PK_boolean_subtract_c, then merge <B>events</B> can never occur. ", "Functional Description - Instancing And Patterning ");
+top.note("chapters/fd_chap.056.html#50409840_pgfId-294961", " affect attributes , for more information about attribute <B>events</B>. ", "Functional Description - Instancing And Patterning ");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295712", " 91.4.1 Sequence of <B>events</B> using BREP import route ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-294984", " type of attribute undergo one of the following <B>events</B>: ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295008", " it: one for each type of event. Different <B>events</B> can then trigger calls to different associated callback", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295027", " 95.3.1 <B>Events</B> and classes ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295029", " frames, geometry, transforms, groups, assemblies and instances. All <B>events</B> can occur to all types of entity, except", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295043", " rely on the precise sequence or number of <B>events</B> during a modeling operation remaining the same in", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295062", " Combination of <B>events</B> applied to the entity during the modeling operation.", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295069", " 96.4 <B>Events</B> and how they affect attributes ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295070", " the composite of the elementary effects of those <B>events</B> that are applied to the entity to which", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295071", " The following section describes the <B>events</B> and what effects they may have on an", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295081", " of the normal Parasolid attribute processing. However, some <B>events</B> may cause a callback function to be invoked", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295084", " the <B>events</B>, then the behaviour of attributes during <B>events</B> that do not have callbacks registered continues to", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295090", " the entity, but note that transmit and receive <B>events</B> (which callbacks can be registered for) are not", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295098", " , explains how to log and output the <B>events</B> which have been applied to entities. ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295232", " are affected as described in the section Combining <B>events</B> below). ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295367", " <B>events</B> can have on attributes, see Section 96.4, <B>events</B>", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295372", " 96.5.1 Combining <B>events</B> ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295375", " Many high-level modeling operations result in multiple <B>events</B> being applied to entities affected by an operation.", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295376", " a combination of the split, transfer and change <B>events</B>: ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294943", " possible modeling changes, see Section 100.2.1, Bulletin board <B>events</B> . ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294747", " The entities and <B>events</B> that are recorded on the bulletin board are", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294751", " 100.2.1 Bulletin board <B>events</B> ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294752", " creation or deletion of the entity. The particular <B>events</B> which can be recorded on the bulletin board", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294814", " 100.2.3 <B>Events</B> and entity class combinations ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294816", " The permissible combinations of <B>events</B> and entity classes are indicated by * ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294921", " It is not possible for all bulletin board <B>events</B> to occur to all of the different entity", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294936", " the bulletin board for each entity/event combination. The entity/<B>events</B> that are to be recorded are controlled by", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294976", " the parts in the session, PK_BB_output_events outputs the <B>events</B> that have occurred since the bulletin board was", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294987", "<B>events</B> ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295005", " is created and copied, PK_BB_output_events would return two <B>events</B> as follows: ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295008", " <B>events</B> ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295044", " entries for the merge, split, copy and transfer <B>events</B> ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295050", " The bulletin board accumulates <B>events</B> as entities are created, deleted or modified. Each", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295051", " bulletin board). With respect to these rules the <B>events</B> bulletined fall into the following four classes: ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295052", "Inheritance <B>events</B> - <B>events</B> that have more than one entity associated with", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295060", " action the bulletin board takes on two consecutive <B>events</B>, are: ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295069", " new event is a transformation, then the two <B>events</B> are combined into one transformation event. ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295070", " event is a change event, then the two <B>events</B> are combined into one change event. ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295074", " 100.3.1 Interaction between <B>events</B> ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295075", " event as one or more other <B>events</B>. The <B>events</B> which exhibit this behaviour are: ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203588", " <B>events</B> and 1382 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203619", " and creation <B>events</B> 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203621", " and deletion <B>events</B> 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203625", " and split <B>events</B> 1391 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203627", " and transfer <B>events</B> 1392 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203631", " and transmit <B>events</B> 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203641", " change <B>events</B> for 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203661", " <B>events</B>, combining 1395 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203670", " merge <B>events</B> and 1392 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203674", " miscellaneous <B>events</B> and 1394 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203692", " receive <B>events</B> and 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204554", " <B>events</B> 1434 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204556", " <B>events</B> and entity class combinations 1434 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204558", " <B>events</B>, interaction between 1437 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204560", " <B>events</B>, outputting 1435 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204604", " change <B>events</B> for attributes 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204723", " class combinations, bulletin board <B>events</B> and entity 1434 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204830", " attribute <B>events</B> 1395 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205094", " creation <B>events</B>, attributes and 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205398", " deletion <B>events</B> and attributes 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205903", " combinations allowed with bulletin board <B>events</B> 1434 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206013", " <B>events</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206813", " <B>events</B> and attribute callback 1382 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207504", " interaction between bulletin board <B>events</B> 1437 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207894", " merge <B>events</B> and attributes 1392 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207939", " <B>events</B> and attributes 1394 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208367", " bulletin board <B>events</B> 1435 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208995", " receive <B>events</B> and attributes 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209796", " split <B>events</B>, attributes and 1391 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210373", " transfer <B>events</B>, attributes and 1392 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210411", " transmit <B>events</B>, attributes and 1393 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.03.html#50442274_pgfId-344853", " libraries (plugins) which communicate with the application via <B>events</B>, or you can adjust and augment the existing", "Overview of Parasolid - About Parasolid");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-282298", " a modelling operation that cause any of the <B>events</B> shown below: ", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-282759", " is not expressible in terms of the above <B>events</B>, though may be induced by one of them.", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-281688", " the event, the callback function is called. The <B>events</B> for which you can define callback functions are:", "Overview of Parasolid - Application Support");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_bb_is_off 42 PK_BB_output_events (MILD) can not output <B>events</B> when bb is off", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bb_is_off 42 PK_BB_output_events (MILD) can not output <B>events</B> when bb is off", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " PK_BB_output_events 42 PK_ERROR_bb_is_off (MILD) can not output <B>events</B> when bb is off", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_bb_is_empty.html#description", "empty (i.e. has no <B>events</B> on it).", "PK Reference - PK_BB_is_empty");
+top.note("headers/pk_bb_output_events.html#declaration", "int **const <B>events</B>, --- <B>events</B> to which entities", "PK Reference - PK_BB_output_events");
+top.note("headers/pk_bb_output_events.html#description", " This function outputs the <B>events</B> stored in the bulletin board", "PK Reference - PK_BB_output_events");
+top.note("headers/pk_bb_output_events.html#errors", " PK_ERROR_bb_is_off (MILD) can not output <B>events</B> when bb is off", "PK Reference - PK_BB_output_events");
+top.note("headers/pk_bb_output_events.html#documentation", "The <B>events</B> recorded in the bulletin board since it was", "PK Reference - PK_BB_output_events");
+top.note("headers/pk_bb_sf_t.html#documentation", "The fields determine, for the various possible <B>events</B>, which classes", "PK Reference - PK_BB_sf_t");
+top.note("headers/pk_face_pattern_2.html#documentation", " be created for merge, delete, split and derive <B>events</B>", "PK Reference - PK_FACE_pattern_2");
+top.note("headers/pk_face_pattern_2_r_t.html#documentation", " records created for merge, delete, split and derive <B>events</B>", "PK Reference - PK_FACE_pattern_2_r_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

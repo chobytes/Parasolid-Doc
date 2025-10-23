@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_change_transform_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_change_transform_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_change_transform_o_s
+    {
+    int                      o_t_version;
+    int                      n_loops;      --- number of boundary loops of the
+                                           --- faces being transformed.
+                                           --- (0)
+    const <A HREF=../headers/pk_loop_t.html>PK_LOOP_t</A>         *base_loops;   --- boundary loops of the faces
+                                           --- being transformed.
+                                           --- (NULL)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>         *target_faces; --- For each boundary loop, the
+                                           --- target face specifies the site
+                                           --- of the transformed faces.
+                                           --- (NULL)
+    <A HREF=../headers/pk_transform_step_t.html>PK_transform_step_t</A>      transform_step;
+                                           --- whether to create a transform
+                                           --- step face
+                                           --- (<A HREF=../headers/pk_transform_step_t.html>PK_transform_step_no_c</A>)
+    <A HREF=../headers/pk_transform_intent_t.html>PK_transform_intent_t</A>    transform_intent;
+                                           --- whether the intended result of
+                                           --- rotation is to add or remove
+                                           --- material, or produce the
+                                           --- minimal rotation
+                                           --- (<A HREF=../headers/pk_transform_intent_t.html>PK_transform_intent_minimal_c</A>)
+
+    };
+typedef struct PK_FACE_change_transform_o_s PK_FACE_change_transform_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains transform-specific optional controls for
+<A HREF=../headers/pk_face_change.html>PK_FACE_change</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_combination        (MILD)    <B>'transform_intent'</B> is not
+                                              <A HREF=../headers/pk_transform_intent_t.html>PK_transform_intent_minimal_c</A>
+                                              and no step faces were created.
+    PK_ERROR_wrong_transf           (MILD)    Transform type is not compatible
+                                              with <B>'transform_step'</B>, or the
+                                              <B>'transform_intent'</B> option.
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_opts_t.html>PK_FACE_change_opts_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Description of fields:
+
+<B>'n_loops'</B>               The number of boundary loops of the faces being
+                        transformed.
+
+<B>'base_loops'</B>            The boundary loops of the faces being transformed.
+
+<B>'target_faces'</B>          The target location for the boundary loops after
+                        transformation.
+
+<B>'transform_step'</B>        Whether to add a step face between boundary edges of
+                        faces. If this option is set to <A HREF=../headers/pk_transform_step_t.html>PK_transform_step_no_c</A>
+                        no step faces will be created. If set to
+                        <A HREF=../headers/pk_transform_step_t.html>PK_transform_step_smooth_c</A> then side faces will be
+                        created along all smooth boundary edges. If set to
+                        <A HREF=../headers/pk_transform_step_t.html>PK_transform_step_all_c</A> step faces will be created
+                        at both sharp and smooth edges. If set to
+                        <A HREF=../headers/pk_transform_step_t.html>PK_transform_step_not_coi_c</A> step faces are created
+                        at all edges except those where the surface of the step
+                        would be coincident with the surface of the adjacent
+                        face. If set to <A HREF=../headers/pk_transform_step_t.html>PK_transform_step_smooth_site_c</A> step
+                        faces are created at all smooth boundary edges but
+                        will not be created if this can be done by growing
+                        site faces.
+                        Site faces with facet geometry will not be
+                        grown.
+
+                        Only pure translations or rotations will
+                        result in side faces being created, other types of
+                        transform are not supported.
+
+                        See <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-304068">here</A> for more information.
+
+<B>'transform_intent'</B>      Whether the intended result of a rotation is to add or
+                        remove material, or produce the minimal rotation.
+
+                        If this option is set to <A HREF=../headers/pk_transform_intent_t.html>PK_transform_intent_grow_c</A>
+                        then Parasolid applies the rotation in the direction
+                        which adds material and removes none - if no such
+                        direction exists then the operation fails. If this
+                        option is set to <A HREF=../headers/pk_transform_intent_t.html>PK_transform_intent_trim_c</A> then
+                        Parasolid applies the rotation in the direction which
+                        removes material and adds none - if no such direction
+                        exists then the operation fails. If this option is set
+                        to <A HREF=../headers/pk_transform_intent_t.html>PK_transform_intent_minimal_c</A> then Parasolid
+                        applies the rotation in the direction which produces
+                        the minimal rotation - this may simultaneously add and
+                        remove material.
+
+                        The given intent will override the inherent intent of
+                        the rotation matrix.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

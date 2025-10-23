@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<TITLE>SWEENT</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SWEENT</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_sweep.html>PK_BODY_sweep</A><BR>
+<A HREF=../headers/pk_face_sweep.html>PK_FACE_sweep</A><BR>
+<A HREF=../headers/pk_vertex_sweep.html>PK_VERTEX_sweep</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SWEENT ( swept, path, latrls, extent, nlatrl, state, ifail )
+============================================================
+
+  Sweep entity
+
+Receives:
+  KI_tag_list_topology     *swept          --- body, vertex, face or list of
+                                           --- faces to sweep
+  KI_vec_displacement       path           --- translation vector
+
+Returns:
+  KI_tag_list_topology     *latrls         --- lateral edge or face(s)
+  KI_tag_list_topology     *extent         --- extruded vertex or edge(s)
+  KI_int_nitems            *nlatrl         --- number of laterals
+  KI_cod_rtlo              *state          --- state of body after sweep
+                                           ---   RTLOOK => Valid
+                                           ---   RTLONG => Negated
+                                           ---   RTLOSX => Self-intersecting
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_su_self_intersect      Sweep would produce a self-intersecting surface
+  KI_impossible_sweep       Cannot determine swept geometry
+  KI_non_manifold           Cannot sweep body with non-manifold boundary
+  KI_unsuitable_entity      Body unsuitable for sweep
+  KI_wrong_entity           Sweep entity is not a body, vertex or face
+
+Description:
+  The entity to be swept is moved along the path vector leaving lateral
+  entities in its wake. Entities which may be swept, the laterals they produce
+  and the type of the resulting body are identified in the following table.
+
+      Swept Entities        |    Laterals Returned     |      Result
+  ===========================================================================
+  Minimal body              |   One edge               |     Wire body
+                            |                          |
+  End vertex of wire body   |   One edge               |     Wire body
+                            |                          |
+  Wire body                 |   One or more faces      |     Sheet body
+                            |                          |
+  Sheet body                |   One or more faces      |     Solid body
+                            |                          |
+  One or more faces of a    |   One or more faces      |     Solid body
+  solid body                |                          |
+                            |                          |
+  General body              |   One or more faces      |     General body
+                            |       and edges          |
+  ===========================================================================
+
+  For every entry in 'latrls', there is a corresponding entry in 'extent'. This
+  list contains the topological entities extruded to create the lateral entities.
+  For every lateral face there is a swept edge from the original body and for
+  every lateral edge there is a swept vertex.
+
+   Suitable Sweep Entities:
+
+     . Any minimal body.
+     . End vertices (in contradistinction to interior vertices) of wires.
+     . Any wire body, either an open or closed loop of edges.
+     . Any sheet body whose boundary is manifold.
+     . Any group of manifold faces of a solid body. Entire shells must
+       not be contained within the list.
+     . Any general body with only one region and no edges with more than
+       two faces.
+
+  Attempting to sweep an entity which is not one of the above will give rise
+  to the ifail KI_unsuitable_entity.
+
+  An entity which has an edge whose attached curve is of the type TYCUIN
+  (ie intersection curve), TYCUFG (ie foreign geometry), TYCUSP (ie sp-curve)
+  or type TYCUCP (ie constant parameter curve) cannot be swept. However tolerant
+  edges and sheet bodies, which have curves of type TYCUSP (ie sp-curves)
+  attached to their fins can be swept.
+
+  After a sweep any coincident topology will not be fused or united.
+
+  In general this procedure may give rise to self-intersecting body
+  boundaries, which could cause unpredictable errors later.
+
+
+  Any new surfaces created are analytic surfaces if possible. If it is
+  not possible to use an analytic surface then the type of the new
+  surface will depend on SLIPGS (see SEINTP and OUINTP). If the creation
+  of generated surfaces is off, then any new non-analytic surfaces will
+  be B-surfaces; if it is on, then they will be swept surfaces.
+
+
+  If local checking is on, (see SEINTP and OUINTP) consistency checks will be
+  made on newly created topological and geometrical entities, and the state
+  of the body returned. A state of RTLOOK indicates the body is valid. A state
+  of RTLONG indicates that the result body was originally "inside out" but has
+  been negated, and is now "positive" (has positive volume) and valid. A state
+  of RTLOSX indicates the body is self-intersecting and further modelling
+  operations on it may fail.
+
+  If the session parameter for local checking is switched off, the state
+  returned will be RTLOOK regardless.
+
+  A self-intersecting body can be returned even if the ifail is zero.
+
+  For general bodies, the body is copied, the copy is transformed,
+  corresponding vertices on the body and its copy are joined with
+  lateral edges, and corresponding edges are joined with lateral faces.
+  All the lateral entities are returned, both edges and faces.  The
+  state of RTLONG is never returned since this has no meaning for
+  general bodies.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE>ENENTY</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENENTY</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_class_ask_superclass.html>PK_CLASS_ask_superclass</A><BR>
+<A HREF=../headers/pk_class_is_subclass.html>PK_CLASS_is_subclass</A><BR>
+<A HREF=../headers/pk_entity_ask_class.html>PK_ENTITY_ask_class</A><BR>
+<A HREF=../headers/pk_entity_is_curve.html>PK_ENTITY_is_curve</A><BR>
+<A HREF=../headers/pk_entity_is_geom.html>PK_ENTITY_is_geom</A><BR>
+<A HREF=../headers/pk_entity_is_part.html>PK_ENTITY_is_part</A><BR>
+<A HREF=../headers/pk_entity_is_surf.html>PK_ENTITY_is_surf</A><BR>
+<A HREF=../headers/pk_entity_is_topol.html>PK_ENTITY_is_topol</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENENTY ( entity, ltypes, types, ntypes, ifail )
+===============================================
+
+  Enquire entity type
+
+    Can be called from the GO.
+
+Receives:
+ &lt;KI_tag_entity&gt;           *entity         --- entity
+  KI_int_nitems            *ltypes         --- maximum length of types array
+
+Returns:
+  KI_cod_ty                 types[ltypes]  --- type-codes of entity
+  KI_int_nitems            *ntypes         --- number of type-codes returned
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_buffer_overflow        More than 'ltypes' type-codes to return
+
+Description:
+  The entity with the given tag is found and a list of type-codes is returned
+  which together define the type of the entity.
+
+  The first code will be from the range TYEN00 and will indicate whether the
+  entity is topological, geometric, or associated data. The following
+  type-codes will be drawn from various other ranges, determined hierarchically
+  (for example a geometric entity may yield a list of type values 'geometric',
+  'curve', 'elliptic': TYENGE, TYGECU, TYCUEL).
+
+  If a null tag is given TYEN00 is returned.
+
+</PRE>
+</BODY>
+</HTML>

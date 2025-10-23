@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>ADPAPE</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ADPAPE</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bcurve_add_knot.html>PK_BCURVE_add_knot</A><BR>
+<A HREF=../headers/pk_bsurf_add_u_knot.html>PK_BSURF_add_u_knot</A><BR>
+<A HREF=../headers/pk_bsurf_add_v_knot.html>PK_BSURF_add_v_knot</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ADPAPE ( pg, t, uorv, ifail )
+=============================
+
+  Add parameter (line) to a B-curve or B-surface
+
+Receives:
+  KI_tag_geometry          *pg             --- B-curve or B-surface
+  KI_dbl_parameter         *t              --- split parameter
+ &lt;KI_cod_papr&gt;             *uorv           --- parameter in which to split
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_knots              new knot would cause invalid knot multiplicity
+  KI_bad_parameter          parameter out of range
+  KI_bad_parametric_prop    unsuitable property
+  KI_wrong_entity           'pg' is not a B-curve or B-surface
+  KI_is_attached            geometric entity is attached to topology
+
+Description:
+  This function modifies a B-curve or B-surface by inserting a knot, resulting in
+  the addition of a (possibly null) segment, or row or column of patches.
+  The shape of the B-curve or B-surface is not changed.
+
+  The parameter 'uorv' is not used if the entity is a B-curve.
+  If the entity is a B-surface then 'uorv' must take one of the
+  following values:
+
+  . PAPRUP - add a parameter line in the u direction (i.e. a constant v
+             parameter line).
+  . PAPRVP - add a parameter line in the v direction (i.e. a constant u
+             parameter line).
+
+  The parameter t at which the new knot is to be inserted must be within the
+  range as given by ENCUPA (curves) or ENSUPA (surfaces) repectively.
+
+  The new knot must not increase the multiplicity of any existing knot to more
+  than the order for an end knot, or order-1 for an internal knot.
+  If 't' lies within a segment or patch then a new segemt, row of patches
+  ('uorv' = PAPRUP) or column of patches ('uorv' = PAPRVP) will be added to
+  the curve or surface.
+
+  If 't' lies on a segment or patch boundary then the segment, row or column of
+  patches added will be null. Adding a null segment to a curve or surface only
+  affects the B-spline representation (it duplicates a knot).
+
+
+  A B-curve or B-surface cannot be modified if it is attached to an edge
+  or face.
+
+</PRE>
+</BODY>
+</HTML>

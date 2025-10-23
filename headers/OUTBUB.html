@@ -1,0 +1,112 @@
+<HTML>
+<HEAD>
+<TITLE>OUTBUB</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUTBUB</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bb_output_events.html>PK_BB_output_events</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUTBUB ( empty, nwtags, chtags, dltags, nwtyps, chtyps, dltyps, nwufds, 
+========================================================================
+         chufds, dlufds, ifail )
+         =======================
+
+  Output rudimentary bulletin board information
+
+Receives:
+  KI_cod_logical           *empty          --- true if bulletin board is to
+                                           --- be emptied after being output
+
+Returns:
+  KI_tag_list_tag          *nwtags         --- tags of new entities
+  KI_tag_list_tag          *chtags         --- tags of changed entities
+  KI_tag_list_tag          *dltags         --- tags of deleted entities
+  KI_tag_list_int          *nwtyps         --- types of new entities
+  KI_tag_list_int          *chtyps         --- types of changed entities
+  KI_tag_list_int          *dltyps         --- types of deleted entities
+ &lt;KI_tag_list_int&gt;         *nwufds         --- user fields of new entities
+ &lt;KI_tag_list_int&gt;         *chufds         --- user fields of changed entities
+ &lt;KI_tag_list_int&gt;         *dlufds         --- user fields of deleted entities
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_bad_entity_event_comb  bulletin board has bad entity/event combination
+  KI_bulletinb_is_off       bulletin board is not active
+
+Description:
+  Outputs bulletin board information on entities created, deleted or
+  changed since the bulletin board was last emptied. Depending on the value
+  of 'empty', optionally empties the bulletin board after reading it.
+
+  Faces, edges and vertices are bulletined when they are created, deleted
+  and when their topology or geometry is changed (event types BBEVCR, BBEVDE
+  and BBEVCH, respectively).  Assemblies and bodies are bulletined only when
+  created and deleted (types BBEVCR and BBEVDE).  This routine cannot be used
+  to output the bulletin board if the entity event combinations are not
+  precisely this (see SEBBCO for details).  If the event entity combination is
+  invalid KI_bad_entity_event_comb will be returned in ifail.
+
+  Three categories of data are returned, relating to created, changed and
+  deleted entities. For each category, three lists are returned giving
+  the tag, type and (optionally) the user field for each entity. No entity
+  will be returned in more than one category, nor will it be repeated within
+  the same list. The order of entities within a list is arbitrary, except
+  that the order is the same for the tag, type and user field lists within
+  a given category.
+
+  When an entry is made in the bulletin board, a check is made to see if the
+  same entity is already recorded, and the two records are merged as follows:
+
+                     |         Second record
+        First record |   Created   Changed   Deleted
+        -------------+--------------------------------
+                     |
+          Created    |     (1)     Created     (2)
+                     |
+          Changed    |     (1)     Changed   Deleted
+                     |
+          Deleted    |     (1)       (1)       (1)
+                     |
+
+      where:
+                  (1) this case cannot occur.
+                  (2) the entity will be removed from the bulletin board
+                      entirely.
+
+  All entries made since the bulletin board was last emptied will be checked
+  in this way.
+
+  The type lists contain tokens from the range TYTO00.
+
+  User-field data is returned in the three integer lists, such that for entry
+  number "n" in the corresponding tag list, the user field is to be found in
+  entries "(n-1)*ufd_size+1" to "n*ufd_size" inclusive, where "ufd_size"
+  is the user-field size as set by STAMOD.
+
+  Whether user-field data is returned depends on the setting of the SLIPBB
+  interface parameter (see SEINTP for details) - when user-field data is
+  not returned, the three integer lists are returned as the NULTAG.
+
+  This is the only situation when NULTAG will be returned; in all other cases,
+  lists will be returned, even if they are empty.
+
+</PRE>
+</BODY>
+</HTML>

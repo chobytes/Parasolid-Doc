@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_render_viewport_type_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_render_viewport_type_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_render_viewport_type_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_render_line_o_t.html>PK_TOPOL_render_line_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This typedef controls the type of viewports the application is passing in.
+If it is set to <B>'<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_type_3D_c</A>'</B> then any non-aligned box can be
+passed in to <B>'viewport_sf'</B> or <B>'viewports'</B>
+If it is set to <B>'<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_type_2D_c</A>'</B> then any non-aligned boxes
+passed to <B>'viewport_sf'</B> or <B>'viewports'</B> are interpreted as a 2D window using the
+x and y axes, and the 3rd axis (which should be considered unbounded) should
+be coincident with the view direction.
+
+This field can take any one of the following values.
+    <B>'<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_type_3D_c</A>'</B> : 3D viewport (default)
+    <B>'<A HREF=../headers/pk_render_viewport_t.html>PK_render_viewport_type_2D_c</A>'</B> : 2D viewport
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

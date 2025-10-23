@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SURF_trim_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SURF_trim_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SURF_trim_data_s
+    {
+    int                n_spcurves;  --- number of trimming curves
+    <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>        *spcurves;    --- trim curves
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>     *intervals;   --- trim curve intervals
+    int               *trim_loop;   --- which trim loop
+    int               *trim_set;    --- which trim set
+    };
+typedef struct PK_SURF_trim_data_s PK_SURF_trim_data_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure records surface trimming data
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_data_t.html>PK_DEBUG_data_t</A><br>
+    <A HREF=../headers/pk_face_output_surf_trimmed.html>PK_FACE_output_surf_trimmed</A><br>
+    <A HREF=../headers/pk_mesh_make_surf_trimmed.html>PK_MESH_make_surf_trimmed</A><br>
+    <A HREF=../headers/pk_surf_make_sheet_trimmed.html>PK_SURF_make_sheet_trimmed</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Trim data for a surface consists of zero or more trim loops making up zero
+or more trim sets.  Each trim set represents a connected piece of trimmed
+surface.  Each trim loop is made up of bounded curves.  Each bounded curve
+is represented by a curve and a parametric interval.
+
+<B>'spcurves'</B> consists of an array of bounded curves which describe the boundary
+           loops of the trimmed surface.  More information on <B>'spcurves'</B> is
+           provided in the documentation of <A HREF=../headers/pk_face_output_surf_trimmed.html>PK_FACE_output_surf_trimmed</A>,
+           <A HREF=../headers/pk_surf_make_sheet_trimmed.html>PK_SURF_make_sheet_trimmed</A> and <A HREF=../headers/pk_mesh_make_surf_trimmed.html>PK_MESH_make_surf_trimmed</A>.
+
+
+<B>'intervals'</B> is an array of each curve's bounding interval.
+
+ Trim sets and trim loops are identified by integers.  When a
+PK_SURF_trim_data_t is returned from <A HREF=../headers/pk_face_output_surf_trimmed.html>PK_FACE_output_surf_trimmed</A>
+or <A HREF=../headers/pk_mesh_make_surf_trimmed.html>PK_MESH_make_surf_trimmed</A>, then trim sets and trim loops
+will each be allocated identifiers commencing from 0 and
+increasing by one.  When a PK_SURF_trim_data_t is input to
+<A HREF=../headers/pk_surf_make_sheet_trimmed.html>PK_SURF_make_sheet_trimmed</A>, there are no limitations on trim loop
+identifiers.
+
+As an example, if there are two trim_sets and the first has 2 trim_loops, then
+the fields may be as follows:
+
+           spcurves            trim_loop            trim_set
+
+              1                    0                   0
+              2                    0                   0
+              3                    0                   0
+              4                    0                   0
+              5                    1                   0
+              6                    1                   0
+              7                    1                   0
+              8                    2                   1
+              9                    2                   1
+             10                    2                   1
+             11                    2                   1
+
+trim_set 0 has trim_loops 0 and 1. trim_loop 0 has spcurves 1 to 4 and
+trim_loop 1 has spcurves 5 to 7.
+trim_set 1 has trim_loop 2 which has spcurves 8 to 11.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

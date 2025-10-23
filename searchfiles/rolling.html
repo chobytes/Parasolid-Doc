@@ -1,0 +1,136 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.002.html#50409781_pgfId-298169", " <B>Rolling</B> back resets the modelers memory to an earlier state,", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299822", " deleted by <B>rolling</B> the modeler back to a point before the", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295349", " to a valid state of the model. If <B>rolling</B> back has not been implemented, it should stop", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295356", " The Parasolid session has been corrupted; <B>rolling</B> back, if implemented, will not be effective. ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-303673", " in a feature modelling application which might involve <B>rolling</B> the partition back to a state immediately prior", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-303675", " See Section 98.2.4, <B>Rolling</B> to a partition mark , for more information. ", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-309699", " <B>Rolling</B> ball blend surface ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-325871", " PK_BLENDSF_sf_t is the standard form of a <B>rolling</B> ball blend surface (i.e.blendsf). The surface of a", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-309925", " whose common magnitude is the radius of the <B>rolling</B> ball ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-309926", " is the locus of the centre of the <B>rolling</B> ball ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-311402", " is the locus of the centre of the <B>rolling</B> ball, ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-295749", " your application to identify partially tightly-curved faces when <B>rolling</B> back after an offset operation. ", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-316513", " For example, a B-surface, or even a variable-radius <B>rolling</B>-ball blend, may be correctly identified if its radius", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-317302", " or a cross-sectional plane that is not a <B>rolling</B> ball. You can even use this function to", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321950", " there are some configurations in which, though a <B>rolling</B> ball-like blend could be deleted, a chamfer blend", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-305050", " PK_FACE_change can reblend any constant radius <B>rolling</B> ball blend that needs to be updated. All", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-305123", " 73.4.5.1 Reblending <B>rolling</B> ball blends ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-305124", " By default, <B>rolling</B> ball blends are reapplied without you having to", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-305127", " faces whose surfaces lie within tolerance of a <B>rolling</B> ball blend (i.e. faces that would be returned", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-305189", " faces, Parasolid replaces the original faces with a <B>rolling</B> ball blend. ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-303028", " or curvature-continuous cross-section; they are the result of <B>rolling</B> a sphere along two surfaces adjoining an edge", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-821918", " If you are creating constant radius <B>rolling</B> ball blends with no holdlines or cliff edges,", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-821952", " if you are creating constant radius <B>rolling</B> ball blends, and if you have no holdlines", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295162", " and the blended surface is the result of <B>rolling</B> a ball along the left, right and centre", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.081.html#50409868_pgfId-321987", " radius of the blend. In such cases, the <B>rolling</B> ball gets stuck at the point where the", "Functional Description - Interpreting Edge Blending Error Codes");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-294769", " In particular, attribute definitions are not deleted by <B>rolling</B> back the session to before they were created", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.098.html#50409888_pgfId-294895", " partition explicitly, you can make it inactive by <B>rolling</B> it to its initial pmark using PK_PMARK_goto_2 .", "Functional Description - Partitions");
+top.note("chapters/fd_chap.098.html#50409888_pgfId-393274", " will replace the current one. Creating a pmark, <B>rolling</B> to a pmark, or advancing a pmark will", "Functional Description - Partitions");
+top.note("chapters/fd_chap.098.html#50409888_pgfId-294974", " Note that this change cannot be undone by <B>rolling</B> back the session; you would have to reset", "Functional Description - Partitions");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294846", " Pmarks 5 and 6 were also created before <B>rolling</B> back to pmark 1. ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294854", " 98.2.4 <B>Rolling</B> to a partition mark ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294858", " a specified pmark. As a result of the <B>rolling</B> operation, entities are created, modified and deleted. This", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294868", " these are entities that were alive before the <B>rolling</B> operation but are dead after it. ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294872", " these are entities that were dead before the <B>rolling</B> operation but are alive after it. ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294876", " entities: these are entities that existed before the <B>rolling</B> operation and still exist after it, and that", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294984", " When entities are deleted as a result of <B>rolling</B> to a specified pmark, any attributes attached to", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295007", " attribute or its owner is deleted first when <B>rolling</B> to a pmark, it is possible that an", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295043", " Pmarks that precede another pmark (after <B>rolling</B> back). ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-418108", " values specified in the current session even after <B>rolling</B> back or forward to a pmark at which", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-431629", " Figure 98-3 <B>Rolling</B> a no-roll attribute backward and forward ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-437150", " a result of the rollback is returned. Subsequently <B>rolling</B> forward again will restore the no-roll value. ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295154", " The partition <B>rolling</B> mechanism works by storing ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295187", " certain session parameters which are not affected by <B>rolling</B> back): ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295191", " current session mark immediately after creating it or <B>rolling</B> to it. ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295205", " 98.4.3 <B>Rolling</B> to a session mark ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295372", " <B>Rolling</B> back to the ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295374", " If the disk becomes full during creating or <B>rolling</B> to a pmark or a mark, the application", "Functional Description - Rollback");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295103", " be emptied before performing a partition roll - <B>rolling</B> back returns an error if the bulletin board", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295392", " correct deletion of pmarks received via deltas when <B>rolling</B> the session back to a previous mark. ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295393", " via deltas in this way are deleted when <B>rolling</B> the session back to a point before the", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295394", " pmarks received via deltas are not deleted when <B>rolling</B> the session back to a point before the", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295434", " Figure 101-4 Controlling deletion of pmarks when <B>rolling</B> the session back ", "Functional Description - Archives");
+top.note("chapters/fd_chap.103.html#50409893_pgfId-331768", " to be reapplied, perhaps as a result of <B>rolling</B> back and then replaying some operations, your application", "Functional Description - Debug Functionality");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-321214", " error is to roll the session or partition back. <B>Rolling</B> back the partition or session automatically clears the exclusion.", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294855", " to a valid state of the model. If <B>rolling</B> back has not been implemented, it should stop", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294862", " The Parasolid session has been corrupted; <B>rolling</B> back, if implemented, will not be effective. ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295176", " Error Handling . This will almost always require <B>rolling</B> back to a valid state or stopping and", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275796", " blend surface is the envelope swept out by <B>rolling</B> a sphere along a given path. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204087", " overview, <B>rolling</B> ball 1140 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204089", " parameterization, <B>rolling</B> ball 247 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204100", " range of variable radius <B>rolling</B> ball 1143, 1196 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204164", " variable radius <B>rolling</B> ball 1141 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207836", " <B>rolling</B> to partition 1408 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207838", " <B>rolling</B> to session 1414 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208503", " <B>rolling</B> ball blends 1140 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208537", " <B>rolling</B> ball blends 247 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208628", " <B>rolling</B> to 1408 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208982", " variable radius <B>rolling</B> ball blends 1143, 1196 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209287", " <B>rolling</B> ball blends ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209298", " <B>rolling</B> to partition marks 1408 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209300", " <B>rolling</B> to session marks 1414 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209419", " marks, <B>rolling</B> to 1414 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210541", " <B>rolling</B> ball blends 1141 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210544", " <B>rolling</B> ball blends, range of 1143, 1196 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-796221", " blend with a circular cross-section: the result of <B>rolling</B> a ball along the two surfaces adjoining the", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.16.html#50442289_marker-298488", "<B>rolling</B> back refers to returning to an earlier state", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_marker-298563", "<B>rolling</B> forward refers to moving to a later state", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-353426", " entities would be created, deleted, or modified when <B>rolling</B> between different points in a session. ", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437470", " backward, <B>rolling</B> sessions ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437527", " <B>rolling</B> ball ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438071", " forward, <B>rolling</B> the session ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438752", " <B>rolling</B> ball blend ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438754", " <B>rolling</B> the Parasolid session forward and back ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_blend_type_ball_constant_c 18401 constant radius <B>rolling</B> ball blend ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " be a no-roll attribute, as a result of <B>rolling</B> over a delta which was created when the", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_attrib_no_roll_t.html#documentation", " <B>rolling</B> over a delta which was", "PK Reference - PK_ATTRIB_no_roll_t");
+top.note("headers/pk_blend_constraint_t.html#documentation", " For constant and variable radius <B>rolling</B> ball blends", "PK Reference - PK_blend_constraint_t");
+top.note("headers/pk_blend_cs_t.html#documentation", " PK_blend_cs_rolling_ball_c <B>rolling</B> ball blend", "PK Reference - PK_blend_cs_t");
+top.note("headers/pk_blend_edge_shape_t.html#description", " structure defines the shape of a variable radius <B>rolling</B> ball blend", "PK Reference - PK_blend_edge_shape_t");
+top.note("headers/pk_blend_type_t.html#documentation", " PK_blend_type_ball_constant_c constant radius <B>rolling</B> ball blend", "PK Reference - PK_blend_type_t");
+top.note("headers/pk_blend_xs_plane_t.html#documentation", " PK_blend_xs_rolling_ball_c <B>rolling</B> ball blend", "PK Reference - PK_blend_xs_plane_t");
+top.note("headers/pk_blendsf_ask.html#description", " This function returns the standard form of a <B>rolling</B> ball blend surface.", "PK Reference - PK_BLENDSF_ask");
+top.note("headers/pk_blendsf_sf_t.html#description", " is the standard form of a blendsf: a <B>rolling</B> ball blend surface.", "PK Reference - PK_BLENDSF_sf_t");
+top.note("headers/pk_blendsf_sf_t.html#documentation", " whose common magnitude is the radius of the <B>rolling</B> ball and", "PK Reference - PK_BLENDSF_sf_t");
+top.note("headers/pk_body_fix_blends_o_t.html#documentation", " self-intersecting. It only has an effect on conic <B>rolling</B>", "PK Reference - PK_BODY_fix_blends_o_t");
+top.note("headers/pk_detail_t.html#documentation", " PK_detail_blend_rb_const_r_c a <B>rolling</B> ball blend with constant radius", "PK Reference - PK_detail_t");
+top.note("headers/pk_edge_ask_blend.html#documentation", " will be zero for <B>rolling</B> ball/chamfer/non-conic variable", "PK Reference - PK_EDGE_ask_blend");
+top.note("headers/pk_edge_set_blend_constant.html#documentation", "The argument radius is the radius of the <B>rolling</B> ball and must be greater", "PK Reference - PK_EDGE_set_blend_constant");
+top.note("headers/pk_face_change_blend_o_t.html#documentation", " to be reapplied as either a constant radius <B>rolling</B> ball", "PK Reference - PK_FACE_change_blend_o_t");
+top.note("headers/pk_face_identify_blends.html#description", " identified this function will return all constant radius <B>rolling</B> ball", "PK Reference - PK_FACE_identify_blends");
+top.note("headers/pk_face_identify_blends.html#documentation", "function will return all constant radius <B>rolling</B> ball blend faces within the", "PK Reference - PK_FACE_identify_blends");
+top.note("headers/pk_face_make_blend_o_t.html#documentation", " For constant and variable radius <B>rolling</B> ball or disc blends", "PK Reference - PK_FACE_make_blend_o_t");
+top.note("headers/pk_mark_goto_o_t.html#documentation", " any field values changed as a result of <B>rolling</B> over", "PK Reference - PK_MARK_goto_o_t");
+top.note("headers/pk_partition_goto_guard.html#documentation", "Making a pmark, <B>rolling</B> to a pmark or advancing a partition will", "PK Reference - PK_PARTITION_goto_guard");
+top.note("headers/pk_partition_receive_deltas_o_t.html#documentation", " <B>rolling</B> to that mark, (or an earlier mark), with", "PK Reference - PK_PARTITION_receive_deltas_o_t");
+top.note("headers/pk_partition_reset_attribs.html#documentation", "<B>rolling</B> forward a single pmark at a time. At", "PK Reference - PK_PARTITION_reset_attribs");
+top.note("headers/pk_partition_set_guard.html#documentation", "Making a pmark, <B>rolling</B> to a pmark or advancing a partition will", "PK Reference - PK_PARTITION_set_guard");
+top.note("headers/pk_partition_start_cloning.html#documentation", "only involves <B>rolling</B> forward. When a clone span is created the", "PK Reference - PK_PARTITION_start_cloning");
+top.note("headers/pk_pmark_ask_entities.html#description", "if <B>rolling</B> to the destination pmark .", "PK Reference - PK_PMARK_ask_entities");
+top.note("headers/pk_pmark_ask_entities_o_t.html#documentation", " deleted if <B>rolling</B> from this pmark to the destination", "PK Reference - PK_PMARK_ask_entities_o_t");
+top.note("headers/pk_pmark_ask_marks.html#description", "uses a pmark P if <B>rolling</B> to M would make P current.", "PK Reference - PK_PMARK_ask_marks");
+top.note("headers/pk_pmark_goto_2.html#documentation", "For more information, see <B>Rolling</B> to a partition mark in the", "PK Reference - PK_PMARK_goto_2");
+top.note("headers/pk_pmark_goto_o_t.html#documentation", " declaring that the pmark it is <B>rolling</B> to is the clone", "PK Reference - PK_PMARK_goto_o_t");
+top.note("headers/pk_report_1_t.html#documentation", " changed by <B>rolling</B> over a delta where it", "PK Reference - PK_REPORT_1_t");
+top.note("headers/pk_surf_create_blend.html#description", " function creates a surface, representing a constant radius <B>rolling</B> ball", "PK Reference - PK_SURF_create_blend");
+top.note("headers/pk_surf_create_blend.html#documentation", " have the same magnitude (the radius of the <B>rolling</B>", "PK Reference - PK_SURF_create_blend");
+top.note("chapters/di_chap.09.html#50511941_pgfId-274048", " The partition <B>rolling</B> mechanism works by storing the changes between pmarks.", "Downward Interfaces - PK_DELTA Functions");
+top.note("chapters/kd_chap.07.html#50475033_marker-273989", " to a default of a true <B>rolling</B> ball blend. The class ", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-281881", " is 3, the value for a true <B>rolling</B> ball blend. ", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.17.html#50475020_pgfId-274123", " <B>rolling</B> back live KID objects ", "KID Manual - KID Class Structure");
+top.note("chapters/kd_chap.21.html#50475022_pgfId-274059", " and the intersection edges are blended using a <B>rolling</B> ball blend. ", "KID Manual - KID Examples");
+top.note("chapters/kd_chap.21.html#50475022_pgfId-279873", " -- make <B>rolling</B> ball blend", "KID Manual - KID Examples");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-37311", " <B>Rolling</B> ball blend,, see also blend ", "KID Manual - Machine Dependency in KID");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

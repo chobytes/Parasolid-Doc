@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299756", " However, with the exception of error tokens ( <B>PK_ERROR_sf_t</B> ), you cannot interrogate the PK itself for token", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295364", " value, as this is not used by Parasolid. The <B>PK_ERROR_sf_t</B> structure contains details of the error such as the", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295371", " any details of the current error (by modifying the <B>PK_ERROR_sf_t</B> structure, or returning a different error code). Parasolid stores", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295063", " of the short edges will be placed in the <B>PK_ERROR_sf_t</B> structure. ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-382868", " in the calling thread. For more information on the <B>PK_ERROR_sf_t</B> structure returned, see Section 121.2.5, PK_ERROR functions and their", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-306306", " value, as this is not used by Parasolid. The <B>PK_ERROR_sf_t</B> structure contains details of the error such as the", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294891", " any details of the current error (by modifying the <B>PK_ERROR_sf_t</B> structure, or returning a different error code): Parasolid stores", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294935", " <B>PK_ERROR_sf_t</B> error_sf; ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294956", " void myApp::handlePKError( <B>PK_ERROR_sf_t</B> * error_sf ) ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295027", " <B>PK_ERROR_sf_t</B> error_sf; ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295063", " PK_ERROR_code_t myApp::handlePKError( <B>PK_ERROR_sf_t</B> * error_sf ) ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295122", " catch ( <B>PK_ERROR_sf_t</B> * error_sf) ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295171", " PK_ERROR_code_t myApp::handlePKError( <B>PK_ERROR_sf_t</B> * error_sf ) ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295222", " hence no specific information can be given in the <B>PK_ERROR_sf_t</B> structure (see Section 121.2.5, PK_ERROR functions and their use", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-318096", " The information is returned (via the arguments) in a <B>PK_ERROR_sf_t</B> structure that includes: ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295305", " an (artificial) PK error, given as input in a <B>PK_ERROR_sf_t</B> structure. ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295315", " return a PK_ERROR_code_t and receive a pointer to a <B>PK_ERROR_sf_t</B> structure. ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295361", " <B>PK_ERROR_sf_t</B> error_sf; ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295393", " PK_ERROR_code_t thirdPartyApp::handleError_NoMild( <B>PK_ERROR_sf_t</B> * error_sf ) ", "Functional Description - Error Handling ");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " will be placed in the entity field of the <B>PK_ERROR_sf_t</B> structure. ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " will be placed in the entity field of the <B>PK_ERROR_sf_t</B> structure. ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_assembly_check.html#documentation", "will be returned in the <B>PK_ERROR_sf_t</B> structure. In such a case it has proved", "PK Reference - PK_ASSEMBLY_check");
+top.note("headers/pk_assembly_check_o_t.html#documentation", "returned in the <B>PK_ERROR_sf_t</B> structure.", "PK Reference - PK_ASSEMBLY_check_o_t");
+top.note("headers/pk_body_check.html#documentation", "will be returned in the <B>PK_ERROR_sf_t</B> structure. In such a case it has proved", "PK Reference - PK_BODY_check");
+top.note("headers/pk_body_check_o_t.html#documentation", "returned in the <B>PK_ERROR_sf_t</B> structure.", "PK Reference - PK_BODY_check_o_t");
+top.note("headers/pk_edge_check.html#documentation", "will be returned in the <B>PK_ERROR_sf_t</B> structure. In such a case it has proved", "PK Reference - PK_EDGE_check");
+top.note("headers/pk_edge_set_precision_o_t.html#documentation", " <B>PK_ERROR_sf_t</B> entity field in a newly created", "PK Reference - PK_EDGE_set_precision_o_t");
+top.note("headers/pk_entity_t.html#description", " <B>PK_ERROR_sf_t</B> ", "PK Reference - PK_ENTITY_t");
+top.note("headers/pk_error_ask_last.html#declaration", " <B>PK_ERROR_sf_t</B> *const error_sf --- description of the error", "PK Reference - PK_ERROR_ask_last");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_ERROR_sf_t</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_error_frustrum_t.html#declaration", " typedef PK_ERROR_code_t (*PK_ERROR_handler_f_t)( <B>PK_ERROR_sf_t</B> * );", "PK Reference - PK_ERROR_frustrum_t");
+top.note("headers/pk_error_raise.html#declaration", " <B>PK_ERROR_sf_t</B> error_sf --- description of the error", "PK Reference - PK_ERROR_raise");
+top.note("headers/pk_error_register_callbacks.html#documentation", "The handler will be called and passed a <B>PK_ERROR_sf_t</B> describing an error", "PK Reference - PK_ERROR_register_callbacks");
+top.note("headers/pk_error_severity_t.html#description", " <B>PK_ERROR_sf_t</B> ", "PK Reference - PK_ERROR_severity_t");
+top.note("headers/pk_error_sf_t.html#declaration", "typedef struct PK_ERROR_sf <B>PK_ERROR_sf_t</B>;", "PK Reference - PK_ERROR_sf_t");
+top.note("headers/pk_face_check.html#documentation", "will be returned in the <B>PK_ERROR_sf_t</B> structure. In such a case it has proved", "PK Reference - PK_FACE_check");
+top.note("headers/pk_geom_check.html#documentation", "the faulty entity being returned in the <B>PK_ERROR_sf_t</B> structure.", "PK Reference - PK_GEOM_check");
+top.note("headers/pk_set_precision_report_t.html#documentation", " field of the <B>PK_ERROR_sf_t</B> structure.", "PK Reference - PK_set_precision_report_t");
+top.note("headers/pk_thread_ask_last_error.html#declaration", " <B>PK_ERROR_sf_t</B> *const error_sf --- description of the error", "PK Reference - PK_THREAD_ask_last_error");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

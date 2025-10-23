@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_sweep_alignment_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_sweep_alignment_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_BODY_sweep_alignment_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_swept_body_2_o_t.html>PK_BODY_make_swept_body_2_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_body_o_t.html>PK_BODY_make_swept_body_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_profiles_o_t.html>PK_BODY_make_swept_profiles_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Controls the relationship between the profiles and the tangents of the path
+during the sweep. If guide wires are supplied, then this option also controls
+how points on the path are matched to points on the guide wires. The behaviour
+for each profile is described below; when there are multiple profiles the
+"fixed" relationships transition smoothly from one profile to the next.
+
+    PK_BODY_sweep_align_normal_c    Keep profile at fixed angle to path
+                                    tangent, unless <B>'have_lock_direction'</B> is
+                                    set to PK_LOGICAL_true and <B>'lock_type'</B>
+                                    equals <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_and_dir_c</A> or
+                                    <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_c</A>, in which case the
+                                    profile will be kept at a fixed angle to
+                                    the path tangent projected into the plane
+                                    perpendicular to <B>'lock_direction'</B>.
+                                    If guides are supplied, then each
+                                    corresponding guide point will be a fixed
+                                    distance from the plane passing through
+                                    the path position, and perpendicular to
+                                    the path tangent (or the projected path
+                                    tangent, if a lock direction is supplied).
+    PK_BODY_sweep_align_parallel_c  Keep profile at fixed angle to global axes.
+                                    If guides are supplied, then each
+                                    corresponding guide point will be a fixed
+                                    distance from a plane passing through the
+                                    path position, and which has a fixed
+                                    orientation.
+    PK_BODY_sweep_align_parm_c      This option may only be used if at least
+                                    one guide is supplied. This indicates that
+                                    points on the path and guides will be
+                                    matched according to the proportional
+                                    parameter distance of the underlying edge
+                                    curve. This option requires that the path
+                                    and guides all have only one edge each.
+    PK_BODY_sweep_align_arclength_c This option may only be used if at least
+                                    one guide is supplied. This indicates that
+                                    points on the path and guides are matched
+                                    according to the proportional arc length
+                                    distance along the path and guides.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

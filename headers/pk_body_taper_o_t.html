@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_taper_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_taper_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_taper_o_s
+    {
+    int                      o_t_version;   --- version number of option
+                                            --- structure
+    double                   tolerance;     --- max. tol. for applying
+                                            --- surfaces (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             miter_at_parting;
+                                            --- whether to miter halves
+                                            --- at the parting sheet
+                                            --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             merge_face;    --- whether tapered faces
+                                            --- are to be merged with
+                                            --- their neighbours
+                                            --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_t</A>         check_fa_fa;   --- check for face-face
+                                            --- inconsistencies
+                                            --- (<A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>)
+    <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_t</A>        default_method;--- default tapering method
+                                            --- (<A HREF=../headers/pk_taper_method_t.html>PK_taper_method_isocline_c</A>)
+    int                      n_methods;     --- number of non-default
+                                            --- tapering methods (0)
+    const <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_t</A> *methods;       --- non-default tapering
+                                            --- methods (NULL)
+    const <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>       *method_refs;   --- reference entities to use
+                                            --- non-default tapering
+                                            --- method (NULL)
+    <A HREF=../headers/pk_taper_corner_type_t.html>PK_taper_corner_type_t</A>   corner_type;   --- how to fill the gap at the
+                                            --- corner of two adjacent faces
+                                            --- (PK_taper_corner_extend_c)
+    int                      n_parting_edges;
+                                            --- number of parting edges (0)
+    const <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>       *parting_edges; --- all the edges lying on the
+                                            --- parting body (NULL)
+    <A HREF=../headers/pk_taper_miter_type_t.html>PK_taper_miter_type_t</A>    miter_type;    --- how to miter the halves
+                                            --- (PK_taper_miter_on_ref_c)
+    int                      n_non_miter_edges;
+                                            --- number of non-miter
+                                            --- reference edges (0)
+    const <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>         *non_miter_edges;
+                                            --- non-miter reference edges
+                                            --- (NULL)
+    int                      n_replace_edges;
+                                            --- number of replace edges (0)
+    const <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>         *replace_edges; --- edges to be replaced to allow
+                                            --- adjacent faces to meet the
+                                            --- nearby tapered faces (NULL)
+    <A HREF=../headers/pk_taper_undercut_t.html>PK_taper_undercut_t</A>      undercut;      --- how to cope with undercut
+                                            --- (<A HREF=../headers/pk_taper_undercut_t.html>PK_taper_undercut_ref_no_c</A>)
+    int                      n_upper_faces; --- number of upper faces (0)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>         *upper_faces;   --- faces to be tapered from
+                                            --- their upper bounds using
+                                            --- surfaces created from their
+                                            --- highest point (NULL)
+    int                      n_lower_faces; --- number of lower faces (0)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>         *lower_faces;   --- faces to be tapered from
+                                            --- their lower bounds using
+                                            --- surfaces created from their
+                                            --- lowest point (NULL)
+    <A HREF=../headers/pk_taper_concave_type_t.html>PK_taper_concave_type_t</A>  concave_type;  --- how to replace the concave
+                                            --- corners in mitering
+                                            --- (PK_taper_concave_none_c)
+    double                   concave_radius;--- radius of the cylinder for
+                                            --- making imprints to replace
+                                            --- the imprints to miter to
+                                            --- at a concave corner (0.0)
+    <A HREF=../headers/pk_taper_keep_material_t.html>PK_taper_keep_material_t</A> keep_material; --- how to process regions
+                                            --- of material which protrude
+                                            --- from the tapered faces
+                                            ---(<A HREF=../headers/pk_taper_keep_material_t.html>PK_taper_keep_material_no_c</A>)
+    <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_t</A>    update;        --- update flag
+                                            --- (<A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>)
+    };
+typedef struct PK_BODY_taper_o_s PK_BODY_taper_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_body_taper.html>PK_BODY_taper</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_taper.html>PK_BODY_taper</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Description of fields:
+
+<B>'tolerance'</B>              Maximum tolerance for the operation. The default
+                         value is 1.0e-5.
+
+<B>'miter_at_parting'</B>       If this flag is set to PK_LOGICAL_true, the
+                         resulting body will be mitered. The default
+                         value is PK_LOGICAL_true.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-753572">here</A> for more information.
+
+<B>'merge_face'</B>             If this flag is set to PK_LOGICAL_true, the
+                         new faces produced by the operation will be
+                         merged with their neighbouring faces, if it is
+                         feasible. The default value is PK_LOGICAL_true.
+
+<B>'check_fa_fa'</B>            Check for face-face inconsistencies.
+                         Values can be :
+                             <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_no_c</A>
+                             <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>
+                         The default value is <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>.
+
+<B>'default_method'</B>         Tapering method to construct new surfaces.
+                         Allowed values are:
+                             <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_isocline_c</A> : isocline method
+                             <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_curve_c</A>    : curve method
+                             <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_surface_c</A>  : surface method
+
+                         The default is <A HREF=../headers/pk_taper_method_t.html>PK_taper_method_isocline_c</A>.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-1422069">here</A> for more information.
+
+<B>'n_methods'</B>              Number of elements in <B>'methods'</B> and <B>'method_refs'</B>
+                         arrays. Default is 0.
+
+<B>'methods'</B>                Array of <B>'n_methods'</B> tapering methods to be
+                         used instead of <B>'default_method'</B> corresponding
+                         to reference entities in <B>'method_refs'</B>. Default is
+                         NULL. See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-1422069">here</A> for more information.
+
+<B>'method_refs'</B>            Array of reference entities to use non-default
+                         tapering method specified in corresponding
+                         entries of <B>'methods'</B>. Only entities given as
+                         references to <A HREF=../headers/pk_body_taper.html>PK_BODY_taper</A> are allowed in this
+                         array.
+
+<B>'corner_type'</B>            How to fill the gap at the corner of two taper faces
+                         built on adjacent edges. This can be one of:
+                            PK_taper_corner_extend_c
+                            PK_taper_corner_plane_c
+
+                         The default is PK_taper_corner_extend_c.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-311653">here</A> for more information.
+
+<B>'n_parting_edges'</B>        Number of parting edges. The default is 0.
+
+<B>'parting_edges'</B>          Either NULL or array of all the edges (of the body
+                         to be tapered) that lie on the parting body.
+                         The edges in the list should be created by
+                         intersecting the body and the parting body.
+                         The default is NULL.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-311816">here</A> for more information.
+
+<B>'miter_type'</B>             How to modify the taper faces by mitering. This can
+                         be one of:
+                            PK_taper_miter_on_ref_c
+                            PK_taper_miter_to_face_c
+                            PK_taper_miter_at_open_c
+
+                         The default is PK_taper_miter_on_ref_c.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-753572">here</A> for more information.
+
+<B>'n_non_miter_edges'</B>      Number of non-miter reference edges. The default is 0.
+
+<B>'non_miter_edges'</B>        Array of reference edges on which the taper faces are
+                         constructed as if miter_at_parting had been set to
+                         PK_LOGICAL_false regardless of its real value.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-310916">here</A> for more information.
+
+<B>'n_replace_edges'</B>        Number of replace edges. The default is 0.
+
+<B>'replace_edges'</B>          Edges to be replaced to allow adjacent faces to meet
+                         the nearby tapered faces. The default is NULL.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-311894">here</A> for more information.
+
+<B>'undercut'</B>               How to cope with undercut. This can be one of:
+                            <A HREF=../headers/pk_taper_undercut_t.html>PK_taper_undercut_ref_no_c</A>
+                            <A HREF=../headers/pk_taper_undercut_t.html>PK_taper_undercut_ref_yes_c</A>
+
+                         The default is <A HREF=../headers/pk_taper_undercut_t.html>PK_taper_undercut_ref_no_c</A>.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-312210">here</A> for more information.
+
+<B>'n_upper_faces'</B>          Number of upper faces. The default is 0.
+
+<B>'upper_faces'</B>            Array of faces above the parting body where the taper
+                         faces are constructed from their upper bounds using
+                         surfaces created from their highest point with respect
+                         to the draw direction. The default is NULL.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-1418455">here</A> for more information.
+
+<B>'n_lower_faces'</B>          Number of lower faces. The default is 0.
+
+<B>'lower_faces'</B>            Array of faces below the parting body where the taper
+                         faces are constructed from their lower bounds using
+                         surfaces created from their lowest point with respect
+                         to the draw direction. The default is NULL.
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-1418455">here</A> for more information.
+
+<B>'concave_type'</B>           How to replace the imprints to miter to at the concave
+                         corners where the imprints of above taper faces cross
+                         the imprints of below taper faces on the parting body.
+                         The allowed values are:
+                            PK_taper_concave_none_c   : perform no smoothing
+                            PK_taper_concave_radius_c : see concave_radius
+                            PK_taper_concave_plane_c  : see datatype definition
+                            PK_taper_concave_mix_c    : see datatype definition
+                         The default is PK_taper_concave_none_c;
+                         See <A HREF="../chapters/fd_chap.069.html#50409855_pgfId-311191">here</A> for more information.
+
+<B>'concave_radius'</B>         Radius of the cylinder that intersects the parting
+                         body to create imprints to replace the imprints at a
+                         concave corner. The cylinder takes the draw direction
+                         as its axis and touches one imprint of each side at
+                         the concave corner. The default is 0.0.
+
+<B>'keep_material'</B>          How to process regions of material which lie between
+                         the references and the parting body which protrude
+                         from the taper faces.  This can be one of:
+                            <A HREF=../headers/pk_taper_keep_material_t.html>PK_taper_keep_material_no_c</A>
+                            <A HREF=../headers/pk_taper_keep_material_t.html>PK_taper_keep_material_yes_c</A>
+
+                         The default is <A HREF=../headers/pk_taper_keep_material_t.html>PK_taper_keep_material_no_c</A>.
+
+<B>'update'</B>                 The default value allows applications to take
+                         advantage of the latest enhancements of the generic
+                         algorithms supporting Parasolid local operations
+                         functions. To maintain consistency when rebuilding
+                         models created in a previous version of Parasolid,
+                         a non-default value should be specified.
+
+                         The default value is <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

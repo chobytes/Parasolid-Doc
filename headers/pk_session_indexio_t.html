@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SESSION_indexio_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SESSION_indexio_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SESSION_indexio_s
+    {
+    int   (*ffoprd)(int guise, const char name[], void *context);
+    int   (*ffopwr)(int guise, const char name[],
+                    const char pr2[], void *context);
+    int   (*ucoprd)(int guise, const <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A> name[], void *context);
+    int   (*ucopwr)(int guise, const <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A> name[],
+                    const char pr2[], void *context);
+    int   (*ffread)(int nmax, char buffer[], int *nactual, void *context);
+    int   (*ffwrit)(int nchars, const char buffer[], void *context);
+    int   (*ffseek)(size_t pos, void *context);
+    int   (*ffclos)(int action, void *context);
+    };
+
+typedef struct PK_SESSION_indexio_s PK_SESSION_indexio_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains functions pertinent to receiving and writing
+indexed XT data.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_indexio.html>PK_SESSION_ask_indexio</A><br>
+    <A HREF=../headers/pk_session_register_indexio.html>PK_SESSION_register_indexio</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'ffoprd'</B>        This routine opens the FFBNRY file specified by its <B>'name'</B>
+                argument and stores any required information in its <B>'context'</B>.
+                As used by <A HREF=../headers/pk_part_receive.html>PK_PART_receive</A>, <B>'guise'</B> will be FFCXMT or FFCXMP.
+                The file pointer on return from this call is deemed to be zero.
+
+
+<B>'ffopwr'</B>        This routine opens the file specified by its <B>'name'</B> argument,
+                as format FFBNRY, and stores any required information in
+                its <B>'context'</B>. As used by <A HREF=../headers/pk_part_transmit.html>PK_PART_transmit</A>, <B>'guise'</B> will be
+                FFCXMT; used by <A HREF=../headers/pk_partition_transmit.html>PK_PARTITION_transmit</A>, <B>'guise'</B> will be
+                FFCXMP. The file pointer on return from this call is deemed
+                to be zero.
+
+
+<B>'ucoprd'</B>        This routine opens the FFBNRY file specified by its <B>'name'</B>
+                argument and stores any required information in its <B>'context'</B>.
+                As used by <A HREF=../headers/pk_part_receive_u.html>PK_PART_receive_u</A>, <B>'guise'</B> will be FFCXMT or FFCXMP.
+                The file pointer on return from this call is deemed to be zero.
+
+
+<B>'ucopwr'</B>        This routine opens the file specified by its <B>'name'</B> argument
+                as format FFBNRY, and stores any required information in
+                its <B>'context'</B>. As used by <A HREF=../headers/pk_part_transmit_u.html>PK_PART_transmit_u</A>, <B>'guise'</B> will be
+                FFCXMT; used by <A HREF=../headers/pk_partition_transmit_u.html>PK_PARTITION_transmit_u</A>, <B>'guise'</B> will be
+                FFCXMP. The file pointer on return from this call is deemed
+                to be zero.
+
+
+<B>'ffread'</B>        This routine reads from file (starting at the current position
+                of the file pointer) storing a maximum of nmax bytes in the
+                given buffer and returning the actual number of bytes read
+                as *nactual. The file pointer is incremented by the number of
+                bytes read. If the routine is only able to read a maximum of N
+                bytes (where 0 &lt; N &lt; nmax) Parasolid will make follow-up calls
+                to <B>'ffread'</B>. If <B>'ffread'</B> reads at least 1 character the return
+                code is set to FR_no_errors (or possibly FR_read_fail). The
+                code FR_end_of_file is only returned when no bytes have been
+                read.
+
+
+<B>'ffwrit'</B>        This routine writes the given bytes to file, starting at the
+                current file position. The file pointer is incremented by the
+                number of bytes written.
+
+
+<B>'ffseek'</B>        This routine resets the file pointer within the file to a
+                position relative to the assumed zero position after the call
+                to open the file. Subsequent reading or writing will start
+                from this position.
+
+
+<B>'ffclos'</B>        Receive: this routine closes a file which has been opened
+                with a call to <B>'ffoprd'</B> or <B>'ucoprd'</B>.
+                Transmit: this routine closes a file which has been opened
+                with a call to <B>'ffopwr'</B> or <B>'ucopwr'</B>. Parasolid will determine
+                whether to retain the file (FFNORM) or to delete it (FFABOR).
+
+Applications may implement their Indexed Frustrum as a thin layer on top of
+their existing Frustrum, as the major difference is that the "open for write"
+functions create the underlying file for update (e.g., mode "wb+" rather than
+"wb"). Then their context can comprise the guise (FFCXMT or FFCXMP), the
+Frustrum stream identifier (strid) and the file pointer after successful open;
+the latter is then the conversion required between the position passed to
+<B>'ffseek'</B> by Parasolid and that in the data held by the Frustrum.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

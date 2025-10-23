@@ -1,0 +1,338 @@
+<HTML>
+<HEAD>
+<TITLE>OUTSFA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUTSFA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_output_surf_trimmed.html>PK_FACE_output_surf_trimmed</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUTSFA ( face, nopts, iopts, optdta, surface, ntrims, spcus, geoms, topols, 
+============================================================================
+         ifail )
+         =======
+
+  Output Trimmed Surface Representation Of Face.
+
+Receives:
+  KI_tag_face              *face           --- face to be represented
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in 'iopts'
+ &lt;KI_cod_srop&gt;              iopts[nopts]   --- options
+ &lt;KI_tag_list_dbl&gt;          optdta[nopts]  --- option data lists
+
+Returns:
+  KI_tag_surface           *surface        --- surface underlying SP-surves
+ &lt;KI_int_nitems&gt;           *ntrims         --- number of non-empty trim loop sets
+ &lt;KI_tag_list_&lt;list&gt;&gt;      *spcus          --- lists of trimmed SP-curves
+ &lt;KI_tag_list_&lt;list&gt;&gt;      *geoms          --- lists of corresponding geometries
+ &lt;KI_tag_list_&lt;list&gt;&gt;      *topols         --- lists of corresponding topologies
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cant_make_trimmed_sf   Failed to make up trimmed surface
+  KI_trim_loop_degenerate   trimming loop degenerate, tolerance may be too big
+  KI_tolerances_too_tight   tolerance too tight
+  KI_bad_option_data        Option data incorrect for specified options
+  KI_cant_make_bspline      Failed to make equivalent bspline surface
+  KI_missing_geom           Supplied face has no associated surface
+
+Description:
+  This function will output a trimmed surface representation of a single face.
+
+  The Trimmed Surface Representation
+  ----------------------------------
+  A trimmed surface represents a bounded region of a parameterised surface by
+  expressing the boundary curves of the trimmed surface as curves in surface
+  parameter space. These curves, referred to as SP-curves, represent a 3-space
+  curve with B-spline surface parameter space curves (i.e. B-spline curves with
+  (u,v) vertices). In cases where the bounded region is the whole of the surface
+  the trimmed surface can optionally be represented as a surface with no
+  trimming curves.
+
+  Wire edges and biwire edges are not considered, by OUTSFA, to form part of the
+  boundary of a face and so will not be represented amongst the SP-curves
+  returned.
+
+  A description of a single trimmed surface ('ntrims' = 1) is comprised of the
+  surface to be trimmed, and trimming information held in three lists of lists
+  which are identical in structure to each other, differing only in the type of
+  item that they organise. An application can find three corresponding trimming
+  data by examining the same place in the structure of each of the three lists.
+  These three related pieces of information are: a trimmed SP-curve, the 3-space
+  geometry which it describes, and the topology of the model, if any, on which
+  the 3-space geometry may be found. If the trimmed surface has no trimming
+  loops these lists will be returned as null tags.
+
+     'spcus':  A list of lists of trimmed SP-curves ( that is, each curve is
+               a trimmed curve of type TYCUTR whose underlying curve is an
+               SP-curve of type TYCUSP).
+
+               Each list of trimmed SP-curves describes one of the boundary
+               loops of the trimmed surface (these will not necessarily be in
+               1-1 correspondence with the loops on the face). Where it is
+               appropriate to do so the code will place the outer boundary loop
+               of the trimmed surface at the head of the list of loops. An
+               example of where this is not appropriate is a trimmed surface on
+               a sphere, in this case it is sometimes hard to distinguish
+               between outer boundaries and holes.
+
+               Each component trimmed SP-curve of a trimming loop will be G1 in
+               in 3-space. This means, however, that it will not necessarily
+               be possible to represent a single G1 edge curve as a single G1
+               SP-curve when the surface does not have a parameterisation with
+               continuous first derivatives.
+
+               Where an SP-curve is to represent a 3-space curve identified as
+               a line of constant surface parameter the SP-curve description of
+               it will be in the form of a linear B-spline.
+
+
+     'geoms':  An optional list of lists of corresponding 3-space geometry. Each
+               3-space geometry will be either a trimmed curve or a point. Points
+               will arise in cases where a trimmed SP-curve has been produced to
+               cross a degeneracy in the surface parameterisation.
+
+     'topols': An optional list of lists of corresponding model topology. Each
+               topology may be one of fin, vertex or null. Vertices will be
+               associated with parameterisation degeneracies. The topology will
+               be null if the trimmed SP-curve represents part of a seam line
+               on the surface underlying the face.
+
+
+
+  If the trimmed surface description of the face requires that it be split into
+  more than one trimmed surface ('ntrims' > 1), then the three output lists
+  ('spcus','geoms', and 'topols') will be embedded one further level. Take for
+  example the case of 'ntrims' = 2. Here each of 'spcus', 'geoms', and 'topols'
+  will be a list of two lists, and those two sub-lists will refer to separate
+  trimmed surfaces and will each have the structure described for the output in
+  the case 'ntrims' = 1. A complete description of the first trimmed surface can
+  be found by taking the first entry in each of 'spcus', 'geoms', and 'topols'.
+  Taking the second entry from 'spcus', 'geoms', and 'topols' will similarly
+  give the description of the second trimmed surface.
+
+  Note that in cases where 'ntrims' = 0 there is actually one trimmed surface
+  namely the whole of the underlying surface given in the returned surface. In
+  such cases the trimming loop is absent because it doesn't actually trim out
+  any of the surface and the options selected permitted its omission.
+
+  The surface that is trimmed is returned in 'surface' and the sense of the
+  surface is set so that the surface normal points in the same direction as the
+  normal on the original face ('face').
+
+  Deleting Returned Geometry
+  --------------------------
+
+  In the returned data from OUTSFA all geometries are either copies of geometry
+  on the face or have been built specifically as alternative representations
+  of that geometry. To avoid the modeller filling up with unrequired nodes the
+  geometry returned in 'surface', 'spcus' and 'geoms' should be deleted as
+  soon as its usefulness expires.
+
+  Options
+  -------
+  OUTSFA supplies various surface and SP-curve options, which are selected by
+  option tokens received in 'iopts'. For some options, data is also required.
+  This data is supplied by a real list whose tag is passed in 'optdta', in an
+  array position corresponding to the 'iopts' entry. If no data is required for
+  an option a null tag should be passed.
+
+  Surface Related Options:
+  ------------------------
+  The Surface whose parameter space is to be used can either be the surface
+  attached to the face, or a B-spline representation of that surface.
+  The options, and option tokens and data are as follows:
+
+    _________________________________________________________________________
+    |             Option            |  Option Token  |     Option Data      |
+    |_______________________________|________________|______________________|
+    |                               |                |                      |
+    |  To use Surface attached to   |    No Token    |         None         |
+    |  face (default option)        |                |                      |
+    |_______________________________|________________|______________________|
+    |                               |                |                      |
+    |  To use a B-spline Approx.    |     SROPBS     |       Tolerance      |
+    |                               |                |                      |
+    |_______________________________|________________|______________________|
+    |                               |                |                      |
+    |  Prohibit extension of the    |     SROPNE     |         None         |
+    |  surface to fit SP-curves     |                |                      |
+    |  that stray outside           |                |                      |
+    |_______________________________|________________|______________________|
+
+  where the tolerance is the maximum distance between the B-spline and the
+  surface it represents.
+
+  For the B-spline option there are two secondary options available. These
+  options can only be supplied in addition to SROPBS. The options are:
+
+            ------------------------------------------------------
+            |   Option                                |  Token   |
+            |-----------------------------------------|----------|
+            | Force output of B-spline  of degree 3   |  SROPCU  |
+            |-----------------------------------------|----------|
+            | Force output of non-rational B-spline   |  SROPNR  |
+            ------------------------------------------------------
+
+  The effect of these options on the B-spline surface representations produced
+  for different surface types is as documented in the OUBSFA documentation.
+
+  No matter which type of surface is requested for output, OUTSFA will by
+  default extend it to fit SP-curves approximating the face boundaries that
+  stray outside of the natural boundaries of the surface. The token SROPNE
+  is provided to switch off this default behaviour. When SROPNE is set OUTSFA
+  will succeed as before, however the returned surface will not be extended to
+  include all SP-curves in the output that pass outside the original bounds of
+  the surface's parameter space. Since SROPNE may lead to output where SP-curves
+  that pass outside the natural boundaries of the surface on which they lie, any
+  application using this token must be able to deal with them.
+  SP-curve Related Options
+  ------------------------
+  There are 3 options available for the SP-curves which are to be constructed.
+  For all options, a default action is taken if an option token and data is
+  not supplied. Where more than one token exists for an option they are mutually
+  exclusive, i.e. only one may appear as a parameter to OUTSFA. The option
+  tokens and related option data (which must be supplied with the option) are as
+  follows:
+
+    ___________________________________________________________________________
+   |Option       |Token  |Data       |Description                              |
+   |_____________|_______|___________|_________________________________________|
+   |Tolerance    |SROPCT |1 real     |Curve Tolerance                          |
+   |             |       |tolerance, |-     -                                  |
+   |             |       |c.f. below |Allows specification of the tolerance    |
+   |             |       |           |which the SP-curve representations of    |
+   |             |       |           |the edges should satisfy.                |
+   |             |       |           |                                         |
+   |             |       |           |Default is 10,000*modeller resolution    |
+   |             |       |           |                                         |
+   |____________ |_______|___________|_________________________________________|
+   |Configuration|SROPCN |none       |Confined, No                             |
+   |             |       |           |-         -                              |
+   |             |       |           |Trimming loops will not be confined to a |
+   |             |       |           |single period on periodic faces. The     |
+   |             |       |           |trimmed surface returned may have more   |
+   |             |       |           |than one outer boundary (eg. ends of a   |
+   |             |       |           |cylinder).The trimming loops will be     |
+   |             |       |           |continuous in parameter space, but may   |
+   |             |       |           |not be closed.                           |
+   |             |_______|___________|_________________________________________|
+   |             |SROPCY |none       |Confined, Yes                            |
+   |             |       |           |-         -                              |
+   |             |       |           |Trimming loops will be confined to a     |
+   |             |       |           |single period on periodic faces. The     |
+   |             |       |           |trimmed surface returned may have more   |
+   |             |       |           |than one outer boundary (e.g. the ends of|
+   |             |       |           |a cylinder). The trimmed SP-curves in a  |
+   |             |       |           |loop may have gaps between them in       |
+   |             |       |           |parameter space where there are          |
+   |             |       |           |degeneracies.                            |
+   |             |_______|___________|_________________________________________|
+   |             |SROPCC |none       |Confined and Closed                      |
+   |             |       |           |-            -                           |
+   |             |       |           |Trimming loops will be confined to a     |
+   |             |       |           |single period on periodic faces. All the |
+   |             |       |           |trimming loops will be closed and without|
+   |             |       |           |gaps in parameter space. Each trimmed    |
+   |             |       |           |surface will have no more than one outer |
+   |             |       |           |peripheral loop. The outer peripheral    |
+   |             |       |           |loop may be omitted if it does not trim  |
+   |             |       |           |off any of the surface.                  |
+   |             |       |           |                                         |
+   |             |       |           |This is the default action.              |
+   |             |_______|___________|_________________________________________|
+   |             |SROPCP |none       |Confined with Periphery                  |
+   |             |       |           |-             -                          |
+   |             |       |           |Trimming loops will be confined to a     |
+   |             |       |           |single period on periodic faces. All the |
+   |             |       |           |trimming loops will be closed and without|
+   |             |       |           |gaps in parameter space. Each trimmed    |
+   |             |       |           |surface will have exactly one outer      |
+   |             |       |           |peripheral loop                          |
+   |_____________|_______|___________|_________________________________________|
+   |Degeneracies |SROPED |none       |Exclude Degeneracies                     |
+   |             |       |           |-       -                                |
+   |             |       |           |Don't represent degeneracies except where|
+   |             |       |           |the selected configuration option implies|
+   |             |       |           |this.                                    |
+   |             |       |           |                                         |
+   |             |       |           |This is the default action.              |
+   |             |_______|___________|_________________________________________|
+   |             |SROPID |none       |Include Degeneracies                     |
+   |             |       |           |-       -                                |
+   |             |       |           |All parametric degeneracies occuring on  |
+   |             |       |           |the face will be represented             |
+   |             |       |           |(irrespective of whether they are        |
+   |             |       |           |are associated with topology)            |
+   |_____________|_______|___________|_________________________________________|
+
+
+  As indicated above the SP-curve tolerance may be specified using the SROPCT
+  option. The tolerance given with SROPCT is a distance tolerance in model
+  units: this refers to the maximum allowable distance between an SP-curve and
+  the edge curve that it represents. Although extensive tolerance checking is
+  carried out, and the accuracy of the representation will usually satisfy the
+  supplied tolerance, this cannot be guaranteed.
+
+  When using a B-spline surface approximation, care must be taken when supplying
+  the tolerance. The surface approximation needs to be accurate enough for the
+  SP-curves to satisfy their tolerance. It is suggested that the surface
+  B-spline tolerance should be no greater than half the distance tolerance
+  supplied for the SP-curves.
+
+  The tolerance is ignored for edges of the face that are already tolerant and
+  have an SP-curve of degree 1 or 2 ( lying in the surface to be returned )
+  attached. In this case the appropriate trimmed section of the present SP-curve
+  will be returned without approximation.
+
+  If the required tolerance cannot be met then the function will fail with
+  error KI_tolerances_too_tight indicating that a larger tolerance may allow a
+  successful approximation. Similarly there are occasions on which the curve
+  tolerance specified may be so large that the face will appear, to OUTSFA, to
+  be nothing more than a wire. In such cases, rather than output degenerate
+  loops, OUTSFA will return the ifail KI_trim_loop_degenerate. Setting a smaller
+  tolerance may result in a successful attempt to produce trimmed surface output.
+
+  Output Related Options
+  ----------------------
+
+  There are just two options related to the quantity of data returned. Each
+  option is provided to indicate that one of the two output lists holding
+  information associated with a trimming loop is required.
+
+        _______________________________________________________________
+       |Token  |Description                                            |
+       |_______|_______________________________________________________|
+       |SROPNG |Need Geometry                                          |
+       |       |-    -                                                 |
+       |       |Requests the return of the list of geometries ('geoms')|
+       |       |associated with the SP-curves in the trimming loops.   |
+       |       |(The list is by default not returned)                  |
+       |_______|_______________________________________________________|
+       |SROPNT |Need Topology                                          |
+       |       |-    -                                                 |
+       |       |Requests the return of the list of model topologies    |
+       |       |('topols') associated with the SP-curves in the        |
+       |       |trimming loops. (The list is by default not returned)  |
+       |_______|_______________________________________________________|
+
+
+</PRE>
+</BODY>
+</HTML>

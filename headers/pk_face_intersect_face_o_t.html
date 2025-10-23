@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_intersect_face_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_intersect_face_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_intersect_face_o_s
+    {
+    int                     o_t_version;    --- version number of option
+                                            --- structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_box;       --- whether box provided
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_box_t.html>PK_BOX_t</A>                box;            --- box of interest
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_uvbox_1;   --- whether box provided for face_1
+                                            --- (PK_LOGICAL_false) [NF]
+    <A HREF=../headers/pk_uvbox_t.html>PK_UVBOX_t</A>              uvbox_1;        --- uvbox for face_1 [NF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_uvbox_2;   --- whether box provided for face_2
+                                            --- (PK_LOGICAL_false) [NF]
+    <A HREF=../headers/pk_uvbox_t.html>PK_UVBOX_t</A>              uvbox_2;        --- uvbox for face_2 [NF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_vector;    --- whether seed vector provided
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>             vector;         --- only return branch containing
+                                            --- the seed
+    <A HREF=../headers/pk_mixed_intersection_t.html>PK_mixed_intersection_t</A> mixed_curve_category;
+                                            --- return polyline, classic, or
+                                            --- both as the intersection curve
+                                            --- (<A HREF=../headers/pk_mixed_intersection_t.html>PK_mixed_intersection_pline_c</A>)
+    double                  tolerance;      --- for future use
+    };
+
+typedef struct PK_FACE_intersect_face_o_s PK_FACE_intersect_face_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls on intersections between two faces.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_intersect_face.html>PK_FACE_intersect_face</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure defines options applicable to the intersection of two
+faces.
+
+ The option <B>'have_box'</B> indicates whether a box has been specified
+ (default = PK_LOGICAL_false)
+
+ The option <B>'box'</B> enables a 3-space box of interest to be supplied. The
+ box may be used to improve performance. The intersection curves returned
+ are not guaranteed to lie within the bounds of the box.
+
+ The option <B>'have_uvbox_1'</B> indicates whether a uvbox_1 has been specified.
+ The option <B>'have_uvbox_2'</B> indicates whether a uvbox_2 has been specified.
+
+ The options <B>'uvbox_1'</B> and <B>'uvbox_2'</B> enable the supplying of parameter boxes
+ for the first and second face respectively. Again these
+ boxes are only used to constrain the region of interest for performance
+ purposes. The intersection curves returned are not trimmed to lie
+ within the boundaries of the parameter box/es.
+ Four parameters should be supplied to define the parameter box, U-min,
+ U-max, V-min and V-max.
+
+ The option <B>'have_vector'</B> indicates whether a vector has been specified.
+
+ The option <B>'vector'</B> enables a point on a branch of the intersection to be
+ specified (by supplying the x, y, and z coordinates). For this
+ case only the branch of the intersection on which this point lies will be
+ returned.
+
+ The option <B>'mixed_curve_category'</B> specifies the desired curve type of the
+ curve returned for mixed intersections. It has no effect on other
+ intersections.
+ (default = <A HREF=../headers/pk_mixed_intersection_t.html>PK_mixed_intersection_pline_c</A>)
+
+ Note that non-default values are not currently supported for
+ mixed_curve_category.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

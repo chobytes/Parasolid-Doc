@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.079.html#50409866_pgfId-298252", " left-hand wall. Cliff edges, tangent <B>holdlines</B> and conic <B>holdlines</B> cannot be used with this type of blend.Iso-parameter", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-299505", " be used in conjunction with cliff edges or <B>holdlines</B> (see Section 78.4.2 and Section 78.4.3 for details).", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-299611", " holds the blend inside the specified line. All <B>holdlines</B> are represented by an array of one or", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-299613", " Tangent <B>holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-299614", " Conic <B>holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-299621", " 78.4.2.1 Tangent <B>holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-299622", " You can use tangent <B>holdlines</B> to create variable-radius (symmetric) blends. However, rather than", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-885749", "C++\Code Examples\Modelling\Blending\Face\Blending with Tangent <B>Holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-552403", " Figure 78-14 Supplying tangent <B>holdlines</B> to create variable-radius (symmetric) blends ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-300237", " 78.4.2.2 Conic <B>holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-300240", " You can use conic <B>holdlines</B> to create general variable-size blends. A conic holdline", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-300345", " Figure 78-15 Supplying conic <B>holdlines</B> to create asymmetric conic cross-section blends ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-885919", "C++\Code Examples\Modelling\Blending\Face\Blending with Conic <B>Holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-303847", " of a blend. You can also use these <B>holdlines</B> to constrain the boundary locally, along just a", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-556177", "(b) conic <B>holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-304098", " define a cliff-edge blend. Cliff-edge blends differ from <B>holdlines</B> in one important respect: the blend surface does", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-304248", " 78.4.4 Inverting cliff edges and <B>holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-304254", " By default, the <B>holdlines</B> and cliff-edge blends described in Section 78.4.2 and", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-304580", " Tangent and conic <B>holdlines</B> are not inverted automatically if they are used", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-304585", " Like <B>holdlines</B>, you can use inverted <B>holdlines</B> to constrain the shape of a blend locally.", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-304747", " Figure 78-21 Constraining the blend radius using inverted <B>holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-304971", " Figure 78-22 Using inverted <B>holdlines</B> to improve blend support ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-309693", " 78.8.2 Propagating along cliff edges and <B>holdlines</B> ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-309694", " <B>holdlines</B> only propagate to other inverted cliffs or <B>holdlines</B>.", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-821918", " creating constant radius rolling ball blends with no <B>holdlines</B> or cliff edges, you can switch off the", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-821952", " rolling ball blends, and if you have no <B>holdlines</B> or cliff edges specified. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-821990", " supplied holdline data that describes conflicting sets of <B>holdlines</B>, causing confusion over which of several possible blends", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-713953", " the body. For example, if you specify several <B>holdlines</B> that lie in the same wall (as shown", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-700627", " radius rolling-ball blends without conic <B>holdlines</B> or tangent <B>holdlines</B>. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-313178", " radius or range data, and directly, by supplying <B>holdlines</B> or cliff edges. ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203997", " conic <B>holdlines</B> in face-face 1243 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204056", " inverting <B>holdlines</B>, face-face 1247 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204060", " locally using <B>holdlines</B>, constraining face-face 1245 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204131", " tangent <B>holdlines</B>, face-face 1242 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204869", " conic <B>holdlines</B> in face-face blends 1243 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204897", " face-face blends locally using <B>holdlines</B> 1245 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206216", " conic <B>holdlines</B> in 1243 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206222", " constraining locally using <B>holdlines</B> 1245 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206248", " inverting <B>holdlines</B> 1247 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206266", " tangent <B>holdlines</B> 1242 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207310", " <B>holdlines</B> in face-face blends, conic 1243 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207312", " <B>holdlines</B>, constraining face-face blends locally using 1245 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207314", " <B>holdlines</B>, face-face blends inverting 1247 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207316", " <B>holdlines</B>, face-face blends tangent 1242 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207575", " inverting <B>holdlines</B>, face-face blends 1247 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210117", " tangent <B>holdlines</B>, face-face blends 1242 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-282768", "(a) tangent <B>holdlines</B> and ", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-289159", " <B>Holdlines</B> can also be inverted, so that the blend is", "Overview of Parasolid - Blending");
+top.note("headers/pk_face_make_blend_o_t.html#documentation", "See Inverting cliffedges and <B>holdlines</B> for more information.", "PK Reference - PK_FACE_make_blend_o_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

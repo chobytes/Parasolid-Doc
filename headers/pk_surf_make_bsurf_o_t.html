@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SURF_make_bsurf_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SURF_make_bsurf_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SURF_make_bsurf_o_s
+    {
+    int                        o_t_version;
+    double                     tolerance; --- tolerance for
+                                          --- approximate result
+                                          --- (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               force_cubic;
+                                          --- force cubic B-surface
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               force_non_rational;
+                                          --- force non-rational
+                                          --- B-surface
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_t</A>      force_continuity;
+                                          --- controls whether to
+                                          --- force a certain level of
+                                          --- continuity
+                                          --- (<A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>)
+    <A HREF=../headers/pk_continuity_t.html>PK_continuity_t</A>            continuity;
+                                          --- level of continuity
+                                          --- (<A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A>)
+    <A HREF=../headers/pk_make_bsurf_update_t.html>PK_make_bsurf_update_t</A>     update;    --- update flag
+                                          --- (<A HREF=../headers/pk_make_bsurf_update_t.html>PK_make_bsurf_update_default_c</A>)
+    };
+
+typedef struct PK_SURF_make_bsurf_o_s PK_SURF_make_bsurf_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls on converting a surface into a
+B-surface.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_surf_make_bsurf_2.html>PK_SURF_make_bsurf_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure for making a B-surface has the following fields :
+
+<B>'tolerance'</B>          If the function is unable to make an exact B-surface, this
+                     specifies the maximum deviation between the resultant
+                     B-surface and the input surface. The function will usually
+                     achieve this condition but this is not guaranteed.
+                     (1.0e-5)
+
+<B>'force_cubic'</B>        If set to PK_LOGICAL_true, the resultant surface will be
+                     cubic in u and v. Otherwise, the degree will depend on the
+                     input surface. (PK_LOGICAL_false)
+
+<B>'force_non_rational'</B> If set to PK_LOGICAL_true, the resultant surface will be
+                     non-rational. Otherwise, the surface may or may not be
+                     rational, depending on the input surface.
+                     (PK_LOGICAL_false)
+
+<B>'force_continuity'</B>   This option allows a minimum level of continuity of the
+                     resultant surface to be supplied through the <B>'continuity'</B>
+                     option, and also controls how discontinuities of the input
+                     <B>'surf'</B> will be handled.  It has the possible values:
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_yes_c</A>
+                          All discontinuities will be eliminated up to the
+                          level specified by the <B>'continuity'</B> option. Closed,
+                          non-periodic surfaces will be made periodic.
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_prefer_c</A>
+                          If possible, the resulting surface will be continuous
+                          up to the level specified by the <B>'continuity'</B> option.
+                          Large G1 discontinuities will be preserved and
+                          reported in a <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_discontinuities_c</A> record.
+                          Closed, non-periodic surfaces will be made periodic
+                          unless there is a large G1 discontinuity across the
+                          seam.
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>
+                          No attempt will be made to remove discontinuities.
+                          This is the default value. Periodicity of closed
+                          surfaces will not be enforced.
+
+<B>'continuity'</B>         The desired continuity of the resulting <B>'bsurf'</B>.
+                     This is ignored if <B>'force_continuity'</B> is set to
+                     <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>. The possible values are:
+                         <A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A>
+                         <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A>
+                         <A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>
+                         <A HREF=../headers/pk_continuity_t.html>PK_continuity_g2_c</A>
+                     (<A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A>)
+
+<B>'update'</B>             The default value (<A HREF=../headers/pk_make_bsurf_update_t.html>PK_make_bsurf_update_default_c</A>) allows
+                     applications to take advantage of the latest enhancements
+                     to the algorithm. To maintain consistency when rebuilding
+                     models created in a previous version of Parasolid, a
+                     non-default value should be specified.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

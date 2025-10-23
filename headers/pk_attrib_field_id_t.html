@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ATTRIB_field_id_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ATTRIB_field_id_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_ATTRIB_field_id_s
+    {
+    int             field_index;     --- The index of the field
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    unicode_name;    --- Whether the name is a Unicode
+                                     --- string or not
+    <A HREF=../headers/pk_field_name_t.html>PK_field_name_t</A> field_name;      --- Name of field
+    };
+typedef struct PK_ATTRIB_field_id_s PK_ATTRIB_field_id_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure identifies a field of an attribute, using either the
+field's index or its name.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_attrib_reset_cb_f_t.html>PK_ATTRIB_reset_cb_f_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A field of an attribute can be identified using an integer index or a
+name. This struct is to facilitate identifying a field using either
+method.
+
+Description of fields:
+
+<B>'field_index'</B>       This can be used to specify the index of the
+                    field. If the attribute does not have named
+                    fields, then this must be set to a valid field
+                    index.  If the field is being identified by a name
+                    instead of an index, then this field must be set
+                    to -1.
+
+<B>'unicode_name'</B>      A switch specifying whether the name is supplied
+                    in Unicode form or in the native character set of
+                    the machine.
+
+                    Currently, only native names are supported, so
+                    PK_LOGICAL_false is required.
+
+<B>'field_name'</B>        This can be used to specify the name of the field.
+                    If the attribute does not have named fields, then
+                    this should be set to NULL.  It may also be set to
+                    NULL if the attribute does have named fields, as
+                    long as <B>'field_index'</B> is set to a possible field
+                    index.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

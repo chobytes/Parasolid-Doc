@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<TITLE>SESTPA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SESTPA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SESTPA ( part, state, ifail )
+=============================
+
+  Set state of part.
+
+Receives:
+  KI_tag_part              *part           --- part to change
+  KI_cod_enst              *state          --- desired new state of the part
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_state_combn        bad combination of old and new states
+
+Description:
+  SESTPA changes the state of the given part.
+
+  Valid combinations of the part state and the desired state are given by the
+  following table:
+
+                Desired Part State (ENST..)
+
+                   ST AN MD NW UN
+
+      Given    ST        Y  Y-
+      Part     AN           Y
+      State    MD           Y-
+               NW
+               UN
+
+  Where Y indicates a valid combination. All other combinations will return
+  KI_bad_state_combn in ifail.
+
+  For those combinations marked with a hyphen (i.e. stored or modified to new)
+  the key of the part is discarded.
+
+  If the original state of the part is stored or anonymous any stored or
+  anonymous parts which instance it are also 'changed' to modified or new
+  respectively, and any stored or anonymous parts which instance them and so on
+  up the parts graph until a new or modified part is met. For example, the
+  graph on the right shows the result of changing the part marked with a * in
+  the graph on the left.
+
+                           nw                     nw
+                           |                      |
+                           st                     md
+                          /  \                   /  \
+                         an  an                 nw  an
+                        /  \                   /  \
+                       an  an                 nw  nw
+                        \  /                   \  /
+                        *an                     nw
+                         |                      |
+                         an                     an
+
+  This sequence of actions is called a 'state change ripple' and can be
+  represented in pseudo code as:
+
+    Ripple(P) =
+      IF P is new or modified THEN RETURN
+      IF P is anonymous or stored THEN
+          SET P to new or modified
+          FOR ALL parts Q which instance P
+              Ripple(Q)
+
+  A state change ripple may be caused by any function which 'changes' a part.
+
+</PRE>
+</BODY>
+</HTML>

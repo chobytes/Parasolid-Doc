@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_one_vertex_match_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_one_vertex_match_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_one_vertex_match_s
+    {
+    <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A> profile_vertex;
+    <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A> matched_vertex;
+    };
+
+typedef struct PK_BODY_one_vertex_match_s PK_BODY_one_vertex_match_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds an association between a vertex of a given body
+in a series and a vertex on the immediately following body in the series.  In
+lofting, if a profile body is repeated, this should be the next distinct body
+in the series.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_loft_one_match_t.html>PK_BODY_loft_one_match_t</A><br>
+    <A HREF=../headers/pk_body_vertex_match_t.html>PK_BODY_vertex_match_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The matching structure has the following fields :
+
+<B>'profile_vertex'</B>     A vertex on the body for which this represents
+                    part of the mapping.
+
+<B>'matched_vertex'</B>    The corresponding vertex on the following body.
+
+                    In lofting, if there are guide wires for the loft and the
+                    geometry of <B>'profile_vertex'</B> is coincident with a vertex
+                    geometry of a guide wire, then the geometry of
+                    <B>'matched_vertex'</B> is required to be also coincident with a
+                    vertex geometry of the same guide wire. The coincidences
+                    are measured subject to relevant vertex tolerances.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

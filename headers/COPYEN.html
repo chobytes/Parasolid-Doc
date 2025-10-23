@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<TITLE>COPYEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>COPYEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_entity_copy.html>PK_ENTITY_copy</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+COPYEN ( oldent, newent, ifail )
+================================
+
+  Copy entity.
+
+Receives:
+  KI_tag_entity            *oldent         --- entity to be copied
+
+Returns:
+  KI_tag_entity            *newent         --- copy of entity
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_wrong_entity           can't copy entity of given type
+  KI_part_not_isolated      copy would instance true-sub-part of stored part
+
+Description:
+  COPYEN returns a copy of 'oldent' in 'newent'. The types of entity which may
+  be copied are:
+
+  Assembly:
+    'newent' will be an uninstanced copy of 'oldent'. The instances in 'newent'
+    will be copies of those in 'oldent' but the parts they reference will not
+    be copied. Any features and attributes attached to the assembly are also
+    copied. The state of 'newent' will be new (ENSTNW).
+
+    If 'oldent' is an unloaded (ENSTUN) assembly it is received before copying
+    is attempted.
+
+    We define the true-sub-parts of a stored (ENSTST) part S as those anonymous
+    (ENSTAN) sub-parts of S reachable from S without encountering other stored
+    parts.
+
+    A stored or anonymous assembly which instances true-sub-parts of a stored
+    part may not be copied as this would cause the stored part to become
+    unisolated. For example, the parts marked with a * may not be copied and
+    KI_part_not_isolated will be returned in 'ifail'.
+
+                  st
+                   |
+                  st*
+                 /  \
+                an* an*
+                 \  /
+                  an
+                   |
+                  st
+
+  Instance:
+    If 'oldent' is an instance of part P in assembly A then 'newent' will be
+    a new instance of P in A with a copy of 'oldent's transformation. Any
+    attributes attached to the instance are not copied.
+
+  Body:
+    'newent' will be an uninstanced copy of 'oldent'. Any features and
+    attributes attached to the body will also be copied. The state of 'newent'
+    will be new (ENSTNW).
+
+    If 'oldent' is an unloaded (ENSTUN) body it is received before copying
+    is attempted.
+
+  Surface:
+  Curve:
+  Point:
+    'newent' will be an copy of 'oldent' plus any underlying geometry. If
+    'oldent' is construction geometry in a part 'newent' will also be
+    construction geometry in the same part. Otherwise 'newent' will be
+    orphaned. Any attributes attached to 'oldent' will not be copied.
+
+  Transformation:
+    'newent' is an orphaned copy of 'oldent'.
+
+  List:
+    'newent' is an orphaned copy of 'oldent'. In the case of a tag list the
+    entities whose tags are in the list are not copied.
+
+  Feature:
+    'newent' will have the same members as 'oldent' and will be in the
+    same part. Any attributes attached to 'oldent' will not be copied.
+
+
+  If 'oldent' is not one of these types KI_wrong_entity is returned in 'ifail'.
+
+</PRE>
+</BODY>
+</HTML>

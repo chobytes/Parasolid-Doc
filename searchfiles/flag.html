@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.015.html#50409796_pgfId-295983", " 14.7.3 Face orientation <B>flag</B> ", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-295986", " with respect to the surface normal. If this <B>flag</B> is PK_LOGICAL_true, then the face normal is parallel", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-296028", " Figure 14-17 Face orientation <B>flag</B> ", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-296097", " 14.7.6 Edge/fin orientation <B>flag</B> ", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-296102", " determined by the edge/fin orientation <B>flag</B>. If this <B>flag</B> is PK_LOGICAL_true, then the direction of the edge", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-296110", " A <B>flag</B> indicating the orientation of the edge or fin", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-296798", " type of extension required. It returns a status <B>flag</B> that indicates the outcome of the operation. ", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-297416", " PK_SURF_extend returns a status <B>flag</B> to indicate the result of the operation. This", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-450842", " Section 14.7.6, Edge/fin orientation <B>flag</B> ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295043", " The callbacks <B>flag</B> is set to PK_LOGICAL_true. ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-294785", " For user interrupts, PK_SESSION_abort sets a <B>flag</B> inside the Parasolid kernel to register the abort", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275557", " Edge Orientation <B>Flag</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275579", " Face Orientation <B>Flag</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275587", " Fin Orientation <B>Flag</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275789", " Reverse <B>Flag</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275790", " the surface normal and vice versa when the <B>flag</B> is false. ", "Functional Description - ZGlossary");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " bodies is controlled by the generalised topologies session <B>flag</B> All general input bodies are accepted. PK_BODY_sew_bodies sews", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " bodies is controlled by the generalised topologies session <B>flag</B> All general input bodies are accepted. PK_BODY_sew_bodies sews", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_attdef_callback_flags_t.html#description", " if it is not NULL, and its corresponding <B>flag</B> is set to PK_LOGICAL_true.", "PK Reference - PK_ATTDEF_callback_flags_t");
+top.note("headers/pk_attdef_register_callbacks.html#documentation", "corresponding logical <B>flag</B>, as set by PK_ATTDEF_set_callbacks, is", "PK Reference - PK_ATTDEF_register_callbacks");
+top.note("headers/pk_attdef_register_cb.html#documentation", "corresponding logical <B>flag</B>, as set by PK_ATTDEF_set_callbacks, is", "PK Reference - PK_ATTDEF_register_cb");
+top.note("headers/pk_attdef_set_callback_flags.html#documentation", "corresponding <B>flag</B> is set to PK_LOGICAL_true. These flags are initialised", "PK Reference - PK_ATTDEF_set_callback_flags");
+top.note("headers/pk_bcurve_create_spline_2_o_t.html#declaration", " PK_spline_update_t update; --- update <B>flag</B>", "PK Reference - PK_BCURVE_create_spline_2_o_t");
+top.note("headers/pk_blend_delete_cap_data_t.html#declaration", " *keep; --- <B>flag</B> indicating", "PK Reference - PK_blend_delete_cap_data_t");
+top.note("headers/pk_body_boolean_o_t.html#documentation", " This <B>flag</B> has no effect if merge_imprinted is not", "PK Reference - PK_BODY_boolean_o_t");
+top.note("headers/pk_body_emboss_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_emboss_o_t");
+top.note("headers/pk_body_extend_o_t.html#declaration", " update; --- update <B>flag</B>", "PK Reference - PK_BODY_extend_o_t");
+top.note("headers/pk_body_fix_blends_o_t.html#declaration", " PK_blend_edge_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_fix_blends_o_t");
+top.note("headers/pk_body_fix_blends_o_t.html#documentation", " local_check The local_check <B>flag</B> and the checks data structure are", "PK Reference - PK_BODY_fix_blends_o_t");
+top.note("headers/pk_body_hollow_o_t.html#declaration", " update; --- update <B>flag</B>", "PK Reference - PK_BODY_hollow_o_t");
+top.note("headers/pk_body_imprint_faces_o_t.html#documentation", " If this <B>flag</B> is set to PK_LOGICAL_false,", "PK Reference - PK_BODY_imprint_faces_o_t");
+top.note("headers/pk_body_imprint_o_t.html#documentation", " If this <B>flag</B> is set to PK_LOGICAL_false,", "PK Reference - PK_BODY_imprint_o_t");
+top.note("headers/pk_body_make_curves_outline_o_t.html#declaration", " PK_outline_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_make_curves_outline_o_t");
+top.note("headers/pk_body_make_lofted_body.html#documentation", " this will be indicated by setting the periodicity <B>flag</B> in the end conditions", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_body_make_lofted_body_o_t.html#declaration", " --- update <B>flag</B>", "PK Reference - PK_BODY_make_lofted_body_o_t");
+top.note("headers/pk_body_make_spun_outline_o_t.html#declaration", " PK_outline_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_make_spun_outline_o_t");
+top.note("headers/pk_body_make_swept_body.html#documentation", "of the nominal geometry <B>flag</B> on the resultant swept body can be enquired", "PK Reference - PK_BODY_make_swept_body");
+top.note("headers/pk_body_make_swept_body_2.html#documentation", "of the nominal geometry <B>flag</B> on the resultant swept body can be enquired", "PK Reference - PK_BODY_make_swept_body_2");
+top.note("headers/pk_body_make_swept_body_2_o_t.html#declaration", " PK_BODY_sweep_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_make_swept_body_2_o_t");
+top.note("headers/pk_body_make_swept_tool.html#documentation", "of the nominal geometry <B>flag</B> on the resultant swept body can be enquired", "PK Reference - PK_BODY_make_swept_tool");
+top.note("headers/pk_body_make_swept_tool_o_t.html#declaration", " PK_swept_tool_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_make_swept_tool_o_t");
+top.note("headers/pk_body_offset_o_t.html#declaration", " update; --- update <B>flag</B>", "PK Reference - PK_BODY_offset_o_t");
+top.note("headers/pk_body_offset_o_t.html#documentation", " allow_disjoint If this <B>flag</B> is set to PK_LOGICAL_true, and if the", "PK Reference - PK_BODY_offset_o_t");
+top.note("headers/pk_body_offset_planar_wire_o_t.html#documentation", " repair_self_int If this <B>flag</B> is set to PK_LOGICAL_true, the", "PK Reference - PK_BODY_offset_planar_wire_o_t");
+top.note("headers/pk_body_section_o_t.html#documentation", " adjacent to new section faces. This <B>flag</B> has no", "PK Reference - PK_BODY_section_o_t");
+top.note("headers/pk_body_sewing_gen_t.html#documentation", " generalised topologies session <B>flag</B>", "PK Reference - PK_BODY_sewing_gen_t");
+top.note("headers/pk_body_spin.html#documentation", " . When the General topology session <B>flag</B> is enabled, full spins of single", "PK Reference - PK_BODY_spin");
+top.note("headers/pk_body_taper_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_taper_o_t");
+top.note("headers/pk_body_taper_o_t.html#documentation", " miter_at_parting If this <B>flag</B> is set to PK_LOGICAL_true, the", "PK Reference - PK_BODY_taper_o_t");
+top.note("headers/pk_body_thicken_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_thicken_o_t");
+top.note("headers/pk_body_transform_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_transform_o_t");
+top.note("headers/pk_body_transform_o_t.html#documentation", " merge_face If this <B>flag</B> is set to PK_LOGICAL_true, the", "PK Reference - PK_BODY_transform_o_t");
+top.note("headers/pk_body_trim_neutral_sheets_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_BODY_trim_neutral_sheets_o_t");
+top.note("headers/pk_bsurf_create_constrained_o_t.html#declaration", " PK_constrained_update_t update; --- update <B>flag</B>", "PK Reference - PK_BSURF_create_constrained_o_t");
+top.note("headers/pk_curve_is_isoparam.html#documentation", " It is only computed and set if the <B>flag</B> want_interval ", "PK Reference - PK_CURVE_is_isoparam");
+top.note("headers/pk_curve_make_approx.html#documentation", "Returned exact <B>flag</B> indicates whether the returned curve is an", "PK Reference - PK_CURVE_make_approx");
+top.note("headers/pk_curve_make_bcurve_o_t.html#declaration", " PK_make_bcurve_update_t update; --- update <B>flag</B>", "PK Reference - PK_CURVE_make_bcurve_o_t");
+top.note("headers/pk_edge_ask_blend.html#documentation", "The propagate <B>flag</B> in the properties field will always be returned", "PK Reference - PK_EDGE_ask_blend");
+top.note("headers/pk_edge_delete_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_EDGE_delete_o_t");
+top.note("headers/pk_edge_offset_on_body_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_EDGE_offset_on_body_o_t");
+top.note("headers/pk_edge_remove_to_bodies_o_t.html#documentation", " allow_disjoint If this <B>flag</B> is set to PK_LOGICAL_true, and if the", "PK Reference - PK_EDGE_remove_to_bodies_o_t");
+top.note("headers/pk_face_boolean_o_t.html#documentation", " This <B>flag</B> has no effect if merge_imprinted is not", "PK Reference - PK_FACE_boolean_o_t");
+top.note("headers/pk_face_change_data_replace_t.html#documentation", " face/surface combination, this <B>flag</B> is interpreted as", "PK Reference - PK_FACE_change_data_replace_t");
+top.note("headers/pk_face_change_deform_eval_f_t.html#documentation", " in params . The function should check the <B>flag</B> have_params to", "PK Reference - PK_FACE_change_deform_eval_f_t");
+top.note("headers/pk_face_change_o_t.html#declaration", " --- replace update <B>flag</B>", "PK Reference - PK_FACE_change_o_t");
+top.note("headers/pk_face_change_o_t.html#documentation", " merge_face If this <B>flag</B> is set to PK_LOGICAL_true, the", "PK Reference - PK_FACE_change_o_t");
+top.note("headers/pk_face_delete_blends_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_FACE_delete_blends_o_t");
+top.note("headers/pk_face_delete_facesets_o_t.html#declaration", " update; --- update <B>flag</B>", "PK Reference - PK_FACE_delete_facesets_o_t");
+top.note("headers/pk_face_delete_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_FACE_delete_o_t");
+top.note("headers/pk_face_emboss_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_FACE_emboss_o_t");
+top.note("headers/pk_face_find_blend_unders_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_FACE_find_blend_unders_o_t");
+top.note("headers/pk_face_hollow_o_t.html#declaration", " update; --- update <B>flag</B>", "PK Reference - PK_FACE_hollow_o_t");
+top.note("headers/pk_face_identify_blends_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_FACE_identify_blends_o_t");
+top.note("headers/pk_face_identify_blends_o_t.html#documentation", " want_radii If this <B>flag</B> is set to PK_LOGICAL_true the radii of", "PK Reference - PK_FACE_identify_blends_o_t");
+top.note("headers/pk_face_imprint_faces_o_t.html#documentation", " If this <B>flag</B> is set to PK_LOGICAL_false,", "PK Reference - PK_FACE_imprint_faces_o_t");
+top.note("headers/pk_face_imprint_o_t.html#documentation", " If this <B>flag</B> is set to PK_LOGICAL_false,", "PK Reference - PK_FACE_imprint_o_t");
+top.note("headers/pk_face_make_neutral_sheet_o_t.html#declaration", " update; --- update <B>flag</B>", "PK Reference - PK_FACE_make_neutral_sheet_o_t");
+top.note("headers/pk_face_offset_o_t.html#declaration", " update; --- update <B>flag</B>", "PK Reference - PK_FACE_offset_o_t");
+top.note("headers/pk_face_offset_o_t.html#documentation", " allow_disjoint If this <B>flag</B> is set to PK_LOGICAL_true, and if the", "PK Reference - PK_FACE_offset_o_t");
+top.note("headers/pk_face_output_surf_trimmed.html#documentation", "Setting the want_geoms <B>flag</B> in the options structure to PK_LOGICAL_true", "PK Reference - PK_FACE_output_surf_trimmed");
+top.note("headers/pk_face_pattern.html#documentation", "Result <B>flag</B> indicates partial success", "PK Reference - PK_FACE_pattern");
+top.note("headers/pk_face_pattern_2.html#documentation", "o Result <B>flag</B> indicates complete success", "PK Reference - PK_FACE_pattern_2");
+top.note("headers/pk_face_replace_surfs_2.html#documentation", "The sense <B>flag</B> for a particular face/surface combination is interpreted as", "PK Reference - PK_FACE_replace_surfs_2");
+top.note("headers/pk_face_replace_surfs_3.html#documentation", "The sense <B>flag</B>, supplied to the function via the senses array,", "PK Reference - PK_FACE_replace_surfs_3");
+top.note("headers/pk_face_replace_surfs_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_FACE_replace_surfs_o_t");
+top.note("headers/pk_face_section_o_t.html#documentation", " adjacent to new section faces. This <B>flag</B> has no", "PK Reference - PK_FACE_section_o_t");
+top.note("headers/pk_face_simplify_geom.html#documentation", " output array geoms is optional. If the want_geoms <B>flag</B> in the options", "PK Reference - PK_FACE_simplify_geom");
+top.note("headers/pk_face_taper_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_FACE_taper_o_t");
+top.note("headers/pk_face_taper_o_t.html#documentation", " merge_face If this <B>flag</B> is set to PK_LOGICAL_true, the", "PK Reference - PK_FACE_taper_o_t");
+top.note("headers/pk_face_transform_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_FACE_transform_o_t");
+top.note("headers/pk_face_transform_o_t.html#documentation", " merge_face If this <B>flag</B> is set to PK_LOGICAL_true, the", "PK Reference - PK_FACE_transform_o_t");
+top.note("headers/pk_ffoprd_f_t.html#documentation", " If the skiphd <B>flag</B> is set to FFSKHD, the header data is", "PK Reference - PK_FFOPRD_f_t");
+top.note("headers/pk_fgevsu_f_t.html#documentation", "The triangular <B>flag</B>, triang, may take the values FGEVSQ (indicating a", "PK Reference - PK_FGEVSU_f_t");
+top.note("headers/pk_fgprcu_f_t.html#documentation", "periodicity <B>flag</B> FGPRBD (i.e. non-periodic parameterisation).", "PK Reference - PK_FGPRCU_f_t");
+top.note("headers/pk_fgprsu_f_t.html#documentation", " period[0] is the u parameter periodicity <B>flag</B> (must be FGPRBD)", "PK Reference - PK_FGPRSU_f_t");
+top.note("headers/pk_geom_render_line_o_t.html#documentation", " PK_LOGICAL_t <B>flag</B> and a double precision value. If a specific", "PK Reference - PK_GEOM_render_line_o_t");
+top.note("headers/pk_geom_render_o_t.html#documentation", " PK_LOGICAL_t <B>flag</B> and a double precision value. If a specific", "PK Reference - PK_GEOM_render_o_t");
+top.note("headers/pk_mesh_find_laminar_mfins_o_t.html#documentation", " want_plines If this <B>flag</B> is set to PK_LOGICAL_true then a", "PK Reference - PK_MESH_find_laminar_mfins_o_t");
+top.note("headers/pk_mvertex_ask_normals_o_t.html#documentation", " want_normals If this <B>flag</B> is set to PK_LOGICAL_false then", "PK Reference - PK_MVERTEX_ask_normals_o_t");
+top.note("headers/pk_session_abort.html#documentation", " abort <B>flag</B> in the Kernel, then returns to the interrupt", "PK Reference - PK_SESSION_abort");
+top.note("headers/pk_session_ask_fru_o_t.html#documentation", "<B>flag</B> at the address pointed to by its corresponding", "PK Reference - PK_SESSION_ask_fru_o_t");
+top.note("headers/pk_surf_extend_o_t.html#declaration", " update; --- update <B>flag</B>", "PK Reference - PK_SURF_extend_o_t");
+top.note("headers/pk_surf_make_bsurf_o_t.html#declaration", " PK_make_bsurf_update_t update; --- update <B>flag</B>", "PK Reference - PK_SURF_make_bsurf_o_t");
+top.note("headers/pk_thread_lock_partitions_o_t.html#documentation", " want_locked_partitions If this <B>flag</B> is set to PK_LOGICAL_true then", "PK Reference - PK_THREAD_lock_partitions_o_t");
+top.note("headers/pk_topol_eval_mass_props_o_t.html#documentation", " single If this <B>flag</B> is set to PK_LOGICAL_true, and the", "PK Reference - PK_TOPOL_eval_mass_props_o_t");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", " value (specified in model units) and the associated <B>flag</B>", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#documentation", " value (specified in model units) and the associated <B>flag</B>", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_render_line_o_t.html#documentation", " PK_LOGICAL_t <B>flag</B> and a double precision value. If a specific", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("headers/pk_transf_create_view.html#description", "transform. This can be done by setting the <B>flag</B> have_eye_position to", "PK Reference - PK_TRANSF_create_view");
+top.note("headers/pk_ucoprd_f_t.html#documentation", " If the skiphd <B>flag</B> is set to PK_LOGICAL_true, the header data is", "PK Reference - PK_UCOPRD_f_t");
+top.note("headers/pk_vertex_optimise_o_t.html#declaration", " PK_local_ops_update_t update; --- update <B>flag</B>", "PK Reference - PK_VERTEX_optimise_o_t");
+top.note("chapters/di_chap.03.html#50511935_pgfId-274013", " any header data and whether the skip header <B>flag</B> is set. If so, the header data is", "Downward Interfaces - File Handling");
+top.note("chapters/kd_chap.04.html#50475012_pgfId-274110", " the underlying PK function requires the local checking <B>flag</B>. ", "KID Manual - Object-Oriented KID");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-274045", " if reversed, then set the sense <B>flag</B> to true ", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/fg_chap.06.html#50462723_pgfId-274662", " Triangular array <B>flag</B> ", "FG Manual - FG Module Interface Functions");
+top.note("chapters/fg_chap.06.html#50462723_pgfId-274723", " The triangular <B>flag</B>, triang, may take the value FGEVSQ (indicating a", "FG Manual - FG Module Interface Functions");
+top.note("chapters/fg_chap.06.html#50462723_pgfId-283842", " Periodicity <B>flag</B>:FGPRBD => bounded (non- periodic)FGPRPE => periodic (not currently", "FG Manual - FG Module Interface Functions");
+top.note("chapters/fg_chap.06.html#50462723_pgfId-274854", " properties are parameter range [0, 1] and periodicity <B>flag</B> FGPRBD (i.e. non-periodic parametrization). ", "FG Manual - FG Module Interface Functions");
+top.note("chapters/fg_chap.06.html#50462723_pgfId-274855", " function must set the parameter range and periodicity <B>flag</B>: ", "FG Manual - FG Module Interface Functions");
+top.note("chapters/fg_chap.06.html#50462723_pgfId-274994", " period[0] is the u parameter periodicity <B>flag</B> (must be FGPRBD) ", "FG Manual - FG Module Interface Functions");
+top.note("chapters/fg_chap.06.html#50462723_pgfId-274995", " period[1] is the v parameter periodicity <B>flag</B> (must be FGPRBD) ", "FG Manual - FG Module Interface Functions");
+top.note("chapters/fr_chap.03.html#50462723_pgfId-278794", " to Parasolid Support, but make sure you clearly <B>flag</B> the option value that causes the RTE to", "Reporting Faults to Parasolid - Data To Include In Fault Reports");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

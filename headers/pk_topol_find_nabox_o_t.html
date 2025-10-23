@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_find_nabox_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_find_nabox_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_find_nabox_o_s
+    {
+    int                o_t_version;  --- options structure version number
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       have_axis1;   --- whether axis1 supplied
+                                     --- ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_axis1_sf_t.html>PK_AXIS1_sf_t</A>      axis1;        --- local origin and one axis for nabox
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       have_axis2;   --- whether axis2 supplied
+                                     --- ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A>      axis2;        --- local coordinate system for nabox
+                                     --- ( world coordinate system )
+    <A HREF=../headers/pk_nabox_quality_t.html>PK_NABOX_quality_t</A> quality;      --- which information to use when finding
+                                     --- naboxes in the absence of any axis
+                                     --- constraints
+                                     --- ( <A HREF=../headers/pk_nabox_quality_t.html>PK_NABOX_quality_standard_c</A> )
+    int                n_parts_with_scales;
+                                     --- number of parts for which a
+                                     --- scale factor is specified
+                                     --- (0)
+    <A HREF=../headers/pk_part_t.html>PK_PART_t</A>         *parts_with_scales;
+                                     --- array of parts for which a
+                                     --- scale factor is specified
+                                     --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A> *scale_factors;--- scale factor associated with the
+                                     --- corresponding part in
+                                     --- <B>'parts_with_scales'</B>
+                                     --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>  output_scale_factor;
+                                     --- Scale by which to shrink the
+                                     --- resulting nabox
+                                     --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    };
+typedef struct PK_TOPOL_find_nabox_o_s PK_TOPOL_find_nabox_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure provides options for <A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+PK_ERROR_bad_combination     (MILD) <B>'have_axis1'</B> and <B>'have_axis2'</B> are
+                             both set to PK_LOGICAL_true
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This option structure contains the fields:
+
+<B>'have_axis1'</B>            whether the application wishes to specify one of the
+                        axes of the non-aligned box and leave the other two
+                        for Parasolid to calculate.
+
+<B>'axis1'</B>                 the <B>'location'</B> and <B>'axis'</B> to occur in the <B>'basis_set'</B>
+                        in the <A HREF=../headers/pk_nabox_sf_t.html>PK_NABOX_sf_t</A> returned by <A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A>
+                        when <B>'have_axis1'</B> is PK_LOGICAL_true.
+
+<B>'have_axis2'</B>            whether or not the application has supplied a local
+                        coordinate system in which a non-aligned box should
+                        be calculated.
+
+<B>'axis2'</B>                 the coordinate system in which a non-aligned box is
+                        required if <B>'have_axis2'</B> is set to PK_LOGICAL_true.
+
+<B>'quality'</B>               determines which information Parasolid should use to
+                        find the non-aligned box when <B>'have_axis1'</B> and
+                        <B>'have_axis2'</B> are both PK_LOGICAL_false.
+
+<B>'parts_with_scales'</B>     This array, of length <B>'n_parts_with_scales'</B>, contains
+                        unique parts which are to be considered at the scale
+                        factors provided in <B>'scale_factors'</B>. If this array
+                        is NULL, no scale factors are applied.
+
+<B>'scale_factors'</B>         This array should match the length of
+                        <B>'parts_with_scales'</B>. Each element of the array should
+                        be a <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A> corresponding to each part
+                        specified in <B>'parts_with_scales'</B>.
+
+<B>'output_scale_factor'</B>   This is a scale factor used to shrink the
+                        resulting nabox, where the origin is used as
+                        the centre of scaling. No scaling is applied when the
+                        value is set to <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+
+Parasolid determined coordinate system
+--------------------------------------
+
+When <B>'have_axis1'</B> and <B>'have_axis2'</B> are both PK_LOGICAL_false, Parasolid
+will find a local coordinate system which is aligned with a near-minimal
+bounding box for the given topology. The local axes will be ordered in such
+a way that the local X axis has the greatest dimension, the local Y axis
+the next greatest dimension and the local Z axis the smallest dimension.
+In terms of the fields of a <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A>
+structure:
+  local X is <B>'ref_direction'</B>
+  local Z is <B>'axis'</B>
+  local Y is the cross product of local Z and local X.
+This means that when the box degenerates to a rectangle then the dimensions of
+the rectangle are given by the local X and Y dimensions, and when the box
+degenerates to a line then its extent is given by the local X dimensions.
+If a single vertex is input to <A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A> then the returned axes will
+always be axis aligned but the extent of the box may be non-zero if the vertex
+is tolerant.
+
+Specifying a single axis
+------------------------
+
+When <B>'have_axis1'</B> is PK_LOGICAL_true, Parasolid will calculate a non-aligned
+box containing the given topology such that the <B>'location'</B> and <B>'axis'</B> of its
+<B>'basis_set'</B> will be the <B>'location'</B> and <B>'axis'</B> from <B>'axis1'</B>, and whose
+projection onto the plane defined by <B>'axis1'</B> is of minimal area. The
+<B>'ref_direction'</B> is taken from the longest side of the rectangle bounding the
+projection of the non-aligned box onto this plane.
+
+Specifying a full coordinate system
+-----------------------------------
+
+If <B>'have_axis2'</B> is PK_LOGICAL_true, then Parasolid will find the non-aligned
+box of the given topology within the coordinate system defined by <B>'axis2'</B>. In
+this case the <B>'basis_set'</B> in the <A HREF=../headers/pk_nabox_sf_t.html>PK_NABOX_sf_t</A> returned by <A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A>
+will be identical to <B>'axis2'</B>.
+
+Scale Factors
+-------------
+
+It is possible to associate a scale factor with a part so that any topology
+in <B>'topols'</B> that is provided from such a part is treated at the scale factor
+of that part. The centre of scaling is the origin.
+
+In order to supply scale factors for parts it is necessary to fill in the
+following fields: <B>'parts_with_scales'</B> and <B>'scale_factors'</B>. Additionally,
+<B>'n_parts_with_scales'</B> must be non-zero.
+
+Topologies are treated with the scale factor of their owner body.
+The topology's transformation, if given in <B>'transfs'</B>, is applied
+after the owner body has been scaled.
+
+See #here#DOCxxxx# for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

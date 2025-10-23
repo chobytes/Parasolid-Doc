@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_embed_in_surf_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_embed_in_surf_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_embed_in_surf_o_s
+    {
+    int                 o_t_version;   --- option structure version
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        have_curve_interval;
+                                       --- whether have interval specifying
+                                       --- sub-part of curve (PK_LOGICAL_false)
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>       curve_interval;--- parameteric interval of curve to
+                                       --- be embedded (0.0, 1.0)
+    <A HREF=../headers/pk_geom_copy_t.html>PK_GEOM_copy_t</A>      copy_curve;    --- whether to copy curve before
+                                       --- embedding (PK_GEOM_copy_auto_c)
+    <A HREF=../headers/pk_embed_adjust_t.html>PK_embed_adjust_t</A>   geom_adjust;   --- whether to extend surface or adjust
+                                       --- curve if curve outside limits
+                                       --- (<A HREF=../headers/pk_embed_adjust_t.html>PK_embed_adjust_su_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        have_adjustment_limit;
+                                       --- whether the <B>'adjustment_limit'</B> is
+                                       --- set (PK_LOGICAL_false)
+    double              adjustment_limit;
+                                       --- limit of divergence
+                                       --- between curve and any
+                                       --- adjustment of it
+    <A HREF=../headers/pk_embed_report_t.html>PK_embed_report_t</A>   report;        --- specify when to write a report
+                                       --- giving additional information on
+                                       --- the outcome
+                                       --- (<A HREF=../headers/pk_embed_report_t.html>PK_embed_report_never_c</A>)
+    };
+typedef struct PK_CURVE_embed_in_surf_o_s PK_CURVE_embed_in_surf_o_t;
+</B>
+<A NAME="description"></A>
+<I>This options structure holds optional controls for <A HREF=../headers/pk_curve_embed_in_surf_2.html>PK_CURVE_embed_in_surf_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_embed_in_surf_2.html>PK_CURVE_embed_in_surf_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+<B>'o_t_version'</B>           Version number of option structure.
+
+<B>'have_curve_interval'</B>   Logical indicating whether we wish to specify the
+                        parametric interval on the curve to embed in the
+                        surface. If set to PK_LOGICAL_true the section
+                        of curve specified by the parametric range given
+                        in <B>'curve_interval'</B> will be embedded. If set to
+                        PK_LOGICAL_false the whole of the curve will be
+                        embedded into the surface.
+
+<B>'curve_interval'</B>        Interval indicating the section.
+
+<B>'copy_curve'</B>            Whether to embed the given curve itself
+                        whenever possible (PK_GEOM_copy_auto_c) or to
+                        always embed a newly constructed copy of the
+                        required curve section (PK_GEOM_copy_always_c).
+                        The value PK_GEOM_copy_never_c is not supported.
+
+<B>'geom_adjust'</B>           Whether to extend the surface (<A HREF=../headers/pk_embed_adjust_t.html>PK_embed_adjust_su_c</A>)
+                        or adjust the curve (<A HREF=../headers/pk_embed_adjust_t.html>PK_embed_adjust_cu_out_c</A>) if
+                        the curve is outside the surface limits.
+
+<B>'have_adjustment_limit'</B> This field controls whether the associated
+                        <B>'adjustment_limit'</B> is used.
+
+<B>'adjustment_limit'</B>      If <B>'have_adjustment_limit'</B> is PK_LOGICAL_true
+                        this field must be set to a positive value and
+                        specifies the maximum distance permissible between
+                        a curve and any adjustment of it made to fit it
+                        within the limits of the surface.
+                        If <B>'have_adjustment_limit'</B> is PK_LOGICAL_false then
+                        the maximum distance allowed between a curve and any
+                        adjustment of it will be the current session precision.
+
+<B>'report'</B>                Specifies when further information on the result of
+                        the embedding is to be written into a report record
+                        of type <A HREF=../headers/pk_report_record_3_t.html>PK_REPORT_record_3_t</A> with <B>'status'</B> value
+                        <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_embed_curve_c</A>.
+
+                        <A HREF=../headers/pk_embed_report_t.html>PK_embed_report_never_c</A>: never write a report
+                        <A HREF=../headers/pk_embed_report_t.html>PK_embed_report_always_c</A>: always write a report
+                        <A HREF=../headers/pk_embed_report_t.html>PK_embed_report_failing_c</A>: write a report only when
+                        the call to embed a curve fails.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

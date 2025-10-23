@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.098.html#50409888_pgfId-294895", " inactive by rolling it to its initial pmark using <B>PK_PMARK_goto_2</B> . While a partition is inactive, it cannot be", "Functional Description - Partitions");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294858", " Use <B>PK_PMARK_goto_2</B> to roll a partition back or forward to a", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294859", " <B>PK_PMARK_goto_2</B> returns the number of affected entities as well as,", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294917", " PK_PMARK_ask_entities receives and returns the same information as <B>PK_PMARK_goto_2</B> , and takes a very similar set of options.", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294923", "bulletin board must be emptied before <B>PK_PMARK_goto_2</B> is called, if it is switched on. The bulletin", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-294928", " Warning: The entity arrays returned (optionally) by <B>PK_PMARK_goto_2</B> relate to the internal Parasolid model, not that seen", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295099", " <B>PK_PMARK_goto_2</B> ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-437150", " option in either <B>PK_PMARK_goto_2</B> or PK_MARK_goto_2 . By setting this option to PK_ATTRIB_no_roll_diff_report_c,", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295389", " desired destination state. Note that, in the case of <B>PK_PMARK_goto_2</B> , the application should first return to the original", "Functional Description - Rollback");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-295392", " a run-time error during a call to PK_MARK_goto_2 or <B>PK_PMARK_goto_2</B> may result in a fatal error return. ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294736", " you were to move to a given pmark, and <B>PK_PMARK_goto_2</B> can roll a partition to a given pmark. These", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294972", " <B>PK_PMARK_goto_2</B> ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295036", " <B>PK_PMARK_goto_2</B> ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295138", " <B>PK_PMARK_goto_2</B> ", "Functional Description - Error Handling ");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_frustrum_failure 5003 <B>PK_PMARK_goto_2</B> (potentially FATAL) The frustrum returned", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_mark 5006 <B>PK_PMARK_goto_2</B> (MILD) The given pmark may not be rolled to", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_facet_geometry 5237 <B>PK_PMARK_goto_2</B> (MILD) The partition contains facet", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_lattice_geometry 5277 <B>PK_PMARK_goto_2</B> (MILD) The partition contains lattice(s)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_rollback_not_started 5048 <B>PK_PMARK_goto_2</B> (MILD) Partitioned rollback is not active", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " <B>PK_PMARK_goto_2</B> 5006 PK_ERROR_bad_mark (MILD) The given pmark may not be", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_entity_t.html#description", " <B>PK_PMARK_goto_2</B> ", "PK Reference - PK_ENTITY_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_PMARK_goto_2</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_partition_clone_pmark.html#documentation", "This function performs a similar action to <B>PK_PMARK_goto_2</B> . If the", "PK Reference - PK_PARTITION_clone_pmark");
+top.note("headers/pk_pmark_ask_entities.html#documentation", "The behaviour is the same as <B>PK_PMARK_goto_2</B> , except that the modeller state is", "PK Reference - PK_PMARK_ask_entities");
+top.note("headers/pk_pmark_goto.html#description", " This function is deprecated and has been superseded by <B>PK_PMARK_goto_2</B> .", "PK Reference - PK_PMARK_goto");
+top.note("headers/pk_pmark_goto_2.html#declaration", " PK_ERROR_code_t <B>PK_PMARK_goto_2</B>", "PK Reference - PK_PMARK_goto_2");
+top.note("headers/pk_pmark_goto_attrib_cb_f_t.html#documentation", "during rollback in <B>PK_PMARK_goto_2</B> when an attribute of the correct definition", "PK Reference - PK_PMARK_goto_attrib_cb_f_t");
+top.note("headers/pk_pmark_goto_o_t.html#description", " This structure contains optional arguments for <B>PK_PMARK_goto_2</B> .", "PK Reference - PK_PMARK_goto_o_t");
+top.note("headers/pk_pmark_goto_o_t.html#documentation", " into <B>PK_PMARK_goto_2</B> are the same.", "PK Reference - PK_PMARK_goto_o_t");
+top.note("headers/pk_pmark_t.html#description", " <B>PK_PMARK_goto_2</B> ", "PK Reference - PK_PMARK_t");
+top.note("headers/pk_thread_ask_exclusion.html#documentation", " PK_MARK_goto , PK_PARTITION_goto_guard , <B>PK_PMARK_goto_2</B> , PK_SESSION_receive ", "PK Reference - PK_THREAD_ask_exclusion");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

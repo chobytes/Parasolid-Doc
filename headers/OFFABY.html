@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<TITLE>OFFABY</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OFFABY</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_offset.html>PK_BODY_offset</A><BR>
+<A HREF=../headers/pk_face_offset.html>PK_FACE_offset</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OFFABY ( body, offset, check, fixed, faces, dists, tol, mxflts, badtag, state, 
+===============================================================================
+         ifail )
+         =======
+
+  Offsets faces of a solid or sheet body
+
+Receives:
+  KI_tag_body              *body           --- body to be offset
+ &lt;KI_dbl&gt;                  *offset         --- default offset
+  KI_cod_logical           *check          --- level of checking required
+ &lt;KI_tag_list_face&gt;        *fixed          --- faces not to be offset
+ &lt;KI_tag_list_face&gt;        *faces          --- faces offset by other amounts
+ &lt;KI_tag_list_dbl&gt;         *dists          --- list of other offset distances
+ &lt;KI_dbl_distance&gt;         *tol            --- maximum applied tolerance
+ &lt;KI_int_nitems&gt;           *mxflts         --- maximum number of entities in badtag
+
+Returns:
+ &lt;KI_tag_list_entity&gt;      *badtag         --- entities which caused problems
+  KI_cod_rtof              *state          --- state of body after offset
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_cant_offset            failed to offset faces of body
+  KI_bad_tolerance          proposed tolerance is too small
+  KI_bad_value              non-default offset too small
+  KI_not_in_same_body       Offset face is not in supplied body
+                            Fixed face is not in supplied body
+  KI_duplicate_list_item    face is in both fixed and faces
+  KI_list_wrong_length      list of faces and dists not same length
+                            too many faces in lists fixed and faces
+                            too many faces for non-default offset
+                            too many fixed faces
+  KI_list_too_short         no dists supplied for faces
+  KI_unsuitable_entity      body is not a solid or sheet body
+                            Mixed body
+
+Description:
+  The 'body' is returned with all or some faces offset. A positive offset
+  indicates an offset outwards (i.e. in the direction of the face normal) and a
+  negative offset an offset inwards.
+
+  The default offset to be applied is given in the 'offset' argument. Faces which
+  are not to be offset are supplied in the 'fixed' argument. Faces to be offset
+  by distances other than the default are supplied in the 'faces' argument with
+  the specific distances supplied in the corresponding position in the 'dists'
+  argument. Mixtures of positive and negative distances are allowed.
+
+  If 'offset' is zero then only those faces in the 'faces' list will be offset.
+  In this case the 'fixed' list is ignored.
+
+  Under some circumstances the function may need to replace exact geometry by
+  tolerant geometry. For instance, in the case of a sheet body some edge
+  geometry at the boundary may have to be approximated by SP curves in order
+  to generate a boundary curve on the offset sheet. In all such situations the
+  new geometry will have a tolerance less than or equal to the tolerance
+  supplied through the 'tol' argument.
+
+  Three situations can give rise to changes in the topology of the body :
+
+      1) Dealing with degeneracies on a sheet body comprised of a single face.
+         For example, a vertex may offset to an edge.
+
+      2) Dealing with geometry which fails to offset. If it is known that the
+         offset surface of a face would be self-intersecting an attempt is made
+         to remove the face. For example, a blend may be removed from an edge.
+         The investigation of self-intersection is not exhaustive, however,
+         and it can occur that instances are not trapped.
+
+      3) Dealing with configurations which can be repaired. For instance an edge
+         can offset to a point or a face can become absorbed into the body.
+
+  The extent to which checking is applied to the body is specified by the
+  'check' argument. If 'check' is true then face-face checks are done on
+  the body in addition to default checks. For most applications setting
+  'check' false will give an adequate level of checking.
+
+  The error reporting scheme comprises the four arguments 'badtag', 'state',
+  'mxflts' and 'ifail'. A non-zero 'ifail' is reserved for reporting unsuitable
+  arguments to the function and system errors.
+
+  Algorithmic failures where the items causing the failure can be identified
+  result in a zero 'ifail' and more specific information being returned in the
+  'state' argument and 'badtag'. For example, if new geometry cannot be found for
+  an edge 'state' RTOFEM will be returned and the tag of the edge whose curve
+  could not be found in 'badtag'. The user may set an upper limit on the number
+  of faults found in 'mxflts'; if 'mxflts' is zero then no limit is applied.
+
+  'state' refers to the validity of the item after modification and not to its
+  original validity and after such a failure 'body' may be corrupt and a
+  rollback should be performed. For this reason tags of new topology cannot be
+  returned in 'badtag' and the tags will refer to adjacent faces in the original
+  body supplied. For example if a new edge cannot be modified a 'state' RTOFEM
+  is returned and 'badtag' will contain the tag of a list of the two faces whose
+  offsets are to be used to find the new curve. 'badtag' is a list of items which
+  failed for the reason indicated in the 'state' argument.
+
+  Possible values of 'state' and the contents of elements of 'badtag' are :
+
+
+     Token  | Tag in     |     Meaning
+            | badtag list|
+     -------|------------|------------------------------------------------------
+     RTOFOK | null       | Body is OK
+     RTOFSO | face       | Surface failed to offset or face could not be deleted
+     RTOFVM | vertex     | Failed to find new geometry for vertex
+            | list faces | Failed to find geometry for new vertex
+     RTOFEM | edge       | Failed to find new geometry for edge
+            | list faces | Failed to find geometry for new edge
+     RTOFVT | edge       | Edge should have disappeared
+            | list faces | New edge should have disappeared
+     RTOFNG | null       | Offset body was negative
+     RTOFFA | face       | Face failed checks
+     RTOFSX | list faces | Pair of faces where face-face inconsistency found
+
+  Notice that a successful execution of the offsetting operation is indicated by:
+
+      ifail returning KI_no_errors
+      state returning RTOFOK or RTOFNG
+
+  This function is not supported for general bodies.
+
+
+</PRE>
+</BODY>
+</HTML>

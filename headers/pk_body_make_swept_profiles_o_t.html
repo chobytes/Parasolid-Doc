@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_make_swept_profiles_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_make_swept_profiles_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_make_swept_profiles_o_s
+    {
+    int                         o_t_version;
+    <A HREF=../headers/pk_body_sweep_alignment_t.html>PK_BODY_sweep_alignment_t</A>   alignment;
+    <A HREF=../headers/pk_body_simplify_t.html>PK_BODY_simplify_t</A>          simplify;
+
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A>         twist;
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A>         scale;
+    };
+
+typedef struct PK_BODY_make_swept_profiles_o_s PK_BODY_make_swept_profiles_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls on the construction of the profiles
+of a swept body.
+</I>
+<A NAME="documentation"></A>
+The option structure for making the profiles of a swept body has the
+following fields :
+
+<B>'alignment'</B>         Whether the profile normal should maintain a constant
+                    angle to the global axes (PK_BODY_sweep_align_parallel_c)
+                    or a constant angle to the path tangent
+                    ( PK_BODY_sweep_align_normal_c )
+
+<B>'simplify'</B>          A token used to indicate the level of simplification
+                    to be attempted on the lofted surfaces generated to
+                    form the faces of the swept body.
+
+<B>'twist'</B>             A 1-dimensional LAW standard form or a discrete set
+                    of values to be interpolated at vertices along the path.
+                    The values specify the amount of rotation about the path
+                    tangent direction undergone by the profile as it moves
+                    along the sweep path.
+
+<B>'scale'</B>             A 1-dimensional LAW standard form or a discrete set
+                    of values to be interpolated at vertices along the path.
+                    The values specify the amount of magnification, centred on
+                    the path, of the profile as it moves along the sweep path.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

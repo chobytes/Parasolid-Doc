@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_delete_cap_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_delete_cap_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_blend_delete_cap_data_s
+    {
+    int                  n_blends;   --- number
+                                     --- of blend faces
+                                     --- ( 0 )
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>     *blends;     --- blend faces
+                                     --- ( NULL )
+    const <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>   *end_idents; --- topologies
+                                     --- identifying cap
+                                     --- end
+                                     --- ( NULL )
+    const <A HREF=../headers/pk_blend_delete_keep_t.html>PK_blend_delete_keep_t</A>
+                        *keep;       --- flag indicating
+                                     --- side to keep
+                                     --- ( NULL )
+    const <A HREF=../headers/pk_blend_cap_type_t.html>PK_blend_cap_type_t</A>
+                        *type;       --- type of capping to be used.
+                                     --- ( NULL )  [PF]
+    };
+typedef struct PK_blend_delete_cap_data_s PK_blend_delete_cap_data_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains the definition of caps for blend deletion.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_cap_definition   Ambiguous or inconsistent definition
+                                  of capping for blend deletion
+                                  (MILD or SERIOUS)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_delete_blends_o_t.html>PK_FACE_delete_blends_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+                  Blend deletion capping options:
+
+ <B>'blends'</B>         An array, of length <B>'n_blends'</B>, of blend faces to
+                  be (partially) deleted.
+
+ <B>'end_idents'</B>     An array of entities to identify one of the ends of each
+                  of correspondingly indexed blend faces in <B>'blends'</B>. This
+                  array must also be of length <B>'n_blends'</B>.
+                  Currently this is restricted to be an appropriate terminal
+                  edge or a vertex belonging to the appropriate face in
+                  <B>'blends'</B>.
+
+ <B>'keep'</B>           An array of enumerators associated with the
+                  corresponding element of <B>'end_idents'</B> defining the
+                  manner in which deletion should occur at that cap.
+                  For each entry in the array <B>'blends'</B>, if the
+                  corresponding element in this array is set to
+                  <A HREF=../headers/pk_blend_delete_keep_t.html>PK_blend_delete_keep_yes_c</A> the region of the blend
+                  associated with the cap is to be kept and if it is set
+                  to <A HREF=../headers/pk_blend_delete_keep_t.html>PK_blend_delete_keep_no_c</A> that region of blend is to
+                  be removed. This array must also be of length <B>'n_blends'</B>.
+
+  <B>'type'</B>          An array of enumerators associated with the
+                  corresponding element of <B>'end_idents'</B> defining the type
+                  of capping that occurs at the end of the blend.
+
+                  Note: that <A HREF=../headers/pk_blend_cap_type_t.html>PK_blend_cap_type_beyond_c</A> and
+                        <A HREF=../headers/pk_blend_cap_type_t.html>PK_blend_cap_type_at_edge_c</A> are not supported for
+                        facet geometry.
+
+For further details on the use of these options please refer to the
+<A HREF="../chapters/fd_chap.065.html#50409851_pgfId-322276">Blending Chapter of the Parasolid Functional Description.</A>
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295255", " information without using the GO, by using the function <B>PK_TOPOL_facet_2</B> . This approach may be useful, for instance, if", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-461128", " <B>PK_TOPOL_facet_2</B> , PK_TOPOL_render_facet ", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-475089", " <B>PK_TOPOL_facet_2</B> ", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.029.html#50409809_pgfId-295230", " as used by <B>PK_TOPOL_facet_2</B> . ", "Functional Description - Mass Properties");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298842", " <B>PK_TOPOL_facet_2</B> returns a tabular representation of the facet topology of", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298843", " <B>PK_TOPOL_facet_2</B> is passed an options structure ( <B>PK_TOPOL_facet_2</B>_o_t ), which contains two sub-structures, as follows: ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-370968", " If any of PK_TOPOL_render_line , PK_GEOM_render , PK_TOPOL_render_facet or <B>PK_TOPOL_facet_2</B> are set to run concurrently, then calls to the", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-957030", " PK_TOPOL_facet_mesh_2_o_t is used by <B>PK_TOPOL_facet_2</B> , which returns a tabular representation of the facet", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-294753", " should initialise these options structures using either PK_TOPOL_render_facet_o_m or <B>PK_TOPOL_facet_2</B>_o_m. ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-294818", " If <B>PK_TOPOL_facet_2</B> is being used to return tabular facet data with", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-962720", " special circumstances described below) but are topologically disjoint. If <B>PK_TOPOL_facet_2</B> is being used to return tabular facet data, the", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-901199", " If <B>PK_TOPOL_facet_2</B> is being used to return tabular facet data, the", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-313269", " If you are calling <B>PK_TOPOL_facet_2</B> , specify any number of view directions for culling", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-333074", " body using any of the tolerance options available to <B>PK_TOPOL_facet_2</B> . ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-333135", " only has an effect if using tabular faceting via <B>PK_TOPOL_facet_2</B> . See Chapter 110, Tabular Output Of Faceting for", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-342240", " applied) in the call to <B>PK_TOPOL_facet_2</B> or PK_TOPOL_render_facet . ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-1226029", " feature operation. Incremental faceting is supported by the functions <B>PK_TOPOL_facet_2</B> and PK_TOPOL_render_facet . ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-1285812", " Note: If <B>PK_TOPOL_facet_2</B> or PK_TOPOL_render_facet is running concurrently in a thread without", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294753", " facet data to your application in tabular format using <B>PK_TOPOL_facet_2</B> , and how you can control which information is", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294765", " 110.4, Topological information , describes the topological information that <B>PK_TOPOL_facet_2</B> returns. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294769", " 110.5, Geometric information , describes the geometric information that <B>PK_TOPOL_facet_2</B> returns. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294773", " 110.6, Tracking information , describes the tracking information that <B>PK_TOPOL_facet_2</B> returns. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294777", " Error information , describes how errors are reported by <B>PK_TOPOL_facet_2</B> . ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295085", " example above, all the tables of facet data that <B>PK_TOPOL_facet_2</B> can return associate just two types of information. There", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295089", " Tabular data is returned by <B>PK_TOPOL_facet_2</B> in one of two types of table: ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295156", " /* ... now call <B>PK_TOPOL_facet_2</B> (...); */ ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-390598", " By default, <B>PK_TOPOL_facet_2</B> returns a set of tables containing facet data for", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-377022", " callback function, rather than via the return structure of <B>PK_TOPOL_facet_2</B> . ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-377023", " This callback function is passed to <B>PK_TOPOL_facet_2</B> using the following fields in PK_TOPOL_facet_choice_2_o_t : ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-546987", " you are using multiple application threads, you can set <B>PK_TOPOL_facet_2</B> to run concurrently. By doing this, you can request", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295353", " <B>PK_TOPOL_facet_2</B> returns the sequence of exterior fins first, followed by", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295821", " matching co-fin for the corresponding fin. In certain circumstances, <B>PK_TOPOL_facet_2</B> cannot return a matching co-fin, but when can this", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296151", " <B>PK_TOPOL_facet_2</B> creates tabular output in terms of facet strips whenever", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297756", " way that tables of topological data are returned by <B>PK_TOPOL_facet_2</B> , using the following options: ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297814", " return geometric data inherited from the original model using <B>PK_TOPOL_facet_2</B> . Each of the tables described in this section", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297863", " <B>PK_TOPOL_facet_2</B> also returns tables that contain tracking information, associating facets,", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-298709", " Error information is returned by <B>PK_TOPOL_facet_2</B> using the ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.112.html#50409903_pgfId-294738", " PK_TOPOL_render_facet and <B>PK_TOPOL_facet_2</B> generate a view-dependent facet mesh ", "Functional Description - Parasolid View Matrices");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-313700", " SMP being enabled at the session level: for example, <B>PK_TOPOL_facet_2</B> requires you to set ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295054", " is enabled at the body level: the PK functions <B>PK_TOPOL_facet_2</B> and PK_TOPOL_render_facet can only benefit from SMP when more", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295110", " <B>PK_TOPOL_facet_2</B> , PK_TOPOL_render_facet ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295112", " option ( <B>PK_TOPOL_facet_2</B> ) or the ", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_duplicate_array_item 511 <B>PK_TOPOL_facet_2</B> topol has duplicates but no transf array", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_unsuitable_topology 1033 <B>PK_TOPOL_facet_2</B> entity in topols array is not face or body", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_field_of_wrong_type 5014 <B>PK_TOPOL_facet_2</B> PK_facet_match_topol_c requires cull_none_c", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_component 963 <B>PK_TOPOL_facet_2</B> topol transf is inappropriate (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_duplicate_array_item 511 <B>PK_TOPOL_facet_2</B> topol has duplicates but no transf array", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_unsuitable_topology 1033 <B>PK_TOPOL_facet_2</B> entity in topols array is not face or body", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " <B>PK_TOPOL_facet_2</B> 963 PK_ERROR_bad_component topol transf is inappropriate (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_TOPOL_facet_2</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_thread_ask_function_run.html#documentation", " \" <B>PK_TOPOL_facet_2</B> \"", "PK Reference - PK_THREAD_ask_function_run");
+top.note("headers/pk_thread_set_function_run.html#documentation", " \" <B>PK_TOPOL_facet_2</B> \"", "PK Reference - PK_THREAD_set_function_run");
+top.note("headers/pk_topol_facet.html#description", " This function is deprecated and has been superseded by <B>PK_TOPOL_facet_2</B> .", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet_2.html#declaration", " PK_ERROR_code_t <B>PK_TOPOL_facet_2</B>", "PK Reference - PK_TOPOL_facet_2");
+top.note("headers/pk_topol_facet_2_o_t.html#description", " Definition of <B>PK_TOPOL_facet_2</B> options structure.", "PK Reference - PK_TOPOL_facet_2_o_t");
+top.note("headers/pk_topol_facet_2_r_t.html#description", " <B>PK_TOPOL_facet_2</B> ", "PK Reference - PK_TOPOL_facet_2_r_t");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#documentation", " <B>PK_TOPOL_facet_2</B> to return the facets generated and which tables should", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_tables_cb_f_t.html#documentation", " <B>PK_TOPOL_facet_2</B> . If incremental faceting is enabled, this error code", "PK Reference - PK_TOPOL_facet_tables_cb_f_t");
+top.note("headers/pk_topol_fctab_fin_fin_t.html#documentation", "When a general body is facetted using <B>PK_TOPOL_facet_2</B> with match set to", "PK Reference - PK_TOPOL_fctab_fin_fin_t");
+top.note("headers/pk_topol_fctab_vertex_point_t.html#documentation", " <B>PK_TOPOL_facet_2</B> . It is an indexed table which maps vertex", "PK Reference - PK_TOPOL_fctab_vertex_point_t");
+top.note("headers/pk_topol_t.html#description", " <B>PK_TOPOL_facet_2</B> ", "PK Reference - PK_TOPOL_t");
+top.note("headers/pk_transf_t.html#description", " <B>PK_TOPOL_facet_2</B> ", "PK Reference - PK_TRANSF_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

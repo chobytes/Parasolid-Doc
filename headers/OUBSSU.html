@@ -1,0 +1,200 @@
+<HTML>
+<HEAD>
+<TITLE>OUBSSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUBSSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_surf_make_bsurf.html>PK_SURF_make_bsurf</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUBSSU ( surf, urange, vrange, tol, nopts, iopts, ctrl, dim, uorder, vorder, 
+=============================================================================
+         ncol, nrow, uknots, vknots, props, nprops, ifail )
+         ==================================================
+
+  Outputs a region of a surface in B-Spline form.
+
+Receives:
+  KI_tag_surface           *surf           --- surface
+  KI_dbl                    urange[2]      --- urange of surface
+  KI_dbl                    vrange[2]      --- vrange of surface
+  KI_dbl_distance          *tol            --- tolerance for approximations
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in 'iopts'
+  KI_cod_srop               iopts[nopts]   --- conversion options
+
+Returns:
+  KI_tag_list_dbl          *ctrl           --- control points
+  KI_int_dimension         *dim            --- dimension of control points
+  KI_int_order             *uorder         --- order of surface patches in u
+  KI_int_order             *vorder         --- order of surface patches in v
+  KI_int_nitems            *ncol           --- number of cols of control points
+  KI_int_nitems            *nrow           --- number of rows of control points
+  KI_tag_list_dbl          *uknots         --- knot vector in the u direction
+  KI_tag_list_dbl          *vknots         --- knot vector in the v direction
+ &lt;KI_tag_list_int&gt;         *props          --- list of surface properties
+ &lt;KI_int_nitems&gt;           *nprops         --- number of surface properties
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_tolerances_too_tight   tolerance too tight
+  KI_cant_make_bspline      failed to convert geometry
+
+Description:
+  The function outputs a region of a surface in B-Spline form.
+
+  The B-spline will represent the surface exactly if possible, but it may be
+  necessary to approximate it. If so, 'tol' specifies an upper bound on the
+  distance between the B-spline and the original surface, which this function
+  will usually satisfy although this is not guaranteed.
+
+  Representations of planes and the rational forms of cylinders, cones, spheres
+  and tori are exact. When the representation of a B-surface is changed it will,
+  in general, only be exact when its order is not decreased.
+
+  The parameter limits of the new surface are defined using 'urange' and
+  'vrange'. For each pair of parameter limits, the following rules apply:
+
+    (i)   The first element must be less than the second.
+
+    (ii)  Both elements must lie inside the parameter range, as given by
+          ENSUPA, unless the corresponding parameter is periodic.
+          In that case the first must lie in the range, and the difference
+          between the two may not exceed the period.
+
+  The format of the output surface is selected by options in 'iopts'. Options
+  allowed are:-
+
+      Option |   Description
+      -------|---------------------------------------
+      SROPCU |  Force output of B-splines of degree 3
+      SROPNR |  Force output of non-rational B-splines
+
+  The effects of these options on the representations produced for different
+  surface types are:-
+
+  Planes
+
+            |  none         |  SROPCU      |  SROPCU  &    |
+            |               |              |     SROPNR    |  SROPNR
+  ----------|---------------|--------------|---------------|----------------
+  'uorder'  |     2         |      4       |      4        |      2
+  'vorder'  |     2         |      4       |      4        |      2
+  'dim'     |     3         |      3       |      3        |      3
+
+
+
+
+
+
+  Cylinders and Cones
+
+            |  none         |  SROPCU      |  SROPCU  &    |
+            |               |              |     SROPNR    |  SROPNR
+  ----------|---------------|--------------|---------------|----------------
+  'uorder'  |     4         |      4       |      4        |      4
+  'vorder'  |     2         |      4       |      4        |      2
+  'dim'     |     4         |      4       |      3        |      3
+
+  Spheres and Tori
+
+            |  none         |  SROPCU      |  SROPCU  &    |
+            |               |              |     SROPNR    |  SROPNR
+  ----------|---------------|--------------|---------------|----------------
+  'uorder'  |     4         |      4       |      4        |      4
+  'vorder'  |     4         |      4       |      4        |      4
+  'dim'     |     4         |      4       |      3        |      3
+
+  B-surfaces
+
+            |  none         |  SROPCU      |  SROPCU  &    |
+            |               |              |     SROPNR    |  SROPNR
+  ----------|---------------|--------------|---------------|----------------
+  'uorder'  |      *        |      4       |      4        |   * or 4
+  'vorder'  |      *        |      4       |      4        |   * or 4
+  'dim'     |      *        |    * or 3    |      3        |     3
+
+  Where * fields are taken from the surface definition. The value of "* or n"
+  fields is taken from the surface definition if the representation is exact,
+  otherwise the value n is used.
+
+  Swept surfaces
+
+            |  none         |  SROPCU      |  SROPCU  &    |
+            |               |              |     SROPNR    |  SROPNR
+  ----------|---------------|--------------|---------------|----------------
+  'uorder'  |      *        |      4       |      4        |      *
+  'vorder'  |      2        |      4       |      4        |      2
+  'dim'     |      *        |    * or 3    |      3        |      3
+
+  Where * fields are derived from the curve which was swept. The value of
+  "* or n" fields is derived from the swept curve if the representation is
+  exact, otherwise the value n is used.
+
+  Spun surfaces
+
+            |  none         |  SROPCU      |  SROPCU  &    |
+            |               |              |     SROPNR    |  SROPNR
+  ----------|---------------|--------------|---------------|----------------
+  'uorder'  |      *        |      4       |      4        |      4
+  'vorder'  |      4        |      4       |      4        |      4
+  'dim'     |      4        |      4       |      3        |      3
+
+  Where the * field is derived from the curve which was spun.
+
+  Offset surfaces
+
+            |  none         |  SROPCU      |  SROPCU  &    |
+            |               |              |     SROPNR    |  SROPNR
+  ----------|---------------|--------------|---------------|----------------
+  'uorder'  |      *        |      4       |      4        |      *
+  'vorder'  |      *        |      4       |      4        |      *
+  'dim'     |      *        |      *       |      3        |      3
+
+  Where * fields are the same as for the surface which was offset.
+
+  All other surfaces
+
+            |  none         |  SROPCU      |  SROPCU  &    |
+            |               |              |     SROPNR    |  SROPNR
+  ----------|---------------|--------------|---------------|----------------
+  'uorder'  |      4        |      4       |      4        |      4
+  'vorder'  |      4        |      4       |      4        |      4
+  'dim'     |      3        |      3       |      3        |      3
+
+
+
+  The meaning of the values in the arguments 'ctrl', 'dim', 'uorder', 'vorder'
+  'ncol', 'nrow', 'uknots' and 'vknots' are given under OUBSPS.
+
+  Properties list 'props':
+    The following tokens may be returned -
+    . PAPRPU - the B-spline surface is periodic in u
+    . PAPRPV - the B-spline surface is periodic in v
+               The default is that the B-spline surface is not periodic.
+    . PAPREX - the B-spline surface represents the original surface exactly.
+               If this token is not present then the B-spline approximates the
+               original.
+
+  Number of properties 'nprops':
+  . Gives the number of properties in the 'props' list.
+
+
+</PRE>
+</BODY>
+</HTML>

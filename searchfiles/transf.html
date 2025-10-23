@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.015.html#50409796_pgfId-894104", "<B>transf</B> ", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-294858", " <B>TRANSF</B> ", "Functional Description - Checking");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_wrong_transf 37 PK_BODY_enlarge <B>transf</B> contains scale, shear, or", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_duplicate_array_item 511 PK_GEOM_render_line geom has duplicates but no <B>transf</B> array", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_not_in_same_partition 1086 PK_INSTANCE_replace_transf <B>transf</B> is not in the same partition", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_unsupported_transf 5183 PK_BODY_make_facet_body <B>transf</B> is not a rigid body transformation.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_component 963 PK_GEOM_render_line geom <B>transf</B> is inappropriate", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_duplicate_array_item 511 PK_GEOM_render_line geom has duplicates but no <B>transf</B> array", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_not_in_same_partition 1086 PK_INSTANCE_replace_transf <B>transf</B> is not in the same partition", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_request_not_supported 997 PK_GEOM_transform bad combination of geometry and <B>transf</B>", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " PK_BODY_enlarge 37 PK_ERROR_wrong_transf <B>transf</B> contains scale, shear, or", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " PK_GEOM_render_line 963 PK_ERROR_bad_component geom <B>transf</B> is inappropriate", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_TOPOL_facet 963 PK_ERROR_bad_component topol or view <B>transf</B> is inappropriate", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_assembly_transform.html#declaration", " PK_TRANSF_t <B>transf</B> --- transform (may be PK_ENTITY_null)", "PK Reference - PK_ASSEMBLY_transform");
+top.note("headers/pk_body_enlarge.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation", "PK Reference - PK_BODY_enlarge");
+top.note("headers/pk_body_enlarge.html#errors", " PK_ERROR_wrong_transf <B>transf</B> contains scale, shear, or", "PK Reference - PK_BODY_enlarge");
+top.note("headers/pk_body_make_facet_body.html#declaration", " PK_TRANSF_t <B>transf</B>, --- Transform", "PK Reference - PK_BODY_make_facet_body");
+top.note("headers/pk_body_make_facet_body.html#errors", " PK_ERROR_unsupported_transf <B>transf</B> is not a rigid body transformation.", "PK Reference - PK_BODY_make_facet_body");
+top.note("headers/pk_body_make_facet_body.html#documentation", "If <B>transf</B> is not PK_ENTITY_null and it only contains translation", "PK Reference - PK_BODY_make_facet_body");
+top.note("headers/pk_body_transform.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation", "PK Reference - PK_BODY_transform");
+top.note("headers/pk_body_transform_2.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation", "PK Reference - PK_BODY_transform_2");
+top.note("headers/pk_check_fault_t.html#documentation", "|PK_INSTANCE_state_bad_transf_c |instance| <B>transf</B> | |", "PK Reference - PK_check_fault_t");
+top.note("headers/pk_entity_copy_o_t.html#documentation", "| <B>transf</B> | PK_ITEM_null | Orphaned copy |", "PK Reference - PK_ENTITY_copy_o_t");
+top.note("headers/pk_fcurve_sf_t.html#declaration", " PK_TRANSF_t <B>transf</B>; --- transformation (may be PK_ENTITY_null)", "PK Reference - PK_FCURVE_sf_t");
+top.note("headers/pk_fsurf_sf_t.html#declaration", " PK_TRANSF_t <B>transf</B>; --- transformation (may be PK_ENTITY_null)", "PK Reference - PK_FSURF_sf_t");
+top.note("headers/pk_geom_render_line.html#errors", " PK_ERROR_duplicate_array_item geom has duplicates but no <B>transf</B> array", "PK Reference - PK_GEOM_render_line");
+top.note("headers/pk_geom_transform.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation", "PK Reference - PK_GEOM_transform");
+top.note("headers/pk_geom_transform.html#errors", " PK_ERROR_request_not_supported bad combination of geometry and <B>transf</B>", "PK Reference - PK_GEOM_transform");
+top.note("headers/pk_geom_transform.html#documentation", " <B>transf</B> to geometric entity in_geom .", "PK Reference - PK_GEOM_transform");
+top.note("headers/pk_geom_transform_2.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation", "PK Reference - PK_GEOM_transform_2");
+top.note("headers/pk_geom_transform_2.html#errors", " PK_ERROR_request_not_supported bad combination of geometry and <B>transf</B>", "PK Reference - PK_GEOM_transform_2");
+top.note("headers/pk_instance_replace_transf.html#declaration", " PK_TRANSF_t <B>transf</B> --- replacement transform", "PK Reference - PK_INSTANCE_replace_transf");
+top.note("headers/pk_instance_replace_transf.html#errors", " PK_ERROR_not_in_same_partition <B>transf</B> is not in the same partition", "PK Reference - PK_INSTANCE_replace_transf");
+top.note("headers/pk_instance_sf_t.html#declaration", " PK_TRANSF_t <B>transf</B>; --- transform (must be a rigid motion,", "PK Reference - PK_INSTANCE_sf_t");
+top.note("headers/pk_instance_sf_t.html#errors", " PK_ERROR_not_in_same_partition assembly , <B>transf</B> and part are not in", "PK Reference - PK_INSTANCE_sf_t");
+top.note("headers/pk_instance_transform.html#declaration", " PK_TRANSF_t <B>transf</B> --- transform (may be PK_ENTITY_null)", "PK Reference - PK_INSTANCE_transform");
+top.note("headers/pk_topol_facet.html#errors", " PK_ERROR_duplicate_array_item topol has duplicates but no <B>transf</B> array", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet_2.html#errors", " PK_ERROR_duplicate_array_item topol has duplicates but no <B>transf</B> array", "PK Reference - PK_TOPOL_facet_2");
+top.note("headers/pk_topol_render_facet.html#errors", " PK_ERROR_duplicate_array_item topol has duplicates but no <B>transf</B> array", "PK Reference - PK_TOPOL_render_facet");
+top.note("headers/pk_topol_render_line.html#errors", " PK_ERROR_duplicate_array_item topol has duplicates but no <B>transf</B> array", "PK Reference - PK_TOPOL_render_line");
+top.note("headers/pk_transf_ask.html#declaration", " PK_TRANSF_t <B>transf</B>, --- <B>transf</B> to receive message", "PK Reference - PK_TRANSF_ask");
+top.note("headers/pk_transf_check.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation to be checked", "PK Reference - PK_TRANSF_check");
+top.note("headers/pk_transf_check.html#documentation", "PK_ENTITY_state_invalid_c | <B>transf</B> | | null", "PK Reference - PK_TRANSF_check");
+top.note("headers/pk_transf_classify.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation to be classified", "PK Reference - PK_TRANSF_classify");
+top.note("headers/pk_transf_create.html#declaration", " const PK_TRANSF_sf_t *transf_sf, --- <B>transf</B> standard form", "PK Reference - PK_TRANSF_create");
+top.note("headers/pk_transf_create.html#description", " This function creates a <B>transf</B> from the given standard form. See", "PK Reference - PK_TRANSF_create");
+top.note("headers/pk_transf_create_equal_scale.html#declaration", " PK_TRANSF_t *const <B>transf</B> --- equal scaling transformation", "PK Reference - PK_TRANSF_create_equal_scale");
+top.note("headers/pk_transf_create_equal_scale.html#documentation", "A <B>transf</B> is created that, when applied to an entity,", "PK Reference - PK_TRANSF_create_equal_scale");
+top.note("headers/pk_transf_create_reflection.html#declaration", " PK_TRANSF_t *const <B>transf</B> --- reflection transformation", "PK Reference - PK_TRANSF_create_reflection");
+top.note("headers/pk_transf_create_reflection.html#documentation", "A <B>transf</B> is created that, when applied to an entity,", "PK Reference - PK_TRANSF_create_reflection");
+top.note("headers/pk_transf_create_rotation.html#declaration", " PK_TRANSF_t *const <B>transf</B> --- rotation transformation", "PK Reference - PK_TRANSF_create_rotation");
+top.note("headers/pk_transf_create_rotation.html#documentation", "A <B>transf</B> is created that, when applied to an entity,", "PK Reference - PK_TRANSF_create_rotation");
+top.note("headers/pk_transf_create_translation.html#declaration", " PK_TRANSF_t *const <B>transf</B> --- translation transformation", "PK Reference - PK_TRANSF_create_translation");
+top.note("headers/pk_transf_create_translation.html#documentation", "A <B>transf</B> is created that, when applied to an entity,", "PK Reference - PK_TRANSF_create_translation");
+top.note("headers/pk_transf_create_view.html#declaration", " PK_TRANSF_t *const <B>transf</B> --- the view transform", "PK Reference - PK_TRANSF_create_view");
+top.note("headers/pk_transf_enlarge.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transform to enlarge", "PK Reference - PK_TRANSF_enlarge");
+top.note("headers/pk_transf_enlarge.html#documentation", " is the result of applying an enlargement to <B>transf</B> .", "PK Reference - PK_TRANSF_enlarge");
+top.note("headers/pk_transf_enlarge_o_t.html#declaration", " PK_LOGICAL_t modify; --- whether to modify <B>transf</B> ", "PK Reference - PK_TRANSF_enlarge_o_t");
+top.note("headers/pk_transf_enlarge_o_t.html#documentation", " PK_LOGICAL_true, the received <B>transf</B> will be modified.", "PK Reference - PK_TRANSF_enlarge_o_t");
+top.note("headers/pk_vector_make_view_transf.html#declaration", " PK_TRANSF_t *const <B>transf</B> --- viewing transformation", "PK Reference - PK_VECTOR_make_view_transf");
+top.note("headers/pk_vector_transform.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation to apply", "PK Reference - PK_VECTOR_transform");
+top.note("headers/pk_vector_transform.html#errors", " PK_ERROR_bad_position <B>transf</B> contains a perspective component, and the", "PK Reference - PK_VECTOR_transform");
+top.note("headers/pk_vector_transform_direction.html#declaration", " PK_TRANSF_t <B>transf</B>, --- transformation to apply", "PK Reference - PK_VECTOR_transform_direction");
+top.note("headers/pk_vector_transform_direction.html#errors", " PK_ERROR_bad_component <B>transf</B> contains a perspective component", "PK Reference - PK_VECTOR_transform_direction");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

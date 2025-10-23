@@ -1,0 +1,373 @@
+<HTML>
+<HEAD>
+<TITLE>BOPBYS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BOPBYS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_boolean.html>PK_BODY_boolean</A><BR>
+<A HREF=../headers/pk_face_boolean.html>PK_FACE_boolean</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BOPBYS ( target, tools, nopts, opts, optdta, bodys, nbodys, ifail )
+===================================================================
+
+  Global or local boolean operation on bodies
+
+Receives:
+  KI_tag_list_entity       *target         --- target body or list of faces
+  KI_tag_list_entity       *tools          --- tool bodies or faces of tool body
+ &lt;KI_int_nitems&gt;           *nopts          --- number of boolean options
+  KI_cod_boop               opts[nopts]    --- boolean option codes
+ &lt;KI_tag_list_entity&gt;       optdta[nopts]  --- boolean option data lists
+
+Returns:
+  KI_tag_list_body         *bodys          --- resulting bodies
+  KI_int_nitems            *nbodys         --- number of bodies
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_boolean_failure        Unrecognised result
+                            Invalid matched region
+                            Inconsistent arguments, or internal error
+  KI_partial_no_intersect   No imprinting in local boolean
+  KI_non_manifold           Non-manifold result
+  KI_t_sheet                T-sheet
+  KI_partial_coi_found      Boolean failure due to partial coincidence
+  KI_cant_intsc_solid_sheet Cannot intersect solid target with sheet tool bodies
+  KI_solid_has_void         Illegal void
+  KI_not_solid              Body is not solid
+  KI_not_sheet              Body is not sheet
+  KI_opposed_sheets         Attempt to unite opposed sheets
+  KI_cant_unite_solid_sheet Attempt to unite solid and sheet
+  KI_unsuitable_topology    A faceset selector is from boundary or wrong body
+  KI_tool_faces_many_bodies Tool faces are from more than one body
+  KI_targ_faces_many_bodies Target faces are from more than one body
+  KI_mixed_sheets_solids    Mixture of sheet and solid tool bodies
+  KI_instanced_tools        Instanced tool bodies
+  KI_duplicate_targets      Duplication in list of target faces
+  KI_duplicate_tools        Duplication in list of tool bodies
+  KI_too_many_targets       Too many target bodies
+  KI_unsuitable_entity      Target or tool not a face or body
+                            mixed body
+  KI_wire_body              Target or tool has wireframe or acorn components
+  KI_missing_geom           Target or tool has incomplete geometry
+  KI_same_tool_and_target   Tool body is also target body
+  KI_contradictory_request  Bad combination of options or data for type of boolean
+  KI_not_in_same_partition  Target and tools are not all in the same partition
+  KI_general_body           Target or tool is general body
+
+Description:
+
+  Introduction:
+
+      A boolean operation between the target body and the tool bodies is
+      performed. The target body (workpiece) is modified, the tool bodies
+      modifiers) are deleted, and their tags become dead. The resulting body or
+      bodies replace the workpiece in the world, and are returned in a list.
+
+      The boolean may be global or local. A global boolean involves the
+      comparison of all face pairs from the target and tool bodies, and so can
+      guarantee topological consistency in the result.
+
+      A local boolean is faster than a global boolean as it involves the
+      comparison of only the face pairs given in 'target' and 'tools' but
+      topological consistency in the result cannot be guaranteed.
+
+      This function will accept general bodies in 'target' or 'tools' only if
+      the interface parameter SLIPGT is set to one (see SEINTP).
+
+
+  The Boolean Algorithm:
+
+      A local or global boolean may be a union, subtraction, intersection, or
+      trim with sheet. The type of boolean performed can be selected with an
+      option code in 'opts' (see below). If no option code is supplied, the
+      default action is union.
+
+      Booleans in Parasolid may be thought of as being performed in three main
+      phases. These are imprinting, gluing, and selection.
+
+      In the imprinting phase the faces of the target and the tool bodies are
+      intersected with each other to produce new edges where they meet. These
+      edges divide the faces of each body into facesets which are either inside,
+      outside, or on the boundary of, the other bodies.
+
+      In the gluing phase the resulting sets of faces are joined together into
+      a single intermediate body.
+
+      In the selection phase the parts of the model which are to be kept or
+      rejected are selected, according to the type of boolean being performed
+      and the options supplied, using information gained in the earlier phases.
+
+
+  Booleans Performed with SLIPGT set to zero:
+
+      If SLIPGT is set to zero, the result of the boolean may be any number of
+      bodies, each of which is a manifold and connected solid or sheet.
+
+      A union extends the target body by gluing to it all facesets of the tool
+      bodies which are outside the target body.
+
+      A subtraction modifies the target body by removing all facesets which
+      overlap with the tool bodies.
+
+      An intersection reduces the target body to only those facesets which
+      overlap with the tool bodies.
+
+      Trim with sheet reduces the target to only those facesets behind the
+      sheet tool bodies.
+
+      Punch is used in conjunction with union or subtraction. It takes a sheet
+      target and solid tools to give a sheet result. Punch modifies a sheet
+      target body by removing all facesets which overlap with the solid tool
+      bodies and gluing to it all facesets of the tool bodies which are in front
+      of (for unions) or behind (for subtractions) the sheet target body.
+
+  Booleans Performed with SLIPGT set to one:
+
+      With SLIPGT set to one, the result of the boolean will be a single body,
+      which may be disconnected, non-manifold, of mixed dimension, or any
+      combination of these. The options BOOPPS and BOOPPV may be used to 'prune
+      off' lower-dimension components of the result (see below).
+
+      A union extends the target body after imprinting to include all the
+      facesets from both 'tools' and 'target'.
+
+      A subtraction modifies the target body by removing from it those pieces
+      which overlap with the union of the tool bodies.
+
+      An intersection reduces the target body to those pieces which overlap
+      with the union of the tool bodies.
+
+      Local booleans, trim with sheet and punch sheet, and booleans on general
+      input bodies with acorn or wireframe components, are not yet supported.
+
+
+  Global Booleans:
+
+      A global boolean is performed if both 'target' and 'tools' are bodies. One
+      target body and one or more tool bodies are required. If more than one
+      tool body is supplied, the union of overlapping tool bodies is computed
+      first, and then the boolean between 'tools' and 'target' is performed.
+
+
+  Local Booleans:
+
+  Local booleans can only be performed with SLIPGT set to zero.
+
+  A local boolean is performed if one or both of 'target' and 'tools' is a
+  list of faces. 'Target' must contain one or more faces from a single body,
+  and 'tools' must contain one or more faces from another body. Supplying a
+  body for either 'target' or 'tools' (but not both), is equivalent to
+  listing all the faces of the body.
+
+  In a local boolean, only the edges of intersection of the given faces are
+  imprinted, unless the BOOPEF or BOOPSX options are selected (see below).
+  The loops of imprinted edges divide the boundary of both bodies into
+  facesets. For a global boolean all the facesets of the tool bodies lie
+  completely inside or outside the target body. However, this is not
+  necessarily the case for a local boolean, as not all faces of both bodies
+  are used to compute the imprinted edges. For a local boolean, boundary
+  facesets of the tool body are classified inside if they are locally inside
+  the target body near a loop of imprinted edges, and outside if they are
+  locally outside near the loop of imprinted edges.
+
+  The option BOOPEF may be used to ensure that the imprinted loops are
+  complete.
+
+  The option BOOPSX may be used to eliminate the possibility of self
+  intersecting results.
+
+  In a local boolean unite, boundary facesets of the tool body which are
+  outside the target body are glued to the target. In a local boolean
+  subtract, intersect or trim, only boundary facesets of the tool body
+  inside the target body are used.
+
+  It is also possible for a local boolean to use a subset of these boundary
+  facesets in computing the result. All facesets to be included in the
+  result can be selected using the BOOPIC option, or all facesets to be
+  excluded from the result can be selected using the BOOPEC option. It is
+  not possible to select both BOOPIC and BOOPEC options, ie it is not
+  possible to identify some facesets to be included, and some to be
+  excluded, in the same operation. The facesets must be from the tool body.
+  Each faceset must be unambiguously identified by a face, edge or vertex
+  which is interior to it (see below).
+
+  For a local boolean there must be at least one intersection between the
+  topology of 'target' and 'tools' (i.e. at least 1 face pair must clash).
+  If this is not the case the boolean will be performed and the error
+  KI_partial_no_intersect will be returned.
+
+
+  Merging and Tag Persistence:
+
+      The result of a local or global boolean may contain a number of new
+      mergable faces, edges and vertices. These are not merged away unless
+      requested by selecting the BOOPME option. Only new mergable entities are
+      deleted. The mergable faces, edges and vertices of the original target
+      and tool bodies are not merged away.
+
+      Tag persistence rules for all global and local booleans can be summarised
+      as follows:
+
+      1.  If a face will shrink (be truncated), then its tag will persist.
+
+      2.  If a face will grow as a result of merging two or more faces
+          together, then the oldest target face will persist.
+
+      3.  If a face will be split into several faces, then one of the resulting
+          faces will have the tag of the original face, and all other tags will
+          be new.
+
+
+  Optimising Booleans:
+
+      The boolean operation can be optimised, depending on the configuration of
+      the target and tool bodies, when additional information is known
+      regarding tool bodies not clashing with each other, or not clashing with
+      edges on the 'target' face or body.
+
+      This optimisation is enabled by the options BOOCSH and BOOINF. These
+      apply not only to instancing operations, but also to booleans with
+      multiple tools which need not be instances of the same body.
+
+      If the BOOCSH option is used, the edges of each tool body may clash with
+      the edges of the target body, but the tool bodies must not clash with
+      each other.
+
+      If the BOOINF option is used, the tool bodies may clash with each other,
+      but must not clash with existing edges on the target body.
+
+      A combination of both options will ensure no intersection tests are
+      performed between the target and tool bodies.
+
+
+
+  The options which can be selected for both global and local booleans are
+  summarised below:
+
+      Code in  |  Entry in   |
+      'opts'   |  'optdta'   |  Description
+      _________|_____________|________________________________________________
+               |             |
+       BOOPIN  |   NULTAG    |  Intersect 'target' with 'tools'. 'Target'
+               |             |  is reduced to the volume (or area for sheet
+               |             |  intersections) which overlaps 'tools'.
+               |             |
+       BOOPSU  |   NULTAG    |  Subtract 'tools' from 'target'. 'Target' is
+               |             |  modified by removal of all volumes (or areas
+               |             |  for sheet subtractions) which overlap 'tools'.
+               |             |
+       BOOPUN  |   NULTAG    |  Unite 'tools' with 'target'. 'Target' is
+     (default) |             |  extended by the inclusion of all volumes (or
+               |             |  areas for sheet unions) contained in 'tools'.
+               |             |  This is the default action if no code for
+               |             |  type of boolean is provided.
+               |             |
+       BOOPTS  |   NULTAG    |  Trim 'target' with sheet 'tools'. 'Target' is
+               |             |  trimmed to all volumes (or areas for sheet
+               |             |  trims) behind the sheet 'tools'.
+               |             |
+       BOOPPU  |   NULTAG    |  Punch 'target' sheet with solid 'tools'. The
+               |             |  result is the areas of the 'target' sheet
+               |             |  outside the solid 'tools' plus the areas of
+               |             |  faces of the solid 'tools' on one side of the
+               |             |  sheet 'target'. With BOOPUN this will be in
+               |             |  front of the sheet and with BOOPSU it will be
+               |             |  behind. This cannot be used with BOOPIN.
+               |             |
+       BOOPME  |   NULTAG    |  Merge all mergable imprinted edges created by
+               |             |  the boolean.
+               |             |
+       BOOCSH  |   NULTAG    |  None of the new 'tools' booleaned with
+               |             |  the 'target' clash with each other. It
+               |             |  may be the case that they clash with
+               |             |  existing edges on the 'target', including
+               |             |  the periphery edge.
+               |             |
+       BOOINF  |   NULTAG    |  None of the new 'tools' clash with any of
+               |             |  the existing edges on the 'target', periphery
+               |             |  or internal. It may be the case that the
+               |             |  'tools' clash with each other.
+
+
+  The options which can be selected for local booleans only are summarised
+  below:
+
+      Code in  |  Entry in   |
+      'opts'   |  'optdta'   |  Description
+      _________|_____________|_________________________________________________
+               |             |
+       BOOPEF  |   NULTAG    |  Extend face list 'target'. If the imprinting
+               |             |  phase of the local boolean results in
+               |             |  incomplete loops of imprinted edges, additional
+               |             |  faces in 'target' will be used. This option has
+               |             |  no effect if 'target' is a body.
+               |             |
+       BOOPSX  |   NULTAG    |  Stop self-intersections occurring in the result.
+               |             |  The tool faces are compared with all faces of
+               |             |  the target, to avoid self-intersections in the
+               |             |  result, outside the given faces of interest.
+               |             |
+       BOOPEC  | face, edge  |  Identify boundary facesets of the tool body to
+               | or vertex,  |  be excluded from the local boolean. All other
+               | or list of  |  useful boundary facesets will be used in the
+               | same, one   |  result. The list in 'optdta' must contain faces,
+               | entity      |  edges or vertices of the tool body, which do
+               | for each    |  not intersect any of the target faces.
+               | faceset to  |
+               | be excluded |
+               |             |
+       BOOPIC  | face, edge  |  Identify boundary facesets of the tool body to
+               | or vertex,  |  be included in the local boolean. All other
+               | or list of  |  boundary facesets will not be used in the result.
+               | same, one   |  The list in 'optdta' must contain faces, edges
+               | entity      |  or vertices of the tool body, which do not
+               | for each    |  intersect any of the target faces.
+               | faceset to  |
+               | be included |
+
+
+  The options which are specific to global booleans when SLIPGT is set to one
+  are summarised below:
+
+      Code in  |  Entry in   |
+      'opts'   |  'optdta'   |  Description
+      _________|_____________|_________________________________________________
+               |             |
+       BOOPPS  |   NULTAG    |  Prune solid regions of the result.
+               |             |  Any faces, edges, or vertices in the result body
+               |             |  which are completely surrounded by solid regions
+               |             |  will be deleted.
+               |             |
+       BOOPPV  |   NULTAG    |  Prune void regions of the result.
+               |             |  Any faces, edges, or vertices in the result body
+               |             |  which are completely surrounded by void regions
+               |             |  will be deleted, so long as the result body
+               |             |  contains some pieces of a higher dimension (for
+               |             |  example, a sheet face will only be deleted if
+               |             |  the result body contains at least one solid
+               |             |  region, and so on).
+               |             |
+
+
+
+</PRE>
+</BODY>
+</HTML>

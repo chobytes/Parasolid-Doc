@@ -1,0 +1,1014 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 6.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Parasolid v14.1: Parasolid KI Programming Concepts</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Parasolid KI Programming Concepts</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="ki_chap..html"></A></TD>
+  <TD><A HREF="../ki_index.html">Chapters</A></TD>
+  <TD><A HREF="ki_chap.03.html">Kernel Interface Tokens</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="ki_chap.02.html#pgfId-273840">1.1	Introduction</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-273845">1.2	Compatibility with Fortran</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-273855">1.3	Format of routine headers</A>
+<UL>
+<LI> <A HREF="ki_chap.02.html#pgfId-273866">1.3.1	Routine name</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-273870">1.3.2	Brief description</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-273874">1.3.3	List of received arguments</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-273880">1.3.4	List of returned arguments</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-273906">1.3.5	List of specific errors</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-273908">1.3.6	Detailed description</A>
+</UL>
+<LI> <A HREF="ki_chap.02.html#pgfId-273912">1.4	Special typedefs</A>
+<UL>
+<LI> <A HREF="ki_chap.02.html#pgfId-273917">1.4.1	Classes of special typedefs</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-273973">1.4.2	Meaning of angle brackets</A>
+</UL>
+<LI> <A HREF="ki_chap.02.html#pgfId-274003">1.5	Error returns</A>
+<UL>
+<LI> <A HREF="ki_chap.02.html#pgfId-274016">1.5.1	Type validation errors</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274021">1.5.2	Exception conditions</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274039">1.5.3	Implicit receive errors</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274060">1.5.4	Specific errors</A>
+</UL>
+<LI> <A HREF="ki_chap.02.html#pgfId-274062">1.6	KI concepts</A>
+<UL>
+<LI> <A HREF="ki_chap.02.html#pgfId-274066">1.6.1	The world</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274119">1.6.2	Lists</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274125">1.6.3	Part states</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274145">1.6.4	Archiving</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274182">1.6.5	Assemblies</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274411">1.6.6	Archiving and receiving assemblies</A>
+<LI> <A HREF="ki_chap.02.html#pgfId-274426">1.6.7	Senses</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="pgfId-273840"></A>1.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="pgfId-273841"></A>This chapter explains the format of the specifications and the conventions that are used by the Parasolid Kernel Interface. This is the original interface to Parasolid, and its functionality is now almost completely replaced by the PK (Parasolid Kernel) Interface. However, the information contained in this manual will be useful to users maintaining existing applications which call KI routines, and those requiring functionality which has not yet been replaced by PK functions.</P>
+
+<H4>
+<A NAME="pgfId-273842"></A>Additional Reading</H4>
+<P>
+<A NAME="pgfId-273843"></A>For further information see the 'Parasolid Concepts' chapter of the Parasolid <A HREF=../fd_index.html>Functional Description</A> manual. This information is fundamental to the understanding of Parasolid programming concepts and should therefore be read and understood.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="pgfId-273845"></A>1.2	Compatibility with Fortran
+
+
+</H1>
+<P>
+<A NAME="pgfId-273846"></A>Although PARASOLID is written in 'C', the Kernel Interface has been designed so that it can be called either from 'C' or from suitable implementations of Fortran. To facilitate this compatibility with Fortran, the kernel interface follows these conventions:</P>
+<UL>
+<LI>
+<A NAME="pgfId-273847"></A>Kernel Interface routine names consist of six characters, being upper case letters or digits.</LI>
+<LI>
+<A NAME="pgfId-273848"></A>Kernel Interface routines do not return a function value.</LI>
+<LI>
+<A NAME="pgfId-273849"></A>Kernel Interface routines require only integer, double and character data types as arguments (the 'underlying' data types) and the only data structure used is the array (note that array subscripts in 'C' start at zero).</LI>
+<LI>
+<A NAME="pgfId-273850"></A>all arguments are passed by reference.</LI>
+<LI>
+<A NAME="pgfId-273851"></A>where a Kernel Interface routine refers to a constant value, it uses a mnemonic token. Token values form part of the documented interface.</LI>
+</UL>
+<P>
+<A NAME="pgfId-282720"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="pgfId-282748"></A>Note: PARASOLID documentation is written in terms of 'C' conventions - for example, arrays are assumed to start at index 0.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="pgfId-273855"></A>1.3	Format of routine headers 
+
+
+</H1>
+<P>
+<A NAME="pgfId-273856"></A>Each function header consists of:</P>
+<UL>
+<LI>
+<A NAME="pgfId-273857"></A>routine name</LI>
+<LI>
+<A NAME="pgfId-273858"></A>brief description</LI>
+<LI>
+<A NAME="pgfId-273859"></A>list of received arguments</LI>
+<LI>
+<A NAME="pgfId-273860"></A>list of returned arguments</LI>
+<LI>
+<A NAME="pgfId-273861"></A>list of specific errors</LI>
+<LI>
+<A NAME="pgfId-273862"></A>detailed description</LI>
+</UL>
+<P>
+<A NAME="pgfId-273863"></A>These components of the header are described in the following sub-sections.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-273866"></A>	1.3.1 	Routine name</H2>
+<P>
+<A NAME="pgfId-273867"></A>Each routine in the Kernel Interface has a six character name, consisting of upper case letters and digits.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-273870"></A>	1.3.2 	Brief description</H2>
+<P>
+<A NAME="pgfId-273871"></A>This provides a summary of what each Kernel Interface routine does. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-273874"></A>	1.3.3 	List of received arguments</H2>
+<P>
+<A NAME="pgfId-273875"></A>Received arguments pass information from the application program to the Kernel.</P>
+<P>
+<A NAME="pgfId-273876"></A>The application program must declare a variable of the appropriate type for each argument, and set this to the required value. The address of the variable is then passed to the kernel function for each argument; in 'C', this can be done by use of the address-of operator &quot;&amp;&quot; for scalars, and passing the array pointer itself for an array.</P>
+<P>
+<A NAME="pgfId-273877"></A>Received arguments are not modified by the Kernel.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-273880"></A>	1.3.4 	List of returned arguments</H2>
+<P>
+<A NAME="pgfId-273881"></A>Returned arguments pass information from the Kernel to the application program.</P>
+<P>
+<A NAME="pgfId-273882"></A>The application program must declare variables to correspond to each of the returned arguments in a Kernel routine. The address of a returned argument is passed to the kernel function in the same way as for a received argument.</P>
+<P>
+<A NAME="pgfId-273883"></A>The contents of returned arguments will always be set after a function call even if an error has been detected by the Kernel routine. For a non-zero ifail they will be set to the default values.</P>
+<P>
+<A NAME="pgfId-273884"></A>The last returned argument for each Kernel routine is an error code ('ifail'). This error code will be returned as zero if the call was successful, but will have a non-zero value if some error was detected. See later section on error returns for further details.</P>
+
+<H4>
+<A NAME="pgfId-273887"></A>Argument format</H4>
+<P>
+<A NAME="pgfId-273888"></A>Both received and returned arguments are declared in the form: typedef name followed by, variable name followed by, comment</P>
+<UL>
+<LI>
+<A NAME="pgfId-273889"></A>typedef name - The typedef is either one of the 'underlying' types: int, double, char or is a name of the form KI_int_... KI_dbl_...  KI_chr_... KI_cod_... KI_vec_... KI_tag_... (where ... is an abbreviation for &quot;one or more characters&quot;). More details are given in the section dealing with special typedefs.</LI>
+</UL>
+<P>
+<A NAME="pgfId-273890"></A>The typedef name may be enclosed by or may contain angle brackets &lt; &gt;. Their significance is explained in the section 'meaning of Angle Brackets'.</P>
+<UL>
+<LI>
+<A NAME="pgfId-273891"></A>variable name -  The variable name is either preceded by an asterisk * or is followed by an expression enclosed by square brackets [ ].</LI>
+</UL>
+<P>
+<A NAME="pgfId-273892"></A>The first form identifies a scalar variable. The asterisk indicates that the function requires the address of an appropriate variable as its argument.</P>
+<P>
+<A NAME="pgfId-273893"></A>The second form identifies a variable which is an array. The calling program must supply an array which is large enough to hold the received or returned argument. The array dimension is normally given by the expression within the square brackets; in other cases, the array dimension is given in the detailed description of the function. Note that arrays are always one dimensional and that all documentation uses the 'C' convention that array subscripts start from zero.</P>
+<UL>
+<LI>
+<A NAME="pgfId-273894"></A>comment  - The comment describes the use of an argument, it can extend over more than one line.</LI>
+</UL>
+<P>
+<A NAME="pgfId-273895"></A>When a routine requires options (iopts) or properties (props) and option data (optdta) or property data (pdata) to be entered, it is imperative that both argument arrays are of equal length. For example, the routine for creating a B-curve by splining (CRSPPC) requires properties and their data, therefore if the properties of the curve were declared as:</P>
+<P>
+<A NAME="pgfId-273896"></A>props [0] = PAPRCV;</P>
+<P>
+<A NAME="pgfId-273897"></A>props [1] = PAPRKT;</P>
+<P>
+<A NAME="pgfId-273898"></A>the data associated with these two properties would be declared as:</P>
+<P>
+<A NAME="pgfId-273899"></A>pdata [0] = NULTAG;</P>
+<P>
+<A NAME="pgfId-273900"></A>pdata [1] = knot_list;</P>
+<P>
+<A NAME="pgfId-273901"></A>where</P>
+<UL>
+<LI>
+<A NAME="pgfId-273902"></A>NULTAG indicates that there isn't any data to be supplied with the property token PAPRCU, which is used to force the curve to be cubic</LI>
+<LI>
+<A NAME="pgfId-273903"></A>knot_list is a KI list containing two doubles specifying the knot vector of the curve</LI>
+</UL>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-273906"></A>	1.3.5 	List of specific errors</H2>
+<P>
+<A NAME="pgfId-273907"></A>The list of specific errors gives a list of possible error code returns for that particular Kernel Interface routine. Note that other error code returns are also possible; for example if an argument does not conform to the specified typedef. See the later section on error returns for details.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-273908"></A>	1.3.6 	Detailed description</H2>
+<P>
+<A NAME="pgfId-273909"></A>This explains what the Kernel routine does in more detail. Where reference is made to particular routine arguments, their names are delimited by single quotation marks ' '. If a routine makes reference to other Kernel Interface routine names or to token values, these use upper case letters or digits and are six characters long.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="pgfId-273912"></A>1.4	Special typedefs
+
+
+</H1>
+<P>
+<A NAME="pgfId-273913"></A>As mentioned previously, arguments to kernel interface functions are commonly defined in terms of special typedefs. The purpose of such special typedefs is to specify more clearly what the argument is and what values it may have.</P>
+<P>
+<A NAME="pgfId-273914"></A>If a received argument is declared in the routine header in terms of a particular typedef, the Kernel can apply run-time argument checking if this option has been selected by the SEINTP routine, option SLIPCH. In the case of an array argument, such typedef checks will be applied to each element of the array.</P>
+<P>
+<A NAME="pgfId-273915"></A>A summary of the different typedefs is listed in the appendix C. Each entry includes the error codes which can be returned by the Kernel if an argument fails the check for that typedef.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-273917"></A>	1.4.1 	Classes of special typedefs </H2>
+<P>
+<A NAME="pgfId-273918"></A>The special typedefs can be sub-divided into a number of different classes depending on their prefix (KI_int, KI_dbl, KI_chr, KI_cod, KI_vec, KI_tag, KI_tag_list). These classes are described in the succeeding sub-sections.</P>
+<UL>
+<LI>
+<A NAME="pgfId-273921"></A>KI_int_...</LI>
+<P>
+<A NAME="pgfId-273922"></A>The special typedefs which are in the form KI_int_... denote that the application program must supply a variable which is an integer and that the initial value of a received variable must be in a particular range.</P>
+<P>
+<A NAME="pgfId-273923"></A>e.g. If a received variable is declared as a pointer of typedef KI_int_order, this denotes that an integer must be supplied which represents the order of a B-curve or B-surface (which must be &gt;= 2).</P>
+<P>
+<A NAME="pgfId-273924"></A>The errors listed in the appendix A show that a routine which uses this typedef can return a 'typedef error' of 'KI_order_lt_2' in addition to any of the specific errors listed in the header. </P>
+<LI>
+<A NAME="pgfId-273927"></A>KI_dbl_...</LI>
+<P>
+<A NAME="pgfId-273928"></A>The special typedefs which are in the form KI_dbl_... denote that the application program must supply a variable which is a double and that the initial value of a received variable must be in a particular range.</P>
+<P>
+<A NAME="pgfId-273929"></A>e.g. If a received variable is declared as a pointer of typedef KI_dbl_sc_fact, this denotes that a double must be supplied which represents the scaling factor for a transformation (which must be &gt; 0.0).</P>
+<P>
+<A NAME="pgfId-273930"></A>The errors listed in the appendix A show that a routine which uses this typedef can return a 'typedef error' of 'KI_sc_factor_le_0' in addition to any of the specific errors listed in the header </P>
+<LI>
+<A NAME="pgfId-273933"></A>KI_chr_...</LI>
+<P>
+<A NAME="pgfId-273934"></A>The special typedefs which are in the form KI_chr_... denote that the application program must supply a variable which is a char and that the initial value of a received variable must be in a particular range.</P>
+<P>
+<A NAME="pgfId-273935"></A>e.g. If a received variable is declared as a pointer of typedef KI_chr_filename, this denotes that a single character or all characters in an array must be suitable for inclusion in a filename.</P>
+<LI>
+<A NAME="pgfId-273938"></A>KI_cod_...</LI>
+<P>
+<A NAME="pgfId-273939"></A>The special typedefs which are in the form KI_cod_... denote that the application program must supply a variable which is an integer and that the initial value of a received variable must be set to one of a limited number of code or 'token' values.</P>
+<P>
+<A NAME="pgfId-273940"></A>e.g. If a received variable is declared as a pointer of typedef KI_cod_tyge this denotes that the variable of that type must be set to one of the token values represented by mnemonics TYGEPT, TYGECU, TYGESU, TYGETF.</P>
+<P>
+<A NAME="pgfId-273941"></A>The token mnemonics and corresponding values denoted by each of the KI_cod_.... typedefs are listed in appendix C.</P>
+</UL>
+<P>
+<A NAME="pgfId-282764"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="pgfId-282772"></A>Note: Logical flags are represented by variables of typedef KI_cod_logical. This form of typedef implies that a variable must be supplied which is of type integer and must be set to one of the token values KI_false or KI_true, whose values are given in Appendix B.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="pgfId-273945"></A>KI_vec_...</LI>
+<P>
+<A NAME="pgfId-273946"></A>The special typedefs which are in the form KI_vec_... denote that the application program must supply an array of type double of which the dimensioned length is a multiple of 3.</P>
+</UL>
+<P>
+<A NAME="pgfId-282821"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="pgfId-282829"></A>Note: The Kernel does not require directional vectors to be normalized although it may require certain types of vectors to be non zero.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="pgfId-282830"></A>e.g. If a received variable is declared as an array of pointers of typedef KI_vec_normal which is of length 2, this denotes that the application program must supply an array of doubles of length 6, with elements 0,1,2 representing the first vector and elements 3,4,5 representing the second. Neither element must be zero (or the typedef error code 'KI_null_direction' will be returned).</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<LI>
+<A NAME="pgfId-273951"></A>KI_tag_... (excluding lists)</LI>
+<P>
+<A NAME="pgfId-273952"></A>The special typedefs which are in the form KI_tag_... denote that the application program must supply an integer variable to hold a tag. If the argument is a received variable, it must contain a valid tag and the tag must be of the appropriate type.</P>
+<P>
+<A NAME="pgfId-273953"></A>Tag typedefs are either specific (such as KI_tag_body) or general (such as KI_tag_geometry).</P>
+<P>
+<A NAME="pgfId-273954"></A>The most general class of tag typedef is KI_tag. This allows all forms of tag (including deleted tags) and does not involve any validity checks.</P>
+<LI>
+<A NAME="pgfId-273957"></A>KI_tag_list_...</LI>
+<P>
+<A NAME="pgfId-273958"></A>If the typedef names are in the form KI_tag_list..., this implies that the argument is the tag of a list of integers, doubles, vectors, characters or is the tag of a list of tags. The contents of the list are implied by the last part of the typedef name (which replaces the ... shown above). This part of the name is called the underlying type of the list, e.g.:</P>
+<P>
+<A NAME="pgfId-273959"></A>KI_tag_list_int implies a tag which refers to a list of integers</P>
+<P>
+<A NAME="pgfId-273960"></A>KI_tag_list_face implies a tag which refers to a list of faces</P>
+<P>
+<A NAME="pgfId-273961"></A>KI_tag_list_geometry implies a tag which refers to a list of geometric entities (curves, surfaces, points, transformations)</P>
+<UL>
+<LI>
+<A NAME="pgfId-273962"></A>list entries</LI>
+<P>
+<A NAME="pgfId-273963"></A>The Kernel will apply the same checks to each entry in the list as it would if the variable had been declared by the underlying typedef.</P>
+<P>
+<A NAME="pgfId-273964"></A>If the routine returns an error code and the error has occurred as a result of one of the entries in a list being in error, the entry number of this item can be returned by the 'output last error' function OULERR. Note that the entry numbers start from one (unlike array subscripts).</P>
+<P>
+<A NAME="pgfId-273965"></A>In most cases, Kernel routines do not allow empty lists to be passed as received arguments. Exceptions are the list-handling routines PTINLI, PTRLLI, PTTGLI, SRCHIL, SRCHRL, and SRCHTG.</P>
+<P>
+<A NAME="pgfId-273966"></A>If a routine returns a list, the application program must supply an integer variable into which the Kernel will write the tag of the new list.</P>
+<LI>
+<A NAME="pgfId-273967"></A>lists of one tag</LI>
+<P>
+<A NAME="pgfId-273968"></A>Where received arguments are specified as lists of tags, the Kernel will accept the tag of an entity (which is acceptable to the underlying typedef) as an alternative to passing the tag of a list which contains that entity.</P>
+<P>
+<A NAME="pgfId-273969"></A>e.g. if a received argument is described by typedef KI_tag_list_body, this implies that it will also accept single tags of typedef KI_tag_body.</P>
+<P>
+<A NAME="pgfId-273970"></A>This is for the convenience of the application programmer as it avoids the need to create and to delete lists of tags containing single items.</P>
+</UL>
+</UL>
+<P>
+<A NAME="pgfId-282892"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="pgfId-282912"></A>Note: This does not apply when the received arguments are specified as a list of lists where it is not valid to shed a level of the identifying direction</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-273973"></A>	1.4.2 	Meaning of angle brackets</H2>
+<P>
+<A NAME="pgfId-273974"></A>If a typedef name is enclosed by angle brackets, this denotes that the received argument is allowed to contain a particular 'default' value associated with the typedef (where this is applicable). The interpretation of the default value depends upon the category of typedef and upon whether a particular typedef makes use of it. Typedefs of the form KI_chr_..., KI_cod_..., and the 'underlying' types (int, double and char) do not use the default value mechanism, so are never enclosed by angle brackets. The sub-sections which follow describe the interpretation of the angle brackets for the classes of typedefs for which they are used.</P>
+<UL>
+<LI>
+<A NAME="pgfId-273977"></A>numeric defaults -</LI>
+<P>
+<A NAME="pgfId-273978"></A>If the typedef is of the form KI_int_..., KI_dbl_... or KI_vec_..., the default value is integer zero, floating point zero or the zero vector.</P>
+<P>
+<A NAME="pgfId-273979"></A>If a routine argument is declared with the typedef enclosed by angle brackets, this specifies that the value of the associated variable can be zero.</P>
+<P>
+<A NAME="pgfId-273980"></A>If no angle brackets are given, the question as to whether or not zero values are allowed, depends upon the way in which the range of values allowed by the typedef have been defined, e.g. if an argument is declared as:</P>
+<P>
+<A NAME="pgfId-273981"></A>KI_dbl_distance *height, the height must be &gt; 0.0 but for</P>
+<P>
+<A NAME="pgfId-273982"></A>&lt;KI_dbl_distance&gt; *height, the height must be &gt;= 0.0</P>
+<P>
+<A NAME="pgfId-273983"></A>The question of whether or not a typedef makes a special case of default values can usually be resolved by examining the error codes associated with a particular typedef, which are listed in appendix A.</P>
+<P>
+<A NAME="pgfId-273984"></A>If a typedef does not make a special case of the default value, the declaration will not contain angle brackets:</P>
+<P>
+<A NAME="pgfId-273985"></A>e.g. if an argument is declared as:</P>
+<P>
+<A NAME="pgfId-273986"></A>KI_vec_position *origin, the zero vector is not a special case, but for</P>
+<P>
+<A NAME="pgfId-273987"></A>KI_vec_normal *direct, the zero vector is specifically excluded</P>
+<LI>
+<A NAME="pgfId-273990"></A>null tags (excluding lists)</LI>
+<P>
+<A NAME="pgfId-273991"></A>If the typedef is of the form KI_tag_..., the default value is the null entity token NULTAG which is mnemonic, and its value is defined in Appendix B, e.g.:</P>
+<P>
+<A NAME="pgfId-273992"></A>KI_tag_body *entity, the variable must contain the tag of a body</P>
+<P>
+<A NAME="pgfId-273993"></A>&lt;KI_tag_body&gt; *entity, the variable can contain the tag of a body or can be set to the null tag (NULTAG)</P>
+<LI>
+<A NAME="pgfId-273996"></A>null tags in lists</LI>
+<P>
+<A NAME="pgfId-273997"></A>If the typedef is of the form KI_tag_list... and the underlying type of the list is of one of the types of tags, the function headers can specify that the list can contain null tags by enclosing the name of the underlying type with further angle brackets. Examples:</P>
+<P>
+<A NAME="pgfId-273998"></A>KI_tag_list_&lt;body&gt; *entities, specifies a list which can  contain body tags or null tags but which cannot be the null tag itself (i.e. the list must be valid)</P>
+<P>
+<A NAME="pgfId-273999"></A>&lt;KI_tag_list_&lt;body&gt;&gt; *entities specifies a list which can contain bodies or null tags, or which can itself be the null tag (i.e. the list need not exist)</P>
+</UL>
+<P>
+<A NAME="pgfId-282920"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="pgfId-282928"></A>Note: Both examples will also allow a single body tag to be given instead of a list of bodies by the concession that allows one tag of the underlying type to be given instead of a list</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="pgfId-274003"></A>1.5	Error returns
+
+
+</H1>
+<P>
+<A NAME="pgfId-274004"></A>Each Kernel routines returns an error code in its list of returned arguments. By convention, this variable is named 'ifail' and is the last argument of the routine. Error codes are defined as mnemonic codes (listed in appendix B); where possible, application programs should use these error code mnemonics instead of the associated numeric values.</P>
+<P>
+<A NAME="pgfId-274005"></A>The Kernel routine OULERR can be called to get further information (e.g. the name of the erroneous argument) for the most recent kernel error; this may help the application programmer to identify the problem.</P>
+<P>
+<A NAME="pgfId-274006"></A>The error codes fall into five categories:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274007"></A>success</LI>
+<LI>
+<A NAME="pgfId-274008"></A>type validation errors</LI>
+<LI>
+<A NAME="pgfId-274009"></A>exception conditions</LI>
+<LI>
+<A NAME="pgfId-274010"></A>implicit receive errors</LI>
+<LI>
+<A NAME="pgfId-274011"></A>specific errors</LI>
+</UL>
+<P>
+<A NAME="pgfId-274012"></A>The first category implies that the operation was successful.</P>
+<P>
+<A NAME="pgfId-274013"></A>The other four categories imply that the operation was not successful and that the routine has taken no further action (other than setting the values of returned arguments to default values). These four categories are described in the sub-sections which follow.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274016"></A>	1.5.1 	Type validation errors</H2>
+<P>
+<A NAME="pgfId-274017"></A>Type validation error codes are not listed explicitly in the routine header but can be derived by cross referencing the typedef names in the header with the error codes which are associated with each typedef name. The list of typedef names appears in appendix C.</P>
+<P>
+<A NAME="pgfId-274018"></A>An example of this type of error is where the header describes an argument as (a pointer to) a body tag. If the Kernel routine detects that it has been passed an inappropriate tag, it will return an error code which belongs to the type validation class of errors. In general, these codes are not listed in the list of specific errors which apply to a function.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274021"></A>	1.5.2 	Exception conditions</H2>
+<P>
+<A NAME="pgfId-274022"></A>The codes for exception conditions are not listed explicitly in the function header since they apply to almost every type of function and can occur at any time. An example of this type of error is if the operating system is unable to supply sufficient virtual memory.</P>
+<P>
+<A NAME="pgfId-274023"></A>The exception error condition codes are:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274024"></A>KI_system_error</LI>
+<LI>
+<A NAME="pgfId-274025"></A>KI_memory_full</LI>
+<LI>
+<A NAME="pgfId-274026"></A>KI_null_arg_address</LI>
+<LI>
+<A NAME="pgfId-274027"></A>KI_modeler_not_started</LI>
+<LI>
+<A NAME="pgfId-274028"></A>KI_modeler_not_stopped</LI>
+<LI>
+<A NAME="pgfId-274029"></A>KI_recursive_call</LI>
+<LI>
+<A NAME="pgfId-274030"></A>KI_aborted</LI>
+<LI>
+<A NAME="pgfId-274031"></A>KI_run_time_error</LI>
+<LI>
+<A NAME="pgfId-274032"></A>KI_fatal_error</LI>
+</UL>
+<P>
+<A NAME="pgfId-274035"></A>Explanation of each code is given in <A HREF="ki_chap.04.html#32940">Appendix B, &quot;Kernel Interface Error Codes&quot;</A>.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274039"></A>	1.5.3 	Implicit receive errors</H2>
+<P>
+<A NAME="pgfId-274040"></A>When an assembly is read using GETMOD, the sub-parts of the assembly are not received immediately. However, if some subsequent Kernel routine requires one of the sub-parts to be in memory, this sub-part will be received implicitly as a side-effect of the operation.</P>
+<P>
+<A NAME="pgfId-274041"></A>For example, suppose we receive an assembly, and then call the MASSPR function to determine its center of gravity. In order to calculate the center of gravity, the MASSPR function must implicitly receive all the sub-parts of the assembly. Now suppose further that there is a problem in receiving one of the sub-parts; this will result in an &quot;implicit-receive&quot; error being returned by MASSPR. A similar situation can occur with many other Kernel routines.</P>
+<P>
+<A NAME="pgfId-274042"></A>Because they can occur in many functions, the implicit-receive error codes are not documented in the routine headers. The possible error codes are:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274043"></A>KI_wrong_format</LI>
+<LI>
+<A NAME="pgfId-274044"></A>KI_usfd_mismatch</LI>
+<LI>
+<A NAME="pgfId-274045"></A>KI_bad_key</LI>
+<LI>
+<A NAME="pgfId-274046"></A>KI_key_not_found</LI>
+<LI>
+<A NAME="pgfId-274047"></A>KI_wrong_version</LI>
+<LI>
+<A NAME="pgfId-274048"></A>KI_cyclic_assy</LI>
+<LI>
+<A NAME="pgfId-274049"></A>KI_keyed_part_mismatch</LI>
+<LI>
+<A NAME="pgfId-274050"></A>KI_size_mismatch</LI>
+<LI>
+<A NAME="pgfId-274051"></A>KI_attr_defn_mismatch</LI>
+<LI>
+<A NAME="pgfId-274052"></A>KI_corrupt_file</LI>
+<LI>
+<A NAME="pgfId-274053"></A>KI_receive_failed</LI>
+</UL>
+<P>
+<A NAME="pgfId-274056"></A>See GETMOD or <A HREF="ki_chap.04.html#32940">Appendix B, &quot;Kernel Interface Error Codes&quot;</A>, for an explanation of these error codes. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274060"></A>	1.5.4 	Specific errors</H2>
+<P>
+<A NAME="pgfId-274061"></A>Specific errors are those which are specific to a particular Kernel routine; the codes for such errors are listed in the routine header.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="pgfId-274062"></A>1.6	KI concepts
+
+
+</H1>
+<P>
+<A NAME="pgfId-274063"></A>The following sections introduce Parasolid concepts that are specific to the use of the KI interface routines.</P>
+<P>
+<A NAME="pgfId-274064"></A>For further information on the concepts which apply also (or only) to the PK Interface see the 'Parasolid Concepts' chapter in the Parasolid <A HREF=../fd_index.html>Functional Description</A> manual.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274066"></A>	1.6.1 	The world</H2>
+<P>
+<A NAME="pgfId-274067"></A>The world has a tag value of 1, and it is a unique entry with its own type. It contains all parts (bodies and assemblies) in the session. As the world is unique it has no subtypes.</P>
+<P>
+<A NAME="pgfId-274116"></A>&nbsp;</P>
+
+
+
+<IMG SRC="../graphics/ki_chap-4.gif">
+
+<P>
+<A NAME="pgfId-274117"></A>Figure 1-1 The world, assemblies and bodies</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274119"></A>	1.6.2 	Lists</H2>
+<P>
+<A NAME="pgfId-274120"></A>Lists provide a general method of structuring data, and are required or returned by many KI routines. They are typically used without an owner, but can be attach to a body (although they cannot be archived with the body). There are three types of list:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274121"></A>Integer - holds integer values</LI>
+<LI>
+<A NAME="pgfId-274122"></A>Real - holds (double precision) real values</LI>
+<LI>
+<A NAME="pgfId-274123"></A>Tag - holds KI tags</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274125"></A>	1.6.3 	Part states</H2>
+<P>
+<A NAME="pgfId-274126"></A>The word part is used to mean &quot;assembly or body&quot;.</P>
+<P>
+<A NAME="pgfId-274127"></A>The 'state' of a part depends on whether and how, it has been archived during a session. You can find out the state of a part in the session using OUPART. The possible states are:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274130"></A>new - Identified by the token ENSTNW. This is the initial state of a part which has been created in the current session, before it is archived.</LI>
+<LI>
+<A NAME="pgfId-274133"></A>stored - (ENSTST) The state of a part which is an identical copy of a part in the archive. Archiving or retrieving a part sets its state to stored.</LI>
+<LI>
+<A NAME="pgfId-274136"></A>modified - (ENSTMD). The state of a part which had stored state, but has been changed since. </LI>
+<LI>
+<A NAME="pgfId-274139"></A>unloaded - (ENSTUN). The state of a part which was in memory earlier in the session, but has since been unloaded using UNLDPA. Alternatively, a part which is not loaded in the session, but is referred to by an assembly.</LI>
+<LI>
+<A NAME="pgfId-274142"></A>anonymous - (ENSTAN).  Anonymous parts are those which have not been archived in their own right, but because they are a component of an assembly.</LI>
+</UL>
+<P>
+<A NAME="pgfId-274143"></A>SESTPA can be used to change the state of a part.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274145"></A>	1.6.4 	Archiving</H2>
+<P>
+<A NAME="pgfId-274146"></A>Archiving is the process of saving parts which are in Parasolid's internal memory to external storage. The nature of this storage depends on your application's Frustrum.</P>
+
+<H4>
+<A NAME="pgfId-274148"></A>Keys</H4>
+<P>
+<A NAME="pgfId-274149"></A>Stored, modified and unloaded parts all have keys, which you can find by calling OUPART. New and anonymous parts do not have a key associated with them - they are said to be <STRONG>
+unkeyed</STRONG>.</P>
+<P>
+<A NAME="pgfId-274151"></A>The key is a text string which you will use to locate the archive data for that part. Your Frustrum uses the key either as a file-name, or an index into your application's database. The implementation of the key depends on the Frustrum. Parasolid remembers a part's key, during a session, but to retrieve the part in a later session you must also save the key somewhere.</P>
+<P>
+<A NAME="pgfId-274152"></A>It is possible to have several parts with the same key. This can occur if you save a part, change it and then retrieve it again from archive (this could happen several times). It can also occur if you retrieve an assembly which had components saved with it, when some of them are already in the modeler's memory.</P>
+<P>
+<A NAME="pgfId-274153"></A>Because of the limitations on SAVMOD and GETMOD, only one of the parts in memory with a particular key can be in 'stored' state. You can find a list of tags of parts which have the same key by calling the KI routine IDKYPA.</P>
+
+
+<H4>
+<A NAME="pgfId-274156"></A>Transmitting</H4>
+<P>
+<A NAME="pgfId-274157"></A>You call SAVMOD with the tag of a part and a key. You can only save 'new' or 'modified' parts. A 'part' is a body or an assembly - you cannot save subordinate entities, like edges and surfaces etc., on their own. Saving (or <EM>
+transmitting</EM>) a part changes its state to 'stored'.</P>
+<P>
+<A NAME="pgfId-274158"></A>When you archive a part, the following items are saved:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274159"></A>All topological and geometric entities contained in the part.</LI>
+<LI>
+<A NAME="pgfId-274160"></A>The user field of each entity.</LI>
+<LI>
+<A NAME="pgfId-274161"></A>Node identifiers of all entities which have them (i.e. every type of topological/geometric entity except fins, bodies and assemblies).</LI>
+<LI>
+<A NAME="pgfId-274162"></A>Any groups belonging to the part.</LI>
+<LI>
+<A NAME="pgfId-274163"></A>Any attributes belonging to entities in the part.</LI>
+<LI>
+<A NAME="pgfId-274164"></A>Any construction geometry attached to the part (this can be done using DEFCON). Note that although you can attach lists to a part with DEFCON, they are not archived by SAVMOD.</LI>
+</UL>
+<P>
+<A NAME="pgfId-274165"></A>See the following 'Assemblies' section for details of the extra information which is saved with assemblies.</P>
+
+
+<H4>
+<A NAME="pgfId-274168"></A>Unloading</H4>
+<P>
+<A NAME="pgfId-274169"></A>Once you have saved a part, you can unload it from memory using UNLDPA, which frees Parasolid's internal storage space for other models. The tag of the part remains valid, and if you need to use the part again later in the session, it will be reloaded automatically.</P>
+<P>
+<A NAME="pgfId-274170"></A>When you unload a part, you can still use the part's tag, key and box. Note that if the part is leaded again, the subordinate entities will probably not have the same tags as the ones they had before the part was unloaded.</P>
+
+
+<H4>
+<A NAME="pgfId-274173"></A>Receiving</H4>
+<P>
+<A NAME="pgfId-274174"></A>You retrieve a part from archive using GETMOD. Given the key of a part, this function obtains the archive data via the Frustrum, and re-loads the part into Parasolid's memory.</P>
+<P>
+<A NAME="pgfId-274175"></A>When you save a part, the data output through the Frustrum can be in one of two formats: text or binary. (Text format files are guaranteed to be portable between different machines; binary files can be in neutral (portable) or in machine speak format). There is an 'interface parameter' to control which of these formats the kernel is expecting to use. This parameter is identified to SEINTP by the token SLIPBT. If the format of the file you are trying to receive does not match that expected by the kernel, GETMOD will fail. </P>
+<P>
+<A NAME="pgfId-274178"></A>You can retrieve any part for which you have a key. It is your system's responsibility to ensure that Parasolid can find the archive data for the part. This is mostly dependent on the Frustrum. If the key cannot be found by the Frustrum (for instance because your implementation simply treats keys as filenames and has no information on which directory to look in) then GETMOD will fail. </P>
+<P>
+<A NAME="pgfId-274179"></A>GETMOD retrieves parts which were saved in a previous session and are as yet unknown in the current session, and it also works on 'unloaded' and 'modified' parts. The state of a part <EM>
+after</EM> you have retrieved it is 'stored'. If the part was 'modified' then the part is received as normal, resulting in two parts in memory which have the same key; one of which has state 'stored', and the other 'modified'. If you try to retrieve (or receive) a part  which is already in memory then GETMOD will fail with the error &quot;Part already loaded&quot;, because the part is, by definition, already in internal memory.</P>
+<P>
+<A NAME="pgfId-274180"></A>When you are retrieving a part you must take care that the size of its user fields is the same as that set for your current session by STAMOD. If it is not, and you do not need to know the contents of the user field, you can prevent GETMOD from trying to read it by calling the routine SEINTP (set interface parameter) with the token SLIPUF, and value 0. This action will cause GETMOD to ignore the user fields which were saved with the part, create user fields of the length required by the current session, and set them to zero.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274182"></A>	1.6.5 	Assemblies</H2>
+<P>
+<A NAME="pgfId-274183"></A>Assemblies allow the representation of collections of bodies as part of a single model. They can contain other assemblies as well as solids, generating a tree-like structure.</P>
+<P>
+<A NAME="pgfId-274301"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/ki_chap-5.gif">
+
+<P>
+<A NAME="pgfId-274303"></A>Figure 1-2 <A NAME="41996"></A>The instanced components of an assembly</P>
+
+<H4>
+<A NAME="pgfId-274304"></A>Terminology</H4>
+<P>
+<A NAME="pgfId-274307"></A>An<STRONG>
+ instance</STRONG> is a pointer identifying a part, together with a definition of its location in the assembly (a <STRONG>
+transformation</STRONG>). A part is said to be <STRONG>
+instanced</STRONG> in an assembly if the assembly contains an instance somewhere which points to the part.</P>
+<P>
+<A NAME="pgfId-274308"></A>It is possible to instance the same body (or assembly) several times in an assembly, and because each new instance only points to the part rather than copying it, a lot of internal (and disk) space is saved.</P>
+<P>
+<A NAME="pgfId-274313"></A>The <STRONG>
+components</STRONG> or <STRONG>
+sub-parts</STRONG> of an assembly are all the parts which are instanced anywhere in the assembly. All the shaded parts (both bodies and assemblies) of <A HREF="ki_chap.02.html#41996">Figure 1-2</A> are components of assembly A1. Similarly, the components of A2 are bodies B3 and B4.</P>
+<P>
+<A NAME="pgfId-274317"></A>The <STRONG>
+occurrence</STRONG> of a part within an assembly depends upon two things, which instance it belongs to and at what level. For example:</P>
+<P>
+<A NAME="pgfId-274393"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/ki_chap-6.gif">
+
+<P>
+<A NAME="pgfId-274395"></A>Figure 1-3 <A NAME="11139"></A>Two occurrences of one body in an assembly</P>
+<P>
+<A NAME="pgfId-274399"></A>In <A HREF="ki_chap.02.html#11139">Figure 1-3</A>there are two occurrences of body B5 in assembly A3. One is at the &quot;top level&quot; where it is instanced in its own right with a transformation T1. The second is as part of the top level instance of assembly A4. In this second occurrence, B5 is transformed twice: once because of the transform with it in A4 (T3) and then again by the transformation of A4 in A3 (T2).</P>
+<P>
+<A NAME="pgfId-274400"></A>Parasolid does not keep track of occurrences of parts in an assembly, you have to locate them yourself. This means that when performing operations on assemblies, such as drawing them, or allowing the users of your application to pick entities from them, if you want to be aware of which occurrences are which, you must program accordingly.</P>
+
+
+<H4>
+<A NAME="pgfId-274403"></A>Creating assemblies</H4>
+<P>
+<A NAME="pgfId-274404"></A>CREASS creates an (empty) assembly, to which instances can be added.</P>
+<P>
+<A NAME="pgfId-274405"></A>CREINS creates instances using the tag of the assembly, the tag of the part and the transformation (if any) to be applied to the part.</P>
+<P>
+<A NAME="pgfId-274406"></A>If you do not supply a transformation when you create an instance, it will not have a transformation attached to it, and the modeler will act as if the identity transformation is attached. Transformations can be changed using APPTRA.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274411"></A>	1.6.6 	<A NAME="marker-274409"></A><A NAME="marker-274410"></A>Archiving and receiving assemblies</H2>
+<P>
+<A NAME="pgfId-274412"></A>SAVMOD will archive an assembly and its components in one file (depending on their part states - e.g. 'stored' parts will not be archived again, the assembly file will contain a pointer to the stored part).</P>
+<P>
+<A NAME="pgfId-274413"></A>Alternatively, if SAVMOD is first used to archive each component of an assembly, the assembly &quot;file&quot; will simply contain pointers to the other files.</P>
+<P>
+<A NAME="pgfId-274414"></A>GETMOD will receive the archived assembly. The modeler works hard to maintain the consistency of the data structure in its internal memory, with respect to the state of all the parts. When the part you are receiving is an assembly, Parasolid also tries to link it up to any components which were saved separately from it. The success of these attempts depends on whether there are parts in memory with the same keys as parts you are trying to receive or instance, and if so, the state of those parts.</P>
+
+<H4>
+<A NAME="pgfId-274417"></A>Rendering assemblies</H4>
+<P>
+<A NAME="pgfId-274418"></A>You can create an image of an assembly by passing the tag of the assembly to any of the RRxxxx rendering routines. The data will be output through the GO in the usual way. Each segment will have its own body tag, but they will all have the same occurrence number. This refers to the occurrence of the assembly in the entity list passed to the RR routine, and not to assembly structure.</P>
+<P>
+<A NAME="pgfId-274419"></A>However, this will not enable you to relate any particular occurrence of a part in the assembly to its image, because there will be no links between the data output through the GO and the instances of parts in the assembly. </P>
+<P>
+<A NAME="pgfId-274420"></A>If you want to be able to identify a particular occurrence of an entity in the picture, then you should draw each component part of the assembly separately. Then when an entity comes out through the GO, as well as having the tag of the body, you can find out which instance it is by linking it back to the entity in the drawing list.</P>
+
+
+<H4>
+<A NAME="pgfId-274422"></A>Processing KI assemblies using the PK interface</H4>
+<P>
+<A NAME="pgfId-274423"></A>When a KI assembly is loaded into an application which uses only PK functions, <A HREF=../headers/pk_assembly_ask_parts.html>PK_ASSEMBLY_ask_parts</A> can be used to get the tags of its bodies (sub-assemblies need to be enquired recursively until all bodies are obtained). The bodies can then be archived as multiple bodies in a single part file, using <A HREF=../headers/pk_part_transmit.html>PK_PART_transmit</A>.</P>
+<P>
+<A NAME="pgfId-274424"></A>Many other PK functions which operate on a 'part' will accept either a body or an assembly as the input entity.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="pgfId-274426"></A>	1.6.7 	Senses</H2>
+<P>
+<A NAME="pgfId-274427"></A>There are some differences between the PK and KI interfaces, in the way that senses are considered. The following is an explanation of the way senses have to be considered when using KI routines, where they differ from the PK concepts.</P>
+
+<H4>
+<A NAME="pgfId-274428"></A>Surface sense flag</H4>
+<P>
+<A NAME="pgfId-274429"></A>Every surface has an explicit sense flag. This indicates whether the orientation of the surface entity is the same as the natural orientation of the surface:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274430"></A>If the surface sense is KI_true, the normal of the surface is the same as the natural one of the surface.</LI>
+<LI>
+<A NAME="pgfId-274431"></A>If the surface sense is KI_false, it is opposite to the natural normal.</LI>
+</UL>
+<P>
+<A NAME="pgfId-274432"></A>If a surface is negated by calling NEGENT, the surface normal is reversed. Since the orientation of a surface depends on the surface sense this has the effect of reversing the surface normal. For example, the orientation of simply curved surfaces would then point away from the concave side of the surface. The sense of a surface is found by calling OUTSUR.</P>
+
+
+<H4>
+<A NAME="pgfId-274433"></A>Face reverse flag</H4>
+<P>
+<A NAME="pgfId-274434"></A>Every face has a reverse flag associated with it which indicates whether the face normal is in the same direction as the surface normal, where the surface normal means the orientation of the surface taking into account the surface sense flag. The surface can be found by calling IDSOFF. If the face reverse flag is true the face normal is anti-parallel to the surface normal, and if the reverse flag is false the face normal is parallel to the surface normal.</P>
+<P>
+<A NAME="pgfId-274435"></A>To find the normal of a face first get the natural surface normal; then apply the surface sense; and finally apply the face reverse flag.</P>
+
+
+<H4>
+<A NAME="pgfId-274438"></A>Face sense</H4>
+<P>
+<A NAME="pgfId-274439"></A>Several KI routines refer to the 'face sense', therefore it is necessary to make the distinction between the face sense and the face reverse flag. In general terms, the face sense means the opposite of the face reverse flag, e.g. if the face sense is true then the face normal will be in the same direction as the surface normal, and if the face sense is false the face normal will be in the opposite direction to the surface normal. </P>
+<P>
+<A NAME="pgfId-274440"></A>The sense of a face can only be altered through the KI when a surface is attached to the face using ATTGEO or ATGETO, or when a face is tweaked to a surface using TWSUFA. </P>
+<P>
+<A NAME="pgfId-274441"></A>For consistency, the face sense must be correct. Therefore if the face sense is KI_true, the orientation of a surface must be in the same direction as the face normal, i.e. point outwards from the material of the body. If this is not the case, the face will either be concave instead of convex (or vice versa) or the face will be invalid and will fail the checks imposed by CHCKEN.</P>
+<P>
+<A NAME="pgfId-274442"></A>The following example shows a cylinder with a spherical face at one end. The surface normals of the spherical surface point away from the convex side of the surface.</P>
+<P>
+<A NAME="pgfId-274665"></A>&nbsp;</P>
+
+
+
+<IMG SRC="../graphics/ki_chap-7.gif">
+
+<P>
+<A NAME="pgfId-274666"></A>Figure 1-4 When the face sense is KI_true, the face is convex; when it is KI_false the face is concave</P>
+
+
+<H4>
+<A NAME="pgfId-274669"></A>Curve directions</H4>
+<P>
+<A NAME="pgfId-274670"></A>Curves directions and their relationship to other entities are considered differently in the KI, although the above conventions on loops, fins, edges and curves in the PK are also relevant.</P>
+<UL>
+<LI>
+<A NAME="pgfId-274671"></A>Curves have the same direction as the entities to which they are attached.</LI>
+<LI>
+<A NAME="pgfId-274672"></A>The direction of a curve at a particular parameter may be found using ENPOPC and reversed by calling NEGENT.</LI>
+</UL>
+<P>
+<A NAME="pgfId-274724"></A>&nbsp;</P>
+
+
+
+<IMG SRC="../graphics/ki_chap-8.gif">
+
+<P>
+<A NAME="pgfId-274726"></A>Figure 1-5 <A NAME="42328"></A>Fin and edge direction</P>
+<UL>
+<LI>
+<A NAME="pgfId-274730"></A>As can be seen from <A HREF="ki_chap.02.html#42328">Figure 1-5</A> when fin A is the left fin of the edge the direction of the edge and any attached curve is from C to D. If the curve direction was reversed, the faces on each side of the edge would become inconsistent.</LI>
+<LI>
+<A NAME="pgfId-274731"></A>When fin B is the left fin of the edge, the direction of the edge is from D to C and the attached curve must also have this direction if the adjacent faces are to be consistent.</LI>
+<LI>
+<A NAME="pgfId-274732"></A>If the edge has no curve, but curves exist on the fins (this would occur, for example, during trimmed surface import), then the curve attached to fin A must go from C to D and if attached to fin B from D to C. If the direction of one curve is reversed, the face containing the owning fin would be invalid.</LI>
+<LI>
+<A NAME="pgfId-274736"></A>Where a closed curve is attached to an edge or fin, see <A HREF="ki_chap.02.html#19135">Figure 1-6</A> the relationship between the directions of the curve and owning edge/fin determines whether the edge/fin curves into or out of the face.</LI>
+</UL>
+<P>
+<A NAME="pgfId-274881"></A>&nbsp;</P>
+
+
+
+<IMG SRC="../graphics/ki_chap-9.gif">
+
+<P>
+<A NAME="pgfId-274883"></A>Figure 1-6 <A NAME="19135"></A>The relationship between the direction of the curve and its owning edge/fin</P>
+
+
+<H4>
+<A NAME="pgfId-274886"></A>Trimmed curves</H4>
+<P>
+<A NAME="pgfId-274887"></A>There is a difference in the parameterisation of curves (in particular trimmed curves) between the KI and the PK.</P>
+<P>
+<A NAME="pgfId-274888"></A>Consider a simple example of an infinite curve (i.e. parameterized between -infinity and infinity). Based on this curve is a trimmed curve which through the KI is seen as being parameterized between 0 and 10 (this could have been created by CRTRCU for instance). Through the PK, this curve is also seen as being parameterized between 0 and 10.</P>
+<P>
+<A NAME="pgfId-274889"></A>Now consider a trimmed curve based on the original curve and parameterized between 5 and 10. Through the PK, this curve is seen as being parameterized between 0 and 5. This convention of having a trimmed curve parameterized between 0 and X was introduced at the PK for STEP compliance.</P>
+<P>
+<A NAME="pgfId-274890"></A>Now take this trimmed curve from (2) and negate it using NEGENT:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274891"></A>At the KI this will have the effect of negating the underlying curve, and the parameterisation of the trimmed curve will now run from -10 to -5 (-10 and -5 correspond to 10 and 5 of the curve before it was negated). The KI does not have negative sense trimmed curves, these are thought of as trimmed curves based on negative sense curves.</LI>
+<LI>
+<A NAME="pgfId-274892"></A>At the PK this same trimmed curve will have parameterisation 0 to 5. As the PK has no concept of curve sense, the 0 and 5 correspond to the -5 and -10 of the negated curve (and the 5 and 10 of the original trimmed curve).</LI>
+</UL>
+<P>
+<A NAME="pgfId-274893"></A>Thus in this case:</P>
+<UL>
+<LI>
+<A NAME="pgfId-274894"></A>the same answer will be obtained from both ENPOPC(curve, -10, 0) and <A HREF=../headers/pk_curve_eval.html>PK_curve_eval</A>(curve, 5, 0)</LI>
+<LI>
+<A NAME="pgfId-274895"></A><A HREF=../headers/pk_curve_ask_parm_different.html>PK_CURVE_ask_parm_different</A> on this curve will return true</LI>
+<LI>
+<A NAME="pgfId-274896"></A><A HREF=../headers/pk_curve_convert_parm_to_pk.html>PK_CURVE_convert_parm_to_pk</A>(curve, -10) will return 5 as the PK equivalent to -10 in the KI parameterisation</LI>
+</UL>
+<P>
+<A NAME="pgfId-274897"></A>Simultaneous use of ENPOPC and <A HREF=../headers/pk_curve_eval.html><A HREF=../headers/pk_curve_eval.html>PK_CURVE_eval</A></A> is not recommended. The use of <A HREF=../headers/pk_curve_eval.html><A HREF=../headers/pk_curve_eval.html>PK_CURVE_eval</A></A> only is recommended.</P>
+<P>
+<A NAME="pgfId-110680"></A>&nbsp;</P>
+
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="ki_chap..html"></A></TD>
+  <TD><A HREF="../ki_index.html">Chapters</A></TD>
+  <TD><A HREF="ki_chap.03.html">Kernel Interface Tokens</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

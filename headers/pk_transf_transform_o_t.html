@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TRANSF_transform_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TRANSF_transform_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TRANSF_transform_o_s
+    {
+    int                   o_t_version; --- version number of option structure
+    <A HREF=../headers/pk_transf_operation_t.html>PK_TRANSF_operation_t</A> operation_1; --- operation to apply to <B>'transf_1'</B>
+                                       --- before combining
+                                       --- (PK_TRANSF_operation_none_c)
+    <A HREF=../headers/pk_transf_operation_t.html>PK_TRANSF_operation_t</A> operation_2; --- operation to apply to <B>'transf_2'</B>
+                                       --- before combining
+                                       --- (PK_TRANSF_operation_none_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          modify;      --- whether to modify <B>'transf_1'</B>
+                                       --- (PK_LOGICAL_false)
+    };
+
+typedef struct PK_TRANSF_transform_o_s PK_TRANSF_transform_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls for transforming a transform.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_wrong_transf          (MILD) <B>'operation_1'</B> or <B>'operation_2'</B> is set
+                                          to PK_TRANSF_operation_invert_c, and
+                                          the corresponding <B>'transf_1'</B> or
+                                          <B>'transf_2'</B> has a perspective
+                                          component
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_transf_transform_2.html>PK_TRANSF_transform_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure has the following fields :
+
+<B>'operation_1'</B>    What operation to apply to <B>'transf_1'</B> before combining the
+                 transformations.
+                 (PK_TRANSF_operation_none_c)
+
+<B>'operation_2'</B>    What operation to apply to <B>'transf_2'</B> before combining the
+                 transformations.
+                 (PK_TRANSF_operation_none_c)
+
+<B>'modify'</B>         If set to PK_LOGICAL_false, a new transform will be returned,
+                 and the input transforms unmodified. If set to
+                 PK_LOGICAL_true, the received <B>'transf_1'</B> will be modified.
+                 Note that <B>'transf_2'</B> will not be modified, regardless of the
+                 value of <B>'operation_2'</B>.
+                 (PK_LOGICAL_false)
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_remove_knots_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_remove_knots_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_remove_knots_o_s
+    {
+    int          o_t_version;       --- options structure version
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> have_tolerance;    --- whether tolerance is set
+                                    --- (PK_LOGICAL_false)
+    double       tolerance;         --- tolerance for knot removal
+    int          n_knot_indices;    --- number of knot indices (0)
+    const int   *knot_indices;      --- indices of knots to be removed (NULL)
+    const int   *remove_multiplicities;
+                                    --- number of times to remove knots (NULL)
+    };
+
+typedef struct PK_BCURVE_remove_knots_o_s PK_BCURVE_remove_knots_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This options structure defines optional controls for removing knots
+from a b-curve.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_remove_knots.html>PK_BCURVE_remove_knots</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It contains the following options:
+
+<B>'have_tolerance'</B>         Whether a tolerance has been provided.  If this
+                         is PK_LOGICAL_true, then the b-curve will not be
+                         changed by more than <B>'tolerance'</B>.  If this is
+                         PK_LOGICAL_false, then the b-curve will not be
+                         changed by more than the session linear
+                         precision, and <B>'tolerance'</B> will be ignored.
+                         (PK_LOGICAL_false)
+
+<B>'tolerance'</B>              The tolerance for the knot removal.
+
+<B>'n_knot_indices'</B>         The number of knot indices provided.  If this is
+                         zero, knot removal will be attempted on all knots
+                         in the b-curve.  If this is non-zero, both
+                         <B>'knot_indices'</B> and <B>'remove_multiplicities'</B> must be
+                         provided, and removal will only be attempted
+                         on the specified knots. (0)
+
+<B>'knot_indices'</B>           An array of length <B>'n_knot_indices'</B>.  All values
+                         must lie in the interval zero to one less than
+                         the number of distinct knots in the b-curve. (NULL)
+
+<B>'remove_multiplicities'</B>  An array of length <B>'n_knot_indices'</B>. This
+                         option controls how many times removal is
+                         attempted on any knot.  A value of 0 indicates
+                         that a knot should be removed as many times
+                         as possible, otherwise each value must be no
+                         greater than the multiplicity of the corresponding
+                         knot. The knot will then be removed that number of
+                         times, if possible. (NULL)
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,125 @@
+<HTML>
+<HEAD>
+<TITLE>OUBSCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUBSCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_make_bcurve.html>PK_CURVE_make_bcurve</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUBSCU ( curve, tol, nopts, iopts, ctrl, dim, order, nctrl, knots, props, 
+==========================================================================
+         nprops, ifail )
+         ===============
+
+  Outputs a curve in B-spline form.
+
+Receives:
+  KI_tag_curve             *curve          --- curve
+  KI_dbl_distance          *tol            --- tolerance for approximation
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in 'iopts'
+  KI_cod_srop               iopts[nopts]   --- conversion options
+
+Returns:
+  KI_tag_list_dbl          *ctrl           --- control points
+  KI_int_dimension         *dim            --- dimension of control points
+  KI_int_order             *order          --- order of bspline curve
+  KI_int_nitems            *nctrl          --- number of control points
+  KI_tag_list_dbl          *knots          --- knot vector
+ &lt;KI_tag_list_int&gt;         *props          --- list of curve properties
+ &lt;KI_int_nitems&gt;           *nprops         --- number of curve properties
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_tolerances_too_tight   tolerance too tight
+  KI_cant_make_bspline      failed to convert geometry
+
+Description:
+  The supplied curve is output in B-spline form.
+
+  If the curve is of type 'TYCUTR' (trimmed curve) then the resulting
+  B-spline curve will be bounded by the end points of the trimmed curve.
+
+  The B-spline will represent the curve exactly if possible, but it may be
+  necessary to approximate it. If so, 'tol' specifies an upper bound on the
+  distance between the B-spline and the original curve, which this function
+  will usually satisfy although this is not guaranteed. During the approximation
+  process, the curve is subdivided and each segment approximated by a cubic
+  B-spline curve. If the required tolerance cannot be met when any of these
+  segments is less than about one millionth of the parameter range then the
+  function will fail with error KI_tolerances_too_tight indicating that a
+  larger tolerance may allow a successful approximation.
+
+  Representations of lines and the rational forms of circles and ellipses
+  are exact. When the representation of a B-curve is changed it will,
+  in general, only be exact when its order is not decreased.
+
+  The format of the output curve is selected by options in 'iopts'. Options
+  allowed are:-
+
+      Option  |  Description
+      --------|---------------------------------------
+      SROPCU  |  Force output of B-splines of degree 3
+      SROPNR  |  Force output of non-rational B-splines
+
+  The effects of these options on the representations produced for different
+  curve types are:-
+
+               |  none         |  SROPCU       |  SROPCU       |  SROPNR
+               |               |               |    SROPNR     |
+  -----------------------------------------------------------------------------
+  line         |  linear       |  cubic        |  cubic        |  linear
+               |               |               |               |
+  circle       |  rational     |  rational     |  cubic        |  cubic
+               |    cubic      |    cubic      |               |
+               |               |               |               |
+  ellipse      |  rational     |  rational     |  cubic        |  cubic
+               |    cubic      |    cubic      |               |
+               |               |               |               |
+  B-curve      |  no change    |  cubic        |  cubic        |  rational to
+               |               |               |               |    cubic
+               |               |               |               |
+  all other    |  cubic        |  cubic        |  cubic        |  cubic
+   curves *    |               |               |
+
+  * If an intersection curve or SP-curve lies on a B-surface and coincides with
+  a constant parameter line on that B-surface, the equivalent B-curve will
+  be extracted from the surface. In this case, the options will apply to the
+  extracted B-curve. Thus exact representations of these curves will be possible
+  in certain cases.
+
+
+  The meaning of the values in the arguments 'ctrl', 'dim', 'order', 'nctrl'
+  and 'knots' are given under OUBSPC.
+
+  Properties list 'props':
+    The following properties may be returned:
+    . PAPRPE - the B-spline is periodic. If this token is not present then the
+               B-spline is not periodic.
+    . PAPREX - the B-spline is an exact representation of the original curve.
+               If this token is not present, then the B-spline approximates the
+               original, with the maximum error bounded by 'tol'.
+
+  Number of properties 'nprops':
+  . Gives the number of properties in the 'props' list.
+
+
+</PRE>
+</BODY>
+</HTML>

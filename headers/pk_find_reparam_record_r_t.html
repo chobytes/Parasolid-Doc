@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_find_reparam_record_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_find_reparam_record_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_find_reparam_record_r_s
+    {
+    int                 n_topols;           --- Number of topologies whose
+                                            --- geometry can be reparameterised
+                                            --- to improve their quality.
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>         *topols;             --- The topols whose geometry can
+                                            --- be reparameterised to improve
+                                            --- their quality.
+    int                 n_geoms;            --- Number of geometries associated
+                                            --- with the topologies.
+    <A HREF=../headers/pk_geom_t.html>PK_GEOM_t</A>          *geoms;              --- Array of geometries that are
+                                            --- associated with the topologies
+                                            --- and require reparameterisation
+                                            --- to improve quality.
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>       interval_1;         --- The recommended interval for
+                                            --- the first parameter of each
+                                            --- entity in <B>'geoms'</B>
+    <A HREF=../headers/pk_reparameterise_t.html>PK_reparameterise_t</A> reparam_type_1;     --- The type of change to be
+                                            --- applied to the first parameter
+                                            --- interval
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>       interval_2;         --- The recommended interval for
+                                            --- the second parameter of each
+                                            --- entity in<B>'geoms'</B>
+    <A HREF=../headers/pk_reparameterise_t.html>PK_reparameterise_t</A> reparam_type_2;     --- The type of change to be
+                                            --- applied to the second parameter
+                                            --- interval
+    int                 n_missing_entities; --- Number of entities that were
+                                            --- not directly implied by the
+                                            --- input argument <B>'entities'</B> of
+                                            --- <A HREF=../headers/pk_entity_find_reparam.html>PK_ENTITY_find_reparam</A> but are
+                                            --- present in <B>'topols'</B> or <B>'geoms'</B>.
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>        *missing_entities;   --- The entities that were not
+                                            --- directly implied by the input
+                                            --- argument <B>'entities'</B> of
+                                            --- <A HREF=../headers/pk_entity_find_reparam.html>PK_ENTITY_find_reparam</A> but are
+                                            --- present in <B>'topols'</B> or <B>'geoms'</B>.
+    };
+typedef struct PK_find_reparam_record_r_s PK_find_reparam_record_r_t;
+</B>
+<A NAME="description"></A>
+<I>This structure describes a preferred parameterisation of a set of geometries
+whose reliability in Parasolid operations involving them could be improved by
+reparameterisation and which must be reparameterised simultaneously if the
+geometric dependencies between them are to be preserved.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_entity_find_reparam_r_t.html>PK_ENTITY_find_reparam_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'n_topols'</B>              The number of topologies whose shape depends on at
+                        least one of the geometries in <B>'geoms'</B>.
+
+
+<B>'topols'</B>                An array of topologies whose shape depends on at
+                        least one of the geometries in <B>'geoms'</B>.
+                        Where the input is a body, an array of faces or an
+                        array of surfaces the topologies will all be faces.
+
+                        `topols that are hidden by the cellular guise
+                        will be returned by the Parasolid report mechanism
+                        instead of the return structure. A single report with
+                        status PK_REPORT_1_hidden_by_guise will be returned.
+
+
+<B>'n_geoms'</B>               The number of geometries whose quality can be
+                        improved by reparameterisation.
+
+
+<B>'geoms'</B>                 An array of geometries whose quality can be improved
+                        by reparameterisation, which share a common geometric
+                        source for their parameterisation and must therefore
+                        be reparameterised simultaneously to preserve the
+                        dependencies between them.
+
+
+<B>'interval_1'</B>            The suggested improved interval for the first parameter
+                        of the geometries in <B>'geoms'</B>. If reparameterisation is
+                        required the new interval will be a linear scaling
+                        of the original interval, with the low bound set
+                        to 0, otherwise original interval will be returned.
+
+
+<B>'reparam_type_1'</B>        The type of change to be made to the interval of the
+                        first parameter of the geometries. This will either
+                        be no change (<A HREF=../headers/pk_reparameterise_t.html>PK_reparameterise_none_c</A>) or a linear
+                        scaling plus a translation
+                        (<A HREF=../headers/pk_reparameterise_t.html>PK_reparameterise_rescale_c</A>).
+
+
+<B>'interval_2'</B>            The suggested improved interval for the second
+                        parameter of the geometries in <B>'geoms'</B>. If
+                        reparameterisation is required the new interval will
+                        be a linear scaling of the original interval, with the
+                        low bound set to 0, otherwise original interval will
+                        be returned.
+
+
+<B>'reparam_type_2'</B>        The type of change to be made to the interval of the
+                        second parameter of the geometries. This will either
+                        be no change (<A HREF=../headers/pk_reparameterise_t.html>PK_reparameterise_none_c</A>) or a linear
+                        scaling plus a translation
+                        (<A HREF=../headers/pk_reparameterise_t.html>PK_reparameterise_rescale_c</A>).
+
+
+<B>'n_missing_entities'</B>    The number of entities not directly implied by the
+                        input argument <B>'entities'</B> of <A HREF=../headers/pk_entity_find_reparam.html>PK_ENTITY_find_reparam</A>
+                        but are present in the <B>'topols'</B> or 'geoms' arrays.
+
+
+<B>'missing_entities'</B>      The entities not directly implied by the input
+                        argument <B>'entities'</B> but are present in the
+                       <B>'topols'</B> or <B>'geoms'</B> arrays.
+
+                        Where the input argument <B>'entities'</B> contains a single
+                        body the implied entities are all faces of the body and
+                        this array will be empty.
+
+                        If <B>'entities'</B> contains an array of faces this
+                        array will contain those faces in <B>'topols'</B> which
+                        are not in <B>'entities'</B>.
+
+                        For the case that <B>'entities'</B> contains an array of
+                        surfaces this array will contain those surfaces in
+                       <B>'geoms'</B> but not in <B>'entities'</B>.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_sweep_law_discrete_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_sweep_law_discrete_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_sweep_law_discrete_s
+    {
+    int              n_vertices;
+    <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>     *vertices;
+    double          *values;
+    };
+
+typedef struct PK_BODY_sweep_law_discrete_s PK_BODY_sweep_law_discrete_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds a discrete description of a scalar law curve for twist
+or scale in sweeping as a set or vertex/value pairs.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The law description structure has the following fields :
+
+<B>'n_vertices'</B>     The number of vertices with specified law values
+
+<B>'vertices'</B>       An array of the vertices that have specified law values.
+
+<B>'values'</B>         An array of values. Each entry is the law value for the
+                 vertex in the corresponding entry of 'vertices'
+
+
+The following rules apply to the vertex/value pairs that may be specified
+via this structure :
+  o Any number of vertex/value pairs may be specified.
+
+  o The vertex/value pairs are not presumed to be in any particular order
+    except in the case that the start and end vertices of the path are the
+    same. Where this is true, the first occurrence of the start/end vertex
+    is taken to be associated with the start value of the function, and
+    the second occurrence is associated with the end value.
+
+  o When sweeping with more than one profile, the vertices supplied should, at
+    the least, include every vertex supplied in the <B>'path_vertices'</B> array.
+    Therefore, the law value at each profile will be the value that is paired
+    with the profile's corresponding path vertex.
+
+
+The following points just describe two ways in which the swept body's
+shape can be controlled via these twist or scale controls :
+
+  o Constant Twist or Scaling
+    The user can affect a constant twist or scaling of the sweep by specifying
+    a single vertex/value pair. The specified vertex may be any vertex
+    belonging to the sweep path profile. The twist or scaling transformation is
+    applied to the whole sweep. This method can only be used when sweeping with
+    a single profile.
+
+  o Linear Interpolation Between Start and End
+    The user can affect a linear interpolated twist or scaling over the
+    length of the sweep path by just specifying the start and end vertices
+    within two vertex/value pairs. The start and end vertex/value pairs
+    can be specified in any order.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

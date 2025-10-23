@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_facet_table_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_facet_table_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_facet_table_s
+    {
+    <A HREF=../headers/pk_topol_fctab_t.html>PK_TOPOL_fctab_t</A>    fctab;
+    union { <A HREF=../headers/pk_topol_fctab_facet_fin_t.html>PK_TOPOL_fctab_facet_fin_t</A>          *facet_fin;
+            <A HREF=../headers/pk_topol_fctab_strip_boundary_t.html>PK_TOPOL_fctab_strip_boundary_t</A>     *strip_boundary;
+            <A HREF=../headers/pk_topol_fctab_strip_zigzag_t.html>PK_TOPOL_fctab_strip_zigzag_t</A>       *strip_zigzag;
+            <A HREF=../headers/pk_topol_fctab_fin_fin_t.html>PK_TOPOL_fctab_fin_fin_t</A>            *fin_fin;
+            <A HREF=../headers/pk_topol_fctab_fin_data_t.html>PK_TOPOL_fctab_fin_data_t</A>           *fin_data;
+            <A HREF=../headers/pk_topol_fctab_data_point_t.html>PK_TOPOL_fctab_data_point_t</A>         *data_point_idx;
+            <A HREF=../headers/pk_topol_fctab_data_normal_t.html>PK_TOPOL_fctab_data_normal_t</A>        *data_normal_idx;
+            <A HREF=../headers/pk_topol_fctab_data_param_t.html>PK_TOPOL_fctab_data_param_t</A>         *data_param_idx;
+            <A HREF=../headers/pk_topol_fctab_data_deriv_t.html>PK_TOPOL_fctab_data_deriv_t</A>         *data_deriv_idx;
+            <A HREF=../headers/pk_topol_fctab_data_curv_t.html>PK_TOPOL_fctab_data_curv_t</A>          *data_curv_idx;
+            <A HREF=../headers/pk_topol_fctab_point_vec_t.html>PK_TOPOL_fctab_point_vec_t</A>          *point_vec;
+            <A HREF=../headers/pk_topol_fctab_normal_vec_t.html>PK_TOPOL_fctab_normal_vec_t</A>         *normal_vec;
+            <A HREF=../headers/pk_topol_fctab_param_uv_t.html>PK_TOPOL_fctab_param_uv_t</A>           *param_uv;
+            <A HREF=../headers/pk_topol_fctab_deriv_dp_t.html>PK_TOPOL_fctab_deriv_dp_t</A>           *deriv_dp;
+            <A HREF=../headers/pk_topol_fctab_deriv_d2p_t.html>PK_TOPOL_fctab_deriv_d2p_t</A>          *deriv_d2p;
+            <A HREF=../headers/pk_topol_fctab_curv_dirs_t.html>PK_TOPOL_fctab_curv_dirs_t</A>          *curv_dirs;
+            <A HREF=../headers/pk_topol_fctab_facet_face_t.html>PK_TOPOL_fctab_facet_face_t</A>         *facet_face;
+            <A HREF=../headers/pk_topol_fctab_strip_face_t.html>PK_TOPOL_fctab_strip_face_t</A>         *strip_face;
+            <A HREF=../headers/pk_topol_fctab_fin_edge_t.html>PK_TOPOL_fctab_fin_edge_t</A>           *fin_edge;
+            <A HREF=../headers/pk_topol_fctab_point_topol_t.html>PK_TOPOL_fctab_point_topol_t</A>        *point_topol;
+            <A HREF=../headers/pk_topol_fctab_fin_topol_t.html>PK_TOPOL_fctab_fin_topol_t</A>          *fin_topol;
+            <A HREF=../headers/pk_topol_fctab_error_object_t.html>PK_TOPOL_fctab_error_object_t</A>       *error_object;
+            <A HREF=../headers/pk_topol_fctab_incr_faces_t.html>PK_TOPOL_fctab_incr_faces_t</A>         *incr_faces;
+            } table;
+    };
+typedef struct PK_TOPOL_facet_table_s PK_TOPOL_facet_table_t;
+</B>
+<A NAME="description"></A>
+<I>The PK_TOPOL_facet_table_t structure returns the requested tables.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Each table is named in the form  PK_TOPOL_fctab_&lt;table&gt;_t &lt;table&gt; where each
+"&lt;table&gt;" field name corresponds to one of the <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> switch names in
+<A HREF=../headers/pk_topol_facet_choice_o_t.html>PK_TOPOL_facet_choice_o_t</A>
+
+
+TYPES OF TABLES
+Each table contains a specific set of connectivity, geometric or tracking data
+from the facet mesh.  There are two types of table:
+
+LOOKUP TABLES:
+This form of table is implemented as an array of structures, with each
+structure containing two (or more) fields.
+
+Lookup tables can be used to represent a 'one to many' or a 'many to one'
+mapping (for example in the <B>'facet_fin'</B> and <B>'fin_edge'</B> tables) and also to
+return errors and with their respective object in the <B>'error_object'</B> table.
+Columns are named after the first and second parts of the table name.  The
+tables are returned sorted by numerical order using the first column, then by
+connectivity order using the second column unless specified otherwise.
+
+In these tables the array index has no specific meaning.
+
+The array length is returned explicitly, with the tabular data.
+
+INDEXED TABLES:
+Indexed tables are implemented as a one dimensional array.  In these tables
+the first part of the table name determines the data that the array index
+represents.  The second part of the table name determines the type of data the
+array index refers to.
+
+The array length is also returned explicitly.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

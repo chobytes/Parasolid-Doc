@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_boolean_result_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_boolean_result_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_boolean_result_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_boolean_r_t.html>PK_boolean_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+PK_boolean_result_t has the following values. For each of the values except
+PK_boolean_result_failed_c, the resultant entities are returned within the
+<B>'bodies'</B> array.
+
+  PK_boolean_result_success_c    The boolean succeeded and the resultant
+                                 entities are returned within the <B>'bodies'</B>
+                                 array.
+
+  PK_boolean_result_no_clash_c   The boolean succeeded, however there was no
+                                 interaction between any of the target and
+                                 tool entities. This means that, taking the
+                                 material side settings into account, none of
+                                 the target and tool entities clashed with one
+                                 another. Also, none of the resulting entities
+                                 contain solid regions with bounding shells
+                                 that come from more than one of any of the
+                                 target or tool entities.
+
+  PK_boolean_result_no_effect_c  The boolean succeeded, however the tools had
+                                 no effect on the target, and therefore the
+                                 target body is returned unchanged.
+
+  PK_boolean_result_imprint_c    The boolean succeeded, however the target
+                                 body is unchanged except that it may have
+                                 gained some mergeable edges or vertices.
+
+  PK_boolean_result_not_solid_c  The boolean succeeded, however the resultant
+                                 entities cannot be converted into solid
+                                 bodies.
+
+  PK_boolean_result_multiple_c   This value is deprecated and is only
+                                 returned when asking the session to behave
+                                 as an earlier version.
+
+  PK_boolean_result_failed_c     The boolean failed. The <B>'bodies'</B> array will
+                                 be returned as null. The report structures
+                                 must be inspected to determine the reason for
+                                 the failure and to identify the location of
+                                 the failure. If this status is returned, the
+                                 input bodies may have been modified and the
+                                 application cannot assume that they are in a
+                                 valid state.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

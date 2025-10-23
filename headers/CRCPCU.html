@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<TITLE>CRCPCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRCPCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bsurf_make_bcurve_u_isoparam.html>PK_BSURF_make_bcurve_u_isoparam</A><BR>
+<A HREF=../headers/pk_bsurf_make_bcurve_v_isoparam.html>PK_BSURF_make_bcurve_v_isoparam</A><BR>
+<A HREF=../headers/pk_surf_make_curve_u_isoparam.html>PK_SURF_make_curve_u_isoparam</A><BR>
+<A HREF=../headers/pk_surf_make_curve_v_isoparam.html>PK_SURF_make_curve_v_isoparam</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRCPCU ( surf, uorv, param, curve, ifail )
+==========================================
+
+  Creates a constant parameter line curve on the surface.
+
+Receives:
+  KI_tag_surface           *surf           ---  Underlying surface.
+  KI_cod_papr              *uorv           ---  Constant parameter.
+  KI_dbl                   *param          ---  Constant parameter value.
+
+Returns:
+  KI_tag_curve             *curve          ---  Constant parameter line curve.
+  KI_cod_error             *ifail          ---  failure indicator.
+
+Specific errors:
+  KI_wrong_entity           Unsupported surface type
+  KI_not_on_surface         Parameter out of range
+  KI_at_singularity         Curve not possible at parametric singularity
+  KI_invalid_geometry       Curve not possible
+  KI_bad_parametric_prop    inappropriate property
+
+Description:
+
+  This function creates a curve corresponding to a constant parameter line on
+  the surface.
+
+  The type of the curve returned is simplified wherever possible.  However,
+  when the supplied surface is a foreign geometry surface (type TYSUFG)
+  then the type of the resulting extracted curve will be TYCUCP and when it is
+  an offset surface (type TYSUOF) then the resulting extracted curve may be of
+  type TYCUSP.
+
+  In some cases the returned constant parameter curve may extend beyond the
+  confines of the surface. This case is most likely where the returned curve is
+  simplified to a curve which contains the constant parameter curve as a subset.
+  An example of this would be a line of constant u parameter on an lemon torus.
+  This constant parameter curve would be returned as a complete circle.
+
+  'surf'  is the existing surface from which the curve is extracted.
+
+  'uorv'  defines whether the curve is :
+                  Constant u ( uorv = PAPRUP ),
+                  Constant v ( uorv = PAPRVP ).
+
+  'param' supplies that constant parameter value. If ENSUPA indicates that
+          'surf' is not periodic or infinite in the parameter 'uorv', the
+          value of 'param' must lie within the range specified by ENSUPA for
+          'surf'.
+
+  'curve' is the returned tag of the curve, if the operation succeeds.
+
+  It is not possible to extract constant v parameter curves (PAPRVP) from
+  blend surfaces (type TYSUBL).
+
+  If 'surf' is not an orphan, then the constant parameter curve will be created
+  as construction geometry in the owning part of 'surf'.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_local_ops_update_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_local_ops_update_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_local_ops_update_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_emboss_o_t.html>PK_BODY_emboss_o_t</A><br>
+    <A HREF=../headers/pk_body_extend_o_t.html>PK_BODY_extend_o_t</A><br>
+    <A HREF=../headers/pk_body_hollow_o_t.html>PK_BODY_hollow_o_t</A><br>
+    <A HREF=../headers/pk_body_offset_o_t.html>PK_BODY_offset_o_t</A><br>
+    <A HREF=../headers/pk_body_taper_o_t.html>PK_BODY_taper_o_t</A><br>
+    <A HREF=../headers/pk_body_thicken_o_t.html>PK_BODY_thicken_o_t</A><br>
+    <A HREF=../headers/pk_body_transform_o_t.html>PK_BODY_transform_o_t</A><br>
+    <A HREF=../headers/pk_body_trim_neutral_sheets_o_t.html>PK_BODY_trim_neutral_sheets_o_t</A><br>
+    <A HREF=../headers/pk_edge_delete_o_t.html>PK_EDGE_delete_o_t</A><br>
+    <A HREF=../headers/pk_edge_offset_on_body_o_t.html>PK_EDGE_offset_on_body_o_t</A><br>
+    <A HREF=../headers/pk_face_change_o_t.html>PK_FACE_change_o_t</A><br>
+    <A HREF=../headers/pk_face_change_update_t.html>PK_FACE_change_update_t</A><br>
+    <A HREF=../headers/pk_face_delete_blends_o_t.html>PK_FACE_delete_blends_o_t</A><br>
+    <A HREF=../headers/pk_face_delete_facesets_o_t.html>PK_FACE_delete_facesets_o_t</A><br>
+    <A HREF=../headers/pk_face_delete_o_t.html>PK_FACE_delete_o_t</A><br>
+    <A HREF=../headers/pk_face_emboss_o_t.html>PK_FACE_emboss_o_t</A><br>
+    <A HREF=../headers/pk_face_find_blend_unders_o_t.html>PK_FACE_find_blend_unders_o_t</A><br>
+    <A HREF=../headers/pk_face_hollow_o_t.html>PK_FACE_hollow_o_t</A><br>
+    <A HREF=../headers/pk_face_identify_blends_o_t.html>PK_FACE_identify_blends_o_t</A><br>
+    <A HREF=../headers/pk_face_make_neutral_sheet_o_t.html>PK_FACE_make_neutral_sheet_o_t</A><br>
+    <A HREF=../headers/pk_face_offset_o_t.html>PK_FACE_offset_o_t</A><br>
+    <A HREF=../headers/pk_face_replace_surfs_o_t.html>PK_FACE_replace_surfs_o_t</A><br>
+    <A HREF=../headers/pk_face_taper_o_t.html>PK_FACE_taper_o_t</A><br>
+    <A HREF=../headers/pk_face_transform_o_t.html>PK_FACE_transform_o_t</A><br>
+    <A HREF=../headers/pk_replace_update_t.html>PK_replace_update_t</A><br>
+    <A HREF=../headers/pk_thicken_update_t.html>PK_thicken_update_t</A><br>
+    <A HREF=../headers/pk_vertex_optimise_o_t.html>PK_VERTEX_optimise_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype en/dis-ables some changes to local ops algorithms which
+might cause differences in model updates between versions.  It currently has
+the values:
+    PK_local_ops_update_0_c         for updating v14.0 and earlier models
+    PK_local_ops_update_1_c         for updating v14.1 - v16.1 models
+    PK_local_ops_update_2_c         for updating v17.0 - v18.0 models
+    PK_local_ops_update_3_c         for updating v18.1 - v21.0 models
+    PK_local_ops_update_4_c         for updating v22.0 models
+    PK_local_ops_update_5_c         for updating v22.1 models
+    PK_local_ops_update_6_c         for updating v23.0 models
+    PK_local_ops_update_7_c         for updating v23.1 models
+    PK_local_ops_update_8_c         for updating v24.0 models
+    PK_local_ops_update_9_c         for updating v24.1 models
+    PK_local_ops_update_10_c        for updating v25.0 models
+    PK_local_ops_update_11_c        for updating v25.1 models
+    PK_local_ops_update_12_c        for updating v26.0 models
+    PK_local_ops_update_v261_c      for updating v26.1 models
+    PK_local_ops_update_v270_c      for updating v27.0 models
+    PK_local_ops_update_v271_c      for updating v27.1 models
+    PK_local_ops_update_v280_c      for updating v28.0 models
+    PK_local_ops_update_default_c   use latest functionality
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

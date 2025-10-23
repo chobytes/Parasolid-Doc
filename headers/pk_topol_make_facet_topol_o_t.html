@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_make_facet_topol_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_make_facet_topol_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_make_facet_topol_o_s
+    {
+    int                o_t_version;             --- Version of option
+                                                --- structure.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       have_angular_tolerance;  --- Whether angular_tolerance
+                                                --- is set.
+                                                --- (PK_LOGICAL_false)
+    double             angular_tolerance;       --- Angular tolerance between
+                                                --- new and existing geometry.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       have_max_chord_length;   --- Whether max_chord_length is
+                                                --- set.
+                                                --- (PK_LOGICAL_false)
+    double             max_chord_length;        --- Controls the maximum length
+                                                --- of polyline chords.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       have_max_facet_width;    --- Whether max_facet_width
+                                                --- is set.
+                                                --- (PK_LOGICAL_false)
+    double             max_facet_width;         --- Controls the maximum length
+                                                --- of a facet edge.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       store_normals;           --- Whether to store the
+                                                --- normals of classic surfaces
+                                                --- as vertex normals in the
+                                                --- meshes which replace them.
+                                                --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       track_faces;             --- Whether to return tracking
+                                                --- information for any faces
+                                                --- which were created or
+                                                --- destroyed by the operation.
+                                                --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_track_edges_t.html>PK_track_edges_t</A>   track_edges;             --- Options for tracking edges.
+                                                --- (<A HREF=../headers/pk_track_edges_t.html>PK_track_edges_no_c</A>).
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       return_redundant;        --- Whether to return tracking
+                                                --- information for any
+                                                --- topological entities which
+                                                --- were deleted in order
+                                                --- to accommodate the new
+                                                --- geometry.
+                                                --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       return_modified;         --- Whether to return an array
+                                                --- of all topological entities
+                                                --- modified by the operation.
+                                                --- (PK_LOGICAL_false)
+    };
+
+typedef struct PK_TOPOL_make_facet_topol_o_s
+               PK_TOPOL_make_facet_topol_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls for facet geometry creation, together
+with controls governing the amount of tracking information returned.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_tolerance      <B>'have_max_chord_length'</B> is PK_LOGICAL_true
+                                and `max_chord_length is less than the value
+                                returned by <A HREF=../headers/pk_session_ask_precision.html>PK_SESSION_ask_precision</A>
+                                OR
+                                <B>'have_max_facet_width'</B> is PK_LOGICAL_true
+                                and <B>'max_facet_width'</B> is less than the value
+                                returned by <A HREF=../headers/pk_session_ask_precision.html>PK_SESSION_ask_precision</A>
+                                OR
+                                <B>'have_angular_tolerance'</B> is PK_LOGICAL_true
+                                and <B>'angular_tolerance'</B> is less than the value
+                                returned by <A HREF=../headers/pk_session_ask_angle_precision.html>PK_SESSION_ask_angle_precision</A>
+                                (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_make_facet_topol.html>PK_TOPOL_make_facet_topol</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This structure contains:
+
+
+ Geometry creation controls
+
+<B>'have_angular_tolerance'</B>  : This field controls whether the associated
+                            <B>'angular_tolerance'</B> is used.
+
+<B>'angular_tolerance'</B>       : If <B>'have_angular_tolerance'</B> is PK_LOGICAL_true
+                            and this field is set to a positive value
+                            then this value is used to control the sum
+                            of the angles formed between a facet edge
+                            and the curve/surface tangents at each end.
+                            In particular, facets for classic surfaces
+                            will usually be created in such a way that the
+                            surface normals corresponding to points in a
+                            portion of surface represented by the same
+                            facet will not differ by more than this value.
+                            This rule is usually observed, but this is not
+                            guaranteed.
+
+<B>'have_max_chord_length'</B>   : This field controls whether the associated
+                            <B>'max_chord_length'</B> is used.
+
+<B>'max_chord_length'</B>        : If <B>'have_max_chord_length'</B> is PK_LOGICAL_true
+                            and this field is set to a positive value
+                            then this value is used to control the chord
+                            length of all polylines created for edges and
+                            halfedges. This value may also influence the
+                            size and aspect ratio of facets near the
+                            boundaries of new meshes.
+
+<B>'have_max_facet_width'</B>    : This field controls whether the associated
+                            <B>'max_facet_width'</B> is used.
+
+<B>'max_facet_width'</B>         : If <B>'have_max_facet_width'</B> is PK_LOGICAL_true
+                            and this field is set to a positive value then this
+                            value is used to control the maximum length of
+                            the mfins in the meshes created for any supplied
+                            faces. It does not provide any control over the
+                            widths of facets in faces with existing facet
+                            geometry unless these are explicitly handed in
+                            for conversion.
+
+<B>'store_normals'</B>           : If this field is PK_LOGICAL_true then the
+                            meshes created for any supplied faces will
+                            inherit normals from the existing surfaces
+                            on these faces. When this field is
+                            PK_LOGICAL_true, the meshes created for faces
+                            which initially have classic geometry will have
+                            unique stored mvertex normals consistent with
+                            the geometry of the original surfaces. If the
+                            input array contains faces with facet geometry
+                            which do not need subdividing, the new meshes
+                            for these faces will be the same as the original
+                            meshes would be after calling
+                            <A HREF=../headers/pk_mesh_store_normals.html>PK_MESH_store_normals</A> with the <B>'replace'</B> field
+                            in the option structure set to
+                            <A HREF=../headers/pk_mesh_replace_normal_t.html>PK_MESH_replace_normal_all_c</A>.
+
+                            Note: mfins whose mvertices correspond to points
+                            on the existing surfaces for which
+                            <A HREF=../headers/pk_surf_eval_with_normal.html>PK_SURF_eval_with_normal</A> returns an error
+                            code different from PK_ERROR_no_errors will
+                            still all share a single normal, but this will be
+                            calculated using the local geometry of the new
+                            meshes, rather than that of the classic surfaces
+                            they replace.
+
+ Tracking controls
+
+<B>'track_faces'</B>             : If this field is PK_LOGICAL_true then tracking
+                            records will be returned for all topological
+                            changes to faces made as part of the conversion
+                            operation.
+
+<B>'track_edges'</B>             : If this field is set to <A HREF=../headers/pk_track_edges_t.html>PK_track_edges_yes_c</A> or
+                            <A HREF=../headers/pk_track_edges_t.html>PK_track_edges_laminar_wire_c</A> then tracking
+                            records will be returned for all topological
+                            changes mades to edges of the indicated type.
+
+<B>'return_redundant'</B>        : If this field is PK_LOGICAL_true then tracking
+                            records will be returned containing all
+                            topological entities which were merged out or
+                            made redundant by the conversion operation.
+
+<B>'return_modified'</B>         : If this field is PK_LOGICAL_true then an array
+                            will be returned containing all topological
+                            entities which were in any way modified by the
+                            conversion operation. This will include any
+                            entities which have had their geometry replaced,
+                            any edges and vertices which have undergone
+                            tolerance adjustments, as well as any newly
+                            created edges and vertices.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

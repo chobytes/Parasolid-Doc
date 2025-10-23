@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_DEBUG_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_DEBUG_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_DEBUG_data_s
+    {
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_geom_array;   --- whether geom_array has data
+    <A HREF=../headers/pk_geom_array_t.html>PK_GEOM_array_t</A>          geom_array;      --- array of geoms
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_trim_data;    --- whether trim_data has data
+    <A HREF=../headers/pk_surf_trim_data_t.html>PK_SURF_trim_data_t</A>      trim_data;       --- trim data information
+    };
+
+typedef struct PK_DEBUG_data_s PK_DEBUG_data_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds any additional data which is to be transmitted/received.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_body_extract_data.html>PK_DEBUG_BODY_extract_data</A><br>
+    <A HREF=../headers/pk_debug_data_f.html>PK_DEBUG_data_f</A><br>
+    <A HREF=../headers/pk_debug_receive.html>PK_DEBUG_receive</A><br>
+    <A HREF=../headers/pk_debug_transmit.html>PK_DEBUG_transmit</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'is_geom_array'</B>        Logical indicating whether geom_array contains data.
+
+
+<B>'geom_array'</B>           Array of geometry.
+
+
+<B>'is_trim_data'</B>         Logical indicating whether trim data structure
+                       contains data.
+
+
+<B>'trim_data'</B>            Trim data information.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

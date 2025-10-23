@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.018.html#50409799_pgfId-384033", " replace the existing geometry of a face using either <B>PK_FACE_replace_surfs_3</B> or the ", "Functional Description - Geometry");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-315243", " The tweak operation, supported by <B>PK_FACE_replace_surfs_3</B> , can be used to replace the surface of", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-318887", " create a sheet body from an offset surface, and <B>PK_FACE_replace_surfs_3</B> to tweak the geometry of a face onto an", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-424129", " <B>PK_FACE_replace_surfs_3</B> ", "Functional Description - Checking");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-326707", " can replace the surface of a specified face using <B>PK_FACE_replace_surfs_3</B> . This function is flexible enough to allow you", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-294753", " <B>PK_FACE_replace_surfs_3</B> tweaks the surfaces of selected faces, by deleting and", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-294757", " You can use <B>PK_FACE_replace_surfs_3</B> to change the diameter of a hole, as in", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-296205", " You can use <B>PK_FACE_replace_surfs_3</B> to change the top (planar) face of a cylinder", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-297126", " Figure 66-5 Shared surface after a <B>PK_FACE_replace_surfs_3</B> operation ", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-297133", " <B>PK_FACE_replace_surfs_3</B> lets you control the way in which the geometry", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-297161", " you believe will remain accurate after the call to <B>PK_FACE_replace_surfs_3</B> . ", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-297182", " they are not within tolerance of the replacement surfaces, <B>PK_FACE_replace_surfs_3</B> fails. ", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-297191", " the original geometry is used as the replacement curve, <B>PK_FACE_replace_surfs_3</B> fails if it cannot be used. ", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-297206", " By default, <B>PK_FACE_replace_surfs_3</B> adjusts the topology of a part after replacing surfaces", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.067.html#50409853_pgfId-297211", " <B>PK_FACE_replace_surfs_3</B> allows a wide range of topology changes. However, there", "Functional Description - Replacing The Surfaces Of Faces");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317132", " <B>PK_FACE_replace_surfs_3</B> ", "Functional Description - Update Switches");
+top.note("chapters/fd_chap.120.html#50409912_pgfId-317163", " <B>PK_FACE_replace_surfs_3</B> ", "Functional Description - Update Switches");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " face is replaced with the supplied surface. Please see <B>PK_FACE_replace_surfs_3</B>, and also ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " face is replaced with the supplied surface. Please see <B>PK_FACE_replace_surfs_3</B>, and also ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_missing_geom 96 <B>PK_FACE_replace_surfs_3</B> (MILD) replace geometry not specified", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_wrong_entity_in_array 357 <B>PK_FACE_replace_surfs_3</B> (MILD) given faces are not from same body", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_bad_tolerance 1043 <B>PK_FACE_replace_surfs_3</B> (MILD) proposed edge tolerance is too", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_bad_combination 5145 <B>PK_FACE_replace_surfs_3</B> (MILD) a mixture of facet and classic", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 <B>PK_FACE_replace_surfs_3</B> (MILD) a mixture of facet and classic", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_missing_geom 96 <B>PK_FACE_replace_surfs_3</B> (MILD) replace geometry not specified", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_wrong_entity_in_array 357 <B>PK_FACE_replace_surfs_3</B> (MILD) given faces are not from same body", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>PK_FACE_replace_surfs_3</B> 5145 PK_ERROR_bad_combination (MILD) a mixture of facet and classic", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_FACE_replace_surfs_3</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_change.html#description", " PK_FACE_transform_2 , <B>PK_FACE_replace_surfs_3</B> and some of PK_FACE_make_blend .", "PK Reference - PK_FACE_change");
+top.note("headers/pk_face_change_type_t.html#documentation", " <B>PK_FACE_replace_surfs_3</B> , and also", "PK Reference - PK_FACE_change_type_t");
+top.note("headers/pk_face_replace_surfs.html#description", " <B>PK_FACE_replace_surfs_3</B> ", "PK Reference - PK_FACE_replace_surfs");
+top.note("headers/pk_face_replace_surfs_2.html#description", " <B>PK_FACE_replace_surfs_3</B> .", "PK Reference - PK_FACE_replace_surfs_2");
+top.note("headers/pk_face_replace_surfs_3.html#declaration", " PK_ERROR_code_t <B>PK_FACE_replace_surfs_3</B>", "PK Reference - PK_FACE_replace_surfs_3");
+top.note("headers/pk_face_replace_surfs_o_t.html#description", " <B>PK_FACE_replace_surfs_3</B> ", "PK Reference - PK_FACE_replace_surfs_o_t");
+top.note("headers/pk_face_replace_surfs_o_t.html#documentation", " available from <B>PK_FACE_replace_surfs_3</B> .", "PK Reference - PK_FACE_replace_surfs_o_t");
+top.note("headers/pk_face_t.html#description", " <B>PK_FACE_replace_surfs_3</B> ", "PK Reference - PK_FACE_t");
+top.note("headers/pk_logical_t.html#description", " <B>PK_FACE_replace_surfs_3</B> ", "PK Reference - PK_LOGICAL_t");
+top.note("headers/pk_surf_t.html#description", " <B>PK_FACE_replace_surfs_3</B> ", "PK Reference - PK_SURF_t");
+top.note("headers/pk_topol_local_r_t.html#description", " <B>PK_FACE_replace_surfs_3</B> ", "PK Reference - PK_TOPOL_local_r_t");
+top.note("headers/pk_topol_track_r_t.html#description", " <B>PK_FACE_replace_surfs_3</B> ", "PK Reference - PK_TOPOL_track_r_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

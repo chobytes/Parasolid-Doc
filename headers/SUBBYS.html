@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<TITLE>SUBBYS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SUBBYS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_subtract_bodies.html>PK_BODY_subtract_bodies</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SUBBYS ( targby, tolbys, assemb, nbodys, ifail )
+================================================
+
+  Subtract bodies
+
+Receives:
+  KI_tag_body              *targby         --- body to be modified
+  KI_tag_list_body         *tolbys         --- body or list of bodies
+                                           --- used to modify 'targby'
+
+Returns:
+  KI_tag_assembly          *assemb         --- assembly of resulting bodies
+ &lt;KI_int_nitems&gt;           *nbodys         --- number of bodies in 'assemb'
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_invalid_bodies         Boolean failure or invalid bodies
+  KI_partial_coi_found      Boolean failure due to partial coincidence
+  KI_wire_body              Target or tool is a wire body
+  KI_missing_geom           Target or tool has incomplete geometry
+  KI_non_manifold           Non-manifold result
+  KI_same_tool_and_target   Tool body is also target body
+  KI_mixed_sheets_solids    Mixture of sheet and solid tool bodies
+  KI_instanced_tools        Instanced tool bodies
+  KI_duplicate_tools        Duplication in list of tool bodies
+  KI_not_in_same_partition  Target and tools are not all in the same partition
+  KI_unsuitable_entity      mixed body
+  KI_general_body           general body
+
+Description:
+  The target body (workpiece) is modified by removal of all
+  regions where it overlaps one of the tool bodies (modifiers).
+  The resulting body or bodies replace the workpiece in the
+  world and are instanced in the new assembly returned.
+
+  The modifiers are deleted and the tags in the list 'tolbys'
+  become dead.
+
+  If 'targby' was instanced in any assemblies, the instances
+  are now of 'assemb'.
+
+  Boolean operations such as subtraction cannot be performed
+  unless the bodies are completely specified geometrically.
+
+  This function does not support general bodies.
+
+</PRE>
+</BODY>
+</HTML>

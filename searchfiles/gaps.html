@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295383", " Whether to close <B>gaps</B> in the loop at tolerant vertices in model", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295387", " Whether to close <B>gaps</B> in the loop at tolerance vertices in parameter", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295388", " the received loops face is periodic. See Closing <B>gaps</B> in periodic faces . ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295392", " within the tolerance specified in tol_in_2_space. See Closing <B>gaps</B> by extending and trimming SP-curves . ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295396", " then the underlying surface is reparameterised. See Closing <B>gaps</B> by reparameterising the surface . ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295403", " is either PK_LOOP_2_space_gap_close_cu_c or PK_LOOP_2_space_gap_close_all_c, <B>gaps</B> are closed to within this tolerance. Default: 1.0e-6.", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295410", " 16.3.3.1 Closing <B>gaps</B> in periodic faces ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295465", " 16.3.3.2 Closing <B>gaps</B> by extending and trimming SP-curves ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295469", "Figure 16-11 shows a simple example in which <B>gaps</B> in the loop can be closed by extending", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295507", " 16.3.3.3 Closing <B>gaps</B> by reparameterising the surface ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295515", " reparameterising a surface, PK_LOOP_2_space_gap_close_all_c first tries to close <B>gaps</B> by extending and trimming SP-curves, as with PK_LOOP_2_space_gap_close_cu_c.", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295552", " Figure 16-12 Closing <B>gaps</B> in parameter space by reparameterising the surface ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-294885", " are offset by the specified distance, and any <B>gaps</B> created as a result of splitting vertices are", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-294894", " vertices are filled. See Section 45.4.1, Controlling how <B>gaps</B> between vertices are filled , for information. ", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-294961", " 45.4.1 Controlling how <B>gaps</B> between vertices are filled ", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-294962", " of options that let you control how those <B>gaps</B> are filled. ", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.047.html#50409830_pgfId-349081", " tolerance exist, and the vertices bordering on these <B>gaps</B> are returned to enable corrective actions to be", "Functional Description - Sheet Modeling");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-346780", " and a lower bound on the width of <B>gaps</B> that are allowed to remain in the result(s).", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-294961", " to find edges that are larger than the <B>gaps</B> it has been warned about. When such longer", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295992", " on smaller scale edges associated with correspondingly smaller <B>gaps</B>. ", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-296310", " present in data as extremely thin fillers for <B>gaps</B> in the surface data. With typical maximum widths", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-417237", " tolerances which are either significantly larger than the <B>gaps</B> expected to remain or are large with respect", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-297293", ": whether to attempt to close <B>gaps</B> in the input bodies that are not addressed", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358937", " 48.2.3 Extending <B>gaps</B> and filling holes ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358938", " By default, PK_FACE_make_neutral_sheet_2 fills any holes and extends <B>gaps</B> in the resulting neutral sheets to make them", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.049.html#50409832_pgfId-359166", " 48.3.4 Extending <B>gaps</B> and filling holes ", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-624939", " 59.12.1 Filling the <B>gaps</B> between offset edges ", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-542181", " If the offset operation results in <B>gaps</B> between the resultant edges, you can use either", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-610136", " Figure 59-12 Offsetting non-g1 edges and filling the <B>gaps</B> between the resultant edges using the PK_VERTEX_gap_fill_round_c and", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-620856", " Figure 59-13 Offsetting non-g1 edges and filling the <B>gaps</B> between the resultant edges with the ", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.063.html#50409849_pgfId-309452", " In A Body describes how fill holes or <B>gaps</B> in a solid or sheet body ", "Functional Description - Introduction To Model Editing");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-363276", " model. This general purpose deleting function can heal <B>gaps</B> in the resulting model, making it particularly useful", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-322249", " from another system, you may need to close <B>gaps</B> between the faces of the body: extending the", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321390", " model. This general purpose deleting function can heal <B>gaps</B> in the resulting model, making it particularly useful", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-322246", " With this option switched on, healing the <B>gaps</B> created when deleting blends is more likely to", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1417969", " edges, you can choose how to fill any <B>gaps</B> that are created in the corners between the", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-294752", " <B>Gaps</B> between faces that are created when importing data from", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-294759", " Filling <B>gaps</B> between touching bodies ", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-294761", " PK_BODY_fill_hole can fill any <B>gaps</B> that are formed between two touching bodies, as", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-294783", " Bridging <B>gaps</B> between bodies that do not touch ", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-294785", " PK_BODY_fill_hole can even be used to bridge the <B>gaps</B> between different sheet bodies. See Section 70.2.2, Supplying", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-294875", " Figure 70-2 Filling <B>gaps</B> between touching bodies ", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.084.html#50409872_pgfId-311823", " models will always be watertight (i.e.there are no <B>gaps</B> between facets along the polyline), as shown in", "Functional Description - Overview Of Convergent Modeling");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295673", " have been created in order to fill slender <B>gaps</B> in the model. Such faces are automatically rejected,", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308687", " the trimmed SP-curves in a loop may have <B>gaps</B> between them in parameter space where there are", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308688", " the trimmed SP-curves in a loop may have <B>gaps</B> between them in parameter space where there are", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308689", " where the trimming loops are closed and without <B>gaps</B> in parameter space; ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308690", " where the trimming loops are closed and without <B>gaps</B> in parameter space and each trimmed surface has", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308967", " the trimming curves describing the boundaries may leave <B>gaps</B> as illustrated in ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-309050", " Such descriptions with <B>gaps</B> in the boundaries are not always desirable. Options,", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-309150", " <B>Gaps</B> can also appear in the boundary description in parameter", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-394042", " 92.1.4.1 <B>Gaps</B> in SP-curve loops ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310176", " Tolerant vertices are there to hide <B>gaps</B> in edge/fin geometry. ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310177", " boundary, and vertex tolerances reflect the size of <B>gaps</B> between edge geometries meeting. ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310178", " at a tolerant vertex, the size of the <B>gaps</B> should be less than twice the tolerance of", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310206", " of about one micron - these are the <B>gaps</B> that Parasolid is trying to hide from you,", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304098", " with a silhouette (marked with code CODSMS) or <B>gaps</B> will occur in the drawing, where the obscured", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304118", " of another edge and ignoring it would cause <B>gaps</B> in the drawing. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-294855", " may contain overlapping facets or facets that have <B>gaps</B> between them. ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-294971", " You can use topology matching to prevent such <B>gaps</B> occurring. ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-295136", " topology matching option corrects the problem of slight <B>gaps</B> described in Geometry matching . ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-960831", " faces of an edge, but ensures that the <B>gaps</B> or overlaps between such facets are no bigger", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275887", " Ensures when faceting, that there are no <B>gaps</B> along the edges of the model, and that", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.12.html#50442252_pgfId-274481", " set of well defined touching faces, Parasolid perceives <B>gaps</B> and overlaps along every edge, and these must", "Overview of Parasolid - Importing Foreign Data");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " cylinder). The SP-curves in a loop may have <B>gaps</B> between them in parameter space where there are", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " the trim loops will be closed and without <B>gaps</B> in parameter space. Each trimmed surface will have", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_body_apply_knit_pattern_o_t.html#documentation", " will try to close the <B>gaps</B> that exist in input parts", "PK Reference - PK_BODY_apply_knit_pattern_o_t");
+top.note("headers/pk_body_make_curves_outline.html#documentation", " bodies the curves will meet to tolerance and <B>gaps</B>", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_spun_outline.html#documentation", " bodies the curves will meet to tolerance and <B>gaps</B>", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_offset_planar_wire_o_t.html#declaration", " PK_VERTEX_gap_fill_t gap_fill; --- how <B>gaps</B> at vertices are filled", "PK Reference - PK_BODY_offset_planar_wire_o_t");
+top.note("headers/pk_body_offset_planar_wire_o_t.html#documentation", " gap_fill specifies how <B>gaps</B> at vertices produced by the", "PK Reference - PK_BODY_offset_planar_wire_o_t");
+top.note("headers/pk_body_taper.html#documentation", "* Any <B>gaps</B> between misaligned \"above\" and \"below\" halves at the", "PK Reference - PK_BODY_taper");
+top.note("headers/pk_body_trim_gap_analysis.html#description", " This function finds <B>gaps</B> in the edges supplied to a failed trim", "PK Reference - PK_BODY_trim_gap_analysis");
+top.note("headers/pk_body_trim_gap_analysis.html#documentation", "<B>Gaps</B> of size less than tolerance will be detected and vertices bordering on", "PK Reference - PK_BODY_trim_gap_analysis");
+top.note("headers/pk_edge_delete.html#documentation", "thereby cease to have adjacent edges. Any <B>gaps</B> left behind by the delete", "PK Reference - PK_EDGE_delete");
+top.note("headers/pk_edge_offset_on_body.html#documentation", "to fill <B>gaps</B> resulting from offsetting edges that are connected by", "PK Reference - PK_EDGE_offset_on_body");
+top.note("headers/pk_edge_offset_on_body_o_t.html#declaration", " PK_VERTEX_gap_fill_t gap_fill; --- how <B>gaps</B> at vertices are filled", "PK Reference - PK_EDGE_offset_on_body_o_t");
+top.note("headers/pk_edge_offset_on_body_o_t.html#documentation", " gap_fill This specifies how <B>gaps</B> at vertices produced by the", "PK Reference - PK_EDGE_offset_on_body_o_t");
+top.note("headers/pk_face_close_gaps.html#declaration", " int *const n_vertices, --- number of vertices where <B>gaps</B>", "PK Reference - PK_FACE_close_gaps");
+top.note("headers/pk_face_close_gaps.html#description", " This function closes <B>gaps</B> at tolerant vertices in the face loops by", "PK Reference - PK_FACE_close_gaps");
+top.note("headers/pk_face_close_gaps_o_t.html#declaration", " PK_LOOP_3_space_gap_t gap_in_3_space; --- controls model space <B>gaps</B> at", "PK Reference - PK_FACE_close_gaps_o_t");
+top.note("headers/pk_face_close_gaps_o_t.html#description", " Holds optional controls for closing <B>gaps</B> at tolerant vertices in the face.", "PK Reference - PK_FACE_close_gaps_o_t");
+top.note("headers/pk_face_close_gaps_o_t.html#documentation", " gap_in_3_space Option for controlling model space <B>gaps</B> at tolerant", "PK Reference - PK_FACE_close_gaps_o_t");
+top.note("headers/pk_face_trim_confine_t.html#documentation", " have <B>gaps</B> between them in parameter space", "PK Reference - PK_FACE_trim_confine_t");
+top.note("headers/pk_facet_match_t.html#documentation", " contain facets that overlap or have <B>gaps</B>", "PK Reference - PK_facet_match_t");
+top.note("headers/pk_loop_2_space_gap_t.html#documentation", "PK_LOOP_2_space_gap_minimise_c : minimise the parameter space <B>gaps</B>", "PK Reference - PK_LOOP_2_space_gap_t");
+top.note("headers/pk_loop_3_space_gap_t.html#documentation", " <B>gaps</B> exist between edge/fin geometries at", "PK Reference - PK_LOOP_3_space_gap_t");
+top.note("headers/pk_loop_close_gaps.html#declaration", " int *const n_vertices, --- number of vertices where <B>gaps</B>", "PK Reference - PK_LOOP_close_gaps");
+top.note("headers/pk_loop_close_gaps.html#description", " This function closes <B>gaps</B> at tolerant vertices in the loop by modifying", "PK Reference - PK_LOOP_close_gaps");
+top.note("headers/pk_loop_close_gaps_o_t.html#declaration", " PK_LOOP_3_space_gap_t gap_in_3_space; --- controls model space <B>gaps</B> at", "PK Reference - PK_LOOP_close_gaps_o_t");
+top.note("headers/pk_loop_close_gaps_o_t.html#description", " Holds optional controls for closing <B>gaps</B> at tolerant vertices in the loop.", "PK Reference - PK_LOOP_close_gaps_o_t");
+top.note("headers/pk_loop_close_gaps_o_t.html#documentation", " gap_in_3_space Option for controlling model space <B>gaps</B> at tolerant", "PK Reference - PK_LOOP_close_gaps_o_t");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", " selected, facets will, in general, overlap or leave <B>gaps</B> at the", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#documentation", " selected, facets will, in general, overlap or leave <B>gaps</B> at the", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_fctab_error_facet_t.html#documentation", " The facet mesh may contain small <B>gaps</B> close to", "PK Reference - PK_TOPOL_fctab_error_facet_t");
+top.note("headers/pk_vertex_gap_fill_t.html#documentation", "This datatype is used to specify how <B>gaps</B> at offset vertices should be filled.", "PK Reference - PK_VERTEX_gap_fill_t");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-274959", " This option ensures that there are no <B>gaps</B> along the model edges and that along these", "KID Manual - KID Rendering");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

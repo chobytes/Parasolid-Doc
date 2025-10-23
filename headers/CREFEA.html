@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<TITLE>CREFEA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CREFEA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_group_create_from_entities.html>PK_GROUP_create_from_entities</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CREFEA ( type, part, featre, ifail )
+====================================
+
+  Create a feature
+
+Receives:
+  KI_cod_tyfe              *type           --- type of feature
+  KI_tag_part              *part           --- part which will own feature
+
+Returns:
+  KI_tag_feature           *featre         --- newly created feature
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wrong_type_for_feat    feature type cannot be created in 'part'
+
+Description:
+
+  Creates an empty feature in the specified part.
+
+  Features created in assemblies may have types:
+
+      TYFEIN    Instance feature
+      TYFESU    Surface feature
+      TYFECU    Curve feature
+      TYFEPT    Point feature
+      TYFEMX    Mixed feature
+
+  If any but TYFEMX is given, the feature will be permitted to contain entities
+  only of the specified type. A mixed feature in an assembly can contain
+  entities of any of the four types.
+
+  Items can be contained in a feature in an assembly only if they belong to the
+  assembly. Surfaces, curves and points must be construction geometry attached
+  to the assembly. Instances must be owned by the assembly.
+
+  Features created in bodies may have types:
+
+      TYFERG    Region feature
+      TYFEFA    Face feature
+      TYFEED    Edge feature
+      TYFEVX    Vertex feature
+      TYFESU    Surface feature
+      TYFECU    Curve feature
+      TYFEPT    Point feature
+      TYFEMX    Mixed feature
+
+  If any but TYFEMX is given, the feature will be permitted to contain entities
+  only of the specified type. A mixed feature in a body can contain
+  entities of any of the seven types.
+
+  Items can be contained in a feature in a body only if they are contained
+  within the body. Surfaces, curves and points may be either construction
+  geometry attached to the body or be attached to a face, edge or vertex in the
+  body. Regions, faces, edges and vertices must be contained within the body.
+
+</PRE>
+</BODY>
+</HTML>

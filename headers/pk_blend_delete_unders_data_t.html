@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_delete_unders_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_delete_unders_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_blend_delete_unders_data_s
+    {
+    int                      n_blends; --- number of blend faces ( 0 )
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>         *blends;   --- blend faces ( NULL )
+    const <A HREF=../headers/pk_entity_array_t.html>PK_ENTITY_array_t</A> *unders;   --- underlying entities for each of the
+                                       --- <B>'blends'</B> ( NULL )
+    };
+typedef struct PK_blend_delete_unders_data_s PK_blend_delete_unders_data_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains blend faces for which underlying entities have been
+supplied and their associated underlying entities.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_unsuitable_entity    A member of <B>'blends'</B> is a face that is not
+                                  being deleted
+                                  (MILD)
+
+    PK_ERROR_bad_combination      The number of unders supplied for each blend
+                                  should be 2 or 3
+                                  (MILD)
+
+    PK_ERROR_wrong_entity         An array in <B>'unders'</B> contains entities that
+                                  are not of class PK_CLASS_face, PK_CLASS_edge
+                                  or PK_ENTITY_null
+                                  (MILD)
+
+                                  An array in <B>'unders'</B> does not satisfy either
+                                  of the configuration tables given below.
+                                  (MILD)
+
+
+    PK_ERROR_not_in_same_body     More than one of the <B>'unders'</B> supplied
+                                  for a blend does not lie in the same body as
+                                  the blend
+                                  (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_delete_blends_o_t.html>PK_FACE_delete_blends_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This structure contains the blend faces for which underlying entities
+have been supplied.
+
+Description of fields:
+
+<B>'n_blends'</B>      Length of <B>'blends'</B> and <B>'unders'</B>.
+                The default value is 0.
+
+<B>'blends'</B>        An array, of length <B>'n_blends'</B>, of blend faces for which
+                underlying faces have been specified.
+                The default value is NULL.
+
+<B>'unders'</B>        Arrays of underlying entities associated with the <B>'blends'</B>.
+                Each array should be of length 2 or 3.
+                The default value is NULL.
+
+Blends between faces:
+Blends between faces which are not adjacent to their underlying faces should
+have two or three underlying faces supplied.  At least one face must be
+adjoining the corresponding blend face.
+
+Cliff edge blends:
+Cliff edge blends should have an underlying face and a cliff edge supplied as
+their underlying entities. The underlying face must adjoin the corresponding
+blend face along a single edge and the cliff edge must be an edge of
+the corresponding blend face.  The boundary of the blend chain between the
+blends and their underlying faces must also be a g1-continuous chain of edges
+
+Notch blends:
+
+Fully and partially notched edge blends should have an underlying face and a
+PK_ENTITY_null supplied as their underlying entities, where the PK_ENTITY_null
+value represents the missing under.
+
+A notched branch blend should have two of its underlying faces supplied and
+a PK_ENTITY_null. The two underlying faces should be blend faces and belong
+to the <B>'blends'</B> array.
+
+The boundary edge between two adjacent notch edge blend faces in <B>'blends'</B> array
+that belong to the same chain should be smooth.
+
+
+Allowed configurations for edge blend unders:
+------------------------------------------------------------
+|Blend between faces |PK_CLASS_face (*) | PK_CLASS_face    |
+------------------------------------------------------------
+|Notch  blend        |PK_CLASS_face (*) | PK_ENTITY_null   |
+------------------------------------------------------------
+|Cliff blend         |PK_CLASS_face (*) | PK_CLASS_edge(*) |
+------------------------------------------------------------
+(*) The entity must be adjacent to its blend.
+
+
+Allowed configurations for branch blend unders:
+-----------------------------------------------------------------------------
+|Blend between faces |PK_CLASS_face     | PK_CLASS_face     | PK_CLASS_face |
+----------------------------------------------------------------------------|
+|Notch  blend        |PK_CLASS_face (**)| PK_CLASS_face (**)| PK_ENTITY_null|
+-----------------------------------------------------------------------------
+(**) The entity must belong to <B>'blends'</B> array and be adjacent to the
+     notch blend.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

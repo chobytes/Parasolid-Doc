@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_pattern_axial_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_pattern_axial_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_pattern_axial_o_s
+    {
+    int             o_t_version;    --- version number of structure
+    <A HREF=../headers/pk_axis1_sf_t.html>PK_AXIS1_sf_t</A>   axis;           --- axis of pattern
+                                    --- (location 0,0,0 direction 0,1,0)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>     origin;         --- origin of pattern (0, 0, 0)
+    double          radial_length;  --- length in the radial direction (0)
+    double          axial_length;   --- length parallel to the axis (0)
+    int             reps_per_period;--- number of repetitions per complete
+                                    --- period (0)
+    };
+typedef struct PK_pattern_axial_o_s PK_pattern_axial_o_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains information defining an axial pattern.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+PK_ERROR_radius_eq_0              <B>'origin'</B> lies within session precision
+                                  of <B>'axis'</B> (MILD)
+
+PK_ERROR_bad_value                <B>'reps_per_period'</B> is zero or negative
+                                  (MILD)
+
+PK_ERROR_distance_le_0            <B>'radial_length'</B> or <B>'axial_length'</B> is zero
+                                  or negative (MILD)
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_pattern_form_t.html>PK_pattern_form_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+<B>'axis'</B>                      Axis of pattern
+
+
+<B>'origin'</B>                    Origin of pattern, defining and lying coincident
+                            to its parametric seam.
+
+
+<B>'radial_length'</B>             Length between adjacent repetitions in the radial
+                            direction
+
+
+<B>'axial_length'</B>              Length between adjacent repetitions in the
+                            direction of the axis
+
+
+<B>'reps_per_period'</B>           Number of repetitions that would form a full period
+                            around the axis (2pi)
+
+A transform will be applied to ensure the minimum corner of the <B>'skewbox'</B>
+of the <B>'cell'</B> will be mapped to the <B>'origin'</B> of the axial pattern, along with
+the following direction mappings -
+ o cell's i_axis -&gt; around the form's axis (positive is anti-clockwise when
+                    looking down the axis)
+ o cell's j_axis -&gt; along the form's axis
+ o cell's k_axis -&gt; radial direction
+
+The number of repetitions in each direction is controlled by the <B>'bound'</B>
+structure based on this mapping -
+ o <B>'repetitions_i'</B> is the number of repetitions in the arc around the axis. It
+   must be no greater than <B>'reps_per_period'</B>.
+ o <B>'repetitions_j'</B> is the number of repetitions in the direction of the axis.
+ o <B>'repetitions_k'</B> is the number of repetitions in the radial direction.
+In order to restrict the pattern to fewer than three dimensions, the first and
+second value of the <B>'bound'</B> structure's corresponding repetitions should be
+equal, for example [0, 0].
+
+The pattern's <B>'axis'</B> and <B>'origin'</B> form a parameter space which has the
+following mappings -
+ o The first coordinate is the u parameter (around the form's axis).
+ o The second coordinate is the v parameter (along the form's axis).
+ o The third coordinate is the radial direction.
+The u,v parameters are equivalent to those of a cylinder; see <A HREF=../headers/pk_cyl_sf_t.html>PK_CYL_sf_t</A> for
+details. The pattern's <B>'origin'</B> has the parameter space coordinates [0, 0, 0].
+The lengths in the radial and axial directions are parameterised so that they
+represent model space distance.
+
+If the axial pattern is used in combination with a <B>'callback'</B>, the positions
+supplied to the <B>'callback'</B> will be in the context of the pattern's parameter
+space. The u parameter values will be supplied in the range [0, 2pi].
+
+If the axial pattern is used in combination with <B>'bound'</B> <B>'trim_curves'</B>, the
+polyline positions must be supplied in the context of the pattern's parameter
+space. The <B>'trim_curves'</B> bound the pattern in the ith direction (around the
+form's axis) and jth direction (along the form's axis). The polyline positions
+must lie on the cylinder surface of the pattern's parameter space, so their
+kth direction coordinate (radial direction) must have a value of 0.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

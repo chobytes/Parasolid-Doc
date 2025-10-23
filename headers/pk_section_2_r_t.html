@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_section_2_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_section_2_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_section_2_r_s
+    {
+    <A HREF=../headers/pk_section_result_t.html>PK_section_result_t</A>     result;         --- result of sectioning operation
+    int                     n_front_bodies; --- number of front bodies
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>              *front_bodies;   --- bodies in front of section
+    int                     n_back_bodies;  --- number of back bodies
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>              *back_bodies;    --- bodies behind section
+    int                     n_front_faces;  --- number of front faces
+    <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>              *front_faces;    --- faces in front of section
+    int                     n_back_faces;   --- number of back faces
+    <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>              *back_faces;     --- faces behind section
+    int                     n_reports;      --- number of reports
+    <A HREF=../headers/pk_section_report_r_t.html>PK_section_report_r_t</A>  *reports;        --- array of report structures
+    };
+typedef struct PK_section_2_r_s PK_section_2_r_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains the results of a section operation for bodies
+or faces.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_section_with_sheet_2.html>PK_BODY_section_with_sheet_2</A><br>
+    <A HREF=../headers/pk_face_section_with_sheet_2.html>PK_FACE_section_with_sheet_2</A><br>
+    <A HREF=../headers/pk_section_2_r_f.html>PK_section_2_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The arrays of entities are returned under the control of the <B>'fence'</B>
+field of an options structure, and will be set to (NULL, 0) if not
+requested, or empty (length of zero).
+
+Description of fields:
+
+
+
+<B>'result'</B>                 This status field indicates the overall state of
+                         the sectioning operation. Permitted values are :
+
+                           <A HREF=../headers/pk_section_result_t.html>PK_section_result_success_c</A>
+                           <A HREF=../headers/pk_section_result_t.html>PK_section_result_no_clash_c</A>
+                           <A HREF=../headers/pk_section_result_t.html>PK_section_result_failed_c</A>
+
+
+
+<B>'n_front_bodies'</B>         The number of bodies in the <B>'front_bodies'</B> array.
+
+
+<B>'front_bodies'</B>           The array of resultant bodies in front of the
+                         sectioning tool. If the <B>'result'</B> field is set
+                         to <B>'<A HREF=../headers/pk_section_result_t.html>PK_section_result_failed_c</A>'</B>, the array will
+                         be set to null.
+
+
+
+
+<B>'n_back_bodies'</B>          The number of bodies in the <B>'back_bodies'</B> array.
+
+
+<B>'back_bodies'</B>            The array of resultant bodies behind the
+                         sectioning tool. If the <B>'result'</B> field is set
+                         to <B>'<A HREF=../headers/pk_section_result_t.html>PK_section_result_failed_c</A>'</B>, the array will
+                         be set to null.
+
+
+
+<B>'n_front_faces'</B>          The number of faces in the <B>'front_faces'</B> array.
+
+
+<B>'front_faces'</B>            The array of new faces of the resultant bodies
+                         in front of the sectioning tool. If the <B>'result'</B>
+                         field is set to <B>'<A HREF=../headers/pk_section_result_t.html>PK_section_result_failed_c</A>'</B>, the
+                         array will be set to null.
+
+
+
+<B>'n_back_faces'</B>           The number of faces in the <B>'back_faces'</B> array.
+
+
+<B>'back_faces'</B>             The array of new faces of the resultant bodies
+                         behind the sectioning tool. If the <B>'result'</B> field
+                         is set to <B>'<A HREF=../headers/pk_section_result_t.html>PK_section_result_failed_c</A>'</B>, the array
+                         will be set to null.
+
+
+
+<B>'n_reports'</B>              The number of sectioning reports in the <B>'reports'</B>
+                         array.
+
+
+<B>'reports'</B>               This array may contain supplementary information
+                        regarding the outcome of the sectioning operation.
+                        For example, if the operation failed, the reports
+                        may contain topology related to the failure.
+
+The function <A HREF=../headers/pk_section_2_r_f.html>PK_section_2_r_f</A> may be used to free associated memory.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,859 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE>Distant and Multi-scale Modelling</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Distant and Multi-scale Modelling</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fd_chap.023.html">Assemblies And Instances</A></TD>
+  <TD><A HREF="../fd_index.html">Chapters</A></TD>
+  <TD><A HREF="fd_chap.025.html">Reading and Writing Parasolid Data</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-456754">23.1	Introduction </A>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-456815">23.2	Distant modelling </A>
+<UL>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-456965">23.2.1	Parasolid functions that support this technology </A>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457018">23.2.2	Key usage advice </A>
+</UL>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457039">23.3	Multi-scale modelling </A>
+<UL>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-456777">23.3.1	Terminology used in this section </A>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457219">23.3.2	Scale factors </A>
+<UL>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457237">23.3.2.1	Input scale factors </A>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457310">23.3.2.2	Output scale factors </A>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457340">23.3.2.3	Functions that support scale factors </A>
+</UL>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457401">23.3.3	Enlarging parts using dedicated APIs </A>
+<UL>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-487542">23.3.3.1	Example of enlarging </A>
+</UL>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457183">23.3.4	A simple example of multi-scaling at work </A>
+<LI> <A HREF="fd_chap.024.html#50409622_pgfId-457374">23.3.5	Adjusting the scale factor attribute using PK_BODY_enlarge </A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409622_pgfId-456754"></A>23.1	<A NAME="50409622_99370"></A>Introduction 
+
+
+</H1>
+<P>
+<A NAME="50409622_pgfId-457562"></A>Parasolid supports the representation of, and common workflows involving, assemblies where components are distributed over a range larger than the Parasolid size box. This is done while retaining the same level of linear and angular precision. </P>
+<P>
+<A NAME="50409622_pgfId-457821"></A>Parasolid uses two distinct but complementary mechanisms to enable your application to work with these large scale models:</P>
+<UL>
+<LI>
+<A NAME="50409622_pgfId-457964"></A>Distant modelling: Creating standard sized entities inside the Parasolid size box and associating them with a large transformation that may position them outside of the size box. See <A HREF="fd_chap.024.html#50409622_69720">Section 23.2, “Distant modelling”</A>, for more information.</LI>
+<LI>
+<A NAME="50409622_pgfId-458002"></A>Multi-scale modelling: Creating standard sized entities inside the Parasolid size box and associating them with a scale factor to represent large parts which may not fit inside the size box.See <A HREF="fd_chap.024.html#50409622_33346">Section 23.3, “Multi-scale modelling”</A>, for more information.</LI>
+</UL>
+<P>
+<A NAME="50409622_pgfId-458511"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-458541"></A>Note: The mechanisms described in this chapter are mainly focused on usage being in an application’s assembly context.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409622_pgfId-458849"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-458880"></A>Related Topics: </P>
+<UL>
+<UL>
+<LI>
+<A NAME="50409622_pgfId-458869"></A><A HREF="fd_chap.017.html#50409798_84978">Section 16.2, “Session precision”</A></LI>
+</UL>
+</UL>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409622_pgfId-456815"></A>23.2	<A NAME="50409622_69720"></A>Distant modelling 
+
+
+</H1>
+<P>
+<A NAME="50409622_pgfId-459185"></A>To ensure precision is handled correctly by Parasolid, your application must ensure that all parts of a body are within a size box. This size box is 1000 by 1000 by 1000 and is centered at the origin. However, this can prove difficult when working with models in an assembly spread over a large distance. </P>
+<P>
+<A NAME="50409622_pgfId-459709"></A>Parasolid provides support for models that individually would fit inside the size box but in an application assembly context may be positioned beyond the size box by being associated with large transformations. Parasolid refers to this as <STRONG>
+Distant modelling</STRONG>.</P>
+<P>
+<A NAME="50409622_pgfId-480980"></A>A simple example of this is illustrated in <A HREF="fd_chap.024.html#50409622_97908"><EM>
+Figure 23-1</EM></A> where transforms (T1 and T2) are applied to two parts within the size box resulting in these parts being positioned beyond the size box.</P>
+<P>
+<A NAME="50409622_pgfId-490376"></A>&nbsp;</P>
+<P>
+<A NAME="50409622_pgfId-460134"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-191.gif">
+
+<P>
+<A NAME="50409622_pgfId-460191"></A>Figure 23-1 <A NAME="50409622_97908"></A>Models in an assembly positioned outside the size box by large transforms</P>
+<P>
+<A NAME="50409622_pgfId-476057"></A>An example workflow is in factory design when deciding where to position objects (such as machinery) around the factory. Each component of the factory is small but the factory itself may extend to a few kilometers in size.</P>
+<P>
+<A NAME="50409622_pgfId-485015"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-475954"></A>Warning: Your application should use Parasolid for any calculations involving the creation or manipulation of large transformations to guarantee retaining a session precision of 1.0e -08.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+<H3>
+<A NAME="50409622_pgfId-456965"></A>	23.2.1 	Parasolid functions that support this technology </H3>
+<P>
+<A NAME="50409622_pgfId-460737"></A>The following are Parasolid functional areas and associated functions that support this technology:</P>
+<P>
+<A NAME="50409622_pgfId-460824"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460831"></A>Functional areas</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460833"></A>Functions</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460835"></A>Boxing </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460837"></A><A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A>, <A HREF=../headers/pk_topol_find_box_2.html>PK_TOPOL_find_box_2</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460839"></A>Mass properties </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460841"></A><A HREF=../headers/pk_topol_eval_mass_props.html>PK_TOPOL_eval_mass_props</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460843"></A>Picking </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460845"></A><A HREF=../headers/pk_body_pick_topols.html>PK_BODY_pick_topols</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460847"></A>Rendering (wireframe and hidden line)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460849"></A><A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460851"></A>Transformation creation </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460853"></A><A HREF=../headers/pk_transf_create_reflection.html>PK_TRANSF_create_reflection</A>, <A HREF=../headers/pk_transf_create_rotation.html>PK_TRANSF_create_rotation</A>,</P>
+<P>
+<A NAME="50409622_pgfId-488558"></A><A HREF=../headers/pk_transf_create_translation.html>PK_TRANSF_create_translation</A>,</P>
+<P>
+<A NAME="50409622_pgfId-488588"></A><A HREF=../headers/pk_transf_create_view.html>PK_TRANSF_create_view</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460938"></A>Combining transformations</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460940"></A><A HREF=../headers/pk_transf_transform_2.html>PK_TRANSF_transform_2</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460971"></A>Calculating distances between transformed arrays of entities</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-460973"></A><A HREF=../headers/pk_entity_range.html>PK_ENTITY_range</A>, <A HREF=../headers/pk_entity_range_vector.html>PK_ENTITY_range_vector</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-461126"></A>Faceting</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-461128"></A><A HREF=../headers/pk_topol_facet_2.html>PK_TOPOL_facet_2</A>, <A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-488621"></A>Clashing and coincidence</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-488623"></A><A HREF=../headers/pk_face_is_coincident.html>PK_FACE_is_coincident</A>, <A HREF=../headers/pk_topol_clash.html>PK_TOPOL_clash</A></P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H3>
+<A NAME="50409622_pgfId-457018"></A>	23.2.2 	Key usage advice </H3>
+<P>
+<A NAME="50409622_pgfId-461640"></A>In order to maintain accuracy when working with large transformations Parasolid requires that:</P>
+<UL>
+<LI>
+<A NAME="50409622_pgfId-461964"></A>All parts of a model must be within the size box to ensure precision is handled correctly. See <A HREF="fd_chap.017.html#50409798_84978">Section 16.2, “Session precision”</A>, for more information on the size box. </LI>
+<LI>
+<A NAME="50409622_pgfId-461774"></A>You use specific transformation functions <A HREF=../headers/pk_transf_create_translation.html>PK_TRANSF_create_translation</A>, <A HREF=../headers/pk_transf_create_reflection.html>PK_TRANSF_create_reflection</A>, and <A HREF=../headers/pk_transf_create_rotation.html>PK_TRANSF_create_rotation</A> to create necessary transformations and <A HREF=../headers/pk_transf_transform_2.html>PK_TRANSF_transform_2</A> to combine them. See <A HREF="fd_chap.022.html#50409803_39132">Chapter 21, “Transformations”</A> for more information on these functions.</LI>
+</UL>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50409622_pgfId-457039"></A>23.3	<A NAME="50409622_33346"></A>Multi-scale modelling 
+
+
+</H1>
+<P>
+<A NAME="50409622_pgfId-462120"></A>Parasolid provides capabilities for models from different application scales (SI unit mappings) to coexist with each other in the same Parasolid session and interact with each other in typical assembly modelling workflows. Parasolid refers to this as multi-scale modelling.</P>
+<P>
+<A NAME="50409622_pgfId-474801"></A>This mechanism supports assemblies with a mix of part sizes by allowing you to associate a scale factor with each part.</P>
+<P>
+<A NAME="50409622_pgfId-474755"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-192.gif">
+
+<P>
+<A NAME="50409622_pgfId-474730"></A>Figure 23-2 Real world example of a multi-scale scenario</P>
+<P>
+<A NAME="50409622_pgfId-462580"></A>Support is provided as follows:</P>
+<UL>
+<LI>
+<A NAME="50409622_pgfId-462621"></A>You can supply relative scale factors via dedicated options in Parasolid APIs which can scale input bodies. See <A HREF="fd_chap.024.html#50409622_92531">Section 23.3.2.1, “Input scale factors”</A>, for more information.</LI>
+<LI>
+<A NAME="50409622_pgfId-465717"></A>Optionally supply an output scale factor to control the scale of the output results. See <A HREF="fd_chap.024.html#50409622_31422">Section 23.3.2.2, “Output scale factors”</A>, for more information.</LI>
+<LI>
+<A NAME="50409622_pgfId-462756"></A>You can use dedicated APIs for rescaling. See <A HREF="fd_chap.024.html#50409622_73245">Section 23.3.3, “Enlarging parts using dedicated APIs”</A>, for more information.</LI>
+</UL>
+<P>
+<A NAME="50409622_pgfId-485336"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-465335"></A>Note: Multi-scale modelling assumes that the application has implemented or will implement support for different sized parts (i.e have different mappings of Parasolid units to SI units). </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+<H3>
+<A NAME="50409622_pgfId-456777"></A>	23.3.1 	Terminology used in this section </H3>
+<P>
+<A NAME="50409622_pgfId-459015"></A>Some terminology used in this chapter is specific to this concept of multi-scale modelling. This section contains a list and descriptions of these new terms:</P>
+<UL>
+<LI>
+<A NAME="50409622_pgfId-468919"></A><STRONG>
+Standard parts</STRONG>: This is how the majority of Parasolid-based applications work, where 1 Parasolid unit = 1 metre (the recommended default mapping for Parasolid-based applications).</LI>
+<LI>
+<A NAME="50409622_pgfId-468922"></A><STRONG>
+Larger parts</STRONG>: This extends the upper range that can be used for modelling of very large models such as landscapes/terrain. For example, your application could have a mapping of 1 Parasolid unit = 0.1km</LI>
+<LI>
+<A NAME="50409622_pgfId-468925"></A><STRONG>
+Smaller parts</STRONG>: This extends the granularity/intricacy of parts that can be modelled with Parasolid such as microchips without running into the limits of precision. At the upper end of the scale, it reduces the size (in physical units) of the models that can be built. For example, your application could have a mapping of 1 Parasolid unit = 1mm.</LI>
+<LI>
+<A NAME="50409622_pgfId-482677"></A><STRONG>
+Base scale</STRONG>: This is the smallest scale involved in the operation. For example, when working with larger and standard parts, the scale of the standard part is referred to as the base scale.</LI>
+</UL>
+<P>
+<A NAME="50409622_pgfId-485472"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-479754"></A>Note: The example unit mappings used in this section to describe larger and smaller parts are for description purposes. In practice, your application could choose different unit mappings for each of their parts.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H3>
+<A NAME="50409622_pgfId-457219"></A>	23.3.2 	<A NAME="50409622_38098"></A>Scale factors </H3>
+<P>
+<A NAME="50409622_pgfId-463055"></A>To allow models of different scales to interact with each other in read-only operations, Parasolid provides a scale factor (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>) which your application can use to inform Parasolid as to:</P>
+<UL>
+<LI>
+<A NAME="50409622_pgfId-489163"></A>the scale at which an entity was created (supplying it as an input scale factor) </LI>
+<LI>
+<A NAME="50409622_pgfId-489174"></A>and/or the scale at which you would like the outputs (supplying it as an output scale factor) from certain operations.</LI>
+</UL>
+<P>
+<A NAME="50409622_pgfId-489177"></A><A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A> has the following values.</P>
+<P>
+<A NAME="50409622_pgfId-466047"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463250"></A>Values</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463252"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463254"></A><A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463256"></A>A scaling factor of 1 is used</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463258"></A><A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_10x_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463260"></A>A scaling factor of 10 is used</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463262"></A><A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_100x_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463264"></A>A scaling factor of 100 is used</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463266"></A><A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1000x_c</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-463268"></A>A scaling factor of 1000 is used</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409622_pgfId-463644"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-466054"></A>Note: Scale factors greater than 1000x are not supported.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50409622_pgfId-457237"></A>23.3.2.1 <A NAME="50409622_92531"></A>Input scale factors </H4>
+<P>
+<A NAME="50409622_pgfId-457271"></A>An input scale factor indicates the scale at which the input entities was originally modelled.</P>
+<P>
+<A NAME="50409622_pgfId-463055"></A>You can supply one input scale factor per input body (or part). If you have an array of bodies or parts, you can supply one input scale factor for each one in the input array. </P>
+<P>
+<A NAME="50409622_pgfId-467083"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-464118"></A>Note: Represent all input scale factors relative to the smallest scale input as Parasolid does not support scale factors less than 1.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409622_pgfId-466656"></A>When supplying input scale factors, they should be collated and expressed in the context of the smallest scale input. For example, if your application inputs smaller and standard parts into an operation, the application should present the inputs in the context of the smaller entities, with these having an input scale factor of 1x and the standard entities having a larger input scale factor, e.g. 1000x.</P>
+<P>
+<A NAME="50409622_pgfId-464396"></A>The results of the operation will be calculated and returned at the smallest input scale provided unless your application has supplied an output scale. </P>
+
+
+<H4>
+<A NAME="50409622_pgfId-457310"></A>23.3.2.2 <A NAME="50409622_31422"></A>Output scale factors </H4>
+<P>
+<A NAME="50409622_pgfId-464457"></A>An output scale factor tells Parasolid the scale at which the application wants to interpret the results of the Parasolid operation. By default, results of the operation are returned in the smallest scale used for the input of the operation. However, if your application wants to visualise the results relative to a larger scale supplied in the operation then you need to supply an output scale factor (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>), to control the scale at which the results are returned.</P>
+<P>
+<A NAME="50409622_pgfId-464989"></A>For example, you have a set of small and standard bodies in an assembly. By default (i.e no output scale factor is set), the results are returned in the context of the small scale. By supplying an output scale factor, you can specify to return the output results in the context of a standard scale by supplying a larger scale factor e.g.1000x. </P>
+<P>
+<A NAME="50409622_pgfId-464586"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-464592"></A>Note: The use of this output scale factor is optional. Only one output scale factor can be supplied and this will apply to the scale of the results and not the actual bodies.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50409622_pgfId-457340"></A>23.3.2.3 Functions that support scale factors </H4>
+<P>
+<A NAME="50409622_pgfId-477192"></A>These APIs allow an application to support an assembly of parts which are a mix of different scales e.g large and standard parts together in a single assembly.</P>
+<P>
+<A NAME="50409622_pgfId-465150"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-474888"></A>Functional area/APIs</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-465024"></A>Input scale factor</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-465112"></A>Output scale factor</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="3">
+<P>
+<A NAME="50409622_pgfId-474890"></A><STRONG>
+Faceting</STRONG></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475095"></A><A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475097"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475099"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475089"></A><A HREF=../headers/pk_topol_facet_2.html>PK_TOPOL_facet_2</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475091"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475093"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="3">
+<P>
+<A NAME="50409622_pgfId-474892"></A><STRONG>
+Wireframe Rendering</STRONG></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475148"></A><A HREF=../headers/pk_geom_render.html>PK_GEOM_render</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475150"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475152"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475142"></A><A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475144"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475146"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="3">
+<P>
+<A NAME="50409622_pgfId-474894"></A><STRONG>
+Hidden line Rendering</STRONG></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475189"></A><A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475191"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475193"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-474896"></A><STRONG>
+Picking</STRONG></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-465038"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-468827"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475207"></A><A HREF=../headers/pk_body_pick_topols.html>PK_BODY_pick_topols</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475209"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475211"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="3">
+<P>
+<A NAME="50409622_pgfId-474898"></A><STRONG>
+Measurement</STRONG></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475237"></A><A HREF=../headers/pk_entity_range.html>PK_ENTITY_range</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475239"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475241"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475424"></A><A HREF=../headers/pk_entity_range_vector.html>PK_ENTITY_range_vector</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475426"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475428"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="3">
+<P>
+<A NAME="50409622_pgfId-474900"></A><STRONG>
+Boxing</STRONG></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475263"></A><A HREF=../headers/pk_topol_find_box_2.html>PK_TOPOL_find_box_2</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475265"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475267"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475257"></A><A HREF=../headers/pk_topol_find_nabox.html>PK_TOPOL_find_nabox</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475259"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475261"></A>X</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="3">
+<P>
+<A NAME="50409622_pgfId-474902"></A><STRONG>
+Clashing</STRONG></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475306"></A><A HREF=../headers/pk_topol_clash.html>PK_TOPOL_clash</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475308"></A>X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-475310"></A>n/a</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="3">
+<P>
+<A NAME="50409622_pgfId-488777"></A><STRONG>
+Perspective Outlining</STRONG></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-488812"></A><A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-488814"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50409622_pgfId-488816"></A>X</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409622_pgfId-471352"></A>The supplied scale factors in these operations are read only operations and do not modify the input bodies.</P>
+
+
+
+<H3>
+<A NAME="50409622_pgfId-457401"></A>	23.3.3 	<A NAME="50409622_73245"></A>Enlarging parts using dedicated APIs </H3>
+<P>
+<A NAME="50409622_pgfId-468032"></A>For workflows where you want to modify one or other of the bodies of different scales, Parasolid provides capability via dedicated enlarge APIs that provide targeted support to enable you to bring portions of a body or geometry from a larger scale environment to a smaller scale one. </P>
+<P>
+<A NAME="50409622_pgfId-470323"></A><STRONG>
+Enlarge</STRONG> in this context refers to taking a body (or geometry) from a larger scale and representing either a portion of the body or the whole body in the context of a smaller scale, therefore enlarging the portion of the part. For example from a large body to a standard body or a standard body to a small body.</P>
+
+<H4>
+<A NAME="50409622_pgfId-487542"></A>23.3.3.1 Example of enlarging </H4>
+<P>
+<A NAME="50409622_pgfId-487543"></A>The following is a simple example used to explain the concept of enlarge in this context:</P>
+<P>
+<A NAME="50409622_pgfId-487547"></A>Your application has a standard body where 1 Parasolid unit = 1 m (Body A), and a larger body (Body B) where 1 Parasolid unit = 0.1km and it wants to represent Body B as a standard body so it can interact with Body A in a modelling operation.</P>
+<P>
+<A NAME="50409622_pgfId-487557"></A>To do this, the 3-space values in the Parasolid Body B needs to be enlarged (i.e 1 Parasolid unit in Body B will correspond to 100 Parasolid units in the standard body Body A) so its at the same scale as Body A. This is illustrated in <A HREF="fd_chap.024.html#50409622_23662"><EM>
+Figure 23-3</EM></A>.</P>
+<P>
+<A NAME="50409622_pgfId-487568"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-193.gif">
+
+<P>
+<A NAME="50409622_pgfId-487570"></A>Figure 23-3 <A NAME="50409622_23662"></A>An example of <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A> </P>
+<P>
+<A NAME="50409622_pgfId-474621"></A>The dedicated Parasolid enlarge APIs are as follows:</P>
+<UL>
+<LI>
+<A NAME="50409622_pgfId-468612"></A><A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A>: allows you to create a new body by enlarging the input body by a given scale factor.</LI>
+<LI>
+<A NAME="50409622_pgfId-468629"></A><A HREF=../headers/pk_geom_enlarge.html>PK_GEOM_enlarge</A>: allows you to enlarge the given geometric entities by a given scale factor. </LI>
+<LI>
+<A NAME="50409622_pgfId-479674"></A><A HREF=../headers/pk_transf_enlarge.html>PK_TRANSF_enlarge</A>: allows you to enlarge a given transform by a given scale factor to enable you to modify a transform that was used in your larger scale so it can be used in the standard scale.</LI>
+</UL>
+<P>
+<A NAME="50409622_pgfId-472893"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-472899"></A>Note: For all functions, the centre of scaling is the origin.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409622_pgfId-472530"></A>To ensure precision is maintained, bodies must always fit inside the Parasolid size box in the context of the SI unit mapping of the session they were created in. However, once a body (or geometry) has been enlarged, it may not fit into the size box of the smaller session. If this happens, the part will be trimmed. Both <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A> and <A HREF=../headers/pk_geom_enlarge.html>PK_GEOM_enlarge</A> perform trimming either to the Parasolid size box or a user-supplied box using the <CODE>
+have_trimming_box</CODE>
+ and <CODE>
+trimming_box</CODE>
+ options. Any geometry or topology that lies outside of the box is discarded. This is illustrated in <A HREF="fd_chap.024.html#50409622_85067"><EM>
+Figure 23-4</EM></A>.</P>
+<P>
+<A NAME="50409622_pgfId-485903"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fd_chap-194.gif">
+
+<P>
+<A NAME="50409622_pgfId-485886"></A>Figure 23-4 <A NAME="50409622_85067"></A>Enlarging geometry and performing model editing operations</P>
+<P>
+<A NAME="50409622_pgfId-473687"></A>For more information on these two functions, see <A HREF="fd_chap.015.html#50409796_85030">Section 14.9, “Representing models whose parts are of different scales”</A></P>
+
+
+
+<H3>
+<A NAME="50409622_pgfId-457183"></A>	23.3.4 	A simple example of multi-scaling at work </H3>
+<P>
+<A NAME="50409622_pgfId-469437"></A>Below is a simplistic example of how multi-scaling might work in a bridge design context:</P>
+<UL>
+<LI>
+<A NAME="50409622_pgfId-477413"></A>You have terrain data for a wide area (&gt;10km square) and import it to Parasolid as a large part. </LI>
+<LI>
+<A NAME="50409622_pgfId-478141"></A>Your application identifies an area in this terrain data where it needs to position a bridge.</LI>
+<LI>
+<A NAME="50409622_pgfId-478167"></A>A basic bridge structure is imported as a standard part. </LI>
+<LI>
+<A NAME="50409622_pgfId-478173"></A>You want both elements to interact with each other, however as they are of different scales your application tells Parasolid what size the terrain is relative to the bridge. </LI>
+<LI>
+<A NAME="50409622_pgfId-478188"></A>The application uses positioning techniques to manoeuvre the bridge into the correct position creating a transform at standard scale.</LI>
+<LI>
+<A NAME="50409622_pgfId-478307"></A>The entire layout can be visualised by calling Parasolid with both parts and supplying the scale associated with the large part.</LI>
+<LI>
+<A NAME="50409622_pgfId-486368"></A>If a trim operation is needed to fit the bridge to the surrounding terrain, an enlarge operation can be used to convert a portion of the large part (terrain data) to a standard part for use in the boolean.</LI>
+</UL>
+
+
+<H3>
+<A NAME="50409622_pgfId-457374"></A>	23.3.5 	Adjusting the scale factor attribute using <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A> </H3>
+<P>
+<A NAME="50409622_pgfId-469286"></A>If the supplied body has a system attribute of type SDL/TYSA_SCALE_FACTOR attached and a scale factor is supplied via <CODE>
+factor</CODE>
+ argument in <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A>, then Parasolid will attach a new scale factor attribute to the newly created enlarged body. The value supplied in <CODE>
+factor</CODE>
+ can modify the value of the new system attribute as needed to ensure the size of the result body remains unchanged in real-world units. For more information on this scale factor attribute, see <A HREF="fd_chap.124.html#50409918_21238">Section A.3.13, “Scale factor”</A>.</P>
+<P>
+<A NAME="50409622_pgfId-469276"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50409622_pgfId-469497"></A>Note: This attribute is for informative purposes only and in general Parasolid will not read from it or write to it. The exception is in <A HREF=../headers/pk_body_enlarge.html>PK_BODY_enlarge</A>.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50409622_pgfId-468606"></A>&nbsp;</P>
+<P>
+<A NAME="50409622_pgfId-294726"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fd_chap.023.html">Assemblies And Instances</A></TD>
+  <TD><A HREF="../fd_index.html">Chapters</A></TD>
+  <TD><A HREF="fd_chap.025.html">Reading and Writing Parasolid Data</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

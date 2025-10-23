@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_fill_hole_preference_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_fill_hole_preference_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_fill_hole_preference_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_fill_hole_o_t.html>PK_BODY_fill_hole_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype specifies the boundary smoothness preferences when filling a
+hole.
+
+It has the values :
+    PK_fill_hole_smooth_c         The hole is filled with a solution that is
+                                  smooth at the boundary. Where possible an
+                                  analytic solution will be given. You must
+                                  use this option if 'non_smooth_edges' is not
+                                  empty.
+
+    <A HREF=../headers/pk_fill_hole_non_smooth_t.html>PK_fill_hole_non_smooth_c</A>     The hole is filled ignoring all smoothness
+                                  requirements at the boundary of the hole.
+                                  Where possible an analytic solution will be
+                                  given. Using this value is equivalent to
+                                  using the value PK_fill_hole_smooth_c and
+                                  setting the option <B>'non_smooth_edges'</B> to all
+                                  the edges of the hole boundary.
+
+    PK_fill_hole_prefer_plane_c   The hole is filled with one of the following
+                                  (1) a planar solution ignoring all smoothness
+                                  requirements at boundary edges.
+                                  (2) if (1) is not possible then a non-planar
+                                  solution which is smooth at the boundary
+                                  edges is produced. This is the same solution
+                                  that would be produced with the value of
+                                  PK_fill_hole_smooth_c.
+
+    PK_fill_hole_plane_only_c     The hole is filled with a plane solution
+                                  if possible, ignoring all smoothness
+                                  requirements at boundary edges. If this is
+                                  not possible no solution is produced.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

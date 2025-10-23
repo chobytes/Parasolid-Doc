@@ -1,0 +1,214 @@
+<HTML>
+<HEAD>
+<TITLE>CRTOBY</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRTOBY</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_create_solid_topology.html>PK_BODY_create_solid_topology</A><BR>
+<A HREF=../headers/pk_body_create_sheet_topology.html>PK_BODY_create_sheet_topology</A><BR>
+<A HREF=../headers/pk_body_create_wire_topology.html>PK_BODY_create_wire_topology</A><BR>
+<A HREF=../headers/pk_body_create_minimum_topology.html>PK_BODY_create_minimum_topology</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRTOBY ( b_type, types, ids, childs, topols, retcod, failid, ifail )
+====================================================================
+
+  Create the topology of a body.
+
+Receives:
+  KI_cod_byty              *b_type         --- body type
+  KI_tag_list_int          *types          --- topology types
+  KI_tag_list_int          *ids            --- integer id's of entities
+  KI_tag_list_&lt;list&gt;       *childs         --- children of entities
+
+Returns:
+ &lt;KI_tag_list_&lt;topology&gt;&gt;  *topols         --- tags of created entities
+ &lt;KI_cod_rtto&gt;             *retcod         --- fault found
+ &lt;KI_int_id&gt;               *failid         --- id of faulty  entity
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_bad_type               bad token in 'types'
+  KI_bad_value              identifier is zero or negative
+  KI_list_wrong_length      lists are not of same length
+
+Description:
+  CRTOBY creates the topology of a body using the received data. A purely
+  topological (rubber) body is created, which can then have geometry
+  attached to it.
+
+  ---------------------------------------------------------------------------
+  RECEIVED ARGUMENTS:
+  ---------------------------------------------------------------------------
+
+  The body type 'b_type' is given by one of the tokens BYTYSO, BYTYSH, BYTYWR,
+  and BYTYMN.
+
+  The three received lists are all of the same length, and have corresponding
+  elements.  The order of the lists does not matter, except that the first
+  member of each list must refer to the body.
+
+  'types' is a list of tokens of topology types; the permitted values are
+  TYTOBY, TYTOSH, TYTOFA, TYTOLO, TYTOED and TYTOVX.  Token TYTOBY must occur
+  just once, at the start of the list.
+
+  'ids' is a list of unique positive integer identifiers or "names" for all
+  the topological entities in the body.  The type of each identifier is given
+  by the corresponding element in 'types'.  Each id must be used just once.
+  The id of the body will be the first element in the list.
+
+  'childs' is a list of lists of identifiers defining the connections between
+  the topological entities in the body.  Each list contains the integers (as
+  defined in 'ids') denoting the entities directly belonging to the entity
+  in the corresponding position in 'ids.  Thus each list contained in 'childs'
+  is a list of either the shells contained in the body, the faces in a shell,
+  the loops in a face, the edges/vertex in a loop, or the vertices in an edge.
+
+  A special arrangement is made to indicate the direction or sense of edges in
+  a loop: if the curve of an edge in a particular loop has a direction opposite
+  to that of the loop, the id of the edge in the child list is negated.
+
+  The order of faces in a shell and of loops in a face does not matter, but
+  the edges in a loop and the vertices in an edge must be correctly ordered,
+  and the first shell in the list of children of the body must be the outer
+  shell of the body.
+
+  If an entity has no children (eg any vertex) its children should be given
+  as NULTAG.
+
+  The permitted types and numbers of children and parents for a solid body
+  (type BYTYSO) are given as follows:
+
+  --------------------------------------------------------------------
+  Entity    Children      No. of children   Parents     No. of parents
+  --------------------------------------------------------------------
+  Body      Shells              >=1           -             -
+  Shell     Faces               >=1         Body            1
+  Face      Loops               >=0         Shell           1
+  Loop      Edges+senses,       >=1         Face            1
+            or single vertex
+  Edge      Vertices            <=2         Loops           2 (counting senses)
+  Vertex    None                0           Edges/loop      >=1
+  --------------------------------------------------------------------
+
+  This is the same for a sheet body (BYTYSH) except that the body must have
+  just one shell.
+
+  In a wire body (BYTYWR), the body must have just one shell, and the shell
+  must have just one face.  If the wire is closed then the face must have two
+  loops, if open just one.  A vertex must have either one or two edges as
+  parents.  Otherwise the permitted numbers are as for a solid.
+
+  In a minimal body there are no edges; all other entities must have just one
+  parent and one child, except for the vertex (with no children) and the body
+  (with no parents).
+
+  NB: - Each edge must be used twice as a child, once with each sense (this
+        may be in the same loop).
+      - A loop must have either a number of edges (with senses) as children,
+        or a single vertex; it cannot have a mixture of edges and vertices, or
+        more than one vertex.
+      - A vertex must have a number of edges as parents, or a single loop; it
+        cannot have both edges and loops, or more than one loop.
+
+
+
+
+  ------------------------------------------------------------------------
+  RETURNED ARGUMENTS:
+  ------------------------------------------------------------------------
+
+  If the received lists are valid a rubber body will be created; its tag,
+  and those of the topological entities contained in it, will be given in
+  'topols'.  'topols' is of the same length as the input lists, and has
+  corresponding elements: each tag in 'topols' refers to the same entity as
+  the identifier at the same position in 'ids.  So, in particular, the first
+  tag in 'topols' will be that of the body.
+
+  Note that, although a face is required in the input data to construct
+  the topology of a wire or minimal body, a face on such a body is now
+  an illegal configuration. Therefore the face and its associated
+  loop(s) are not created and 'topols' will contain NULTAG instead of
+  the tags of the face and loop(s). In order to make a valid sheet body,
+  any faces which will not have surfaces attached to them should be
+  deleted using PIERCE.
+
+  If the input data is found to be invalid, an error code will be returned
+  in 'retcod', and the id of the relevent input entity in 'failid'.
+
+  The following tokens may be returned in 'retcod':
+
+  Token     Meaning                                       Corresponding failid
+  ----------------------------------------------------------------------------
+  RTTOOK: input is ok, valid topological body created            none
+
+  RTTOBB: bad body identifier - either it is not the             none
+          first id, is not the only body id, or is
+          not present at all
+  RTTODE: duplicate entry in 'ids':  integer id             duplicated id
+          occurs more than once
+  RTTOUC: undefined child: identifier in 'childs'        id of undefined child
+          is not in 'ids'; this includes negative
+          ids not referring to edges
+  RTTODC: duplicate child: entity has an id                   id of entity
+          repeated in its child list
+  RTTOWC: wrong type of children of entity.                   id of entity
+  RTTOFC: too few children of entity                          id of entity
+  RTTOMC: too many children of entity                         id of entity
+  RTTOWP: wrong type of parents of entity (see note below)    id of entity
+  RTTOFP: too few parents of entity                           id of entity
+  RTTOMP: too many parents of entity                          id of entity
+  RTTODW: disconnected wire: in a wire with two              id of wire body
+          loops, the loops do not match
+  RTTOIL: invalid loop: the start and end vertices             id of loop
+          of the edges in a loop, taking sense into
+          account, do not all match up
+  RTTOCS: connected shells: two faces sharing an               id of edge
+          edge are in different shells
+  RTTODS: disjoint shell: the faces in a shell                 id of shell
+          are not all connected (by edges)
+  RTTONM: non-manifold vertex: this will be returned           id of vertex
+          where the edges at a vertex are not all
+          loop-connected.
+  ----------------------------------------------------------------------------
+
+  A body will only be created if the input lists are found to be ok, ie if
+  RTTOOK is returned in 'retcod'; otherwise, no topology will be created, and
+  'topols' will be returned as an empty list.
+
+  The lists will be checked for the above faults in the order given above, and
+  the first one found will be returned.  Thus, for instance, if RTTOMC is
+  returned for an entity, none of the faults given by RTTONB, RTTODE, RTTOUC,
+  RTTODC, RTTOWC, and RTTOFC will apply to the input lists.
+
+  NB: - If an edge is used twice as a child with the same sense, RTTOMP is
+        returned; if not used with both senses, RTTOFP is returned (if both
+        occur RTTOFP takes priority).
+      - A loop with a mixture of edges and vertices as children will be
+        returned with RTTOWC; a loop with more than one vertex as children
+        will result in RTTOMC.
+      - A vertex with edges and loops as parents will result in RTTOWP; one
+        with more than one loop parent will be returned with RTTOMP.
+      - A loop containing a ring edge (one with zero or one vertices) which
+        also contains another edge will produce the return RTTOIL.
+
+
+</PRE>
+</BODY>
+</HTML>

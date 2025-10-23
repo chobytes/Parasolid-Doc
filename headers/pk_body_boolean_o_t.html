@@ -1,0 +1,840 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_boolean_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_boolean_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_boolean_o_s
+    {
+    int                   o_t_version;      --- version number
+    <A HREF=../headers/pk_boolean_function_t.html>PK_boolean_function_t</A> function;         --- which boolean operation
+                                            --- (PK_boolean_unite_c)
+    const <A HREF=../headers/pk_boolean_config_o_t.html>PK_boolean_config_o_t</A>
+                         *configuration;    --- target and tool
+                                            --- configuration (NULL)
+    const <A HREF=../headers/pk_boolean_select_topolset_o_t.html>PK_boolean_select_topolset_o_t</A>
+                         *selected_topolset;--- topolsets to select (NULL)
+    const <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A>
+                         *matched_region;   --- regions to match (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          merge_imprinted;  --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          prune_in_solid;   --- DEPRECATED
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          prune_in_void;    --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_boolean_fence_t.html>PK_boolean_fence_t</A>    fence;            --- (<A HREF=../headers/pk_boolean_fence_t.html>PK_boolean_fence_none_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          allow_disjoint;   --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          selective_merge;  --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_t</A> check_fa;         --- (<A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_yes_c</A>)
+    double                default_tol;      --- (1.0E-5)
+    double                max_tol;          --- (0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          tracking;         --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          merge_attributes; --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          keep_target_edges;--- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A> imprint_complete_targ;
+                                            --- whether to complete
+                                            --- imprint on target body
+                                            --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A> imprint_complete_tool;
+                                            --- whether to complete
+                                            --- imprint on tool body
+                                            --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_t</A> target_material_side;
+                                            --- material side for target
+                                            --- (<A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A>)
+    <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_t</A> tool_material_side;
+                                            --- material side for tools
+                                            --- (<A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A>)
+    <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_t</A>   resulting_body_type;
+                                            --- the preferred type of the
+                                            --- resulting body
+                                            --- (<A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_original_c</A>)
+    <A HREF=../headers/pk_boolean_no_effect_t.html>PK_boolean_no_effect_t</A>
+                          flag_no_effect;   --- level of reporting of
+                                            --- boolean operations where
+                                            --- there has been no effect upon
+                                            --- the target body.
+                                            --- (<A HREF=../headers/pk_boolean_no_effect_t.html>PK_boolean_no_effect_basic_c</A>)
+    <A HREF=../headers/pk_nm_edge_repair_t.html>PK_nm_edge_repair_t</A>   nm_edge_repair;   --- whether to ignore non-manifold
+                                            --- edge failure and repair
+                                            --- (<A HREF=../headers/pk_nm_edge_repair_t.html>PK_nm_edge_repair_no_c</A>)
+    double                blend_radius;     --- blend radius associated with
+                                            --- nm_edge_repair (1.0E-5)
+    <A HREF=../headers/pk_boolean_track_type_t.html>PK_boolean_track_type_t</A>
+                          tracking_type;    --- level of edge tracking
+                                            --- reporting for boolean
+                                            --- operations.
+                                            --- (<A HREF=../headers/pk_boolean_track_type_t.html>PK_boolean_track_type_basic_c</A>)
+    <A HREF=../headers/pk_track_regions_t.html>PK_track_regions_t</A>    track_regions;    --- level of region tracking
+                                            --- reporting for boolean
+                                            --- operations.
+                                            --- (<A HREF=../headers/pk_track_regions_t.html>PK_track_regions_no_c</A>)
+    const <A HREF=../headers/pk_face_overflow_data_o_t.html>PK_FACE_overflow_data_o_t</A>
+                         *target_face_overflow;
+                                            --- how to process overflow from
+                                            --- target body onto tool body at
+                                            --- laminar edge of target body.
+                                            --- (NULL)
+    const <A HREF=../headers/pk_face_overflow_data_o_t.html>PK_FACE_overflow_data_o_t</A>
+                         *tool_face_overflow;
+                                            --- how to process overflow from
+                                            --- tool body onto target body at
+                                            --- laminar edge of tool body.
+                                            --- (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          imprint_overlapping;
+                                            --- whether to imprint boundaries
+                                            --- of overlapping areas
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_t</A>   update;           --- update switch
+                                            --- ( <A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_default_c</A> )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          merge_in_solid;   --- whether any topologies which
+                                            --- become surrounded by solid
+                                            --- should be merged out
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_topol_dimension_t.html>PK_TOPOL_dimension_t</A>  merge_in_solid_dimension;
+                                            --- highest dimension of
+                                            --- topologies to be merged out of
+                                            --- solid
+                                            --- (PK_TOPOL_dimension_any_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          merge_in_face;    --- whether any redundant
+                                            --- topologies within or between
+                                            --- faces should be merged out
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_topol_dimension_t.html>PK_TOPOL_dimension_t</A>  merge_in_face_dimension;
+                                            --- highest dimension of
+                                            --- topologies to be merged out
+                                            --- of faces
+                                            --- (PK_TOPOL_dimension_any_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          merge_in_edge;    --- whether any redundant
+                                            --- vertices between edges
+                                            --- should be merged out
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_boolean_impose_t.html>PK_boolean_impose_t</A>   impose_bodies;    --- allows the target to impose
+                                            --- on the tools or vice versa
+                                            --- (<A HREF=../headers/pk_boolean_impose_t.html>PK_boolean_impose_no_c</A>)
+    <A HREF=../headers/pk_merge_tools_t.html>PK_merge_tools_t</A>      merge_tools;      --- how to merge interacting
+                                            --- tools in multi-tool Booleans
+                                            --- (<A HREF=../headers/pk_merge_tools_t.html>PK_merge_tools_no_c</A>)
+
+    };
+typedef struct PK_BODY_boolean_o_s PK_BODY_boolean_o_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is supplied to a boolean operation for bodies.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_boolean.html>PK_BODY_boolean</A><br>
+    <A HREF=../headers/pk_body_boolean_2.html>PK_BODY_boolean_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+See also <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-393182">here</A> for more information.
+
+Description of fields:
+
+
+
+<B>'function'</B>               Indicates whether an intersect, unite or subtract
+                         operation is to be performed, permitted values are
+
+                         PK_boolean_intersect_c
+                         PK_boolean_subtract_c
+                         PK_boolean_unite_c
+
+
+
+<B>'configuration'</B>          Describes the configuration of target and tool
+                         bodies.
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-393957">here</A> for more
+                         information.
+
+
+<B>'selected_topolset'</B>      Describes topolsets selected to be excluded from or
+                         included in the boolean operation.
+
+                         A topolset is selected by specifying a <B>'selector'</B>
+                         topology which lies within that topolset. Selector
+                         topologies can be solid regions, faces, edges, or
+                         vertices. The selected topolsets can be excluded or
+                         included by setting <B>'target_select'</B> and <B>'tool_select'</B>
+                         to the appropriate values.
+
+                         See the documentation of
+                         <A HREF=../headers/pk_boolean_select_topolset_o_t.html>PK_boolean_select_topolset_o_t</A> for more information.
+
+
+<B>'matched_region'</B>         Describes matched regions between the target and tool
+                         bodies.
+                         See <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A> and <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-394571">here</A> for more
+                         information.
+
+
+<B>'merge_imprinted'</B>        Merge all mergeable imprinted edges created and/or
+                         located by the boolean operation. Note that an
+                         existing edge can be considered an imprinted edge
+                         if it forms part of the intersection between faces
+                         from the target and tool.
+
+
+<B>'prune_in_solid'</B>         This option is deprecated and has been superseded by
+                         <B>'merge_in_solid'</B>, <B>'merge_in_face'</B>,
+                         <B>'merge_in_solid_dimension'</B> and
+                         <B>'merge_in_face_dimension'</B>.
+
+
+<B>'prune_in_void'</B>          Prune void regions of the result. Any faces, edges
+                         or vertices in the result body which are completely
+                         surrounded by void regions will be deleted, so long
+                         as the result body contains some pieces of a higher
+                         dimension (for example, a sheet face will only be
+                         deleted if the result body contains at least one
+                         solid region).
+                         This option is only allowed when general topology
+                         is enabled.
+                         (PK_LOGICAL_false)
+
+
+<B>'fence'</B>                  To determine which resultant bodies are returned when
+                         performing solid/sheet (trimming) or sheet/solid
+                         (punching) boolean operations.
+                         Permitted values are :
+                            <A HREF=../headers/pk_boolean_fence_t.html>PK_boolean_fence_front_c</A>
+                            <A HREF=../headers/pk_boolean_fence_t.html>PK_boolean_fence_back_c</A>
+                            <A HREF=../headers/pk_boolean_fence_t.html>PK_boolean_fence_none_c</A>
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-395588">here</A> for more
+                         information.
+
+
+<B>'allow_disjoint'</B>         If generalised topology is disabled:
+                         If this option is set to PK_LOGICAL_true,
+                         the result of the boolean will usually be
+                         a single body which may contain disjoint
+                         manifold components.
+
+                         This option is ignored when a solid target
+                         and sheet tool body are specified for a subtract
+                         operation and the <B>'fence'</B> option is specified
+                         with a value of <A HREF=../headers/pk_boolean_fence_t.html>PK_boolean_fence_none_c</A>, the
+                         <B>'target_material_side'</B> and <B>'tool_material_side'</B>
+                         options are set to <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A>
+                         and the <B>'resulting_body_type'</B> option is set to
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_original_c</A>.
+
+                         If general topology is enabled this option
+                         is ignored.  The result will always be a single
+                         body which may contain disjoint components.
+
+
+<B>'selective_merge'</B>        If this is set to PK_LOGICAL_true, the merge phase
+                         will avoid mergeing imprinted edges that existed
+                         and were mergeable before the start of the boolean.
+                         This flag has no effect if <B>'merge_imprinted'</B> is not
+                         set to PK_LOGICAL_true.
+                         See <A HREF="../chapters/fd_chap.054.html#50409838_pgfId-918743">here</A> for more
+                         information.
+
+
+<B>'check_fa'</B>               The value of this determines if face checking is
+                         performed during the operation, permitted values
+                         are :
+
+                         <A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_no_c</A>
+                         <A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_yes_c</A>
+
+                         The default is <B>'<A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_yes_c</A>'</B>.
+                         If the face checking is switched off, the boolean
+                         operation may produce an invalid body without
+                         raising an error. However, in some cases, if face
+                         checking is switched on the performance of the
+                         boolean operation may be reduced.
+
+                         NOTE: This option is inoperative for <A HREF=../headers/pk_body_boolean.html>PK_BODY_boolean</A>.
+
+
+<B>'default_tol'</B>            The default tolerance to which the boolean
+                         operation, if it has to, may approximate entities
+                         or assume that entities are coincident. This value
+                         should be set to a value that is related to the
+                         tolerance to which the application is creating
+                         approximations.
+                         If this field is set to zero (0.0), it is assumed
+                         that the decision to set tolerances on entities is
+                         being left to the modeller.
+
+
+<B>'max_tol'</B>                This value specifies the maximum tolerance which may
+                         be applied to any entity involved in the boolean
+                         operation.
+                         If this field is set to zero (0.0), the default, then
+                         it assumed that no upper limit has been set on the
+                         tolerance of any entity.
+                         If the field is not set to zero (0.0), then it must be
+                         set to a value that is greater than the value of the
+                         <B>'default_tol'</B> field.
+
+
+<B>'tracking'</B>               Request additional topological data on the result
+                         of the boolean, this is specific to the function
+                         being called. Within this function this option
+                         can be used to return additional tracking data
+                         when using a single, non-disjoint tool body.
+
+
+<B>'merge_attributes'</B>       If this is set to PK_LOGICAL_true, then any situation
+                         in which two coincident faces are combined to result
+                         in a face in a result body, will be treated as a
+                         <B>'merge'</B> event from the point of view of attribute
+                         processing and attribute callbacks. If it is set to
+                         PK_LOGICAL_false, which is the default, then such a
+                         situation will be treated as the deletion of one of
+                         the faces.
+
+                         This option only has an effect if general topology
+                         is disabled. If it is enabled, then combining two
+                         coincident faces is always treated as a <B>'merge'</B>
+                         event.
+
+
+<B>'keep_target_edges'</B>      This option controls which edge survives when a
+                         target edge and a tool edge coincide in a boolean. If
+                         both faces adjacent to the tool edge survive, then the
+                         tool edge will also survive. Otherwise, the result
+                         depends on the setting of the option:
+
+                         PK_LOGICAL_true:
+                             The target edge survives, unless the target edge
+                             is a new edge imprinted during the boolean, and
+                             the tool edge is an original edge - in this case,
+                             the tool edge survives.
+
+                         PK_LOGICAL_false (the default):
+                             The older edge (i.e. the one with the smaller tag)
+                             survives.
+
+                         This option only has an effect if general topology
+                         is disabled. If it is enabled, then the target edge
+                         will always survive, even if it is a newly imprinted
+                         edge.
+
+
+<B>'imprint_complete_targ'</B>  This option controls whether to complete the imprint
+                         on the target body so that the end vertices of the
+                         imprint lie on any edge or laminar edge of the target
+                         body.  This imprint completion is carried out during
+                         the imprinting phase of the face boolean algorithm
+                         (the phases of which are essentially the same as in
+                         the body boolean algorithm described in
+                         <A HREF=../headers/pk_body_boolean_2.html>PK_BODY_boolean_2</A>).
+
+                         If this is set to <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A> (the
+                         default) the imprint is not completed.  Otherwise the
+                         incomplete imprint is completed by intersecting the
+                         target body with a plane orthogonal to the target at
+                         the end vertices of the incomplete imprint.
+                         Depending on the value of this option, the imprint
+                         will be completed along the direction of this plane
+                         until it either:
+                           - meets any edge belonging to the target body
+                               (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_edge_c</A>), or
+                           - meets any laminar edge belonging to the target
+                               body (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_laminar_c</A>)
+                         N.B. The value <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_faceset_c</A> only
+                         applies to the face boolean algorithm, so it may not
+                         be used here.
+
+                         If the PK function supports imprint completion on
+                         general bodies, and general topology is enabled in
+                         the session, then imprint completion will stop where
+                         the imprint meets a general edge, in addition to the
+                         behaviour described above. The completion will also
+                         stop where the imprint meets a general vertex, unless
+                         it can be continued on the same "manifold piece" of
+                         the body, as described in
+                         <A HREF=../headers/pk_body_make_manifold_bodies.html>PK_BODY_make_manifold_bodies</A>.
+
+                         Both the target and tool bodies must be manifold sheet
+                         bodies unless general topology is enabled in the
+                         session.
+
+                         A complete imprint that self-intersects will be
+                         trimmed at the point of self-intersection.
+
+                         Imprint completion on the target faces will only
+                         occur from laminar edges of the tool.
+
+                         Restriction: The orientation of the plane is currently
+                         restricted to that which would be produced by
+                         <A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_tangent_c</A>.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-466974">here</A> for more information.
+
+
+<B>'imprint_complete_tool'</B>  This option controls whether to complete the imprint
+                         on the tool body in a manner similar to that
+                         described for <B>'imprint_complete_targ'</B> above.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-466974">here</A> for more information.
+
+
+<B>'target_material_side'</B>   This option allows the material side of the target
+                         faces to be specified when determining which faces
+                         survive the given Boolean.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_inside_c</A>:
+                             All faces are treated as if their face normals
+                             point away from solid material.
+                             This allows a sheet body to be treated locally as
+                             the boundary of a solid; treatment of faces from
+                             solid bodies will be unchanged.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_none_c</A>:
+                             All faces are treated as if they have no solid
+                             material on either side.
+                             This allows a solid body to be treated locally as
+                             a sheet; treatment of faces from sheet bodies will
+                             be unchanged.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_outside_c</A>:
+                             All faces are treated as if their face normals
+                             point into solid material.
+                             This allows a sheet body to be treated locally as
+                             the boundary of a solid; solid bodies will be
+                             negated.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A> (the default):
+                             Faces from solid bodies have normals pointing away
+                             from solid material; faces from sheet bodies will
+                             have material on neither side.
+
+                         This option is only supported if general topology is
+                         disabled.
+
+                         The <B>'target_material_side'</B> and <B>'tool_material_side'</B>
+                         options must be set to <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A>
+                         if there is more than one tool body.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-395829">here</A> for more information.
+
+
+<B>'tool_material_side'</B>     This option allows the material side of the tool
+                         faces to be specified when determining which faces
+                         survive the given Boolean.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_inside_c</A>:
+                             All faces are treated as if their face normals
+                             point away from solid material.
+                             This allows a sheet body to be treated locally as
+                             the boundary of a solid; treatment of faces from
+                             solid bodies will be unchanged.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_none_c</A>:
+                             All faces are treated as if they have no solid
+                             material on either side.
+                             This allows a solid body to be treated locally as
+                             a sheet; treatment of faces from sheet bodies will
+                             be unchanged.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_outside_c</A>:
+                             All faces are treated as if their face normals
+                             point into solid material.
+                             This allows a sheet body to be treated locally as
+                             the boundary of a solid; solid bodies will be
+                             negated.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A> (the default):
+                             Faces from solid bodies have normals pointing away
+                             from solid material; faces from sheet bodies will
+                             have material on neither side.
+
+                         This option is only supported if general topology is
+                         disabled.
+
+                         The <B>'target_material_side'</B> and <B>'tool_material_side'</B>
+                         options must be set to <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A>
+                         if there is more than one tool body.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-395829">here</A> for more information.
+
+
+<B>'resulting_body_type'</B>   This option allows the preferred type of the
+                        resulting body to be indicated.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_solid_c</A>:
+                             If possible the results of a Boolean operation
+                             with generalised topology disabled will be solid
+                             bodies.  The result will only be made solid if all
+                             shells in the result are closed, if this is not
+                             the case sheet bodies will be returned.  In some
+                             cases it may be necessary to negate some or all of
+                             the solids.
+                             If generalised topology is enabled and the
+                             resulting body can be made into a manifold solid
+                             body then it will be, otherwise it will remain a
+                             general body.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_sheet_c</A>:
+                             If possible the results of a Boolean operation
+                             with generalised topology disabled will be sheet
+                             bodies.  The result may contain several
+                             components, if 'allow_disjoint' is set to
+                             PK_LOGICAL_false then the components will be
+                             split out into separate bodies.
+                             If generalised topology is enabled and the
+                             resulting body can be made into a manifold sheet
+                             body then it will be, otherwise it will remain a
+                             general body.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_original_c</A> (the default):
+                             When generalised topology is disabled, the
+                             resulting bodies will be of the same type as the
+                             target body.  If it is not possible to return a
+                             body of the desired type an appropriate error will
+                             be returned.
+                             If generalised topology is enabled and the
+                             resulting body can be made to be of the same type
+                             as the 'target' then it will be, otherwise it will
+                             remain a general body.  It is recommended to
+                             override this default setting when generalised
+                             topology is enabled and use
+                             <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_simplest_c</A> instead.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_wire_c</A>:
+                             This setting is only available when generalised
+                             topology is enabled.
+                             If the resulting body can be made into a manifold
+                             wire body then it will be, otherwise it will
+                             remain a general body.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_general_c</A>:
+                             This setting is only available when generalised
+                             topology is enabled.
+                             The resulting body will be a general body.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_simplest_c</A> (recommended):
+                             This setting is only available when generalised
+                             topology is enabled and it is recommended to use
+                             it to override the default setting
+                             (<A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_original_c</A>).
+                             The resulting body type will be the simplest it
+                             can be without making any changes to the body.
+                             The body type will be set to the first possible in
+                             the list:
+                             PK_BODY_type_wire_c, PK_BODY_type_sheet_c,
+                             PK_BODY_type_solid_c, PK_BODY_type_general_c.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-396622">here</A> for more information.
+
+                         If the <B>'fence'</B> option is not <A HREF=../headers/pk_boolean_fence_t.html>PK_boolean_fence_none_c</A>
+                         this option must be set to
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_original_c</A>.
+
+
+<B>'flag_no_effect'</B>         This option allows the user to specify that if it is
+                         possible to determine that the original target body
+                         is unaffected by the tools, the returned token
+                         will be <A HREF=../headers/pk_boolean_result_t.html>PK_boolean_result_no_effect_c</A>, in
+                         preference to <A HREF=../headers/pk_boolean_result_t.html>PK_boolean_result_success_c</A>.
+
+                         <A HREF=../headers/pk_boolean_no_effect_t.html>PK_boolean_no_effect_basic_c</A>:
+                             (Default).
+                             <A HREF=../headers/pk_boolean_result_t.html>PK_boolean_result_no_effect_c</A> is returned in
+                             the same cases as V16.1 and earlier.
+
+                         <A HREF=../headers/pk_boolean_no_effect_t.html>PK_boolean_no_effect_advanced_c</A>:
+                             Return <A HREF=../headers/pk_boolean_result_t.html>PK_boolean_result_no_effect_c</A> in
+                             preference to <A HREF=../headers/pk_boolean_result_t.html>PK_boolean_result_success_c</A>,
+                             whenever possible to determine with certainty
+                             that the target is unchanged by the tools.
+                             This option considers a body is unchanged when
+                             all the following conditions apply:
+                              - the body occupies the same area/volume
+                              - no additional topology or geometry has been
+                                imprinted
+                              - the body type is unchanged.
+
+
+<B>'nm_edge_repair'</B>         This option allows the user to specify that the
+                         boolean operation should not fail due to
+                         non-manifold edge conditions but attempt to continue
+                         and make the result manifold.
+
+                         <A HREF=../headers/pk_nm_edge_repair_t.html>PK_nm_edge_repair_no_c</A> :
+                            (Default).
+                            No recovery or repair attempted.
+
+                         <A HREF=../headers/pk_nm_edge_repair_t.html>PK_nm_edge_repair_blend_c</A>:
+                            Repair is attempted by applying blends.
+                            For a unite operation this adds material and for a
+                            subtract or intersect operation it removes
+                            material.
+                            This option may only be used with solid bodies and
+                            default values of <B>'imprint_complete_targ'</B>,
+                            `imprint_complete_tool, <B>'target_material_side'</B>,
+                            <B>'tool_material_side'</B> and <B>'resulting_body_type'</B>
+                            options.
+
+
+<B>'blend_radius'</B>           This option specifies the radius to be used if
+                         <B>'nm_edge_repair'</B> is set to <A HREF=../headers/pk_nm_edge_repair_t.html>PK_nm_edge_repair_blend_c</A>.
+
+
+<B>'tracking_type'</B>          This option allows the user to specify the level
+                         of information they wish edge tracking records to
+                         contain. The levels of edge tracking available are:
+
+                         <A HREF=../headers/pk_boolean_track_type_t.html>PK_boolean_track_type_basic_c</A>:
+                             (Default).
+                             Edge tracking records are compatible with v17.1
+                             and earlier. Tracking records associated with
+                             edges generated by imprint completion contain
+                             information regarding the original topology
+                             upon which they are imprinted only.
+
+                         <A HREF=../headers/pk_boolean_track_type_t.html>PK_boolean_track_type_comp_c</A>:
+                             Returns enhanced information regarding edges
+                             generated by imprint completion. Tracking
+                             records for edges generated by imprint
+                             completion contain information regarding the
+                             original topology upon which they are
+                             imprinted; additionally implied information
+                             regarding the topology on the other body is
+                             included. This is the topology on the other body
+                             which caused the imprint from which completion
+                             is occurring.
+
+
+
+<B>'track_regions'</B>          This option allows the user to specify the level
+                         of information they wish region tracking records to
+                         contain. This option is only supported if general
+                         topology is enabled in the session.
+
+                         The levels of region tracking available are:
+
+                         <A HREF=../headers/pk_region_t.html>PK_region_track_no_c</A>:
+                             (Default).
+                             No region tracking is returned.
+
+                         <A HREF=../headers/pk_region_t.html>PK_region_track_basic_c</A>:
+                             Basic region tracking.
+                             A set of region tracking records
+                             (<A HREF=../headers/pk_topol_track_record_r_t.html>PK_TOPOL_track_record_r_t</A>) is returned, which
+                             contains tracking information for every result
+                             region created or affected by the operation.
+                             A PK_TOPOL_track_create_c record indicates that
+                             the result region in <B>'product_topols'</B> is new.
+                             A PK_TOPOL_track_derive_c record indicates that
+                             the result regions in <B>'product_topols'</B> were
+                             derived from the original regions in
+                             <B>'original_topols'</B>.
+                             Solid result regions are tracked from their solid
+                             parent original regions, and void result regions
+                             are tracked from their void parent original
+                             regions, if any.
+
+
+
+<B>'target_face_overflow'</B>   This option allows the user to specify the method
+                         of overflowing the imprint from the target body onto
+                         the tool body when overflowing a laminar edge of the
+                         target body and overflow imprinting is chosen.
+                         This option is only supported if
+                         <B>'imprint_complete_tool'</B> is set to
+                         <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>.
+
+
+<B>'tool_face_overflow'</B>     This option allows the user to specify the method
+                         of overflowing the imprint from the tool body onto
+                         the target body when overflowing a laminar edge of
+                         the tool body and overflow imprinting is chosen.
+                         This option is only supported if
+                         <B>'imprint_complete_targ'</B> is set to
+                         <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>.
+
+
+<B>'imprint_overlapping'</B>    Imprint the boundaries of overlapping areas. If a
+                         face from the target and a face from the tool are on
+                         the same surface, the boundaries of the overlapping
+                         area will be imprinted. If this flag is not set,
+                         faces on a common surface will not imprint on each
+                         other.
+
+
+<B>'update'</B>                 The default value allows applications to take
+                         advantage of the latest enhancements to the boolean
+                         algorithm. To maintain consistency when rebuilding
+                         models created in a previous version of Parasolid, a
+                         non-default value should be specified.
+                         (<A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_default_c</A>)
+
+
+<B>'merge_in_solid'</B>         This determines whether any topologies which become
+                         surrounded by solid during the boolean operation
+                         should be merged out.
+                         This option is only allowed when general topology
+                         is enabled.
+                         (PK_LOGICAL_false)
+
+
+<B>'merge_in_solid_dimension'</B>
+                         If <B>'merge_in_solid'</B> is set to PK_LOGICAL_true, this
+                         field determines the highest dimension of topologies
+                         surrounded by solid to be merged out:
+                         PK_TOPOL_dimension_0_c:   merge out acorn vertices
+                                                   in solid regions.
+                         PK_TOPOL_dimension_1_c:   merge out wireframe edges
+                                                   and acorn vertices in solid
+                                                   regions.
+                         PK_TOPOL_dimension_2_c or
+                         PK_TOPOL_dimension_any_c: merge out faces with solid
+                                                   on either side and wireframe
+                                                   edges and acorn vertices in
+                                                   solid regions.
+                         (PK_TOPOL_dimension_any_c)
+
+
+<B>'merge_in_face'</B>          This determines whether any redundant vertices or
+                         edges within or between faces in the result body
+                         which were not redundant in the target or tool
+                         bodies should be merged out.
+                         This option is only allowed when general topology
+                         is enabled.
+                         <B>'merge_in_face'</B> is performed after <B>'merge_in_solid'</B>
+                         and so it can merge out edges or vertices which have
+                         become redundant through faces and/or wireframe edges
+                         being merged out during 'merge_in_solid'.
+                         If a redundant edge lies between faces with opposed
+                         normals then the merged face after deletion of the
+                         edge will have the orientation of the face derived
+                         from the target body.
+                         (PK_LOGICAL_false)
+
+
+<B>'merge_in_face_dimension'</B>
+                         If <B>'merge_in_face'</B> is set to PK_LOGICAL_true, this
+                         field determines the highest dimension of topologies
+                         imprinted within faces to be merged out:
+                         PK_TOPOL_dimension_0_c:   merge out isolated vertices
+
+                         PK_TOPOL_dimension_1_c or
+                         PK_TOPOL_dimension_any_c: merge out redundant edges
+                                                   and isolated vertices
+                         (PK_TOPOL_dimension_any_c)
+
+
+<B>'merge_in_edge'</B>          This determines whether any redundant vertices
+                         between edges in the result body which were not
+                         redundant in the tool or target bodies should be
+                         merged out.
+                         This option is only allowed when general topology
+                         is enabled.
+                         <B>'merge_in_edge'</B> is performed after <B>'merge_in_solid'</B>
+                         and <B>'merge_in_face'</B> and so it may merge out
+                         vertices which have become redundant through having
+                         faces and/or edges merged out during 'merge_in_solid'
+                         and 'merge_in_face'.
+                         (PK_LOGICAL_false)
+
+
+<B>'impose_bodies'</B>          To impose one body onto another means that material
+                         from the first body dominates material from the
+                         second body.  Topologies of the second body located
+                         within solid material of the first body are
+                         considered redundant and are therefore deleted.  All
+                         result regions surrounding these redundant topologies
+                         only inherit from the first body.
+
+                         This option controls interactions between the target
+                         and the tool(s).  For control of tool-tool
+                         interactions, see <B>'merge_tools'</B>.
+
+                         This option is only allowed when general topology
+                         is enabled, <B>'function'</B> is PK_boolean_unite_c, and
+                         <B>'merge_in_solid'</B> is set to PK_LOGICAL_false.
+
+                         The possible values are:
+
+                         <A HREF=../headers/pk_boolean_impose_t.html>PK_boolean_impose_no_c</A>:
+                             Neither body imposes, no topologies are deleted.
+
+                         <A HREF=../headers/pk_boolean_impose_t.html>PK_boolean_impose_target_c</A>:
+                             The solid regions of the target are imposed onto
+                             the tool(s).
+                             Tool topologies are deleted if they are located
+                             within the solid material of the target.  Any
+                             regions which merge due to this deletion inherit
+                             only from their parent region(s) in the target.
+
+                         <A HREF=../headers/pk_boolean_impose_t.html>PK_boolean_impose_tools_c</A>:
+                             The solid regions of the tool(s) are imposed onto
+                             the target.
+                             Target topologies are deleted if they are located
+                             within the solid material of the tool(s).  Any
+                             regions which merge due to this deletion inherit
+                             only from their parent region(s) in the tool(s).
+
+                         (<A HREF=../headers/pk_boolean_impose_t.html>PK_boolean_impose_no_c</A>)
+
+
+<B>'merge_tools'</B>            This option controls merging between interacting tool
+                         bodies.
+
+                         This option is only allowed when general topology
+                         is enabled, <B>'function'</B> is PK_boolean_unite_c, and
+                         <B>'merge_in_solid'</B> is set to PK_LOGICAL_false.
+
+                         The possible values are:
+
+                         <A HREF=../headers/pk_merge_tools_t.html>PK_merge_tools_no_c</A>:
+                             Tools are not merged and no topologies are
+                             deleted.
+
+                         <A HREF=../headers/pk_merge_tools_t.html>PK_merge_tools_yes_c</A>:
+                             Tools are merged and topologies are deleted if
+                             they are located within the solid material of
+                             any of the other tools. Any tool faces which
+                             would have the same solid region on both sides as
+                             a result of the merge are also deleted.
+
+                         (<A HREF=../headers/pk_merge_tools_t.html>PK_merge_tools_no_c</A>)
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

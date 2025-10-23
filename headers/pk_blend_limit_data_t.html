@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_limit_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_limit_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_blend_limit_data_s
+    {
+    int                          n_limits;         --- number of limits (0)
+    const <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>           *limit_points;     --- limit points (NULL)
+    const <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>           *limit_directions; --- limit directions (NULL)
+    const <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>             *edges;            --- edges (NULL)
+    const <A HREF=../headers/pk_blend_limit_type_t.html>PK_blend_limit_type_t</A> *limit_types;      --- limit types (NULL) [PF]
+    const <A HREF=../headers/pk_blend_limit_patch_t.html>PK_blend_limit_patch_t</A>
+                                *limit_patch;      --- controls whether to try
+                                                   --- patching the blend
+                                                   --- beyond the supplied
+                                                   --- limits (NULL) [NF]
+    int                          n_vertices;       --- number of vertices (0)
+    const <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>           *vertices;         --- vertices (NULL) [NF]
+    };
+typedef struct PK_blend_limit_data_s PK_blend_limit_data_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure records information which specifies limits for the blend.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_fix_blends_o_t.html>PK_BODY_fix_blends_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+There are three different ways of constraining a blend using this structure;
+limits can be applied to edges, overlapping regions and vertices.
+
+                        Blend Limit Options:
+
+<B>'limit_points'</B>     is an array of length <B>'n_limits'</B> of points that specify the
+                   position of the limits of the blend.  If the associated
+                   limit type is <A HREF=../headers/pk_blend_limit_type_t.html>PK_blend_limit_type_edge_c</A>, this position
+                   will be the closest point on the blend spine to the location
+                   provided.  If the associated limit type is
+                   <A HREF=../headers/pk_blend_limit_type_t.html>PK_blend_limit_type_overlap_c</A>, the position specifies an
+                   overlap limit.  For limits of type
+                   <A HREF=../headers/pk_blend_limit_type_t.html>PK_blend_limit_type_edge_c</A> set on facet geometry, or for
+                   any limit of type <A HREF=../headers/pk_blend_limit_type_t.html>PK_blend_limit_type_overlap_c</A>, the
+                   position is required to lie on the associated edge from
+                   the <B>'edges'</B> array.
+
+<B>'limit_directions'</B> is an array of length <B>'n_limits'</B> specifying which direction
+                   the blend will lie in with respect to its associated limit
+                   point. If the associated limit type is
+                   <A HREF=../headers/pk_blend_limit_type_t.html>PK_blend_limit_type_overlap_c</A> this direction is ignored,
+                   but must be given so that the lengths of the <B>'limit_points'</B>,
+                   <B>'limit_directions'</B> and <B>'limit_types'</B> arrays are consistent.
+
+<B>'edges'</B>            is an array of length <B>'n_limits'</B> specifying which edges of
+                   the blend shall have a limit applied.
+
+<B>'limit_types'</B>      is an array of length <B>'n_limits'</B> specifying whether the
+                   points in the <B>'limit_points'</B> array designate edge limits
+                   or overlap limits.
+
+                   Note: Only limits of the type <A HREF=../headers/pk_blend_limit_type_t.html>PK_blend_limit_type_edge_c</A> are
+                   currently supported when fixing blends on facet geometry.
+
+<B>'limit_patch'</B>      is an array of length <B>'n_limits'</B> specifying whether to try
+                   patching the blend beyond the limits specified in the
+                   <B>'limit_points'</B> array.
+
+<B>'vertices'</B>         is an array of length <B>'n_vertices'</B> specifying which vertices
+                   of the blend shall have a limit applied. Limit vertices do
+                   not require <B>'limit_points'</B> or <B>'limit_directions'</B>. The limits
+                   of the blend are defined by the intersection of the adjacent
+                   blend boundaries.
+
+
+Limits are applied to edges using <B>'limit_points'</B>, <B>'limit_directions'</B>, and
+<B>'edges'</B>. The blend will stop at an isoparameter at the closest point on the
+blend spine to each supplied limit point. The blend will lie on the side of
+the isoparameter indicated by its corresponding limit direction. Restrictions
+when applying edge limits include:
+-   Only blends that lie in the direction of the limit will be applied.
+-   If no corresponding point on the blend spine can be found for a supplied
+    limit point a fault will be returned.
+-   There is a maximum of two limits per edge.
+-   Limits may not be applied to a mixed edge.
+
+Limits are applied to overlapping regions using <B>'limit_points'</B> and <B>'edges'</B>
+(the value of the <B>'limit_direction'</B> associated with the <B>'limit_point'</B>
+specifying  the overlap limit is ignored). The blend will stop at an
+isoparameter where it would overlap another blend fixed in the same call.
+If there is more than one such overlap region, the blend will be stopped at
+the region closest to the location specified in <B>'limit_points'</B>. If there is
+no suitable overlap region on the chain of blended edges the point lies on,
+fixing the blend will fail with <A HREF=../headers/pk_blend_fault_t.html>PK_blend_fault_bad_cap_c</A>.
+
+Limits are applied to vertices using <B>'vertices'</B>. Here, limit points are defined
+internally by the intersections of adjacent blend boundaries. Vertex limits can
+only be applied to vertices which have at least three edges.
+
+If the edge limits or overlap limits on an edge at a vertex limit are
+combined with the limits imposed on the edge by the vertex limit, the result
+is equivalent to the result when blends with the respective limits are
+applied consecutively, the vertex limit blend being applied first, followed by
+the edge limit and finally the overlap limit.
+
+See <A HREF="../chapters/fd_chap.077.html#50409864_pgfId-297917">Creating blend limits</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

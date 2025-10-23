@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+<TITLE>OUGEEF</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUGEEF</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_ask_geometry.html>PK_EDGE_ask_geometry</A><BR>
+<A HREF=../headers/pk_fin_ask_geometry.html>PK_FIN_ask_geometry</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUGEEF ( ed_fn, parms, curve, cutype, start, st_t, end, end_t, sense, ifail )
+=============================================================================
+
+  Output geometry of edge or fin
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_topology          *ed_fn          --- edge or fin being queried
+  KI_cod_logical           *parms          --- request for parameters
+
+Returns:
+  KI_tag_curve             *curve          --- tag of curve
+  KI_cod_tycu              *cutype         --- type of curve
+  KI_vec_position           start          --- start position
+  KI_dbl                   *st_t           --- parameter of 'start'
+  KI_vec_position           end            --- end position
+  KI_dbl                   *end_t          --- parameter of 'end'
+  KI_cod_logical           *sense          --- true if 'curve' is in same
+                                           --- direction as 'ed_fn'
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_missing_geom           Insufficient geometry to represent 'ed_fn'
+  KI_wrong_entity           wrong entity
+
+Description:
+
+  This function receives an item of topology, 'ed_fn', which may be an edge
+  or a fin, and returns geometry representing it. The geometry comprises
+  the tag of a curve, the curve type, position vectors on the curve
+  corresponding to the end points of the item, and optionally the curve
+  parameters of these position vectors. Together these represent a bounded
+  portion of curve corresponding to 'ed_fn'.
+
+  The position vectors 'start' and 'end' are returned such that movement
+  from 'start' to 'end' along the curve is in the same direction as the curve.
+  If 'sense' is returned as KI_false, then the curve direction is in the
+  opposite direction to 'ed_fn', though this can only occur for fins and
+  laminar edges on sheet bodies.
+
+  Note that 'curve' is attached to the model and should not be modified
+  or deleted without due care.
+
+  If 'parms' is set to KI_true, the curve parameters corresponding to 'start'
+  and 'end', ( 'st_t' and 'end_t' respectively ) will be calculated. 'st_t'
+  will always be smaller than 'end_t', the period of parametrisation being
+  added to 'end_t' if necessary. If 'parms' is set to KI_false, the parameters
+  will be arbitrarily returned as zero.
+
+  If 'ed_fn' has no curve attached, an attempt will be made to return
+  equivalent geometry that lies in the same surface. Thus if 'ed_fn' is an
+  edge, fin geometry may be returned, and vice versa. However if 'ed_fn'
+  is a fin, the geometry of the other fin will not be returned.
+
+  If 'ed_fn' is a ring, 'start' and 'end' will both be returned as the
+  position vector corresponding to the lowest value in the parameter range
+  for the curve. 'st_t' will be this lowest parameter value, and 'end_t' this
+  value plus the period of parameterisation.
+
+  Where no geometry representing 'ed_fn' can be found, this will give rise to
+  ifail KI_missing_geom.
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_PARTITION_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_PARTITION_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B></B>
+<A NAME="description"></A>
+<I>This type represents a PARTITION.  A partition is a collection of parts,
+orphan geometry and transforms which may be rolled back and forward (to
+recover pre-existing states) independently of other partitions.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_change_partition.html>PK_BODY_change_partition</A><br>
+    <A HREF=../headers/pk_body_fix_blends_o_t.html>PK_BODY_fix_blends_o_t</A><br>
+    <A HREF=../headers/pk_debug_session_check_o_t.html>PK_DEBUG_SESSION_check_o_t</A><br>
+    <A HREF=../headers/pk_entity_ask_partition.html>PK_ENTITY_ask_partition</A><br>
+    <A HREF=../headers/pk_face_make_3_face_blend_o_t.html>PK_FACE_make_3_face_blend_o_t</A><br>
+    <A HREF=../headers/pk_face_make_blend_o_t.html>PK_FACE_make_blend_o_t</A><br>
+    <A HREF=../headers/pk_mark_goto_r_t.html>PK_MARK_goto_r_t</A><br>
+    <A HREF=../headers/pk_partition_advance_pmark.html>PK_PARTITION_advance_pmark</A><br>
+    <A HREF=../headers/pk_partition_ask.html>PK_PARTITION_ask</A><br>
+    <A HREF=../headers/pk_partition_ask_appitems.html>PK_PARTITION_ask_appitems</A><br>
+    <A HREF=../headers/pk_partition_ask_assemblies.html>PK_PARTITION_ask_assemblies</A><br>
+    <A HREF=../headers/pk_partition_ask_bodies.html>PK_PARTITION_ask_bodies</A><br>
+    <A HREF=../headers/pk_partition_ask_cloning.html>PK_PARTITION_ask_cloning</A><br>
+    <A HREF=../headers/pk_partition_ask_facet_geom.html>PK_PARTITION_ask_facet_geom</A><br>
+    <A HREF=../headers/pk_partition_ask_geoms.html>PK_PARTITION_ask_geoms</A><br>
+    <A HREF=../headers/pk_partition_ask_initial_pmark.html>PK_PARTITION_ask_initial_pmark</A><br>
+    <A HREF=../headers/pk_partition_ask_ki_lists.html>PK_PARTITION_ask_ki_lists</A><br>
+    <A HREF=../headers/pk_partition_ask_pmark.html>PK_PARTITION_ask_pmark</A><br>
+    <A HREF=../headers/pk_partition_ask_pmark_size.html>PK_PARTITION_ask_pmark_size</A><br>
+    <A HREF=../headers/pk_partition_ask_pmarks.html>PK_PARTITION_ask_pmarks</A><br>
+    <A HREF=../headers/pk_partition_ask_pmarks_2.html>PK_PARTITION_ask_pmarks_2</A><br>
+    <A HREF=../headers/pk_partition_ask_transfs.html>PK_PARTITION_ask_transfs</A><br>
+    <A HREF=../headers/pk_partition_ask_type.html>PK_PARTITION_ask_type</A><br>
+    <A HREF=../headers/pk_partition_clone_pmark.html>PK_PARTITION_clone_pmark</A><br>
+    <A HREF=../headers/pk_partition_copy.html>PK_PARTITION_copy</A><br>
+    <A HREF=../headers/pk_partition_create_empty.html>PK_PARTITION_create_empty</A><br>
+    <A HREF=../headers/pk_partition_create_r_t.html>PK_PARTITION_create_r_t</A><br>
+    <A HREF=../headers/pk_partition_delete.html>PK_PARTITION_delete</A><br>
+    <A HREF=../headers/pk_partition_find_pmark_by_id.html>PK_PARTITION_find_pmark_by_id</A><br>
+    <A HREF=../headers/pk_partition_goto_guard.html>PK_PARTITION_goto_guard</A><br>
+    <A HREF=../headers/pk_partition_has_guard.html>PK_PARTITION_has_guard</A><br>
+    <A HREF=../headers/pk_partition_has_lattices.html>PK_PARTITION_has_lattices</A><br>
+    <A HREF=../headers/pk_partition_is_clone.html>PK_PARTITION_is_clone</A><br>
+    <A HREF=../headers/pk_partition_make_pmark.html>PK_PARTITION_make_pmark</A><br>
+    <A HREF=../headers/pk_partition_make_pmark_2.html>PK_PARTITION_make_pmark_2</A><br>
+    <A HREF=../headers/pk_partition_merge.html>PK_PARTITION_merge</A><br>
+    <A HREF=../headers/pk_partition_receive.html>PK_PARTITION_receive</A><br>
+    <A HREF=../headers/pk_partition_receive_b.html>PK_PARTITION_receive_b</A><br>
+    <A HREF=../headers/pk_partition_receive_deltas.html>PK_PARTITION_receive_deltas</A><br>
+    <A HREF=../headers/pk_partition_receive_deltas_2.html>PK_PARTITION_receive_deltas_2</A><br>
+    <A HREF=../headers/pk_partition_receive_meshes.html>PK_PARTITION_receive_meshes</A><br>
+    <A HREF=../headers/pk_partition_receive_u.html>PK_PARTITION_receive_u</A><br>
+    <A HREF=../headers/pk_partition_reset_attribs.html>PK_PARTITION_reset_attribs</A><br>
+    <A HREF=../headers/pk_partition_set_current.html>PK_PARTITION_set_current</A><br>
+    <A HREF=../headers/pk_partition_set_guard.html>PK_PARTITION_set_guard</A><br>
+    <A HREF=../headers/pk_partition_set_type.html>PK_PARTITION_set_type</A><br>
+    <A HREF=../headers/pk_partition_start_cloning.html>PK_PARTITION_start_cloning</A><br>
+    <A HREF=../headers/pk_partition_stop_cloning.html>PK_PARTITION_stop_cloning</A><br>
+    <A HREF=../headers/pk_partition_transmit.html>PK_PARTITION_transmit</A><br>
+    <A HREF=../headers/pk_partition_transmit_b.html>PK_PARTITION_transmit_b</A><br>
+    <A HREF=../headers/pk_partition_transmit_delta.html>PK_PARTITION_transmit_delta</A><br>
+    <A HREF=../headers/pk_partition_transmit_u.html>PK_PARTITION_transmit_u</A><br>
+    <A HREF=../headers/pk_pmark_ask_partition.html>PK_PMARK_ask_partition</A><br>
+    <A HREF=../headers/pk_session_ask_curr_partition.html>PK_SESSION_ask_curr_partition</A><br>
+    <A HREF=../headers/pk_session_ask_partitions.html>PK_SESSION_ask_partitions</A><br>
+    <A HREF=../headers/pk_thread_ask_partitions.html>PK_THREAD_ask_partitions</A><br>
+    <A HREF=../headers/pk_thread_lock_partitions.html>PK_THREAD_lock_partitions</A><br>
+    <A HREF=../headers/pk_thread_lock_partitions_r_t.html>PK_THREAD_lock_partitions_r_t</A><br>
+    <A HREF=../headers/pk_thread_unlock_partitions.html>PK_THREAD_unlock_partitions</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+See <A HREF="../chapters/fd_chap.098.html#50409888_pgfId-294720">Partitions and Rollback</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

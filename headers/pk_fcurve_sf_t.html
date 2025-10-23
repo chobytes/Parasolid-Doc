@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FCURVE_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FCURVE_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+    struct PK_FCURVE_sf_s
+        {
+        char       *key;       --- curve key
+        int         n_ints;    --- number of integer values (&gt;=0)
+        int        *ints;      --- integer values
+        int         n_doubles; --- number of double values  (&gt;=0)
+        double     *doubles;   --- double values
+        size_t      space;     --- data space required      (&gt;=0)
+        <A HREF=../headers/pk_transf_t.html>PK_TRANSF_t</A> transf;    --- transformation (may be PK_ENTITY_null)
+        };
+    typedef struct PK_FCURVE_sf_s PK_FCURVE_sf_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure is the standard form of a foreign curve.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_FG_eval_not_found      curve evaluator not found
+    PK_ERROR_FG_data_alloc_error    curve evaluator data allocation fault
+    PK_ERROR_FG_doubles             <B>'doubles'</B> data error
+    PK_ERROR_FG_ints                <B>'ints'</B> data error
+    PK_ERROR_FG_data_not_found      curve evaluator data not found
+    PK_ERROR_FG_evaluator_error     curve evaluator failure
+    PK_ERROR_FG_modelling_error     cannot model with this curve
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_fcurve_ask.html>PK_FCURVE_ask</A><br>
+    <A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A separate Foreign Geometry User Guide is available.
+
+Sufficient data space is always allocated to store one double.  The <B>'space'</B>
+field indicates data space in addition to this.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

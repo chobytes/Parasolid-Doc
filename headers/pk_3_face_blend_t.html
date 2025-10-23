@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_3_face_blend_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_3_face_blend_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_3_face_blend_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_3_face_blend_r_t.html>PK_FACE_make_3_face_blend_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype is used to return the status of a three face blending operation.
+
+ PK_3_face_blend_ok_c             The requested blend succeeded.
+
+ PK_3_face_blend_sheet_c          The blend has partially succeeded.
+                                  Blend sheet bodies have been created.
+                                  The walls have not been modified.
+
+                                  The associated data is a vector in <B>'points'</B>
+                                  and topological entities in <B>'topols'</B>.
+                                  These indicate the region where the blend
+                                  failed.
+
+ PK_3_face_blend_fail_c           The blend could not be created for an
+                                  unspecified reason.
+
+ PK_3_face_blend_bad_guide_c      The wire guide given by the application is
+                                  invalid.
+
+                                  Associated data may be returned as an edge or
+                                  vertex in <B>'topols'</B> and a vector in <B>'points'</B>
+                                  representing a point where the guide
+                                  is unsuitable.
+
+ PK_3_face_blend_bad_wall_c       The application has supplied an invalid wall
+                                  of faces.
+
+                                  The associated data in <B>'topols'</B> is the
+                                  invalid array of faces.
+
+ PK_3_face_blend_bad_orient_c     The application has supplied an unsuitable
+                                  orientation.
+
+ PK_3_face_blend_unoriented_c     The orientation of a wall was given as
+                                  <B>'<A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_unknown_c</A>'</B> and no
+                                  suitable orientation could be obtained.
+
+ PK_3_face_blend_bad_blend_tol_c  The blend tolerance supplied is non-positive.
+
+ PK_3_face_blend_bad_prop_tol_c   The propagation tolerance supplied is
+                                  non-positive.
+
+ PK_3_face_blend_sheet_clash_c    The blend sheet(s) intersect one another
+                                  and hence could not be attached.
+
+                                  The associated data is a vector in <B>'points'</B>
+                                  and topological entities in <B>'topols'</B>.
+                                  These indicate which sheet(s) clashed
+                                  and a point at which they clashed.
+
+ PK_3_face_blend_wall_clash_c     The blend, which has been attached,
+                                  has combined input bodies and has
+                                  produced a face-face inconsistency elsewhere
+                                  in the model.
+
+                                  The associated value in <B>'topols'</B> is an array
+                                  containing a pair of clashing faces.
+
+ PK_3_face_blend_face_face_c      The blend, which has been attached,
+                                  has caused a face-face inconsistency.
+
+                                  The associated value in <B>'topols'</B> is an array
+                                  containing a pair of clashing faces.
+
+ PK_3_face_blend_self_int_c       The blend contains face(s) with self
+                                  intersecting geometry.
+
+                                  The associated value in <B>'topols'</B> is an array
+                                  containing the blend faces with
+                                  self-intersecting surfaces.
+
+ PK_3_face_blend_inconsistent_c   The application has supplied inconsistent
+                                  data.
+
+ PK_3_face_blend_plane_origin_c   The application has supplied a limit or
+                                  capping plane whose origin does not
+                                  determine a unique location at which to trim
+                                  the blend.
+
+ PK_3_face_blend_plane_insuff_c   The application has supplied a limit or
+                                  capping plane which is not sufficient to
+                                  trim the blend.
+                                  For example, if the blend is closed, the
+                                  application must supply two limit planes.
+
+ PK_3_face_blend_bad_help_c       Supplied help point does not determine a
+                                  unique blend sheet from a multiple set of
+                                  sheets that have been found. It lies
+                                  equidistant to two or more sheets.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,528 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_change_edge_geom_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_change_edge_geom_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_change_edge_geom_data_s
+    {
+    int                            n_edge_arrays; --- number of arrays of edges
+                                                  --- with geom_data
+                                                  --- supplied (0)
+    const <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>         *edge_arrays;   --- arrays of edges for which
+                                                  --- the data has been
+                                                  --- provided to control the
+                                                  --- geometry created (NULL)
+    const <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_t</A> *methods;       --- array of edge control
+                                                  --- methods (NULL)
+    const <A HREF=../headers/pk_edge_step_t.html>PK_EDGE_step_t</A>          *steps;         --- array of controls for
+                                                  --- step face creation (NULL)
+                                                  --- [PF]
+    const <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>             *directions;    --- array of directions
+                                                  --- (NULL)
+    const <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>             *entities;      --- array containing the
+                                                  --- entity to be used when
+                                                  --- defining the geometry of
+                                                  --- the associated edges
+                                                  --- (NULL)
+    const <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            *reversals;     --- array of logicals
+                                                  --- indicating whether the
+                                                  --- direction of the
+                                                  --- associated edges should
+                                                  --- be reversed (NULL)
+    const double                  *offsets;       --- array of signed distances
+                                                  --- by which the associated
+                                                  --- entity in <B>'entities'</B>
+                                                  --- should be offset (NULL)
+    const <A HREF=../headers/pk_transf_t.html>PK_TRANSF_t</A>             *transforms;    --- array of transforms to be
+                                                  --- applied to the associated
+                                                  --- entity in <B>'entities'</B>
+                                                  --- (NULL)
+    const double                  *tolerances;    --- array of tolerances
+                                                  --- desired for the
+                                                  --- associated edges in the
+                                                  --- <B>'edge_arrays'</B> (NULL)
+    const <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_t</A>        *replace_uses;  --- array of controls on how
+                                                  --- the associated entity in
+                                                  --- <B>'entities'</B> should be used
+                                                  --- (NULL) [PF]
+    };
+
+typedef struct PK_change_edge_geom_data_s PK_change_edge_geom_data_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure is part of the <A HREF=../headers/pk_face_change_o_t.html>PK_FACE_change_o_t</A> options structure. It contains
+data to control the geometry created for the given arrays of edges.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_value         (MILD)    Member of <B>'replace_uses'</B> set to
+                                         <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_existing_c</A>.
+
+    PK_ERROR_bad_combination   (MILD)    Incompatible options specified as
+                                         follows:
+                                         - a member of <B>'entities'</B> is a
+                                           <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>, or a member of <B>'methods'</B>
+                                           was set as
+                                           <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_proj_c</A>, and a
+                                           non-zero corresponding <B>'offsets'</B>
+                                           value has been supplied.
+                                         - a member of <B>'entities'</B> is a
+                                           <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> or <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>, or a member
+                                           of <B>'methods'</B> is not
+                                           <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>
+                                           and the corresponding <B>'replace_uses'</B>
+                                           value is not <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_yes_c</A>.
+                                         - at least one of the <B>'edge_arrays'</B>
+                                           contains an edge that is not one of
+                                           the edges of the <B>'faces'</B> handed into
+                                           <A HREF=../headers/pk_face_change.html>PK_FACE_change</A>.
+                                         - a member of <B>'entities'</B> is a
+                                           <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> or <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> and the
+                                           corresponding <B>'methods'</B> value is not
+                                           <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>.
+                                         - a member of <B>'entities'</B> is a
+                                           <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A> and the corresponding
+                                           <B>'methods'</B> value is
+                                           <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_ruled_c</A>.
+                                         - a member of <B>'steps'</B> is
+                                           PK_EDGE_step_method_c and the
+                                           corresponding <B>'methods'</B> is
+                                           <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_proj_c</A>.
+                                         - a member of <B>'steps'</B> is
+                                           PK_EDGE_step_method_c and the
+                                           corresponding <B>'methods'</B> is
+                                           <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>
+                                           and the corresponding member of
+                                           <B>'entities'</B> is not a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A>.
+                                         - at least one of the
+                                           <B>'edge_arrays'</B> contains a
+                                           non-manifold edge and one or
+                                           more of the following are true:
+                                           * the corresponding <B>'replace_uses'</B>
+                                             value is not <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_yes_c</A>.
+                                           * the corresponding <B>'methods'</B> is not
+                                             <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>.
+                                           * the corresponding member of
+                                             <B>'entities'</B> is a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> or
+                                             <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>
+
+    PK_ERROR_wrong_transf      (MILD)    A member of <B>'transforms'</B> contains
+                                         scale, shear, perspective or
+                                         reflection components.
+
+    PK_ERROR_unsuitable_entity (MILD)    The <B>'entities'</B> array has been supplied
+                                         and contains an entity other than
+                                         <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>, <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> or <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>.
+                                         A member of <B>'entities'</B> is a <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>
+                                         and at least one of the associated
+                                         edges lies in this face.
+                                         A member of <B>'entities'</B> is a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A>
+                                         and at least one of the associated
+                                         edges lies in a face whose geometry is
+                                         this surface.
+
+    PK_ERROR_not_implemented   (MILD)    At least one of the <B>'edge_arrays'</B>
+                                         contains a non-laminar edge and one or
+                                         more of the following are true:
+                                         - the corresponding entity is a
+                                           <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> or <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>.
+                                         - the corresponding method is not
+                                           <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>.
+                                         - the corresponding entity is a
+                                           <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A> and an adjacent face
+                                           has a patch operation and the
+                                           supplied curve is not coincident to
+                                           an edge supplied in <B>'patch_edges'</B>.
+                                         - the edge has multiple adjacent faces
+                                           with patch operations using same
+                                           sheet entity.
+                                         At least one of the <B>'edge_arrays'</B>
+                                         contains a laminar edge whose adjacent
+                                         face has a patch operation, and the
+                                         corresponding entity is a <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>
+                                         or PK_ENTITY_null.
+
+    PK_ERROR_bad_orientation   (SERIOUS) Two laminar edges which share a common
+                                         two edge vertex have the same entity
+                                         supplied, but the reversals associated
+                                         with the edges would result in the
+                                         edges having inconsistent
+                                         orientations.
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_o_t.html>PK_FACE_change_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'n_edge_arrays'</B>         Number of arrays of edges supplied. Length of
+                        <B>'edge_arrays'</B> and the length of any of the parallel
+                        arrays if specified.  The parallel arrays are the
+                        <B>'methods'</B>, <B>'steps'</B>, <B>'directions'</B>, <B>'entities'</B>,
+                        <B>'reversals'</B>, <B>'offsets'</B>, <B>'transforms'</B>, <B>'tolerances'</B> and
+                        <B>'replace_uses'</B> arrays.
+
+                        The default value is 0.
+
+
+<B>'edge_arrays'</B>           Arrays of the edges.
+
+                        Note that edges which will be mixed after the operation
+                        must be supplied in <B>'edge_arrays'</B>, if any adjacent
+                        face which is being changed has a bend operation.
+
+                        The array default value is NULL.
+
+
+<B>'methods'</B>               Array of <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_t</A> values used to define
+                        the method for controlling the geometry of the
+                        corresponding edges and, if <B>'steps'</B> option is set to
+                        PK_EDGE_step_method_c, of any associated step faces.
+
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>:
+                            Attempt to use the supplied entity in the
+                            <B>'entities'</B> array to define the new edge geometry,
+                            or, if no entity is supplied, to use the existing
+                            edge geometry.
+
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_swept_c</A>:
+                            The existing edge curve or supplied entity curve
+                            should be swept in the corresponding direction
+                            specified in the <B>'directions'</B> array. The new edge
+                            geometry is defined by the intersection of this
+                            swept surface with the new face geometry. Any
+                            offsets and transformations supplied will be
+                            applied to the swept surface before it is
+                            intersected with the new face geometry.
+
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_ruled_c</A>:
+                            The existing edge curve should be swept along the
+                            normals of the original face to generate a ruled
+                            surface. The new edge geometry is defined by the
+                            intersection of this surface with the new face
+                            geometry. Any offsets and transformations supplied
+                            will be applied to the swept surface before it is
+                            intersected with the new face geometry.
+
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_proj_c</A>:
+                            The existing edge curve or supplied entity curve
+                            should be projected onto the corresponding new
+                            face along the normals of the new face.
+
+                        The default value is NULL indicating that the
+                        operation should use the <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>
+                        method.
+
+                        Note: if the method is not
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A> then the associated
+                        edges must be laminar unless a step face is requested
+                        by associated <B>'steps'</B> option.
+
+                        See <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-863202">here</A> for more information
+
+
+<B>'steps'</B>                 Array of <A HREF=../headers/pk_edge_step_t.html>PK_EDGE_step_t</A> values used to control
+                        the creation of step faces for the corresponding edges.
+                        This option will override any operation specific
+                        step option.
+
+                        PK_EDGE_step_default_c:
+                           Indicates the data is only used to control the
+                           geometry of the edges, and will not override any
+                           operation specific step option.
+
+                        PK_EDGE_step_auto_c:
+                           Create step faces along the edges with Parasolid
+                           internally creating the step face surface geometry.
+
+                        PK_EDGE_step_method_c:
+                           Create step faces along the edges with the step face
+                           surface geometry being derived from the associated
+                           <B>'methods'</B> option.
+
+                           If <B>'methods'</B> option is set to
+                           <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>, then only an entity
+                           of type surface is supported.
+
+                           The <B>'methods'</B> option <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_proj_c</A> is
+                           not supported.
+
+                        PK_EDGE_step_no_c:
+                           Will prevent the creation of a step face along
+                           the corresponding edges.
+
+                        The default value is NULL indicating that the
+                        operation will use PK_EDGE_step_default_c.
+
+                        For values of PK_EDGE_step_auto_c and
+                        PK_EDGE_step_method_c, there may be cases where a step
+                        face is not required, such as an edge with both faces
+                        having the same transformation.  These cases will not
+                        result in an error, but no step face will be created.
+
+                        Note: only the value of PK_EDGE_step_default_c is
+                              supported for non-manifold and mixed edges.
+
+                        See <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-863283">here</A> for more information
+
+
+<B>'directions'</B>            If <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_swept_c</A> is specified, this
+                        array defines the direction of sweeping. For other
+                        methods the <B>'directions'</B> array is ignored.
+
+
+<B>'entities'</B>              Array of user provided entities used when defining
+                        curves for the associated array of edges.  Each member
+                        of <B>'entities'</B> must be one of the following types:
+
+                        PK_ENTITY_null  this_indicates that the geometry of the
+                                        edges in the corresponding edge array
+                                        is expected to be preserved.
+
+                        <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>      edges in the corresponding edge array
+                                        are expected to have geometry that lies
+                                        within tolerance of this curve after
+                                        the operation.
+
+                        <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A>       edges in the corresponding edge array
+                                        are expected to have geometry that lies
+                                        within tolerance of this surface after
+                                        the operation.
+
+                        <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>       edges in the corresponding edge array
+                                        are expected to have geometry that lies
+                                        within tolerance of this face after
+                                        the operation.
+
+                        If the entity is a <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>, the associated edges
+                        will go in the direction of the curve.
+
+                        If the entity is a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> or <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>, the
+                        associated edges will go in the direction of the cross
+                        product of the normal of the first face of the edge and
+                        the normal of the entity.  The first face of the edge
+                        is defined to be the face of the fin of the edge
+                        returned by <A HREF=../headers/pk_edge_ask_first_fin.html>PK_EDGE_ask_first_fin</A>.
+
+                        The default value is NULL indicating that all edges in
+                        the <B>'edge_arrays'</B> are expected to have their geometry
+                        preserved.
+
+                        Note: if the entity is a <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> or a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> then
+                        the associated edges must be laminar unless a step face
+                        is requested by associated <B>'steps'</B> option.
+
+                        If the entity is a <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> this must not be the face
+                        that any of the associated edges already lie in.
+
+                        If the entity is a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> this must not be the
+                        surface of any face that any of the associated edges
+                        already lie in.
+
+                        If the entity is a <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> or a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> then
+                        the associated method must be
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>.
+
+                        If the entity is a <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A> then the associated
+                        method must not be <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_ruled_c</A>
+
+
+<B>'reversals'</B>             A <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> array indicating whether the associated
+                        edges should go in the opposite direction to that
+                        described above.
+
+                        This value is ignored if the <B>'entities'</B> array is NULL
+                        or if the corresponding entity in <B>'entities'</B> is set to
+                        PK_ENTITY_null.
+
+                        The default value is NULL indicating that none of the
+                        <B>'entities'</B> should be reversed.
+
+
+<B>'offsets'</B>               Array of signed distances by which the corresponding
+                        entity in the <B>'entities'</B> array will be offset, oriented
+                        in the direction of the entity normal.
+
+                        If the method in <B>'methods'</B> is set as either
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_swept_c</A> or
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_ruled_c</A> then the surface
+                        generated by sweeping either the entity curve or the
+                        original edge curve (when the entity is PK_ENTITY_null)
+                        will be offset in the direction of the swept surface
+                        normal. In such cases the positive direction is defined
+                        by the cross product of the fin direction and the
+                        original face normal (the first face of the edge -
+                        defined as the face associated with the fin returned
+                        by <A HREF=../headers/pk_edge_ask_first_fin.html>PK_EDGE_ask_first_fin</A>).
+
+                        An offset may only be supplied for entities of type
+                        <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> and <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>, or for methods
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_swept_c</A> and
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_ruled_c</A>.
+
+                        The default value is NULL indicating that none of the
+                        <B>'entities'</B> or swept surfaces should be offset.
+
+                        If any of the <B>'entities'</B> or swept surfaces cannot be
+                        offset <A HREF=../headers/pk_local_status_t.html>PK_local_status_cant_offset_c</A> will be returned.
+
+
+
+<B>'transforms'</B>            Array of transforms to be applied to the corresponding
+                        entity in the <B>'entities'</B> array or to the corresponding
+                        original edge curve if the entity is PK_ENTITY_null.
+
+                        If the method in the <B>'methods'</B> array is either
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_swept_c</A> or
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_ruled_c</A> then the transform
+                        will be applied to the surface generated by
+                        sweeping either the entity curve or the original edge
+                        curve (when the entity is PK_ENTITY_null).
+
+                        If the method in the <B>'methods'</B> array is
+                        <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_proj_c</A> then the transform
+                        will be applied to the entity or original edge curve
+                        before the projection is applied.
+
+                        Each transform must be either PK_ENTITY_null
+                        (indicating that the entity should not be transformed),
+                        or a transform containing only translation and rotation
+                        components. Scaling, shearing, perspective and
+                        reflection components are not allowed.
+
+                        The default value is NULL indicating that none of the
+                        <B>'entities'</B> should be transformed.
+
+
+<B>'tolerances'</B>            Array of tolerances associated with the corresponding
+                        edges in the <B>'edge_array'</B>.  A value of 0.0 indicates
+                        that the associated edges are to be treated as
+                        accurate.  A value of -1 indicates that the original
+                        edge tolerances should be used.
+
+                        The corresponding edges in the resulting body will
+                        not necessarily have this tolerance; if possible
+                        the edge will be made accurate, otherwise, if a value
+                        smaller than the supplied tolerance is found this is
+                        used.  In some cases the tolerance may need to be
+                        greater than this supplied tolerance.  In these cases
+                        the operation tolerance will be used to determine if a
+                        suitable value exists.
+
+                        The default value is NULL indicating that their
+                        original tolerances should be used for all edges.
+
+                        Note: This value is ignored for facet edges or when the
+                              associated entity is a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> or <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>.
+
+                        Note: Edges which will be mixed after the operation
+                              must have a tolerance of at least 5 times the
+                              session precision.
+
+
+<B>'replace_uses'</B>          Array of <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_t</A> values used to control the
+                        behaviour for the corresponding edges in cases where:
+                            - the corresponding entity is PK_ENTITY_null or no
+                              <B>'entities'</B> have been supplied but it is not
+                              possible to use the edges' existing geometry
+                            - the corresponding entity is a <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A> but it
+                              is not possible for the edges in the resulting
+                              body to have geometry that lies within tolerance
+                              of this curve
+                            - the corresponding entity is a <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> but it
+                              is not possible for the edges in the resulting
+                              body to have geometry that lies on this surface.
+                            - the corresponding entity is a <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> but it
+                              is not possible for the edges in the resulting
+                              body to have geometry that lies on the surface
+                              of this face (after any associated
+                              <A HREF=../headers/pk_face_change.html>PK_FACE_change</A> operation has been applied).
+                            - the corresponding method is either
+                              <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_swept_c</A>,
+                              <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_ruled_c</A> or
+                              PK_change_edge_method_proj but it is not
+                              possible for the edges in the resulting body to
+                              have geometry that lies within tolerance of the
+                              generated curve.
+
+                        <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_attempt_c</A> Attempt to use the geometry
+                                                 indicated by the corresponding
+                                                 entity or method but create a
+                                                 new curve if this cannot be
+                                                 used.
+
+                        <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_yes_c</A>     Return a fault if the geometry
+                                                 indicated by the corresponding
+                                                 entity or method cannot be
+                                                 used.
+
+                        Note: the value <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_attempt_c</A> is not
+                              implemented for entities of type <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A> and
+                              <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>, or for any method other than
+                              <A HREF=../headers/pk_change_edge_method_t.html>PK_change_edge_method_entity_c</A>. It is also not
+                              implemented for non-manifold edges.
+
+                        Note: the value <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_existing_c</A> is not
+                              implemented for any entity.
+
+                        Note: the value <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_yes_c</A> must be used for
+                              edges which will be mixed after the operation,
+                              if any adjacent face which is being changed has
+                              a bend operation.
+
+                        The default value is NULL indicating that the
+                        operation should return a fault if the indicated
+                        geometry cannot be used.
+
+
+If a member of <B>'entities'</B> is of type <A HREF=../headers/pk_face_t.html>PK_FACE_t</A> and is one of the faces handed
+into <A HREF=../headers/pk_face_change.html>PK_FACE_change</A>, then the face used to define the associated edges will be
+the face after the <A HREF=../headers/pk_face_change.html>PK_FACE_change</A> operation has been applied.  Similarly any
+transform or offset associated with that entity will be applied after the
+<A HREF=../headers/pk_face_change.html>PK_FACE_change</A> operation.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

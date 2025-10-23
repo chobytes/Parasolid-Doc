@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<TITLE>CRSOFA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRSOFA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_make_solid_bodies.html>PK_FACE_make_solid_bodies</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRSOFA ( faces, action, bodys, nbodys, sbodys, ifail )
+======================================================
+
+  Create solid from faces
+
+Receives:
+  KI_tag_list_face         *faces          --- face(s) to copy into new body(s)
+  KI_cod_sllo              *action         --- type of action to mend wounds
+                                           ---   SLLOCP => cap
+                                           ---   SLLOGR => grow
+                                           ---   SLLOGP => grow from parent
+                                           ---   SLLORB => leave rubber
+
+Returns:
+  KI_tag_list_body         *bodys          --- new body(s)
+  KI_int_nitems            *nbodys         --- number of new bodies
+  KI_tag_list_int          *sbodys         --- state(s) of the body(s)
+                                           ---   RTLOOK => Valid
+                                           ---   RTLONG => Negated
+                                           ---   RTLOSX => Self-Intersecting
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wire_body              Unable to make solid from wire body
+  KI_dont_make_solid        Unable to make solid from face
+  KI_non_manifold           Can't heal wound with non-manifold boundary
+  KI_not_in_same_part       Faces not all from the same body
+  KI_unsuitable_entity      Mixed body
+  KI_general_body           general body unsuitable for sweep
+
+Description:
+  The faces, which must all belong to the same body, are copied to make
+  one or more new solids. The faces are NOT deleted from the body.  A new body
+  is made for each shell that has faces in the list. If all the faces of a shell
+  are represented, a complete solid body is made; otherwise the missing faces of
+  the shell are treated as holes to be healed. All holes in the new solids are
+  covered by faces, the method used depending on the action code. All holes are
+  covered using the same action. If the action is "cap", a new face is created
+  for each hole and if possible a surface fitted which fits all the edges of the
+  hole. If the action is "grow" the faces around each hole are extended (if
+  possible) until they completely cover the hole. If the action is "grow from
+  parent" new faces are created to cover the hole which are the inverse of
+  extending the faces around 'faces' in the parent solid. If the action is
+  "leave rubber" each hole is 'covered' by a rubber face.
+
+  Restrictions on growing:
+    Edges of faces adjacent to a wound which do not form part of the loop of
+    edges around the wound, but have a vertex on it, will not be allowed to
+    contract back from that point.  The "shrinkage" option implemented in
+    DELFAS does not work for this routine.
+
+    Each closed loop around a face or group of faces is healed independently.
+    If the only solution would require more than one loop to be healed together
+    it will not be found.
+
+    The wound left by removing all the faces in a shell or body cannot be
+    healed.
+
+  In general this procedure may give rise to self-intersecting object
+  boundaries which could cause unpredictable errors later.
+
+  If local checking is on (see SEINTP and OUINTP), and the action is not "leave
+  rubber", consistency checks will be made on newly created topological and
+  geometrical entities, and the state of the body returned. A state of RTLOOK
+  indicates the body is valid. A state of RTLONG indicates that the result body
+  was originally "inside out" but has been negated, and is now "positive" (has
+  positive volume) and valid. A state of RTLOSX indicates the body is
+  self-intersecting and further modelling operations on it may fail. It is the
+  responsibility of the calling routine to make any necessary reparation.
+
+  Note if rubber faces are included in the face list, they will be copied into
+  the new solid.  This solid could be made valid by further operations to
+  replace the rubber faces.  It is not possible to grow a rubber face to cover
+  an adjacent wound.
+
+  If the session parameter for local checking is switched off or the action is
+  leave rubber, the state returned will be RTLOOK regardless.
+
+  A self-intersecting body can be returned even if the ifail is zero.
+
+  This function is not supported for faces on general bodies.
+
+</PRE>
+</BODY>
+</HTML>

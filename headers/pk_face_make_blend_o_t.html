@@ -1,0 +1,559 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_make_blend_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_make_blend_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_make_blend_o_s
+    {
+    int                      o_t_version;  --- version number of options
+    <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_t</A>          trim;         --- blend trimming option
+                                           --- (<A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_to_walls_c</A>)
+    <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_t</A>         walls;        --- wall trimming option
+                                           --- (<A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_attach_c</A>)
+    <A HREF=../headers/pk_blend_shape_t.html>PK_blend_shape_t</A>         shape;        --- shape of blend
+    <A HREF=../headers/pk_blend_constraint_t.html>PK_blend_constraint_t</A>    constraints;  --- constraints on blend
+    <A HREF=../headers/pk_blend_rib_control_t.html>PK_blend_rib_control_t</A>   rib_control;  --- blend section requests
+    double                   tolerance;    --- tolerance (1.0e-05)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             have_help_point;
+                                           --- whether help point is provided
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>              help_point;   --- help point
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             multiple;     --- create multiple blend sheets
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_blend_propagate_t.html>PK_blend_propagate_t</A>     propagate;    --- whether to propagate
+                                           --- (<A HREF=../headers/pk_blend_propagate_t.html>PK_blend_propagate_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             notch;        --- enable blends to notch
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             local_check;  --- whether local checks required
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_blend_local_check_t.html>PK_blend_local_check_t</A>   checks;       --- which local checks to perform
+    <A HREF=../headers/pk_blend_update_t.html>PK_blend_update_t</A>        update;       --- disable changes for updates
+                                           --- (<A HREF=../headers/pk_blend_update_t.html>PK_blend_update_default_c</A>)
+    <A HREF=../headers/pk_surf_t.html>PK_SURF_t</A>                user_surface; --- user supplied blend surface
+                                           --- (PK_ENTITY_null)
+    <A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_t</A>   repair_su_X;  --- whether to attempt to repair
+                                           --- self-intersecting surfaces
+                                           --- (<A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_no_c</A>)
+    <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_t</A>  inside_tight; --- blend on the inside of tightly
+                                           --- curved faces
+                                           --- (<A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             have_propagation_angle;
+                                           --- <B>'propagation_angle'</B> is
+                                           --- provided
+                                           --- (PK_LOGICAL_false)
+    double                   propagation_angle;
+                                           --- maximum angular tolerance
+                                           --- for propagation
+    <A HREF=../headers/pk_blend_repair_fa_x_t.html>PK_blend_repair_fa_X_t</A>   repair_fa_X;  --- whether to attempt to repair
+                                           --- self-intersecting faces
+                                           --- (<A HREF=../headers/pk_blend_repair_fa_x_t.html>PK_blend_repair_fa_X_no_c</A>)
+    <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A>           partition;    ---  a partition
+                                           --- (PK_PARTITION_null)
+    <A HREF=../headers/pk_blend_prevent_sharp_t.html>PK_blend_prevent_sharp_t</A> prevent_sharp;--- whether to attempt to prevent
+                                           --- sharp edges between blend
+                                           --- faces
+                                           --- (<A HREF=../headers/pk_blend_prevent_sharp_t.html>PK_blend_prevent_sharp_no_c</A>)
+    <A HREF=../headers/pk_blend_track_edges_t.html>PK_blend_track_edges_t</A>   track_edges;  --- whether to provide laminar
+                                           --- edge tracking when result is
+                                           --- a sheet body
+                                           --- (<A HREF=../headers/pk_blend_track_edges_t.html>PK_blend_track_edges_no_c</A>)
+    <A HREF=../headers/pk_blend_tolerance_t.html>PK_blend_tolerance_t</A>     improve_tolerance;
+                                           --- controls the tolerance
+                                           --- setting of new edges
+                                           --- (<A HREF=../headers/pk_blend_tolerance_t.html>PK_blend_tolerance_standard_c</A>)
+    <A HREF=../headers/pk_blend_run_out_t.html>PK_blend_run_out_t</A>       run_out;      --- whether to stop the blend when
+                                           --- the angle subtended by the blend
+                                           --- is equal to the specified
+                                           --- <B>'run_out_angle'</B>.
+                                           --- (<A HREF=../headers/pk_blend_run_out_t.html>PK_blend_run_out_no_c</A>)
+    double                   run_out_angle;--- the angle of normals used for
+                                           --- stopping the blend (0.1 radians)
+    <A HREF=../headers/pk_blend_report_repaired_t.html>PK_blend_report_repaired_t</A>
+                             report;       --- whether to report any repaired
+                                           --- blend faces in the Parasolid
+                                           --- report stream containing a
+                                           --- record of type
+                                           --- <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_1_c</A>.
+                                           --- (<A HREF=../headers/pk_blend_report_repaired_t.html>PK_blend_report_repaired_no_c</A>)
+
+    <A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_t</A>     extension_shape;
+                                           --- Dictates the type of extension
+                                           --- to use on underlying surfaces of
+                                           --- faces. Note that only linear and
+                                           --- soft extensions are valid for
+                                           --- this option.
+                                           --- (<A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_linear_c</A>)
+    <A HREF=../headers/pk_blend_use_master_faces_t.html>PK_blend_use_master_faces_t</A>
+                             master_faces;
+                                           --- Controls whether to use master
+                                           --- faces.
+                                           ---(<A HREF=../headers/pk_blend_use_master_faces_t.html>PK_blend_use_master_faces_yes_c</A>)
+
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A>    imprint_complete;
+                                           --- Whether to complete the
+                                           --- boundary of the blend to remove
+                                           --- excess face material when
+                                           --- blending between sheet bodies.
+                                           --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    };
+
+typedef struct PK_FACE_make_blend_o_s PK_FACE_make_blend_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains options for face face blending.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The PK_FACE_make_blend_o_t contains the following options:
+
+
+
+                        Trimming Options.
+
+ <B>'trim'</B>  Indicates how the blend is to be trimmed. See documentation of
+         <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_t</A>. The default is <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_to_walls_c</A>.
+
+ <B>'walls'</B> Determines if and how the blend sheets are attached to the defining
+         walls. See documentation of <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_t</A>. The default is
+         <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_attach_c</A>.
+
+If either of the walls defining the blend is from a solid body, and <B>'walls'</B>
+is set to <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_attach_c</A>, then <B>'trim'</B> must be either
+<A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_short_c</A> or <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_to_walls_c</A>, and the blend must not be
+wire-face.
+
+For wire-face blends <B>'trim'</B> must be <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_short_c</A> and <B>'walls'</B> must
+be either <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_trim_no_c</A>, <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_preview_c</A> or
+<A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_attach_c</A>.
+
+If either of these conditions is not satisfied, the call to <A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A>
+will return the fault code <A HREF=../headers/pk_fxf_fault_t.html>PK_fxf_fault_inconsistent_c</A>.
+
+See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-306185">Trimming face-face blends</A> for more information.
+
+
+
+                        Blend Shape Options:
+
+See <A HREF=../headers/pk_blend_shape_t.html>PK_blend_shape_t</A> for details of the controls used to define the shape
+of the blend.
+
+
+                        Blend Constraint Options:
+
+ <B>'cliff_edges'</B>    Blend is constrained by cliff edges.
+                  An array of edge tags is given.
+                  The blend will be constrained to be cliffedge blend in the
+                  region of the given edges.
+
+ <B>'tangent_edges'</B>  Blend is constrained by tangent hold lines.
+                  An array of edge tags is given.
+                  The blend will be constrained to be a tangent
+                  hold line blend in the region of the given edges.
+                  For constant and variable radius rolling ball or disc blends
+                  the blend need not be constrained by these edges. If the
+                  blend is a variable radius rolling ball or disc blend, the
+                  left and right ranges of the law curve must be equal.
+
+ <B>'conic_edges'</B>    Blend is constrained by conic hold lines.
+                  An array of edge tags is given.
+                  The blend will be constrained to be a conic hold line
+                  blend in the region of the given edges.
+                  For constant and variable radius rolling ball blends
+                  blend need not be constrained by these edges.  If the
+                  blend is a curvature continuous blend then <B>'cliff_edges'</B>
+                  and <B>'tangent_edges'</B> must not be set, and the number of edge
+                  tags in the array must be at least two.
+
+See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-303843">Constraining a blend locally using blend size</A> for more
+information.
+
+ <B>'inv_tangent_edges'</B>
+                  Blend is constrained by inverted tangent hold lines.
+                  An array of edge tags is given.
+                  The blend will be constrained to be a tangent
+                  hold line blend in the region of the given edges.
+                  For constant and variable radius rolling ball or disc blends
+                  the blend need not be constrained by these edges. If the
+                  blend is a variable radius rolling ball or disc blend, the
+                  left and right ranges of the law curve must be equal.
+
+ <B>'inv_conic_edges'</B>
+                  Blend is constrained by inverted conic hold lines.
+                  An array of edge tags is given.
+                  The blend will be constrained to be a conic hold line
+                  blend in the region of the given edges.
+                  For constant and variable radius rolling ball blends
+                  blend need not be constrained by these edges.  If the
+                  blend is a curvature continuous blend then <B>'cliff_edges'</B>
+                  and <B>'tangent_edges'</B> must not be set, and the number of edge
+                  tags in the array must be at least two.
+
+See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-304248">Inverting cliffedges and holdlines</A> for more information.
+
+ <B>'limit_1'</B>
+ <B>'limit_2'</B>        Limit Planes.
+                  One or two planes may be specified.
+                  The blend will be trimmed to end in a constant parameter
+                  line determined by a plane. The blend will lie on the
+                  positive side of the plane.
+
+See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-307164">Trimming blend to a plane</A> for more information.
+
+For a wire-face blend all edges in <B>'cliff_edges'</B> must be from the wire body.
+<B>'tangent_edges'</B>, <B>'conic_edges'</B>, <B>'inv_tangent_edges'</B> and <B>'inv_conic_edges'</B>
+must not be supplied.
+
+
+
+                        Blend Rib Controls.
+
+ <B>'output_rib'</B>       Control how ribs are produced.
+                    This token controls under what circumstances face-face
+                    blending will produce ribs.  The default is to not
+                    output ribs.
+
+ <B>'group_rib'</B>        Control how to group the ribs produced.
+                    Grouping controls how the limit on the number of ribs
+                    is applied.  This token defines whether the ribs are
+                    grouped by blend face, or by the intervals along the
+                    <B>'parameter'</B> curve defined by <B>'interval_parms'</B>,
+                    or not at all (default).
+
+ <B>'max_n_ribs'</B>       Limit on number of ribs produced per group.
+                    The number of ribs produced in each group will be no
+                    greater than this number. The default value is zero,
+                    for which no ribs will be produced.
+
+ <B>'n_interval_parms'</B> Number of <B>'interval_parms'</B> supplied.
+                    Default is zero.
+
+ <B>'interval_parms'</B>   Interval parameters.
+                    These are used to divide the <B>'parameter'</B> curve into
+                    intervals for grouping ribs.  They should have values
+                    in the parameter range of the curve.
+
+For wire-face blends these options must be left at their default value.
+
+See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-311466">Specifying when to produce ribs</A> for more information.
+
+
+                        Control Options.
+
+ <B>'tolerance'</B>       A tolerance is associated with this blend.
+
+ <B>'have_help_point'</B> Whether a help point is provided
+
+ <B>'help_point'</B>      Help point provided.
+                   A vector, which will be used to differentiate between
+                   multiple alternative possible blends between the walls.
+                   If there is a blend which passes
+                   close to the help point, it will be the one created.
+                   The <B>'help_point'</B> can be used in conjunction with
+                   the <B>'output_rib'</B> field of the <B>'rib_control'</B> structure to
+                   request that a rib is returned at the vector
+                   provided in <B>'help_point'</B>.
+
+ <B>'multiple'</B>        Create multiple blends sheets.
+                   <A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A> will only create one blend unless
+                   this option is set to PK_LOGICAL_true.
+
+                   See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-310897">Dealing with multiple solutions</A> for more
+                   information.
+
+ <B>'propagate'</B>       Propagate blends.
+                   If this token is given the blends will be allowed
+                   to propagate past smooth edges beyond the provided walls.
+
+                   See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-822507">Propagating blends</A> for more information.
+
+ <B>'notch'</B>           End Overflow
+                   If this options is set to PK_LOGICAL_true the blend will
+                   be allowed to extend past notches, whether in the middle
+                   or at the end of the blend.
+
+                   See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-310222">Blend notches</A> for more information.
+
+ <B>'local_check'</B>     If this option is set to <B>'PK_LOGICAL_true'</B>, then
+                   <B>'checks'</B> will be ignored, and the level of local checking
+                   will be:
+
+                        Surface self-intersection checks on all surfaces
+                        except B-surfaces will be performed
+                        Face checks will be performed
+                        Face-face inconsistency checks will be perfomed.
+
+                   If this option is set to <B>'PK_LOGICAL_false'</B>,
+                   then the amount of local checking will
+                   be determined by <B>'checks'</B>.
+
+ <B>'checks'</B>          Controls the amount of checking required. Ignored unless
+                   <B>'local_check'</B> is set to <B>'PK_LOGICAL_false'</B>. The faces of all
+                   self-intersecting surfaces requested for detection are
+                   returned in a report of type <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_blend_faces_sx_c</A>.
+
+                   See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-311555">Checking face-face blends</A> for more
+                   information.
+
+ <B>'update'</B>          This option allows the disabling of some changes to the
+                   blending algorithms for rebuild purposes.
+
+                   See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-304976">Options</A> for more information.
+
+ <B>'user_surface'</B>    This option allows users to users to supply a blend surface
+                   to the face-face blending algorithm. The surface must be
+                   within tolerance of the faces being blended. Parasolid
+                   will attempt to use a given surface as a blend surface even
+                   if this appears to be inconsistent with the <B>'left_sense'</B> and
+                   `right sense' arguments.
+
+                   See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-312908">User-supplied surfaces</A> for more information.
+
+ <B>'repair_su_X'</B>     This option controls whether or not Parasolid will attempt
+                   to repair blend surfaces that are self-intersecting. It
+                   only has an effect on constant radius rolling ball blends.
+                   Parasolid will create suitable faces to patch the
+                   self-intersecting regions. This option will only attempt to
+                   repair blends that are self-intersecting due to an
+                   underlying surface of the blend being too tightly curved to
+                   support the blend if the <B>'inside_tight'</B> option is set to
+                   <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_faces_c</A> or
+                   <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_partial_c</A>
+
+                   If 'repair_su_X' is set to any value other than
+                   '<A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_x_no_c</A>', then the faces of all
+                   self-intersecting surfaces that could not be repaired are
+                   returned in a report of type <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_blend_faces_sx_c</A>.
+
+                   See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-311603">Repairing self-intersecting blends</A> for more
+                   information.
+
+ <B>'inside_tight'</B>    This option controls whether blends will be created on
+                   the inside of faces that have a smaller radius of
+                   curvature than the blend being created. Switching
+                   this option on also enables blends on the inside of
+                   cliff-edges that are more tightly curved than the
+                   blend radius.
+
+                   This option may only be used with constant or
+                   variable radius rolling ball blends without conic
+                   or tangent edges.  In the variable radius case the
+                   option must be either <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_no_c</A> or
+                   <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_blends_c</A>.
+
+                   This option may also only be used for blends with conic
+                   or g2 cross-section shape; it may not be used for blends
+                   with chamfer  cross-section shape.
+
+                   The values <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_faces_c</A> or
+                   <A HREF=../headers/pk_blend_inside_tight_t.html>PK_blend_inside_tight_partial_c</A> may only be supplied if the
+                   <B>'repair_su_X'</B> option is set to <A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_yes_c</A>
+                   or <A HREF=../headers/pk_blend_repair_su_x_t.html>PK_blend_repair_su_X_report_c</A>.  In the latter case any
+                   blend faces created on too tightly curved faces will be
+                   returned as repaired.
+                   See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-312206">here</A> for more information.
+
+ <B>'have_propagation_angle'</B>
+                   If this option is set to PK_LOGICAL_true then a
+                   <B>'propagation_angle'</B> has been provided and this will be used
+                   to control propagation past sharp edges.
+
+ <B>'propagation_angle'</B>
+                   The maximal angle in radians at which propagation past sharp
+                   edges is allowed.
+                   It is used whenever <B>'have_propagation_angle'</B> is set to
+                   PK_LOGICAL_true.
+
+ <B>'repair_fa_X'</B>     This option controls whether or not Parasolid will attempt
+                   to repair blend faces that are self-intersecting.
+
+ <B>'partition'</B>       An optional user-supplied partition. If a partition is
+                   supplied and the blend options specify the blend result
+                   is to be returned as sheets, rather than attached to the
+                   left-hand body being blended, then those resultant
+                   sheets will be placed within this user-supplied partition.
+                   If any ribs are requested via the <B>'rib_control'</B> structure
+                   they will also be placed in the user-supplied
+                   partition.
+                   Default behaviour assumes no partition supplied
+                   ( PK_PARTITION_null ) and any resultant sheets or ribs are
+                   placed in the partition associated with the left-hand
+                   body being blended.
+
+ <B>'prevent_sharp'</B>   This option controls whether Parasolid will attempt to
+                   prevent sharp edges between blend faces.  These can occur
+                   for variable radius blends when passing a G2 discontinuity
+                   in the faces that are being blended, or when the radius
+                   definition of a blend changes sharply e.g. when a blend
+                   becomes constrained by a tangent holdline.
+
+                   This option may only be changed from its default value
+                   ( <A HREF=../headers/pk_blend_prevent_sharp_t.html>PK_blend_prevent_sharp_no_c</A> ) if the following are all
+                   satisified by the blend:
+                    - it is a rolling-ball blend with a circular or G2
+                      ( <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_g2_c</A> ) cross-section shape; AND
+                    - it has a constant radius, variable radius, constant
+                      width, variable width or a tangent holdline; AND
+                    - it is without conic holdline edges.
+
+  <B>'track_edges'</B>
+                   Whether to provide additional tracking information
+                   associated with laminar edges when the blend result is a
+                   sheet body. The default provides no tracking associated
+                   with the laminar edges ( <A HREF=../headers/pk_blend_track_edges_t.html>PK_blend_track_edges_no_c</A> ).
+                   Setting this option to <A HREF=../headers/pk_blend_track_edges_t.html>PK_blend_track_edges_laminar_c</A>
+                   will request additional tracking information. This
+                   additional information will be returned within the return
+                   structure and will usually describe the underlying
+                   coincident edge and/or face upon the original body.
+
+   <B>'improve_tolerance'</B>
+                   Whether to use new, improved tolerance handling
+                   which reduces the tolerance of the newly created
+                   edges. The default provides the old behaviour
+                   ( <A HREF=../headers/pk_blend_tolerance_t.html>PK_blend_tolerance_standard_c</A> ).
+                   To get the new behaviour use
+                   <A HREF=../headers/pk_blend_tolerance_t.html>PK_blend_tolerance_improved_c</A>.
+
+   <B>'run_out'</B>
+                   Whether to stop the blend when the angle subtended by the
+                   blend is equal to the specified <B>'run_out_angle'</B>.
+                   Should not be used together with wire-face blends, ribs or
+                   user_surface.
+                   ( <A HREF=../headers/pk_blend_run_out_t.html>PK_blend_run_out_no_c</A> ).
+
+   <B>'run_out_angle'</B>
+                   The angle in radians to be used if <A HREF=../headers/pk_blend_run_out_t.html>PK_blend_run_out_angle_c</A>
+                   is specified. The default value is 0.1.
+                   The angle must be greater then 0 and less then pi.
+
+    <B>'report'</B>
+                   Whether to report any repaired blend faces in the
+                   Parasolid report stream. Any records will be of type
+                   <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_1_c</A> and will have a status of
+                   <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_rep_sx_faces_c</A> or <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_rep_G2_faces_c</A>.
+                   In the first case the report will list those blend faces
+                   created by repairing self-intersections.
+                   In the second, the blend_faces reported are those from
+                   G2 blends which have been modified to preserve continuity
+                   when crossing G2-discontinuous edges.
+                   ( <A HREF=../headers/pk_blend_report_repaired_t.html>PK_blend_report_repaired_no_c</A> )
+
+   <B>'extension_shape'</B>
+                   This option controls how underlying surfaces of faces and
+                   curves of certain edges are extended for G2 blends. If the
+                   surfaces/curves are extended linearly, then blends built on
+                   the extension may have a C1 discontinuity on the boundary.
+                   Setting this option to <A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_soft_c</A> avoids
+                   this, but may require surfaces of faces to be extended as a
+                   result. Any edges given in <B>'constraints'</B> that bound one of
+                   these faces may also need their curves softly extended.
+
+                   The surfaces/curves whose soft extension was used to
+                   construct the blend, as well as whether they have been
+                   permanently extended, will be reported in a
+                   <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_geom_extended_c</A> report. Any surfaces/curves that
+                   could not be extended or already contains discontinuities
+                   will also be reported in a <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_blend_x_g1_c</A> report.
+                   This option may only be set to <A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_soft_c</A>
+                   if <B>'xs_shape'</B> in <B>'shape'</B> is set to <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_g2_c</A>,
+                   or the blend is a non-circular conic blend.
+
+                   A non-circular conic blend can be achieved by setting
+                   <B>'xs_shape'</B> in <B>'shape'</B> to <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_conic_c</A> and
+                   by setting either:
+                   - <B>'rho_const'</B> in <B>'shape'</B>
+                   - <B>'rho'</B> in <B>'shape'</B>
+                   -  an unequal <B>'range1_const'</B> and <B>'range2_const'</B> in <B>'shape'</B>
+                   - <B>'range1'</B> and <B>'range2'</B> in <B>'shape'</B> with different
+                      law curves
+                   -  or by providing conic holdlines in both walls and
+                      ensuring that the blend contact points are defined only
+                      by the holdlines. This can be done by not setting any of
+                      the radius or range options in <B>'shape'</B>.
+
+                   ( <A HREF=../headers/pk_extension_shape_t.html>PK_extension_shape_linear_c</A> )
+
+   <B>'master_faces'</B>
+                   This option controls whether to use master faces.
+
+                   If the value of the option is the default
+                   <A HREF=../headers/pk_blend_use_master_faces_t.html>PK_blend_use_master_faces_yes_c</A> then only those blends are
+                   created where the blend goes through the first
+                   face of either wall (master face).
+
+                   If the option is set to <A HREF=../headers/pk_blend_use_master_faces_t.html>PK_blend_use_master_faces_no_c</A>
+                   then all blends which pass through any pair of faces
+                   from the left wall and right wall are considered.
+                   In this case if <B>'multiple'</B> is PK_LOGICAL_true then
+                   <B>'have_help_point'</B> must be PK_LOGICAL_false and all the
+                   blends will be created. If <B>'multiple'</B> is PK_LOGICAL_false
+                   then <B>'have_help_point'</B> must be PK_LOGICAL_true and only
+                   the blend closest to the help point will be created.
+
+                   <A HREF=../headers/pk_blend_use_master_faces_t.html>PK_blend_use_master_faces_no_c</A> is implemented only for
+                   constant radius rolling ball blends without cliff and
+                   holdline edges.
+
+    <B>'imprint_complete'</B>
+                   When the blend is trimmed so that, on one side, the blend
+                   meets a laminar edge ( usually via the 'trim' option or
+                   stopping topology ) this option can be used to control how
+                   to complete the blend boundary on the longer face. The
+                   completed edges are used to trim off excess material. This
+                   option can only be used if set to either the default or
+                   <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_laminar_c</A> - the other values are not
+                   implemented in blending. If one or more of the bodies being
+                   blended are solid bodies, <A HREF=../headers/pk_fxf_fault_t.html>PK_fxf_fault_inconsistent_c</A>
+                   will be returned.
+                  ( <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A> )
+
+
+For wire-face blends the <B>'user_surface'</B>, <B>'repair_su_X'</B>, <B>'inside_tight'</B>,
+<B>'have_propagation_angle'</B>, <B>'repair_fa_X'</B> and <B>'prevent_sharp'</B> options must not
+be changed from their default.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

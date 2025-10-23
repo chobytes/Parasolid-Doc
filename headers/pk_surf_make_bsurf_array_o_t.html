@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SURF_make_bsurf_array_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SURF_make_bsurf_array_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_SURF_make_bsurf_array_o_s
+    {
+    int                        o_t_version;
+    double                     tolerance; --- tolerance for
+                                          --- approximate result
+                                          --- (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               have_u_degree;
+                                          --- whether u degree
+                                          --- is specified
+                                          --- (PK_LOGICAL_false)
+    int                        u_degree;  --- degree in u direction (0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               have_v_degree;
+                                          --- whether v degree
+                                          --- is specified
+                                          --- (PK_LOGICAL_false)
+    int                        v_degree;  --- degree in v direction (0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               force_non_rational;
+                                          --- force non-rational
+                                          --- B-surface
+                                          --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_t</A>      force_continuity;
+                                          --- controls whether to
+                                          --- force a certain level of
+                                          --- continuity
+                                          --- (<A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>)
+    <A HREF=../headers/pk_continuity_t.html>PK_continuity_t</A>            continuity;
+                                          --- level of continuity
+                                          --- (<A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A>)
+    <A HREF=../headers/pk_item_t.html>PK_ITEM_t</A>                  destination;
+                                          --- destination for B-surfaces
+                                          --- (PK_ITEM_null)
+    };
+
+typedef struct PK_SURF_make_bsurf_array_o_s PK_SURF_make_bsurf_array_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls on converting an array of surfaces into
+B-surfaces.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_surf_make_bsurf_array.html>PK_SURF_make_bsurf_array</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure has the following fields :
+
+<B>'tolerance'</B>          If the function is unable to make an exact B-surface, this
+                     specifies the maximum deviation between the resultant
+                     B-surface and the input surface. The function will usually
+                     achieve this condition but this is not guaranteed.
+                     (1.0e-5)
+
+<B>'have_u_degree'</B>      Whether degree required of resultant B-surface in u
+                     direction is specified. If this is set to PK_LOGICAL_true,
+                     <B>'u_degree'</B> must be set to 3, <B>'have_v_degree'</B> set to
+                     PK_LOGICAL_true and <B>'v_degree'</B> to 3. Other values for
+                     u/v degree are not supported. If this is set to
+                     PK_LOGICAL_false, the degree in the u direction will
+                     depend upon the input surface. (PK_LOGICAL_false)
+
+<B>'u_degree'</B>           degree of the resultant B-surface in the u direction. (0)
+
+<B>'have_v_degree'</B>      Whether degree required of resultant B-surface in v
+                     direction is specified. If this is set to PK_LOGICAL_true,
+                     <B>'v_degree'</B> must be set to 3, <B>'have_u_degree'</B> set to
+                     PK_LOGICAL_true and <B>'u_degree'</B> to 3. Other values for
+                     u/v degree are not supported. If this is set to
+                     PK_LOGICAL_false, the degree in the v direction will
+                     depend upon the input surface. (PK_LOGICAL_false)
+
+<B>'v_degree'</B>           degree of the resultant B-surface in the v direction. (0)
+
+<B>'force_non_rational'</B> If set to PK_LOGICAL_true, the resultant surface will be
+                     non-rational. Otherwise, the surface may or may not be
+                     rational, depending on the input surface.
+                     (PK_LOGICAL_false)
+
+<B>'force_continuity'</B>   This option allows a minimum level of continuity for the
+                     resultant surface to be supplied through the <B>'continuity'</B>
+                     option, and also controls how discontinuities of the input
+                     surface will be handled.  It has the possible values:
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_yes_c</A>
+                          All discontinuities will be eliminated up to the
+                          level specified by the <B>'continuity'</B> option. Closed,
+                          non-periodic surfaces will be made periodic.
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_prefer_c</A>
+                          If possible, the resulting B-surface will be
+                          continuous up to the level specified by the
+                          <B>'continuity'</B> option.
+                          Large G1 discontinuities will be preserved and
+                          reported in a <A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_discontinuities_c</A> record.
+                          Closed, non-periodic surfaces will be made periodic
+                          unless there is a large G1 discontinuity across the
+                          seam.
+
+                        o <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>  (default)
+                          No attempt will be made to remove discontinuities.
+                          This is the default value. Periodicity of closed
+                          surfaces will not be enforced.
+
+<B>'continuity'</B>         The desired continuity of the resulting B-surface.
+                     This is ignored if <B>'force_continuity'</B> is set to
+                     <A HREF=../headers/pk_force_continuity_t.html>PK_force_continuity_no_c</A>. The possible values are:
+                         <A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A>  (default)
+                         <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A>
+                         <A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>
+                         <A HREF=../headers/pk_continuity_t.html>PK_continuity_g2_c</A>
+
+<B>'destination'</B>        This option specifies the destination for the resulting
+                     B-surfaces.
+                     It can be a partition, <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A>, or a part,
+                     <A HREF=../headers/pk_part_t.html>PK_PART_t</A>, but no other <A HREF=../headers/pk_item_t.html>PK_ITEM_t</A>. Alternatively it
+                     may be set to PK_ITEM_null (default).
+                        o  If <B>'destination'</B> is a partition, the B-surfaces will
+                        be orphan geometry in that partition.
+                        o  If <B>'destination'</B> is a part, the B-surfaces will be
+                        construction geometry in that part.
+                        o  If <B>'destination'</B> is PK_ITEM_null, the B-surfaces
+                        will be orphan geometry in the current partition.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

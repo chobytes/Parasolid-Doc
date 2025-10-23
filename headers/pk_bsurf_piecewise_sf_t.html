@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BSURF_piecewise_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BSURF_piecewise_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BSURF_piecewise_sf_s
+    {
+    int                 u_degree;           --- The degree in u = order-1.
+    int                 v_degree;           --- The degree in v = order-1.
+    int                 n_u_segments;       --- The number of segments in u.
+    int                 n_v_segments;       --- The number of segments in v.
+    int                 dim;                --- Dimension of coefficient vecs
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        is_rational;        --- True if the surface is rational
+    <A HREF=../headers/pk_piecewise_rep_t.html>PK_piecewise_rep_t</A>  rep;                --- Representation method
+    double             *coeffs;             --- Coefficient vectors
+    };
+typedef struct PK_BSURF_piecewise_sf_s PK_BSURF_piecewise_sf_t;
+</B>
+<A NAME="description"></A>
+<I>This data structure is the piecewise standard form of a b-surface.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_value             unreadable value
+    PK_ERROR_bad_dimension         illegal <B>'dim'</B>
+    PK_ERROR_bad_order             hermite basis and degree not 3
+    PK_ERROR_discontinuous_surface adjacent segments do not meet.
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bsurf_ask_piecewise.html>PK_BSURF_ask_piecewise</A><br>
+    <A HREF=../headers/pk_bsurf_create_piecewise.html>PK_BSURF_create_piecewise</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+<B>'u_degree'</B>       This field specifies the degree of the surface in the u
+                 direction. The minimum degree is 1.  If the Hermite basis is
+                 used (<B>'rep'</B> = <A HREF=../headers/pk_piecewise_rep_t.html>PK_piecewise_rep_hermite_c</A>)
+                 then the surface must be bicubic (<B>'degree'</B> = 3).
+
+<B>'v_degree'</B>       This field specifies the degree of the surface in the v
+                 direction. The minimum degree is 1.  If the Hermite basis is
+                 used (<B>'rep'</B> = <A HREF=../headers/pk_piecewise_rep_t.html>PK_piecewise_rep_hermite_c</A>)
+                 then the surface must be bicubic (<B>'degree'</B> = 3).
+
+<B>'n_u_segments'</B>   The number of segments in the surface in the u direction.
+                 This must be greater than or equal to 1. Adjacent segments
+                 must meet.
+
+<B>'n_v_segments'</B>   The number of segments in the surface in the v direction.
+                 This must be greater than or equal to 1. Adjacent segments
+                 must meet.
+
+<B>'dim'</B>            This field gives the number of doubles per coefficient vector
+                 in the array <B>'coeffs'</B>. Allowable values are 3 and 4.
+
+<B>'is_rational'</B>    This field is set to true if the surface is rational.
+                 In this case the <B>'dim'</B> field must be one greater than the
+                 dimensionality of the surface.
+                 At present, if:
+
+                     <B>'is_rational'</B> == PK_LOGICAL_false then <B>'dim'</B> must be 3
+                     <B>'is_rational'</B> == PK_LOGICAL_true  then <B>'dim'</B> must be 4.
+
+<B>'rep'</B>            This field defines the representation method.
+                 See documentation of <A HREF=../headers/pk_piecewise_rep_t.html>PK_piecewise_rep_t</A>.
+
+'coeffs'         Contains
+                 (<B>'u_degree'</B>+1)*<B>'n_u_segments'</B>*(<B>'v_degree'</B>+1)*<B>'n_v_segments'</B>
+                 vectors of dimension <B>'dim'</B>.
+                 If `is_rational` == PK_LOGICAL_false, then the vectors are
+                 3-D vectors giving the x, y and z components.
+                 If <B>'is_rational'</B> == PK_LOGICAL_true, then each vector has
+                 a weight (w)associated with it, and x, y, z and w components
+                 are supplied for each vector. The weights supplied must be
+                 greater than zero.
+                 The interpretation of <B>'coeffs'</B> depends on the representation
+                 method chosen; this is determined by the value of the field
+                 <B>'rep'</B>.
+                 The u and v segments divide the surface into a grid of
+                 patches. The vectors are ordered such that the coefficients
+                 for a given patch are grouped together. The patches are
+                 arranged so that the patches vary most quickly with u and then
+                 with v.
+
+The <B>'rep'</B> together with the <B>'coeffs'</B> define a function for each patch of the
+b-surface. For more information about these representations see
+<A HREF="../chapters/fd_chap.125.html#50409919_pgfId-287595">Other methods of representing surfaces</A>. Note that the coefficients
+are independent of the parameterisation of the b-surface - the u and v
+parameters of the function for each patch of the b-surface are parameterised
+from 0 to 1.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

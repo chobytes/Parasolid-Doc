@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_fitted_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_fitted_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_fitted_fault_s
+    {
+    <A HREF=../headers/pk_bcurve_fitted_t.html>PK_BCURVE_fitted_t</A> status;          --- status for the fit
+    double             distance_error;  --- final maximum distance error
+    double             angular_error;   --- final maximum angular error
+    double             error_parameter; --- parameter at which the
+                                        --- algorithm failed
+    };
+
+typedef struct PK_BCURVE_fitted_fault_s PK_BCURVE_fitted_fault_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure returns fit status and related data.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_create_fitted.html>PK_BCURVE_create_fitted</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+The structure's fields are:
+
+<B>'status'</B>            a value specifying the final status of the attempt to
+                    fit the input curve with a B-curve.
+
+<B>'distance_error'</B>    the maximum distance error for the fit.  In a
+                    successful fitting this distance will be less than the
+                    <B>'tolerance'</B> supplied.  If fitting failed this value may be
+                    undefined, depending on the <B>'status'</B> for the B-curve.
+
+<B>'angular_error'</B>     the maximum angular error for the fit, if a
+                    non-zero angular tolerance was provided.  If no angular
+                    tolerance was supplied this value will be zero. If fitting
+                    failed this value may be undefined, depending on the
+                    <B>'status'</B> for the B-curve.
+
+<B>'error_parameter'</B>   the parameter on the B-curve at which the fitting
+                    algorithm has failed, if such a failure has occurred. Error
+                    parameter will only be returned for certain <B>'status'</B> values
+                    and should be interpreted accordingly.
+
+The <B>'status'</B> values which return a B-curve and associated <B>'distance_error'</B> and
+<B>'angular_error'</B> are:
+
+    PK_BCURVE_fitted_success_c
+    PK_BCURVE_fitted_eval_failure_c
+
+The <B>'status'</B> values which return associated <B>'error_parameter'</B> and the
+appropriate interpretations are:
+
+    PK_BCURVE_fitted_eval_failure_c     the parameter at which the
+                                        evaluator failed
+    PK_BCURVE_fitted_bad_interp_parm_c  the bad interpolation parameter
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

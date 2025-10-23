@@ -1,0 +1,804 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_REPORT_3_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_REPORT_3_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_REPORT_3_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_report_record_3_t.html>PK_REPORT_record_3_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype indicates the status of a <A HREF=../headers/pk_report_record_3_t.html>PK_REPORT_record_3_t</A>.
+
+It has the values:
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_surf_extended_c</A>      Surfaces have been extended by this
+                                   operation.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_blend_limit_data_c</A>   Suggested limit data has been returned.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_blend_limit_topol_c</A>  Suggested limit topology has been returned.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_discontinuities_c</A>    There are curve or surface discontinuities
+                                   remaining after this operation.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_neutral_face_data_c</A>  Neutral sheet construction data.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_distance_err_c</A>       Achieved distance error.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_worse_curvature_c</A>    Information on resultant surfaces with worse
+                                   curvature than the inputs.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_cover_surf_c</A>         <A HREF=../headers/pk_face_cover.html>PK_FACE_cover</A> failed, the report contains
+                                   information on a surface that was
+                                   successfully constructed.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_sharp_eds_c</A>          Information on non-visibly-G1 smooth edges.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_tight_curvature_c</A>    Information on tightly curved surfaces.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_proj_cu_split_c</A>      Information on clashes of projected curves.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_geom_extended_c</A>      Information on geometry that was extended
+                                   as a result of the operation.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_blend_x_g1_c</A>         Information on surface/curves which may have
+                                   caused a blend face not to be g2 continuous.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_compound_split_c</A>     Information on compound bodies that were
+                                   split when receiving a part or partition
+                                   file.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_fill_hole_non_g2_c</A>   Information on a fill hole operation where
+                                   G2 smoothness to adjacent faces was
+                                   requested, but the boundary edges, faces or
+                                   supporting bodies were not sufficiently G2
+                                   smooth.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_identified_blend_c</A>   Information on identified blends.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_line_fit_tols_c</A>      Information for curves where the piecewise
+                                   linear fit tolerances could not be achieved.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_blend_chain_c</A>        Information on a blend defined over a chain
+                                   of edges.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_sweep_tool_cap_c</A>     Information on swept tool result affected
+                                   by optional <B>'cap_faces'</B>.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_proj_cu_map_c</A>        Mapping information for projection curves.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_mesh_open_comps_c</A>    Information on open components of
+                                   laminar mfins.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_fill_hole_non_g1_c</A>   Information on a fill hole operation where
+                                   G1 smoothness to adjacent faces was
+                                   requested, but the boundary edges, faces or
+                                   supporting bodies were not sufficiently G1
+                                   smooth.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_mass_eq_0_c</A>          Information on topologies that were found to
+                                   have zero mass.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_chamfer_extended_c</A>   Information on chamfer faces that are
+                                   extended outside their natural width.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_render_curve_tols_c</A>  Rendering curve approximation tolerances.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_embed_curve_c</A>        Information relating to the success or
+                                   failure of a call to embed a curve in a
+                                   surface.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_outline_result_c</A>     Information on outlines produced and their
+                                   originators.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_outline_error_c</A>      Information on errors related to originators
+                                   and result curves of an outlining operation.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_render_lattice_c</A>     Information on blended lattices that have
+                                   been rendered without blends.
+
+  <A HREF=../headers/pk_report_t.html>PK_REPORT_3_picked_frames_c</A>      Information on frames picked by
+                                   <A HREF=../headers/pk_body_pick_topols.html>PK_BODY_pick_topols</A>.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_surf_extended_c</A> contains the following information for each
+original surface that has resulted in an extension:
+
+- an old item containing the tag of the original surface from which an
+  extended surface was derived, along with the tags of any faces to which
+  it was attached.
+
+- a parallel array of old classes containing the class of the old items.
+
+- an item array containing the tags of the surfaces derived from the original
+  surface and the tags of any faces to which they are attached.
+
+- a double array containing the original parameter box of the original surface
+  and a new parameter box encompassing the extensions derived from that
+  surface. The array will be of length eight and have the form:
+    array[0] = original_u_interval.low
+    array[1] = original_v_interval.low
+    array[2] = original_u_interval.high
+    array[3] = original_v_interval.high
+    array[4] = new_u_interval.low
+    array[5] = new_v_interval.low
+    array[6] = new_u_interval.high
+    array[7] = new_v_interval.high
+
+- no strings or int arrays will be returned.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_limit_data_c</A> contains the following information for each
+applicable edge blend failure:
+
+- an array of length 1 of old_items containing the edge to be blended.
+
+- an array of length 1 of old_class containing the class of the item.
+
+- an array of 3 doubles indicating the limit point on this edge.
+
+- an array of 3 doubles indicating the limit direction.
+
+- an int array of length 2. The first entry is of type <A HREF=../headers/pk_blend_limit_type_t.html>PK_blend_limit_type_t</A>
+  indicating the limit type and the second entry is of type
+  <A HREF=../headers/pk_blend_limit_patch_t.html>PK_blend_limit_patch_t</A> indicating whether patching the limit
+  would be likely to succeed.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_limit_topol_c</A> contains the following information for each
+applicable edge blend failure:
+
+- an array of length 1 of old_items containing the limit fin.
+
+- an array of length 1 of old_classes containing the class of the item.
+
+- two int arrays. The first int array will be of length 1 and type
+<A HREF=../headers/pk_blend_limit_patch_t.html>PK_blend_limit_patch_t</A> indicating whether patching the limit would be likely
+to succeed. The second int array will be an array of underlying faces of the
+blend to which the limit should apply. The second int array may have length
+zero.
+
+The report will return either <A HREF=../headers/pk_report_t.html>PK_REPORT_3_limit_data_c</A> or
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_limit_topol_c</A> for each suggested limit.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_discontinuities_c</A> contains the following information for each
+remaining curve or surface discontinuity:
+
+- a double array specifying the parameter value of each discontinuity.
+- an array of vectors specifying a 3-space location for each discontinuity.
+- an int array of type <A HREF=../headers/pk_continuity_t.html>PK_continuity_t</A> specifying the level of each
+  discontinuity.
+- (for surfaces only) an int array of type <A HREF=../headers/pk_param_direction_t.html>PK_PARAM_direction_t</A>
+  specifying whether the discontinuity is in the U or V direction.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_neutral_face_data_c</A> contains the following information:
+
+- an int array of length one of type <A HREF=../headers/pk_neutral_method_t.html>PK_neutral_method_t</A> containing the method
+  used by this group of faces.
+
+- an int array of length one containing
+  - zero, if the <B>'left_faces'</B> were offset to create the neutral sheet; or
+  - one, if the <B>'right_faces'</B> were offset to create the neutral sheet;
+
+- an old_item_array containing <B>'left_faces'</B> passed to the function that are
+  part of this group;
+
+- an old_item array containing <B>'right_faces'</B> passed to the function that are
+  part of this group; and
+
+- a double array containing five values, specifically:
+  - array[0] contains the value by which the faces were offset to give the
+    neutral sheet;
+  - array[1] contains the placement parameter passed to the function;
+  - array[2] contains the minimum thickness between the <B>'left_faces'</B> and the
+    <B>'right_faces'</B> for this group; and
+  - array[3] contains the maximum thickness between the <B>'left_faces'</B> and the
+    <B>'right_faces'</B> for this group. If <B>'tolerance'</B> is unset, this entry will be
+    the same as the minimum thickness;
+  - array[4] contains the tolerance value used. This is usually the same as
+    <B>'tolerance'</B> but may have been reduced if the value is too large with
+    respect to the minimum thickness. If <B>'tolerance'</B> is unset, the value will
+    be zero.
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_distance_err_c</A> contains the following information:
+
+- an item array of length 1, containing the resultant surface.
+
+- a double array with the following values:
+  - array[0] contains the maximum distance error achieved by the function.
+  - array[1] contains the u parameter on the resultant surface where the
+    maximum distance error occurs.
+  - array[2] contains the v parameter on the resultant surface where the
+    maximum distance error occurs.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_worse_curvature_c</A> contains the following information:
+
+- an array of n double arrays. Each double array contains information on where
+  the resultant surface is more tightly curved than the function considers to
+  be reasonable, given the input faces. Each double array is of length 5,
+  containing the following information:
+  - array[0], array[1], array[2] - the components of a position vector on the
+    resultant surface where the tight curvature occurs.
+  - array[3] - the curvature at this location.
+  - array[4] - the corresponding curvature on the original input face.
+
+- a parallel array of n old_items containing the corresponding faces where the
+  resultant surface is considered too tightly curved. Note that faces may
+  appear in the list more than once indicating that there is more than one
+  tightly curved region corresponding to this face.
+
+- a parallel array of length n of old_classes containing the class of each
+  old_item (PK_CLASS_face).
+
+- a parallel array n items containing the resultant surface.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_cover_surf_c</A> contains the following information:
+
+- an item array of length 1, containing a B-surface that was successfully
+  constructed to cover the input faces, before the failure which triggered the
+  report.
+
+- an array of old_items containing the input faces for this operation.
+
+- a parallel array of old_classes containing the class of each old_item
+  (PK_CLASS_face).
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_sharp_eds_c</A> contains the following information:
+
+- an array of old_items containing the internal edges of the supplied face set
+  that are not visibly G1 smooth.
+
+- a parallel array of old_classes containing the class of each item
+  (PK_CLASS_edge).
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_tight_curvature_c</A> contains the following information:
+
+- an array of n old_items containing faces where the radius of curvature is too
+  small for the function to handle. Note that faces may appear in the list more
+  than once indicating that the face contains more than one tightly curved
+  region.
+
+- a parallel array of length n of old_classes containing the class of each
+  old_item (PK_CLASS_face).
+
+- a parallel array of n double arrays. Each double array represents a uvbox on
+  the face given by the corresponding entry in old_items. Each double array is
+  of length 4, containing the uvbox of a region on the face's surface with
+  tight curvature as follows:
+  - array[0] is the low U value
+  - array[1] is the low V value
+  - array[2] is the high U value
+  - array[3] is the high V value
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_proj_cu_split_c</A> contains the following information:
+
+- an array of three doubles constituting a vector specifying the position of
+  the clash or self-intersection.
+- an item array containing the geometries that clash at this position. A curve
+  occurring twice indicates a self-intersection. Two or more different
+  geometries indicate a clash.
+- a double array containing the parameter of the clash for each curve.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_geom_extended_c</A> contains the following information:
+
+- an old item containing the tag of the original geometry from which an
+  extended version was derived, along with the tags of any topology to which
+  it was attached.
+
+- a parallel array of old classes containing the class of the old items.
+
+- a double array containing the original parameter space of the geometry before
+  the operation, and the parameter space of the soft extension used to
+  construct the blend face. For surfaces, the array will be of length eight and
+  have the form:
+    array[0] = original_u_interval.low
+    array[1] = original_v_interval.low
+    array[2] = original_u_interval.high
+    array[3] = original_v_interval.high
+    array[4] = new_u_interval.low
+    array[5] = new_v_interval.low
+    array[6] = new_u_interval.high
+    array[7] = new_v_interval.high
+
+  For curves, the array will be of length four and have the
+  form:
+    array[0] = original_t_interval.low
+    array[1] = original_t_interval.high
+    array[2] = new_t_interval.low
+    array[3] = new_t_interval.high
+
+- an int array of type <A HREF=../headers/pk_geom_soft_extended_t.html>PK_GEOM_soft_extended_t</A> specifying whether or not the
+  original geometry has been softly extended as a result of the blending
+  operation.
+
+- no string arrays will be returned.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_blend_x_g1_c</A> contains the following information:
+
+- an array of old_item_arrays containing tags of surfaces/curves which may have
+  caused the blend faces to not be g2 continuous.
+
+- a parallel array of old_class_arrays containing the class of each item.
+
+- an array of new_item_arrays containing blended faces. The surface of this
+  face will have been constructed using the surfaces/curves given in the
+  corresponding old_item_array, and so may not be g2 continuous.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_fill_hole_non_g2_c</A> contains the following information:
+
+- an array of n <B>'old_item_arrays'</B>. There is one array for each G2
+  discontinuity. Each array contains:
+    - For two faces meeting non G2 smoothly at a boundary vertex: The boundary
+      vertex, followed by the two boundary faces.
+    - For a boundary edge not G2 smooth to the adjacent face of an adjacent
+      boundary edge: The boundary vertex, followed by the boundary edge, and
+      the adjacent boundary face.
+    - For a G2 discontinuity within a boundary face crossing a boundary edge:
+      The boundary edge, followed by the adjacent face.
+    - For a supporting body not G2 smooth to an adjacent boundary face: The
+      boundary vertex where the supporting body meets the boundary, followed by
+      the supporting body's edge, and the adjacent boundary face(s) it was not
+      G2 smooth to.
+
+- a parallel array of n <B>'old_class_arrays'</B> containing the class of each
+  old_item.
+
+- a parallel array of n <B>'double_arrays'</B>. There is one array for each G2
+  discontinuity. Each double array is of length 3, containing the x, y and z
+  coordinates of the position where the discontinuity is located on the
+  boundary.
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_identified_blend_c</A> contains the following information:
+
+- an array of n+1 <B>'old_item_arrays'</B>, where n is the number of underlying
+  facesets of the blend.
+    - The first array will be an array of length one containing the blend face.
+    - The following n arrays will contain an array of faces that underlie the
+      blend face.
+
+- a parallel array of n+1 <B>'old_class_arrays'</B> containing the class of each
+  old_item (PK_CLASS_face).
+
+- an array of 2 <B>'double_arrays'</B>.
+    - The first array will be of length n and will contain the blend range on
+      each under faceset
+    - The second array will be an array of length one containing the rho value.
+
+- an array of n+2 <B>'int_arrays'</B>.
+    - The first array will be an array of length four, the first element of
+      type <A HREF=../headers/pk_blend_params_t.html>PK_blend_params_t</A>, the second of type <A HREF=../headers/pk_blend_convexity_t.html>PK_blend_convexity_t</A>
+      indicating the convexity of the blend, the third of type
+      <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_t</A> storing the shape of the blend, and the fourth of
+      type <A HREF=../headers/pk_blend_rho_t.html>PK_blend_rho_t</A> storing how to interpret the rho double.
+    - The second array will be of length n and will contain elements of type
+      <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_t</A> to indicate whether the corresponding underlying
+      facesets are before or behind the blend face.
+    - The following n arrays will be be parallel to the underlying facesets
+      and will contain elements of type <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> to indicate whether the
+      corresponding underlying face is adjacent to the blend.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_line_fit_tols_c</A> contains the following information for
+each curve for which a piecewise linear fit failed at the given chord and
+angular tolerances:
+
+- an 'int_array' of type <A HREF=../headers/pk_render_report_line_t.html>PK_render_report_line_t</A> containing either of the
+  the two values <A HREF=../headers/pk_render_report_line_t.html>PK_render_report_line_fail_c</A> or <A HREF=../headers/pk_render_report_line_t.html>PK_render_report_line_loose_c</A>.
+
+- a parallel 'int_array' of type <A HREF=../headers/pk_render_line_t.html>PK_render_line_t</A> containing the line
+  types
+
+- a parallel array of 'old_item_arrays' containing the underlying items
+  from which the linefit  was derived:
+   - for edges, an array of size 1 containing the edge tag
+   - for silhouettes, hatch and clip lines, an array of size 1 containing the
+     underlying face tag
+   - for interference lines, an array of size 2 containing the underlying
+     face tags.
+
+- an array of 2 <B>'double_arrays'</B> in one-to-one correspondence with the curve
+  type array.
+    - The first array contains the chord tolerances used for the line fits.
+    - The second array contains the angular tolerances used for the the line
+      fits.
+
+- no string arrays will be returned.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has the status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_blend_chain_c</A> contains the following information on a blend
+defined over a chain of edges (as set by <A HREF=../headers/pk_edge_set_blend_chain.html>PK_EDGE_set_blend_chain</A>):
+
+- an array of 3 <B>'int_arrays'</B>.
+  - The first array is of length 4, and contains the values of the following
+    fields from the correponding <A HREF=../headers/pk_edge_set_blend_chain_o_t.html>PK_EDGE_set_blend_chain_o_t</A>:
+      array[0] = rho_type
+      array[1] = xs_shape
+      array[2] = primary_size_type
+      array[3] = secondary_size_type
+
+  - The second array contains the mitre_fins_indices, the ith element of which
+    is the the index in position and parameter arrays corresponding to
+    mitre_fins[i].
+  - The third array contains clamp_indices, indicating at which positions the
+    rates of change of the blend parameters are held at zero.
+
+- an array of 6 <B>'double_arrays'</B>.
+  The first four arrays are of length n_positions (from the corresponding
+  <A HREF=../headers/pk_edge_set_blend_chain_o_t.html>PK_EDGE_set_blend_chain_o_t</A> used when setting the blend).
+  - The first, second and third arrays are the x, y and z coordinates
+    (respectively) of the positions where the parameters apply.
+  - The fourth array contains primary_sizes.
+  The following two arrays may be of length n_positions or 0 (in which case
+  the array will be null), depending on whether they were originally given.
+  - The fifth array contains secondary_sizes.
+  - The sixth array contains rhos.
+
+- an array of 3 <B>'old_item_arrays'</B>.
+  - The first array contains all the edges in the chain to be blended.
+  - The second array lists the primary_fins, specified to indicate the
+    primary side of asymmetric blends.
+  - The third array lists the mitre_fins, specified to resolve coincident
+    positions.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_sweep_tool_cap_c</A> contains the following information:
+
+- an int array of type <A HREF=../headers/pk_sweep_tool_cap_t.html>PK_sweep_tool_cap_t</A>.
+
+- an old_item array containing a set of faces on the tool body specified
+  in the option <B>'cap_faces'</B> for simpler geometry.
+
+- a parallel array of old_classes containing the class of each old_item
+  (PK_CLASS_face).
+
+- an item array containing corresponding simpler swept faces on the result
+  body.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_proj_cu_map_c</A> contains the following information about
+projections and imprints resulting from <A HREF=../headers/pk_curve_project.html>PK_CURVE_project</A>:
+
+    A total of N int_arrays, double_arrays, old_item_arrays and item_arrays
+    will be populated, where N is the number of projections/imprints.
+
+    Each projection can have 1 or 2 products (a topology, a geometry, or both).
+    If only one product is returned, it will appear in item_arrays[n][0]. If
+    both products are returned, the topology will appear in item_arrays[n][0]
+    and the geometry will return in item_arrays[n][1].
+
+    Each projection has an associated projection type, represented by
+    a <A HREF=../headers/pk_proj_origin_t.html>PK_proj_origin_t</A> value appearing in int_arrays[n][0]. This allows direct
+    projections to be distinguished from edges arising from the imprint
+    completion and connection options.
+    The achieved tolerance of the projection is in double_arrays[n][0].
+
+    If a geometry is returned, its parametric interval is returned as a
+    pair of doubles in double_arrays[n][1,2]. This interval will be (0,0)
+    for pure imprints (where no geometry is returned) or point projections.
+
+    Each projection will have 2 or more originators (1 target entity and 1 or
+    more originating curves) returned in old_item_arrays[n][0,1,...] and the
+    parallel old_class arrays[n]. For each originating curve we return its
+    index in the input array, starting with int_arrays[n][1]. If requested,
+    each originating curve will have a contributing parametric interval as
+    pairs of doubles, starting with double_arrays[n][3,4]. Note that
+    originating intervals are not returned for projections arising from
+    from imprint completion or connection.
+
+    Summary:
+
+      type:       int_arrays       [n][0]          - projection type
+      tolerance:  double_arrays    [n][0]          - achieved tolerance
+
+      products:   item_arrays      [n][0,1]        - topol, geom, or both
+                  double_arrays    [n][1,2]        - projection interval
+
+      origs:      old_item_arrays  [n][0]          - originating target entity
+                  old_class_arrays [n][0]          - class of target entity
+                  old_item_arrays  [n][1,...]      - originating input curves
+                  old_class_arrays [n][1,...]      - class of input curves
+                  int_arrays       [n][1,...]      - index in input array
+                  double_arrays    [n][3,4,...]    - originating intervals
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_mesh_open_comps_c</A> contains the following information:
+
+- an int array containing the indices corresponding to the elements of the
+  <B>'components'</B> field of the <A HREF=../headers/pk_mesh_find_laminar_mfins_r_t.html>PK_MESH_find_laminar_mfins_r_t</A> structure which
+  are open components.
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_fill_hole_non_g1_c</A> contains the following information:
+
+- an array of n <B>'old_item_arrays'</B>. There is one array for each G1
+  discontinuity. Each array contains:
+    - For two faces meeting non G1 smoothly at a boundary vertex: The boundary
+      vertex, followed by the two boundary faces.
+    - For a boundary edge not G1 smooth to the adjacent face of an adjacent
+      boundary edge: The boundary vertex, followed by the boundary edge, and
+      the adjacent boundary face.
+    - For a G1 discontinuity within a boundary face crossing a boundary edge:
+      The boundary edge, followed by the adjacent face.
+    - For a supporting body not G1 smooth to an adjacent boundary face: The
+      boundary vertex where the supporting body meets the boundary, followed by
+      the supporting body's edge, and the adjacent boundary face(s) it was not
+      G1 smooth to.
+
+- a parallel array of n <B>'old_class_arrays'</B> containing the class of each
+  old_item.
+
+- a parallel array of n <B>'double_arrays'</B>. There is one array for each G1
+  discontinuity. Each double array is of length 3, containing the x, y and z
+  coordinates of the position where the discontinuity is located on the
+  boundary.
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_mass_eq_0_c</A> contains the following information:
+
+- an item array containing tags of topologies for which mass was found
+to be zero.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_chamfer_extended_c</A> contains the following information:
+
+- an item array of length one containing the chamfer face that is
+  extended outside of its natural width.
+
+- a double array containing the natural parameter interval of the chamfer
+  face, and the parameter interval of the extended chamfer face. The array
+  will be of length four and have the form:
+    array[0] = natural_interval.low
+    array[1] = natural_interval.high
+    array[2] = extended_interval.low
+    array[3] = extended_interval.high
+
+- an int array of length one and type <A HREF=../headers/pk_param_direction_t.html>PK_PARAM_direction_t</A> specifying whether
+  the chamfer face is extended in the u direction or in the v direction.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_render_curve_tols_c</A> contains the following information:
+
+- a double array containing the values of the three tolerances used by
+  rendering to approximate curves, specifically:
+    array[0] = curve_chord_tol
+    array[1] = curve_chord_max
+    array[2] = curve_chord_ang
+
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_embed_curve_c</A> contains the following information:
+
+- an int array whose only entry contains the value of a token of
+  type <A HREF=../headers/pk_embed_curve_t.html>PK_embed_curve_t</A> specifying the type of advice returned.
+
+- if int_array[0] == <A HREF=../headers/pk_embed_curve_t.html>PK_embed_curve_success_c</A>, a single-value double
+  array where double_array[0] is the distance the SP-curve needed to be
+  moved to place it wholly within the surface limits.
+
+- if int_array[0] == <A HREF=../headers/pk_embed_curve_t.html>PK_embed_curve_adjustment_c</A>, a single-value double
+  array where double_array[0] is a suggested value for the
+  <B>'adjustment_limit'</B> option that may result in successfully embedding
+  the curve.
+
+- if int_array[0] == <A HREF=../headers/pk_embed_curve_t.html>PK_embed_curve_failure_c</A> or
+  <A HREF=../headers/pk_embed_curve_t.html>PK_embed_curve_limitation_c</A> then no further information is returned.
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_outline_result_c</A> contains the following arrays of information about
+outlines generated from <A HREF=../headers/pk_body_make_curves_outline.html>PK_BODY_make_curves_outline</A>, <A HREF=../headers/pk_body_make_spun_outline.html>PK_BODY_make_spun_outline</A>
+and <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A>:
+
+    A total of N item_arrays, 4*N int_arrays, 4*N double_arrays,
+    2*N old_item_arrays, and 2*N old_class_arrays will be populated, where N is
+    the number of outlines.
+
+    Each outline represents a non-manifold loop formed by a number of curves,
+    which are returned in a curve array item_arrays[i] for the ith outline, in
+    the order corresponding to the connections of the curves.
+
+    Each array of curves has an array of outline identities (represented by
+    <A HREF=../headers/pk_outline_identity_t.html>PK_outline_identity_t</A> values), an array of positions of curves'
+    originators, an array of positional indices of large separations, and an
+    array of positional indices of invisible outline curves, appearing in
+    int_arrays[i], int_arrays[N+i], int_arrays[2*N+i], and int_arrays[3*N+i],
+    respectively.
+
+    Each array of curves also has an array of low limits and an array of high
+    limits of their curve intervals, an array of curve tolerances, and an array
+    of large separations, appearing in double_arrays[i], double_arrays[N+i],
+    double_arrays[2*N+i], and double_arrays[3*N+i], respectively.
+
+    Each array of curves has an array of originating topologies, an array of
+    the originating topologies' classes, an array of transformations and an
+    array of the transformations' classes, appearing in old_item_arrays[i],
+    old_class_arrays[i], old_item_arrays[N+i], old_class_arrays[N+i],
+    respectively.
+
+    The basic data of the ith outline is grouped in the following parallel
+    arrays of length NC, where NC is the number of curves of the outline, which
+    varies from outline to outline.
+
+      products: item_arrays[ i ]            - outline curves
+                double_arrays[ i ]          - low limits of curve intervals
+                double_arrays[ N + i ]      - high limits of curve intervals
+                double_arrays[ 2*N + i ]    - curve tolerances
+                int_arrays[ i ]             - identities of outline curves
+                int_arrays[ N + i ]         - position indices to origs[i]
+
+    The following pair of parallel arrays of length NS hold the information
+    about large separations between outline curves in the outline, where
+    NS is the total number of large separations with a value between 0 and NC.
+
+        double_arrays[ 3*N + i ]  - large separations
+        int_arrays[ 2*N + i ]     - large separation indices to item_arrays[i]
+
+      NOTE: A large separation is the separation between two neighbouring
+            curves that is larger than the operation tolerance. The Jth large
+            separation in the double_arrays[3*N + i] is the separation
+            between the start of the Mth curve in item_arrays[i] and the end
+            of its previous curve, where M is the Jth integer value of
+            int_arrays[2*N + i].
+
+    The following array of length NI holds the positional indices of invisible
+    curves in the outline, where NI is the number of invisible curves with a
+    value between 0 and NC.
+
+        int_arrays[ 3*N + i ]   - invisible curve indices to item_arrays[i]
+
+        NOTE: A visible outline only contains visible curves. Therefore it
+              has an empty array of invisible curve indices.
+              An invisible outline has an array of invisible curve indices that
+              is not empty. In addition to its invisible curves, it may also
+              contain visible curves if applicable.
+
+    In addition to the two groups of parallel arrays above, the following
+    parallel arrays of length NO hold the information about the originators of
+    the outline curves, where NO is the total number of originators of the
+    outline with a value no less than NC.
+
+      origs:    old_item_arrays[ i ]        - tags of originating topologies
+                old_item_arrays[ N+i ]      - tags of body transformations
+                old_class_arrays[ i ]       - class of originating topologies
+                old_class_arrays[ N+i ]     - class of body transformations
+
+      NOTE: Each curve must have at least one originator, which is normally a
+            face or edge associated with a body transformation. For the Kth
+            curve in item_arrays[i], the curve's originators start from the
+            Mth topology and transformation in the pair of old_item_arrays
+            above, where M is the Kth integer value in int_arrays[N + i].
+            The tag of originating topology is zero if a curve is not created
+            from an outline body, but created following the spun axis or the
+            boundary of view range.
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_outline_error_c</A> contains the following diagnostic information of
+type <A HREF=../headers/pk_outline_status_t.html>PK_outline_status_t</A> from <A HREF=../headers/pk_body_make_curves_outline.html>PK_BODY_make_curves_outline</A>,
+<A HREF=../headers/pk_body_make_spun_outline.html>PK_BODY_make_spun_outline</A> and <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A>:
+
+    Outline errors related to those originators that prevented the operation
+    from producing any outline are reported in the following group of parallel
+    arrays, each of length NO, where NO is the number of originators.
+
+      origs:      old_item_arrays[ 0 ]  - tag of originating topologies
+                  old_item_arrays[ 1 ]  - tag of the body transformations
+                  old_class_arrays[ 0 ] - class of originating topologies
+                  old_class_arrays[ 1 ] - class of the body transformations
+                  int_arrays[ 0 ]       - outline error types
+
+    Outline errors related to those outline curves that have problems are
+    reported in the following pair of parallel arrays, each of length NE,
+    where NE is the number of outline curves.
+
+      products:   item_arrays[ 0 ]  - outline curves
+                  int_arrays[ 1 ]   - outline error types
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_render_lattice_c</A> contains the following information:
+
+- item_arrays[0] - tags of blended lattices being rendered as solid with
+the blends ignored
+
+
+A record of <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_3_c</A> that has a status value of
+<A HREF=../headers/pk_report_t.html>PK_REPORT_3_picked_frames_c</A> contains the following information about frames
+picked by <A HREF=../headers/pk_body_pick_topols.html>PK_BODY_pick_topols</A>:
+
+- an <B>'old_item_array'</B> containing the tags of the frames.
+
+- two <B>'int_arrays'</B>.
+  - The first array is of length 1 and contains the number of frames that were
+    picked in excess of the <B>'max_frames'</B> value. If <B>'ignore_excess_entities'</B> has
+    been requested then this will be set to zero.
+
+  - The second array is parallel to old_item_arrays[0] and contains the
+    occurrence number of each frame's owning body.
+
+- a parallel array of <B>'double_arrays'</B>. Each double array contains the
+  information on the interval of the ray which intersected the frame's owning
+  region. Each double array is of length 7 and contains the following
+  information:
+  - array[0], array[1], array[2] - the components of the position vector where
+    the ray enters the region.
+  - array[3], array[4], array[5] - the components of the position vector where
+    the ray leaves the region.
+  - array[6] - the <B>'distance'</B> value of the picked frame. This is currently
+    always set to zero.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

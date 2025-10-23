@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.003.html#50409782_pgfId-298366", " <B>compute</B> a value ", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299550", " data are optional. Parasolid does not attempt to <B>compute</B> or return this information if the NULL pointer", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295169", " Sometimes, it is not possible to <B>compute</B> a single SP-curve from the original curve and", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-309667", " To <B>compute</B> the parameter interval of the curve, to which", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-652470", " Where a tolerance was used to <B>compute</B> the projected curve (see ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-393035", " all faces of both bodies are used to <B>compute</B> the imprinted edges, boundary regions of the tool", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295975", " be called on the edges. This attempts to <B>compute</B> accurate edge curves for non-tangent edges by intersecting", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-313206", " directions. The same view directions are used to <B>compute</B> the silhouette and parallel areas in which the", "Functional Description - Facet Mesh Generation");
+top.note("headers/pk_assembly_ask_instances.html#documentation", "will only <B>compute</B> the number of instances.", "PK Reference - PK_ASSEMBLY_ask_instances");
+top.note("headers/pk_assembly_ask_parts.html#documentation", "only <B>compute</B> the number of parts.", "PK Reference - PK_ASSEMBLY_ask_parts");
+top.note("headers/pk_assembly_ask_parts_transfs.html#documentation", "not <B>compute</B> the parts array.", "PK Reference - PK_ASSEMBLY_ask_parts_transfs");
+top.note("headers/pk_body_ask_components.html#documentation", "will only <B>compute</B> the number of components in the body.", "PK Reference - PK_BODY_ask_components");
+top.note("headers/pk_body_ask_edges.html#documentation", "will only <B>compute</B> the number of edges in the body.", "PK Reference - PK_BODY_ask_edges");
+top.note("headers/pk_body_ask_faces.html#documentation", "will only <B>compute</B> the number of faces in the body.", "PK Reference - PK_BODY_ask_faces");
+top.note("headers/pk_body_ask_fins.html#documentation", "only <B>compute</B> the number of fins in the body.", "PK Reference - PK_BODY_ask_fins");
+top.note("headers/pk_body_ask_frames.html#documentation", "only <B>compute</B> the number of frames in the body.", "PK Reference - PK_BODY_ask_frames");
+top.note("headers/pk_body_ask_loops.html#documentation", "will only <B>compute</B> the number of loops in the body.", "PK Reference - PK_BODY_ask_loops");
+top.note("headers/pk_body_ask_regions.html#documentation", "will only <B>compute</B> the number of regions in the body.", "PK Reference - PK_BODY_ask_regions");
+top.note("headers/pk_body_ask_shells.html#documentation", "will only <B>compute</B> the number of shells in the body.", "PK Reference - PK_BODY_ask_shells");
+top.note("headers/pk_body_ask_vertices.html#documentation", "will only <B>compute</B> the number of vertices in the body.", "PK Reference - PK_BODY_ask_vertices");
+top.note("headers/pk_body_find_laminar_edges.html#documentation", "will only <B>compute</B> the number of components.", "PK Reference - PK_BODY_find_laminar_edges");
+top.note("headers/pk_curve_ask_edges.html#documentation", "will only <B>compute</B> the number of edges.", "PK Reference - PK_CURVE_ask_edges");
+top.note("headers/pk_curve_ask_edges_nmnl.html#documentation", "will only <B>compute</B> the number of edges.", "PK Reference - PK_CURVE_ask_edges_nmnl");
+top.note("headers/pk_curve_general_user_t.html#declaration", " --- eval_fn can <B>compute</B>", "PK Reference - PK_CURVE_general_user_t");
+top.note("headers/pk_curve_is_isoparam_o_t.html#declaration", " PK_LOGICAL_t want_alignment; --- whether to <B>compute</B> how the non-constant", "PK Reference - PK_CURVE_is_isoparam_o_t");
+top.note("headers/pk_curve_is_isoparam_o_t.html#documentation", " want_interval Whether to <B>compute</B> the range of the surfaces non-constant", "PK Reference - PK_CURVE_is_isoparam_o_t");
+top.note("headers/pk_edge_ask_faces.html#documentation", "will only <B>compute</B> the number of faces which contain the edge.", "PK Reference - PK_EDGE_ask_faces");
+top.note("headers/pk_edge_ask_fins.html#documentation", "will only <B>compute</B> the number of fins around the edge.", "PK Reference - PK_EDGE_ask_fins");
+top.note("headers/pk_edge_ask_shells.html#documentation", "will only <B>compute</B> the number of shells containing the edge.", "PK Reference - PK_EDGE_ask_shells");
+top.note("headers/pk_edge_set_precision.html#documentation", ". It may not always be possible to <B>compute</B> one SP-curve from the", "PK Reference - PK_EDGE_set_precision");
+top.note("headers/pk_edge_set_precision_2.html#documentation", ". It may not always be possible to <B>compute</B> one SP-curve from the", "PK Reference - PK_EDGE_set_precision_2");
+top.note("headers/pk_entity_ask_owning_groups.html#documentation", "will only <B>compute</B> the number of groups of which the entity", "PK Reference - PK_ENTITY_ask_owning_groups");
+top.note("headers/pk_face_ask_edges.html#documentation", "will only <B>compute</B> the number of edges in the face.", "PK Reference - PK_FACE_ask_edges");
+top.note("headers/pk_face_ask_loops.html#documentation", "will only <B>compute</B> the number of loops bounding the face.", "PK Reference - PK_FACE_ask_loops");
+top.note("headers/pk_face_ask_vertices.html#documentation", "will only <B>compute</B> the number of vertices in the face.", "PK Reference - PK_FACE_ask_vertices");
+top.note("headers/pk_face_boolean.html#documentation", "both bodies are used to <B>compute</B> the imprinted edges. For a face boolean,", "PK Reference - PK_FACE_boolean");
+top.note("headers/pk_face_boolean_2.html#documentation", "both bodies are used to <B>compute</B> the imprinted edges. For a face boolean,", "PK Reference - PK_FACE_boolean_2");
+top.note("headers/pk_geom_ask_dependents.html#documentation", "function will only <B>compute</B> the number of dependents of the given entity.", "PK Reference - PK_GEOM_ask_dependents");
+top.note("headers/pk_geom_ask_geom_owners.html#documentation", "function will only <B>compute</B> the number of geometric owners of the given", "PK Reference - PK_GEOM_ask_geom_owners");
+top.note("headers/pk_lball_ask_lballs_adj_r_t.html#documentation", "to PK_LOGICAL_false, the function will only <B>compute</B> the number of adjacent", "PK Reference - PK_LBALL_ask_lballs_adj_r_t");
+top.note("headers/pk_lball_ask_lrods_r_t.html#documentation", "PK_LOGICAL_false, the function will only <B>compute</B> the number of lrods which have", "PK Reference - PK_LBALL_ask_lrods_r_t");
+top.note("headers/pk_loop_ask_edges.html#documentation", "only <B>compute</B> the number of edges in the loop.", "PK Reference - PK_LOOP_ask_edges");
+top.note("headers/pk_loop_ask_fins.html#documentation", "only <B>compute</B> the number of fins in the loop.", "PK Reference - PK_LOOP_ask_fins");
+top.note("headers/pk_loop_ask_vertices.html#documentation", "will only <B>compute</B> the number of vertices in the loop (counting", "PK Reference - PK_LOOP_ask_vertices");
+top.note("headers/pk_mvertex_ask_mfacets.html#documentation", "will only <B>compute</B> the number of mfacets which have this mvertex", "PK Reference - PK_MVERTEX_ask_mfacets");
+top.note("headers/pk_mvertex_ask_mvertices_ring.html#documentation", "the function will only <B>compute</B> the number of mvertices in the ring.", "PK Reference - PK_MVERTEX_ask_mvertices_ring");
+top.note("headers/pk_part_ask_all_attdefs.html#documentation", "will only <B>compute</B> the number of different attribute definitions used within", "PK Reference - PK_PART_ask_all_attdefs");
+top.note("headers/pk_part_ask_all_attribs.html#documentation", "will only <B>compute</B> the number of such attributes within the part.", "PK Reference - PK_PART_ask_all_attribs");
+top.note("headers/pk_part_ask_con_lattices.html#documentation", "will only <B>compute</B> the number of construction lattices in the part.", "PK Reference - PK_PART_ask_con_lattices");
+top.note("headers/pk_part_ask_construction_curves.html#documentation", "will only <B>compute</B> the number of construction curves in the part.", "PK Reference - PK_PART_ask_construction_curves");
+top.note("headers/pk_part_ask_construction_points.html#documentation", "will only <B>compute</B> the number of construction points in the part.", "PK Reference - PK_PART_ask_construction_points");
+top.note("headers/pk_part_ask_construction_surfs.html#documentation", "will only <B>compute</B> the number of construction surfaces in the part.", "PK Reference - PK_PART_ask_construction_surfs");
+top.note("headers/pk_part_ask_geoms.html#documentation", "will only <B>compute</B> the number of geometric entities in the part.", "PK Reference - PK_PART_ask_geoms");
+top.note("headers/pk_part_ask_groups.html#documentation", "will only <B>compute</B> the number of groups in the part.", "PK Reference - PK_PART_ask_groups");
+top.note("headers/pk_part_ask_ref_instances.html#documentation", "will only <B>compute</B> the number of instances referencing the part.", "PK Reference - PK_PART_ask_ref_instances");
+top.note("headers/pk_partition_ask_appitems.html#documentation", "will only <B>compute</B> the number of appitems in the partition.", "PK Reference - PK_PARTITION_ask_appitems");
+top.note("headers/pk_partition_ask_assemblies.html#documentation", "will only <B>compute</B> the number of assemblies in the partition.", "PK Reference - PK_PARTITION_ask_assemblies");
+top.note("headers/pk_partition_ask_bodies.html#documentation", "will only <B>compute</B> the number of bodies in the partition.", "PK Reference - PK_PARTITION_ask_bodies");
+top.note("headers/pk_partition_ask_geoms.html#documentation", "will only <B>compute</B> the number of geometric entities in the partition.", "PK Reference - PK_PARTITION_ask_geoms");
+top.note("headers/pk_partition_ask_ki_lists.html#documentation", "will only <B>compute</B> the number of lists in the partition.", "PK Reference - PK_PARTITION_ask_ki_lists");
+top.note("headers/pk_partition_ask_pmarks.html#documentation", "will only <B>compute</B> the number of pmarks in the partition.", "PK Reference - PK_PARTITION_ask_pmarks");
+top.note("headers/pk_partition_ask_pmarks_2_o_t.html#documentation", " PK_LOGICAL_false, the function will only <B>compute</B> the", "PK Reference - PK_PARTITION_ask_pmarks_2_o_t");
+top.note("headers/pk_partition_ask_transfs.html#documentation", "will only <B>compute</B> the number of transforms in the partition.", "PK Reference - PK_PARTITION_ask_transfs");
+top.note("headers/pk_pmark_ask_following.html#documentation", "will only <B>compute</B> the number of following pmarks of the pmark.", "PK Reference - PK_PMARK_ask_following");
+top.note("headers/pk_pmark_ask_marks.html#documentation", "will only <B>compute</B> the number of marks using the given pmark", "PK Reference - PK_PMARK_ask_marks");
+top.note("headers/pk_pmark_goto.html#documentation", " are set to NULL, the function will only <B>compute</B> the numbers", "PK Reference - PK_PMARK_goto");
+top.note("headers/pk_region_ask_shells.html#documentation", "will only <B>compute</B> the number of shells bounding the region.", "PK Reference - PK_REGION_ask_shells");
+top.note("headers/pk_session_ask_partitions.html#documentation", "will only <B>compute</B> the number of partitions in the session.", "PK Reference - PK_SESSION_ask_partitions");
+top.note("headers/pk_session_ask_parts.html#documentation", "will only <B>compute</B> the number of parts in the session.", "PK Reference - PK_SESSION_ask_parts");
+top.note("headers/pk_shell_ask_oriented_faces.html#documentation", "the function will only <B>compute</B> the number of faces in the shell (with", "PK Reference - PK_SHELL_ask_oriented_faces");
+top.note("headers/pk_surf_ask_faces.html#documentation", "will only <B>compute</B> the number of faces lying on a surface.", "PK Reference - PK_SURF_ask_faces");
+top.note("headers/pk_surf_general_user_t.html#declaration", " --- eval_fn can <B>compute</B>", "PK Reference - PK_SURF_general_user_t");
+top.note("headers/pk_topol_ask_entities_by_attdef.html#documentation", "will only <B>compute</B> the number of entities.", "PK Reference - PK_TOPOL_ask_entities_by_attdef");
+top.note("headers/pk_vertex_ask_faces.html#documentation", "only <B>compute</B> the number of faces at the vertex.", "PK Reference - PK_VERTEX_ask_faces");
+top.note("headers/pk_vertex_ask_isolated_loops.html#documentation", "will only <B>compute</B> the number of isolated loops at the vertex.", "PK Reference - PK_VERTEX_ask_isolated_loops");
+top.note("headers/pk_vertex_ask_oriented_edges.html#documentation", "function will only <B>compute</B> the number of edges at the vertex (with", "PK Reference - PK_VERTEX_ask_oriented_edges");
+top.note("headers/pk_vertex_ask_shells.html#documentation", "only <B>compute</B> the number of shells at the vertex.", "PK Reference - PK_VERTEX_ask_shells");
+top.note("chapters/kd_chap.17.html#50475020_pgfId-290738", " <B>compute</B> mass of part ", "KID Manual - KID Class Structure");
+top.note("chapters/fg_chap.03.html#50462724_pgfId-281648", " ( su_dP_du( &amp;n, *nu, *nv, *triang )){ /* <B>compute</B> : Pu */ results[n++] = 1.0; results[n++] =", "FG Manual - Implementing an FG System");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

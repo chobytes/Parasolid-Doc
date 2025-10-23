@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_constraint_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_constraint_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_blend_constraint_s
+    {
+    <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>     cliff_edges;       --- cliff edges
+    <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>     tangent_edges;     --- tangent holdline edges
+    <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>     conic_edges;       --- conic holdline edges
+    <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>     inv_tangent_edges; --- inverse tangent holdline edges
+    <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>     inv_conic_edges;   --- inverse conic holdline edges
+    <A HREF=../headers/pk_plane_t.html>PK_PLANE_t</A>          limit_1;           --- first limit plane
+                                           --- (PK_ENTITY_null)
+    <A HREF=../headers/pk_plane_t.html>PK_PLANE_t</A>          limit_2;           --- second limit plane
+                                           --- (PK_ENTITY_null)
+    int                 n_caps;            --- number of caps (0)
+    const <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>  *caps;              --- entities for capping
+                                           --- blend (NULL)
+    const <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> *reverse_cap;       --- whether cap orientation
+                                           --- should be reversed (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        localise_limit_planes;
+                                           --- whether limit planes should
+                                           --- trim blend only once
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_topol_array_t.html>PK_TOPOL_array_t</A>    limit_topols;      --- limit faces/fins
+    };
+typedef struct PK_blend_constraint_s PK_blend_constraint_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure records a set of blend constraints.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_blend_o_t.html>PK_FACE_make_blend_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+                    Blend Constraint Options:
+
+ <B>'cliff_edges'</B>    Blend is constrained by cliff edges.
+                  An array of edge tags is given.
+                  The blend will be constrained to be cliffedge blend in the
+                  region of the given edges.
+
+ <B>'tangent_edges'</B>  Blend is constrained by tangent hold lines.
+                  An array of edge tags is given.
+                  The blend will be constrained to be a tangent
+                  hold line blend in the region of the given edges.
+                  For constant and variable radius rolling ball blends
+                  the blend need not be constrained by these edges. If the
+                  blend is a variable radius rolling ball blend, the left
+                  and right ranges of the law curve must be equal.
+
+ <B>'conic_edges'</B>    Blend is constrained by conic hold lines.
+                  An array of edge tags is given.
+                  The blend will be constrained to be a conic hold line
+                  blend in the region of the given edges.
+                  For constant and variable radius rolling ball blends
+                  blend need not be constrained by these edges.  If the
+                  blend is a curvature continuous blend then <B>'cliff_edges'</B>
+                  and <B>'tangent_edges'</B> must not be set, and the number of edge
+                  tags in the array must be at least two.
+
+ <B>'inv_tangent_edges'</B>
+                  Blend is constrained by inverted tangent hold lines.
+                  An array of edge tags is given.
+                  The blend will be constrained to be a tangent
+                  hold line blend in the region of the given edges.
+                  For constant and variable radius rolling ball blends
+                  the blend need not be constrained by these edges. If the
+                  blend is a variable radius rolling ball blend, the left
+                  and right ranges of the law curve must be equal.
+
+ <B>'inv_conic_edges'</B>
+                  Blend is constrained by inverted conic hold lines.
+                  An array of edge tags is given.
+                  The blend will be constrained to be a conic hold line
+                  blend in the region of the given edges.
+                  For constant and variable radius rolling ball blends
+                  blend need not be constrained by these edges.  If the
+                  blend is a curvature continuous blend then <B>'cliff_edges'</B>
+                  and <B>'tangent_edges'</B> must not be set, and the number of edge
+                  tags in the array must be at least two.
+
+ <B>'limit_1'</B>
+ <B>'limit_2'</B>        Limit Planes.
+                  One or two planes may be specified.
+                  The blend will be trimmed to end in a constant parameter
+                  line determined by a plane. The blend will lie on the
+                  positive side of the plane.
+
+ <B>'n_caps'</B>         The number of capping entities.
+
+ <B>'caps'</B>           A list of entities which will be used to stop and cap
+                  the blend.
+                  Currently, Parasolid will handle entities of class
+                  PK_CLASS_face and PK_CLASS_plane. If the entity is a
+                  <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>, then it must belong to one of the bodies
+                  to which the walls belong.
+
+ <B>'reverse_cap'</B>    A list of flags which specify which side of each cap will be
+                  the exterior of the cap. If `reverse_cap[j]' is
+                  PK_LOGICAL_false, then the algorithm will trim away the
+                  portion of the blend on the side of `cap[j]' towards which
+                  the cap's normal points.
+
+ <B>'localise_limit_planes'</B>
+                  A logical which determines the behaviour of limit planes
+                  used to trim the blend in case the limit plane intersects
+                  the blend in more than one location. If the value is
+                  PK_LOGICAL_true, a limit plane will trim the blend in only
+                  one location, the one that is closest to the limit plane's
+                  location vector (i.e. `basis_set.location' in <A HREF=../headers/pk_plane_sf_t.html>PK_PLANE_sf_t</A>).
+                  If the value is PK_LOGICAL_false, all intersections between a
+                  limit plane and the blend will be considered, and the face
+                  blend algorithm will determine the most appropriate result.
+
+ <B>'limit_topols'</B>   An array of faces and/or fins which will be used to stop the
+                  blend. If the blend encounters a face or fin from this array,
+                  it will stop and be trimmed to end in a constant parameter
+                  line at that point.
+
+This structure contains the topology which will constrain the blend.
+All of the <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A> fields will have their lengths set to zero
+by the options structure macro. These options are turned on by setting
+the length non-zero.
+
+For further details on the use of these options please refer to the Face-Face
+Blending Chapter of the Parasolid Functional Description.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

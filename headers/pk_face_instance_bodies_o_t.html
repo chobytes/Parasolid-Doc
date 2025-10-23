@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_instance_bodies_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_instance_bodies_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_instance_bodies_o_s
+    {
+    int                   o_t_version;     --- version number
+    <A HREF=../headers/pk_boolean_function_t.html>PK_boolean_function_t</A> function;        --- boolean operation
+                                           --- (PK_boolean_unite_c)
+    const <A HREF=../headers/pk_boolean_config_o_t.html>PK_boolean_config_o_t</A>
+                         *configuration;   --- target and tool
+                                           --- configuration (NULL)
+    <A HREF=../headers/pk_imprint_face_list_t.html>PK_imprint_face_list_t</A>
+                          extend_face_list;
+                                           --- whether to use additional
+                                           --- target/tool faces
+                                           --- (<A HREF=../headers/pk_imprint_face_list_t.html>PK_imprint_face_list_no_c</A>)
+    <A HREF=../headers/pk_instance_repair_fa_fa_t.html>PK_instance_repair_fa_fa_t</A>
+                          repair_fa_fa;    --- prevent self intersections
+                                           --- (PK_instance_repair_fa_fa_yes_c)
+    <A HREF=../headers/pk_instance_merge_t.html>PK_instance_merge_t</A>   merge_imprinted; --- merge imprinted edges where
+                                           --- possible
+                                           --- (PK_instance_merge_new_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          allow_disjoint;  --- allow disjoint body
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_t</A> check_fa;        --- face check options
+                                           --- (<A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_yes_c</A>)
+    double                default_tol;     --- default tolerance
+                                           --- (1.0E-5)
+    double                max_tol;         --- max tolerance
+                                           --- (0.0)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A> imprint_complete_targ;
+                                           --- whether to complete
+                                           --- imprint on target faces
+                                           --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A> imprint_complete_tool;
+                                           --- whether to complete
+                                           --- imprint on tool faces
+                                           --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_t</A> target_material_side;
+                                           --- material side of target
+                                           --- (<A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A>)
+    <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_t</A> tool_material_side;
+                                           --- material side of tool
+                                           --- (<A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          limit_target_faces;
+                                           --- the boundary of the target face
+                                           --- set limits the faces to be
+                                           --- deleted when trimming
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_instance_track_type_t.html>PK_instance_track_type_t</A>
+                          tracking_type;   --- level of tracking reporting
+                                           --- for operations.
+                                           ---(PK_instance_track_type_both_c)
+    <A HREF=../headers/pk_instance_track_edges_t.html>PK_instance_track_edges_t</A>
+                          track_edges;     --- level of edge tracking
+                                           --- reported when tracking
+                                           --- requested.
+                                           ---(PK_instance_track_edges_new_c)
+
+    <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_t</A>   resulting_body_type;
+                                           --- the preferred type of the
+                                           --- resulting body
+                                           ---(<A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_original_c</A>)
+    <A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_t</A>   update;          --- update switch
+                                           ---(<A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_default_c</A>)
+    };
+typedef struct PK_FACE_instance_bodies_o_s PK_FACE_instance_bodies_o_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is supplied to <A HREF=../headers/pk_face_instance_bodies.html>PK_FACE_instance_bodies</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_instance_bodies.html>PK_FACE_instance_bodies</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+See also <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-393182">here</A> for more information.
+
+Description of fields:
+
+
+
+<B>'function'</B>               Indicates whether an intersect, unite or subtract
+                         operation is to be performed, permitted values
+                         are:
+
+                         PK_boolean_intersect_c
+                         PK_boolean_subtract_c
+                         PK_boolean_unite_c
+
+
+
+<B>'configuration'</B>          Describes the configuration of target and tool
+                         bodies.
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-393957">Optimizing boolean operations</A> for more
+                         information.
+
+
+<B>'extend_face_list'</B>       <A HREF=../headers/pk_face_instance_bodies.html>PK_FACE_instance_bodies</A> receives a subset of the
+                         faces of the target body.  If the imprinting stage
+                         of the boolean results in incomplete loops of
+                         imprinted edges, this option controls whether the
+                         face list of the target may be extended so that
+                         additional faces will be intersected with the tool.
+
+                         Since <A HREF=../headers/pk_face_instance_bodies.html>PK_FACE_instance_bodies</A> always uses all faces
+                         of the supplied tool bodies, additional faces can be
+                         added on the target only.  Consequently the
+                         behaviour with <A HREF=../headers/pk_imprint_face_list_t.html>PK_imprint_face_list_tool_c</A> is
+                         identical to <A HREF=../headers/pk_imprint_face_list_t.html>PK_imprint_face_list_no_c</A>, and
+                         <A HREF=../headers/pk_imprint_face_list_t.html>PK_imprint_face_list_both_c</A> is identical to
+                         <A HREF=../headers/pk_imprint_face_list_t.html>PK_imprint_face_list_target_c</A>.
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-395476">here</A> for more information.
+
+
+<B>'repair_fa_fa'</B>           The value of this determines if face-face checking
+                         and repair is performed during the operation,
+                         permitted values are:
+
+                         PK_instance_repair_fa_fa_no_c
+                         PK_instance_repair_fa_fa_yes_c (default)
+
+                         If this field is set to
+                         PK_instance_repair_fa_fa_yes_c tool faces
+                         which will survive the operation are compared
+                         against all faces of the target and additional
+                         imprints and booleans performed if necessary.
+
+
+<B>'merge_imprinted'</B>        If set to PK_instance_merge_new_c, merges all new
+                         mergeable imprinted edges arising from the boolean
+                         operation.
+
+
+<B>'allow_disjoint'</B>         If this option is set to PK_LOGICAL_true, the result
+                         of the boolean will be a single body which may contain
+                         disjoint manifold components.
+
+
+<B>'check_fa'</B>               The value of this determines if face checking is
+                         performed during the operation, permitted values
+                         are :
+
+                         <A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_no_c</A>
+                         <A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_yes_c</A>
+
+                         The default is set to <B>'<A HREF=../headers/pk_boolean_check_fa_t.html>PK_boolean_check_fa_yes_c</A>'</B>
+                         and it is strongly advised not to change this value.
+                         If the face checking is switched off, the boolean
+                         operation may produce an invalid body without
+                         raising an error.
+
+
+<B>'default_tol'</B>            The default tolerance to which the instancing
+                         operation, if it has to, may approximate entities
+                         or assume that entities are coincident. This value
+                         should be set to a value that is related to the
+                         tolerance to which the application is creating
+                         approximations.
+                         If this field is set to zero (0.0), it is assumed
+                         that the decision to set tolerances on entities is
+                         being left to the modeller.
+
+
+<B>'max_tol'</B>                This value specifies the maximum tolerance which may
+                         be applied to any entity involved in the instancing
+                         operation.
+                         If this field is set to zero (0.0), the default, then
+                         it assumed that no upper limit has been set on the
+                         tolerance of any entity.
+                         If the field is not set to zero (0.0), then it must be
+                         set to a value that is greater than the value of the
+                         <B>'default_tol'</B> field.
+
+
+<B>'imprint_complete_targ'</B>  This option controls whether to complete the imprint
+                         on the target faces so that the end vertices of the
+                         imprint lie on any edge or laminar edge of the target
+                         faces.  This imprint completion is carried out during
+                         the imprinting phase of the boolean algorithm
+                         (described in <A HREF=../headers/pk_body_boolean_2.html>PK_BODY_boolean_2</A>).
+
+                         If this is set to <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A> (the
+                         default) the imprint is not completed.  Otherwise the
+                         incomplete imprint is completed by intersecting the
+                         target faces with a plane orthogonal to the target at
+                         the end vertices of the incomplete imprint.
+                         Depending on the value of this option, the imprint
+                         will be completed along the direction of this plane
+                         until it either:
+                            o meets any edge belonging to the target faces, or
+                            o meets any laminar edge belonging to the
+                              target faces
+
+                         Both the target and tool bodies must be manifold sheet
+                         bodies.
+
+                         A complete imprint that self-intersects will be
+                         trimmed at the point of self-intersection.
+
+                         Imprint completion on the target faces will only
+                         occur from laminar edges of the tool.
+
+                         Restriction: The orientation of the plane is currently
+                         restricted to that which would be produced by
+                         <A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_tangent_c</A>.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-466974">here</A> for more information.
+
+
+<B>'imprint_complete_tool'</B>  This option controls whether to complete the imprint
+                         on the tool faces in a manner similar to that
+                         described for <B>'imprint_complete_targ'</B> above.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-466974">here</A> for more information.
+
+
+<B>'target_material_side'</B>   This option allows the material side of the target
+                         faces to be specified when determining which faces
+                         survive the given instancing Boolean.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_inside_c</A>:
+                             All faces are treated as if their face normals
+                             point away from solid material.
+                             This allows a sheet body to be treated locally as
+                             the boundary of a solid; treatment of faces from
+                             solid bodies will be unchanged.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_none_c</A>:
+                             All faces are treated as if they have no solid
+                             material on either side.
+                             This allows a solid body to be treated locally as
+                             a sheet; treatment of faces from sheet bodies will
+                             be unchanged.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_outside_c</A>:
+                             All faces are treated as if their face normals
+                             point into solid material.
+                             This allows a sheet body to be treated locally as
+                             the boundary of a solid; solid bodies will be
+                             negated.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A> (the default):
+                             Faces from solid bodies have normals pointing away
+                             from solid material; faces from sheet bodies will
+                             have material on neither side.
+
+                         This option is only supported if general topology is
+                         disabled.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-395829">here</A> for more information.
+
+
+<B>'tool_material_side'</B>     This option allows the material side of the tool
+                         faces to be specified when determining which faces
+                         survive the given Boolean.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_inside_c</A>:
+                             All faces are treated as if their face normals
+                             point away from solid material.
+                             This allows a sheet body to be treated locally as
+                             the boundary of a solid; treatment of faces from
+                             solid bodies will be unchanged.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_none_c</A>:
+                             All faces are treated as if they have no solid
+                             material on either side.
+                             This allows a solid body to be treated locally as
+                             a sheet; treatment of faces from sheet bodies will
+                             be unchanged.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_outside_c</A>:
+                             All faces are treated as if their face normals
+                             point into solid material.
+                             This allows a sheet body to be treated locally as
+                             the boundary of a solid; solid bodies will be
+                             negated.
+
+                         <A HREF=../headers/pk_boolean_material_t.html>PK_boolean_material_default_c</A> (the default):
+                             Faces from solid bodies have normals pointing away
+                             from solid material; faces from sheet bodies will
+                             have material on neither side.
+
+                         This option is only supported if general topology is
+                         disabled.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-395829">here</A> for more information.
+
+
+<B>'limit_target_faces'</B>     This option limits the faces to be deleted. It
+                         is particularly useful when the operation is a
+                         trim of the target.
+
+                         PK_LOGICAL_true:
+                             The boundary of the target face set is used to
+                             complete the imprint and limits the face set
+                             to be deleted. It should be noted that the
+                             target face set will include faces added by any
+                             requested face list extension during the initial
+                             phase of imprinting.
+
+                         PK_LOGICAL_false (the default):
+                             No limits are imposed upon the region to be
+                             deleted.
+
+                         This option can only be used with a limited
+                         set of operations.
+
+                         For more information, see <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-395331">here</A>.
+
+
+<B>'tracking_type'</B>          This option allows the user to specify the level
+                         of information they wish tracking records to
+                         contain. The levels of tracking available are:
+
+                         PK_instance_track_type_none_c:
+                             No tracking information will be returned.
+
+                         PK_instance_track_type_inst_c:
+                             Tracking information will be returned in the
+                             return structure <B>'instance_tracking'</B>.
+                             <B>'instance_tracking'</B> will contain
+                             tracking regarding the new topologies
+                             associated with each instance.
+
+                         PK_instance_track_type_topol_c:
+                             Tracking information will be returned in the
+                             return structure <B>'tracking'</B>. The structure
+                             <B>'tracking'</B> will contain topological tracking
+                             information.
+
+                         PK_instance_track_type_both_c:
+                             (Default).
+                             Tracking information will be returned in the
+                             return structures <B>'tracking'</B> and
+                             <B>'instance_tracking'</B>. The structure <B>'tracking'</B>
+                             will contain topological tracking information
+                             and <B>'instance_tracking'</B> will contain
+                             tracking regarding the new topologies
+                             associated with each instance.
+
+                             See the documentation for
+                             <A HREF=../headers/pk_face_instance_bodies.html>PK_FACE_instance_bodies</A> for more details.
+
+
+
+<B>'track_edges'</B>            This option specifies the level of edge
+                         tracking information returned in the
+                         <B>'tracking'</B> records.
+
+                         The levels of tracking available are:
+
+                         PK_instance_track_edges_no_c:
+                             No edge tracking information will be
+                             returned.
+
+                         PK_instance_track_edges_laminar_c:
+                             Tracking information will be returned
+                             associated with laminar edges.
+
+                         PK_instance_track_edges_new_c:
+                             (Default).
+                             Tracking information will be returned
+                             associated with all new edges.
+
+
+
+<B>'resulting_body_type'</B>    This option allows the preferred type of the
+                         resulting body to be indicated.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_solid_c</A>:
+                             If possible the results of the Boolean operation
+                             will be solid bodies.  The result will only be
+                             made solid if all shells in the result are closed.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_sheet_c</A>:
+                             If possible the results of the Boolean operation
+                             will be sheet bodies.  The result may contain
+                             several components, if <B>'allow_disjoint'</B> is set to
+                             PK_LOGICAL_false then the components will be
+                             split out into separate bodies.
+
+                         <A HREF=../headers/pk_boolean_prefer_t.html>PK_boolean_prefer_original_c</A> (the default):
+                             The resulting bodies will be of the same type as
+                             the target body.  If it is not possible to return
+                             a body of the desired type an appropriate error
+                             will be returned.
+
+                         See <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-396622">here</A> for more information.
+
+
+
+<B>'update'</B>                 The default value allows applications to take
+                         advantage of the latest enhancements to the boolean
+                         algorithm. To maintain consistency when rebuilding
+                         models created in a previous version of Parasolid, a
+                         non-default value should be specified.
+                         (<A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_default_c</A>)
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

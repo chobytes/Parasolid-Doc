@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SESSION_applio_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SESSION_applio_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef struct PK_SESSION_applio_s
+    {
+    int (*open_rd)   (int keylen, const char* key, int *strid);
+    int (*open_wr)   (int keylen, const char* key, int *strid);
+
+    int (*rd_chars)  (int strid, int n, char                *data);
+    int (*rd_bytes)  (int strid, int n, unsigned char       *data);
+    int (*rd_shorts) (int strid, int n, short               *data);
+    int (*rd_ints)   (int strid, int n, int                 *data);
+    int (*rd_doubles)(int strid, int n, double              *data);
+
+    int (*wr_chars)  (int strid, int n, const char          *data);
+    int (*wr_bytes)  (int strid, int n, const unsigned char *data);
+    int (*wr_shorts) (int strid, int n, const short         *data);
+    int (*wr_ints)   (int strid, int n, const int           *data);
+    int (*wr_doubles)(int strid, int n, const double        *data);
+
+    int (*close)     (int strid, int abort);
+
+    int (*open_uc_rd)(const <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A> *key, int *strid);
+    int (*open_uc_wr)(const <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A> *key, int *strid);
+
+    int (*open_rd_2)   (int guise, int keylen, const char* key, int *strid);
+    int (*open_wr_2)   (int guise, int keylen, const char* key, int *strid);
+    int (*open_uc_rd_2)(int guise, const <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A> *key, int *strid);
+    int (*open_uc_wr_2)(int guise, const <A HREF=../headers/pk_uchar_t.html>PK_UCHAR_t</A> *key, int *strid);
+    }
+    PK_SESSION_applio_t;
+
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_applio.html>PK_SESSION_ask_applio</A><br>
+    <A HREF=../headers/pk_session_ask_applio_2.html>PK_SESSION_ask_applio_2</A><br>
+    <A HREF=../headers/pk_session_register_applio.html>PK_SESSION_register_applio</A><br>
+    <A HREF=../headers/pk_session_register_applio_2.html>PK_SESSION_register_applio_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This data structure holds pointers to the functions the application
+wishes to register with the PK using <A HREF=../headers/pk_session_register_applio.html>PK_SESSION_register_applio</A> or
+<A HREF=../headers/pk_session_register_applio_2.html>PK_SESSION_register_applio_2</A>. These functions are used during input
+and output of XT data with 'application i/o' format.
+
+open_rd: opens a 'file' for reading with the given key. The <B>'strid'</B> returned
+         identifies the file in later read/close operations. Valid function
+         returns are FR_no_errors, FR_not_found, FR_open_fail.
+
+open_uc_rd: opens a 'file' for reading with the given Unicode key.
+         The <B>'strid'</B> returned identifies the file in later read/close
+         operations. Valid function returns are FR_no_errors, FR_not_found,
+         FR_open_fail.
+
+rd_xxxx: reads one or more items of data from the given 'file'. Valid returns
+         are FR_no_errors, FR_end_of_file, FR_read_fail.
+
+open_wr: opens a new 'file' for writing with the given key. The <B>'strid'</B>
+         returned identifies the file in later write/close operations. Valid
+         function returns are FR_no_errors, FR_already_exists, FR_disc_full,
+         FR_open_fail.
+
+open_uc_wr: opens a new 'file' for writing with the given Unicode key.
+         The <B>'strid'</B> returned identifies the file in later write/close
+         operations. Valid function returns are FR_no_errors,
+         FR_already_exists, FR_disc_full, FR_open_fail.
+
+wr_xxxx: writes one or more items of data to the given 'file'. Valid returns
+         are FR_no_errors, FR_end_of_file, FR_write_fail.
+
+close:   closes the given 'file'. If <B>'abort'</B> is 0, just close it. If <B>'abort'</B>
+         is 1, close and delete the file (this may be given in the case of
+         an error during transmit). Valid returns are FR_no_errors,
+         FR_close_fail.
+
+open_rd_2: open_wr_2:
+open_uc_rd_2: open_uc_wr_2:
+         equivalent to the original 'open' functions, but with an extra
+        <B>'guise'</B> argument to support partitions and deltas explicitly.
+         See <A HREF=../headers/pk_session_register_applio_2.html>PK_SESSION_register_applio_2</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

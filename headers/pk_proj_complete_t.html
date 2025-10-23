@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_proj_complete_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_proj_complete_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_proj_complete_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_project_o_t.html>PK_CURVE_project_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype specifies whether an imprint chain on a body or face is to be
+completed.  Imprint completion ensures that the start and end vertices of the
+imprinted edge chains terminate at the desired edges by imprinting additional
+edges, if required.
+
+It can take the values:
+
+    PK_proj_complete_no_c         Imprint completion is not applied.
+
+    PK_proj_complete_edge_c       Complete the imprint chain, stopping at the
+                                  first edge encountered on the body or face.
+
+    PK_proj_complete_faceset_c    Complete the imprint chain, stopping at the
+                                  first edge encountered that is either a
+                                  laminar edge upon the body or face, or is a
+                                  boundary edge of the set of faces supplied
+                                  to the operation.
+
+    PK_proj_complete_laminar_c    As for PK_proj_complete_faceset_c
+                                  (for use when updating old models).
+
+If general topology is enabled in the session, then imprint completion will
+stop where the imprint meets a general edge, in addition to the behaviour
+described above. The completion will also stop where the imprint meets a
+general vertex, unless it can be continued on the same "manifold piece" of
+the body, as described in <A HREF=../headers/pk_body_make_manifold_bodies.html>PK_BODY_make_manifold_bodies</A>.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

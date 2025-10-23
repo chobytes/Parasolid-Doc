@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_imprint_dir_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_imprint_dir_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_imprint_dir_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_imprint_faces_o_t.html>PK_BODY_imprint_faces_o_t</A><br>
+    <A HREF=../headers/pk_body_imprint_plane_o_t.html>PK_BODY_imprint_plane_o_t</A><br>
+    <A HREF=../headers/pk_face_imprint_faces_o_t.html>PK_FACE_imprint_faces_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Following an imprinting operation, this datatype specifies whether or not the
+direction of imprinted edges should be made consistent (according to
+the definition found <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-527411">here</A>) where possible.
+
+It has the values:
+
+    PK_imprint_dir_consistent_c  The imprinted edges will be inspected and
+                                 reversed if necessary so that their direction
+                                 is consistent. Edges for which a consistent
+                                 direction cannot be determined will be
+                                 reported with a <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_imp_dir_undef_c</A>
+                                 record.
+
+    PK_imprint_dir_no_check_c    No checking is performed on imprinted edge
+                                 directions, and no edges are reported. This
+                                 is the default value.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

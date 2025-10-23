@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>CRTOSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRTOSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_torus_create.html>PK_TORUS_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRTOSU ( centre, axis, majrad, minrad, torus, ifail )
+=====================================================
+
+  Create a toroidal surface.
+
+Receives:
+  KI_vec_centre             centre         --- centre position
+  KI_vec_axis               axis           --- axis direction
+  double                   *majrad         --- annular radius
+  KI_dbl_radius            *minrad         --- radius of generating circle
+
+Returns:
+  KI_tag_surface           *torus          --- toroidal surface
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_radius_sum_le_0        majrad < zero and majrad + minrad <= zero
+  KI_radius_too_large       invalid radius value
+  KI_radius_eq_0            invalid radius value
+
+Description:
+  A complete toroidal surface is created with centre 'centre', defined by
+  rotating the generating circle (of radius 'minrad') about 'axis'. The major
+  radius 'majrad' (radius of the spine circle) is the distance from 'centre'
+  to the centre of the generating circle.
+
+  The surface normal at any given position points away from the nearest
+  point on the spine circle.
+
+  The locus of the torus is a closed surface sheet. However for certain
+  choices of 'majrad' and 'minrad' this surface intersects itself creating
+  two opposing singular points where the surface normal is undefined. The
+  outer sheet of self intersection is called an apple. The inner sheet of
+  self intersection is called a lemon. Each is bounded by the two
+  singular points and treated as a separate surface.
+
+  This routine creates one of the three variations of a torus; non-self
+  intersecting surface, lemon, or apple depending upon the values of
+  'majrad' and 'minrad'. If 'majrad' is positive and smaller than 'minrad'
+  this defines an apple. If 'majrad' is negative (and 'majrad' plus 'minrad'
+  is positive) this defines a lemon.
+
+</PRE>
+</BODY>
+</HTML>

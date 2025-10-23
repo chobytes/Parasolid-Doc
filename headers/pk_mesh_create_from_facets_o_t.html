@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_create_from_facets_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_create_from_facets_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_create_from_facets_o_s
+    {
+    int               o_t_version;       --- Version number of
+                                         --- option structure
+    int               vertices_estimate; --- An estimate for the
+                                         --- total number of vertices
+                                         --- returned by all calls to
+                                         --- <B>'facet_reader'</B>. (0)
+    int               facets_estimate;   --- An estimate for the
+                                         --- total number of facets
+                                         --- returned by all calls to
+                                         --- <B>'facet_reader'</B>. (0)
+    <A HREF=../headers/pk_mesh_facet_f.html>PK_MESH_facet_f</A>   facet_free;        --- Function provided by the
+                                         --- application to free data
+                                         --- returned by <B>'facet_reader'</B>.
+                                         --- (NULL)
+    <A HREF=../headers/pk_mesh_create_t.html>PK_MESH_create_t</A>  create;            --- Whether <B>'facet_reader'</B> is called
+                                         --- immediately or only when the
+                                         --- mesh is required.
+                                         --- (<A HREF=../headers/pk_mesh_create_t.html>PK_MESH_create_now_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>      have_box;          --- Whether box of mesh is provided
+                                         --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_box_t.html>PK_BOX_t</A>          box;               --- Box of mesh when reading of mesh
+                                         --- is delayed.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>      thread_safe;       --- Whether the <B>'facet_reader'</B> and
+                                         --- the <B>'facet_free'</B> callbacks are
+                                         --- thread safe (PK_LOGICAL_false)
+    };
+
+typedef struct PK_MESH_create_from_facets_o_s PK_MESH_create_from_facets_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_mesh_create_from_facets.html>PK_MESH_create_from_facets</A>
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_create_from_facets.html>PK_MESH_create_from_facets</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+
+<B>'vertices_estimate'</B>         When positive, an estimate for the total
+                            number of vertices that will be returned
+                            by all calls to <B>'facet_reader'</B>.
+
+<B>'facets_estimate'</B>           When positive, an estimate for the total
+                            number of facets that will be returned by
+                            all calls to <B>'facet_reader'</B>
+
+<B>'facet_free'</B>                When not NULL, is a function provided by
+                            the application that will free the data
+                            returned by <B>'facet_reader'</B>. <B>'facet_free'</B>
+                            is called as soon as the application data
+                            has been copied into Parasolid's memory,
+                            before the next call to <B>'facet_reader'</B>.
+                            When <B>'facet_free'</B> is NULL, Parasolid will
+                            not attempt to free the memory allocated
+                            by the application for the facet blocks.
+
+<B>'create'</B>                    When <A HREF=../headers/pk_mesh_create_t.html>PK_MESH_create_now_c</A>, the
+                            <B>'facet_reader'</B> callback is used to create
+                            the mesh facets during the current call to
+                            <A HREF=../headers/pk_mesh_create_from_facets.html>PK_MESH_create_from_facets</A>.
+
+                            When <A HREF=../headers/pk_mesh_create_t.html>PK_MESH_create_later_c</A>, the
+                            <B>'facet_reader'</B> callback will only be used
+                            to create the facets of the mesh when they
+                            are required.  The facets are required for
+                            any geometric queries on the mesh or when
+                            transmitting the mesh. The callback and
+                            its context data may be required more than
+                            once, for example if a part containing the
+                            mesh has been copied. If the callback is
+                            called and the mesh is not created, then
+                            the error PK_ERROR_mesh_not_created is
+                            raised.
+
+                            The functions <A HREF=../headers/pk_part_receive_meshes.html>PK_PART_receive_meshes</A> and
+                            <A HREF=../headers/pk_partition_receive_meshes.html>PK_PARTITION_receive_meshes</A> can be used to
+                            force all the meshes with callbacks, in
+                            parts or partitions, respectively, to be
+                            created.
+
+<B>'have_box'</B>                  This option indicates whether a
+                            bounding box is being provided in the
+                            option <B>'box'</B>.
+
+<B>'box'</B>                       Bounding box of mesh when <B>'have_box'</B> is
+                            PK_LOGICAL_true. Providing a box
+                            through this option allows Parasolid to avoid
+                            creating the mesh when testing for clashes
+                            between boxes of entities. If the box is not
+                            a bounding box of the mesh, then the mesh will
+                            not be created and an error will be raised.
+
+<B>'thread_safe'</B>               Indicates whether the <B>'facet_reader'</B> callback
+                            and the <B>'facet_free'</B> callback (if supplied) are
+                            thread safe.
+
+When supplying <B>'facets_estimate'</B> or <B>'vertices_estimate'</B> it is recommended
+that applications moderately overestimate (by ~20%) the number of vertices
+and facets they will need, as the overhead of allocating additional memory
+following an underestimate is more significant than the wasted memory of
+an overestimate.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

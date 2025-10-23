@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_render_volume_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_render_volume_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_render_volume_o_s
+    {
+    int                      o_t_version;         --- Version number of options
+                                                  --- structure
+    int                      n_bodies_with_scales;--- Array of bodies for which
+    const <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>         *bodies_with_scales;  --- a scale factor is
+                                                  --- specified
+                                                  --- (0, NULL)
+    const <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A> *scale_factors;       --- Scale factor associated
+                                                  --- with corresponding body
+                                                  --- in <B>'bodies_with_scales'</B>
+                                                  --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>        output_scale_factor; --- Scale by which to shrink
+                                                  --- the resulting
+                                                  --- representation
+                                                  --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_min_facet_width;  --- Whether min_facet_width
+                                                  --- is set
+                                                  --- (PK_LOGICAL_false)
+    double                   min_facet_width;     --- Minimum facet width, in
+                                                  --- model units
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_max_facet_width;  --- Whether max_facet_width
+                                                  --- is set
+                                                  --- (PK_LOGICAL_false)
+    double                   max_facet_width;     --- Maximum facet width, in
+                                                  --- model units
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_distance_tol;     --- Whether distance_tol is
+                                                  --- set
+                                                  --- (PK_LOGICAL_false)
+    double                   distance_tol;        --- Maximum distance between
+                                                  --- the model geometry and
+                                                  --- its facet, in model units
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_angular_tol;      --- Whether angular_tol is
+                                                  --- set
+                                                  --- (PK_LOGICAL_false)
+    double                   angular_tol;         --- Angular tolerance between
+                                                  --- the model geometry and
+                                                  --- its facet, in radians
+    };
+
+typedef struct PK_TOPOL_render_volume_o_s PK_TOPOL_render_volume_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_tolerance          A tolerance is specified that is less than
+                                    the relevant session precision. (MILD)
+    PK_ERROR_bad_combination        An inconsistent combination of
+                                    <B>'min_facet_width'</B> and <B>'max_facet_width'</B>
+                                    has been supplied. (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_render_volume.html>PK_TOPOL_render_volume</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+Scale factors
+-------------
+
+It is possible to associate a scale factor with a body such that all facets and
+display primitives produced for a body or a region of that body are enlarged by
+the supplied scale factor. The centre of scaling is the origin.
+
+In order to supply scale factors for bodies it is necessary to fill in the
+following fields:
+
+<B>'bodies_with_scales'</B>
+This field, of length <B>'n_bodies_with_scales'</B>, is an array of unique bodies
+which are to have a scale factor applied. If this is empty no scaling will
+occur. If this is not empty the parallel array <B>'scale_factors'</B> must be
+filled in.
+
+<B>'scale_factors'</B>
+This field must be of length <B>'n_bodies_with_scales'</B>. Each <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>
+in this array is the scale associated with the corresponding body in
+<B>'bodies_with_scales'</B>.
+
+Note: If <B>'topol_transfs'</B> are supplied any translation component of the
+      transform will be applied after the scale factor is applied.
+
+It is possible to shrink all the facets and display primitives returned by
+providing an <B>'output_scale_factor'</B> which will be used to scale all the returned
+output with the scaling centre at the origin. No scaling is applied when the
+value is <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+
+Faceting options
+----------------
+
+The tolerance values are each defined by a pair of <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> and double
+values, the former indicating whether the double value has been set explicitly.
+If no explicit tolerance value is provided, Parasolid is free to calculate its
+own internal tolerance values. These are generally case specific, rather than
+using specific fixed values.
+
+The following tolerances can be set:
+
+<B>'min_facet_width'</B>
+In cases where refinement results in a facet being created that has a width
+smaller than <B>'min_facet_width'</B> Parasolid will disregard the other tolerances
+so that the new facet will not be refined any further. Therefore facets may
+exist with dimensions smaller than <B>'min_facet_width'</B>.
+
+Note: The <B>'min_facet_width'</B> is ignored on topologies with facet geometry.
+
+<B>'max_facet_width'</B>
+This tolerance is the maximum allowed chord length of the side of a facet.
+
+If both a <B>'min_facet_width'</B> and <B>'max_facet_width'</B> are specified, the
+<B>'min_facet_width'</B> must be less than the <B>'max_facet_width'</B> or
+PK_ERROR_bad_combination will be returned.
+
+<B>'distance_tol'</B>
+This tolerance is the maximum allowed distance from the model geometry to its
+associated facet, measured in model units.
+
+<B>'angular_tol'</B>
+This tolerance is the angular tolerance between the model geometry and its
+associated facet, measured in radians. At edges this is an upper bound of the
+sum of the angles between the chord and the curve tangents at either end, and
+on a surface this is the maximum allowed deviation of the surface normal within
+the facet.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

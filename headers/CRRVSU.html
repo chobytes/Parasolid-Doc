@@ -1,0 +1,130 @@
+<HTML>
+<HEAD>
+<TITLE>CRRVSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRRVSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_spin.html>PK_CURVE_spin</A><BR>
+<A HREF=../headers/pk_spun_create.html>PK_SPUN_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRRVSU ( profil, point, direct, nopts, opts, optdta, revsur, ifail )
+====================================================================
+
+  Create a surface of revolution
+
+Receives:
+  KI_tag_curve             *profil         --- curve to revolve
+  KI_vec_position           point          --- point on revolution axis
+  KI_vec_axis               direct         --- direction of revolution axis
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options supplied
+  KI_cod_crop               opts[nopts]    --- array of options
+ &lt;KI_tag_list&gt;              optdta[nopts]  --- array of option data
+
+Returns:
+  KI_tag_surface           *revsur         --- resulting surface of revolution
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_impossible_swing       Cannot determine spun geometry
+  KI_su_self_intersect      Surface would be self-intersecting
+  KI_unsuitable_entity      Not one of the allowed curve types
+  KI_wrong_direction        Parameters in wrong order
+  KI_invalid_geometry       Invalid curve
+  KI_bad_parameter          End parameter out of range
+                            Start parameter out of range
+  KI_bad_parametric_prop    inappropriate property
+  KI_bad_option_data        Should be exactly 2 values
+                            option data missing
+
+Description:
+
+  This function creates a spun surface or surface of revolution.
+
+  The curve 'profil' is revolved about the axis defined by the point
+  vector 'point' and the direction vector 'direct', the new surface
+  being the envelope of the curve. The sense of the revolution appears
+  clockwise when viewed along the direction of the axis.
+
+  The curve must be one of the following:
+
+  line
+  circle
+  ellipse
+  B-curve
+
+  The options allow the caller to indicate whether simplification is to
+  be attempted and to specify a parameter range which indicates which
+  part of the curve to use. The possible entries are:
+
+
+      token   |           meaning                 |         data
+      ---------------------------------------------------------------------
+              |                                   |
+      CROPSI  |      Simplify to equivalent       |         none
+              |         analytic surface          |
+              |                                   |
+      CROPPR  |    Parameter range on required    |  list of two doubles
+              |        section of 'profil'        |
+              |                                   |
+
+
+  The simplification token is CROPSI. If this is not given then the
+  function will always return a surface of type TYSUSU. If it is given
+
+  then, if possible, the function will return an simpler surface which
+  is equivalent to the surface of revolution. Normally the simpler
+  surface is analytic; for example, a spun line which intersects the
+  axis is equivalent to a cone. Sometimes the simpler surface is a spun
+  surface with a profile different to 'profil'. This can occur when the
+  whole of 'profil' would sweep the spun surface twice, i.e. the surface
+  would be self intersecting at all its points. For example, this occurs
+  when 'profil' is a circle which lies in a plane perpendicular to the
+  plane containing its centre and the spin axis. In this case, the
+  profile of the resulting surface is a B-curve equivalent to the part
+  of 'profil' specified using CROPPR (although the parameterisation of
+  the new profile will, in general, be different to that of 'profil').
+
+
+  If the token CROPPR is supplied, then a list of two doubles must also
+  be supplied as data. These two doubles specify a parameter range
+  indicating the part of the curve to be spun. A parameter range may be
+  specified for any case but will only be important in cases where the
+  curve intersects the axis. In these cases, it is ambiguous as to which
+  part of the curve should be spun and this option provides a way of
+  choosing one part to be spun. The parameters must be given in
+  ascending order. The curve is extended from the given parameter range
+  until it meets the spin axis, and this becomes the portion of curve to
+  be revolved. If ambiguous data is supplied and SLIPSI (see SEINTP) is
+  non-zero, then an error is signalled, otherwise (if SLIPSI is zero)
+  then the part of the curve used is undefined.
+
+
+  A self intersecting surface may be returned, but it is not possible to
+  spin a line about an axis equivalent to the line itself.
+
+  If 'profil' is not an orphan, the resulting surface will be created as
+  construction geometry in the owning part. A curve which is a dependent of
+  another entity may be revolved - for example, a single curve may be the
+  underlying curve of two spun surfaces.
+
+
+</PRE>
+</BODY>
+</HTML>

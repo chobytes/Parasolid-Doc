@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.007.html#50409787_pgfId-297319", " open all guises of file (except <B>roll-back</B>) for reading ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-297330", " open all guises of file (except <B>roll-back</B>) for writing ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295102", " related parts to be archived as a single item. <B>Roll-back</B> information allows your application to return a Parasolid session", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295123", " Delta files are used within the <B>roll-back</B> mechanism and are controlled by a separate suite", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-326984", " 7.3 <B>Roll-back</B> ", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-326987", " Parasolid has two types of <B>roll-back</B>, both of which are available through the same", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-326988", " Session-level <B>roll-back</B> allows your application to roll back the contents", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-326993", " Partition-level <B>roll-back</B> allows your application to roll back an individual", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-326994", " If implemented, you can use <B>roll-back</B> in your application in several ways. For example:", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-327004", " You could implement partition-level <B>roll-back</B> so that each partition has only one part,", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-327009", " function to the standard frustrum, and specifies how <B>roll-back</B> ( delta) information is written and read. ", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.008.html#50409788_pgfId-327073", " of this option has an affect on the <B>roll-back</B> management strategy your application needs to use. ", "Functional Description - Further Implementation Decisions");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-368089", " Section 7.3, <B>Roll-back</B> ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209263", " <B>roll-back</B> 1620 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.03.html#50442274_pgfId-335125", " to store attribute information on modelling entities, comprehensive <B>roll-back</B> and partitioning capabilities, debugging facilities for the developer,", "Overview of Parasolid - About Parasolid");
+top.note("chapters/ov_chap.04.html#50442254_pgfId-291179", " about Parasolid sessions, see Section 15.3, &#8220;Partitions and <B>roll-back</B>&#8221; and, in particular, Section 15.3.1, &#8220;Concepts&#8221; . ", "Overview of Parasolid - Model Structure");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-283629", " Section 15.3, &#8220;Partitions and <B>roll-back</B>&#8221; , describes features that can be used to", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-275072", " 15.3 Partitions and <B>roll-back</B>", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_marker-298478", "<B>roll-back</B> . There are different forms of <B>roll-back</B>, which between them provide comprehensive support for each", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-276735", " If you take advantage of Parasolid&#8217;s <B>roll-back</B> functionality, there are many ways that you might", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-276842", " Parasolid supports two types of <B>roll-back</B>, both of which are available through the same", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_marker-276844", "Partition-level <B>roll-back</B> allows your application to roll an individual partition", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_marker-298486", "Session-level <B>roll-back</B> allows your application to roll the contents of", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-278084", " Note: For its <B>roll-back</B> mechanisms, Parasolid uses terminology familiar to database users:", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-278073", " Partition-level and session-level <B>roll-back</B> both work by employing a system of marks.", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-275074", " 15.3.2 Partition-level <B>roll-back</B> ", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-278155", " Partition-level <B>roll-back</B> can be used primarily as a means of", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-280557", " Partition-level <B>roll-back</B> is also crucial for enabling feature modelling applications", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-280606", " a session does not affect other models. Branching <B>roll-back</B> of bodies - several alternative updates to a", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-277943", " In the context of partition-level <B>roll-back</B>, a ", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-284054", " session should contain only one part. Adding partition-level <B>roll-back</B> to your application would then mean that your", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-279658", " through, and how your application can use partition-level <B>roll-back</B> to support those design decisions: ", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-279601", " Figure 15-2 An example of partition-level <B>roll-back</B> in use ", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-275075", " 15.3.3 Session-level <B>roll-back</B> ", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.16.html#50442289_pgfId-277441", " including partitions, session parameters and modelling parameters. Session-level <B>roll-back</B> can be used as part of an error", "Overview of Parasolid - Application Support");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-280441", " If you also wish to support Parasolid&#8217;s <B>roll-back</B> functionality (see Section 16.4.2 ), you also need", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-110680", " 16.4.2 <B>Roll-back</B> ", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-279567", " Session-level <B>roll-back</B> allows your application to roll back the contents", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-279572", " Partition-level <B>roll-back</B> allows your application to roll back an individual", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-279583", " For example, you could implement partition-level <B>roll-back</B> so that a new partition is created for", "Overview of Parasolid - Writing Parasolid Applications");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

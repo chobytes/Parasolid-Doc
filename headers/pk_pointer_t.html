@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_POINTER_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_POINTER_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef void *PK_POINTER_t;
+
+</B>
+<A NAME="description"></A>
+<I>This type represents a pointer to application code or data.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_appitem_ask.html>PK_APPITEM_ask</A><br>
+    <A HREF=../headers/pk_appitem_create.html>PK_APPITEM_create</A><br>
+    <A HREF=../headers/pk_appitem_reset_pointers.html>PK_APPITEM_reset_pointers</A><br>
+    <A HREF=../headers/pk_attdef_name_cb_f_t.html>PK_ATTDEF_name_cb_f_t</A><br>
+    <A HREF=../headers/pk_attrib_ask_named_pointers.html>PK_ATTRIB_ask_named_pointers</A><br>
+    <A HREF=../headers/pk_attrib_ask_nth_pointer.html>PK_ATTRIB_ask_nth_pointer</A><br>
+    <A HREF=../headers/pk_attrib_ask_pointers.html>PK_ATTRIB_ask_pointers</A><br>
+    <A HREF=../headers/pk_attrib_cb_f_t.html>PK_ATTRIB_cb_f_t</A><br>
+    <A HREF=../headers/pk_attrib_field_values_t.html>PK_ATTRIB_field_values_t</A><br>
+    <A HREF=../headers/pk_attrib_reset_cb_f_t.html>PK_ATTRIB_reset_cb_f_t</A><br>
+    <A HREF=../headers/pk_attrib_set_named_pointers.html>PK_ATTRIB_set_named_pointers</A><br>
+    <A HREF=../headers/pk_attrib_set_pointers.html>PK_ATTRIB_set_pointers</A><br>
+    <A HREF=../headers/pk_bcurve_fit_eval_data_t.html>PK_BCURVE_fit_eval_data_t</A><br>
+    <A HREF=../headers/pk_bcurve_fit_eval_f_t.html>PK_BCURVE_fit_eval_f_t</A><br>
+    <A HREF=../headers/pk_blend_fix_propagate_t.html>PK_blend_fix_propagate_t</A><br>
+    <A HREF=../headers/pk_body_blend_propagate_f_t.html>PK_BODY_blend_propagate_f_t</A><br>
+    <A HREF=../headers/pk_body_hollow_o_t.html>PK_BODY_hollow_o_t</A><br>
+    <A HREF=../headers/pk_curve_general_eval_f_t.html>PK_CURVE_general_eval_f_t</A><br>
+    <A HREF=../headers/pk_curve_general_user_t.html>PK_CURVE_general_user_t</A><br>
+    <A HREF=../headers/pk_debug_session_entry_cb_t.html>PK_DEBUG_SESSION_entry_cb_t</A><br>
+    <A HREF=../headers/pk_debug_session_exit_cb_t.html>PK_DEBUG_SESSION_exit_cb_t</A><br>
+    <A HREF=../headers/pk_debug_session_watch_fns.html>PK_DEBUG_SESSION_watch_fns</A><br>
+    <A HREF=../headers/pk_debug_try_error_handler.html>PK_DEBUG_try_error_handler</A><br>
+    <A HREF=../headers/pk_debug_try_error_handler_f_t.html>PK_DEBUG_try_error_handler_f_t</A><br>
+    <A HREF=../headers/pk_detail_hole_cb_f_t.html>PK_detail_hole_cb_f_t</A><br>
+    <A HREF=../headers/pk_face_change_data_deform_t.html>PK_FACE_change_data_deform_t</A><br>
+    <A HREF=../headers/pk_face_change_deform_eval_f_t.html>PK_FACE_change_deform_eval_f_t</A><br>
+    <A HREF=../headers/pk_face_change_o_t.html>PK_FACE_change_o_t</A><br>
+    <A HREF=../headers/pk_face_details_hole_o_t.html>PK_FACE_details_hole_o_t</A><br>
+    <A HREF=../headers/pk_face_grow_cb_f_t.html>PK_FACE_grow_cb_f_t</A><br>
+    <A HREF=../headers/pk_face_trim_cb_f_t.html>PK_FACE_trim_cb_f_t</A><br>
+    <A HREF=../headers/pk_lattice_create_by_graph.html>PK_LATTICE_create_by_graph</A><br>
+    <A HREF=../headers/pk_lattice_do_for_all_lballs.html>PK_LATTICE_do_for_all_lballs</A><br>
+    <A HREF=../headers/pk_lattice_do_for_all_lrods.html>PK_LATTICE_do_for_all_lrods</A><br>
+    <A HREF=../headers/pk_lattice_graph_cb_f_t.html>PK_LATTICE_graph_cb_f_t</A><br>
+    <A HREF=../headers/pk_mesh_create_from_facets.html>PK_MESH_create_from_facets</A><br>
+    <A HREF=../headers/pk_mesh_do_for_all_mfacets.html>PK_MESH_do_for_all_mfacets</A><br>
+    <A HREF=../headers/pk_mesh_do_for_all_mvertices.html>PK_MESH_do_for_all_mvertices</A><br>
+    <A HREF=../headers/pk_mesh_facet_cb_f_t.html>PK_MESH_facet_cb_f_t</A><br>
+    <A HREF=../headers/pk_mesh_imprint_vectors_o_t.html>PK_MESH_imprint_vectors_o_t</A><br>
+    <A HREF=../headers/pk_mfacet_find_perimeters_o_t.html>PK_MFACET_find_perimeters_o_t</A><br>
+    <A HREF=../headers/pk_mtopol_make_meshes_o_t.html>PK_MTOPOL_make_meshes_o_t</A><br>
+    <A HREF=../headers/pk_part_ask_attribs_cb.html>PK_PART_ask_attribs_cb</A><br>
+    <A HREF=../headers/pk_part_receive_o_t.html>PK_PART_receive_o_t</A><br>
+    <A HREF=../headers/pk_part_transmit_o_t.html>PK_PART_transmit_o_t</A><br>
+    <A HREF=../headers/pk_partition_receive_deltas_o_t.html>PK_PARTITION_receive_deltas_o_t</A><br>
+    <A HREF=../headers/pk_partition_receive_o_t.html>PK_PARTITION_receive_o_t</A><br>
+    <A HREF=../headers/pk_partition_reset_attribs.html>PK_PARTITION_reset_attribs</A><br>
+    <A HREF=../headers/pk_partition_transmit_o_t.html>PK_PARTITION_transmit_o_t</A><br>
+    <A HREF=../headers/pk_pattern_callback_t.html>PK_pattern_callback_t</A><br>
+    <A HREF=../headers/pk_pmark_goto_attrib_cb_f_t.html>PK_PMARK_goto_attrib_cb_f_t</A><br>
+    <A HREF=../headers/pk_pmark_goto_o_t.html>PK_PMARK_goto_o_t</A><br>
+    <A HREF=../headers/pk_session_register.html>PK_SESSION_register</A><br>
+    <A HREF=../headers/pk_surf_general_eval_f_t.html>PK_SURF_general_eval_f_t</A><br>
+    <A HREF=../headers/pk_surf_general_user_t.html>PK_SURF_general_user_t</A><br>
+    <A HREF=../headers/pk_topol_facet_choice_2_o_t.html>PK_TOPOL_facet_choice_2_o_t</A><br>
+    <A HREF=../headers/pk_topol_facet_tables_cb_f_t.html>PK_TOPOL_facet_tables_cb_f_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

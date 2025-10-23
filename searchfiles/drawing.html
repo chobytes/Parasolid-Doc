@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295227", " Renders a geometric entity as a wireframe <B>drawing</B> that is independent of the view required. ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295236", " A view independent wireframe <B>drawing</B> ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295237", " A view dependent wireframe <B>drawing</B> ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295239", " A hidden line <B>drawing</B> ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-308532", "outline curve is the outline created by <B>drawing</B> around the boundary of a set of bodies,", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-528775", "perspective outline is created by <B>drawing</B> around the boundary of a body or set", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-585301", " 76.2.5.1 <B>Drawing</B> blend ribs when rendering ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-295130", " faceting for information on the functions available for <B>drawing</B> entities. ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-294766", " 105.2 Line <B>drawing</B> functions ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-329803", " To generate a basic wire-frame <B>drawing</B>, PK_TOPOL_render_line is called with the ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295089", " The basic wire-frame <B>drawing</B> described in Section 105.2.3, View-independent topology does not", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295100", " To generate a hidden-line <B>drawing</B>, PK_TOPOL_render_line is called with the ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295183", " Hidden-line <B>drawing</B> also requires a specification of the current view,", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295220", " and surface geometry to be overlaid onto a <B>drawing</B> produced by PK_TOPOL_render_line . ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295221", " allows generation of the following types of line <B>drawing</B> in wire-frame or hidden-line form: ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295223", " <B>drawing</B> a part in different orientations ", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-302442", " A hidden-line <B>drawing</B> classifies all lines (edges, silhouettes and hatch lines)", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304098", " code CODSMS) or gaps will occur in the <B>drawing</B>, where the obscured silhouette line was found. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-658524", " The application can decide whether to suppress <B>drawing</B> these edges. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-294869", " visible/invisible in a similar way as used when <B>drawing</B> the model edges. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-302059", " This option is only available when <B>drawing</B> view-independent topology. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300866", "hidden-line <B>drawing</B>, when only those entities which are closest to", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300832", " If you are picking faces from a hidden-line <B>drawing</B>, ensure that the ", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.113.html#50409904_pgfId-300979", "wire-frame <B>drawing</B> on a screen, where the closest entities are", "Functional Description - Picking Topology");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413789", " example, Parasolid has created a redundant vertex when <B>drawing</B> the circles in the profile. This has then", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275896", " Pictures which depict models by <B>drawing</B> all their edges. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206891", " line <B>drawing</B> 1467 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207298", " hidden line <B>drawing</B> 92 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210679", " wireframe <B>drawing</B> 92 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.07.html#50442276_marker-1078694", "outline curve is the outline created by <B>drawing</B> around the boundary of a set of bodies,", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.07.html#50442276_pgfId-1018339", "perspective outline is created by <B>drawing</B> around the boundary of a body or a", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-274014", " Wire-frame pictures depict models by <B>drawing</B> their edges. They can optionally include additional information", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-282054", " <B>Drawing</B> unfixed blends as they would appear after they are", "Overview of Parasolid - Displaying Data");
+top.note("chapters/ov_chap.15.html#50442255_pgfId-479415", " edge, silhouette and hatch lines in a hidden-line <B>drawing</B> for more efficient processing. ", "Overview of Parasolid - Displaying Data");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_render_silhouette_arcs_c 20121 render silhouettes, <B>drawing</B> near-circular analytic silhouette lines as circular arcs ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_render_silhouette_arcs_c 20121 render silhouettes, <B>drawing</B> near-circular analytic silhouette lines as circular arcs ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_geom_render_line.html#documentation", "This function produces a 3D line <B>drawing</B> of geometric entities in the world", "PK Reference - PK_GEOM_render_line");
+top.note("headers/pk_render_silhouette_t.html#documentation", " PK_render_silhouette_arcs_c : render silhouettes, <B>drawing</B> near-circular", "PK Reference - PK_render_silhouette_t");
+top.note("headers/pk_topol_render_line.html#description", "wire-frame <B>drawing</B>, a view-dependent wire-frame <B>drawing</B> or a hidden-line", "PK Reference - PK_TOPOL_render_line");
+top.note("headers/pk_topol_render_line.html#documentation", "This function produces a 3D line <B>drawing</B> of topological entities in the world", "PK Reference - PK_TOPOL_render_line");
+top.note("headers/pk_topol_render_line_o_t.html#declaration", " --- resulting line <B>drawing</B> of the", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("headers/pk_topol_render_line_o_t.html#documentation", "(ie hidden line <B>drawing</B>) is performed. Common visibility requirements may", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274091", " split into two sections in a hidden line <B>drawing</B> because part of it is obscured by another", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274236", " Figure 4-1 Hidden line <B>drawing</B> of a single body ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-285261", " from a view independent or view dependent wireframe <B>drawing</B> has code CODUNC (unknown completeness). ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274327", " In hidden line <B>drawing</B>: ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274341", " evaluated (topology is output as a view-dependent wireframe <B>drawing</B>) ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-326329", " can be returned only from a hidden line <B>drawing</B> when rendering sharp mfins. It indicates that the", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274377", " regional data was requested from a hidden line <B>drawing</B>, edge and silhouette segments are output with start", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274936", " by the blend is drawn. If you are <B>drawing</B> the part a few edges at a time,", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274938", " (E) should meet other lines on the 2-dimensional <B>drawing</B> divide (E) up into separate parts which are", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275008", " of facet is only produced by the facet <B>drawing</B> function. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275022", " If during a call to the facet <B>drawing</B> function, user tolerances cannot be matched, or facets", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275027", " to output data hierarchically from a hidden line <B>drawing</B> (that is, if the ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275131", " strip option when outputting data from the facet <B>drawing</B> function results in this data being output in", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275189", " to output data hierarchically from a hidden line <B>drawing</B> then the single level segments output for each", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275240", " Regional data is produced in a hidden line <B>drawing</B> when you use the ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.08.html#50511940_pgfId-274045", " render graphical data generated by the PK line <B>drawing</B> functions: ", "Downward Interfaces - Graphical Output Functions");
+top.note("chapters/di_chap.16.html#50511948_pgfId-274047", " J.2 Pixel <B>drawing</B> functions", "Downward Interfaces - Legacy Functions");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-273912", " is output, not reflecting the change in the <B>drawing</B> list. ", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-280862", "> (graphics drawing_list ( b0 b1)) -- <B>drawing</B> list changed", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-273974", " 12.5 Clearing the screen and <B>drawing</B> the current view", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-281205", " clear the screen before <B>drawing</B> the entity. ", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-274007", " 12.6 Use of the <B>drawing</B> list", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-274013", " Each view has a <B>drawing</B> list property, e.g. ", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-274014", " one class may be used to hold the <B>drawing</B> list and its subclasses may be views which", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.13.html#50475017_pgfId-274015", " It is possible to add items to the <B>drawing</B> list without rendering them. This could be used", "KID Manual - Viewing Environment and Definition");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-273860", " object or a list of objects), a new <B>drawing</B> list is defined which contains only these objects.", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-273873", " current view and adds the object to the <B>drawing</B> list of the current view, unless it is", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-273891", " object or a list of objects), a new <B>drawing</B> list is defined which contains only these objects.", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-274088", " This option controls the <B>drawing</B> of edge data of the entities passed to", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-274805", " given, silhouette curves are drawn in the current <B>drawing</B> list only. If the optional argument is set", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-274936", " commands, if there are many entities in the <B>drawing</B> list, but only one transform is supplied, then", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-275022", " boxes of all the items in the current <B>drawing</B> list ", "KID Manual - KID Rendering");
+top.note("chapters/kd_chap.17.html#50475020_pgfId-276433", " sketch all items in <B>drawing</B> list ", "KID Manual - KID Class Structure");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-36106", " <B>drawing</B> list ", "KID Manual - Machine Dependency in KID");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-36632", " <B>drawing</B> list ", "KID Manual - Machine Dependency in KID");
+top.note("chapters/kd_chap.24.html#50475028_pgfId-37544", " <B>drawing</B> list ", "KID Manual - Machine Dependency in KID");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

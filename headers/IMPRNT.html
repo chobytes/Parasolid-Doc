@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<TITLE>IMPRNT</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>IMPRNT</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_imprint_body.html>PK_BODY_imprint_body</A><BR>
+<A HREF=../headers/pk_body_imprint_faces.html>PK_BODY_imprint_faces</A><BR>
+<A HREF=../headers/pk_face_imprint_faces.html>PK_FACE_imprint_faces</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+IMPRNT ( target, tool, nopts, opts, targed, tooled, nedges, targvx, toolvx, 
+============================================================================
+         nverts, ifail )
+         ===============
+
+  Imprint bodies or lists of faces
+
+Receives:
+  KI_tag_list_entity       *target         --- target body or list of faces
+  KI_tag_list_entity       *tool           --- tool body or list of faces
+ &lt;KI_int_nitems&gt;           *nopts          --- number of imprinting options
+  KI_cod_imop               opts[nopts]    --- option codes
+
+Returns:
+ &lt;KI_tag_list_edge&gt;        *targed         --- corresponding edges on target
+ &lt;KI_tag_list_edge&gt;        *tooled         --- corresponding edges on tool
+ &lt;KI_int_nitems&gt;           *nedges         --- number of edges
+ &lt;KI_tag_list_vertex&gt;      *targvx         --- corresponding vertices on target
+ &lt;KI_tag_list_vertex&gt;      *toolvx         --- corresponding vertices on tool
+ &lt;KI_int_nitems&gt;           *nverts         --- number of vertices
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_cant_do_imprint        imprint failure
+  KI_tool_faces_many_bodies tool faces are from more than one body
+  KI_targ_faces_many_bodies target faces are from more than one body
+  KI_wire_body              target or tool is wire body or face of wire body
+  KI_missing_geom           target or tool has incomplete geometry
+  KI_same_tool_and_target   target and tool are from the same body
+  KI_unsuitable_entity      mixed body
+
+Description:
+  Takes a target entity and tool entity and adds edges and vertices where the
+  faces intersect (except where they already exist).  The corresponding
+  imprinted (or original) edges and vertices are returned in matching lists.
+  Vertices are returned only where they are isolated points of contact between
+  a face from the target and a face from the tool.
+
+  The target and tool each can be a sheet or solid body or a list of faces from
+  a sheet or solid body.
+
+  The options for IMPRNT are:
+
+      IMOPNT: Do not imprint on tool.  Edges and vertices are imprinted on the
+              target only and the lists of edges and vertices on the tool will
+              be returned as null.
+
+      IMOPOA: Imprint boundaries of overlapping areas.  This is necessary only
+              when the target and tool are faces or sheet bodies.  If a face
+              from the target and a face from the tool have identical surfaces,
+              the boundaries of the overlapping area will be imprinted.  If this
+              option is not selected, faces with identical surfaces will not
+              imprint on each other.
+
+      IMOPEF: Extend face list on target.  If the imprinting results in
+              incomplete loops of imprinted edges, additional faces in the
+              target will be intersected with the tool and imprinted in an
+              attempt to form complete loops.  This will have no effect when
+              the whole target body is supplied.  No additional faces in the
+              tool will be used.
+
+  This function does not support general bodies and faces belonging to
+  general bodies.
+
+
+</PRE>
+</BODY>
+</HTML>

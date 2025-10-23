@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_find_vectors_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_find_vectors_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_find_vectors_r_s
+    {
+    int                          n_entries;
+    int                         *indices;
+    <A HREF=../headers/pk_curve_find_vectors_t.html>PK_CURVE_find_vectors_t</A>     *statuses;
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>                 *vectors;
+    double                      *parms;
+    };
+typedef struct PK_CURVE_find_vectors_r_s PK_CURVE_find_vectors_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>This return structure contains the return from <A HREF=../headers/pk_curve_find_vectors.html>PK_CURVE_find_vectors</A>
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_find_vectors.html>PK_CURVE_find_vectors</A><br>
+    <A HREF=../headers/pk_curve_find_vectors_r_f.html>PK_CURVE_find_vectors_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+If <A HREF=../headers/pk_curve_find_vectors.html>PK_CURVE_find_vectors</A> successfully determines a position vector
+then:
+
+    - The position vector on the curve and its corresponding parameter is
+      returned in <B>'vectors'</B> and <B>'parms'</B> respectively. Only position vectors
+      whose parameter lies within <B>'t_int'</B> will be returned.
+    - The index of the value in <B>'measurements'</B> that the position vector
+      corresponds to is stored in <B>'indices'</B>. Depending on <B>'measurement_method'</B>
+      a value in <B>'measurements'</B> may correspond to several position vectors,
+      in these cases all position vectors will be returned with the same
+      index appearing multiple times in <B>'indices'</B>.
+    - The status field will hold PK_CURVE_find_vectors_ok_c to indicate
+      that the position vector was successfully found.
+
+If <A HREF=../headers/pk_curve_find_vectors.html>PK_CURVE_find_vectors</A> found a position vector the error bound of which
+exceeds the requested tolerance, but is less than ten times that tolerance
+then:
+
+    - The status field will hold PK_CURVE_find_vectors_tol_c to indicate
+      that the solution is only approximate.
+    - The position vector and its corresponding parameter are returned in
+      <B>'vectors'</B> and <B>'params'</B> respectively. Only position vectors whose
+      parameter lies within <B>'t_int'</B> will be returned.
+    - The index of the value in <B>'measurements'</B> for which only an approximate
+      solution could be found will be returned.
+
+If <A HREF=../headers/pk_curve_find_vectors.html>PK_CURVE_find_vectors</A> was unsuccessful in determining a position
+vector then:
+
+    - The index of the value in <B>'measurements'</B> for which the computation
+      failed will be returned.
+    - The status field will indicate that an error did occur, see the
+      documentation of <A HREF=../headers/pk_curve_find_vectors_t.html>PK_CURVE_find_vectors_t</A> for more information.
+
+
+The fields are as follows:
+
+<B>'n_entries'</B>     Length of the arrays <B>'indices'</B>, <B>'statuses'</B>, <B>'vectors'</B>, <B>'parms'</B>.
+
+<B>'indices'</B>       Indices matching the returned values to the entries in
+                <B>'measurements'</B> in the option structure.
+
+<B>'statuses'</B>      Statuses corresponding to each of the position vectors in
+                <B>'vectors'</B>.
+
+<B>'vectors'</B>       Position vectors on the curve.
+
+<B>'parms'</B>         Parameters corresponding to the position vectors in <B>'vectors'</B>.
+                The values in <B>'parms'</B> will lie in the interval <B>'t_int'</B>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

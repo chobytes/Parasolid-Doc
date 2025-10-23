@@ -1,0 +1,94 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.004.html#50409783_pgfId-301531", " to create 3D shapes by extruding, sweeping, or <B>lofting</B> them. See Chapter 36, Introduction To Profiling and", "Functional Description - Overview Of This Manual");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294804", " By <B>lofting</B> a set of B-curves ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-300822", " 18.4.10 <B>Lofting</B> ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-301909", " Figure 18-20 A B-surface created by <B>lofting</B> ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-301910", " Various controls can be put on the <B>lofting</B> to alter the shape of the lofted surface.", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-301919", " degenerate b-spline curve you retain greater control when <B>lofting</B> curves that are rational. ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-302242", " allow you to do this amalgamation outside of <B>lofting</B> before passing the curves in. ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.037.html#50409819_pgfId-305600", " an axis, sweeping profiles along a path, or <B>lofting</B> between a set of profiles. Information on how", "Functional Description - Introduction To Profiling and Surfacing");
+top.note("chapters/fd_chap.037.html#50409819_pgfId-303827", " Chapter 41, <B>Lofting</B> describes how to create a sheet or solid", "Functional Description - Introduction To Profiling and Surfacing");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-428545", " Chapter 41, <B>Lofting</B> ", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.039.html#50409821_pgfId-387348", " Chapter 41, <B>Lofting</B> ", "Functional Description - Creating Extruded Bodies");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-896890", " Chapter 41, <B>Lofting</B> ", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-301381", " <B>Lofting</B> creates a sheet or solid body by fitting surfaces", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-575058", " See Section 41.8, <B>Lofting</B> with guide wires , for more information about guide", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-599097", " 41.2.1 Piecewise <B>lofting</B> ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-604276", " to produce a piecewise lofted body. In piecewise <B>lofting</B> the operation is completed in separate sections, as", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-599612", " Figure 41-4 Piecewise <B>lofting</B> with repeated profiles ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295415", " the associated vertex or edges, and the specified <B>lofting</B> tolerance. ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295422", " A guide wire (see Section 41.8, <B>Lofting</B> with guide wires ) may not pass through two", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-298845", " Figure 41-6 <B>Lofting</B> between touching profiles ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-534316", " certain derivative conditions is restricted. See Section 41.8, <B>Lofting</B> with guide wires for full details. ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295977", " 41.6 <B>Lofting</B> degenerate profiles ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-295978", " <B>Lofting</B> to a degenerate profile is considered as having a", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-306612", " Figure 41-12 <B>Lofting</B> degenerate profiles ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296263", " 41.8 <B>Lofting</B> with guide wires ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-457953", " effect of specifying a guide wire during a <B>lofting</B> operation. In the example, both end profiles are", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-458123", " Use of a simple guide wire during a <B>lofting</B> operation ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296836", " Using guide wires (see Section 41.8, <B>Lofting</B> with guide wires ) does not change the number", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297897", " Figure 41-21 <B>Lofting</B> topology form ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296910", " than three profiles (as described in Section 41.8, <B>Lofting</B> with guide wires ), Parasolid creates additional ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-296927", " to include the construction profiles in any subsequent <B>lofting</B> operation could result in unexpected changes to the", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297000", " option to control when <B>lofting</B> considers adjacent profile edges to join with G1", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-297126", " 41.15 Handling <B>lofting</B> tolerances ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-298074", " different versions of Parasolid. Doing this ensures that <B>lofting</B> gives the same results in the latest version", "Functional Description - Lofting");
+top.note("chapters/fd_chap.042.html#50409824_pgfId-531472", " to a non-default value disables all appropriate general <B>lofting</B> enhancements. ", "Functional Description - Lofting");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-326827", " Chapter 41, <B>Lofting</B> ", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.047.html#50409830_pgfId-401695", " Chapter 41, <B>Lofting</B> ", "Functional Description - Sheet Modeling");
+top.note("chapters/fd_chap.047.html#50409830_pgfId-467306", " Chapter 41, <B>Lofting</B> ", "Functional Description - Sheet Modeling");
+top.note("chapters/fd_chap.071.html#50409857_pgfId-294775", " closed wire body, and in conjunction with Parasolids <B>lofting</B> and profiling functionality, this can form the basis", "Functional Description - Filling Holes In A Body");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378297", " <B>Lofting</B> and blending ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378369", " <B>Lofting</B> and sweeping ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275684", " <B>Lofting</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203821", " <B>lofting</B> 269 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205360", " profiles, <B>lofting</B> 533 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207752", " <B>lofting</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208486", " <B>lofting</B> 491 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208906", " <B>lofting</B> degenerate 533 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208914", " supplying <B>lofting</B> 523 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209897", " <B>lofting</B> profiles 523 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210258", " <B>lofting</B> 546 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210566", " <B>lofting</B> 509, 547, 886 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.08.html#50442268_pgfId-298359", " <B>Lofting</B> ", "Overview of Parasolid - B-Spline Curves and Surfaces");
+top.note("chapters/ov_chap.08.html#50442268_pgfId-298400", " between a set of pre-defined B-curves. Parasolid&#8217;s generic <B>lofting</B> functionality is described in more detail in Chapter", "Overview of Parasolid - B-Spline Curves and Surfaces");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-281044", " Section 9.5, &#8220;<B>Lofting</B>&#8221; , demonstrates bodies created by generating surfaces between", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-275540", " 9.5 <B>Lofting</B>", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-279110", " through a series of profiles. Unlike extrusion , <B>lofting</B> involves the use of any number of profiles.", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-574316", " Figure 9-23 Piecewise <B>lofting</B> with repeated profiles ", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.10.html#50442242_pgfId-307725", " sweeping, you can combine these options, making Parasolid <B>lofting</B> a powerful tool for creating free-form bodies using", "Overview of Parasolid - Building Bodies from Profiles");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437486", " <B>lofting</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438162", " guide curves for <B>lofting</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438304", " <B>lofting</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438666", " <B>lofting</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438943", " controlling during <B>lofting</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " for <B>lofting</B>, or one of the profiles has", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " for <B>lofting</B>, or one of the profiles has", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " for <B>lofting</B>, or one of the profiles has", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_bcurve_make_bsurf_lofted.html#description", " This function creates a bsurf by <B>lofting</B> through a set of bcurves.", "PK Reference - PK_BCURVE_make_bsurf_lofted");
+top.note("headers/pk_bcurve_make_bsurf_lofted.html#documentation", " degenerate b-spline curve will provide greater control when <B>lofting</B> curves", "PK Reference - PK_BCURVE_make_bsurf_lofted");
+top.note("headers/pk_bcurve_make_bsurf_lofted_o_t.html#documentation", " <B>lofting</B> or one greater than the number of lofted", "PK Reference - PK_BCURVE_make_bsurf_lofted_o_t");
+top.note("headers/pk_body_loft_update_t.html#documentation", "the latest enhancements to the <B>lofting</B> algorithm. To maintain consistency when", "PK Reference - PK_BODY_loft_update_t");
+top.note("headers/pk_body_make_lofted_body.html#declaration", "const PK_BODY_make_lofted_body_o_t *options, --- options on <B>lofting</B>", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_body_make_lofted_body.html#description", "<B>lofting</B> through a set of sheet, wire or minimum", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_body_make_lofted_body.html#errors", " for <B>lofting</B>, or one of the profiles has", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_body_make_lofted_body.html#documentation", "See <B>Lofting</B> for more information.", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_body_make_lofted_body_o_t.html#documentation", " See <B>Lofting</B> with guide wires .", "PK Reference - PK_BODY_make_lofted_body_o_t");
+top.note("headers/pk_body_one_vertex_match_t.html#description", "<B>lofting</B>, if a profile body is repeated, this should", "PK Reference - PK_BODY_one_vertex_match_t");
+top.note("headers/pk_body_one_vertex_match_t.html#documentation", " In <B>lofting</B>, if there are guide wires for the loft", "PK Reference - PK_BODY_one_vertex_match_t");
+top.note("headers/pk_body_topology_t.html#documentation", "This datatype specifies how bodies created by <B>lofting</B> and sweeping will", "PK Reference - PK_BODY_topology_t");
+top.note("headers/pk_body_vertex_match_t.html#description", "immediately following it in the series. In <B>lofting</B>, if a profile body is", "PK Reference - PK_BODY_vertex_match_t");
+top.note("headers/pk_body_vertex_matches_t.html#description", " body immediately following it in the series. In <B>lofting</B>, if a profile body", "PK Reference - PK_BODY_vertex_matches_t");
+top.note("headers/pk_body_vertex_matches_t.html#documentation", " mappings are provided for the profiles input to <B>lofting</B>", "PK Reference - PK_BODY_vertex_matches_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

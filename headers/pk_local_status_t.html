@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_local_status_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_local_status_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_local_status_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_replace_surfs_r_t.html>PK_FACE_replace_surfs_r_t</A><br>
+    <A HREF=../headers/pk_topol_local_r_t.html>PK_TOPOL_local_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype indicates the status of the local operation.
+It has the values:
+
+    PK_local_status_ok_c               operation succeeded
+    PK_local_status_nocheck_c          operation succeeded, but no checks
+                                       performed on entity
+    PK_local_status_fail_c             operation failed
+    PK_local_status_cant_get_pt_c      failed to locate geometry for vertex
+    PK_local_status_cant_get_cu_c      failed to locate geometry for edge
+    PK_local_status_cant_get_su_c      failed to locate geometry for face
+    PK_local_status_cant_offset_c      (1) failed to offset the face or the
+                                           face is only partially offset.
+                                           Likely causes are self intersection
+                                           or regions of tight curvature on
+                                           offset surfaces.
+                                       (2) unable to offset the entities to
+                                           provide the geometry for the
+                                           supplied edges.
+    PK_local_status_side_cu_fail_c     failed to create a side curve
+    PK_local_status_side_su_fail_c     failed to create a side surface
+    PK_local_status_not_same_by_c      entities are not from the same body
+    PK_local_status_fa_fail_c          face check fails
+    PK_local_status_fa_fa_fail_c       face/face check fails
+    PK_local_status_ed_remains_c       edge could not be deleted
+    PK_local_status_point_contact_c    point contact found in sheet body
+    PK_local_status_bad_reference_c    taper reference entity is not valid
+    PK_local_status_not_supported_c    given combination of reference entities
+                                       currently not supported
+    PK_local_status_cant_extend_c      geometry could not be extended
+    PK_local_status_sheet_small_c      given sheet body too small
+    PK_local_status_cant_use_cu_c      supplied/existing curve cannot be used
+                                       for edge
+    PK_local_status_eds_unconnected_c  boundary edges are not simply connected.
+    PK_local_status_non_laminar_c      boundary edges are not laminar.
+    PK_local_status_reference_loop_c   taper references don't bound consistent
+                                       regions of body.
+    PK_local_status_lp_outside_fa_c    loop is outside face
+    PK_local_status_target_missed_c    target entity cannot bound the regions
+                                       modified by operations such as extension
+    PK_local_status_wrong_side_c       the boundary of the sheet lies on the
+                                       opposite side of the target to the one
+                                       specified.
+    PK_local_status_vx_large_tol_c     result tolerance of vertex exceeds its
+                                       original and operational tolerances.
+    PK_local_status_ed_large_tol_c     result tolerance of edge exceeds its
+                                       original and operational tolerances.
+    PK_local_status_blend_too_tight_c  blend created would be too tightly
+                                       curved.
+    PK_local_status_cant_make_blend_c  blend surface cannot be created.
+    PK_local_status_bad_chamfer_c      chamfer surface cannot be created.
+    PK_local_status_bad_blend_c        blend cannot be processed.
+    PK_local_status_not_blend_surf_c   surface of face is not a blend surface.
+    PK_local_status_steep_edge_c       taper reference edges are too steep to
+                                       define isocline taper surfaces
+    PK_local_status_bad_direction_c    bad draw direction for body taper
+    PK_local_status_on_target_c        edges are coincident with target and
+                                       don't require extension.
+    PK_local_status_not_extended_c     edges are not coincident with target
+                                       but don't require extension.
+    PK_local_status_negated_body_c     the body was negated during processing.
+    PK_local_status_miter_fail_c       mitering has failed during body
+                                       tapering.
+    PK_local_status_self_shadowing_c   reference edges are self-shadowing.
+
+See <A HREF=../headers/pk_topol_local_r_t.html>PK_TOPOL_local_r_t</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

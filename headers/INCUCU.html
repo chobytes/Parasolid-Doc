@@ -1,0 +1,127 @@
+<HTML>
+<HEAD>
+<TITLE>INCUCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>INCUCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_intersect_curve.html>PK_CURVE_intersect_curve</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+INCUCU ( cu1, bound1, cu2, bound2, surf, intbox, intpts, ipars1, ipars2, 
+=========================================================================
+         incods, nintpt, ifail )
+         =======================
+
+  Intersect two curves
+
+Receives:
+  KI_tag_curve             *cu1            --- curve 1
+  KI_vec_position           bound1[2]      --- start and end of curve 1
+  KI_tag_curve             *cu2            --- curve 2
+  KI_vec_position           bound2[2]      --- start and end of curve 2
+ &lt;KI_tag_surface&gt;          *surf           --- surface containing both curves
+  KI_dbl_box                intbox[6]      --- box of interest
+
+Returns:
+ &lt;KI_tag_list_dbl&gt;         *intpts         --- points of intersection
+ &lt;KI_tag_list_dbl&gt;         *ipars1         --- parameters of intersections
+                                           --- on 'cu1'
+ &lt;KI_tag_list_dbl&gt;         *ipars2         --- parameters of intersections
+                                           --- on 'cu2'
+ &lt;KI_tag_list_int&gt;         *incods         --- tokens describing intersections
+ &lt;KI_int_nitems&gt;           *nintpt         --- number of points returned
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cant_do_intersect      cant perform requested intersection
+                            cant do intersect
+  KI_not_on_surface         curve is not on the given surface
+  KI_invalid_geometry       curve fails checks
+                            surface fails checks
+  KI_not_on_curve           start or end point not on curve
+  KI_bad_end_points         curve not defined between start and end points
+
+Description:
+
+  INCUCU finds the intersections between specified regions of two curves.
+  It returns a list of intersection coordinates, two lists containing the
+  parameters of the curves at the intersections, and a list of tokens
+  classifying the intersections. The intersections are ordered along the
+  first curve, 'cu1', and are classified according to the direction of this
+  curve.
+
+  The intersection coordinates are returned in a list of length 3*nintpt; if
+  there are no intersections of the curves within the bounds, 'nintpt' is
+  returned as zero and 'intpts' is returned as the NULTAG.
+
+  The parameters of 'cu1' at the intersections are returned as a list of length
+  'nintpt', as are the parameters of 'cu2'.
+
+  The intersection types are returned in a list of length 'nintpt'.  There are
+  three types of intersection, given by the tokens CICLSI, CICLSC, and CICLEC.
+
+      CICLSI:  A simple intersection not adjoining a region of coincidence.
+               This includes tangent intersections.
+      CICLSC:  An intersection at the start of a region of coincidence.
+      CICLEC:  An intersection at the end of a region of coincidence.
+
+      Whether an intersection is at the start or end of a region of coincidence
+  (CICLSC or CICLEC) is determined by the direction of the first curve, 'cu1',
+  passed to INCUCU.
+
+  Coincident intersections (CICLSC and CICLEC) are returned for all points
+  lying at the bounds of regions of coincidence, including the ends of fully
+  coincident curves (or regions of curves).  In the case where two closed curves
+  are coincident, but the bounds of 'cu1' are not coincident with those of
+  'cu2', the intersections returned will be at the bounds of 'cu1'.
+
+  The regions of the curves which are to be intersected are specified
+  by giving start and end coordinates on each. These are given in the
+  arrays 'bound1' and 'bound2', in the order start and then end. If these
+  points are the same, and the geometry of the curve is closed, the
+  complete curve will be used. For a trimmed curve the supplied bounds are
+  ignored. However valid vectors should be supplied for the curve in question.
+
+  A surface may be supplied which contains both the curves, otherwise it
+  should be NULTAG. The function will work without this surface but it may
+  be more efficient to supply it.
+
+  'intbox' describes the box that contains the area of interest.  All
+  intersections inside this box will be returned, but ones outside it may
+  not be.  The box may be used for efficiency.  It is specified as follows:
+
+  Its 1st element contains the minimum x_component of the area of interest
+  "   2nd    "        "     "  minimum y_component  "  "    "  "     "
+  "   3rd    "        "     "  minimum z_component  "  "    "  "     "
+  "   4th    "        "     "  maximum x_component  "  "    "  "     "
+  "   5th    "        "     "  maximum y_component  "  "    "  "     "
+  "   6th    "        "     "  maximum z_component  "  "    "  "     "
+
+  For a box to be valid the difference between the maximum and minimum
+  components in all three principal directions must be greater than or
+  equal to zero.
+
+  Any B-curve, B-surface or offset surface must be capable of passing the
+  checks imposed by CHCKEN. The self intersection check is only performed
+  if the appropriate option is set (see SEINTP).
+
+
+</PRE>
+</BODY>
+</HTML>

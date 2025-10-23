@@ -1,0 +1,121 @@
+<HTML>
+<HEAD>
+<TITLE>ENPOPS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENPOPS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_surf_eval.html>PK_SURF_eval</A><BR>
+<A HREF=../headers/pk_surf_eval_with_normal.html>PK_SURF_eval_with_normal</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENPOPS ( surf, u, v, nudrvs, nvdrvs, nreq, p, norm, ifail )
+===========================================================
+
+  Evaluate point from surface parameters
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_surface           *surf           --- surface
+  KI_dbl                   *u              --- u parameter of required point
+  KI_dbl                   *v              --- v parameter of required point
+ &lt;KI_int_nitems&gt;           *nudrvs         --- number of derivs wrt u required
+ &lt;KI_int_nitems&gt;           *nvdrvs         --- number of derivs wrt v required
+  KI_cod_logical           *nreq           --- request for normal
+
+Returns:
+  KI_vec_derivatives        p[(nudrvs+1) * (nvdrvs+1)]
+                                           --- point and derivatives
+  KI_vec_normal             norm           --- surface normal
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_at_singularity         failure to evaluate normal at singularity
+  KI_bad_parameter          parameter out of range
+  KI_too_many_derivatives   too many derivatives requested
+  KI_invalid_geometry       surface not supported
+
+Description:
+  Calculates the Cartesian coordinates of the point at the given parameter
+  values 'u' and 'v', and also the derivatives with respect to 'u' and 'v',
+  up to order 'nudrvs' and 'nvdrvs' respectively. It also optionally
+  calculates the surface normal. This normal will be parallel to the
+  cross product of the derivative with respect to 'u' and the derivative
+  with respect to 'v'. However, if the surface sense returned by OUTSUR is
+  false, the sign of the normal will be reversed.
+  The function works for any type of surface.
+
+  Except for B_surfaces and their offsets, which can be evaluated out of range,
+  if ENSUPA indicates that this surface is not periodic or infinite (in either
+  u or v), then the corresponding parameter must be in the range specified in
+  ENSUPA for this surface.
+
+  Where derivative discontinuities occur at patch boundaries, the derivatives
+  just after the discontinuity are returned.
+
+  There is a limit on the number of derivatives which may be requested.
+
+  In the case of foreign geometry surfaces (type TYSUFG), the maximum
+  number of derivatives that can be returned by this function is determined
+  by the surface's external evaluator. The evaluator should, at least, be
+  able to calculate up to second order derivatives.
+
+  The following table shows the derivatives that can be requested for other
+  surface types.
+
+                                u derivs
+
+                        |   0   |   1   |   2   |  >2   |
+                  --------------------------------------
+                     0  |   A   |   A   |   B   |   D   |
+                  --------------------------------------
+       v derivs      1  |   A   |   A   |   C   |   D   |
+                  --------------------------------------
+                     2  |   B   |   C   |   E   |   D   |
+                  --------------------------------------
+                    >2  |   D   |   D   |   D   |   D   |
+                  --------------------------------------
+
+    A - All surface types.
+    B - All surface types except blend surfaces.
+    C - All surface types except blend and offset surfaces.
+    D - B-Surfaces only.
+    E - All surface types except blend surfaces.
+            ENPOPS can be called with nudrvs = 2 and nvdrvs = 2 for offset
+            surfaces, but only zeroth, first and second derivatives will be
+            calculated. The uncalculated third and fourth derivatives will be
+            returned in the derivative array as zero vectors.
+
+  The return argument 'p' is a vector array returning the point and possibly
+  derivatives. These are stored as follows:
+
+      The point on the surface is the first vector in 'p' (i.e. vector 0)
+      The i'th derivative ( i <= 'nudrvs' ) wrt u and
+      the j'th derivative ( j <= 'nvdrvs' ) wrt v is vector
+          ( i + ( 'nudrvs'+1 ) * j )    of 'p'.
+
+  The return argument 'norm' contains the surface normal. The normal is only
+  returned if 'nreq' is true. A value is returned even at a singular point
+  of the surface, unlike ENPOGS. Note that a singular point has an ambiguous
+  parametrisation, and different parameter pairs may give different normals,
+  for the same point.
+
+</PRE>
+</BODY>
+</HTML>

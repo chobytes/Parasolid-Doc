@@ -1,0 +1,115 @@
+<HTML>
+<HEAD>
+<TITLE>INSUSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>INSUSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_surf_intersect_surf.html>PK_SURF_intersect_surf</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+INSUSU ( surf1, surf2, nopts, opts, optdat, npts, pts, nintcu, intcu, intty, 
+=============================================================================
+         ifail )
+         =======
+
+  Intersect two surfaces
+
+Receives:
+  KI_tag_surface           *surf1          --- surface 1
+  KI_tag_surface           *surf2          --- surface 2
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options supplied
+  KI_cod_inop               opts[nopts]    --- array of options
+  KI_tag_list_dbl           optdat[nopts]  --- options data
+
+Returns:
+ &lt;KI_int_nitems&gt;           *npts           --- number of intersection points
+ &lt;KI_tag_list_dbl&gt;         *pts            --- list of intersection pts
+ &lt;KI_int_nitems&gt;           *nintcu         --- number of intersection curves
+ &lt;KI_tag_list_curve&gt;       *intcu          --- list of intersection curves
+ &lt;KI_tag_list&gt;             *intty          --- list of types of int curves
+  KI_cod_error             *ifail          --- returned - failure indicator
+
+Specific errors:
+  KI_cant_do_intersect      cant do intersect
+                            failed to intersect
+  KI_not_on_curve           given point not on intersection curve
+  KI_bad_shared_entity      invalid combination of surface owners
+  KI_not_in_same_partition  Surfaces are in different partitions
+  KI_bad_option_data        incorrect number of values for a point
+                            
+                            incorrect number of values for a box
+                            Incompatible items in option data
+  KI_duplicate_item         Duplicate item in option data
+
+Description:
+
+   INSUSU finds the intersections between two surfaces ('surf1' and 'surf2'),
+   returning intersection points ('pts') and curves of intersection ('intcu').
+
+   The two surfaces must both be orphans or from the same body. In the second
+   case any resulting curves will be created as construction geometry on the
+   body.
+
+   No attempt is made to define surface regions of partial coincidence, and
+   if the surfaces are fully coincident no intersection data will be returned.
+
+   The returned points ('pts') will be returned at points where the surfaces
+   make point contact. 'npts' indicates the number of intersection points.
+   The 'pts' are returned as a list of doubles of length 3*'nintpt'.
+
+   The curves returned ('intcu') will be trimmed curves, 'nintcu' indicating
+   the number of curves returned.
+
+   'intty' classifies curves as being either:
+
+        SICLSI: Simple intersection curves
+     or SICLTG: Tangent intersection curves
+
+
+   The available options ('opts') and related options data ('optdat') are as
+   described below:
+
+   The option INOPBX enables a 3-space box of interest to be supplied. The
+   box may be used to improve performance. The intersection curves returned
+   are not guaranteed to lie within the bounds of the box. The box is specified
+   by supplying six doubles in 'optdat':
+
+    Its 1st element contains the minimum x component of the area of interest
+    "   2nd    "        "     "  minimum y_component  "  "    "  "     "
+    "   3rd    "        "     "  minimum z_component  "  "    "  "     "
+    "   4th    "        "     "  maximum x_component  "  "    "  "     "
+    "   5th    "        "     "  maximum y_component  "  "    "  "     "
+    "   6th    "        "     "  maximum z_component  "  "    "  "     "
+
+   The options INOPPF and INOPPS enable the supplying of parameter boxes for the
+   first and second surface respectively. Again these boxes are only used to
+   constrain the region of interest for performance purposes. The intersection
+   curves returned are not trimmed to lie within the boundaries of the parameter
+   box/es. Four parameters should be supplied to define the parameter box, U-min,
+   U-max, V-min and V-max. The values of these parameters should follow the same
+   conventions as CRBYGE.
+
+   The option INOPSI enables a point on a branch of the intersection to be
+   specified (by supplying the x, y, and z coordinates in 'optdat'). For this
+   case only the branch of the intersection on which this point lies will be
+   returned.
+
+</PRE>
+</BODY>
+</HTML>

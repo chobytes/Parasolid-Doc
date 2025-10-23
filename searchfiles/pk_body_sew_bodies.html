@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.048.html#50409831_pgfId-346780", " Sheet sewing is performed using <B>PK_BODY_sew_bodies</B> , which receives the array of sheets that are", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295180", " Note: <B>PK_BODY_sew_bodies</B> does not perform any body checking on the resultant", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-467115", " Note: This function offers partial support facet geometry. See <B>PK_BODY_sew_bodies</B> for more information. ", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295187", " options are available to influence the outcome of using <B>PK_BODY_sew_bodies</B> on a collection of sheet bodies. Each is listed", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295192", " If set to PK_LOGICAL_true this option enables <B>PK_BODY_sew_bodies</B> to return several disjoint composite sheets in cases where", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295200", " If set to PK_LOGICAL_true, <B>PK_BODY_sew_bodies</B> assumes that the input data is intended to produce", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295201", " When set to PK_LOGICAL_false, <B>PK_BODY_sew_bodies</B> makes no attempt to separate out a pair of", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295211", " PK_BODY_sewing_any_c - The application is stating no preference, however <B>PK_BODY_sew_bodies</B> picks the most specific body type it can. It", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-694484", " input body has no laminar boundary, this option permits <B>PK_BODY_sew_bodies</B> to change the result body type, where appropriate, to", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295238", " argument to <B>PK_BODY_sew_bodies</B> . ", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295371", " the result of handing A, B and C to <B>PK_BODY_sew_bodies</B> with default options is that sheets A and B", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295373", " back all but two of the sheets so that <B>PK_BODY_sew_bodies</B> can select the appropriate distinct edge pair. Note that", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295375", " occurs internally to Parasolid, it should ultimately lead to <B>PK_BODY_sew_bodies</B> returning the error code PK_ERROR_sewing_failed. An application wouldnt, in", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295376", " owning sheets overlap too far. The current implementation of <B>PK_BODY_sew_bodies</B> doesnt search for this condition. Applications must detect this", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295377", " might be presumed to have no laminar boundary edges), <B>PK_BODY_sew_bodies</B> makes no attempt to do this. However some support", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295384", " While <B>PK_BODY_sew_bodies</B> does its best to deal with the sheet geometries", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295385", " <B>PK_BODY_sew_bodies</B> only joins sheets along existing edge geometries. No attempt", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295590", " The edge matching method employed by <B>PK_BODY_sew_bodies</B> relies on the presence of vertices to bound the", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295889", " lie on the primary fin). In choosing this tolerance <B>PK_BODY_sew_bodies</B> does not select one smaller than any tolerance previously", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295890", " laminar boundary edges of the sheet bodies handed to <B>PK_BODY_sew_bodies</B> have as small a tolerance as possible. Of course", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-404881", " options to <B>PK_BODY_sew_bodies</B> are used to control incremental sewing, as follows: ", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-600442", " supplied to <B>PK_BODY_sew_bodies</B> . ", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-296408", " option in <B>PK_BODY_sew_bodies</B> to improve the results and execution speed. ", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-296409", " without throwing away a sheet body of significant size, <B>PK_BODY_sew_bodies</B> cannot choose which two edges are the correct ones", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-296428", " By default, <B>PK_BODY_sew_bodies</B> assumes that the received bodies come from a single", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-296432", " is set to PK_BODY_sewing_assy_orient_c, then <B>PK_BODY_sew_bodies</B> assumes the data comes from a valid assembly, and", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-296576", " actual gap size is required in advance of using <B>PK_BODY_sew_bodies</B> , use PK_EDGE_find_deviation_2 . This function calculates either the", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-367192", " only a guide to predicting the result of applying <B>PK_BODY_sew_bodies</B> . In practice, matching and splitting edges, together with", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-625948", " limitations in locating subsets of edges to compare as <B>PK_BODY_sew_bodies</B> , and so bounding vertices must be supplied as", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295593", " Complete the sewing operation using <B>PK_BODY_sew_bodies</B> ", "Functional Description - Importing Data");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " topologies session flag All general input bodies are accepted. <B>PK_BODY_sew_bodies</B> sews general bodies where their laminar boundaries meet in", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " topologies session flag All general input bodies are accepted. <B>PK_BODY_sew_bodies</B> sews general bodies where their laminar boundaries meet in", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_bad_value 39 <B>PK_BODY_sew_bodies</B> No bodies provided for sewing. (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_duplicate_array_item 511 <B>PK_BODY_sew_bodies</B> One of the bodies supplied is duplicated.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_unsuitable_topology 1033 <B>PK_BODY_sew_bodies</B> One of the bodies supplied is unsuitable.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_sewing_failed 5055 <B>PK_BODY_sew_bodies</B> The sewing algorithm produced an internal", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_edge 5076 <B>PK_BODY_sew_bodies</B> One of the bodies supplied has an invalid", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_duplicate_array_item 511 <B>PK_BODY_sew_bodies</B> One of the bodies supplied is duplicated.", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_instanced_body 1087 <B>PK_BODY_sew_bodies</B> One of the input bodies is instanced", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_sewing_failed 5055 <B>PK_BODY_sew_bodies</B> The sewing algorithm produced an internal", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " <B>PK_BODY_sew_bodies</B> 5076 PK_ERROR_bad_edge One of the bodies supplied has an", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_problem_group_t.html#description", " <B>PK_BODY_sew_bodies</B> ", "PK Reference - PK_BODY_problem_group_t");
+top.note("headers/pk_body_sew_bodies.html#declaration", " PK_ERROR_code_t <B>PK_BODY_sew_bodies</B>", "PK Reference - PK_BODY_sew_bodies");
+top.note("headers/pk_body_sew_bodies.html#documentation", "<B>PK_BODY_sew_bodies</B> sews a collection of sheet bodies presented in the array", "PK Reference - PK_BODY_sew_bodies");
+top.note("headers/pk_body_sew_bodies_o_t.html#errors", " <B>PK_BODY_sew_bodies</B> ", "PK Reference - PK_BODY_sew_bodies_o_t");
+top.note("headers/pk_body_sew_bodies_o_t.html#documentation", " the gap_width_bound passed to <B>PK_BODY_sew_bodies</B> .", "PK Reference - PK_BODY_sew_bodies_o_t");
+top.note("headers/pk_body_sewing_gen_t.html#documentation", " <B>PK_BODY_sew_bodies</B> sews general bodies", "PK Reference - PK_BODY_sewing_gen_t");
+top.note("headers/pk_body_sewing_problem_t.html#documentation", "Enum to indicate type of problem encountered in sewing <B>PK_BODY_sew_bodies</B> ", "PK Reference - PK_BODY_sewing_problem_t");
+top.note("headers/pk_body_sewing_removal_t.html#documentation", " <B>PK_BODY_sew_bodies</B> ", "PK Reference - PK_BODY_sewing_removal_t");
+top.note("headers/pk_body_sewing_type_t.html#documentation", " <B>PK_BODY_sew_bodies</B> ", "PK Reference - PK_BODY_sewing_type_t");
+top.note("headers/pk_body_t.html#description", " <B>PK_BODY_sew_bodies</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_BODY_sew_bodies</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_report_record_1_t.html#documentation", " <B>PK_BODY_sew_bodies</B> .", "PK Reference - PK_REPORT_record_1_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

@@ -1,0 +1,218 @@
+<HTML>
+<HEAD>
+<TITLE>RRFCET</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>RRFCET</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+RRFCET ( nopts, iopts, optdta, entys, transf, ifail )
+=====================================================
+
+  Generate facetted rendering.
+
+Receives:
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in 'iopts'
+  KI_cod_rrop               iopts[nopts]   --- rendering options
+ &lt;KI_tag_list_dbl&gt;          optdta[nopts]  --- option data lists
+  KI_tag_list_entity       *entys          --- entities to render
+ &lt;KI_tag_list_&lt;transform&gt;&gt; *transf         --- entity transforms
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_missing_geom           A topological entity has no associated geometry
+  KI_abort_from_go          Rendering aborted by GO
+  KI_request_not_supported  Polygonal body supplied in list
+  KI_general_body           General body supplied in list
+  KI_wrong_transf           Unsuitable transform
+  KI_bad_view_mx            Option data contains invalid view matrix
+  KI_not_same_length        Entity and transform lists are of different lengths
+  KI_wrong_entity_in_list   Entity is not a part or a face
+  KI_bad_option_data        Option data incorrect for specified options
+
+Description:
+  RRFCET outputs, through the Graphical Output interface (GO), data for a
+  facetted representation of the entities.
+
+  RRFCET can render assemblies, bodies and faces; it cannot render individual
+  edges. General bodies and faces from general bodies are not supported.
+
+  Transforms may only contain translation and rotation components.  Reflections,
+  scales and shears are not allowed.
+
+  The data output is selected by options in 'iopts'. For some options the output
+  is further controlled by data in a real list whose tag is passed in the
+  corresponding entry in 'optdta'. If no data is required for an option a null
+  tag should be passed. For those options which require data, a zero value
+  indicates that the corresponding tolerance or limit is ignored; at least one
+  value must be non-zero.
+
+  Options accepted are:-
+
+      Option                      Contents of option data
+      ===================================================================
+      RROPTR: TRansform           none
+      RROPNF: No Fitting          none
+      RROPVM: Vertex Matching     none
+      RROPCV: ConVexity           none
+      RROPHO: HOles permitted     none
+      RROPVN: Vertex Normals      none
+      RROPPI: Parameter data      none
+      RROPD1: Derivative data     none
+      RROPD2: Derivative data     none
+      RROPET: Edge Tags           none
+      RROPST: Surface Tolerance   (1)    Distance tolerance in model units
+                                  (2)    Angular tolerance in radians
+      RROPCT: Curve Tolerance     (1)    Chord tolerance in model units
+                                  (2)    Maximum chord length in model units
+                                  (3)    Angular tolerance in radians
+      RROPFS: Facet Size          (1)    Maximum number of sides per facet
+                                  (2)    Maximum width of facet in model units
+      RROPMF: Minimum Facet Size  (1)    Minimum size of facet
+      RROPPT: Planarity Tolerance (1)    Distance tolerance in model units
+                                  (2)    Angular tolerance in radians
+      RROPFP: Facet Perspective   (1-16) Viewing transformation matrix
+      RROPFI: Facet Infinite      (1-16) Viewing transformation matrix
+      RROPTS: Facet Strips        (1)    Maximum length of facet strip
+      RROPIL: Ignore loops        (1)    Number, n, of loops following
+                                  (2-(n+1)) Tags of loops to be ignored
+      RROPSD: Silhouette Density  (1-3)  Viewing direction vector
+                                  (4-5)  Density control
+
+  Option RROPTR is required if any of the entities is to be rendered in a
+  transformed position (e.g. as part of an assembly). If it is not specified,
+  the contents of 'transf' are ignored, and entities are rendered in their
+  local coordinate system.
+
+  Option RROPNF will not attempt to fit the facets together at the edges of
+  each face. With this option the facetting algorithm will be faster as
+  no clipping and matching will be performed at face edges. This may produce
+  an inconsistent result with overlapping facets or gaps.
+
+  Option RROPVM ensures that there are no gaps along model edges and that along
+  these edges there are no facet vertices which are interior to an adjacent
+  facet edge.  This option only affects whole bodies and assemblies.
+
+  Option RROPCV causes the shape of the facet to be limited so that the sides
+  of the facet form a convex polygon. Each interior angle of a convex polygon
+  is less than pi radians. A convex polygon contains no holes.
+
+  Option RROPHO will allow the facet to be represented with holes in its
+  interior.
+
+  Option RROPVN should be specified if surface normals at the facet vertices
+  are required.
+
+  Option RROPPI should be specified if parameter information at the facet
+  vertices is required.
+
+  Option RROPD1 should be specified if first surface derivatives at the facet
+  vertices are required. RROPD2 should be specified if first and second
+  surface derivatives at the facet vertices are required. If either of RROPD1
+  or RROPD2 is enabled then vertex normals and parameter data will also be
+  output.
+
+  If option RROPET is specified, RRFCET will output an array of edge tags, one
+  edge tag for each facet edge, indicating the model edges from which the facet
+  edges are derived. If a facet edge was not derived from the model a null tag
+  is given.
+
+  Option RROPST controls the facetted representation of the entity by
+  considering the surface approximation. The first value in the option data is a
+  distance tolerance on a facet. This is an upper bound on the distance from a
+  position on a facet to the surface. The second value is an angular tolerance
+  on a facet. This is an upper bound on the angular deviation between the
+  surface normals at any two positions under the facet. This function will
+  usually satisfy these tolerances although this is not guaranteed. If this
+  option is not specified a default angular tolerance is used.
+
+  Option RROPCT controls the facetted representation of the entity by
+  considering the curved edge approximation. A curved edge is approximated by a
+  number of straight lines called chords. The first value in the option data is
+  a chord tolerance. This is an upper bound on the distance from each chord to
+  the curve it is approximating. The second value is a chord limit. This is an
+  upper bound on the length of a chord used in the approximation of a curved
+  edge. The third value is an angular tolerance. This limits the angular error
+  between a curve and a chord used in its approximation. This is an upper bound
+  on the sum of the two angles formed between the chord and the curve tangent at
+  each chord end. If this option is not specified a default angular tolerance is
+  used.
+
+  Option RROPFS controls the facetted representation of the entity by
+  considering the maximum size of the facet. The first value in the option data
+  specifies the maximum number of sides in a facet. The second value specifies
+  the maximum width of a facet. If this option is not specified no upper limit on
+  facet size will be applied.
+
+  Option RROPMF controls the facetted representation of the entity by
+  considering the minimum size of the facet.  The value in the option data
+  specifies a 3-space facet width below which Parasolid may disregard the fact
+  that  facets don't meet the tolerance criteria specified via RROPST, RROPCT or
+  RROPPT.  Facets smaller that this dimension may still be produced, however.
+  If this option is not specified, Parasolid will choose its own value for the
+  minimum facet size based on the size of the face box.  This avoids the problem
+  whereby some portions of an entity may require arbitrary subdivision wihout
+  acheiving a satisfactory facetted representation.
+  Option RROPPT controls the facetted representation of the entity by
+  considering the planarity of each facet. The first value in the option data is
+  a distance tolerance. This is an upper bound on the distance from the facet to
+  the facet mid-plane. The corners of the facet define the mid-plane which takes
+  their average normal and passes through their centre of gravity. The second
+  value is an angular tolerance. This is defined as the ratio of the maximum
+  separation between facet and mid-plane to maximum width over a facet. If this
+  option is not specified the facets will be planar within modelling resolution.
+
+  If option RROPFP is specified, RRFCET will not generate facets for faces of
+  solid bodies which can be quickly identified as back-facing in the given
+  perspective view. This option is available in order to enhance performance; it
+  does not guarantee to inhibit facetting of all back-facing faces.
+
+  If option RROPFI is specified, RRFCET will not generate facets for faces of
+  solid bodies which can be quickly identified as back-facing in the given view
+  from infinity. Only the view direction is taken from the view matrix. This
+  option is available in order to enhance performance; it does not guarantee to
+  inhibit facetting of all back-facing faces.
+
+  If option RROPTS is specified, RRFCET will output strips of triangular
+  facets whenever possible. The option data value supplied with this
+  option is the maximum number of facets in each strip. This value must
+  be supplied and should be at least 2. With this option supplied the
+  facets will always be triangular and therefore the maximum number of
+  facet sides supplied with the option RROPFS will be ignored.
+
+  If option RROPIL is specified, RRFCET will make no attempt to trim the facetted
+  representation of the surfaces to the specified loops. The loops must not be
+  external loops of faces. This option is intended to be used to allow the
+  facetting of sheet body faces to cover holes in the sheet by specifying the
+  loops of the holes with this option.
+
+  If option RROPSD is specified, RRFCET will increase the density of facets over
+  regions of the body which are silhouettes if the body is viewed with a parallel
+  view in the direction specified in the data. The final data elements control
+  this increase of facet density.
+
+  Only one of RROPVM, RROPFP or RROPFI may be selected.
+
+
+</PRE>
+</BODY>
+</HTML>

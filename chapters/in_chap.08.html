@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Floating-Point Traps</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Floating-Point Traps</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="in_chap.07.html">Environment</A></TD>
+  <TD><A HREF="../in_index.html">Chapters</A></TD>
+
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="in_chap.08.html#50520101_pgfId-289134">A.5	Introduction</A>
+<LI> <A HREF="in_chap.08.html#50520101_pgfId-278332">A.6	Types of floating-point trap</A>
+<LI> <A HREF="in_chap.08.html#50520101_pgfId-278356">A.7	Enabling and disabling floating-point traps</A>
+<LI> <A HREF="in_chap.08.html#50520101_pgfId-278362">A.8	Special floating-point values</A>
+<LI> <A HREF="in_chap.08.html#50520101_pgfId-278372">A.9	Strategies for using floating-point traps</A>
+<LI> <A HREF="in_chap.08.html#50520101_pgfId-278386">A.10	Denormals as zeroes</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520101_pgfId-289134"></A>A.5	Introduction
+
+
+</H1>
+<P>
+<A NAME="50520101_pgfId-289135"></A>Floating-point run-time errors are a sign that your program is processing invalid numerical values; these can come from programming errors or invalid input data. Some invalid values depend on the operation; for example, you are allowed to add zero to a number or multiply it by zero but division by zero is not permitted, hence zero is an invalid number for division.</P>
+<P>
+<A NAME="50520101_pgfId-278331"></A>Floating-point traps are a mechanism by which the hardware detects floating-point run-time errors. Unlike other run-time errors, you can decide whether the operating system reports these errors (via a signal) or ignores them: the right course of action depends on your application. Enabling a floating-point trap for a particular floating-point error ensures that the operating system raises the appropriate signal when that error occurs; disabling a floating-point trap means that no signal is raised, allowing processing to continue.</P>
+<P>
+<A NAME="50520101_pgfId-278696"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50520101_pgfId-278692"></A>Note: Floating-point traps are sometimes called &#8220;interrupts&#8221; or &#8220;exceptions&#8221;; they must not be confused with C++ exceptions, however.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520101_pgfId-278332"></A>A.6	<A NAME="50520101_40373"></A>Types of floating-point trap
+
+
+</H1>
+<P>
+<A NAME="50520101_pgfId-278335"></A>IEEE standard 754-1985, which is supported by all computers that can run Parasolid, defines the range and precision for floating-point numbers, various special values and conditions, and six floating-point traps. Of these six, three are recommended for use in Parasolid-based programs. The other three are not useful for modeling work; their applications are generally confined to pure mathematics.</P>
+<P>
+<A NAME="50520101_pgfId-278569"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278554"></A><STRONG>
+Recommended floating point traps</STRONG></P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278556"></A><STRONG>
+Disabled result</STRONG></P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278558"></A>Floating-point invalid operation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278560"></A>NaN</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278562"></A>Floating-point divide-by-zero</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278564"></A>NaN</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278566"></A>Floating-point overflow</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278568"></A>Infinity</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520101_pgfId-278590"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278575"></A><STRONG>
+Traps that should not be used with Parasolid</STRONG></P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278577"></A><STRONG>
+Disabled result</STRONG></P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278579"></A>Floating-point underflow</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278581"></A>Denormal value</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278583"></A>Floating-point denormal operand</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278585"></A>Denormal value</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278587"></A>Floating-point inexact result</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50520101_pgfId-278589"></A>Rounded value</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50520101_pgfId-278355"></A>For more details of the exact meaning of IEEE floating-point traps, consult the processor manuals for your computer, which are usually available for download.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520101_pgfId-278356"></A>A.7	Enabling and disabling floating-point traps
+
+
+</H1>
+<P>
+<A NAME="50520101_pgfId-278755"></A>The IEEE definitions of the floating-point traps allow for any combination of them to be enabled or disabled. Some processors have a more limited set of options, concentrating on the useful combinations, and some processors do not provide floating-point traps at all. Enabling or disabling floating-point traps is usually done by means of calls to the C run-time library: there are some examples in <A HREF="in_chap.07.html#50520100_35855">Chapter 6, &#8220;Environment&#8221;</A>.</P>
+<P>
+<A NAME="50520101_pgfId-278359"></A>When a floating-point trap is enabled and an instruction executed that creates the appropriate error condition, the trap is activated and generates the signal SIGFPE. When a floating-point trap is disabled and an instruction executed that creates the appropriate error condition, the trap is not activated and no signal is generated. Instead, the instruction produces a special result, listed in the tables in <A HREF="in_chap.08.html#50520101_40373">Section A.6, &#8220;Types of floating-point trap&#8221;</A> for each kind of trap and explained in <A HREF="in_chap.08.html#50520101_49314">Section A.8, &#8220;Special floating-point values&#8221;</A>. Execution of the program then continues with the next instruction.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520101_pgfId-278362"></A>A.8	<A NAME="50520101_49314"></A>Special floating-point values
+
+
+</H1>
+<P>
+<A NAME="50520101_pgfId-278363"></A>These are defined by the IEEE 754-1985 standard. While it may seem that floating-point numbers should &#8220;just work&#8221; and not have all these complexities, ideal mathematical numbers are not easy for computers to represent, and the best current approaches to the problem are hundreds to thousands of times slower than IEEE floating-point.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520101_pgfId-278364"></A>	A.8.1 	NaN (&#8220;Not A Number&#8221;)</H2>
+<P>
+<A NAME="50520101_pgfId-278365"></A>This is a special value that essentially tells the processor: &#8220;This is not a number and cannot be used in mathematical calculations.&#8221; If the floating-point traps that can produce NaN are disabled, then once a single NaN is produced it will spread to any other numbers that are calculated using it. For example, any arithmetic operation involving a NaN will produce a result of NaN, irrespective of the other operands used.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520101_pgfId-278366"></A>	A.8.2 	Infinity</H2>
+<P>
+<A NAME="50520101_pgfId-278367"></A>IEEE floating-point numbers have a limited range of possible values. An operation that produces a value outside this range has &#8220;overflowed&#8221; the range. If the corresponding floating-point trap is disabled, a special value that says &#8220;this is infinity&#8221; is produced.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520101_pgfId-278368"></A>	A.8.3 	Denormal value</H2>
+<P>
+<A NAME="50520101_pgfId-278369"></A>As well as a limited range of values, IEEE floating-point numbers have limited precision. <EM>
+Denormal </EM>values are those too small to be represented with full accuracy, but which can still be distinguished from zero. Parasolid expects that these will be generated from time to time, and works happily with them. Enabling the floating-point traps that detect and raise signals for denormal values will prevent Parasolid from working properly. </P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50520101_pgfId-278370"></A>	A.8.4 	Rounded value</H2>
+<P>
+<A NAME="50520101_pgfId-278371"></A>A third limitation of IEEE floating-point numbers is that they cannot represent some values exactly. For example, ordinary decimal numbers cannot represent the fraction 1/3 exactly: its value is 0.333333... recurring. This is normally dealt with by allowing the processor to round off the problematic value to the closest value that it can represent exactly. This is done automatically if the floating-point trap for an inexact value is disabled, and works very well. Enabling the floating-point traps that detect rounded values will prevent Parasolid from working properly.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520101_pgfId-278372"></A>A.9	Strategies for using floating-point traps
+
+
+</H1>
+<P>
+<A NAME="50520101_pgfId-288990"></A>On most current operating systems, the default is that all floating-point traps are disabled. If floating-point traps are enabled, and one goes off, the operating system will generate the signal SIGPFE; control is then passed to a registered signal handler for SIGFPE if one exists, or the application is shut down if there is no handler for SIGFPE.</P>
+<P>
+<A NAME="50520101_pgfId-288981"></A>For guidance with platforms where the default configuration for floating-point traps is not the recommended one for use with Parasolid, see <A HREF="in_chap.07.html#50520100_47449">Section 6.4, &#8220;Floating-point information&#8221;</A>. </P>
+<P>
+<A NAME="50520101_pgfId-278377"></A>Some possible strategies for managing floating-point traps are given below.</P>
+
+<H4>
+<A NAME="50520101_pgfId-278378"></A>Disable all floating-point traps</H4>
+<P>
+<A NAME="50520101_pgfId-278379"></A>This works well for simple programs where it is acceptable for Not A Number or Infinity to propagate through the data the program produces. For larger programs, it may not be satisfactory, but it is the only option if the platform cannot generate floating-point traps, or if the compiler assumes that they will never be turned on, and takes advantage of this in its optimizer.</P>
+
+
+<H4>
+<A NAME="50520101_pgfId-278380"></A>Enable recommended floating-point traps but do not handle the resulting SIGFPE</H4>
+<P>
+<A NAME="50520101_pgfId-278381"></A><A HREF="in_chap.07.html#50520100_35855">Chapter 6, &#8220;Environment&#8221;</A> shows you how to enable floating-point traps on each platform. Programs do not handle signals by default; to do so, they must register signal handlers.</P>
+<P>
+<A NAME="50520101_pgfId-278383"></A>This approach makes sure that floating-point traps are detected, since the operating system will terminate any program that generates (and does not handle) a floating-point trap. However, it is not suitable for programs that are used interactively. </P>
+
+
+<H4>
+<A NAME="50520101_pgfId-278384"></A>Enable recommended floating-point traps and handle the resulting SIGFPE</H4>
+<P>
+<A NAME="50520101_pgfId-278385"></A>For most applications, this is the best strategy. For information about how to register a signal handler and how Parasolid interacts with one, see <A HREF="fd_chap.123.html#35122">Chapter 122, &#8220;Signal Handling&#8221;</A> of the <EM><A HREF=../fd_index.html>Functional Description</A></EM> manual. Where a platform requires special treatment for generating or handling SIGFPE, this is described in <A HREF="in_chap.07.html#50520100_35855">Chapter 6, &#8220;Environment&#8221;</A>, of this manual.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50520101_pgfId-278386"></A>A.10	Denormals as zeroes
+
+
+</H1>
+<P>
+<A NAME="50520101_pgfId-278389"></A>Some processors have an optional way of treating denormal numbers: rather than generating them or loading them from memory, they will round them off to zero. This allows processes to run more quickly: managing all the details of denormal numbers makes programs run slower on many platforms.</P>
+<P>
+<A NAME="50520101_pgfId-278391"></A>Parasolid runs happily with denormals treated as zeroes, and if this mode of processing is acceptable to your application, you should consider using it. Where a platform requires special instructions for treating denormals as zeroes, this is specified in <A HREF="in_chap.07.html#50520100_35855">Chapter 6, &#8220;Environment&#8221;</A>.</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="in_chap.07.html">Environment</A></TD>
+  <TD><A HREF="../in_index.html">Chapters</A></TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

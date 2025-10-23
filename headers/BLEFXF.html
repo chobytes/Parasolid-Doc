@@ -1,0 +1,457 @@
+<HTML>
+<HEAD>
+<TITLE>BLEFXF</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BLEFXF</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_make_blend.html>PK_FACE_make_blend</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BLEFXF ( l_wall, r_wall, l_rev, r_rev, ntokens, tokens, bdata, status, s_data, 
+===============================================================================
+         sheets, nblend, blends, unders, ifail )
+         =======================================
+
+  Create a blend between the specified faces.
+
+Receives:
+  KI_tag_list_face         *l_wall         --- list of faces in left wall
+  KI_tag_list_face         *r_wall         --- list of faces in right wall
+  KI_cod_logical           *l_rev          --- blend direction from left wall
+  KI_cod_logical           *r_rev          --- blend direction from right wall
+ &lt;KI_int_nitems&gt;           *ntokens        --- number of blending tokens
+  KI_cod_fxft               tokens[ntokens] --- blending tokens
+ &lt;KI_tag_list&gt;              bdata[ntokens] --- data associated with tokens
+
+Returns:
+  KI_cod_fxfe              *status         --- blend success status flag
+ &lt;KI_tag_list_entity&gt;      *s_data         --- data associated with status flag
+ &lt;KI_tag_list_body&gt;        *sheets         --- the blend sheets created
+ &lt;KI_int_nitems&gt;           *nblend         --- number of blend faces created
+ &lt;KI_tag_list_face&gt;        *blends         --- the blend faces
+ &lt;KI_tag_list_list&gt;        *unders         --- list of lists of underlying data
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_fxf_blend_failed       could not create blends on body
+  KI_fxf_blend_bad_token    Illegal face face blend token
+  KI_not_in_same_partition  Faces are not all in the same partition
+
+Description:
+  This function creates one or more blends between the two sets of faces
+  provided. The user specifies whether the blend will be attached to the
+  bodies involved or returned as a separate sheet body. For further details on
+  this function, see the Blending section of the Functional Description.
+
+  'l_wall' is a list of the faces which make up the 'left' wall. These faces
+  must all lie in the same shell of the same body.
+
+  'r_wall' is a list of the faces which make up the 'right' wall. These faces
+  must all lie in the same shell of the same body.
+
+  The two walls do not need to lie in the same body. If the blend does not
+  contact either the first face in 'l_wall' or the first face in 'r_wall'
+  (or both), then BLEFXF will fail.
+
+  'l_rev' is a logical determining which side of 'l_wall' the blend lies. The
+  blend lies in the direction of the face normals if 'l_rev' is false.
+
+  'r_rev' is a logical determining which side of 'r_wall' the blend lies. The
+  blend lies in the direction of the face normals if 'r_rev' is false.
+
+  'tokens'  consists of 'ntokens' face face blend properties, and 'bdata' is a
+  parallel array of  'ntokens' tags of data lists for these properties, some
+  of which may be null tags. The meanings of the various tokens are given
+  below.
+
+                          Trimming Tokens.
+
+  The user may give more than one trimming token to specify attachment
+  and trim options.
+
+  FXFTAT   Trim blend and walls and attach blend.
+           The associated value in 'bdata' is the null tag.
+           The blend end boundaries will be determined by the wall boundaries
+           unless further trim options are specified.
+           The walls will be trimmed by the blend boundaries.
+           The blend will be attached to the walls. If the walls lie in
+           different bodies the bodies will be combined, with the body
+           containing the 'left' wall being considered as the target body. If
+           'l_rev' and 'r_rev' are not the same, the body containing the right
+           wall will be negated in order to produce a consistent result.
+
+           This is the default trimming option.
+
+
+  FXFTTW   Trim blend and walls.
+           The associated value in 'bdata' is the null tag.
+           The blend end boundaries will be determined by the wall boundaries.
+           The walls will be trimmed by the blend boundaries.
+           This token is only valid if the blend is being formed between two
+           sheet bodies.
+           The blend will not be attached to the walls but will be created as a
+           separate sheet body.
+
+
+  FXFTTB   Trim blend to walls.
+           The associated value in 'bdata' is the null tag.
+           The blend end boundaries will be determined by the wall boundaries.
+           Unless walls are set to attach, FXFTAT, then walls will not
+           be trimmed, and the blend will not be attached to the walls but
+           will be created as a separate sheet body.
+
+  FXFTST   Short trim to walls.
+           The associated value in 'bdata' is the null tag.
+           The blend end boundaries will be the constant parameter lines
+           determined by the wall boundaries such that the blend is as short
+           as possible.
+           Unless walls are set to attach, FXFTAT, then walls will not
+           be trimmed, and the blend will not be attached to the walls but
+           will be created as a separate sheet body.
+
+  FXFTLT   Long trim to walls.
+           The associated value in 'bdata' is the null tag.
+           The blend end boundaries will be the constant parameter lines
+           determined by the wall boundaries such that the blend is as long
+           as possible.
+           Unless walls are set to attach, FXFTAT, then walls will not
+           be trimmed, and the blend will not be attached to the
+           walls but will be created as a separate sheet body.
+
+  FXFTNT   Do not trim blend.
+           The associated value in 'bdata' is the null tag.
+           The blend will not be trimmed to the wall extent. Its end boundaries
+           will be constant parameter lines.
+           Unless walls are set to attach, FXFTAT, then walls will not
+           be trimmed, and the blend will not be attached to the
+           walls but will be created as a separate sheet body.
+
+
+                      Blend Definition Tokens.
+
+  The user may give any number of blend definition tokens, though some are
+  mutually exclusive.  The user must provide one of FXFTCB, FXFTVB, FXFTDB,
+  FXFTHL or FXFTCL.  The table below gives the rules for combining tokens.
+  Each column shows which of the other tokens:
+
+      'M' must be given,
+      'O' can be given,
+      'X' must not be given
+
+  if the token at the head of the column is given.
+
+
+    ---------------------------------------------------------------------------
+                FXFTCB FXFTVB FXFTHL FXFTCE FXFTTL FXFTRC FXFTCL FXFTCC FXFTDB
+    ===========================================================================
+     FXFTCB        -      X      O      O      O      X      O      X      X
+    ---------------------------------------------------------------------------
+     FXFTVB        X      -      O      O      O      M      O      X      X
+    ---------------------------------------------------------------------------
+     FXFTHL        O      O      -      O      O      X      O      X      X
+    ---------------------------------------------------------------------------
+     FXFTCE        O      O      O      -      O      O      O      X      O
+    ---------------------------------------------------------------------------
+     FXFTTL        O      M      M      O      -      M      M      M      M
+    ---------------------------------------------------------------------------
+     FXFTRC        X      O      X      O      O      -      X      X      X
+    ---------------------------------------------------------------------------
+     FXFTCL        O      O      O      O      O      X      -      M      X
+    ---------------------------------------------------------------------------
+     FXFTCC        X      X      X      X      O      X      O      -      X
+    ---------------------------------------------------------------------------
+     FXFTDB        X      X      X      O      O      X      X      X      _
+    ---------------------------------------------------------------------------
+
+
+  FXFTCB  Constant radius rolling ball blend.
+          The associated value in 'bdata' is a list containing a positive double.
+          The blend will be a constant radius rolling ball blend, whose radius
+          is the given double.
+
+  FXFTVB  Variable radius rolling ball blend.
+          The associated value in 'bdata' is a list containing two curve tags.
+          The blend will be a variable radius blend. The first curve provided
+          will be used as a parameter curve and the second as a law curve.
+
+          The law curve is a B-curve whose parameter space is that of a portion
+          of the parameter curve in the region of the blend. The law should be
+          three dimensional though it does not represent 3-space points. The
+          meaning of the coordinates are:
+
+          x-coordinate = range of blend off left wall.
+          y-coordinate = range of blend off right wall.
+          z-coordinate = rho value.
+
+          The ranges must be positive, except at the ends of the blend where
+          they are allowed to be zero.  The left and right ranges need not be
+          equal unless: i) either range is zero, at which point both ranges must
+          be zero, or ii) the token FXFTHL is also given.
+
+          By default, the blend will have circular cross-section if the ranges
+          are equal, and elliptical cross-section otherwise.  The rho values of
+          the law curve can be used to control the cross-sectional shape of
+          the blend by providing the token FXFTRC (see below).
+
+  FXFTHL  Blend is constrained by tangent hold lines.
+          The associated value in 'bdata' is a list of edge tags.
+          The blend will be constrained to be a tangent hold line blend in the
+          region of the given edges. If this token is provided with FXFTCB
+          or FXFTVB the blend need not be constrained by these edges.  If this
+          token is given with FXFTVB, the left and right ranges of the law
+          curve must be equal.
+
+  FXFTCL  Blend is constrained by conic hold lines.
+          The associated value in 'bdata' is a list of edge tags.
+          The blend will be constrained to be a conic hold line blend in the
+          region of the given edges. If this token is provided with FXFTCB
+          or FXFTVB the blend need not be constrained by these edges.  If this
+          token is given with FXFTCC or without FXFTCB or FXFTVB, then FXFTHL
+          and FXFTCE must not be provided, and the number of edge tags
+          in bdata must be at least two.
+
+  FXFTCC  Curvature Continuous blend.
+          The associated value in 'bdata' is a list containing two curve tags.
+          This token must be provided with the token FXFTCL and the blend
+          will be constrained to be curvature continuous at the hold lines.
+
+          The first curve provided in 'bdata' will be used as a parameter curve
+          and the second as a depth control curve.
+
+          The depth curve is a B-curve whose parameter space is that of a portion
+          of the parameter curve in the region of the blend. The depth
+          curve should be three dimensional though it does not represent
+          3-space points. The meaning of the coordinates are:
+
+          x-coordinate = A value strictly between 0 and 1 giving the position
+                         of the maximum depth of the blend between the blend
+                         walls. A value close to 0 will force the cross section
+                         to have maximum depth close to the left wall, whilst a
+                         value close to 1 will force the cross section
+                         to have maximum depth close to the right wall.
+
+          y-coordinate = A value strictly between 0 and 1 giving the maximum
+                         depth of the blend. A value close to 0 will force the
+                         maximum depth of the blend to be as shallow
+                         as possible, whilst a value close to 1 will force the
+                         blend to be as deep as possible.
+
+          z-coordinate = ignored.
+
+  FXFTCE  Blend is constrained by cliff edges.
+          The associated value in 'bdata' is a list of edge tags.
+          The blend will be constrained to be cliffedge blend in the
+          region of the given edges.
+
+  FXFTTL  A tolerance is associated with this blend.
+          The associated value in 'bdata' is a list containing the tolerance.
+
+  FXFTRC  Variable radius blend cross-section is controlled by rho values
+          from the law curve.
+          The associated value in 'bdata' is the null tag.
+          The rho values must lie in the range 0 < rho < 1.  The blend
+          cross-section will be:
+              1) an ellipse for 0 < rho < 0.5
+              2) a parabola for rho == 0.5
+              3) a hyperbola for 0.5 < rho < 1.
+
+  FXFTDB  Variable radius disc blend.
+          The associated value in 'bdata' is a list containing two curve tags.
+          The first curve provided will be used as a parameter curve and the
+          second as a law curve.
+
+          The blend will be a variable radius disc blend.  The generating
+          disc lies in the normal plane of the parameter curve; its size is
+          defined by the law curve.
+
+          For description of the law curve, see the documentation of FXFTVB
+          above.  Note that the rho value is ignored, since this token is
+          incompatible with FXFTRC.
+
+          This token may not be provided with FXFTPR.
+
+
+
+                            Control Tokens.
+
+  The user may supply any combination of control tokens
+
+
+  FXFTHP  Help point provided.
+          The associated value in bdata is a list of three doubles.
+          The three doubles will be used as coordinates of a help point, which
+          will be used to differentiate between multiple alternative possible
+          blends between the walls. If there is a blend which passes
+          close to the help point, it will be the one created.
+
+  FXFTMS  Create multiple blends sheets.
+          The associated value in bdata is the null tag.
+          BLEFXF will only create one blend unless this token is provided, in
+          which case it will create all blends which lie in at least one of the
+          master faces.
+
+  FXFTPR  Propagate blends.
+          The associated value in bdata is the null tag.
+          If this token is given the blends will be allowed to propagate past
+          smooth edges beyond the provided walls.
+
+  FXFTLP  Limit Plane.
+          The associated value in bdata is a list containing one or two tags.
+          The tags must be the tags of planes.
+
+          The blend will be trimmed to end in a constant parameter line
+          determined by a plane. The blend will lie on the positive side of
+          the plane.
+
+          This token is only valid if one of the trimming tokens FXFTNT,
+          FXFTTB, FXFTST or FXFTLT is also provided.
+
+  FXFTEO  End Overflow
+          The associated value in bdata is the null tag.
+
+          If this token is given the blend will be allowed to extend past
+          notches, whether in the middle or at the end of the blend.
+
+  FXFTSO  Create solid body if possible
+          The associated value in bdata is the null tag.
+
+          If this token is supplied and the result of the blending operation
+          encloses a volume then a solid body will be created. Otherwise a sheet
+          body will be returned.
+
+          This token is only valid if the blend is being attached, i.e. the
+          trimming token FXFTAT is used.
+
+
+
+
+  'status' is a success status flag for BLEFXF, for those cases where an ifail
+  is not returned. 's_data' consists of supporting data.
+  The possible returns are
+
+  FXFEOK  The requested blend succeeded.
+          The associated value in 's_data' is the null tag.
+
+  FXFEST  The blend has not been attached, nor have the walls been trimmed
+          but blend sheet bodies have been created. This token is only returned
+          if BLEFXF was called with FXFTAT or FXFTTW and represents a
+          partial success.
+          The associated value in 's_data' is the tag of a list. This list
+          contains the tag of a list of three doubles and the tag of some
+          topology. These indicate the region where the blend could not be
+          attached.
+
+  FXFEER  The blend could not be created.
+          The associated value in 's_data' is the null tag.
+
+  FXFEID  The user has supplied insufficient data to define a blend.
+          The associated value in 's_data' is the null tag.
+
+  FXFEXD  The user has supplied inconsistent data.
+          The associated value in 's_data' is the null tag.
+
+  FXFEIF  The user has supplied an invalid wall of faces.
+          The associated value in 's_data' is the invalid list of faces.
+
+  FXFEIR  The user has supplied an invalid range definition.
+          The associated value in 's_data' is the null tag.
+
+  FXFEIH  The user has supplied invalid tangent hold line data.
+          The associated value in 's_data' is the invalid tangent hold line
+          data.
+
+  FXFEIC  The user has supplied invalid cliff edge data.
+          The associated value in 's_data' is the invalid cliff edge
+          data.
+
+  FXFEFC  A face in a wall is too tightly curved for the blend to fit.
+          The associated value in 's_data' is the face in question.
+
+  FXFERS  A blend range is too small.
+          The associated value in 's_data' is a list containing one double.
+          This is the suggested larger range for the blend.
+
+  FXFERL  A blend range is too large.
+          The associated value in 's_data' is a list containing one double.
+          This is the suggested smaller range for the blend.
+
+  FXFELN  'l_rev' is incorrect.
+          The associated value in 's_data' is the null tag.
+
+  FXFERN  'r_rev' is incorrect.
+          The associated value in 's_data' is the null tag.
+
+  FXFEBN  Both 'l_rev'  and 'r_rev' are incorrect.
+          The associated value in 's_data' is the null tag.
+
+  FXFESC  The blend sheet(s) intersect one another and hence could not be
+          attached.
+          The associated value in 's_data' is the tag of a list. This list
+          contains the tag of a list of three doubles and the tags of some
+          topology. These indicate which sheet(s) clashed and the point
+          at which they clashed.
+
+  FXFEWC  The blend, which has been attached, has combined two bodies and has
+          produced a face-face inconsistency elsewhere in the model.
+          The associated value in 's_data' is a list containing the tags of
+          a pair of clashing faces.
+
+  FXFEFF  The blend,which has been attached, has caused a face-face
+          inconsistency.
+          The associated value in 's_data' is a list containing the tags of
+          a pair of clashing faces.
+
+  FXFEGX  The blend contains face(s) with self intersecting geometry.
+          The associated value in 's_data' is a list containing the tags of
+          the blend faces with self-intersecting surfaces.
+
+  FXFERV  The user has supplied invalid rho values in the law curve.
+          The associated value in 's_data' is the null tag.
+
+  FXFEAR  The user has supplied asymmetric ranges which are inconsistant with
+          the underlying geometry.
+          The associated value in 's_data' is the null tag.
+
+  FXFECL  The user has supplied invalid conic hold line data.
+          The associated value in 's_data' is the invalid conic hold line
+          data.
+
+  FXFEIS  The user has supplied an invalid parameter spine.
+          The associated value in 's_data' is a list containing the tag of
+          the invalid spine and possibly a list of three doubles, representing
+          a point where the spine is unsuitable.
+
+
+  If BLEFXF has successfully created a blend, then 'sheets' will consist of a
+  list of all new blend sheet bodies created, or null if the blend has been
+  attached. 'blends' will consist of a list of the 'nblend' blend faces.
+  'unders' will consist of a parallel list of 'nblend' lists of integers. These
+  lists contain the ( possibly dead ) tags of the underlying topology used to
+  determine the equivalent blend face in 'blends'. Each list will consist of the
+  tag of the face in the left wall, then the tag of the face in the right wall,
+  then any other data that determined the geometry of the blend face, such as a
+  cliff edge or tangent hold line.
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,35 @@
+<HTML>
+
+<HEAD>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+  function searchframe()
+      {
+      // keyword list
+	  <!-- Adjusted the elements[3] value to elements[2] after removing the third radio button as part of project ID 63110 JW 07/09/2022  -->
+      top.window.search(top.searchformframe.document.forms[0].elements[2].value);
+      }
+  //-->
+  </SCRIPT>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff LINK=#006633>
+  <FORM NAME="searchform" onSubmit="return searchframe();">
+  <!-- Doesn't work from local disk -->
+  <FONT STYLE="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">Enter space-separated 
+  words and click <strong>Search</strong> to find: <br>
+    <INPUT TYPE=radio NAME="searchtype" VALUE=1>
+  all words &nbsp 
+  <INPUT TYPE=radio NAME="searchtype" VALUE=2 CHECKED>
+  any word &nbsp 
+  <!-- Radio Button for 'the phrase' removed as part of project ID 63110 JW 05/09/2022 -->
+  <!-- <INPUT TYPE=radio NAME="searchtype" VALUE=3> -->
+  <!-- the phrase -->
+  <BR>
+  <INPUT TYPE=text  NAME="keyword"    SIZE=30>
+  <INPUT TYPE=button VALUE="Search" onClick="searchframe();">
+  </font> 
+</FORM>
+</BODY>
+
+</HTML>

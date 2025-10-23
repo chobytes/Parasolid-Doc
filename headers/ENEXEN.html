@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<TITLE>ENEXEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENEXEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_find_extreme.html>PK_EDGE_find_extreme</A><BR>
+<A HREF=../headers/pk_face_find_extreme.html>PK_FACE_find_extreme</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENEXEN ( entity, dir1, dir2, dir3, posn, ext, ifail )
+=====================================================
+
+  Enquire extreme point of entity
+
+Receives:
+  KI_tag_topology          *entity         --- face or edge
+  KI_vec_direction          dir1           --- first direction
+  KI_vec_direction          dir2           --- second direction
+  KI_vec_direction          dir3           --- third direction
+
+Returns:
+  KI_vec_position           posn           --- position of extreme point
+  KI_tag_topology          *ext            --- face, edge or vertex on
+                                           --- which extreme lies
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cant_find_extreme      failure
+  KI_missing_geom           entity has missing geometry
+  KI_wrong_entity           entity is not a face or an edge
+  KI_coplanar               directions are coplanar
+
+Description:
+  The entity must be a face or an edge.
+
+  The extreme point on the face or edge which is furthest in the direction
+  'dir1' is returned, unless there is more than one such point, in which case
+  'dir2' and 'dir3' are used successively to reduce the number of extreme
+  points to one.
+
+  If the extreme point lies on a vertex or an edge, this is returned in 'ext'.
+  Otherwise the face is returned.
+
+  The entity must not have missing geometry.
+
+  The three directions must not be coplanar.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE>NEGENT</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>NEGENT</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_reverse_orientation.html>PK_BODY_reverse_orientation</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+NEGENT ( entity, ifail )
+========================
+
+  Negates (reverses) an entity
+
+Receives:
+  KI_tag_entity            *entity         --- entity to be negated
+
+Returns:
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_unsuitable_entity      unsuitable entity
+  KI_bad_sharing            entity is a dependent of another geometric entity
+                            dependent is owned by more than one geometric entity
+  KI_is_attached            geometric entity is attached to topology
+  KI_general_body           general body
+
+Description:
+  Negates (reverses) a curve, surface or body.
+
+  Operations performed
+  . Negating a curve reverses the curve direction.
+  . Negating a surface reverses the surface normal.
+  . Negating a body reverses the normals of all non-rubber faces.
+
+  If the entity is a curve or surface it must not be attached to any topology.
+  Furthermore curve and surface entities must not be dependents of any other
+  geometric entities.
+
+  This function is not at present supported for general bodies.
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<TITLE>ENPOGS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENPOGS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_surf_eval_curvature.html>PK_SURF_eval_curvature</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENPOGS ( surfac, coords, normal, prdir1, prdir2, prcur1, prcur2, ifail )
+========================================================================
+
+  Enquire point on general surface.
+
+Receives:
+  KI_tag_surface           *surfac         --- surface being enquired of
+  KI_vec_position           coords         --- position of interest on surface
+
+Returns:
+  KI_vec_normal             normal         --- surface normal
+  KI_vec_direction          prdir1         --- principal direction1
+  KI_vec_direction          prdir2         --- principal direction2
+  KI_dbl_curvature         *prcur1         --- principal curvature1
+  KI_dbl_curvature         *prcur2         --- principal curvature2
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_at_singularity         coords at singularity of surface
+  KI_not_on_surface         coords not within resolution distance of surface
+  KI_invalid_geometry       the surface fails to pass checks
+
+Description:
+  Calculates the normal and principal directions, and the principal
+  curvatures, of the surface at the given point. The normal and principal
+  directions are returned as direction ratios (normalised vectors).
+
+  If the principal curvatures are equal, the principal directions are not
+  significant.
+
+  The surface must be capable of passing the checks imposed by CHCKEN.
+  The self intersection check is only performed if the appropriate option is set
+  (see SEINTP).
+
+</PRE>
+</BODY>
+</HTML>

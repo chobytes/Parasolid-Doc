@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_DEBUG_diff_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_DEBUG_diff_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_DEBUG_diff_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_global_diffs_r_t.html>PK_DEBUG_global_diffs_r_t</A><br>
+    <A HREF=../headers/pk_debug_local_diffs_r_t.html>PK_DEBUG_local_diffs_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype specifies the types of differences that have been found
+when comparing two bodies.
+
+    PK_DEBUG_diff_n_shells_c          Different no. shells found
+    PK_DEBUG_diff_n_faces_c           Different no. faces found
+    PK_DEBUG_diff_n_loops_c           Different no. loops found
+    PK_DEBUG_diff_n_acc_edges_c       Different no. accurate edges found
+    PK_DEBUG_diff_n_tol_edges_c       Different no. tolerant edges found
+    PK_DEBUG_diff_n_fins_c            Different no. fins found
+    PK_DEBUG_diff_n_acc_vxs_c         Different no. accurate vertices found
+    PK_DEBUG_diff_n_tol_vxs_c         Different no. tolerant vertices found
+    PK_DEBUG_diff_n_vxs_c             Different no. total vertices found
+    PK_DEBUG_diff_n_cht_pts_c         Different no. chart points found
+    PK_DEBUG_diff_surf_dev_c          Matching surfaces deviate by given
+                                      distance
+    PK_DEBUG_diff_curve_dev_c         Matching curves deviate by given
+                                      distance
+    PK_DEBUG_diff_vx_dev_c            Matching vertices deviate by given
+                                      distance
+    PK_DEBUG_diff_surf_class_c        Matching surfaces are of different class
+    PK_DEBUG_diff_curve_class_c       Matching curves are of different class
+    PK_DEBUG_diff_edge_tol_c          Matching edges have different tolerances
+    PK_DEBUG_diff_vx_tol_c            Matching vertices have different
+                                      tolerances
+    PK_DEBUG_diff_face_sense_c        Matching faces have different sense
+    PK_DEBUG_diff_surf_sense_c        Matching surfaces have different sense
+    PK_DEBUG_diff_curve_sense_c       Matching curves have different sense
+    PK_DEBUG_diff_vx_missing_c        Missing vertex
+    PK_DEBUG_diff_face_match_c        Non-matched face found
+    PK_DEBUG_diff_fin_match_c         Non-matched fin found
+    PK_DEBUG_diff_vx_match_c          Non-matched vertex found
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,2327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>List of Parasolid LISP Functions</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>List of Parasolid LISP Functions</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.19.html">Error Codes in Parasolid LISP</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.21.html">KID Examples</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.20.html#50475025_pgfId-274044">D.1	PARASOLID LISP functions</A>
+<LI> <A HREF="kd_chap.20.html#50475025_pgfId-274687">D.2	PARASOLID LISP function descriptions</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475025_pgfId-274044"></A>D.1	PARASOLID LISP functions
+
+
+</H1>
+<P>
+<A NAME="50475025_pgfId-274045"></A>This is the current list of PARASOLID LISP functions; they are <A NAME="50475025_marker-274046"></A>reserved words and must not be overwritten. Only a subset is of use to the KID user, and these are given with a full description or reference in the following section.</P>
+<P>
+<A NAME="50475025_pgfId-274047"></A>For each identifier listed here there is a header indicating whether it is the name of a function or a variable, and giving an indication of the arguments expected by the function. The words Subr, Fsubr and Expr are used to mean:</P>
+<P>
+<A NAME="50475025_pgfId-274061"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274050"></A>Subr:</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274052"></A>A built-in function which processes its arguments normally</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274054"></A>Fsubr: </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274056"></A>A built-in function with special argument processing, e.g. it guarantees to process arguments from left to right, or it sometimes does not evaluate all of its arguments</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274058"></A>Expr:</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274060"></A>A function defined in LISP, not in C</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274062"></A>The functions marked with an (*) are described (or additional explanation is supplied) in the following section, all others are described in the ACORNSOFT book &quot;<STRONG>
+LISP on the BBC Microcomputer</STRONG>&quot;.</P>
+<P>
+<A NAME="50475025_pgfId-274063"></A>In use, all of the functions described are used in the <STRONG>
+lower case form</STRONG>. The upper case form has been used to visually clarify the function names within the text.</P>
+<P>
+<A NAME="50475025_pgfId-283237"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475025_pgfId-283257"></A>Note: <STRONG>
+(help &lt;f/subr&gt;)</STRONG> gives more information on any function.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274686"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-283263"></A>Function</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-283265"></A>Type</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274067"></A>*ADD1</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274069"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274071"></A>ADDRESS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274073"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274075"></A>AND</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274077"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274079"></A>*ABS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274081"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274083"></A>APPEND</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274085"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274087"></A>APPLY</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274089"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274091"></A>ASSOC</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274093"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274095"></A>ATOM</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274097"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274099"></A>BACK</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274101"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274103"></A>BAND</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274105"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274107"></A>BLANK</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274109"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274111"></A>BNOT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274113"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274115"></A>BOR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274117"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274119"></A>BYTE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274121"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274123"></A>CALL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274125"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274127"></A>CAR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274129"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274131"></A>CATCH</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274133"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274135"></A>CDR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274137"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274139"></A>CHAR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274141"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274143"></A>CHARACTER</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274145"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274147"></A>CHARP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274149"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274151"></A>CHARS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274153"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274155"></A>CLOCK</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274157"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274159"></A>CLOSE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274161"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274163"></A>COND</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274165"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274167"></A>CONS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274169"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274171"></A>CFSUBRP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274173"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274175"></A>CSUBRP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274177"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274179"></A>CR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274181"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274183"></A>CTIME</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274185"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274187"></A>CVARP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274189"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274191"></A>DECIMALWIDTH</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274193"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274195"></A>DECODE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274197"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274199"></A>*DEFUN</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274201"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274203"></A>DEFPROC</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274205"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274207"></A>DELETE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274209"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274211"></A>DIFFERENCE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274213"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274215"></A>*DIVIDE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274217"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274219"></A>DOLLAR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274221"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274223"></A>DOUBLE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274225"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274227"></A>EDIT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274229"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274231"></A>ELEMENT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274233"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274235"></A>ENCODE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274237"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274239"></A>*ENTWINE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274241"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274243"></A>EOF</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274245"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274247"></A>EQ</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274249"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274251"></A>*EQUAL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274253"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274255"></A>ERROR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274257"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274259"></A>ERRORSET</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274261"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274263"></A>EVAL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274265"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274267"></A>EXPLODE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274269"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274271"></A>F</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274273"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274275"></A>*FILTER</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274277"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274279"></A>FLATTEN</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274281"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274283"></A>FLOAT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274285"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274287"></A>FSUBRP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274289"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274291"></A>FUNCTION</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274293"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274295"></A>GCTIME</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274297"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274299"></A>GET</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274301"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274303"></A>GETCHAR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274305"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274307"></A>GREATERP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274309"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274311"></A>*HELP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274313"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274315"></A>IMPLODE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274317"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274319"></A>*INSERT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274321"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274323"></A>INT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274325"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274327"></A>JOURNAL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274329"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274331"></A>LAMBDA</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274333"></A>Special identifier</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274335"></A>LAST</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274337"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274339"></A>LASTCDR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274341"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274343"></A>LESSP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274345"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274347"></A>*LET</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274349"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274351"></A>LINEWIDTH</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274353"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274355"></A>LIST</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274357"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274359"></A>LISTP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274361"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274363"></A>*LOAD</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274365"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274367"></A>LOGICAL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274369"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274371"></A>LOOP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274373"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274375"></A>LPAR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274377"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274379"></A>MAP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274381"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274383"></A>MAPC</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274385"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274387"></A>MEMBER</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274389"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274391"></A>MESSOFF</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274393"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274395"></A>MESSON</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274397"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274399"></A>MINUS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274401"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274403"></A>MINUSP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274405"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274407"></A>NIL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274409"></A>Special identifier</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274411"></A>NOT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274413"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274415"></A>NULL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274417"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274419"></A>NUMBERP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274421"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274423"></A>OBLIST</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274425"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274427"></A>ONEP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274429"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274431"></A>OPEN</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274433"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274435"></A>OR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274437"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274439"></A>ORDINAL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274441"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274443"></A>PERIOD</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274445"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274447"></A>PLIST</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274449"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274451"></A>*PLUS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274453"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274455"></A>POINTER</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274457"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274459"></A>PRIN</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274461"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274463"></A>PRINC</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274465"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274467"></A>PRINT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274469"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274471"></A>PRINTC</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274473"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274475"></A>PROGN</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274477"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274479"></A>PROMPT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274481"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274483"></A>PUT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274485"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274487"></A>*QUIT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274489"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274491"></A>QUOTE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274493"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274495"></A>QUOTIENT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274497"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274499"></A>READ</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274501"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274503"></A>READLINE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274505"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274507"></A>RECLAIM</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274509"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274511"></A>*REMAINDER</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274513"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274515"></A>REMPROP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274517"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274519"></A>*REPLACE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274521"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274523"></A>REPLICATE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274525"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274527"></A>RESET</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274529"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274531"></A>REVERSE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274533"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274535"></A>RPAR</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274537"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274539"></A>RPLACA</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274541"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274543"></A>RPLACD</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274545"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274547"></A>RPLACV</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274549"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274551"></A>SED</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274553"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274555"></A>*SELECT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274557"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274559"></A>SET</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274561"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274563"></A>SETQ</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274565"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274567"></A>SHORT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274569"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274571"></A>SPECIAL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274573"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274575"></A>SPRINT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274577"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274579"></A>STRING</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274581"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274583"></A>STRUCT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274585"></A>Subr/Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274587"></A>*SUB1</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274589"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274591"></A>SUBRP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274593"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274595"></A>SUBST</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274597"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274599"></A>T</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274601"></A>Special identifier</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274603"></A>THROW</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274605"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274607"></A>TIME</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274609"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274611"></A>TIMES</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274613"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274615"></A>TRACE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274617"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274619"></A>TRUNC</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274621"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274623"></A>UNDEFINED</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274625"></A>Special identifier</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274627"></A>UNION</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274629"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274631"></A>UNTIL</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274633"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274635"></A>UNTRACE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274637"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274639"></A>VDU</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274641"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274643"></A>VOID</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274645"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274647"></A>WHILE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274649"></A>Fsubr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274651"></A>WHITESPACE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274653"></A>Variable</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274655"></A>WRITE</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274657"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274659"></A>WRITEO</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274661"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274663"></A>ZEROP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274665"></A>Expr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274667"></A>*</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274669"></A>Subr</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274671"></A>!</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274673"></A>Special character</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274675"></A>&quot; &lt;string&gt; &quot;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274677"></A>Special characters</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274679"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274681"></A>Special characters</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274683"></A>@</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274685"></A>Special character</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475025_pgfId-274687"></A>D.2	PARASOLID LISP function descriptions
+
+
+</H1>
+
+<H4>
+<A NAME="50475025_pgfId-274688"></A>ABS - Subr</H4>
+<P>
+<A NAME="50475025_pgfId-284914"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-285000"></A>(ABS x)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274690"></A>If x is numeric then the absolute value, |x|, of x is returned. If x is a string then the lower-case string is returned. If x is a list then ABS returns its length:</P>
+<P>
+<A NAME="50475025_pgfId-283287"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284894"></A>(ABS -4.5) = 4.5
+(ABS &quot;Guten Morgen&quot;) = &quot;guten morgen&quot;
+(ABS &acute;(a b c)) = 3</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475025_pgfId-274692"></A>ADD1</H4>
+<P>
+<A NAME="50475025_pgfId-274693"></A>This function adds 1 and is equivalent to:</P>
+<P>
+<A NAME="50475025_pgfId-283310"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284878"></A>( plus x 1 )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475025_pgfId-274695"></A>DEFUN - Fsubr</H4>
+<P>
+<A NAME="50475025_pgfId-283325"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284870"></A>(DEFUN function-name parameters body ...)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274697"></A>DEFUN is a convenient way of defining functions. None of the arguments are evaluated. The use of DEFUN is exactly equivalent to</P>
+<P>
+<A NAME="50475025_pgfId-283350"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284850"></A>(SETQ function-name)
+  &acute;(LAMBDA parameters body ...))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274699"></A>The value returned by DEFUN is the name of the function that has been defined. The second argument (parameters) is a list of arguments and local variables that the function uses. Any number of actions can be given for the function to carry out.</P>
+
+<H4>
+<A NAME="50475025_pgfId-285281"></A>Examples:</H4>
+<P>
+<A NAME="50475025_pgfId-283369"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284778"></A>(DEFUN ADD2 (X) (PLUS X 2))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274701"></A>defines a function ADD2 by setting ADD2 to the value</P>
+<P>
+<A NAME="50475025_pgfId-283381"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284713"></A>(LAMBDA (X) (PLUS X 2)).</PRE>
+<PRE><A NAME="50475025_pgfId-284714"></A>(DEFUN PR_ADD2 (X (Y)) (SETQ Y (PLUS X 2)) (PRINT Y) Y)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274704"></A>defines a function PR_ADD2 with local variable Y  (initialized to NIL).</P>
+<P>
+<A NAME="50475025_pgfId-283401"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284667"></A>(DEFUN INCR (X (Y . 1)) (PLUS X Y))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274706"></A>defines a function INCR with optional parameter Y (default 1). Note: only constant values may be used as defaults.</P>
+<P>
+<A NAME="50475025_pgfId-283412"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284651"></A>(DEFUN ERR (MESS (SEV))
+  (PRINTC &quot;error encountered&quot;)
+  (PRINTC MESS)
+  (COND ((NULL SEV) NIL) (T (PRINTC &quot;severity: &quot; SEV))) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274708"></A>defines a function ERR with an optional parameter.</P>
+<P>
+<A NAME="50475025_pgfId-283433"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284627"></A>(DEFUN MY_PRINT X
+  (LOOP
+  (WHILE X)
+  (PRIN1 (EVAL (CAR X)))
+  (SETQ X (CDR X)) ))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274710"></A>defines a function MY_PRINT which receives its arguments unevaluated and in a list.</P>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274711"></A>DIVIDE</H4>
+<P>
+<A NAME="50475025_pgfId-274712"></A>This function forces real division, for example:</P>
+<P>
+<A NAME="50475025_pgfId-283446"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284587"></A>( divide x y )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274714"></A>and is equivalent to:</P>
+<P>
+<A NAME="50475025_pgfId-283453"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284566"></A>( quotient ( plus x 0.0 ) y )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475025_pgfId-274716"></A>ENTWINE</H4>
+<P>
+<A NAME="50475025_pgfId-274717"></A>This is a generalized function to join two lists assumed to be the same length together pairwise with any binary function. The binary function is optional and defaults to the list operator with two arguments.</P>
+<P>
+<A NAME="50475025_pgfId-274718"></A>General form:</P>
+<P>
+<A NAME="50475025_pgfId-283465"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284558"></A>(entwine LIST LIST &lt;binary op&gt; )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475025_pgfId-274720"></A>Example:</H4>
+<P>
+<A NAME="50475025_pgfId-283495"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284538"></A>(entwine &acute;(a b c) &acute;(1 2 3))        =&gt;  ((a 1) (b 2) (c 3))
+(entwine &acute;(a b c) &acute;(1 2 3) &acute;cons)  
+                             =&gt;  ((a . 1) (b  . 2) (c . 3))
+(entwine &acute;(a b c) &acute;(1 2 3) &acute;plus)  =&gt;  (a1 b2 c3)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274722"></A>EQUAL  - Fsubr</H4>
+<P>
+<A NAME="50475025_pgfId-283514"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284522"></A>(EQUAL exp exp ...)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274724"></A>The basic LISP function EQ compares two or more atoms for equality. When applied to list structures it checks if the pointers to them are identical. EQUAL compares list structures to see whether they have the same shape and the same atoms as leaves. EQUAL may have been defined as:</P>
+<P>
+<A NAME="50475025_pgfId-283521"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284506"></A>(DEFUN EQUAL (A B) (COND
+  ((EQ A B) T)
+  ((OR (ATOM A) (ATOM B)) NIL)
+  ((EQUAL (CAR A) (CAR B)) (EQUAL (CDR A) (CDR B)))
+  (T NIL)))</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475025_pgfId-274726"></A>FILTER</H4>
+<P>
+<A NAME="50475025_pgfId-274727"></A>This function applies a selective filter to a list identifying those to keep by element number. Positive indices count from the front, negative indices from the end.</P>
+
+<H4>
+<A NAME="50475025_pgfId-274728"></A>Example:</H4>
+<P>
+<A NAME="50475025_pgfId-283530"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284466"></A>( filter &acute;( 1 3 5 7 ) &acute;( a b c d e f ) ) =&gt; ( a c e nil )
+( filter &acute;( -1 -3 -5 -7 ) &acute;( a b c d e f ) ) =&gt; ( f d b nil )
+( filter 5 &acute;( a b c d e f ) ) =&gt; e
+( filter -5 &acute;( a b c d e f ) ) =&gt; b
+( filter 99 &acute;( a b c d e f ) ) =&gt; nil
+( filter -99 &acute;( a b c d e f ) ) =&gt; nil</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274730"></A>HELP - Fsubr</H4>
+<P>
+<A NAME="50475025_pgfId-283546"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284441"></A>(HELP), (HELP item), (HELP exp), 
+(HELP item/expression item/expression)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274732"></A>HELP provides information on the state of the system, commands,the various environments maintained (global, local, c, io and trace) and the values of functions and variables. Without argument HELP catalogues all items for which it can provide information. A second item or expression specifies the property in a property list. Items may contain wildcard characters.</P>
+
+<H4>
+<A NAME="50475025_pgfId-274733"></A>Examples:</H4>
+<P>
+<A NAME="50475025_pgfId-283561"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284416"></A>(HELP cons)         --- get information on system function cons
+(HELP con*)          --- list identifiers, functions
+                         beginning with &acute;con&acute;
+(HELP fred)          --- get environment and value of fred
+(HELP fred *)        ---  list all properties of fred
+(HELP *create)       --- list all identifiers containing 
+                         create property
+(HELP (eval &acute;handle)) --- get information on file handle</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274735"></A>INSERT</H4>
+<P>
+<A NAME="50475025_pgfId-274736"></A>This a simple function which inserts the specified value into the list m as the nth element. The abs of m is increased by one. It is assumed that:</P>
+<P>
+<A NAME="50475025_pgfId-283575"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284367"></A>1 &lt;= n &lt;= ( ( abs m ) + 1 )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475025_pgfId-274738"></A>Example:</H4>
+<P>
+<A NAME="50475025_pgfId-283591"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284335"></A>( insert 1 &acute;( a b c d ) &acute;h ) =&gt; ( h a b c d )
+( insert 5 &acute;( a b c d ) &acute;h ) =&gt; ( a b c d h )
+( insert 3 &acute;( a b c d ) &acute;( h i ) ) =&gt; ( a b  ( h i ) c d )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274740"></A>LET</H4>
+<P>
+<A NAME="50475025_pgfId-274741"></A>LET takes any number of arguments. The first is interpreted as a list of variables and initializations, the rest as forms to be evaluated. The variables list contains atoms or lists of two items. Atoms are variable names to be initialized to nil. The first element of a list is a variable name, the second its initialization value which is evaluated. </P>
+
+<H4>
+<A NAME="50475025_pgfId-285305"></A>Example:</H4>
+<P>
+<A NAME="50475025_pgfId-283604"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284244"></A>( let (a (b 5) (c (plus 3 5) ) )
+  ( printc &quot;a &quot;a &quot;b &quot;b &quot;c &quot;c ))	
+  &quot;a nil b 5 c 8&quot;</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475025_pgfId-284287"></A>Note: Initializations in LET are in &quot;in parallel&quot;, so later initializations cannot make use of earlier ones.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50475025_pgfId-285488"></A>If this functionality is required, use the function LET*. LET* is identical to LET except for allowing later initializations to make use of earlier ones.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274745"></A>LOAD - Subr</H4>
+<P>
+<A NAME="50475025_pgfId-283616"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284189"></A>(LOAD filename [mode] [handler])</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274747"></A>The argument to LOAD should be the name of a file.  LOAD  reads the file and evaluates the LISP expressions in it. The value of LOAD is the value of the last expression in the file or UNDEFINED if  an unexpected end of file was encountered. If the file is not found an attempt is made to open a system file of the same name. The second argument is optional and when provided may be one of:</P>
+<P>
+<A NAME="50475025_pgfId-274761"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-284112"></A>Argument</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-284114"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274750"></A>REFLECT:</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274752"></A>print out all S expressions read</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274754"></A>VERIFY:</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274756"></A>print out expressions read and evaluated</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274758"></A>REPLAY:</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475025_pgfId-274760"></A>reroute standard input to load file for EOF, GETCHAR, READ, READLINE</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274762"></A>A third, optional argument is an error handler to be executed if an error occurs during loading. if the handler returns NIL then loading of the file is abandoned, which is also the default for LOAD.</P>
+
+<H4>
+<A NAME="50475025_pgfId-274763"></A>Examples:</H4>
+<P>
+<A NAME="50475025_pgfId-283642"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284085"></A>(DEFUN ignore () (PRINTC &quot;ignoring loading error&quot;) T)
+(LOAD &acute;fred ignore) </PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284042"></A>(LOAD &acute;fred T)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274767"></A>If no file extension is given, then an extension of the type .lsp is assumed.</P>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274768"></A>PACK</H4>
+<P>
+<A NAME="50475025_pgfId-274769"></A>Pack groups elements of a list:</P>
+
+<H4>
+<A NAME="50475025_pgfId-285320"></A>Examples:</H4>
+<P>
+<A NAME="50475025_pgfId-283657"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-284014"></A>(pack 3 &acute;(0 0 0 0 0 1 0 0 2 0 0 3 0 0 4))
+    --&gt; ( ( 0 0 0 ) ( 0 0 1 ) ( 0 0 2 ) ( 0 0 3 ) ( 0 0 4 ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274771"></A>If there are not enough elements available, the last element of the packed list is shorter:</P>
+<P>
+<A NAME="50475025_pgfId-283664"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283982"></A>(pack 3 &acute;(1 2 3 4)) --&gt; ( ( 1 2 3 ) ( 4 ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274773"></A>PLUS - Fsubr</H4>
+<P>
+<A NAME="50475025_pgfId-283688"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283962"></A>(PLUS number number ...)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274775"></A>PLUS returns the sum of all its arguments. PLUS can have any number of arguments. If one of the arguments is a string, then the result is the string concatenation of all arguments. The operator handles lists in a manner similar to DIFFERENCE. </P>
+
+<H4>
+<A NAME="50475025_pgfId-285324"></A>Examples:</H4>
+<P>
+<A NAME="50475025_pgfId-283896"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283932"></A>(PLUS 6 2 -3.1) = 4.9 
+(PLUS &acute;hello blank &acute;dolly) = &quot;hello dolly&quot; 
+(PLUS &acute;(1 2 3) &acute;5) = &acute;(6 7 8) 
+(PLUS &acute;((1 2 3) (4 5 6)) &acute;(2 4)) = &acute;((3 4 5) (8 9 10))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274777"></A>See DIFFERENCE, MINUS and TIMES.</P>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274778"></A>QUIT - Subr</H4>
+<P>
+<A NAME="50475025_pgfId-283707"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283891"></A>(QUIT)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475025_pgfId-274780"></A>Leaves the Lisp interpreter and closes the journal file for the session. Note that an end-of-file encountered while reading from the standard input device has the same effect as QUIT.</P>
+
+
+<H4>
+<A NAME="50475025_pgfId-274781"></A>REMAINDER</H4>
+<P>
+<A NAME="50475025_pgfId-274782"></A>Remainder has been overloaded to work on lists.</P>
+<P>
+<A NAME="50475025_pgfId-274783"></A>If two lists are passed as arguments then those elements which are common to both p and q are removed from p. The resultant p is returned.</P>
+
+
+<H4>
+<A NAME="50475025_pgfId-274784"></A>REPLACE</H4>
+<P>
+<A NAME="50475025_pgfId-274785"></A>This is a simple function which replaces the nth element of the list m with the specified value. The abs of m is unchanged. It is assumed that:</P>
+<P>
+<A NAME="50475025_pgfId-283721"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283867"></A>1 &lt;= n &lt;= ( abs m )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475025_pgfId-274787"></A>Example:</H4>
+<P>
+<A NAME="50475025_pgfId-283731"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283838"></A>( replace 1 &acute;( a b c d ) &acute;h ) =&gt; ( h b c d )
+( replace 4 &acute;( a b c d ) &acute;h ) =&gt; ( a b c h )
+( replace 3 &acute;( a b c d ) &acute;( hi ) ) =&gt; ( a b ( h i ) d )
+( replace 2 &acute;(( a b c ) ( d e f ) ( g h i )) &acute;( j k ))
+                       =&gt; (( a b c ) ( j k ) ( g h i ))</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274789"></A>SELECT</H4>
+<P>
+<A NAME="50475025_pgfId-274790"></A>This is a general function to select the first or last n elements from a list. If n is negative the last n elements are selected. If the first argument is a list of integers then the selection proceeds by grouping subsequent elements of the data list in order.</P>
+
+<H4>
+<A NAME="50475025_pgfId-274791"></A>Example:</H4>
+<P>
+<A NAME="50475025_pgfId-283743"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283806"></A>( select 3 &acute;( a b c d e f ) ) =&gt; ( a b c )
+( select -3 &acute;( a b c d e f ) ) =&gt; ( d e f )
+( select &acute;( 3 3 ) &acute;( a b c d e f ) ) =&gt; ( ( a b c ) ( d e f ) )
+( select &acute;( 1 2 3 ) &acute;( a b c d e f ) ) 
+                                =&gt; ( ( a ) ( b c ) ( d e f ) )
+( select &acute;( -1 -2 -3 ) &acute;( a b c d e f ) ) 
+                                 =&gt; ( ( f ) ( d e ) ( a b c ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274793"></A>SUB1</H4>
+<P>
+<A NAME="50475025_pgfId-274794"></A>This function subtracts 1 and is equivalent to:</P>
+<P>
+<A NAME="50475025_pgfId-283754"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283783"></A>( difference x 1 )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475025_pgfId-274796"></A>&quot;&lt;string&gt;&quot;  special character</H4>
+<P>
+<A NAME="50475025_pgfId-274797"></A>Any string contained in double quotes is turned into a quoted single identifier. Within double quotes, spaces and punctuation characters (with the exception of double quotes) do not have to be preceded by the escape character, <CODE>
+!</CODE>
+.</P>
+
+<H4>
+<A NAME="50475025_pgfId-274798"></A>Example:</H4>
+<P>
+<A NAME="50475025_pgfId-283764"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475025_pgfId-283770"></A>&quot;123&quot; = &acute;123
+&quot;temp.dat&quot; = &acute;temp!.dat
+&quot;zum Beispiel: &quot; = &acute;zum! Beispiel!:!</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<H4>
+<A NAME="50475025_pgfId-274800"></A>--  special character</H4>
+<P>
+<A NAME="50475025_pgfId-274801"></A>The double hyphen, <CODE>
+--</CODE>
+, introduces a comment which is terminated by the newline character.</P>
+<P>
+<A NAME="50475025_pgfId-273605"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.19.html">Error Codes in Parasolid LISP</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.21.html">KID Examples</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

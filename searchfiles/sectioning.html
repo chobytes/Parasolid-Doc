@@ -1,0 +1,132 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.002.html#50409781_pgfId-382808", " the ability to perform operations, such as booleans, <B>sectioning</B> and offsetting, on models containing any combination of", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-315992", " Figure 18-35 <B>Sectioning</B> a block by subtracting a B-surface sheet body ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.051.html#50409835_pgfId-311347", " a model. It also provides information on Parasolids <B>sectioning</B> and intersection functionality. ", "Functional Description - Introduction To Imprinting and Booleans");
+top.note("chapters/fd_chap.051.html#50409835_pgfId-310681", " Chapter 56, <B>Sectioning</B> describes Parasolids support for dividing a body into", "Functional Description - Introduction To Imprinting and Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-392777", " Chapter 56, <B>Sectioning</B> ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-394613", " For boolean and <B>sectioning</B> operations, this field can be set to PK_LOGICAL_true", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-396760", " Note: The <B>sectioning</B> functions PK_BODY_make_section and PK_BODY_make_section_with_surfs also use the ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294720", " set of clipping entities. The <B>sectioning</B> functions support <B>sectioning</B> with surfaces (planar or cylindrical) or sheet bodies.", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294721", " The <B>sectioning</B> operation is similar to the boolean subtract operation,", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-351475", " Parasolid supports both global and local <B>sectioning</B> operations. These are described in the rest of", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-351359", " tool that are nearly coincident to aid the <B>sectioning</B> operation. See Section 52.4.5, Matched topology in local", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-478761", " The lattice clipping operation is similar to a <B>sectioning</B> operation and will return one or more new", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294725", " 56.2 Global <B>sectioning</B> ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294729", " 56.2.1 <B>Sectioning</B> with surfaces ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294733", " PK_BODY_section_with_surf supports <B>sectioning</B> a body with a planar or cylindrical surface.", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294734", " in front of the <B>sectioning</B> tool, behind the <B>sectioning</B> surface or both should be returned by the", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294737", " 56.2.2 <B>Sectioning</B> with sheets ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294739", " PK_BODY_section_with_sheet_2 supports <B>sectioning</B> a body with a sheet tool. The target", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-425172", " After modifying the target body the <B>sectioning</B> sheet tool is deleted. ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294741", " in front of the <B>sectioning</B> tool, behind the <B>sectioning</B> tool or both should be returned by the", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-350769", " as being in front of or behind the <B>sectioning</B> tool, then a Parasolid Report of type PK_REPORT_record_1_t", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294745", " 56.3 Local <B>sectioning</B> ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294746", " A local <B>sectioning</B> operation is characterized by the comparison of selected", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294747", " This <B>sectioning</B> operation is supported by the PK_FACE_section_with_sheet_2 function, which", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294750", " 56.3.1 <B>Sectioning</B> with faces ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294752", " similar to PK_FACE_boolean_2 in that it supports partial <B>sectioning</B> of bodies. ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294755", " in front of the <B>sectioning</B> tool, behind the <B>sectioning</B> tool or both should be returned by the", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294760", " 56.4 Options for global and local <B>sectioning</B> ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294761", " The behaviour of the <B>sectioning</B> functions, PK_BODY_section_with_sheet_2 (global), PK_BODY_section_with_surf (global) and PK_FACE_section_with_sheet_2 (local)", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294826", " 56.4.1 Effect of the fence options in <B>sectioning</B> operations ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-294829", "<B>Sectioning</B> solid with sheet using the ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-295060", " Figure 56-1 <B>Sectioning</B> solid using the ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-295063", "<B>Sectioning</B> solid with sheet using the ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-295264", " Figure 56-2 <B>Sectioning</B> solid using the ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-295267", "<B>Sectioning</B> solid with sheet using the ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-295470", " Figure 56-3 <B>Sectioning</B> solid using the ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-295475", " 56.4.2 Merging options in <B>sectioning</B> operations ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296108", " Figure 56-4 Merge options in <B>sectioning</B> operations ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296113", " Using the <B>sectioning</B> functions may break the geometry sharing by splitting", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296117", " 56.5 Non-destructive <B>sectioning</B> ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296124", " The global and local <B>sectioning</B> operations described in Section 56.2 , Section 56.3", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296131", " Parasolid are left unchanged. You can perform non-destructive <B>sectioning</B> using any of the following functions: ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296191", "Figure 56-5 shows an example of local <B>sectioning</B> using PK_FACE_make_sect_with_sfs , illustrating the effect of ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296555", " Figure 56-5 <B>Sectioning</B> a body using target faces and surfaces ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-459418", " tool plane. This functionality offers improved performance over <B>sectioning</B> with multiple tool planes, and can be useful", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-455619", " Figure 56-6 <B>Sectioning</B> a body using a tool plane and four non-zero", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.084.html#50409872_pgfId-311721", " ability to perform topological operations, such as booleans, <B>sectioning</B> and offsetting, on bodies containing any combination of", "Functional Description - Overview Of Convergent Modeling");
+top.note("chapters/fd_chap.084.html#50409872_pgfId-559856", " <B>Sectioning</B> ", "Functional Description - Overview Of Convergent Modeling");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-460682", " See Section 56.4, Options for global and local <B>sectioning</B> , for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-462912", " See Section 56.4, Options for global and local <B>sectioning</B> , for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295377", " <B>Sectioning</B> a body where the face or edge is affected.", "Functional Description - Attributes");
+top.note("chapters/fd_chap.119.html#50409911_pgfId-413793", " Part C shows the result of <B>sectioning</B> this sheet. Note that the user has decided", "Functional Description - Implementing Version Control In Applications");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206350", " <B>sectioning</B> with 824 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206529", " during <B>sectioning</B> 826 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207099", " sharing in <B>sectioning</B> 830 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207127", " global <B>sectioning</B> 823 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207697", " merging in <B>sectioning</B> 828 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207716", " <B>sectioning</B> 824 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207718", " <B>sectioning</B> options 824 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207905", " lines in <B>sectioning</B> 828 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208104", " non-destructive <B>sectioning</B> 830 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208307", " local <B>sectioning</B> 824 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209347", " <B>sectioning</B> 823 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209512", " <B>sectioning</B> 830 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209605", " <B>sectioning</B> with 823 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210002", " <B>sectioning</B> with 823 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.03.html#50442274_pgfId-374363", " local operations, offsetting, thickening, hollowing, rendering, local operations, <B>sectioning</B>, replacement of surfaces, as well as topological and", "Overview of Parasolid - About Parasolid");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-318380", " Section 4.5, &#8220;<B>Sectioning</B>&#8221; , describes Parasolid&#8217;s support for dividing a body", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-294176", " 4.5 <B>Sectioning</B>", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-401613", " are supported by Parasolid: destructive <B>sectioning</B> and non-destructive <B>sectioning</B>. ", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-294211", " 4.5.1 Destructive <B>sectioning</B> ", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-401679", " types of destructive <B>sectioning</B>: global <B>sectioning</B> and local <B>sectioning</B>, and these are analogous to their boolean equivalents.", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-401682", " In a global <B>sectioning</B> operation, a body is divided into sections using", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-401721", " local booleans, the restricted focus of a local <B>sectioning</B> operation provides excellent performance, but can result in", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-401722", " Both global and local <B>sectioning</B> functions support a similar range of options to", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-294229", " 4.5.2 Non-destructive <B>sectioning</B> ", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-1810859", " supports a different range of options to destructive <B>sectioning</B>, allowing you control over details such as the", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-401676", " In non-destructive <B>sectioning</B>, nothing is deleted after the operation and, instead", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-401796", " With non-destructive <B>sectioning</B> you can also choose to create wire body", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.05.html#50442271_pgfId-1810876", " Figure 4-13 <B>Sectioning</B> a body using a tool plane ", "Overview of Parasolid - Booleans and Related Functionality");
+top.note("chapters/ov_chap.09.html#50442280_pgfId-383125", " your application perform topological operations, such as booleans, <B>sectioning</B>, and offsetting on facet bodies. ", "Overview of Parasolid - Convergent Modeling");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437595", "See <B>sectioning</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437868", " destructive <B>sectioning</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438472", " non-destructive <B>sectioning</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438762", " <B>sectioning</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_REPORT_1_cut_no_clash_c 23916 body does not clash with <B>sectioning</B> tool. ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " body is not fully cut through by the <B>sectioning</B> tool. ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_body_boolean.html#documentation", " o Geometry - Surfaces may be returned by <B>sectioning</B> operations to", "PK Reference - PK_BODY_boolean");
+top.note("headers/pk_body_make_section.html#declaration", "const PK_BODY_make_section_o_t *options, --- <B>Sectioning</B> options", "PK Reference - PK_BODY_make_section");
+top.note("headers/pk_body_make_section.html#documentation", "The behaviour of the <B>sectioning</B> operation can be controlled via the options", "PK Reference - PK_BODY_make_section");
+top.note("headers/pk_body_make_section_r_t.html#documentation", " n_reports The number of <B>sectioning</B> reports in the reports ", "PK Reference - PK_BODY_make_section_r_t");
+top.note("headers/pk_body_make_section_with_surfs.html#declaration", "const PK_BODY_make_section_o_t *options, --- <B>Sectioning</B> options", "PK Reference - PK_BODY_make_section_with_surfs");
+top.note("headers/pk_body_make_section_with_surfs.html#documentation", "The operation of the <B>sectioning</B> may be controlled via a set of options", "PK Reference - PK_BODY_make_section_with_surfs");
+top.note("headers/pk_body_section_o_t.html#documentation", " returned when performing a body <B>sectioning</B>", "PK Reference - PK_BODY_section_o_t");
+top.note("headers/pk_body_section_with_sheet.html#declaration", " PK_BODY_t sheet, --- <B>Sectioning</B> sheet body", "PK Reference - PK_BODY_section_with_sheet");
+top.note("headers/pk_body_section_with_sheet.html#documentation", "body is modified and the <B>sectioning</B> sheet body is deleted.", "PK Reference - PK_BODY_section_with_sheet");
+top.note("headers/pk_body_section_with_sheet_2.html#declaration", " PK_BODY_t sheet, --- <B>sectioning</B> sheet body", "PK Reference - PK_BODY_section_with_sheet_2");
+top.note("headers/pk_body_section_with_sheet_2.html#documentation", "body is modified and the <B>sectioning</B> sheet body is deleted.", "PK Reference - PK_BODY_section_with_sheet_2");
+top.note("headers/pk_body_section_with_surf.html#declaration", " PK_SURF_t surface, --- <B>Sectioning</B> surface [PF]", "PK Reference - PK_BODY_section_with_surf");
+top.note("headers/pk_body_section_with_surf.html#documentation", "with these bodies which lie in the <B>sectioning</B> surface are returned in the", "PK Reference - PK_BODY_section_with_surf");
+top.note("headers/pk_boolean_match_o_t.html#documentation", " For Boolean and <B>Sectioning</B> operations, this CAN be set to", "PK Reference - PK_boolean_match_o_t");
+top.note("headers/pk_face_make_sect_with_sfs.html#declaration", "const PK_FACE_make_sect_with_sfs_o_t *options, --- <B>Sectioning</B> options", "PK Reference - PK_FACE_make_sect_with_sfs");
+top.note("headers/pk_face_make_sect_with_sfs.html#documentation", "The operation of the <B>sectioning</B> may be controlled via a set of options", "PK Reference - PK_FACE_make_sect_with_sfs");
+top.note("headers/pk_face_make_sect_with_sfs_r_t.html#documentation", " n_reports The number of <B>sectioning</B> reports in the reports ", "PK Reference - PK_FACE_make_sect_with_sfs_r_t");
+top.note("headers/pk_face_section_o_t.html#documentation", " returned when performing a <B>sectioning</B>", "PK Reference - PK_FACE_section_o_t");
+top.note("headers/pk_face_section_with_sheet.html#declaration", "const PK_FACE_section_o_t *options, --- <B>Sectioning</B> options", "PK Reference - PK_FACE_section_with_sheet");
+top.note("headers/pk_face_section_with_sheet.html#documentation", "with these bodies which lie in the <B>sectioning</B> sheet are returned in the", "PK Reference - PK_FACE_section_with_sheet");
+top.note("headers/pk_face_section_with_sheet_2.html#declaration", "const PK_FACE_section_o_t *options, --- <B>sectioning</B> options", "PK Reference - PK_FACE_section_with_sheet_2");
+top.note("headers/pk_face_section_with_sheet_2.html#documentation", "with these bodies which lie in the <B>sectioning</B> sheet are returned in the", "PK Reference - PK_FACE_section_with_sheet_2");
+top.note("headers/pk_report_1_t.html#documentation", " PK_REPORT_1_cut_no_clash_c body does not clash with <B>sectioning</B> tool.", "PK Reference - PK_REPORT_1_t");
+top.note("headers/pk_report_record_1_t.html#documentation", " cut through by the <B>sectioning</B>", "PK Reference - PK_REPORT_record_1_t");
+top.note("headers/pk_section_2_r_t.html#declaration", " PK_section_result_t result; --- result of <B>sectioning</B> operation", "PK Reference - PK_section_2_r_t");
+top.note("headers/pk_section_2_r_t.html#documentation", " the <B>sectioning</B> operation. Permitted values are :", "PK Reference - PK_section_2_r_t");
+top.note("headers/pk_section_r_t.html#documentation", " <B>sectioning</B> tool.", "PK Reference - PK_section_r_t");
+top.note("headers/pk_section_report_r_t.html#description", "result of the <B>sectioning</B> operation.", "PK Reference - PK_section_report_r_t");
+top.note("headers/pk_section_report_r_t.html#documentation", " This report field indicates the nature of this <B>sectioning</B>", "PK Reference - PK_section_report_r_t");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-273884", " direction of the <B>sectioning</B> surface normal) of the <B>sectioning</B> surface, while ", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-273911", " 6.2.2 <B>Sectioning</B> primitives ", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.note("chapters/kd_chap.07.html#50475033_pgfId-273919", " Two additional <B>sectioning</B> functions that assist the rapid shaping of primitives", "KID Manual - Operations on Bodies, Curves, Surfaces, etc.");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

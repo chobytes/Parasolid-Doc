@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.010.html#50409790_pgfId-556608", " form using <B>PK_MEMORY_free</B> . ", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-556627", " The functions PK_MEMORY_alloc and <B>PK_MEMORY_free</B> make use of the registered allocation and freeing functions", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.010.html#50409790_pgfId-556632", " any variable length returns can be freed by calling <B>PK_MEMORY_free</B> . If a PK function fails, and has already", "Functional Description - PK Interface Programming Concepts ");
+top.note("chapters/fd_chap.099.html#50409889_pgfId-364793", " <B>PK_MEMORY_free</B> ( my_memory ); ", "Functional Description - Rollback");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-379488", ", and then call <B>PK_MEMORY_free</B> to free the pointer to the tables. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294974", " if (n_new) <B>PK_MEMORY_free</B> ( new_entities ); ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295038", " if (n_new) <B>PK_MEMORY_free</B> ( new_entities ); ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295140", " if (n_new) <B>PK_MEMORY_free</B> ( new_entities ); ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-308662", " changed, and frees the memory allocated by Parasolid using <B>PK_MEMORY_free</B> . ", "Functional Description - How the C# Binding is Implemented");
+top.note("headers/pk_assembly_check_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_ASSEMBLY_check_r_f");
+top.note("headers/pk_bcurve_spline_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BCURVE_spline_r_f");
+top.note("headers/pk_body_create_topology_2_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_create_topology_2_r_f");
+top.note("headers/pk_body_enlarge_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_enlarge_r_f");
+top.note("headers/pk_body_find_facesets_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_find_facesets_r_f");
+top.note("headers/pk_body_is_cellular_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_is_cellular_r_f");
+top.note("headers/pk_body_make_patterned_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_make_patterned_r_f");
+top.note("headers/pk_body_make_persp_outline_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_make_persp_outline_r_f");
+top.note("headers/pk_body_make_section_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_make_section_r_f");
+top.note("headers/pk_body_pick_topols_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_pick_topols_r_f");
+top.note("headers/pk_body_sweep_tool_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_sweep_tool_r_f");
+top.note("headers/pk_body_tracked_loft_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_tracked_loft_r_f");
+top.note("headers/pk_body_tracked_sweep_2_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_tracked_sweep_2_r_f");
+top.note("headers/pk_body_tracked_sweep_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_BODY_tracked_sweep_r_f");
+top.note("headers/pk_boolean_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_boolean_r_f");
+top.note("headers/pk_curve_degens_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_CURVE_degens_f");
+top.note("headers/pk_curve_find_vectors_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_CURVE_find_vectors_r_f");
+top.note("headers/pk_curve_fix_degens_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_CURVE_fix_degens_r_f");
+top.note("headers/pk_curve_fix_self_int_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_CURVE_fix_self_int_r_f");
+top.note("headers/pk_curve_project_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_CURVE_project_r_f");
+top.note("headers/pk_curve_self_ints_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_CURVE_self_ints_f");
+top.note("headers/pk_debug_body_compare_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_DEBUG_BODY_compare_r_f");
+top.note("headers/pk_debug_data_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_DEBUG_data_f");
+top.note("headers/pk_edge_find_deviation_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_EDGE_find_deviation_r_f");
+top.note("headers/pk_edge_offset_on_body_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_EDGE_offset_on_body_r_f");
+top.note("headers/pk_entity_find_reparam_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_ENTITY_find_reparam_r_f");
+top.note("headers/pk_entity_range_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_ENTITY_range_r_f");
+top.note("headers/pk_entity_range_vector_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_ENTITY_range_vector_r_f");
+top.note("headers/pk_entity_track_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_ENTITY_track_r_f");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_MEMORY_free</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_ask_type_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_ask_type_r_f");
+top.note("headers/pk_face_classify_details_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> function to", "PK Reference - PK_FACE_classify_details_r_f");
+top.note("headers/pk_face_find_blend_unders_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_find_blend_unders_r_f");
+top.note("headers/pk_face_fix_mesh_defects_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_fix_mesh_defects_r_f");
+top.note("headers/pk_face_identify_blends_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_identify_blends_r_f");
+top.note("headers/pk_face_inst_tools_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_inst_tools_r_f");
+top.note("headers/pk_face_make_3_face_blend_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_make_3_face_blend_r_f");
+top.note("headers/pk_face_make_sect_with_sfs_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_make_sect_with_sfs_r_f");
+top.note("headers/pk_face_pattern_2_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_pattern_2_r_f");
+top.note("headers/pk_face_pattern_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_pattern_r_f");
+top.note("headers/pk_face_reparameterise_surf_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FACE_reparameterise_surf_r_f");
+top.note("headers/pk_frame_ask_geometry_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FRAME_ask_geometry_r_f");
+top.note("headers/pk_frame_ask_owner_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FRAME_ask_owner_r_f");
+top.note("headers/pk_frame_reverse_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_FRAME_reverse_r_f");
+top.note("headers/pk_geom_copy_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_GEOM_copy_r_f");
+top.note("headers/pk_geom_enlarge_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_GEOM_enlarge_r_f");
+top.note("headers/pk_group_ask_controls_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_GROUP_ask_controls_r_f");
+top.note("headers/pk_identify_details_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_identify_details_r_f");
+top.note("headers/pk_identify_facesets_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_identify_facesets_r_f");
+top.note("headers/pk_identify_general_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_identify_general_r_f");
+top.note("headers/pk_imprint_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_imprint_r_f");
+top.note("headers/pk_lattice_ask_connectivity_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_ask_connectivity_r_f");
+top.note("headers/pk_lattice_ask_n_lballs_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_ask_n_lballs_r_f");
+top.note("headers/pk_lattice_ask_n_lrods_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_ask_n_lrods_r_f");
+top.note("headers/pk_lattice_ask_regions_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_ask_regions_r_f");
+top.note("headers/pk_lattice_clip_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_clip_r_f");
+top.note("headers/pk_lattice_combine_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_combine_r_f");
+top.note("headers/pk_lattice_create_by_graph_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_create_by_graph_r_f");
+top.note("headers/pk_lattice_disjoin_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_disjoin_r_f");
+top.note("headers/pk_lattice_find_box_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_find_box_r_f");
+top.note("headers/pk_lattice_find_nabox_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_find_nabox_r_f");
+top.note("headers/pk_lattice_make_bodies_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_make_bodies_r_f");
+top.note("headers/pk_lattice_make_patterned_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LATTICE_make_patterned_r_f");
+top.note("headers/pk_lball_ask_blend_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LBALL_ask_blend_r_f");
+top.note("headers/pk_lball_ask_lballs_adj_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LBALL_ask_lballs_adj_r_f");
+top.note("headers/pk_lball_ask_lrods_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LBALL_ask_lrods_r_f");
+top.note("headers/pk_lball_ask_position_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LBALL_ask_position_r_f");
+top.note("headers/pk_lball_ask_radius_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LBALL_ask_radius_r_f");
+top.note("headers/pk_lrod_ask_geometry_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LROD_ask_geometry_r_f");
+top.note("headers/pk_lrod_ask_lballs_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LROD_ask_lballs_r_f");
+top.note("headers/pk_ltopol_ask_box_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LTOPOL_ask_box_r_f");
+top.note("headers/pk_ltopol_ask_class_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LTOPOL_ask_class_r_f");
+top.note("headers/pk_ltopol_is_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_LTOPOL_is_r_f");
+top.note("headers/pk_memory_block_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_MEMORY_block_f");
+top.note("headers/pk_memory_free.html#declaration", " PK_ERROR_code_t <B>PK_MEMORY_free</B>", "PK Reference - PK_MEMORY_free");
+top.note("headers/pk_mesh_defect_array_f.html#documentation", "Internally, the function will use the <B>PK_MEMORY_free</B> function to free all the", "PK Reference - PK_MESH_defect_array_f");
+top.note("headers/pk_mesh_defect_details_f.html#documentation", "Internally, the function will use the <B>PK_MEMORY_free</B> function to free all the", "PK Reference - PK_MESH_defect_details_f");
+top.note("headers/pk_mesh_find_laminar_mfins_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> function", "PK Reference - PK_MESH_find_laminar_mfins_r_f");
+top.note("headers/pk_mesh_imprint_vectors_r_f.html#documentation", "Internally, the function will use the <B>PK_MEMORY_free</B> function to free all", "PK Reference - PK_MESH_imprint_vectors_r_f");
+top.note("headers/pk_mesh_is_loaded_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_MESH_is_loaded_r_f");
+top.note("headers/pk_mfacet_find_perimeters_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> function", "PK Reference - PK_MFACET_find_perimeters_r_f");
+top.note("headers/pk_mtopol_map_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_MTOPOL_map_r_f");
+top.note("headers/pk_partition_ask_pmarks_2_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_PARTITION_ask_pmarks_2_r_f");
+top.note("headers/pk_partition_ask_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_PARTITION_ask_r_f");
+top.note("headers/pk_partition_create_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_PARTITION_create_r_f");
+top.note("headers/pk_partition_goto_guard_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_PARTITION_goto_guard_r_f");
+top.note("headers/pk_partition_has_lattices_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_PARTITION_has_lattices_r_f");
+top.note("headers/pk_partition_set_guard_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_PARTITION_set_guard_r_f");
+top.note("headers/pk_region_ask_lattices_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_REGION_ask_lattices_r_f");
+top.note("headers/pk_region_ask_type_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_REGION_ask_type_r_f");
+top.note("headers/pk_region_embed_lattices_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_REGION_embed_lattices_r_f");
+top.note("headers/pk_region_remove_lattice_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_REGION_remove_lattice_r_f");
+top.note("headers/pk_section_2_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_section_2_r_f");
+top.note("headers/pk_section_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_section_r_f");
+top.note("headers/pk_session_start.html#documentation", " <B>PK_MEMORY_free</B> }", "PK Reference - PK_SESSION_start");
+top.note("headers/pk_surf_degens_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_SURF_degens_f");
+top.note("headers/pk_surf_find_vectors_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_SURF_find_vectors_r_f");
+top.note("headers/pk_surf_fix_self_int_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_SURF_fix_self_int_r_f");
+top.note("headers/pk_surf_self_ints_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_SURF_self_ints_f");
+top.note("headers/pk_thread_chain_start.html#documentation", " <B>PK_MEMORY_free</B> ", "PK Reference - PK_THREAD_chain_start");
+top.note("headers/pk_thread_lock_partitions_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_THREAD_lock_partitions_r_f");
+top.note("headers/pk_thread_set_id_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_THREAD_set_id_r_f");
+top.note("headers/pk_topol_facet_2_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TOPOL_facet_2_r_f");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#documentation", " PK_TOPOL_facet_2_r_f using the pointer provided, and then call <B>PK_MEMORY_free</B> ", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TOPOL_facet_r_f");
+top.note("headers/pk_topol_find_box_2_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TOPOL_find_box_2_r_f");
+top.note("headers/pk_topol_find_frames_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TOPOL_find_frames_r_f");
+top.note("headers/pk_topol_imprint_frames_r_f.html#documentation", "Internally, the function will use the <B>PK_MEMORY_free</B> function to free all the", "PK Reference - PK_TOPOL_imprint_frames_r_f");
+top.note("headers/pk_topol_render_volume_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TOPOL_render_volume_r_f");
+top.note("headers/pk_topol_track_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TOPOL_track_r_f");
+top.note("headers/pk_transf_classify_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TRANSF_classify_r_f");
+top.note("headers/pk_transf_enlarge_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TRANSF_enlarge_r_f");
+top.note("headers/pk_transf_transform_r_f.html#documentation", "structure. Internally, the function will use the <B>PK_MEMORY_free</B> ", "PK Reference - PK_TRANSF_transform_r_f");
+top.note("chapters/di_chap.10.html#50511942_pgfId-274046", " functions are called by the PK functions PK_MEMORY_alloc and <B>PK_MEMORY_free</B> . ", "Downward Interfaces - PK_MEMORY Functions");
+top.note("chapters/di_chap.10.html#50511942_pgfId-274062", " standard C run-time-library when the application calls PK_MEMORY_alloc or <B>PK_MEMORY_free</B> . ", "Downward Interfaces - PK_MEMORY Functions");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

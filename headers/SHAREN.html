@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<TITLE>SHAREN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SHAREN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_share_geom.html>PK_BODY_share_geom</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SHAREN ( body, nopts, opts, ngeom, ifail )
+==========================================
+
+  Shares underlying geometry of a body
+
+Receives:
+  KI_tag_body              *body           --- body on which to attempt sharing
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in opts
+  KI_cod_shop               opts[nopts]    --- sharing control options
+
+Returns:
+ &lt;KI_int_nitems&gt;           *ngeom          --- number of geometries removed
+  KI_cod_error             *ifail          --- failure code
+
+
+Description:
+  This function attempts to reduce the size of a part. It is primarily intended
+  for use on pre-V5 bodies.
+
+  With no options supplied, the function will search through all the surfaces
+  and curves in the body removing any duplicates it finds.
+
+  Duplicates are curves or surfaces of the same type that are spatially and
+  parametrically coincident. The function is designed only to spot where copies
+  have been made (either internally or by the user).
+
+  The option accepted is:
+
+  SHOPIC: only process intersection curves
+
+  The option SHOPIC limits the search to edge curves which are intersection
+  curves. In pre-V5 bodies a high proportion of the cases where sharing is
+  possible occur with these edge curves.
+
+
+</PRE>
+</BODY>
+</HTML>

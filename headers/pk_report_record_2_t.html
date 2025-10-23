@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_REPORT_record_2_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_REPORT_record_2_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_REPORT_record_2_s
+    {
+    <A HREF=../headers/pk_report_2_t.html>PK_REPORT_2_t</A>     status;            --- status code
+    int               n_old_item_arrays; --- number of original item arrays
+    <A HREF=../headers/pk_int_array_t.html>PK_int_array_t</A>   *old_item_arrays;   --- original item arrays
+    <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A> *old_class_arrays;  --- original class arrays
+    int               n_new_item_arrays; --- number of new item arrays
+    <A HREF=../headers/pk_item_array_t.html>PK_ITEM_array_t</A>  *new_item_arrays;   --- new item arrays
+    };
+typedef struct PK_REPORT_record_2_s PK_REPORT_record_2_t;
+</B>
+<A NAME="description"></A>
+<I>This datatype is a REPORT record containing a status, an array of arrays of
+old items, an array of arrays of old classes, and an array of arrays of new
+items.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_report_record_t.html>PK_REPORT_record_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+It has the fields:
+
+<B>'status'</B>            this indicates the status represented by the information
+                    in this record.  The items contained in this record depend
+                    upon the <B>'status'</B>.
+                    See documentation of <A HREF=../headers/pk_report_2_t.html>PK_REPORT_2_t</A>
+
+<B>'n_old_item_arrays'</B> the number of structs stored in <B>'old_item_arrays'</B> and
+                    <B>'old_class_arrays'</B>.
+
+<B>'old_item_arrays'</B>   an array of length <B>'n_old_item_arrays'</B> of <A HREF=../headers/pk_int_array_t.html>PK_int_array_t</A>
+                    structs.  Each struct contains items which existed before
+                    the operation for which the report was created
+
+<B>'old_class_arrays'</B>  an array of length <B>'n_old_item_arrays'</B> of <A HREF=../headers/pk_class_array_t.html>PK_CLASS_array_t</A>
+                    structs. Each struct of <B>'old_class_arrays'</B>
+                    has the same length as the corresponding struct of
+                    <B>'old_item_arrays'</B>
+
+<B>'n_new_item_arrays'</B> the number of structs stored in `new_item_arrays`.
+
+<B>'new_item_arrays'</B>   an array of length <B>'n_new_item_arrays'</B> of <A HREF=../headers/pk_item_array_t.html>PK_ITEM_array_t</A>
+                    structs. Each struct contains items which have been
+                    created during the operation for which the report was
+                    created
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

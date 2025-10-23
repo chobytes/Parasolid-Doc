@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.002.html#50409781_pgfId-297752", " Interface (KI) routines and their associated tokens, error <B>codes</B>, and special typedefs. This is the old interface", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.002.html#50409781_pgfId-297759", " Output (GO), and the functions, tokens and error <B>codes</B> associated with these downward interfaces. ", "Functional Description -  Introduction To Parasolid");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299591", " 2.3.4 Error <B>codes</B> returned from PK functions ", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-331932", " ease the handling of situations where non-zero error <B>codes</B> are returned, your application can register an error", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-299725", " Manual (Part 2 - Interface Structures, Tokens &amp; Error <B>Codes</B>): ", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.003.html#50409782_pgfId-298246", " both the PK and KI interfaces. PK error <B>codes</B> and KI ifails occasionally differ. ", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-305550", " 10.2.1.1 Error diagnostics and status return <B>codes</B> ", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-309188", " return diagnostic information in the form of status <B>codes</B>: see Section 10.2.2, Reports , for an introduction", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.013.html#50409793_pgfId-295179", " Values of PK error <B>codes</B> are members of the PK.ERROR.code_t enum: ", "Functional Description - Calling Parasolid From .NET Code");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-392942", " For more information, see Section 121.3, Failure status <B>codes</B> . ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.056.html#50409840_pgfId-299039", " Status <B>codes</B> indicating the nature of any failure. ", "Functional Description - Instancing And Patterning ");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-294840", " For more information, see Section 121.3, Failure status <B>codes</B> . ", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-307351", " <B>codes</B> in the PK_REPORT_2_t structure. See Chapter 11, Using", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.075.html#50409862_pgfId-310300", " along with information on common causes of error <B>codes</B> for edge blending and face blending. ", "Functional Description - Introduction To Blending");
+top.note("chapters/fd_chap.075.html#50409862_pgfId-309523", " Error <B>codes</B> describes the common causes of error <B>codes</B> for", "Functional Description - Introduction To Blending");
+top.note("chapters/fd_chap.075.html#50409862_pgfId-294763", " Error <B>codes</B> describes the common causes of error <B>codes</B> for", "Functional Description - Introduction To Blending");
+top.note("chapters/fd_chap.081.html#50409868_pgfId-294760", " apply blends in all circumstances. However, understanding these <B>codes</B> is the key to both correcting illegal blends", "Functional Description - Interpreting Edge Blending Error Codes");
+top.note("chapters/fd_chap.081.html#50409868_pgfId-294762", " The error <B>codes</B> can be split into three groups: ", "Functional Description - Interpreting Edge Blending Error Codes");
+top.note("chapters/fd_chap.082.html#50409869_pgfId-305573", " 81.2 Error <B>codes</B> ", "Functional Description - Interpreting Face-Face Blending Error Codes");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-696156", " For a list of the visibility <B>codes</B> that can be output by the GO, see", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-302442", " view supplied. PK_TOPOL_render_line returns lines and associated visibility <B>codes</B> that represent the type of line returned (e.g.,", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-302443", " line from your GO; Parasolid merely returns visibility <B>codes</B> and does not decide how the lines should", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-481583", " find a complete list of all the visibility <B>codes</B> that can be output by the GO in", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304389", " segment visibility or smoothness changes and the visibility <B>codes</B> for edges/silhouettes/hatch line between these points. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.121.html#50409914_pgfId-309454", " Parasolid, explains what error <B>codes</B> and failure status <B>codes</B> generated by Parasolid are and how to register", "Functional Description - Introduction To Error Handling");
+top.note("chapters/fd_chap.121.html#50409914_pgfId-310363", " Error Handling describes handling error and failure status <B>codes</B> ", "Functional Description - Introduction To Error Handling");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294724", " how to handle errors and other failure status <B>codes</B> returned by Parasolid functions. It is essential that", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294729", " A complete list of all Parasolid error <B>codes</B>, together with descriptions of each error code, and", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_marker-294739", " information is available from Appendix B, Kernel Interface Error <B>Codes</B> in this manual. ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-294877", " Warning: Certain error <B>codes</B> may denote a mild or a serious error,", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.122.html#50409915_pgfId-295413", " 121.3 Failure status <B>codes</B> ", "Functional Description - Error Handling ");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204026", " error <B>codes</B> in edge 1325, 1335 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204028", " error <B>codes</B> in face-face 1335 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204794", " <B>codes</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205579", " error <B>codes</B> in 1325, 1335 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205910", " error <B>codes</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206238", " error <B>codes</B> 1335 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206240", " error <B>codes</B> in 1335 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.17.html#50442275_pgfId-288451", " ease the handling of situations where non-zero error <B>codes</B> are returned, your application can register an error", "Overview of Parasolid - Writing Parasolid Applications");
+top.note("chapters/p2_chap.02.html#endofcontents", " [Token <B>codes</B> with descriptions] ", "PK Reference - PK Token Codes (Numeric)");
+top.note("chapters/p2_chap.02.html#sec_a_1", " A.1 Numerical List of PK Token <B>Codes</B> ", "PK Reference - PK Token Codes (Numeric)");
+top.note("chapters/p2_chap.02.html#sec_a_app", " This appendix lists all the token <B>codes</B> used by the PK Interface in", "PK Reference - PK Token Codes (Numeric)");
+top.note("chapters/p2_chap.02.html#sec_a_1_1", " A.1.1 token <B>Codes</B> 0-100755 ", "PK Reference - PK Token Codes (Numeric)");
+top.note("chapters/p2_chap.03.html#sec_b_1", " B.1 Numerical List of PK token <B>Codes</B> ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.03.html#sec_b_app", " This appendix lists all the token <B>codes</B> used by the PK Interface in", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " B.1.1 token <B>Codes</B> 0-100755 ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.04.html#sec_c_1", " C.1 Alphabetical List of PK token <B>Codes</B> ", "PK Reference - PK token Codes (Alphabetic)");
+top.note("chapters/p2_chap.05.html#endofcontents", " [token <B>codes</B> only (No descriptions)] ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.05.html#sec_d_1", " D.1 Alphabetical List of PK token <B>Codes</B> ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " This appendix lists all the token <B>codes</B> used by the PK Interface in", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.06.html#sec_e_1", " E.1 Numerical List of PK Error <B>Codes</B> ", "PK Reference - PK Error Codes (Numeric)");
+top.note("chapters/p2_chap.06.html#sec_e_app", " This appendix lists all the error <B>codes</B> used by the PK Interface in", "PK Reference - PK Error Codes (Numeric)");
+top.note("chapters/p2_chap.06.html#sec_e_1_1", " E.1.1 Error <B>Codes</B> 0-99 ", "PK Reference - PK Error Codes (Numeric)");
+top.note("chapters/p2_chap.06.html#sec_e_1_2", " E.1.2 Error <B>Codes</B> 100-999 ", "PK Reference - PK Error Codes (Numeric)");
+top.note("chapters/p2_chap.06.html#sec_e_1_3", " E.1.3 Error <B>Codes</B> 1000-4999 ", "PK Reference - PK Error Codes (Numeric)");
+top.note("chapters/p2_chap.06.html#sec_e_1_4", " E.1.4 Error <B>Codes</B> 5000-9999 ", "PK Reference - PK Error Codes (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1", " F.1 Numerical List of PK Error <B>Codes</B> ", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_app", " This appendix lists all the error <B>codes</B> used by the PK Interface in", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " F.1.1 Error <B>Codes</B> 0-99 ", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " F.1.2 Error <B>Codes</B> 100-999 ", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " F.1.3 Error <B>Codes</B> 1000-4999 ", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " F.1.4 Error <B>Codes</B> 5000-9999 ", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.08.html#sec_g_1", " G.1 Alphabetical List of PK Error <B>Codes</B> ", "PK Reference - PK Error Codes (Alphabetic)");
+top.note("chapters/p2_chap.08.html#sec_g_app", " This appendix lists all the error <B>codes</B> used by the PK Interface in", "PK Reference - PK Error Codes (Alphabetic)");
+top.note("chapters/p2_chap.08.html#sec_g_1_1", " G.1.1 Error <B>Codes</B> a-b ", "PK Reference - PK Error Codes (Alphabetic)");
+top.note("chapters/p2_chap.08.html#sec_g_1_2", " G.1.2 Error <B>Codes</B> c-f ", "PK Reference - PK Error Codes (Alphabetic)");
+top.note("chapters/p2_chap.08.html#sec_g_1_3", " G.1.3 Error <B>Codes</B> g-o ", "PK Reference - PK Error Codes (Alphabetic)");
+top.note("chapters/p2_chap.08.html#sec_g_1_4", " G.1.4 Error <B>Codes</B> p-z ", "PK Reference - PK Error Codes (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1", " H.1 Alphabetical List of PK Error <B>Codes</B> ", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_app", " This appendix lists all the error <B>codes</B> used by the PK Interface in", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " Error <B>Codes</B> a-b ", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " Error <B>Codes</B> c-f ", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " Error <B>Codes</B> g-o ", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " Error <B>Codes</B> p-z ", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1", " I.1 PK Error <B>Codes</B> in Function order", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_app", " This appendix lists all the error <B>codes</B> used by the PK Interface in", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " Error <B>Codes</B> A-B ", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " Error <B>Codes</B> C-F ", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " Error <B>Codes</B> G-P ", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " Error <B>Codes</B> Q-Z ", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_thicken_2.html#documentation", "The remaining `PK_local_status_... <B>codes</B> indicate some failure. The failure", "PK Reference - PK_BODY_thicken_2");
+top.note("headers/pk_edge_check_blends.html#documentation", "an entity as documented there. Some failure <B>codes</B> have no associated topology:", "PK Reference - PK_EDGE_check_blends");
+top.note("headers/pk_error_code_t.html#description", " This datatype contains the error <B>codes</B> that may be returned by a call to", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_error_code_t.html#documentation", "For a complete list of the error <B>codes</B> that may be returned from a PK", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_face_intersect_curve.html#documentation", " n_vectors . There are two <B>codes</B> for points of intersection when", "PK Reference - PK_FACE_intersect_curve");
+top.note("headers/pk_face_replace_surfs_2.html#documentation", "The remaining `PK_local_status_... <B>codes</B> indicate some failure. The failure", "PK Reference - PK_FACE_replace_surfs_2");
+top.note("headers/pk_ffskxt_f_t.html#documentation", "Return <B>codes</B>: FR_no_errors", "PK Reference - PK_FFSKXT_f_t");
+top.note("headers/pk_goopsg_f_t.html#documentation", " nlntp, lntp: type of geometry and other <B>codes</B>", "PK Reference - PK_GOOPSG_f_t");
+top.note("headers/pk_gosgmt_f_t.html#documentation", " nlntp, lntp: type of geometry and other <B>codes</B>", "PK Reference - PK_GOSGMT_f_t");
+top.note("headers/pk_ucoprd_f_t.html#documentation", "Return <B>codes</B>: FR_no_errors", "PK Reference - PK_UCOPRD_f_t");
+top.note("headers/pk_ucopwr_f_t.html#documentation", "Return <B>codes</B>: FR_no_errors", "PK Reference - PK_UCOPWR_f_t");
+top.note("chapters/di_chap.02.html#50511934_pgfId-281832", " which otherwise is the code FR_no_errors. The error <B>codes</B> are divided into three categories - ", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.02.html#50511934_pgfId-273982", " The range of prediction error <B>codes</B> which can be returned from a given function", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.02.html#50511934_pgfId-273986", " This category contains <B>codes</B> for unpredictable but plausible errors. ", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.02.html#50511934_pgfId-273989", " Exception <B>codes</B> are also added as end of line comments", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.02.html#50511934_pgfId-273996", " ifail should be set to one the mnemonic <B>codes</B> in the documentation which best describes the result.", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274051", " both defined as tokens in the Parasolid failure <B>codes</B> include file. All GO functions should return one", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_marker-274261", " are listed in Appendix I, Go Tokens and Error <B>Codes</B> , of this manual. The different types of", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274321", " or is part of a larger item. The <B>codes</B> returned may be any of the following: ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-285261", " Completeness <B>codes</B> are only calculated in a hidden line drawing,", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-323226", " These <B>codes</B> are only output for edge segments when the", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-284276", ", holds the visibility <B>codes</B> for the edge. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-324871", ", holds the smoothness <B>codes</B> for the edge. The smoothness property can change", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-285229", ", holds the viewport <B>codes</B> describing whether an edge is inside, outside, or", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-284975", ", holds the <B>codes</B> describing whether or not an edge lies on", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-284971", " array explaining visibility <B>codes</B>, smoothness <B>codes</B> and regional data ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-321695", " array explaining viewport <B>codes</B> and sharp mfin <B>codes</B> ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275201", " holds the visibility <B>codes</B> for the edge. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.14.html#50511946_pgfId-274044", " This appendix lists all the tokens and error <B>codes</B> used by the Frustrum functions. These values are", "Downward Interfaces - Frustrum Tokens and Error Codes");
+top.note("chapters/di_chap.14.html#50511946_pgfId-274303", " H.8 Foreign geometry operation <B>codes</B>", "Downward Interfaces - Frustrum Tokens and Error Codes");
+top.note("chapters/di_chap.14.html#50511946_pgfId-274354", " H.9 Foreign geometry evaluator <B>codes</B>", "Downward Interfaces - Frustrum Tokens and Error Codes");
+top.note("chapters/di_chap.14.html#50511946_pgfId-274381", " H.10 Rollmark operation <B>codes</B>", "Downward Interfaces - Frustrum Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274045", " This appendix lists all the tokens and error <B>codes</B> used by the Graphical Output functions. ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274061", " I.3 <B>Codes</B>", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274406", " I.6 Error <B>codes</B>", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-273992", " Error <B>codes</B> ", "KID Manual - LISP in KID");
+top.note("chapters/kd_chap.03.html#50475011_pgfId-273993", " The error <B>codes</B> in PARASOLID LISP are given in Appendix D,", "KID Manual - LISP in KID");
+top.note("chapters/fg_chap.03.html#50462724_pgfId-282817", " exactly. Therefore it is essential that the user <B>codes</B> these functions as efficiently as possible since any", "FG Manual - Implementing an FG System");
+top.note("chapters/in_chap.07.html#50520100_pgfId-324381", " #include <windows.h> // For STATUS_... <B>codes</B> ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-343102", " #include <signal.h> // For SIG... <B>codes</B> ", "Installation Notes - Environment");
+top.note("chapters/in_chap.07.html#50520100_pgfId-645420", " Exceptions, with their own names, and the hexadecimal <B>codes</B> from the Windows headers. ", "Installation Notes - Environment");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-6651887", " 1.16 New PK interface error <B>codes</B>", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

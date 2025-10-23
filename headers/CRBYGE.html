@@ -1,0 +1,98 @@
+<HTML>
+<HEAD>
+<TITLE>CRBYGE</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRBYGE</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_curve_make_wire_body.html>PK_CURVE_make_wire_body</A><BR>
+<A HREF=../headers/pk_surf_make_sheet_body.html>PK_SURF_make_sheet_body</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRBYGE ( geom, nopts, popts, pdata, by, ifail )
+===============================================
+
+  Creates a body from geometry
+
+Receives:
+  KI_tag_geometry          *geom           --- curve or surface
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options supplied
+  KI_cod_cbop               popts[nopts]   --- array of options
+ &lt;KI_tag_list&gt;              pdata[nopts]   --- array of option data
+
+Returns:
+  KI_tag_body              *by             --- wire or sheet body
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cant_extract_geom      failed to extract geometry
+  KI_bad_parameter          parametric limits not valid on this geometry
+                            
+  KI_non_manifold           resulting body would be non manifold
+  KI_bad_shared_dep         dependent of entity would be illegally shared
+  KI_unsuitable_entity      unsuitable entity
+  KI_is_attached            geometric entity is attached to topology
+  KI_invalid_geometry       geometry fails to pass checks
+  KI_bad_parametric_prop    inappropriate property
+  KI_bad_tag_in_list        invalid null tag
+
+Description:
+  This function creates a body corresponding to a geometric entity. The
+  geometric entity may be any curve or surface type with the exception of a
+  blending surface. If the geometric entity is a curve, a wire will be made; if
+  it is a surface then a sheet will be made. The wire or sheet may be closed. The
+  geometric entity must be capable of passing the checks imposed by CHCKEN.
+
+  The geometric entity must not be a dependent of another entity.
+
+  The options allow the user to supply parameter range information so that a
+  body may be made up from part of a geometric entity. If no options are
+  supplied then the entire parameter range/ranges is/are used. Note that for
+  infinite geometric entities, such as planes and lines, this will fail. Options
+  are not permitted if the geometric entity is a trimmed curve.
+
+  The property tokens are CBOPUR and CBOPVR, meaning the u and v parameter
+  ranges respectively.  For curves only CBOPUR may be used.  If either or both
+  are given then for each a list of two doubles must be supplied as data,
+  specifying the appropriate parameter range.  The lists should appear in the
+  same order as the corresponding tokens.
+
+  For each pair of parameter limits, the following rules apply:
+
+    (i)   The first element must be less than the second.
+
+    (ii)  Both elements must lie inside the parameter range, as given by
+          ENCUPA/ENSUPA, unless the corresponding parameter is periodic.
+          In that case the first must lie in the range, and the difference
+          between the two may not exceed the period. The resulting wire or
+          face will straddle the boundary of the parametrisation.
+
+  CRBYGE will seek to make the topology and geometry of the resulting body
+  conform to the 'special checks on geometry attached to topology' rules
+  specified in CHCKEN by splitting faces and edges into smaller pieces
+  so that they do pass these checks. These rules on attachability of geometry
+  are affected in the same way by the value of SLIPCO as outlined in the CHCKEN
+  documentation. Note that when a face or edge is split, its underlying
+  geometry is also explicitly split.
+
+  The self intersection check is only performed if SLIPSI (see SEINTP) is set to
+  a non zero value.
+
+</PRE>
+</BODY>
+</HTML>

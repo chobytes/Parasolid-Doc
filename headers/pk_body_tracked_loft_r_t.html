@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_tracked_loft_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_tracked_loft_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_tracked_loft_s
+    {
+    <A HREF=../headers/pk_body_loft_status_r_t.html>PK_BODY_loft_status_r_t</A>      status;
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>                    body;
+    <A HREF=../headers/pk_topol_track_r_t.html>PK_TOPOL_track_r_t</A>           tracking_info;
+    };
+
+typedef struct PK_BODY_tracked_loft_s PK_BODY_tracked_loft_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>The structure packages a single lofted result body along with its associated
+status, and tracking information.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_lofted_body.html>PK_BODY_make_lofted_body</A><br>
+    <A HREF=../headers/pk_body_tracked_loft_r_f.html>PK_BODY_tracked_loft_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The structure has the following fields :
+
+<B>'status'</B>            A structure holding a status token and location
+                    information on some problem arising during the attempt
+                    to loft the profiles.
+
+<B>'body'</B>              The lofted body produced by <A HREF=../headers/pk_body_make_lofted_body.html>PK_BODY_make_lofted_body</A>.
+                    It may not check or be valid in cases where the status
+                    indicates anything other than complete success.
+
+<B>'tracking_info'</B>     A collection of structures that hold associations between
+                    the topology presented to <A HREF=../headers/pk_body_make_lofted_body.html>PK_BODY_make_lofted_body</A> and
+                    those present in the body returned in the 'body' field.
+
+The function <A HREF=../headers/pk_body_tracked_loft_r_f.html>PK_BODY_tracked_loft_r_f</A> may be used to free associated memory.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

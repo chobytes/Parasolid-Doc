@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_make_3_face_blend_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_make_3_face_blend_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_make_3_face_blend_o_s
+    {
+    int                     o_t_version;   --- version number of options
+    double                  blend_tolerance;
+                                           --- tolerance for surface
+                                           --- construction (1.0e-05)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_propagation_tolerance;
+                                           --- whether a propagation tolerance
+                                           --- has been supplied
+                                           --- (PK_LOGICAL_true)
+    double                  propagation_tolerance;
+                                           --- angular tolerance in radians
+                                           --- for propagation (0.05)
+    <A HREF=../headers/pk_blend_propagate_t.html>PK_blend_propagate_t</A>    propagate;     --- whether to propagate
+                                           --- (<A HREF=../headers/pk_blend_propagate_t.html>PK_blend_propagate_yes_c</A>)
+    <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_t</A>  left_orientation;
+                                           --- blend direction from left wall
+                                           --- (<A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_unknown_c</A>)
+    <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_t</A>  right_orientation;
+                                           --- blend direction from right wall
+                                           --- (<A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_unknown_c</A>)
+    <A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_t</A>  centre_orientation;
+                                           --- blend direction from centre wall
+                                           --- (<A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_unknown_c</A>)
+    <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_t</A>         trim;          --- blend trimming option
+                                           --- (<A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_to_walls_c</A>)
+    <A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_t</A>        walls;         --- wall trimming option
+                                           --- (<A HREF=../headers/pk_blend_walls_t.html>PK_blend_walls_attach_c</A>)
+    <A HREF=../headers/pk_blend_repair_fa_x_t.html>PK_blend_repair_fa_X_t</A>  repair_fa_X;   --- whether to attempt to repair
+                                           --- self-intersecting faces
+                                           --- (<A HREF=../headers/pk_blend_repair_fa_x_t.html>PK_blend_repair_fa_X_no_c</A>)
+    <A HREF=../headers/pk_blend_xs_plane_t.html>PK_blend_xs_plane_t</A>     xsection;      --- cross section shape
+                                           --- (PK_blend_xs_disc_c)
+    <A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A>          partition;     --- a partition
+                                           --- (PK_PARTITION_null)
+    int                     n_limits;      --- number of limit entities (0)
+    const <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>      *limits;        --- entities limiting the blend
+                                           --- (NULL)
+    int                     n_caps;        --- number of caps (0)
+    const <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>      *caps;          --- entities for capping
+                                           --- blend (NULL)
+    const <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>     *reverse_cap;   --- whether cap orientation
+                                           --- should be reversed (NULL)
+    <A HREF=../headers/pk_blend_update_t.html>PK_blend_update_t</A>       update;        --- disable changes for updates
+                                           --- (<A HREF=../headers/pk_blend_update_t.html>PK_blend_update_default_c</A>)
+    <A HREF=../headers/pk_blend_check_fa_fa_t.html>PK_blend_check_fa_fa_t</A>  check_fa_fa;   --- check for face-face
+                                           --- inconsistencies
+                                           --- (<A HREF=../headers/pk_blend_check_fa_fa_t.html>PK_blend_check_fa_fa_yes_c</A>)
+    <A HREF=../headers/pk_blend_track_edges_t.html>PK_blend_track_edges_t</A>  track_edges;   --- whether to provide laminar
+                                           --- edge tracking when result is
+                                           --- a sheet body
+                                           --- (<A HREF=../headers/pk_blend_track_edges_t.html>PK_blend_track_edges_no_c</A>)
+    <A HREF=../headers/pk_blend_trim_extent_t.html>PK_blend_trim_extent_t</A>  trim_extent;   --- additional controls upon
+                                           --- the trim option regarding
+                                           --- the walls whose extents
+                                           --- should be considered
+                                           --- (<A HREF=../headers/pk_blend_trim_extent_t.html>PK_blend_trim_extent_all_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            have_help_point;
+                                           --- whether help point is provided
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>             help_point;    --- help point
+
+    };
+
+typedef struct PK_FACE_make_3_face_blend_o_s PK_FACE_make_3_face_blend_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains options for three face blending.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_3_face_blend.html>PK_FACE_make_3_face_blend</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The PK_FACE_make_3_face_blend_o_t contains the following options:
+
+
+ <B>'blend_tolerance'</B>            The tolerance used to build the blend surfaces.
+                              See <A HREF="../chapters/fd_chap.080.html#50409867_pgfId-295850">Tolerance</A> for more details.
+
+ <B>'have_propagation_tolerance'</B> Whether a <B>'propagation_tolerance'</B> has been
+                              provided.  If this is PK_LOGICAL_false, then
+                              the <B>'propagation_tolerance'</B> option will be
+                              ignored and the blend will only propagate
+                              past smooth edges.
+                              The default is PK_LOGICAL_true.
+
+ <B>'propagation_tolerance'</B>      The angular tolerance in radians used to
+                              propagate past sharp edges.
+
+ <B>'propagate'</B>                  If this is set to <B>'<A HREF=../headers/pk_blend_propagate_t.html>PK_blend_propagate_yes_c</A>'</B>
+                              the blends will be allowed to propagate past
+                              edges to faces beyond the provided walls.
+                              See <A HREF="../chapters/fd_chap.080.html#50409867_pgfId-295861">Propagating blends</A> for more
+                              details.
+
+ <B>'left_orientation'</B>           Determines on which side of <B>'left_wall_faces'</B>
+                              the blend lies.
+
+ <B>'right_orientation'</B>          Determines on which side of <B>'right_wall_faces'</B>
+                              the blend lies.
+
+ <B>'centre_orientation'</B>         Determines on which side of <B>'centre_wall_faces'</B>
+                              the blend lies.
+                              See <A HREF="../chapters/fd_chap.080.html#50409867_pgfId-295696">Blend orientation</A> for more details.
+
+ <B>'trim'</B>                       Indicates how the blend is to be trimmed.
+                              See documentation of <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_t</A>.
+                              The default is <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_to_walls_c</A>.
+
+ <B>'walls'</B>                      Determines if and how the blend sheets are
+                              attached to the defining walls.
+
+ <B>'repair_fa_X'</B>                This option controls whether or not Parasolid
+                              will attempt to repair blend faces that are
+                              self-intersecting.
+
+ <B>'xsection'</B>                   The cross section plane; it may be one of:
+                                PK_blend_xs_disc_c (default) or
+                                PK_blend_xs_rolling_ball_c.
+                              (PK_blend_xs_isoparameter_c is not allowed.)
+                              If this option is PK_blend_xs_rolling_ball_c
+                              then the <B>'have_propagation_tolerance'</B> option
+                              must be set to PK_LOGICAL_false.
+                              See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-698592">Defining the cross-section plane</A>
+                              for more details.
+
+
+
+ <B>'partition'</B>                  An optional user-supplied partition. If a
+                              partition is supplied and the blend options
+                              specify the blend result is to be returned as
+                              sheets, rather than attached to the left-hand
+                              body being blended, then those resultant
+                              sheets will be placed within this
+                              user-supplied partition.
+                              Default behaviour assumes no
+                              partition supplied ( PK_PARTITION_null )
+                              and any resultant sheets are placed in the
+                              partition associated with the left-hand body
+                              being blended.
+
+ <B>'n_limits'</B>                   The number of limiting entities.
+
+ <B>'limits'</B>                     A list of entities which will be used to stop the
+                              blend. These entities can be planes, faces or
+                              fins. One or two planes may be specified.
+                              If the blend encounters a plane from this list,
+                              the blend will be trimmed to end in a constant
+                              parameter line determined by that plane, and will
+                              lie on the positive side of the plane. If the
+                              plane intersects the blend in more than one
+                              location, the blend will be trimmed in only one
+                              location, the one that is closest to the plane's
+                              location vector (i.e. `basis_set.location' in
+                              <A HREF=../headers/pk_plane_sf_t.html>PK_PLANE_sf_t</A>).
+                              If the blend encounters a face or fin from
+                              this list, it will stop and be trimmed to end
+                              in a constant parameter line at that point.
+
+ <B>'n_caps'</B>                     The number of capping entities.
+
+ <B>'caps'</B>                       A list of entities which will be used to stop
+                              and cap the blend.
+                              Currently, Parasolid will handle entities of
+                              class PK_CLASS_face and PK_CLASS_plane.
+                              If the entity is a <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>, then it must
+                              belong to one of the bodies to which the walls
+                              belong.
+
+ <B>'reverse_cap'</B>                A list of flags which specify which side of each
+                              cap will be the exterior of the cap. if
+                              `reverse_cap[j]' is PK_LOGICAL_false, then the
+                              algorithm will trim away the portion of the blend
+                              on the side of `cap[j]' towards which the cap's
+                              normal points.
+
+ <B>'update'</B>                     This option allows the disabling of some changes
+                              to the blending algorithms for rebuild purposes.
+
+ <B>'check_fa_fa'</B>                Controls the amount of checking for face-face
+                              inconsistencies that is required. By default
+                              this is set to <A HREF=../headers/pk_blend_check_fa_fa_t.html>PK_blend_check_fa_fa_yes_c</A>,
+                              activating all of the face-face inconsistency
+                              checks. Setting this field to
+                              <A HREF=../headers/pk_blend_check_fa_fa_t.html>PK_blend_check_fa_fa_no_c</A> will disable all
+                              face-face inconsistency checks.
+
+
+
+ <B>'track_edges'</B>                Whether to provide additional tracking
+                              information associated with laminar edges when
+                              the blend result is a sheet body.
+                              The default provides no tracking associated with
+                              the laminar edges ( <A HREF=../headers/pk_blend_track_edges_t.html>PK_blend_track_edges_no_c</A> ).
+                              Setting this option to
+                              <A HREF=../headers/pk_blend_track_edges_t.html>PK_blend_track_edges_laminar_c</A> will request
+                              additional tracking information. This additional
+                              information will be returned within the
+                              returned tracking structure and will usually
+                              describe the underlying coincident edge
+                              and/or face upon the original body.
+
+ <B>'trim_extent'</B>                Whether to apply additional controls upon
+                              trimming operations. The default is to
+                              apply no additional controls upon trimming
+                              operations and to consider the extent of all
+                              three walls ( <A HREF=../headers/pk_blend_trim_extent_t.html>PK_blend_trim_extent_all_c</A> ).
+
+                              If the <B>'trim'</B> option is set to
+                              <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_no_c</A>, <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_short_c</A>
+                              or <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_long_c</A> this field can be set
+                              to <A HREF=../headers/pk_blend_trim_extent_t.html>PK_blend_trim_extent_sides_c</A>. Additionally
+                              if the <B>'trim'</B> option is set to
+                              <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_to_walls_c</A> and the central wall
+                              lies in a different body to the bodies of the
+                              left and the right wall this field can be
+                              set to <A HREF=../headers/pk_blend_trim_extent_t.html>PK_blend_trim_extent_sides_c</A>.
+
+                              Setting this field to
+                              <A HREF=../headers/pk_blend_trim_extent_t.html>PK_blend_trim_extent_sides_c</A> will cause the
+                              extent of the centre wall to be ignored when
+                              performing trim operations and only the
+                              extents of the left and right walls to be
+                              considered.
+
+                              When the body of the central wall is different
+                              to those of the side walls and the user has
+                              set <B>'trim'</B> to <A HREF=../headers/pk_blend_trim_t.html>PK_blend_trim_to_walls_c</A>, the
+                              <B>'trim_extent'</B> field value will be ignored and
+                              the result returned will be as if <B>'trim_extent'</B>
+                              is set to <A HREF=../headers/pk_blend_trim_extent_t.html>PK_blend_trim_extent_sides_c</A>.
+
+ <B>'have_help_point'</B>            Whether a help point is provided.
+
+ <B>'help_point'</B>                 Help point provided.
+                              A vector, which will be used to differentiate
+                              between multiple alternative possible blends
+                              between the walls. The blend which passes closest
+                              to the help point will be the one that is
+                              created.
+
+None of the orientation options may be supplied as
+<B>'<A HREF=../headers/pk_blend_orientation_t.html>PK_blend_orientation_unknown_c</A>'</B> unless all the walls of faces lie in
+the same body.  If this is not the case, the blend will fail and the
+<B>'status'</B> field of the <A HREF=../headers/pk_face_make_3_face_blend_r_t.html>PK_FACE_make_3_face_blend_r_t</A> structure will be
+returned as <B>'<A HREF=../headers/pk_3_face_blend_t.html>PK_3_face_blend_unoriented_c</A>'</B>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

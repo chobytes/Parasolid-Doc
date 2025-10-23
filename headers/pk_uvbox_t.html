@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_UVBOX_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_UVBOX_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_UVBOX_s
+    {
+    double param[4];
+    };
+typedef struct PK_UVBOX_s PK_UVBOX_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure represents a rectangular region of a surface's parameter space.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_uvbox              not a valid region of a surface's parameter
+                                    space.
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_find_uvbox.html>PK_FACE_find_uvbox</A><br>
+    <A HREF=../headers/pk_face_intersect_face_o_t.html>PK_FACE_intersect_face_o_t</A><br>
+    <A HREF=../headers/pk_face_intersect_surf_o_t.html>PK_FACE_intersect_surf_o_t</A><br>
+    <A HREF=../headers/pk_face_is_uvbox.html>PK_FACE_is_uvbox</A><br>
+    <A HREF=../headers/pk_fin_find_uvbox.html>PK_FIN_find_uvbox</A><br>
+    <A HREF=../headers/pk_range_param_bound_t.html>PK_range_param_bound_t</A><br>
+    <A HREF=../headers/pk_surf_ask_uvbox.html>PK_SURF_ask_uvbox</A><br>
+    <A HREF=../headers/pk_surf_degen_t.html>PK_SURF_degen_t</A><br>
+    <A HREF=../headers/pk_surf_extend_o_t.html>PK_SURF_extend_o_t</A><br>
+    <A HREF=../headers/pk_surf_find_box_o_t.html>PK_SURF_find_box_o_t</A><br>
+    <A HREF=../headers/pk_surf_find_discontinuity_o_t.html>PK_SURF_find_discontinuity_o_t</A><br>
+    <A HREF=../headers/pk_surf_find_min_radii.html>PK_SURF_find_min_radii</A><br>
+    <A HREF=../headers/pk_surf_find_non_aligned_box.html>PK_SURF_find_non_aligned_box</A><br>
+    <A HREF=../headers/pk_surf_intersect_surf_o_t.html>PK_SURF_intersect_surf_o_t</A><br>
+    <A HREF=../headers/pk_surf_make_bsurf.html>PK_SURF_make_bsurf</A><br>
+    <A HREF=../headers/pk_surf_make_bsurf_2.html>PK_SURF_make_bsurf_2</A><br>
+    <A HREF=../headers/pk_surf_make_bsurf_array.html>PK_SURF_make_bsurf_array</A><br>
+    <A HREF=../headers/pk_surf_make_curves_isocline.html>PK_SURF_make_curves_isocline</A><br>
+    <A HREF=../headers/pk_surf_make_cus_isocline.html>PK_SURF_make_cus_isocline</A><br>
+    <A HREF=../headers/pk_surf_make_sheet_body.html>PK_SURF_make_sheet_body</A><br>
+    <A HREF=../headers/pk_surf_self_int_t.html>PK_SURF_self_int_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The doubles in a PK_UVBOX_t are in the following order:
+
+    param[0] low  U value
+    param[1] low  V value
+    param[2] high U value
+    param[3] high V value
+
+`param[0]' must be less than or equal to `param[2]'.
+If these two values are equal, the uvbox has a zero extent in the U direction.
+`param[1]' must be less than or equal to `param[3]'.
+If these two values are equal, the uvbox has a zero extent in the V direction.
+
+The low U and V values both lie inside the surface's parameter range as given
+by <A HREF=../headers/pk_surf_ask_uvbox.html>PK_SURF_ask_uvbox</A>. For a non-periodic parameter, the high value also lies in
+that range.  For a periodic parameter, the high value will lie in the period
+above the low value if the required uvbox crosses the seam.
+
+The only exception to the above occurs when a face lies partly on the extension
+of its surface, in which case the uvbox returned by <A HREF=../headers/pk_face_find_uvbox.html>PK_FACE_find_uvbox</A> will
+contain parameters outside the base range of the surface.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+<TITLE>OUFGCU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUFGCU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_fcurve_ask.html>PK_FCURVE_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUFGCU ( curve, arrlen, key, keylen, ivals, rvals, sense, tf, ifail )
+=====================================================================
+
+  Outputs a Foreign Geometry (FG) curve.
+
+Receives:
+  KI_tag_curve             *curve          --- Foreign curve.
+  KI_int_nchars            *arrlen         --- Length of input key array.
+
+Returns:
+  KI_chr_key                key[arrlen]    --- Curve key.
+  KI_int_nchars            *keylen         --- Length of curve key.
+ &lt;KI_tag_list_int&gt;         *ivals          --- List of integer values.
+ &lt;KI_tag_list_dbl&gt;         *rvals          --- List of real values.
+  KI_cod_logical           *sense          --- Curve sense.
+ &lt;KI_tag_transform&gt;        *tf             --- Curve transformation.
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_unsuitable_entity      Not a foreign geometry curve.
+
+Description:
+  This function, given a tag, outputs the data of a foreign curve.
+
+     'curve'      The tag of a valid foreign curve.
+
+     'arrlen'  The length of the key array being passed to this KI function.
+
+     'key'     The array of characters into which the key of the curve is
+               copied. (If the array is not long enough to store the key, then
+               the key is truncated.)
+
+     'keylen'  The true length of the curve's key.
+
+     'ivals'   Integer values supplied to the foreign curve evaluator.
+
+     'rvals'   Real values supplied to the foreign curve evaluator.
+
+     'sense'   The curve's sense.
+
+     'tf'      The tag of the curve's transformation.
+
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_spline_cu_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_spline_cu_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_spline_cu_s
+    {
+    <A HREF=../headers/pk_bcurve_t.html>PK_BCURVE_t</A>             bcurve;         --- the resultant B-curve
+    <A HREF=../headers/pk_bcurve_spline_stat_t.html>PK_BCURVE_spline_stat_t</A> status;         --- the status of this B-curve
+    double                  distance_error; --- the maximum distance error
+    double                  distance_t;     --- the parameter at which the
+                                            --- maximum distance error occurs
+    double                  chordal_error;  --- the maximum deviation from the
+                                            --- chords between consecutive
+                                            --- input <B>'positions'</B>
+    double                  chordal_t;      --- the parameter at which the
+                                            --- maximum chordal error occurs
+    double                  angular_error;  --- unused
+    double                  angular_t;      --- unused
+    };
+
+typedef struct PK_BCURVE_spline_cu_s PK_BCURVE_spline_cu_t;
+
+</B>
+<A NAME="description"></A>
+<I>A structure packaging a resultant B-curve.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_spline_r_t.html>PK_BCURVE_spline_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The structure has the following fields :
+
+<B>'bcurve'</B>            The resultant B-curve.
+
+<B>'status'</B>            The status of this B-curve.
+
+<B>'distance_error'</B>    The maximum distance error for the B-curve fit of the
+                    input <B>'positions'</B>.
+
+<B>'distance_t'</B>        The parameter on the B-curve at which the maximum distance
+                    error occurs. If the <B>'distance_error'</B> is zero, then this
+                    value is not meaningful and will be set to zero.
+
+<B>'chordal_error'</B>     The maximum deviation of the B-curve from the chords
+                    between consecutive input <B>'positions'</B>.
+
+<B>'chordal_t'</B>         The parameter on the B-curve at which the maximum chordal
+                    deviation occurs. If the <B>'chordal_error'</B> is zero, then this
+                    value is not meaningful and will be set to zero.
+
+<B>'angular_error'</B>     Unused.
+
+<B>'angular_t'</B>         Unused.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

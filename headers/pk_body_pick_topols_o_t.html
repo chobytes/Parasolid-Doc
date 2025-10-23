@@ -1,0 +1,420 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_pick_topols_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_pick_topols_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_pick_topols_o_s
+    {
+--- option structure version number
+    int                   o_t_version;      --- version number
+
+--- maximum of each type of topological entity to be picked (zero implies none)
+    int                   max_faces;        --- max number of faces required
+                                            --- (1)
+    int                   max_edges;        --- max number of edges required
+                                            --- (0)
+    int                   max_vertices;     --- max number of vertices required
+                                            --- (0)
+    int                   max_frames;       --- max number of frames required
+                                            --- (0)
+
+--- near/far culling
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          near_plane;       --- whether set
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          far_plane;        --- whether set
+                                            --- (PK_LOGICAL_false)
+
+--- tolerances for the approximation of curves by a sequence of straight lines
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          is_curve_chord_tol;
+                                            --- whether curve_chord_tol is set
+                                            --- (PK_LOGICAL_false)
+    double                curve_chord_tol;  --- tolerance between curve/chord
+                                            --- (0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          is_curve_chord_max;
+                                            --- whether curve_chord_max is set
+                                            --- (PK_LOGICAL_false)
+    double                curve_chord_max;  --- maximum length of a chord
+                                            --- (0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          is_curve_chord_ang;
+                                            --- whether curve_chord_ang is set
+                                            --- (PK_LOGICAL_false)
+    double                curve_chord_ang;  --- max ang between adjacent chords
+                                            --- (0.0)
+--- whether to ignore back facing faces (required if max_faces &gt; 0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          ignore_back_faces;
+                                            --- face picking optimisation
+                                            --- (PK_LOGICAL_true)
+
+--- whether excess entities are tested against the pick criteria
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          ignore_excess_entities;
+                                            --- face picking optimisation
+                                            --- (PK_LOGICAL_false)
+
+--- max distance from edge to ray (required if max_edges &gt; 0)
+    double                max_edge_dist;    --- max distance between ray/edges
+                                            --- (0.0)
+
+--- max distance from vertex to ray (required if max_vertices &gt; 0)
+    double                max_vertex_dist;  --- max dist between ray/vertices
+                                            --- (0.0)
+
+--- points on near/far planes (required if using near_plane/far_plane options)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>           near_point;       --- point on near_plane
+                                            --- (0.0, 0.0, 0.0)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>           far_point;        --- point on far_plane
+                                            --- (0.0, 0.0, 0.0)
+
+--- ordering method
+    <A HREF=../headers/pk_body_pick_method_t.html>PK_BODY_pick_method_t</A> method;           --- method of measuring pick dist
+                                            --- (PK_BODY_pick_axial_c)
+
+--- ratio of radial:axial distance (required if method = PK_BODY_pick_ratio_c)
+    double                ratio;            --- bias when measuring pick dist
+                                            --- (0.0)
+
+    int                   n_geom_classes;   --- specify the number of
+                                            --- geometry classes
+                                            --- (0)
+
+    <A HREF=../headers/pk_class_t.html>PK_CLASS_t</A>           *geom_classes;     --- specify the geometry classes
+                                            --- that can be picked
+                                            --- (NULL)
+
+    <A HREF=../headers/pk_pick_approximate_t.html>PK_pick_approximate_t</A> pick_approx;      --- approximate curves
+                                            --- or use accurate geometry
+                                            --- (<A HREF=../headers/pk_pick_approximate_t.html>PK_pick_approximate_yes_c</A>)
+
+    int                   n_topols_to_pick_from;
+                                            --- specify the number of topols
+                                            --- to limit picking to
+                                            --- (0)
+
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>           *topols_to_pick_from;
+                                            --- specify which topols to
+                                            --- limit picking to
+                                            --- (NULL)
+
+    int                  *topol_indices;    --- specify which body instance
+                                            --- each topol is associated with
+                                            --- (NULL)
+
+    int                   n_bodies_with_scales;
+                                            --- the number of bodies to
+                                            --- which scales are applied (0)
+
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>            *bodies_with_scales;
+                                            --- array of bodies to which a
+                                            --- scale is applied (NULL)
+
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>    *scale_factors;    --- the scale factor applied to the
+                                            --- corresponding body in
+                                            --- <B>'bodies_with_scales'</B> (NULL)
+
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>     ray_scale_factor; --- the scale factor applied to the
+                                            --- picking ray
+                                            --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    };
+typedef struct PK_BODY_pick_topols_o_s PK_BODY_pick_topols_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Controls picking of topological entities
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_pick_topols.html>PK_BODY_pick_topols</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The PK_BODY_pick_topols_o_t structure provides the following controls :
+
+  - the maximum number of each type of entity which can be picked
+  - the maximum separation allowed between the ray and candidate edges/vertices
+  - whether picking is performed using a bounded or an unbounded ray
+  - which chordal tolerances are used to approximate edge curves by polylines
+  - how distance is measured from candidate entities to the picking ray
+  - the option to specify which geometry classes can be picked
+  - options for optimising picking
+  - the option to specify scale factors for bodies and the picking ray
+
+
+overview
+The <B>'max_faces'</B>, <B>'max_edges'</B>, <B>'max_vertices'</B> and <B>'max_frames'</B> options control
+which types of entity can be picked and the maximum number of each type of
+entity which can be returned.
+
+Entities can be picked separately or together by setting one or more of
+the <B>'max_faces'</B>, <B>'max_edges'</B>, <B>'max_vertices'</B>, and <B>'max_frames'</B> arguments to
+non-zero values. The default is set by the PK_BODY_pick_topols_o_m macro with
+<B>'max_faces'</B>=1 and the remaining values set to zero (i.e. set to pick the
+closest face).
+
+max_faces
+If <B>'max_faces'</B> &gt; 0, this specifies the maximum number of faces which can
+be picked. To be considered for picking, the intersection point between
+a candidate face and the ray must lie within (or on) the face boundary.
+
+If a face is intersected by the ray more than once, each intersection is
+processed separately. Face picking is subject to the <B>'ignore_back_faces'</B>
+option.
+
+
+max_edges
+If <B>'max_edges'</B> &gt; 0, this specifies the maximum number of edges which can be
+picked. To be picked, the minimum distance between an edge and the ray must
+be less than or equal to <B>'max_edge_dist'</B> (this value must be specified).
+
+The function calculates the minimum distance between the edge and the ray
+(the 'radial distance') and records the position on the ray (the 'hit point')
+at which this measurement was made.
+
+If other points on the edge lie at the same distance from the ray, only
+the first case is noted (an edge occurrence can only be picked once).
+
+
+max_vertices
+If <B>'max_vertices'</B> &gt; 0, this specifies the maximum number of vertices which can
+be picked. To be picked, the minimum distance between a candidate vertex and
+the ray must be less than or equal to <B>'max_vertex_dist'</B> (this value must be
+specified).
+
+The function calculates the minimum distance between the vertex and the ray
+(the 'radial distance') and records the position on the ray (the 'hit point')
+at which this measurement was made.
+
+
+max_frames
+If <B>'max_frames'</B> &gt; 0, this specifies the maximum number of frames which can be
+picked. To be picked, the ray must intersect the owning region of a candidate
+frame.
+
+If a frame's owning region is intersected by the ray more than once, each
+intersection is processed separately.
+
+
+ignore_back_faces
+The <B>'ignore_back_faces'</B> setting is a performance option which is used when
+picking faces (<B>'max_faces'</B> &gt; 0). It enables Parasolid to optimise its search
+by ignoring back-facing faces of solid bodies. Parasolid will only ignore
+faces which are wholly facing backwards and it will not necessarily detect
+all of such cases. This option has no effect when picking faces from sheet
+bodies.
+
+The PK_BODY_pick_topols_o_m macro sets the <B>'ignore_back_faces'</B> option to
+PK_LOGICAL_true. This setting is appropriate when picking the 'closest'
+face (i.e. with <B>'max_faces'</B> = 1 )
+
+If an application wishes to find all faces which are intersected by a ray
+(i.e. <B>'max_faces'</B> &gt; 1) and requires both forward and backward facing faces,
+the value of <B>'ignore_back_faces'</B> must be set to PK_LOGICAL_false.
+
+
+ignore_excess_entities
+<B>'ignore_excess_entities'</B> specifies whether or not to set the <B>'e_faces'</B>,
+<B>'e_edges'</B> and <B>'e_vertices'</B> counts in the return structure. This is a
+performance option to be used when picking faces (<B>'max_faces'</B> &gt; 0). When the
+value of <B>'ignore_excess_entities'</B> is set to PK_LOGICAL_true, all 'e_&lt;entity&gt;'
+counts are set to zero and Parasolid will stop searching for further face ray
+intersections when the number of picked faces is equal to <B>'max_faces'</B>. This
+option does not affect what entities are picked.
+
+
+near and far planes
+By default, the picking ray is defined as an unbounded line passing
+through a point in a given direction. This can be constrained using
+near/far planes (orthogonal to the ray) to define half-space regions.
+
+If a <B>'near_plane'</B> is defined, only those entities lying behind the
+plane can be picked. If an entity intersects the near plane, it
+can only be picked if its 'hit point' lies behind the near plane.
+
+If a <B>'far_plane'</B> is defined, only those entities lying in front of the
+plane can be picked. If an entity intersects the far plane, it can
+only be picked if its 'hit point' lies in front of the far plane.
+
+Applications should avoid defining near/far planes which intersect face
+and edge occurrences as this may yield (apparently) inconsistent results,
+where some of the edges and faces which intersect the near/far planes
+cannot be picked.
+
+
+curve tolerance and approximation
+The pick tolerance values control the approximation a curve by a sequence
+of straight line chords. This polyline representation of a curve is used
+when measuring distances to edges and checking whether the ray intersects
+a face. When <B>'pick_approx'</B> option is set to <A HREF=../headers/pk_pick_approximate_t.html>PK_pick_approximate_no_c</A> the
+accurate geometry instead of polyline representation is used. This method
+is slower. The default value of <B>'pick_approx'</B> is <A HREF=../headers/pk_pick_approximate_t.html>PK_pick_approximate_yes_c</A>
+and it is recommended for all interactive picking operations.
+
+The tolerance values are defined by pair of <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> and double values.
+The logical denotes whether the associated double defines a tolerance value.
+
+If picking is being performed interactively, using rendered data which has
+been generated by Parasolid, the curve tolerance arguments should be set to
+the same values as used when the PK rendering functions were called. This
+will allow Parasolid to pick entities using the same approximate polyline
+form of curves as was used to construct the drawing. <A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A> and
+<A HREF=../headers/pk_geom_render.html>PK_GEOM_render</A> return the tolerance values used in a report of type
+<A HREF=../headers/pk_report_3_t.html>PK_REPORT_3_render_curve_tols_c</A>.
+
+In other cases, the curve tolerance arguments can be left as default values.
+
+
+method
+The <B>'method'</B> argument determines how the returned entities are ordered. The
+following concepts are used in the description:
+
+ - hit point
+     The closest point on the ray to an entity.
+
+ - radial distance
+     The distance between the entity and hit point i.e. the minimum distance
+     between the entity and the ray. Faces are only picked if they are
+     intersected by the ray hence the radial distance is always zero for faces.
+
+ - axial order
+     Hit points ordered along the ray in the ray direction.
+
+ - axial distance
+     The distance along the ray between a reference point on the ray and the
+     hit point. Which reference point is used is dependent on the <B>'method'</B>
+     argument.
+
+The possible settings for the <B>'method'</B> argument are:
+
+ - PK_BODY_pick_radial_c
+     edges/vertices are ordered by increasing radial distance. Face
+     intersections are not affected by this setting and will be returned using
+     the PK_BODY_pick_axial_c method.
+
+ - PK_BODY_pick_axial_c
+     all entities are returned in axial order.
+
+ - PK_BODY_pick_ratio_c
+     edges/vertices are ordered by "pick_dist" (using a combination
+          of the PK_BODY_pick_radial_c and PK_BODY_pick_axial_c methods)
+
+     The value of <B>'ratio'</B> is used to vary the relative weightings given to
+     the radial and axial methods (its value must be positive or zero):
+
+      if <B>'ratio'</B> &gt; 1.0 : pick_dist = radial_dist + rel_dist/<B>'ratio'</B>
+      if <B>'ratio'</B> = 1.0 : pick_dist = radial_dist + rel_dist
+      if <B>'ratio'</B> &lt; 1.0 : pick_dist = radial_dist* <B>'ratio'</B> + rel_dist
+
+     'radial_dist' is an entities' radial distance.
+     The 'rel_dist' values for a set of entities E1, E2, E3 ...
+     are found by ordering the associated hit points P1, P2, P3 ...
+     in axial order. The 'front-most' point Pf is selected and the
+     'rel_dist' for each entity Ei is then the axial distance between
+     Pf and the hit point Pi.
+
+      If <B>'ratio'</B> is large, the effect is the same as using
+      PK_BODY_pick_radial_c
+      If <B>'ratio'</B> is zero , the effect is the same as using PK_BODY_pick_axial_c
+
+      Face intersections are not affected by this setting and will be returned
+      using the PK_BODY_pick_axial_c method.
+
+ - PK_BODY_pick_axial_location_c
+     all entities are ordered by increasing absolute axial distance in either
+     direction from the location point defining the ray.
+
+The PK_BODY_pick_topols_o_m macro initialises <B>'method'</B> to PK_BODY_pick_axial_c.
+
+The PK_BODY_pick_radial_c <B>'method'</B> is appropriate when firing a ray through a
+'wire frame' representation of a body, where the radial distance to candidate
+edges & vertices is more important than the axial order of hit points.
+
+geometry classes
+The option <B>'geom_classes'</B> allows the user to specify the classes of geometry
+attached to topology that may be picked. The class types are passed in as an
+array. At present only the surface classes for faces can be specified.
+
+
+topologies to pick from 
+Rather than picking from all topologies of the supplied body instances it is
+possible to limit the picking to a subset of these topologies. In order
+to specify which topologies to pick from for each body instance the following
+options must be set:
+
+  <B>'n_topols_to_pick_from'</B> : The number of topologies to pick from
+  <B>'topols_to_pick_from'</B>   : An array containing the topologies to pick from
+  <B>'topol_indices'</B>         : If <B>'body_transfs'</B> is NULL then this should be
+                            NULL
+                            Otherwise this is a parallel array containing the
+                            indices to the <B>'body_transfs'</B> array to indicate
+                            which instance of the body the topology belongs to
+
+If <B>'body_transfs'</B> is NULL then each topology in <B>'topols_to_pick_from'</B> must
+belong to a body in the supplied <B>'bodies'</B>.
+If <B>'body_transfs'</B> is not NULL then each topology in <B>'topols_to_pick_from'</B> must
+correspond to a topology of its associated body instance, defined by the ith
+element of <B>'bodies'</B> and <B>'body_transfs'</B> where i is the index stored in
+<B>'topol_indices'</B>.
+
+Currently only faces and bodies can be specified in <B>'topols_to_pick_from'</B>.
+
+scales
+In order to specify that certain bodies have an associated scale factor, the
+following options must be set:
+
+ <B>'n_bodies_with_scales'</B> : The number of bodies with scale factors
+ <B>'bodies_with_scales'</B>   : An array of unique bodies that have a scale factor
+ <B>'scale_factors'</B>        : A parallel array to <B>'bodies_with_scales'</B> containing
+                          the scale factor that the corresponding body is
+                          scaled by
+
+The scaling centre is the origin. If <B>'body_transfs'</B> are specified, the
+transform will take place after the scaling. Any body whose scale factor is
+not specified will be treated as having a scale factor of <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+
+<B>'ray_scale_factor'</B> specifies the factor that the ray will be scaled up by when
+picking, with scaling centre at the origin. If the location point defining the
+ray is not at the origin, this will have the effect of scaling it away from the
+origin. The <B>'max_edge_dist'</B>, <B>'max_vertex_dist'</B>, <B>'near_point'</B> and <B>'far_point'</B>
+options will also be scaled up along with the ray by this transform. The
+returned <B>'intersect'</B> and <B>'distance'</B> values will always be given in respect to
+the unscaled ray, such that the <B>'intersect'</B> vectors will always lie on <B>'ray'</B>.
+No scaling is applied when <B>'ray_scale_factor'</B> has value <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

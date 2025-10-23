@@ -1,0 +1,176 @@
+<HTML>
+<HEAD>
+<TITLE>HOLLBY</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>HOLLBY</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_hollow.html>PK_BODY_hollow</A><BR>
+<A HREF=../headers/pk_face_hollow.html>PK_FACE_hollow</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+HOLLBY ( body, offset, check, pierce, faces, dists, tol, mxflts, oldfas, 
+=========================================================================
+         newfas, badtag, state, ifail )
+         ==============================
+
+  Hollows a solid body
+
+Receives:
+  KI_tag_body              *body           --- body to be hollowed
+ &lt;KI_dbl&gt;                  *offset         --- default offset
+  KI_cod_logical           *check          --- level of checking required
+ &lt;KI_tag_list_face&gt;        *pierce         --- faces not to be offset
+ &lt;KI_tag_list_face&gt;        *faces          --- faces offset by other amounts
+ &lt;KI_tag_list_dbl&gt;         *dists          --- list of other offset distances
+ &lt;KI_dbl_distance&gt;         *tol            --- maximum applied tolerance
+ &lt;KI_int_nitems&gt;           *mxflts         --- maximum number of entities in badtag
+
+Returns:
+ &lt;KI_tag_list_entity&gt;      *oldfas         --- list of original faces offset
+ &lt;KI_tag_list_entity&gt;      *newfas         --- list of corresponding new faces
+ &lt;KI_tag_list_entity&gt;      *badtag         --- entities which caused problems
+  KI_cod_rtof              *state          --- state of body after hollow
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_cant_hollow            failed to hollow body
+  KI_boolean_failure        boolean failed
+  KI_not_unique             boolean resulted in more than one body
+  KI_unsuitable_entity      could not duplicate body
+                            body is not a solid body
+                            Mixed body
+  KI_bad_tolerance          proposed tolerance is too small
+  KI_bad_value              non-default offset too small
+                            default offset too small
+  KI_not_in_same_body       Offset face is not in supplied body
+                            Pierced face is not in supplied body
+  KI_duplicate_list_item    face is in both pierced and faces
+  KI_list_wrong_length      list of faces and dists not same length
+                            too many faces in lists pierced and faces
+                            too many faces for non-default offset
+                            too many pierced faces
+  KI_list_too_short         no dists supplied for faces
+
+Description:
+  The 'body' is hollowed. The 'offset' argument gives the default offset of  the
+  hollowing - the thickness of the skin of the resulting body. A positive
+  'offset' will offset the body outwards (i.e. in the direction of the face
+  normals) and a negative value inwards.
+
+  Faces which are to be offset by amounts other than the default can be
+  specified in the 'faces' argument with the specific offset for this face
+  supplied in the corresponding position in the 'dists' list. Notice that using
+  these arguments allows a 'mixed' hollow to be defined with some faces being
+  offset inwards and some outwards.
+
+  Faces which are not to be offset at all are defined in the 'pierce' list.
+  If no faces are pierced the result of hollowing a body will be to generate a
+  body containing a void. Pierced faces remain only as a section through the
+  hollowed body. For instance, hollowing a cylindrical solid with one end face
+  pierced will result in a tube with one open and one closed end.
+
+  Under some circumstances the function may need to replace exact geometry by
+  tolerant geometry. For instance, a four-edge vertex in general will offset
+  to two three-edge vertices and a connecting edge. If this new edge is smaller
+  than the supplied tolerance then the vertex becomes tolerant and no new edge
+  is introduced. In all situations where approximation is required the new
+  geometry will have a tolerance less than or equal to the tolerance supplied
+  through the 'tol' argument.
+
+  Many circumstances can give rise to changes in topology. Amongst them are :
+
+      1) Dealing with geometry which fails to offset. It it is known that the
+         offset surface of a face would be self-intersecting an attempt is made
+         to either remove the offset face or split it into faces with good
+         regions of the failing surface. For example, a blend may be removed
+         from an edge. The investigation of self-intersection is not exhaustive,
+         however, and it can occur that instances are not trapped. If a face is
+         split then this will cause the corresponding element in the 'oldfas'
+         or 'newfas' list to itself become a list. If the split face is on the
+         outside of the hollowed body then the first element of the list will
+         be the original face which has been split to create the other elements.
+
+      2) Dealing with configurations which can be repaired. For instance,
+         an edge can offset to a point or a face can become absorbed into
+         the body.
+
+  The extent to which checking is applied to the body is specified by the
+  'check' argument. If 'check' is true then face-face checks are done on
+  the body in addition to default checks. For most applications setting
+  'check' false will give an adequate level of checking.
+
+  The tag of a face in the original body will remain on the exterior of the
+  resulting body and will retain the same sense.
+
+  Each face to be offset will have a partner created in the final body which is
+  an offset of the original face. The pairs of original and new faces are
+  returned in the 'oldfas' and 'newfas' arguments. Both 'oldfas' and 'newfas'
+  can contain null tags. This will occur when faces are removed for the reasons
+  given above. Both 'oldfas' and 'newfas' can also contain lists of faces.
+
+
+  The error reporting scheme comprises the four arguments 'badtag', 'state',
+  'mxflts' and 'ifail'. A non-zero 'ifail' is reserved for reporting unsuitable
+  arguments to the function, failures in the internal boolean operation and
+  system errors.
+
+  Algorithmic failures where the items causing the failure can be identified
+  result in a zero 'ifail' and more specific information being returned in the
+  'state' argument and 'badtag'. For example, if new geometry cannot be found for
+  an edge 'state' RTOFEM will be returned and the tag of the edge whose curve
+  could not be found in 'badtag'. The user may set an upper limit on the number
+  of faults found in 'mxflts'; if 'mxflts' is zero then no limit is applied.
+
+  'state' refers to the validity of the item after modification and not to its
+  original validity and after such a failure 'body' may be corrupt and a
+  rollback should be performed. For this reason tags of new paired and unpaired
+  topology cannot be returned in 'badtag' and the tags will refer to topology in
+  the original body supplied. In the case of new unpaired edges and vertices,
+  tags will refer to adjacent faces in the original body. For example if a new
+  unpaired edge cannot be modified a 'state' RTOFEM is returned and 'badtag' and
+  will contain the tag of a list of the two faces whose offsets are to be used
+  to find the new curve. 'badtag' is a list of items which failed for the reason
+  indicated in the 'state' argument.
+
+  Possible values of 'state' and the contents of elements of 'badtag' are :
+
+
+      Token  | Tag    in  |     Meaning
+             | badtag list|
+      -------|------------|------------------------------------------------------
+      RTOFOK | null       | Body is OK
+      RTOFSO | face       | Surface failed to offset or face could not be deleted
+      RTOFVM | vertex     | Failed to find new geometry for vertex
+             | list faces | Failed to find geometry for new unpaired vertex
+      RTOFEM | edge       | Failed to find new geometry for edge
+             | list faces | Failed to find geometry for new unpaired edge
+      RTOFVT | edge       | Edge should have disappeared
+             | list faces | New unpaired edge should have disappeared
+      RTOFFA | face       | Face failed checks
+      RTOFSX | list faces | Pair of faces where face-face inconsistency found
+
+  Notice that a successful execution of the hollowing operation is indicated by:
+
+      'ifail' returning KI_no_errors and 'state' returning RTOFOK
+
+  This function is not supported for general bodies.
+
+</PRE>
+</BODY>
+</HTML>

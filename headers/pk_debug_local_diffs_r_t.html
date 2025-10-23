@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_DEBUG_local_diffs_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_DEBUG_local_diffs_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_DEBUG_local_diffs_r_s
+    {
+    <A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_t</A>                 diff;
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>                     master_entity;
+    int                             master_int;
+    double                          master_double;
+    <A HREF=../headers/pk_class_t.html>PK_CLASS_t</A>                      master_class;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                    master_logical;
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>                     similar_entity;
+    int                             similar_int;
+    double                          similar_double;
+    <A HREF=../headers/pk_class_t.html>PK_CLASS_t</A>                      similar_class;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                    similar_logical;
+    };
+
+typedef struct PK_DEBUG_local_diffs_r_s PK_DEBUG_local_diffs_r_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure defining each local difference returned from the function,
+detailing the difference types and the difference data, where relevent,
+in each body.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_face_pair_r_t.html>PK_DEBUG_face_pair_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'diff'</B>              Type of local difference returned.
+
+
+<B>'master_entity'</B>     The entity (or PK_ENTITY_null) in the master body.
+
+
+<B>'master_int'</B>        Field containing any integer data relating to the
+                    difference in the master body.
+                    (see table below for details)
+
+
+<B>'master_double'</B>     Field containing any double data relating to the
+                    difference in the master body.
+                    (see table below for details)
+
+
+<B>'master_class'</B>      Field containing any class data relating to the
+                    difference in the master body.
+                    (see table below for details)
+
+
+<B>'master_logical'</B>    Field containing any logical data relating to the
+                    difference in the master body.
+                    (see table below for details)
+
+
+<B>'similar_entity'</B>    The corresponding entity (or PK_ENTITY_null) in the
+                    similar body.
+
+
+<B>'similar_int'</B>       Field containing any integer data relating to the
+                    corresponding difference in the similar body.
+                    (see table below for details)
+
+
+<B>'similar_double'</B>    Field containing any double data relating to the
+                    corresponding difference in the similar body.
+                    (see table below for details)
+
+
+<B>'similar_class'</B>     Field containing any class data relating to the
+                    corresponding difference in the similar body.
+                    (see table below for details)
+
+
+<B>'similar_logical'</B>   Field containing any logical data relating to the
+                    corresponding difference in the similar body.
+                    (see table below for details)
+
+
+
+Table of data:
+
+Difference_type             |Master |Similar|Description       |Data
+                            |Entity |Entity |                  |returned
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_n_loops_c</A>     |Face   |Face   |Different no.     |master_int
+                            |       |       |loops             |similar int
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_n_fins_c</A>      |Face   |Face   |Different no.     |master_int
+                            |       |       |fins              |similar int
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_n_vxs_c</A>       |Face   |Face   |Different no.     |master_int
+                            |       |       |vertices          |similar_int
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_n_cht_pts_c</A>   |Curve  |Curve  |Different no.     |master_int
+                            |       |       |chart points on   |similar_int
+                            |       |       |intersection      |
+                            |       |       |curves            |
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_surf_dev_c</A>    |Surface|Surface|Non-duplicate     |master_double
+                            |       |       |surfaces maximum  |
+                            |       |       |deviation distance|
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_vx_dev_c</A>      |Vertex |Vertex |Maximum deviation |master_double
+                            |       |       |distance          |
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_curve_dev_c</A>   |Curve  |Curve  |Non-duplicate     |master_double
+                            |       |       |curves maximum    |
+                            |       |       |deviation distance|
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_surf_class_c</A>  |Surface|Surface|Different surface |master_class
+                            |       |       |classes           |similar class
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_curve_class_c</A> |Curve  |Curve  |Different fin     |master_class
+                            |       |       |curve class       |similar_class
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_edge_tol_c</A>    |Edge   |Edge   |Different edge    |master_double
+                            |       |       |tolerance         |similar_double
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_vx_tol_c</A>      |Vertex |Vertex |Different vertex  |master_double
+                            |       |       |tolerance         |similar_double
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_face_sense_c</A>  |Face   |Face   |Different face    |master_logical
+                            |       |       |senses            |similar_logical
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_surf_sense_c</A>  |Surface|Surface|Different surface |master_logical
+                            |       |       |senses            |similar_logical
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_curve_sense_c</A> |Curve  |Curve  |Different curve   |master_logical
+                            |       |       |sense             |similar_logical
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_vx_missing_c</A>  |Vertex or      |Missing vertex    |
+                            |PK_ENTITY_null |                  |
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_face_match_c</A>  |Face or        | Non-matched faces|
+                            |PK_ENTITY_null |                  |
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_fin_match_c</A>   |Face or        |Non-matched       |
+                            |PK_ENTITY_null |fin               |
+------------------------------------------------------------------------------
+<A HREF=../headers/pk_debug_diff_t.html>PK_DEBUG_diff_vx_match_c</A>    |Vertex or      |Non-matched       |
+                            |PK_ENTITY_null |isolated vertex   |
+------------------------------------------------------------------------------
+
+NB: Deviation tests designed to detect differences in surfaces or curves,
+deploy modest, non-exhaustive sampling methods and are therefore unsuitable
+for reliably detecting highly localised deviations in otherwise identical
+geometries.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

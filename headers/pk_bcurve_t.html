@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B></B>
+<A NAME="description"></A>
+<I>This type represents a B geometry CURVE.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_add_knot.html>PK_BCURVE_add_knot</A><br>
+    <A HREF=../headers/pk_bcurve_ask.html>PK_BCURVE_ask</A><br>
+    <A HREF=../headers/pk_bcurve_ask_knots.html>PK_BCURVE_ask_knots</A><br>
+    <A HREF=../headers/pk_bcurve_ask_piecewise.html>PK_BCURVE_ask_piecewise</A><br>
+    <A HREF=../headers/pk_bcurve_ask_splinewise.html>PK_BCURVE_ask_splinewise</A><br>
+    <A HREF=../headers/pk_bcurve_clamp_knots.html>PK_BCURVE_clamp_knots</A><br>
+    <A HREF=../headers/pk_bcurve_combine.html>PK_BCURVE_combine</A><br>
+    <A HREF=../headers/pk_bcurve_create.html>PK_BCURVE_create</A><br>
+    <A HREF=../headers/pk_bcurve_create_by_fitting.html>PK_BCURVE_create_by_fitting</A><br>
+    <A HREF=../headers/pk_bcurve_create_fitted.html>PK_BCURVE_create_fitted</A><br>
+    <A HREF=../headers/pk_bcurve_create_piecewise.html>PK_BCURVE_create_piecewise</A><br>
+    <A HREF=../headers/pk_bcurve_create_spline.html>PK_BCURVE_create_spline</A><br>
+    <A HREF=../headers/pk_bcurve_create_splinewise.html>PK_BCURVE_create_splinewise</A><br>
+    <A HREF=../headers/pk_bcurve_extend.html>PK_BCURVE_extend</A><br>
+    <A HREF=../headers/pk_bcurve_extend_r_t.html>PK_BCURVE_extend_r_t</A><br>
+    <A HREF=../headers/pk_bcurve_find_g1_discontinuity.html>PK_BCURVE_find_g1_discontinuity</A><br>
+    <A HREF=../headers/pk_bcurve_join.html>PK_BCURVE_join</A><br>
+    <A HREF=../headers/pk_bcurve_lower_degree.html>PK_BCURVE_lower_degree</A><br>
+    <A HREF=../headers/pk_bcurve_make_bsurf_lofted.html>PK_BCURVE_make_bsurf_lofted</A><br>
+    <A HREF=../headers/pk_bcurve_make_matched.html>PK_BCURVE_make_matched</A><br>
+    <A HREF=../headers/pk_bcurve_raise_degree.html>PK_BCURVE_raise_degree</A><br>
+    <A HREF=../headers/pk_bcurve_remove_knots.html>PK_BCURVE_remove_knots</A><br>
+    <A HREF=../headers/pk_bcurve_reparameterise.html>PK_BCURVE_reparameterise</A><br>
+    <A HREF=../headers/pk_bcurve_spin.html>PK_BCURVE_spin</A><br>
+    <A HREF=../headers/pk_bcurve_spline_cu_t.html>PK_BCURVE_spline_cu_t</A><br>
+    <A HREF=../headers/pk_bcurve_sweep.html>PK_BCURVE_sweep</A><br>
+    <A HREF=../headers/pk_blend_shape_t.html>PK_blend_shape_t</A><br>
+    <A HREF=../headers/pk_bsurf_make_bcurve_u_isoparam.html>PK_BSURF_make_bcurve_u_isoparam</A><br>
+    <A HREF=../headers/pk_bsurf_make_bcurve_v_isoparam.html>PK_BSURF_make_bcurve_v_isoparam</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve.html>PK_CURVE_make_bcurve</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve_2.html>PK_CURVE_make_bcurve_2</A><br>
+    <A HREF=../headers/pk_curve_make_bcurve_res_t.html>PK_CURVE_make_bcurve_res_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A bcurve is a type of curve (PK_CLASS_bcurve is a subclass of PK_CLASS_curve).
+
+The bcurve is defined by data contained in a <A HREF=../headers/pk_bcurve_sf_t.html>PK_BCURVE_sf_t</A>.
+Piecewise and splinewise representations of bcurves are also available:
+See <A HREF=../headers/pk_bcurve_piecewise_sf_t.html>PK_BCURVE_piecewise_sf_t</A> and <A HREF=../headers/pk_bcurve_splinewise_sf_t.html>PK_BCURVE_splinewise_sf_t</A>
+
+See <A HREF="../chapters/fd_chap.019.html#50409800_pgfId-486575">B-Curves and B-Surfaces</A> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

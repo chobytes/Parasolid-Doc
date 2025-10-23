@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<TITLE>TWEFAC</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>TWEFAC</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_transform.html>PK_FACE_transform</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+TWEFAC ( faces, transf, state, ifail )
+======================================
+
+  Transform geometry of faces
+
+Receives:
+  KI_tag_list_entity       *faces          --- face(s) to be transformed
+  KI_tag_list_transform    *transf         --- list of transforms
+                                           --- (move and/or rotate only)
+
+Returns:
+  KI_cod_rtlo              *state          --- state of the body
+                                           ---   RTLOOK => Valid
+                                           ---   RTLONG => Negated
+                                           ---   RTLOSX => Self-Intersecting
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_cant_do_tweak          Tweak cannot be performed
+                            Transform cannot be applied to a rubber face
+  KI_unsuitable_entity      Mixed body
+  KI_general_body           General bodies not supported
+  KI_list_wrong_length      Incorrect number of transforms for faces
+  KI_duplicate_list_item    Face appears twice in argument list
+  KI_not_in_same_part       All faces are not from the same part
+  KI_wrong_transf           Transform is wrong type
+  KI_wrong_entity           Faces is not of expected type
+
+Description:
+  The surfaces of the faces are modified by the transformations and the
+  curves and points of their edges and vertices are recalculated.
+
+  Where edges or faces (sharing a vertex or edge at the boundary of the faces to
+  be transformed) have geometry which is inextendable, it may not be possible to
+  recalculate vertices or edges. This is because the curve or surface does not
+  intersect the transformed surface. With such edges which have a user defined
+  tolerance this is likely to occur since SP-curves are inextendable.
+
+  In general this procedure may give rise to self-intersecting object
+  boundaries which could cause unpredictable errors later.
+
+  If local checking is on, (see SEINTP and OUINTP) consistency checks will be
+  made on newly created topological and geometrical entities, and the state
+  of the body returned. A state of RTLOOK indicates the body is valid. A state
+  of RTLONG indicates that the result body was originally "inside out" but has
+  been negated, and is now "positive" (has positive volume) and valid. A state
+  of RTLOSX indicates the body is self-intersecting and further modelling
+  operations on it may fail. It is the responsibility of the calling routine to
+  make any necessary reparation.
+
+  If the interface parameter for local checking is switched off, the state
+  returned will be RTLOOK regardless.
+
+  A self-intersecting body can be returned even if the ifail is zero.
+
+  The arguments to the routine allow the user to perform the
+  transformation in a number of ways. These are as follows :-
+
+  one face, one transform
+  e.g. f1 -> tr1
+
+  list of faces, one transform
+  e.g. (f1 f2 f3) -> tr1
+
+  list of faces, list of transforms, the length of the list
+  of transforms being either equal to the length of the list
+  of faces, or being a list of length one
+  e.g. (f1 f2 f3) -> (tr1 tr2 tr3)
+  or   (f1 f2 f3) -> (tr1)
+
+  list of lists of faces, one transform
+  e.g. ( (f1 f2 f3) (f4 f5) ) -> tr1
+
+  list of lists of faces, list of transforms, the length of
+  the list of transforms being either equal to the length
+  of the list of the lists of faces, or being a list of
+  length one
+  e.g. ( (f1 f2 f3) (f4 f5) ) -> (tr1 tr2)
+  or   ( (f1 f2 f3) (f4 f5) ) -> (tr1)
+
+  This is not supported for general bodies.
+
+</PRE>
+</BODY>
+</HTML>

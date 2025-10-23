@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_sweep_tool_fault_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_sweep_tool_fault_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_sweep_tool_fault_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_sweep_tool_status_r_t.html>PK_BODY_sweep_tool_status_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A status value to be associated with swept tool bodies. It indicates the type
+of problem encountered during the construction of the body.
+
+    PK_sweep_tool_bad_path_c        Invalid or unsuitable sweep path
+    PK_sweep_tool_bad_tool_c        Invalid or unsuitable sweep tool
+    PK_sweep_tool_small_tool_c      Tool is too small to sweep
+    PK_sweep_tool_surf_failure_c    Failed to create swept surface
+    PK_sweep_tool_geom_self_int_c   Swept body has self intersection in at
+                                    least one of its geometries.
+    PK_sweep_tool_geom_degen_c      Swept body has degeneracy in at least
+                                    one of its geometries.
+    PK_sweep_tool_topol_self_int_c  Swept body has an invalid contact between
+                                    two of its faces, edges, or vertices
+    PK_sweep_tool_check_failure_c   Fault detected in generated body
+    PK_sweep_tool_bad_lock_dir_c    The lock direction is parallel to the path
+                                    at some point
+    PK_sweep_tool_topol_change_c    Swept body has an unsupported topological
+                                    change.
+    PK_sweep_tool_missed_target_c   Swept body did not clash with the target.
+    PK_sweep_tool_path_no_lock_c    Path is not both planar and perpendicular
+                                    to tool axis, but no lock direction
+                                    supplied.
+    PK_sweep_tool_path_bad_geom_c   A path curve is not of type required when
+                                    <B>'lock_direction'</B> not same as tool axis
+                                    direction.
+    PK_sweep_tool_path_not_g1_c     Path must be G1 if tool not being placed
+                                    on path.
+    PK_sweep_tool_path_tight_c      Path is too tightly curved to support the
+                                    tool size for the sweep motion.
+    PK_sweep_tool_path_disjoint_c   Path is disjoint.
+    PK_sweep_tool_path_no_vx_c      Path has no vertex to start.
+    PK_sweep_tool_path_bad_site_c   Path does not own the <B>'tool_site'</B> vertex.
+    PK_sweep_tool_cant_mitre_c      Sweep could not be performed with mitred
+                                    corners.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<TITLE>BLECHK</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BLECHK</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_check_blends.html>PK_EDGE_check_blends</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BLECHK ( edges, full, nerror, errors, erreds, topols, ifail )
+=============================================================
+
+  Check the local validity of unfixed blends.
+
+Receives:
+  KI_tag_list_edge         *edges          --- edges to check
+  int                      *full           --- level of checking
+
+Returns:
+  KI_int_nitems            *nerror         --- number of invalid blends
+ &lt;KI_tag_list_int&gt;         *errors         --- list of failure codes, the
+                                           --- codes are given below
+ &lt;KI_tag_list_edge&gt;        *erreds         --- list of invalid edges
+ &lt;KI_tag_list_entity&gt;      *topols         --- list of tags associated with
+                                           --- the failure codes
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_general_body           general body
+  KI_bad_spec_code          value of 'full' out of range
+
+Description:
+  This is a diagnostic function, used to determine  why BLEFIX failed, or whether
+  an alteration in an unfixed blend has removed a problem.
+
+  For  each edge in  'edges'  that has a  blend attribute attached the associated
+  blending  surface parameters  are checked for   consistency  with  geometry and
+  blend attributes attached  to neighbouring entities. Edges in 'edges' that have
+  no blend attribute attached are ignored.
+  If  'full' is 1, the blending surface parameters are checked for consistency at
+  the vertices.  If 'full'  is 2, additional checks are  made to ensure that  the
+  blend  boundaries are legal.  Even  if BLECHK   finds  no inconsistencies,  the
+  blends are not guaranteed to fix; some problems can  only be detected by BLEFIX
+  making up the new faces.
+
+  'nerror'  is the number of edges in 'edges' for which blending errors have been
+  found. The list 'erreds' contains the tags of those edges for which errors were
+  found  and 'errors' and  'topols' are two  parallel  lists of failure codes and
+  associated topology tags.
+
+  Some failure  codes  have  no associated  entity: in these cases  the entry  in
+  'topols' will  be  the  null  tag. The   meanings  of the failure  codes in the
+  'errors' list and the corresponding types of entity in the 'topols' list are as
+  follows:
+
+       code         explanation                                        tag type
+
+      BLCCTN   Blend on tangent edge is not legal.                       -
+      BLCCSN   Blend ending on a surface singularity is not legal.       TYTOVX
+      BLCCOT   Unsupported version 1 or 2 blend type.                    -
+
+      BLCCMX   Configuration of edges at vertex too complex.             TYTOVX
+      BLCCRS   Edge being blended is on boundary of sheet.               -
+      BLCCRE   Edge being blended has non-manifold vertex.               TYTOVX
+      BLCCTV   Blend ends on illegal two edge vertex.                    TYTOVX
+      BLCCHM   Edge geometry unsuited to asymmetric chamfer ranges.      -
+      BLCCXT   Blend requires invalid extension of B-surface.            TYTOFA
+      BLCCIR   Range inconsistent with adjacent blended edge.            TYTOED
+      BLCCIT   Type of blend inconsistent with adjacent blended edge.    TYTOED
+      BLCCAB   Adjoining edge not blended.                               TYTOED
+      BLCCOL   Blend completely overlaps edge loop.                      -
+
+      BLCCOB   Overlapping blends.                                       -
+      BLCCOU   Unblended edge overlapped by blend.                       TYTOED
+      BLCCUN   Unspecified numerical problem with blend.                 -
+      BLCCUE   Undetermined problem at end of blend.                     TYTOVX
+      BLCCRL   Range of blend on face too large.                         TYTOFA
+      BLCCOE   Illegal overlap on end boundary.                          TYTOVX
+      BLCCIE   Blend has illegal end boundary.                           TYTOVX
+      BLCCIX   Cannot intersect chamfers at this vertex.                 TYTOVX
+      BLCCEX   End boundary intersects unblended edge.                   TYTOED
+      BLCCOI   Illegal blend on another edge prevented full check.       TYTOED
+      BLCCIP   Cliffedge blend range inconsistent with cliff edge.       -
+
+
+
+  This function is not supported for edges on general bodies.
+
+</PRE>
+</BODY>
+</HTML>

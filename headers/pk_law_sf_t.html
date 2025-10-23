@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_LAW_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_LAW_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_LAW_sf_s
+    {
+    int                   degree;           --- The degree = order-1.      (0)
+    int                   n_vertices;       --- The number of vertices.    (0)
+    int                   vertex_dim;       --- The dimension of each vertex.
+                                            --- (1)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          is_rational;      --- If the law is rational.
+                                            --- (PK_LOGICAL_false)
+    double               *vertex;           --- The vertices.           (NULL)
+    int                   n_knots;          --- The number of distinct knot
+                                            --- values. (0)
+    int                  *knot_mult;        --- The multiplicity of each knot.
+                                            --- (NULL)
+    double               *knot;             --- The distinct knot values.
+                                            --- (NULL)
+    <A HREF=../headers/pk_knot_type_t.html>PK_knot_type_t</A>        knot_type;        --- Enum describing the knot set.
+                                            --- (PK_knot_unset_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          is_periodic;      --- If the law is periodic.
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          is_closed;        --- If the law is closed
+                                            --- (PK_LOGICAL_false)
+    };
+typedef struct PK_LAW_sf_s PK_LAW_sf_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This data structure is the standard form for a law function.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+PK_ERROR_bad_value              unreadable value
+PK_ERROR_bad_knots              illegal knot multiplicity
+                                or knot set not monotonic increasing
+PK_ERROR_wrong_number_knots     knots inconsistent with vertices
+PK_ERROR_bad_dimension          illegal <B>'vertex_dim'</B>
+PK_ERROR_weight_le_0            one of the weights is zero or negative
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_blend_law_t.html>PK_blend_law_t</A><br>
+    <A HREF=../headers/pk_blend_shape_t.html>PK_blend_shape_t</A><br>
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+`vertex dim':
+
+    This field gives the number of doubles per vertex in the array
+    <B>'vertex'</B>.
+
+
+<B>'is_rational'</B>:
+
+    This field should be set to <B>'PK_LOGICAL_true'</B> if the law is rational.
+    In this case the vertex_dim field must be one greater than the dimension
+    of the law, and the weights must be included in the <B>'vertex'</B> array.
+
+
+<B>'vertex'</B>:
+
+    If the law is polynomial, i.e. non-rational, of dimension n, then the
+    values in this filed represent the vertices explicitly, in the order
+    [f1,1; f2,1; ...; fn,1; f1,2; f2,2; ...].  If it is rational then the
+    cartesian points are multiplied by the weights, so that the values
+    in this field represent [w1f1,1; w1f2,1; ...; w1fn,1; w1; w2f1,1; w2f2,2;
+    ...].
+
+
+<B>'knot_mult'</B> and <B>'knot'</B>:
+
+    <B>'knot_mult'</B> is an array of length <B>'n_knots'</B> giving the number of times each
+    knot is to be repeated. The minimum multiplicity allowed for any knot is 1.
+    The maximum multiplicity allowed other than for the first and last knot is
+    <B>'degree'</B>.  The maximum allowed for the first or last knot is <B>'degree'</B>+1.
+
+    <B>'knot'</B> is an array of length <B>'n_knots'</B>. The values must be distinct and
+    form a strictly increasing set.
+
+    See the documentation below for an explanation of the required total
+    number of knots.
+
+
+<B>'knot_type'</B>:
+
+    See the documentation for <B>'<A HREF=../headers/pk_knot_type_t.html>PK_knot_type_t</A>'</B>.
+
+
+<B>'is_periodic'</B>:
+
+    If this field is set to <B>'PK_LOGICAL_true'</B>, the parametrisation of the
+    law "wraps around".  It implies that the law has equal value and
+    first derivative continuity at the seam.
+
+    See the documentation below for additional requirements for the knot set
+    of a periodic law.
+
+
+<B>'is_closed'</B>:
+
+    This field being set to <B>'PK_LOGICAL_true'</B> does not necessarily imply
+    that the parametrisation is periodic.  It indicates that the law values at
+    the ends of the parameter range are equal.
+
+
+
+The number of knots:
+
+The knot set referred to here is the "expanded knot set" obtained by repeating
+each value in the array <B>'knot'</B> the number of times given by the corresponding
+element in <B>'knot_mult'</B>.
+
+The law can the considered to be defined in terms of a NURBS curve of degree n
+defined over k parameters (k-1 parameter intervals).  This requires a further
+n parameters at either end of its knot set in order for the necessary k+n-1
+b-spline basis functions to be fully defined.  These additional parameters are
+commonly known as the "imaginary knots".  Thus the total number of knots p is
+related to the total number of basis functions and hence the number m of
+control vertices by the expression p = m+n+1.
+
+
+Periodic laws:
+
+For a periodic law the "expanded knot set" must "wrap around" in the sense
+that the intervals between the first n+1 knots (n "imaginary" knots and one
+"real" knot) must be the same as the corresponding intervals between the last
+n+1 "real" knots, and the intervals between the last n+1 knots (one "real"
+knot and n "imaginary" knots) must be the same as those between the first n+1
+"real" knots.
+
+The "period" of such a law is the parameter interval separating the first
+and last "real" knots.
+
+if indices begin at 0:
+    period = t      - t
+              k+n-1    n
+
+for i = 0 to n:
+    t -     period = t
+     k+n+i-1          n+i
+
+    t + period = t
+     i            k+i-1
+
+In addition a periodic law must be so constructed as to preserve G1
+continuity (continuity of tangent direction) at the join.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

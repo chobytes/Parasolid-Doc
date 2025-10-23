@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+	<title>Parasolid Kernel Interface Driver</title>
+	<LINK rel="stylesheet" href="ps_doc.css">
+	<script language="JavaScript">
+	<!-- Hide script from older browsers
+	
+	function updateMenu() {
+		if ((parent.theMenu) && (parent.theMenu.amBusy == false)) {	//Check that Joust is present
+        //First, find the ID of the entry that points to this page.  This is where
+        //we are going to add the new entries.
+        var level2ID = parent.theMenu.findEntry('Kernel Interface Driver', 'text');
+
+        if (level2ID != -1) {		
+            if (parent.theMenu.entry[level2ID].FirstChild < 0) { //Check they haven't been added already.
+				
+                var level3ID = parent.theMenu.addChild(level2ID, "Document", "Kernel Interface Driver (KID) - an Overview", "chapters/kd_chap.02.html", "Kernel Interface Driver (KID) - an Overview");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "LISP in KID", "chapters/kd_chap.03.html", "LISP in KID");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Object-Oriented KID", "chapters/kd_chap.04.html", "Object-Oriented KID");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Calling the KI/PK Using KID (FLICK)", "chapters/kd_chap.05.html", "Calling the KI/PK Using KID (FLICK)");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Creation of Primitives", "chapters/kd_chap.06.html", "Creation of Primitives");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Operations on Bodies, Curves, Surfaces, etc.", "chapters/kd_chap.07.html", "Operations on Bodies, Curves, Surfaces, etc.");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Local Operation Functions", "chapters/kd_chap.08.html", "Local Operation Functions");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Miscellaneous Useful Functions", "chapters/kd_chap.09.html", "Miscellaneous Useful Functions");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Enquiries", "chapters/kd_chap.10.html", "Enquiries");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Attributes in KID", "chapters/kd_chap.11.html", "Attributes in KID");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "KID Graphics: Overview", "chapters/kd_chap.12.html", "KID Graphics: Overview");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Viewing Environment and Definition", "chapters/kd_chap.13.html", "Viewing Environment and Definition");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "KID Rendering", "chapters/kd_chap.14.html", "KID Rendering");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Picking", "chapters/kd_chap.15.html", "Picking");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Fault Reporting in KID", "chapters/kd_chap.16.html", "Fault Reporting in KID");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "KID Class Structure", "chapters/kd_chap.17.html", "KID Class Structure");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Parasolid LISP Functions", "chapters/kd_chap.18.html", "Parasolid LISP Functions");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Error Codes in Parasolid LISP", "chapters/kd_chap.19.html", "Error Codes in Parasolid LISP");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "List of Parasolid LISP Functions", "chapters/kd_chap.20.html", "List of Parasolid LISP Functions");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "KID Examples", "chapters/kd_chap.21.html", "KID Examples");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Machine Dependency in KID", "chapters/kd_chap.22.html", "Machine Dependency in KID");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Index", "chapters/kd_chap.24.html", "Index");
+
+                parent.theMenu.reload();  //Now, reload (and redraw) the menu!
+            }
+        }
+    } else {
+        setTimeout("updateMenu();", 100);
+    }
+}
+
+// Now call updateMenu
+updateMenu();
+
+// end hide script from older browsers -->
+</script>
+</head>
+
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="images/background.gif">
+
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<A href="http://www.parasolid.com/"><IMG src="graphics/psbar_l.gif" border=0></A></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Kernel Interface Driver</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P><TABLE WIDTH=99%>
+<TR>
+<TH>Chapters</TH>
+<TH>Appendices</TH>
+</TR>
+
+<TR>
+<TD VALIGN=TOP>
+
+<OL>
+<LI> <A HREF=chapters/kd_chap.02.html>Kernel Interface Driver (KID) - an Overview</A>
+<LI> <A HREF=chapters/kd_chap.03.html>LISP in KID</A>
+<LI> <A HREF=chapters/kd_chap.04.html>Object-Oriented KID</A>
+<LI> <A HREF=chapters/kd_chap.05.html>Calling the KI/PK Using KID (FLICK)</A>
+<LI> <A HREF=chapters/kd_chap.06.html>Creation of Primitives</A>
+<LI> <A HREF=chapters/kd_chap.07.html>Operations on Bodies, Curves, Surfaces, etc.</A>
+<LI> <A HREF=chapters/kd_chap.08.html>Local Operation Functions</A>
+<LI> <A HREF=chapters/kd_chap.09.html>Miscellaneous Useful Functions</A>
+<LI> <A HREF=chapters/kd_chap.10.html>Enquiries</A>
+<LI> <A HREF=chapters/kd_chap.11.html>Attributes in KID</A>
+<LI> <A HREF=chapters/kd_chap.12.html>KID Graphics: Overview</A>
+<LI> <A HREF=chapters/kd_chap.13.html>Viewing Environment and Definition</A>
+<LI> <A HREF=chapters/kd_chap.14.html>KID Rendering</A>
+<LI> <A HREF=chapters/kd_chap.15.html>Picking</A>
+<LI> <A HREF=chapters/kd_chap.16.html>Fault Reporting in KID</A>
+</OL>
+<UL>
+<LI> <A HREF=chapters/kd_chap.24.html>Index</A>
+</UL>
+
+</TD>
+
+<TD VALIGN=TOP>
+
+<OL TYPE=A>
+<LI> <A HREF=chapters/kd_chap.17.html>KID Class Structure</A>
+<LI> <A HREF=chapters/kd_chap.18.html>Parasolid LISP Functions</A>
+<LI> <A HREF=chapters/kd_chap.19.html>Error Codes in Parasolid LISP</A>
+<LI> <A HREF=chapters/kd_chap.20.html>List of Parasolid LISP Functions</A>
+<LI> <A HREF=chapters/kd_chap.21.html>KID Examples</A>
+<LI> <A HREF=chapters/kd_chap.22.html>Machine Dependency in KID</A>
+</OL>
+
+</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

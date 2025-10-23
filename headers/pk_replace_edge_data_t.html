@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_replace_edge_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_replace_edge_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_replace_edge_data_s
+    {
+    int                          n_edges; --- number of edges (0)
+    const <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>               *edges; --- edges to have curves replaced
+                                          --- (NULL)
+    const <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>             *curves; --- replacement curves (NULL)
+    const double             *tolerances; --- desired edge tolerances (NULL)
+    <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_t</A>         replace_use; --- whether new geometry may be
+                                          --- created for edges in <B>'edge_data'</B>
+                                          --- for which the existing/supplied
+                                          --- geometry cannot be used
+                                          --- (<A HREF=../headers/pk_replace_use_t.html>PK_replace_use_attempt_c</A>) [PF]
+    };
+
+typedef struct PK_replace_edge_data_s PK_replace_edge_data_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure is part of the <A HREF=../headers/pk_face_replace_surfs_o_t.html>PK_FACE_replace_surfs_o_t</A> options
+structure. It contains the edge curve replacement data.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_o_t.html>PK_FACE_change_o_t</A><br>
+    <A HREF=../headers/pk_face_replace_surfs_o_t.html>PK_FACE_replace_surfs_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'n_edges'</B>           Number of edges. Length of the <B>'edges'</B>, <B>'curves'</B> and
+                    <B>'tolerances'</B> arrays.
+                    The default value is 0.
+
+
+<B>'edges'</B>             Array of the edges.
+                    The array default value is NULL.
+
+
+<B>'curves'</B>            Array of the user-provided replacement curves.
+                    The direction of each curve is assumed to be
+                    appropriate for the specified edges. No attempt
+                    will be made to change the direction of the curves.
+                    The value PK_ENTITY_null in this array indicates that the
+                    corresponding edge's geometry is expected to be preserved.
+                    The array default value is NULL.
+
+
+<B>'tolerances'</B>        Array of tolerances associated with the corresponding
+                    edges in the <B>'edge_array'</B>.  A value of 0.0 indicates that
+                    the associated edges are to be treated as accurate.
+                    The array default value is NULL.
+
+                    The corresponding edges in the resulting body will not
+                    necessarily have this tolerance; if possible the edge will
+                    be made accurate, otherwise, if a value smaller than the
+                    supplied tolerance is found this is used.  In some cases
+                    the tolerance may need to be greater than this supplied
+                    tolerance.  In these cases the operation tolerance will be
+                    used to determine if a suitable value exists.
+
+                    Note: Edges which will be mixed after the operation must
+                          have a tolerance of at least 5 times the session
+                          precision.
+
+
+<B>'replace_use'</B>       Controls the behaviour when the corresponing curve for
+                    an edge (i.e. either the supplied curve or the existing
+                    curve on the edge if the corresponding curve was
+                    PK_ENTITY_null) does not lie within tolerance of the
+                    replacement surfaces.
+
+                    The function can either ignore the supplied/existing curve
+                    for such edges or fail.
+                    The permitted values are:
+
+                    <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_attempt_c</A>  Attempt to use the given curve
+                                              (or existing curve if
+                                              PK_ENTITY_null) but create a new
+                                              curve if this is not satisfactory
+                    <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_yes_c</A>      Must use given curve (or
+                                              existing curve if PK_ENTITY_null)
+                                              or else return fault
+                    <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_existing_c</A> For edges whose corresponding
+                                              curve is PK_ENTITY_null, treat as
+                                              <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_yes_c</A>.  For edges
+                                              which are given a new curve treat
+                                              as <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_attempt_c</A>
+
+                    The default value for <B>'replace_use'</B> is
+                    <A HREF=../headers/pk_replace_use_t.html>PK_replace_use_attempt_c</A>
+
+                    This option is ignored if called from
+                    <A HREF=../headers/pk_face_replace_surfs_2.html>PK_FACE_replace_surfs_2</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

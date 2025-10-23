@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.105.html#50409896_pgfId-370968", " , PK_TOPOL_render_facet or PK_TOPOL_facet_2 are set to run <B>concurrently</B>, then calls to the function from different application", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-379290", " application already uses Parasolid SMP, running these functions <B>concurrently</B> can improve faceting performance. ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-1285812", " Note: If PK_TOPOL_facet_2 or PK_TOPOL_render_facet is running <B>concurrently</B> in a thread without locked partitions, ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.110.html#50409901_pgfId-321904", " PK_TOPOL_render_facet from other threads which are also faceting <B>concurrently</B>. ", "Functional Description - Faceting Output Via GO ");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-387272", " they behave exclusively against other non-locking threads but <B>concurrently</B> against locking threads. ", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-399347", " whether the given PK functions will be run <B>concurrently</B> or exclusively in the calling thread. See Section", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-399814", " whether the given PK functions will be run <B>concurrently</B> or exclusively in the calling thread. See Section", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-308648", " change whether those functions should run exclusively or <B>concurrently</B> in the current thread. ", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-309468", " The specified function is running <B>concurrently</B>, but can be made to run exclusively if", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-310415", " locally exclusive, but can be made to run <B>concurrently</B> if desired. ", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-329601", " If you change an exclusive function to run <B>concurrently</B> and your application makes multiple calls to the", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-383396", " has locked partitions, then these functions will run <B>concurrently</B> with functions in other threads that contain locked", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/fd_chap.115.html#50409907_pgfId-399925", " wish to call Parasolids rendering and faceting functions <B>concurrently</B> you can indicate that the GO functions registered", "Functional Description - Calling Parasolid From Multiple Threads");
+top.note("chapters/ov_chap.18.html#50442277_pgfId-277420", " SMP or allowing Parasolid APIs to be called <B>concurrently</B> is not a substitute for general performance optimisation", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_THREAD_chain_concurrent_c 24920 Chain runs <B>concurrently</B> with other concurrent chains and single, concurrent Parasolid", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_FUNCTION_run_mutable_conc_c 25413 Will run <B>concurrently</B> but can be changed. ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " <B>concurrently</B> in a thread without locked", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " <B>concurrently</B> in a thread without locked", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " <B>concurrently</B> in a thread without locked", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_function_run_t.html#documentation", "This datatype indicates whether PK functions will run <B>concurrently</B> or", "PK Reference - PK_FUNCTION_run_t");
+top.note("headers/pk_thread_ask_function_run.html#description", " whether the given PK functions will be run <B>concurrently</B>", "PK Reference - PK_THREAD_ask_function_run");
+top.note("headers/pk_thread_ask_function_run.html#documentation", "local exclusivity, meaning they will be run <B>concurrently</B> with other threads", "PK Reference - PK_THREAD_ask_function_run");
+top.note("headers/pk_thread_chain_type_t.html#documentation", " PK_THREAD_chain_concurrent_c Chain runs <B>concurrently</B> with other", "PK Reference - PK_THREAD_chain_type_t");
+top.note("headers/pk_thread_lock_partitions.html#documentation", " o PK functions with local exclusivity will run <B>concurrently</B> in the thread.", "PK Reference - PK_THREAD_lock_partitions");
+top.note("headers/pk_thread_set_function_run.html#description", " whether the given PK functions will be run <B>concurrently</B>", "PK Reference - PK_THREAD_set_function_run");
+top.note("headers/pk_thread_set_function_run.html#documentation", " with local exclusivity, meaning they will be run <B>concurrently</B> with", "PK Reference - PK_THREAD_set_function_run");
+top.note("headers/pk_topol_facet.html#errors", " <B>concurrently</B> in a thread without locked", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet.html#documentation", " - if the function is running <B>concurrently</B> in a thread without locked", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet_2.html#errors", " <B>concurrently</B> in a thread without locked", "PK Reference - PK_TOPOL_facet_2");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#documentation", "bodies) may be facetted <B>concurrently</B> provided that multi-threading has been", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", " <B>concurrently</B> in a thread without locked partitions.", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#documentation", " <B>concurrently</B> in a thread without locked partitions.", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_render_facet.html#errors", " <B>concurrently</B> in a thread without locked", "PK Reference - PK_TOPOL_render_facet");
+top.note("headers/pk_topol_render_facet.html#documentation", " - if the function is running <B>concurrently</B> in a thread without locked", "PK Reference - PK_TOPOL_render_facet");
+top.note("headers/pk_topol_render_facet_go_o_t.html#documentation", " When the function is running <B>concurrently</B>, facets may also be interleaved", "PK Reference - PK_TOPOL_render_facet_go_o_t");
+top.note("headers/pk_topol_render_line.html#errors", " function running <B>concurrently</B> in a thread", "PK Reference - PK_TOPOL_render_line");
+top.note("headers/pk_topol_render_line.html#documentation", "The following restrictions apply when running <B>concurrently</B> in a thread without", "PK Reference - PK_TOPOL_render_line");
+top.note("chapters/di_chap.03.html#50511935_pgfId-286088", " 2.1.5 Number of files open <B>concurrently</B> ", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.06.html#50511938_pgfId-294216", " wish to call Parasolids rendering and faceting functions <B>concurrently</B>, or to use SMP when generating graphical output,", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.18.html#50511950_pgfId-731047", " <B>concurrently</B> open 16 ", "Downward Interfaces - ZIndex");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

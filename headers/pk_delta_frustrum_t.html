@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_DELTA_frustrum_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_DELTA_frustrum_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_DELTA_open_for_write_f_t)(<A HREF=../headers/pk_pmark_t.html>PK_PMARK_t</A>,
+                                                       PK_DELTA_t *);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_DELTA_open_for_read_f_t)(PK_DELTA_t);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_DELTA_close_f_t)(PK_DELTA_t);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_DELTA_write_f_t)(PK_DELTA_t, unsigned int,
+                                              const char*);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_DELTA_read_f_t)(PK_DELTA_t, unsigned int, char*);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_DELTA_delete_f_t)(PK_DELTA_t);
+
+struct PK_DELTA_frustrum_s
+    {
+    PK_DELTA_open_for_write_f_t open_for_write_fn;
+                                     --- open a rollmark for writing
+    PK_DELTA_open_for_read_f_t open_for_read_fn;
+                                     --- open a rollmark for reading
+    PK_DELTA_close_f_t  close_fn;    --- close a rollmark
+    PK_DELTA_write_f_t  write_fn;    --- write data to a rollmark
+    PK_DELTA_read_f_t   read_fn;     --- read data from a rollmark
+    PK_DELTA_delete_f_t delete_fn;   --- delete a rollmark
+    };
+typedef struct PK_DELTA_frustrum_s PK_DELTA_frustrum_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This data structure holds pointers to six rollmark functions that the
+application wishes to register with the PK using <A HREF=../headers/pk_delta_register_callbacks.html>PK_DELTA_register_callbacks</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_delta_register_callbacks.html>PK_DELTA_register_callbacks</A><br>
+  </p>
+</blockquote>
+<PRE>
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

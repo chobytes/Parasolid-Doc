@@ -1,0 +1,641 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Implementing an FG System</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Implementing an FG System</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fg_chap.02.html">Introduction and Summary</A></TD>
+  <TD><A HREF="../fg_index.html">Chapters</A></TD>
+  <TD><A HREF="fg_chap.04.html">Modeling using Foreign Geometry</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-273840">2.1	Introduction</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-273855">2.2	Writing the FG module</A>
+<UL>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-273856">2.2.1	An example evaluator</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274669">2.2.2	Evaluator initialization</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274692">2.2.3	Parameter properties function</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274702">2.2.4	The evaluation function</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274725">2.2.5	Derivative specifications and output</A>
+</UL>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274744">2.3	FG module design issues</A>
+<UL>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274746">2.3.1	General design</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-282816">2.3.2	Performance issues</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274752">2.3.3	Data usage issues</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274773">2.3.4	Key format for evaluator selection</A>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274782">2.3.5	Deletion of evaluators</A>
+</UL>
+<LI> <A HREF="fg_chap.03.html#50462724_pgfId-274790">2.4	Linking the FG module into Parasolid</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462724_pgfId-273840"></A>2.1	<A NAME="50462724_marker-273839"></A>Introduction
+
+
+</H1>
+<P>
+<A NAME="50462724_pgfId-273841"></A><A NAME="50462724_marker-285933"></A>This chapter explains the process whereby the user creates FG evaluators and links them into Parasolid. An overall description of this procedure is given in <A HREF="fg_chap.02.html#50462725_32373">Chapter 1, &#8220;Introduction and Summary&#8221;</A>.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462724_pgfId-273855"></A>2.2	Writing the FG module
+
+
+</H1>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-273856"></A>	2.2.1 	An example evaluator</H2>
+<P>
+<A NAME="50462724_pgfId-273858"></A><A NAME="50462724_marker-273857"></A>Let&#8217;s start by taking an example of a surface for which we want to write an evaluator:</P>
+<P>
+<A NAME="50462724_pgfId-273859"></A>The surface function:</P>
+<P>
+<A NAME="50462724_pgfId-281335"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462724_pgfId-281474"></A>P( u, v ) = ( u, v, a sin(2 pi u) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462724_pgfId-273861"></A>generates an extruded sine wave surface. If we further allow the parameter ranges to be:</P>
+<P>
+<A NAME="50462724_pgfId-281365"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462724_pgfId-281539"></A>U in the range [ 0, n ]V in the range [ 0, w ]</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462724_pgfId-273864"></A>then we generate the surface shown in the diagram below:</P>
+<P>
+<A NAME="50462724_pgfId-311520"></A>&nbsp;</P>
+
+<IMG SRC="../graphics/fg_chap-8.gif">
+
+<P>
+<A NAME="50462724_pgfId-274660"></A>To implement an evaluator function for this surface we have to make some basic design decisions :</P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274661"></A>We supply the parameters a, n and w as real numbers submitted through the interface</LI>
+<LI>
+<A NAME="50462724_pgfId-274662"></A>We identify the generic surface by the key <CODE>
+EDS/corrugated</CODE>
+ (the key should give an indication of the source of the evaluator - in this case Electronic Data Systems)</LI>
+<LI>
+<A NAME="50462724_pgfId-274663"></A>The code for the evaluator is linked to Parasolid (so that we can access the evaluator function by its address in memory)</LI>
+</UL>
+<P>
+<A NAME="50462724_pgfId-274665"></A><A NAME="50462724_marker-274664"></A>The tasks we have to complete in order to implement this surface are : </P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274666"></A>Enable the initialization of a corrugated surface - (through function FGCRSU)</LI>
+<LI>
+<A NAME="50462724_pgfId-274667"></A>Supply its parameter limits to Parasolid - (through function FGPRSU)</LI>
+<LI>
+<A NAME="50462724_pgfId-274668"></A><A NAME="50462724_marker-285938"></A>Enable evaluations of the surface - (through function FGEVSU)</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-274669"></A>	2.2.2 	Evaluator initialization</H2>
+<P>
+<A NAME="50462724_pgfId-274671"></A><A NAME="50462724_marker-274670"></A>Our surface is requested by a call to function <A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A>. The arguments to this function should be:</P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274672"></A>Keylen is 14 (i.e. the number of characters in the evaluator key string),</LI>
+<LI>
+<A NAME="50462724_pgfId-274673"></A>Key is <CODE>
+EDS/corrugated</CODE>
+</LI>
+<LI>
+<A NAME="50462724_pgfId-274674"></A>nspace is 1 (the minimum value)</LI>
+<LI>
+<A NAME="50462724_pgfId-274675"></A>nints is 0</LI>
+<LI>
+<A NAME="50462724_pgfId-274676"></A>ivals is a null pointer</LI>
+<LI>
+<A NAME="50462724_pgfId-274677"></A>nreals is 3</LI>
+<LI>
+<A NAME="50462724_pgfId-274678"></A>rvals is a pointer to a real array containing (a, n, w)</LI>
+</UL>
+<P>
+<A NAME="50462724_pgfId-274679"></A>This call generates a call to the function FGCRSU with essentially the same arguments, except that a double array of length 1 has been allocated by Parasolid for initialization by FGCRSU. </P>
+<P>
+<A NAME="50462724_pgfId-274680"></A>In FGCRSU a section of code is added to recognize our corrugated surface and enable evaluations of it. The code which achieves this is :</P>
+<P>
+<A NAME="50462724_pgfId-281380"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462724_pgfId-281575"></A>if( keycmpu( &#8220;SDL/corrugated&#8221;, key, keylen )){if (( *kir == 3 ) &amp;&amp;  /*corrugated evaluator requires 3 reals*/  ( ki_reals[1] &gt; 0.0 ) &amp;&amp;   /*of which last two are positive*/  ( ki_reals[2] &gt; 0.0 ))              *(surface_evaluator *) fg_data = corrugated;else *ifail = FGRERR;        /*...otherwise real data error*/}</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462724_pgfId-281885"></A>Note: <STRONG>
+1. </STRONG>The function FGCRCU performs the initialization of curve evaluators, receiving the same arguments and performing the same tasks.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-281886"></A>Note: <STRONG>
+2. </STRONG>The function <CODE>
+keycmpu</CODE>
+ does a string comparison between the supplied key and the valid key for our surface. This function is part of the sample code. A straightforward C string comparison does not work here since, for FORTRAN compatibility reasons, the key has no standard C null terminator.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-281887"></A>Note: <STRONG>
+3. </STRONG>It is at this point in the code that any validation of data needs to be implemented - a successful call to FGCRSU should indicate that valid evaluations are available. In this case three real data items must be available of which the final two (the number of cycles, n, and the width of the surface , w) need to be positive. If the real data supplied through the interface does not fit this form, then the ifail return code is set to FGRERR to indicate unsatisfactory real data.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-281888"></A>Note: <STRONG>
+4. </STRONG>The type definition <STRONG>
+surface_evaluator</STRONG> is: <STRONG>
+typedef void (* surface_evaluator)()</STRONG></ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-281889"></A>Once the data has been validated, the address of the evaluator function is stored in the fg_data space that was requested. The evaluator is called by a call to this address. All future references to this evaluator (by functions FGPRSU, FGEVSU) are made by passing the fg_data array, as initialized here - the key is no longer supplied.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-281890"></A>Note: <STRONG>
+5. </STRONG>If an evaluator is written which uses secure data stored in the fg_data array, FGCRSU needs to implement the loading of this data. Evaluators of this type should have a key which itself contains the filename/database entry where the data can be found. For example, a key <CODE>
+EDS/Gordon/Example1</CODE>
+ could indicate that the Gordon surface evaluator should be used with data loaded from file <CODE>
+Example1</CODE>
+. </ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-281891"></A>Note: <STRONG>
+6. </STRONG>FGCRSU is only called once per FG surface. The structure of our example could get unwieldy if many tens or hundreds of surfaces were implemented. In this case some means of avoiding a lot of string comparisons would be useful, but is not critical.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-281754"></A>Note: <STRONG>
+7. </STRONG>FGCRSU is called whenever a foreign surface is to be initialized for use in Parasolid. This can happen directly when a user calls up a new foreign surface using <A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A>, or indirectly when a user loads an archived part into Parasolid using <A HREF=../headers/pk_part_receive.html>PK_PART_receive</A>, when FGCRSU is called once for every foreign surface present in the part. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-274692"></A>	2.2.3 	<A NAME="50462724_marker-274691"></A>Parameter properties function</H2>
+<P>
+<A NAME="50462724_pgfId-274693"></A>Once a surface is successfully initialized by a call to FGCRSU, a call is made to function FGPRSU so that Parasolid can be informed of the parametric properties of the surface. In our example code the relevant code is :</P>
+<P>
+<A NAME="50462724_pgfId-281387"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462724_pgfId-281593"></A>{  surface_evaluator eval;  eval = *(surface_evaluator *)fg_data;  *ifail = FGPROP;              /* initialize properties to defaults*/  if ( eval == corrugated )  {                             /* establish &#8216;corrugated&#8217; properties*/    range[0] = 0.0;             /* low u value    */    range[1] = ki_reals[1];     /* high u value   */    range[2] = 0.0;             /* low v value    */    range[3] = ki_reals[2];     /* high v value   */    period[0] = FGPRBD;         /* bounded u parametrisation */    period[1] = FGPRBD;         /* bounded v parametrisation */    *ifail = FGOPOK;  }......</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462724_pgfId-282164"></A>Note: <STRONG>
+1. </STRONG>The parameter ranges [0,n] and [0,w] are returned to Parasolid.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-282165"></A>Note: <STRONG>
+2. </STRONG>The surface key is no longer available, so our surface is recognized by the address stored in fg_data.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-282072"></A>Note: <STRONG>
+3. </STRONG>The <CODE>
+period</CODE>
+ arguments must be set as shown, to FGPRBD - &#8216;not periodic&#8217;. At the current Parasolid version, periodic surfaces are not allowed so this argument is for future extensions.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-282073"></A>Note: <STRONG>
+4. </STRONG>Default parameter properties may be assumed by setting the return ifail code to FGPROP. These properties are u and v ranges both [0, 1] and periodicity flags both FGPRBD.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-282074"></A>Note: <STRONG>
+5. </STRONG>The corresponding function for curves, FGPRCU, behaves in a very similar way. The only differences are that the range array only has two entries, range[0] and range[1], for low and high values of the curve's parametrisation, and that only period[0] needs to be initialized to FGPRBD to indicate that the t parametrisation is non-periodic. Again, default properties may be used by setting the return code to FGPROP.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-274702"></A>	2.2.4 	<A NAME="50462724_marker-274701"></A>The evaluation function</H2>
+
+<H4>
+<A NAME="50462724_pgfId-274703"></A>Enabling evaluations of the surface</H4>
+<P>
+<A NAME="50462724_pgfId-274704"></A>Evaluations of surfaces are routed through function FGEVSU.  In our example this is implemented as :</P>
+<P>
+<A NAME="50462724_pgfId-281397"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462724_pgfId-281616"></A>eval = *(surface_evaluator *) fg_data;                                    /* initialize evaluator function*/*ifail = FGOPOK;                         /* initialize ifail */(*eval)( ki_ints, ki_reals, fg_data, u, v,                                           /* &amp; call evaluator */     nu, nv, triang, results, ifail ); }</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462724_pgfId-282357"></A>Note: <STRONG>
+1. </STRONG>We set ifail to &#8216;success&#8217; so that evaluators only have to set other outcomes.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-282358"></A>Note: <STRONG>
+2. </STRONG>FGEVSU then simply routes the request directly to our evaluator function. Clearly this mechanism depends upon evaluators being written with the same arguments as FGEVSU. In existing systems this may well not be possible. In these cases the call to the evaluator needs to be made and the results processed, by this function, into the form which Parasolid is expecting.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-282359"></A>Note: <STRONG>
+3. </STRONG>The performance of this linkage to the external evaluators is quite critical to the performance of FG within Parasolid - many thousands of calls are made to the evaluator in a modeling session. Therefore every effort should be made to optimize this function. In FORTRAN, for example, storage of an integer in fg_data followed by a computed GOTO here works.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50462724_pgfId-274710"></A>The corrugated evaluator function.</H4>
+<P>
+<A NAME="50462724_pgfId-274711"></A>The evaluator call supplies arguments as follows :</P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274712"></A>Pointers to the three data arrays which the evaluator can use ( ki_ints, ki_reals, fg_data )</LI>
+<LI>
+<A NAME="50462724_pgfId-274713"></A>Parameter position (u, v). Parasolid ensures that only parameter values within the parameter range of the surface are requested, so no tests need to be done for this.</LI>
+<LI>
+<A NAME="50462724_pgfId-274714"></A>Derivative specification ( nu, nv, triang ) which refers to the number of u derivatives requested, the number of v derivatives requested, and the triangular flag.</LI>
+<LI>
+<A NAME="50462724_pgfId-274715"></A>The results array is supplied for the evaluator to return its results. Each position or derivative is stored in three elements of this array.</LI>
+</UL>
+<P>
+<A NAME="50462724_pgfId-274716"></A>Let&#8217;s look at a section of the sample <CODE>
+corrugated</CODE>
+ evaluator code:</P>
+<P>
+<A NAME="50462724_pgfId-281414"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462724_pgfId-281648"></A>if ( su_dP_du( &amp;n, *nu, *nv, *triang )){  /*    compute : Pu  */  results[n++] = 1.0;  results[n++] = 0.0;  results[n]    = two_pi * A * cos(*u * two_pi);}</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462724_pgfId-274718"></A>and later on after all evaluations are complete...</P>
+<P>
+<A NAME="50462724_pgfId-281426"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462724_pgfId-281662"></A>*ifail = su_check_params( *ifail, *nu, *nv, *triang );</PRE>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462724_pgfId-282519"></A>Note: <STRONG>
+1. </STRONG>The decision as to whether a particular derivative is required, and where it should be returned in the results array, is not entirely straightforward. Therefore we have provided a set of utility functions for this purpose. In the example above, su_dP_du returns TRUE if the dP/du derivative is requested and n points to the correct position in the results array. More details on these issues are given below.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-282520"></A>Note: <STRONG>
+2. </STRONG>The function su_check_params sets ifail to FGEVIN if the evaluation requested could not be completely fulfilled. It assumes that evaluators are written to supply up to and including all second derivatives ( the minimum requirement ). Cases where Parasolid asks for more than the evaluator can supply may occur, for example, if a surface is created which is the offset of an FG surface. In these cases FGEVIN alerts Parasolid to the need to approximate the missing derivatives. Parasolid recognizes missing derivatives by checking that no assignment has been made to the relevant entries in the results array, so it is important NOT to set elements of the results array that have not been successfully calculated.</ADDRESS><BR>
+<ADDRESS>
+<A NAME="50462724_pgfId-282521"></A>Note: <STRONG>
+3. </STRONG>The corresponding function for curves, FGEVCU, has been similarly coded but is more straightforward in that the derivative request is a single argument, nderiv, for the number of t derivatives requested as opposed to the surface derivative request (nu, nv, triang) for the numbers of u and v derivatives requested along with the triangular flag.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-274725"></A>	2.2.5 	<A NAME="50462724_marker-274724"></A>Derivative specifications and output</H2>
+<P>
+<A NAME="50462724_pgfId-274726"></A>The results of an evaluation are returned in the <CODE>
+results</CODE>
+ array passed down to the evaluator. The specification of the numbers of derivatives required is supplied by means of the <CODE>
+nu</CODE>
+, <CODE>
+nv</CODE>
+ and <CODE>
+triang</CODE>
+ arguments. The meanings of these is as follows:</P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274727"></A>The <CODE>
+results</CODE>
+ array should be considered as an array of vectors each of which is stored in 3 successive locations in the array. For example, if 6 results are required then the <CODE>
+results</CODE>
+ array is 18 doubles long.</LI>
+<LI>
+<A NAME="50462724_pgfId-274728"></A>The <CODE>
+nu</CODE>
+, <CODE>
+nv</CODE>
+ and <CODE>
+triang</CODE>
+ specify the derivatives required, and their positions in the <CODE>
+results</CODE>
+ array as follows:</LI>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274729"></A>If <CODE>
+triang</CODE>
+ is FGEVSQ. In this case a rectangular array of derivatives is required. <CODE>
+nu</CODE>
+ specifies the highest derivative of form dnP/dun that is required. <CODE>
+nv</CODE>
+ specifies the highest derivative of form dnP/dvn that is required. Other entries are according to the pattern &#8216;<EM>
+each successive column is a higher derivative in u and each successive row is a higher derivative in v</EM>&#8217;. Thus, for example, if nu=2 , nv=1 and triang=0 then the results array looks as follows:</LI>
+</UL>
+</UL>
+<P>
+<A NAME="50462724_pgfId-274730"></A>P dP/du d2P/du2</P>
+<P>
+<A NAME="50462724_pgfId-274731"></A>dP/dv d2P/dudv d3P/du2dv</P>
+<UL>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274732"></A>These positions/derivatives are then stored in the <CODE>
+results</CODE>
+ array in row order. For example, counting from position 0 (in Fortran add 1 to these positions):</LI>
+<P>
+<A NAME="50462724_pgfId-274733"></A>dP/du  is stored in elements 3-5 of the <CODE>
+results</CODE>
+ array.</P>
+<P>
+<A NAME="50462724_pgfId-274734"></A>d2p/dudv is stored in elements 12-14 of the <CODE>
+results</CODE>
+ array.</P>
+<LI>
+<A NAME="50462724_pgfId-274735"></A>Finally, if a derivative is NOT available then the corresponding array elements should be returned unmodified. For example, if your evaluator cannot return d3p/du2dv in the above specification you should not modify elements 15-17 of results and return 'ifail' as FGEVIN (Evaluation incomplete)</LI>
+<LI>
+<A NAME="50462724_pgfId-274736"></A>The <CODE>
+triang</CODE>
+ argument may only take the value FGEVTR when nu = nv. In this case the array pattern is triangular and returned in row order. For example, if nu=nv=2 and triang=1 the pattern of the results array is as follows:</LI>
+</UL>
+</UL>
+<P>
+<A NAME="50462724_pgfId-281441"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462724_pgfId-281673"></A>P dP/du 2P/du2dP/dv d2P/dudvd2P/dv2</PRE>
+</TD>
+</TR>
+</TABLE>
+<UL>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274740"></A>Thus, for example:</LI>
+<P>
+<A NAME="50462724_pgfId-274741"></A>d2P/du2 is stored in elements 6-8 of the <CODE>
+results</CODE>
+ array.</P>
+<P>
+<A NAME="50462724_pgfId-274742"></A>d2P/dv2 is stored in elements 15-17 of the <CODE>
+results</CODE>
+ array.</P>
+</UL>
+</UL>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462724_pgfId-274744"></A>2.3	<A NAME="50462724_marker-274743"></A>FG module design issues
+
+
+</H1>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-274746"></A>	2.3.1 	<A NAME="50462724_marker-274745"></A>General design</H2>
+<P>
+<A NAME="50462724_pgfId-274747"></A>In Parasolid the style of implementation used for FG is as shown in the supplied example source code and detailed in this chapter. We have found it to be a fast and straightforward interface to use. We have an advantage here in that we are generally writing FG evaluators from scratch. We have designed the FG interface to be as compatible as possible with other FG systems that we have encountered as well as being already specified in a form that allows us to increase the range of curve and surface types that are implementable as FG.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-282816"></A>	2.3.2 	<A NAME="50462724_marker-282815"></A>Performance issues</H2>
+<P>
+<A NAME="50462724_pgfId-282817"></A>Parasolid does not replace users&#8217; evaluators with internal approximations: it must always request spatial information regarding external curves and surfaces by calling FGEVCU and FGEVSU respectively in order to model exactly. Therefore it is essential that the user codes these functions as efficiently as possible since any delay in returning information to Parasolid is directly reflected in the speed of modeling using FG.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-274752"></A>	2.3.3 	<A NAME="50462724_marker-274751"></A>Data usage issues</H2>
+
+<H4>
+<A NAME="50462724_pgfId-274754"></A><A NAME="50462724_marker-274753"></A>Data available to the FG developer</H4>
+<P>
+<A NAME="50462724_pgfId-274755"></A>A simple evaluator may be designed to generate a single specific curve or surface. In this case no information other than parameter positions is required by the evaluator in order for it to be able to supply positions and derivatives.</P>
+<P>
+<A NAME="50462724_pgfId-274756"></A>However, we imagine that developers will more typically choose to write general purpose evaluators capable of generating whole families of curves or surfaces. In these cases the evaluators will require additional data to specify the particular example required.</P>
+<P>
+<A NAME="50462724_pgfId-274757"></A>Parasolid provides two distinct means to supply this sort of data to evaluators as arguments to the function which specifies the required curve or surface or from data supplied by the FG module when the curve or surface is initialized.</P>
+
+
+<H4>
+<A NAME="50462724_pgfId-274759"></A><A NAME="50462724_marker-274758"></A>Data passed to the interface</H4>
+<P>
+<A NAME="50462724_pgfId-274760"></A>The interface allows the user to supply an array of real numbers and/or an array of integers to the evaluator. In most cases this is the preferred method of supplying data:</P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274761"></A>This data is stored in transmit files of Parasolid bodies, so that such files are sufficient to exchange models between sites with the required evaluators linked to Parasolid.</LI>
+<LI>
+<A NAME="50462724_pgfId-274762"></A>This data must be in the form of reals or integers - as attempts to cast character strings into elements of the real array creates difficulties in generating transmit files.</LI>
+</UL>
+
+
+<H4>
+<A NAME="50462724_pgfId-274764"></A><A NAME="50462724_marker-274763"></A>Data passed to the FG module</H4>
+<P>
+<A NAME="50462724_pgfId-274765"></A>The interface additionally allows the user to specify an area of memory which is filled by the FG module call which requests that the FG item specified by the interface call be initialized. This data :</P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274766"></A>Is not stored on any file generated by Parasolid. It therefore provides a means by which users can implement evaluators where security considerations require that no associated data be accessible from transmit files or snapshots.</LI>
+<LI>
+<A NAME="50462724_pgfId-274767"></A>Is simply stored by Parasolid and made available to the evaluator. Therefore any form of data, such as pointers or character strings, can be cast into this area.</LI>
+<LI>
+<A NAME="50462724_pgfId-274768"></A>Requires that the source of this data, such as files or databases, be available on all sites where this form of evaluator is to be used.</LI>
+</UL>
+<P>
+<A NAME="50462724_pgfId-274769"></A>There is one specific use of such data which is inherent in the design of the FG interface. All evaluation requests leave Parasolid as calls to functions FGEVCU or FGEVSU. These functions therefore need to be able to route these requests to the appropriate evaluator function.</P>
+<P>
+<A NAME="50462724_pgfId-274770"></A>It would be possible to design these functions to switch to evaluators based upon the key supplied to the interface. However, performance considerations indicate that this is a very inefficient mechanism, particularly if many evaluators are linked into Parasolid. The interface therefore requires that at least space for one double is requested. This first element of the Frustrum array is intended to be used to implement this switch between evaluators.</P>
+<P>
+<A NAME="50462724_pgfId-274771"></A>In the example discussed below the address of the evaluator function is stored. This is an efficient method of implementing this switch in C but other methods such as a stored integer used in a Fortran computed GOTO statement are equally valid.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-274773"></A>	2.3.4 	<A NAME="50462724_marker-274772"></A>Key format for evaluator selection</H2>
+<P>
+<A NAME="50462724_pgfId-274774"></A>There is no format which is enforced for keys by Parasolid. However, we believe that the opportunities that the FG facilities create for extending the geometrical repertoire of Parasolid may find widespread applications. We need to provide support facilities for users of such geometry that meet Parasolid's high customer support standards. In order to do this we need to be able to identify the originators of FG evaluators. We propose a standard for keys as follows:</P>
+<P>
+<A NAME="50462724_pgfId-274775"></A><STRONG>
+key = &lt;company_identifier&gt; / &lt;evaluator_name&gt; / &lt;data_source&gt;</STRONG></P>
+<P>
+<A NAME="50462724_pgfId-274776"></A>So for example :</P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274777"></A>Only evaluators which use the <CODE>
+fg_data</CODE>
+ route for input need to use the &lt;data_source&gt; component</LI>
+<LI>
+<A NAME="50462724_pgfId-274778"></A>our corrugated surface has key <CODE>
+EDS/corrugated</CODE>
+</LI>
+<LI>
+<A NAME="50462724_pgfId-274779"></A>A Coons surface evaluator written by company ABC which uses secure data from a file <CODE>
+Example_data</CODE>
+ would have key <CODE>
+ABC/Coons/Example_data</CODE>
+</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462724_pgfId-274782"></A>	2.3.5 	<A NAME="50462724_marker-274780"></A><A NAME="50462724_marker-274781"></A>Deletion of evaluators</H2>
+<P>
+<A NAME="50462724_pgfId-274783"></A>The Foreign Geometry interface comprises six functions:</P>
+<UL>
+<LI>
+<A NAME="50462724_pgfId-274784"></A>FGCRSU, FGCRCU to initialize curves and surfaces</LI>
+<LI>
+<A NAME="50462724_pgfId-274785"></A>FGPRCU, FGPRSU to return their parametric properties</LI>
+<LI>
+<A NAME="50462724_pgfId-274786"></A>FGEVCU, FGEVSU to perform evaluations</LI>
+</UL>
+<P>
+<A NAME="50462724_pgfId-274787"></A>Missing from this list are functions to &#8216;release&#8217; curves and surfaces that Parasolid has no further need of. The reason for this omission is that the decision as to when to release an evaluator is a complicated one since it depends on such things as copying geometry, the existence of dependent geometry and the Parasolid rollback mechanism. To attempt this would require much of the rollback mechanism to be implemented inside the Frustrum and would force all customers to rewrite their Frustrums, whether using foreign geometry or not. UGS reserves the right, however, to implement this in future releases, as this change in functionality is more generally useful.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462724_pgfId-274790"></A>2.4	<A NAME="50462724_marker-274788"></A><A NAME="50462724_marker-274789"></A>Linking the FG module into Parasolid
+
+
+</H1>
+<P>
+<A NAME="50462724_pgfId-274791"></A>The FG module must be linked into Parasolid to allow the user access to their curves and surfaces defined therein. The details of how to do this are machine specific but the principle is straightforward.</P>
+<P>
+<A NAME="50462724_pgfId-274792"></A>Command scripts are provided with the Parasolid release enabling the user to link the supplied example FG module together with Parasolid to form a customized version of KID.</P>
+<P>
+<A NAME="50462724_pgfId-110680"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fg_chap.02.html">Introduction and Summary</A></TD>
+  <TD><A HREF="../fg_index.html">Chapters</A></TD>
+  <TD><A HREF="fg_chap.04.html">Modeling using Foreign Geometry</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

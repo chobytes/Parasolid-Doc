@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<TITLE>ROLBFN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ROLBFN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_mark_goto.html>PK_MARK_goto</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ROLBFN ( nsteps, asteps, ifail )
+================================
+
+  Rolls back or forward by N steps between roll-marks
+
+Receives:
+  int                      *nsteps         --- number of steps to be rolled
+                                           --- forward (> 0) or back (< 0)
+
+Returns:
+  int                      *asteps         --- actual number of steps rolled
+                                           --- forward (> 0) or back (< 0)
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_not_at_rollmark        state of modeller changed since last roll-mark
+  KI_roll_forward_fail      Roll forward not possible
+  KI_bad_value              'nsteps' is zero
+  KI_roll_is_off            logging for roll-back is disabled
+
+Description:
+  Rolls the model forward or back by 'nsteps'; a positive number indicates
+  roll-forward, a negative number specifies roll-back. Error code
+  KI_bad_value will be returned if 'nsteps' is zero.
+
+  Rolling forward or back has the effect of restoring tag memory, modelling
+  parameters, interface parameters and the bulletin board to the state they
+  were in immediately after the call to ROLSMK which set the relevant
+  roll-mark.
+
+  The ROLBFN call will affect validity of tags of entities which were created
+  or deleted between the two roll-marks representing the states before and
+  after the ROLBFN call. The modeller will always trap invalid tags, giving
+  error KI_not_a_tag. Note, however, that entities restored by a get-snapshot
+  operation may have the same tags as entities which existed prior to the
+  GETSNP call.
+
+  It may be that modeller is unable to roll as many steps as have been
+  requested - this may be because not enough marks have yet been set, or
+  because the logging file is not large enough to record that many steps,
+  or because an attempt is being made to roll forward to a mark which has
+  been invalidated by a call to ROLSMK since the roll-back. Whatever the
+  reason, the modeller will roll back or forward as many steps as it can,
+  and will return the number of steps in 'asteps'. The modeller will not
+  raise an error, even when no steps can be rolled (in this case 'asteps'
+  will be returned as zero).
+
+  If the state of the modeller has been changed since the most recent call
+  to ROLSMK, ROLBFN or ROLBLM, ROLBFN will return the error code
+  KI_not_at_rollmark. In this the case, you must either call ROLSMK (to
+  set a new roll-mark) or ROLBLM (to roll back to the previous one)
+  before calling ROLBFN.
+
+  Only 1024 rollmarks are stored.
+  It is not possible to roll backwards or forwards further than the 1024 marks
+  set.
+
+  Routine OUSTAT can be used to get information about the roll-back system
+  such as how many roll-back and roll-forward steps are available and whether
+  the modeller is at a roll-mark.
+
+</PRE>
+</BODY>
+</HTML>

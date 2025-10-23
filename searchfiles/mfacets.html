@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.085.html#50409873_pgfId-435306", " Returns the number of <B>mfacets</B> in a mesh. ", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-411706", " Returns all the <B>mfacets</B> that use the given mvertex as one of", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-351379", " can choose to supply a small set of <B>mfacets</B> from which a mesh can be created as", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-434133", " Creating a mesh from a small set of <B>mfacets</B> ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-432020", " Section 85.4.2.2, Creating meshes using <B>mfacets</B> from multiple meshes ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-383964", " Creating a mesh from a small set of <B>mfacets</B> for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-383968", " Creating a mesh from a small set of <B>mfacets</B> for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-384035", " Creating a mesh from a small set of <B>mfacets</B> for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-384039", " Whether to create a mesh either from the <B>mfacets</B> set selected by ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-384917", " PK_selector_type_include_c : Create the mesh using the <B>mfacets</B> selected by ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-384878", " PK_selector_type_exclude_c : Create the mesh using <B>mfacets</B> that were not selected by ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-392339", " Creating a mesh from a small set of <B>mfacets</B> for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-423328", " mesh(es) should be tracked back to their respective <B>mfacets</B> in the input meshes. It takes the following", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-424371", " PK_MFACET_map_no_c : Do not map the supplied <B>mfacets</B> (Default). ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-424403", " PK_MFACET_map_yes_c : Map the supplied <B>mfacets</B> ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-427498", " arrays. See Section 85.4.2.2, Creating meshes using <B>mfacets</B> from multiple meshes for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-427508", " same body. See Section 85.4.2.2, Creating meshes using <B>mfacets</B> from multiple meshes for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-427518", " resultant mesh. See Section 85.4.2.2, Creating meshes using <B>mfacets</B> from multiple meshes for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-427528", " supplied faces. See Section 85.4.2.2, Creating meshes using <B>mfacets</B> from multiple meshes for more information. ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-391328", " Creating a mesh from a small set of <B>mfacets</B> ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-393242", " as seeds that propagate outwards into the adjacent <B>mfacets</B> to create a mesh. Depending on the value", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-394797", " A is part of the selected set of <B>mfacets</B> and mfacet B is an adjacent mfacet that", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.086.html#50409874_pgfId-425813", " 85.4.2.2 Creating meshes using <B>mfacets</B> from multiple meshes ", "Functional Description - Converting Between Facet and Classic Geometry");
+top.note("chapters/fd_chap.088.html#50409876_pgfId-376391", " smaller of the two angles between two mfin-adjacent <B>mfacets</B> is less than or equal to the value", "Functional Description - Checking and Repairing Mesh Data");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339123", " single normal at each mvertex, thereby treating the <B>mfacets</B> that surround it as essentially smooth ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339132", " on the angle of the normals between adjacent <B>mfacets</B>. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339134", " the mesh angle, then the boundary between those <B>mfacets</B> is considered smooth. Knowing this information can speed", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339136", " than mesh angle then the boundary between those <B>mfacets</B> is not considered smooth, and there is a", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339140", " at the mvertex share this normal and all <B>mfacets</B> appear smooth. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-339142", " are multiple normals at any mvertex whose adjacent <B>mfacets</B> are not completely smooth to within session tolerance.", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-451829", " either end of the mfin, the two adjacent <B>mfacets</B> do not share a normal as returned by", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-449168", " is PK_LOGICAL_true and the two <B>mfacets</B> do not share a normal at an mvertex,", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-367275", " 89.4 Finding perimeters of <B>mfacets</B> ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-381194", " closed mloop is also returned. In (B), the <B>mfacets</B> selected are mvertex-connected not mfin-connected and therefore return", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-379183", " Finding perimeters and mloops on a subset of <B>mfacets</B> on a mesh ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-381010", " the perimeters and mloops for a subset of <B>mfacets</B> allows you to split complex mesh bodies into", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-373489", " <B>mfacets</B> of a topological sphere) the set of <B>mfacets</B> will not have a perimeter and therefore will", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-388181", " mfins in the perimeter of a set of <B>mfacets</B> , for more information. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-426154", " mfacetsets that contain at least this number of <B>mfacets</B> is returned. ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-389605", " mfins in the perimeter of a set of <B>mfacets</B> ", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-403727", " If the supplied set of <B>mfacets</B> contains internal edges that you want to use", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/fd_chap.090.html#50409878_pgfId-397369", " shows an example where the selected set of <B>mfacets</B> contain sharp mfins. A) shows the perimeter returned", "Functional Description - Performing Evaluations On Meshes");
+top.note("chapters/ov_chap.09.html#50442280_pgfId-371841", " a subset of meshes, or a selection of <B>mfacets</B> taken from multiple meshes. ", "Overview of Parasolid - Convergent Modeling");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " for corrupt or non-manifold meshes, degenerate or flat <B>mfacets</B> and bad mvertex normals ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " for corrupt or non-manifold meshes, degenerate or flat <B>mfacets</B> and bad mvertex normals ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_mtopols_not_same_mesh 5230 PK_MFACET_find_perimeters (MILD) <B>mfacets</B> not all from same mesh.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_mtopols_not_same_mesh 5230 PK_MFACET_find_perimeters (MILD) <B>mfacets</B> not all from same mesh.", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_tolerance_too_loose 5249 PK_MESH_fix_defects too many degenerate and flat <B>mfacets</B> are", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " PK_MESH_fix_defects 5249 PK_ERROR_tolerance_too_loose too many degenerate and flat <B>mfacets</B> are", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_check_mesh_t.html#documentation", " degenerate or flat <B>mfacets</B> and bad", "PK Reference - PK_check_mesh_t");
+top.note("headers/pk_mesh_ask_n_mfacets.html#declaration", " int *const n_mfacets --- number of <B>mfacets</B>", "PK Reference - PK_MESH_ask_n_mfacets");
+top.note("headers/pk_mesh_ask_n_mfacets.html#description", " This function returns the number of <B>mfacets</B> in the given mesh .", "PK Reference - PK_MESH_ask_n_mfacets");
+top.note("headers/pk_mesh_defect_details_t.html#documentation", "| PK_MESH_defect_self_int_c |intersecting <B>mfacets</B> | yes | yes |", "PK Reference - PK_MESH_defect_details_t");
+top.note("headers/pk_mesh_defect_tolerances_t.html#documentation", " two <B>mfacets</B> in the mesh are to be considered as", "PK Reference - PK_MESH_defect_tolerances_t");
+top.note("headers/pk_mesh_find_defects_o_t.html#documentation", " <B>mfacets</B> is less than or equal to max_foldover_angle .", "PK Reference - PK_MESH_find_defects_o_t");
+top.note("headers/pk_mesh_fix_defects.html#errors", " PK_ERROR_tolerance_too_loose too many degenerate and flat <B>mfacets</B> are", "PK Reference - PK_MESH_fix_defects");
+top.note("headers/pk_mesh_fix_defects_o_t.html#documentation", " <B>mfacets</B> is less than or equal to max_foldover_angle .", "PK Reference - PK_MESH_fix_defects_o_t");
+top.note("headers/pk_mesh_imprint_vectors_o_t.html#declaration", " --- mapping of <B>mfacets</B>", "PK Reference - PK_MESH_imprint_vectors_o_t");
+top.note("headers/pk_mesh_imprint_vectors_o_t.html#documentation", " map_mfacets This determines if <B>mfacets</B> in the original mesh are", "PK Reference - PK_MESH_imprint_vectors_o_t");
+top.note("headers/pk_mfacet_find_perimeters.html#declaration", " int n_mfacets, --- the number of <B>mfacets</B>", "PK Reference - PK_MFACET_find_perimeters");
+top.note("headers/pk_mfacet_find_perimeters.html#description", "Optionally, the set of <B>mfacets</B> can be expanded by a callback function that", "PK Reference - PK_MFACET_find_perimeters");
+top.note("headers/pk_mfacet_find_perimeters.html#errors", " PK_ERROR_mtopols_not_same_mesh (MILD) <B>mfacets</B> not all from same mesh.", "PK Reference - PK_MFACET_find_perimeters");
+top.note("headers/pk_mfacet_find_perimeters.html#documentation", "set of mfin-connected <B>mfacets</B> that does not have an adjacent mfin whose", "PK Reference - PK_MFACET_find_perimeters");
+top.note("headers/pk_mfacet_find_perimeters_o_t.html#declaration", " --- at least this number of <B>mfacets</B>", "PK Reference - PK_MFACET_find_perimeters_o_t");
+top.note("headers/pk_mfacet_find_perimeters_o_t.html#documentation", " selection of <B>mfacets</B> will be limited to", "PK Reference - PK_MFACET_find_perimeters_o_t");
+top.note("headers/pk_mfacet_find_perimeters_r_t.html#declaration", " PK_MFACET_array_t *track_mfacetsets; --- <B>mfacets</B> for tracking", "PK Reference - PK_MFACET_find_perimeters_r_t");
+top.note("headers/pk_mfacet_find_perimeters_r_t.html#documentation", " num_mfacetsets The number of mfin-connected sets of <B>mfacets</B> formed", "PK Reference - PK_MFACET_find_perimeters_r_t");
+top.note("headers/pk_mfacet_map_t.html#documentation", " PK_MFACET_map_yes_c <B>MFACETs</B> will be mapped.", "PK Reference - PK_MFACET_map_t");
+top.note("headers/pk_mfin_is_sharp.html#documentation", "An mfin between two adjacent <B>mfacets</B> in a mesh is considered sharp if, for", "PK Reference - PK_MFIN_is_sharp");
+top.note("headers/pk_mtopol_make_meshes.html#description", "the set of <B>mfacets</B> can be expanded by a callback function that", "PK Reference - PK_MTOPOL_make_meshes");
+top.note("headers/pk_mtopol_make_meshes.html#documentation", "The mtopols must be <B>mfacets</B> from the same mesh unless the faces option", "PK Reference - PK_MTOPOL_make_meshes");
+top.note("headers/pk_mtopol_make_meshes_o_t.html#declaration", " --- mapping of <B>mfacets</B>", "PK Reference - PK_MTOPOL_make_meshes_o_t");
+top.note("headers/pk_mtopol_make_meshes_o_t.html#documentation", " selection of <B>mfacets</B> will be limited to mtopols .", "PK Reference - PK_MTOPOL_make_meshes_o_t");
+top.note("headers/pk_mtopol_track_t.html#documentation", " PK_MTOPOL_track_none_c No tracking <B>mfacets</B> are returned.", "PK Reference - PK_MTOPOL_track_t");
+top.note("headers/pk_mvertex_ask_mfacets.html#declaration", " int *const n_mfacets, --- the number of <B>mfacets</B> ", "PK Reference - PK_MVERTEX_ask_mfacets");
+top.note("headers/pk_mvertex_ask_mfacets.html#description", " This function returns all <B>mfacets</B> which have mvertex as one of their", "PK Reference - PK_MVERTEX_ask_mfacets");
+top.note("headers/pk_mvertex_ask_mfacets.html#documentation", "The output array <B>mfacets</B> is optional. If it is set to NULL,", "PK Reference - PK_MVERTEX_ask_mfacets");
+top.note("headers/pk_session_set_mesh_angle.html#documentation", "partition the ordered ring of <B>mfacets</B> around an mvertex into smoothly connected", "PK Reference - PK_SESSION_set_mesh_angle");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

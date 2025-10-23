@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_find_laminar_mfins_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_find_laminar_mfins_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_find_laminar_mfins_o_s
+    {
+    int                   o_t_version;      --- version number of
+                                            --- option structure
+    int                   max_mfins;        --- limit on the number of mfins in
+                                            --- a returned component (0)
+    int                   n_help_positions; --- number of help positions (0)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>          *help_positions;   --- help positions (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>          want_plines;      --- whether to return a pline
+                                            --- for each component
+                                            --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_mesh_open_comps_t.html>PK_MESH_open_comps_t</A>  open_comps;       --- controls action taken when
+                                            --- closed components cannot be
+                                            --- formed
+                                            --- (<A HREF=../headers/pk_mesh_open_comps_t.html>PK_MESH_open_comps_no_c</A>)
+    };
+typedef struct PK_MESH_find_laminar_mfins_o_s PK_MESH_find_laminar_mfins_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_mesh_find_laminar_mfins.html>PK_MESH_find_laminar_mfins</A>
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_value      <B>'max_mfins'</B> is &lt; 0   (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_find_laminar_mfins.html>PK_MESH_find_laminar_mfins</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+
+<B>'max_mfins'</B>                 If set to zero (the default value) all components
+                            will be returned, otherwise only components
+                            containing less than or equal to <B>'max_mfins'</B> will
+                            be returned.
+
+<B>'n_help_positions'</B>          The number of help positions. If supplied,
+                            the closest component to each help position will be
+                            returned, provided that it does not contain more
+                            than <B>'max_mfins'</B> mfins.
+
+<B>'help_positions'</B>            The help positions. If a help position is
+                            equidistant to two or more components, they will
+                            all be returned, excepting those that contain
+                            more than <B>'max_mfins'</B> mfins.
+
+<B>'want_plines'</B>               If this flag is set to PK_LOGICAL_true then a
+                            polyline representation of each component will
+                            be returned as a <A HREF=../headers/pk_pline_t.html>PK_PLINE_t</A>.
+
+<B>'open_comps'</B>                If this option is set to <A HREF=../headers/pk_mesh_open_comps_t.html>PK_MESH_open_comps_no_c</A>
+                            (the default value) and it is not possible to
+                            group all laminar mfins into closed components
+                            then PK_ERROR_mesh_open_components will be
+                            returned. If this option is set to
+                            <A HREF=../headers/pk_mesh_open_comps_t.html>PK_MESH_open_comps_allow_c</A> then open components
+                            will be returned for any laminar mfins that cannot
+                            be grouped into closed components. If this option
+                            is set to <A HREF=../headers/pk_mesh_open_comps_t.html>PK_MESH_open_comps_report_c</A> then in
+                            addition a PK_REPORT will be generated containing
+                            information about the returned open components.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

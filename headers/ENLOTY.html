@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>ENLOTY</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENLOTY</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_loop_ask_type.html>PK_LOOP_ask_type</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENLOTY ( loop, lptype, ifail )
+==============================
+
+  Enquire loop type
+
+Receives:
+  KI_tag_loop              *loop           --- loop
+
+Returns:
+  KI_cod_enlo              *lptype         --- type-code of loop,
+                                           --- from range ENLO00
+  KI_cod_error             *ifail          --- failure indicator
+
+
+Description:
+  The type of loop is returned as one of the following codes:
+
+      ENLOHO  ---  hole loop
+      ENLOPE  ---  peripheral loop
+      ENLONA  ---  not applicable
+
+  ENLONA is returned in cases where the distinction between peripheral loops
+  and holes does not make sense, for example the end loops of a cylindrical or
+  toroidal tube.
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SESSION_frustrum_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SESSION_frustrum_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef struct PK_SESSION_frustrum_s
+    {
+    --- macro PK_SESSION_frustrum_o_m initialises all of these fields to NULL
+    <A HREF=../headers/pk_fstart_f_t.html>PK_FSTART_f_t</A> fstart;
+    <A HREF=../headers/pk_fabort_f_t.html>PK_FABORT_f_t</A> fabort;
+    <A HREF=../headers/pk_fstop_f_t.html>PK_FSTOP_f_t</A>  fstop;
+    <A HREF=../headers/pk_fmallo_f_t.html>PK_FMALLO_f_t</A> fmallo;
+    <A HREF=../headers/pk_fmfree_f_t.html>PK_FMFREE_f_t</A> fmfree;
+    <A HREF=../headers/pk_gosgmt_f_t.html>PK_GOSGMT_f_t</A> gosgmt;
+    <A HREF=../headers/pk_goopsg_f_t.html>PK_GOOPSG_f_t</A> goopsg;
+    <A HREF=../headers/pk_goclsg_f_t.html>PK_GOCLSG_f_t</A> goclsg;
+    <A HREF=../headers/pk_gopixl_f_t.html>PK_GOPIXL_f_t</A> gopixl;
+    <A HREF=../headers/pk_gooppx_f_t.html>PK_GOOPPX_f_t</A> gooppx;
+    <A HREF=../headers/pk_goclpx_f_t.html>PK_GOCLPX_f_t</A> goclpx;
+    <A HREF=../headers/pk_ffoprd_f_t.html>PK_FFOPRD_f_t</A> ffoprd;
+    <A HREF=../headers/pk_ffopwr_f_t.html>PK_FFOPWR_f_t</A> ffopwr;
+    <A HREF=../headers/pk_ffclos_f_t.html>PK_FFCLOS_f_t</A> ffclos;
+    <A HREF=../headers/pk_ffread_f_t.html>PK_FFREAD_f_t</A> ffread;
+    <A HREF=../headers/pk_ffwrit_f_t.html>PK_FFWRIT_f_t</A> ffwrit;
+    <A HREF=../headers/pk_ffoprb_f_t.html>PK_FFOPRB_f_t</A> ffoprb;
+    <A HREF=../headers/pk_ffseek_f_t.html>PK_FFSEEK_f_t</A> ffseek;
+    <A HREF=../headers/pk_fftell_f_t.html>PK_FFTELL_f_t</A> fftell;
+    <A HREF=../headers/pk_fgcrcu_f_t.html>PK_FGCRCU_f_t</A> fgcrcu;
+    <A HREF=../headers/pk_fgcrsu_f_t.html>PK_FGCRSU_f_t</A> fgcrsu;
+    <A HREF=../headers/pk_fgevcu_f_t.html>PK_FGEVCU_f_t</A> fgevcu;
+    <A HREF=../headers/pk_fgevsu_f_t.html>PK_FGEVSU_f_t</A> fgevsu;
+    <A HREF=../headers/pk_fgprcu_f_t.html>PK_FGPRCU_f_t</A> fgprcu;
+    <A HREF=../headers/pk_fgprsu_f_t.html>PK_FGPRSU_f_t</A> fgprsu;
+    <A HREF=../headers/pk_ucoprd_f_t.html>PK_UCOPRD_f_t</A> ucoprd;
+    <A HREF=../headers/pk_ucopwr_f_t.html>PK_UCOPWR_f_t</A> ucopwr;
+    }
+    PK_SESSION_frustrum_t;
+
+</B>
+<A NAME="description"></A>
+<I>This data structure holds pointers to the functions the application
+wishes to register with the PK using <A HREF=../headers/pk_session_register_frustrum.html>PK_SESSION_register_frustrum</A>.
+Please see the Downward Interfaces manual for more information about
+these frustrum functions.
+
+The structure can be initialised with the PK_SESSION_frustrum_o_m macro.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_frustrum.html>PK_SESSION_ask_frustrum</A><br>
+    <A HREF=../headers/pk_session_register_frustrum.html>PK_SESSION_register_frustrum</A><br>
+  </p>
+</blockquote>
+<PRE>
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

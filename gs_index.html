@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+	<title>Parasolid Getting Started With Parasolid</title>
+	<LINK rel="stylesheet" href="ps_doc.css">
+	<script language="JavaScript">
+	<!-- Hide script from older browsers
+	
+	function updateMenu() {
+		if ((parent.theMenu) && (parent.theMenu.amBusy == false)) {	//Check that Joust is present
+        //First, find the ID of the entry that points to this page.  This is where
+        //we are going to add the new entries.
+        var level2ID = parent.theMenu.findEntry('Getting Started With Parasolid', 'text');
+
+        if (level2ID != -1) {		
+            if (parent.theMenu.entry[level2ID].FirstChild < 0) { //Check they haven't been added already.
+				
+                var level3ID = parent.theMenu.addChild(level2ID, "Document", "Introduction", "chapters/gs_chap.02.html", "Introduction");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Application Design", "chapters/gs_chap.03.html", "Application Design");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Supplying A Frustrum", "chapters/gs_chap.04.html", "Supplying A Frustrum");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "The C++ Example Application for Windows", "chapters/gs_chap.05.html", "The C++ Example Application for Windows");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Further Implementation Decisions", "chapters/gs_chap.06.html", "Further Implementation Decisions");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Using the PK Interface ", "chapters/gs_chap.07.html", "Using the PK Interface ");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Index", "chapters/gs_chap.09.html", "Index");
+                level3ID = parent.theMenu.addEntry(level3ID, "Document", "Index", "chapters/gs_chap.index.html", "Index");
+                parent.theMenu.reload();  //Now, reload (and redraw) the menu!
+            }
+        }
+    } else {
+        setTimeout("updateMenu();", 100);
+    }
+}
+
+// Now call updateMenu
+updateMenu();
+
+// end hide script from older browsers -->
+</script>
+</head>
+
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="images/background.gif">
+
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<A href="http://www.parasolid.com/"><IMG src="graphics/psbar_l.gif" border=0></A></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Getting Started With Parasolid</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P><TABLE WIDTH=99%>
+<TR>
+<TH>Chapters</TH>
+<TH>Appendices</TH>
+</TR>
+
+<TR>
+<TD VALIGN=TOP>
+
+<OL>
+<LI> <A HREF=chapters/gs_chap.02.html>Introduction</A>
+<LI> <A HREF=chapters/gs_chap.03.html>Application Design</A>
+<LI> <A HREF=chapters/gs_chap.04.html>Supplying A Frustrum</A>
+<LI> <A HREF=chapters/gs_chap.05.html>The C++ Example Application for Windows</A>
+<LI> <A HREF=chapters/gs_chap.06.html>Further Implementation Decisions</A>
+<LI> <A HREF=chapters/gs_chap.07.html>Using the PK Interface </A>
+
+</OL>
+<ul>
+<LI> <A HREF=chapters/gs_chap.09.html>Index</A>
+</ul>
+</TD>
+
+<TD VALIGN=TOP>
+
+<OL TYPE=A>
+</OL>
+
+</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

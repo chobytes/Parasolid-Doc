@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285738", " (*open_rd) ( int keylen, const char* key, int *<B>strid</B>); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285739", " (*open_wr) ( int keylen, const char* key, int *<B>strid</B>); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285741", " int (*rd_chars) ( int <B>strid</B>, int n, char *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285742", " int (*rd_bytes) ( int <B>strid</B>, int n, unsigned char *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285743", " int (*rd_shorts) ( int <B>strid</B>, int n, short *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285744", " int (*rd_ints) ( int <B>strid</B>, int n, int *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285745", " int (*rd_doubles) ( int <B>strid</B>, int n, double *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285747", " int (*wr_chars) ( int <B>strid</B>, int n, const char *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285748", " int (*wr_bytes) ( int <B>strid</B>, int n, const unsigned char ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285750", " int (*wr_shorts) ( int <B>strid</B>, int n, const short *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285751", " int (*wr_ints) ( int <B>strid</B>, int n, const int *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285752", " int (*wr_doubles) ( int <B>strid</B>, int n, const double *data); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285754", " int (*close) ( int <B>strid</B>, int abort); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285756", " int (*open_uc_rd) ( const PK_UCHAR_t *key, int *<B>strid</B>); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285757", " int (*open_uc_wr) ( const PK_UCHAR_t *key, int *<B>strid</B>); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285759", " int guise, int keylen, const char* key, int *<B>strid</B>); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285761", " int guise, int keylen, const char* key, int *<B>strid</B>); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285763", " ( int guise, const PK_UCHAR_t *key, int *<B>strid</B>); ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-285765", " ( int guise, const PK_UCHAR_t *key, int *<B>strid</B>); ", "Functional Description - How the C# Binding is Implemented");
+top.note("headers/pk_ffclos_f_t.html#declaration", "const int *<B>strid</B>,", "PK Reference - PK_FFCLOS_f_t");
+top.note("headers/pk_ffclos_f_t.html#documentation", " int *<B>strid</B> --- frustrum <B>strid</B>", "PK Reference - PK_FFCLOS_f_t");
+top.note("headers/pk_ffoprb_f_t.html#declaration", "int *<B>strid</B>,", "PK Reference - PK_FFOPRB_f_t");
+top.note("headers/pk_ffoprb_f_t.html#documentation", " int *<B>strid</B> --- frustrum <B>strid</B>", "PK Reference - PK_FFOPRB_f_t");
+top.note("headers/pk_ffoprd_f_t.html#declaration", " int *<B>strid</B>,", "PK Reference - PK_FFOPRD_f_t");
+top.note("headers/pk_ffoprd_f_t.html#documentation", " int *<B>strid</B> --- id for stream on which", "PK Reference - PK_FFOPRD_f_t");
+top.note("headers/pk_ffopwr_f_t.html#declaration", " int *<B>strid</B>,", "PK Reference - PK_FFOPWR_f_t");
+top.note("headers/pk_ffopwr_f_t.html#documentation", " int *<B>strid</B> --- id for stream on which", "PK Reference - PK_FFOPWR_f_t");
+top.note("headers/pk_ffread_f_t.html#declaration", "const int *<B>strid</B>,", "PK Reference - PK_FFREAD_f_t");
+top.note("headers/pk_ffread_f_t.html#documentation", " int *<B>strid</B> --- frustrum <B>strid</B>", "PK Reference - PK_FFREAD_f_t");
+top.note("headers/pk_ffseek_f_t.html#declaration", "const int *<B>strid</B>,", "PK Reference - PK_FFSEEK_f_t");
+top.note("headers/pk_ffseek_f_t.html#documentation", " int *<B>strid</B> --- frustrum <B>strid</B>", "PK Reference - PK_FFSEEK_f_t");
+top.note("headers/pk_ffskxt_f_t.html#declaration", "const int <B>strid</B>,", "PK Reference - PK_FFSKXT_f_t");
+top.note("headers/pk_ffskxt_f_t.html#documentation", " int <B>strid</B> --- frustrum <B>strid</B>", "PK Reference - PK_FFSKXT_f_t");
+top.note("headers/pk_fftell_f_t.html#declaration", "const int *<B>strid</B>,", "PK Reference - PK_FFTELL_f_t");
+top.note("headers/pk_fftell_f_t.html#documentation", " int *<B>strid</B> --- frustrum <B>strid</B>", "PK Reference - PK_FFTELL_f_t");
+top.note("headers/pk_ffwrit_f_t.html#declaration", "const int *<B>strid</B>,", "PK Reference - PK_FFWRIT_f_t");
+top.note("headers/pk_ffwrit_f_t.html#documentation", " int *<B>strid</B> --- frustrum <B>strid</B>", "PK Reference - PK_FFWRIT_f_t");
+top.note("headers/pk_session_applio_t.html#declaration", " int (*open_rd) (int keylen, const char* key, int *<B>strid</B>);", "PK Reference - PK_SESSION_applio_t");
+top.note("headers/pk_session_applio_t.html#documentation", " file for reading with the given key. The <B>strid</B> returned", "PK Reference - PK_SESSION_applio_t");
+top.note("headers/pk_session_indexio_t.html#documentation", "Frustrum stream identifier (<B>strid</B>) and the file pointer after successful open;", "PK Reference - PK_SESSION_indexio_t");
+top.note("headers/pk_ucoprd_f_t.html#declaration", " int *<B>strid</B>", "PK Reference - PK_UCOPRD_f_t");
+top.note("headers/pk_ucoprd_f_t.html#documentation", " int *<B>strid</B> --- id for stream on which", "PK Reference - PK_UCOPRD_f_t");
+top.note("headers/pk_ucopwr_f_t.html#declaration", " int *<B>strid</B>", "PK Reference - PK_UCOPWR_f_t");
+top.note("headers/pk_ucopwr_f_t.html#documentation", " int <B>strid</B> --- id for stream on which", "PK Reference - PK_UCOPWR_f_t");
+top.note("chapters/di_chap.02.html#50511934_pgfId-281864", "<B>strid</B> ", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.03.html#50511935_pgfId-285382", " that the file must be deleted when the <B>strid</B> is closed down. ", "Downward Interfaces - File Handling");
+top.note("chapters/fr_chap.06.html#50462725_pgfId-276543", " int *<B>strid</B>, int *ifail ) ", "Reporting Faults to Parasolid - Updating The Frustrum");
+top.note("chapters/fr_chap.06.html#50462725_pgfId-276550", " *<B>strid</B> = null_strid; ", "Reporting Faults to Parasolid - Updating The Frustrum");
+top.note("chapters/fr_chap.06.html#50462725_pgfId-276243", " *<B>strid</B> = file_ptr-><B>strid</B>; ", "Reporting Faults to Parasolid - Updating The Frustrum");
+top.note("chapters/fr_chap.06.html#50462725_pgfId-275648", " void WriteToFrustrumFile( const int* guise, const int* <B>strid</B>, const int* nchars, ", "Reporting Faults to Parasolid - Updating The Frustrum");
+top.note("chapters/fr_chap.06.html#50462725_pgfId-275656", " if (file_ptr-><B>strid</B> == *<B>strid</B>) break; ", "Reporting Faults to Parasolid - Updating The Frustrum");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

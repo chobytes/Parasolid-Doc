@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.018.html#50409799_pgfId-501447", " It contains fields that specify the surface and the <B>2D</B> B-curve needed to create the 3D SP-curve. PK_SPCURVE_ask returns", "Functional Description - Geometry");
+top.note("chapters/fd_chap.018.html#50409799_pgfId-500769", " parameterisation of an SP-curve is the parameterisation of the <B>2D</B> B-spline curve used to create it. Evaluating this curve", "Functional Description - Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-526425", " space. That is, the polylines act similarly to the <B>2D</B> B-curves that define an SP-curve. ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-376568", " Note: The supplied curves cannot be <B>2D</B> B-curves. ", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-894126", " specify a depth curve. This is represented by a <B>2D</B> B-curve whose parameter space is that of the portion", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-294818", " Lets you supply <B>2D</B> analytic curves as well as <B>2D</B> B-spline curves. ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-294821", " A <B>2D</B> analytic curve, in this context, refers to a 3D", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-294835", " Note: PK_SPCURVE_create can only create SP-curves from <B>2D</B> trimming curves and surfaces. If the data you are", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310232", " other cases are points in 3d space, the <B>2d</B> B-spline vertices of SP-curves represent points in the", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304509", " Parasolid supports two different kinds of viewport: 3D and <B>2D</B> viewports. Both of these are defined using a non-aligned", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304523", "<B>2D</B> viewport is a rectangular window through which world space can be viewed along a specified view direction. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304535", "Figure 106-19 illustrates the differences between typical 3D and <B>2D</B> viewports onto a body; these viewports could be specified", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-360795", " Figure 106-19 Specifying <B>2D</B> and 3D viewports on a body ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304544", " specify multiple viewports, then they must all be either <B>2D</B> or 3D: you cannot mix the two types. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304571", "Figure 106-21 shows the entities returned for a <B>2D</B> viewport when clipping is on or off. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304592", " Figure 106-21 Clipping a <B>2D</B> viewport ", "Functional Description - Rendering Option Settings");
+top.note("chapters/ov_chap.03.html#50442274_pgfId-335283", " Companies transitioning from <B>2D</B> to 3D ", "Overview of Parasolid - About Parasolid");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_render_viewport_type_<B>2D</B>_c 20481 <B>2D</B> viewport ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_render_viewport_type_<B>2D</B>_c 20481 <B>2D</B> viewport ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_bad_dimension 135 PK_CURVE_embed_in_surf curve is not <B>2D</B>", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_not_implemented 5000 PK_CURVE_find_vectors (MILD) Returned if curve is a <B>2D</B> BCURVE.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_<B>2d</B>_viewport 5184 PK_TOPOL_render_line <B>2D</B> viewport has not been properly", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_not_implemented 5000 PK_CURVE_find_vectors (MILD) Returned if curve is a <B>2D</B> BCURVE.", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_unsuitable_entity 914 PK_CURVE_embed_in_surf_2 curve is not a <B>2D</B> b-curve or is not a", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " PK_CURVE_embed_in_surf 135 PK_ERROR_bad_dimension curve is not <B>2D</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " PK_GEOM_copy 5000 PK_ERROR_not_implemented (MILD) Returned if any <B>2D</B> BCURVE of an", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_SPCURVE_create 135 PK_ERROR_bad_dimension `spcurve_sf->curve is not <B>2D</B> (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_blend_shape_t.html#declaration", " PK_BCURVE_t depth; --- <B>2D</B> law curve; curvature cts blends", "PK Reference - PK_blend_shape_t");
+top.note("headers/pk_blend_shape_t.html#documentation", " depth <B>2D</B> law curve for curvature continuous blends. (NULL)", "PK Reference - PK_blend_shape_t");
+top.note("headers/pk_body_check_o_t.html#documentation", " iii) For SP-curves on edges and fins with discontinuous underlying <B>2D</B>", "PK Reference - PK_BODY_check_o_t");
+top.note("headers/pk_body_make_patterned.html#documentation", " mvertex positions do not lie entirely within the <B>2d</B>", "PK Reference - PK_BODY_make_patterned");
+top.note("headers/pk_curve_embed_in_surf.html#errors", " PK_ERROR_bad_dimension curve is not <B>2D</B>", "PK Reference - PK_CURVE_embed_in_surf");
+top.note("headers/pk_curve_embed_in_surf.html#documentation", "The curve must be a <B>2D</B> BCURVE; that is it must either be a rational", "PK Reference - PK_CURVE_embed_in_surf");
+top.note("headers/pk_curve_embed_in_surf_2.html#errors", " PK_ERROR_unsuitable_entity curve is not a <B>2D</B> b-curve or is not a", "PK Reference - PK_CURVE_embed_in_surf_2");
+top.note("headers/pk_curve_embed_in_surf_2.html#documentation", " 1: a <B>2D</B> b-curve; that is it must either be a rational", "PK Reference - PK_CURVE_embed_in_surf_2");
+top.note("headers/pk_curve_find_vectors.html#errors", "PK_ERROR_not_implemented (MILD) Returned if curve is a <B>2D</B> BCURVE.", "PK Reference - PK_CURVE_find_vectors");
+top.note("headers/pk_geom_copy.html#errors", " PK_ERROR_not_implemented (MILD) Returned if any <B>2D</B> BCURVE of an", "PK Reference - PK_GEOM_copy");
+top.note("headers/pk_geom_delete_single.html#documentation", " geometric entity is an SP-curve, it and the underlying <B>2D</B> B-curve will", "PK Reference - PK_GEOM_delete_single");
+top.note("headers/pk_loop_ask_type.html#documentation", "For planes and other non-periodic surfaces, all <B>2D</B> loops are either", "PK Reference - PK_LOOP_ask_type");
+top.note("headers/pk_render_viewport_type_t.html#documentation", "passed to viewport_sf or viewports are interpreted as a <B>2D</B> window using the", "PK Reference - PK_render_viewport_type_t");
+top.note("headers/pk_spcurve_create.html#errors", " PK_ERROR_bad_dimension `spcurve_sf->curve is not <B>2D</B> (MILD)", "PK Reference - PK_SPCURVE_create");
+top.note("headers/pk_spcurve_sf_t.html#errors", " PK_ERROR_bad_dimension curve is not <B>2D</B>", "PK Reference - PK_SPCURVE_sf_t");
+top.note("headers/pk_spcurve_sf_t.html#documentation", " spcurve is the 3D curve resulting from embedding a <B>2D</B> curve in the", "PK Reference - PK_SPCURVE_sf_t");
+top.note("headers/pk_spcurve_t.html#description", "from embedding a <B>2D</B> curve in the parameter space of a surface.", "PK Reference - PK_SPCURVE_t");
+top.note("headers/pk_topol_render_line.html#errors", " PK_ERROR_bad_<B>2d</B>_viewport <B>2D</B> viewport has not been properly specified", "PK Reference - PK_TOPOL_render_line");
+top.note("headers/pk_topol_render_line_o_t.html#documentation", " PK_render_viewport_type_<B>2D</B>_c : is used to indicate a <B>2D</B> viewport.", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274245", " projection, the 3D GO data can be projected into <B>2D</B> form simply by replacing the third column of the", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275240", " how to split a hidden line picture into separate <B>2D</B> regions, as shown in the Figure 4-5 . ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-305076", " of the line corresponding to the segment in the <B>2D</B> picture. (The faces may or may not be adjacent", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275317", "or outside the <B>2D</B> representation of the model (the outside of the picture).", "Downward Interfaces - Graphical Output");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

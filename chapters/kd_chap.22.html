@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Machine Dependency in KID</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Machine Dependency in KID</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.21.html">KID Examples</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.24.html">Index</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.22.html#50475026_pgfId-274044">F.1	Introduction</A>
+<LI> <A HREF="kd_chap.22.html#50475026_pgfId-274050">F.2	open_device and close_device</A>
+<LI> <A HREF="kd_chap.22.html#50475026_pgfId-274066">F.3	Which key for pick?</A>
+<LI> <A HREF="kd_chap.22.html#50475026_pgfId-274071">F.4	KID interrupts</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475026_pgfId-274044"></A>F.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475026_pgfId-274045"></A>Very few KID commands are device dependent. The ones described are functions of the graphics class.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475026_pgfId-274050"></A>F.2	<A NAME="50475026_marker-274046"></A><A NAME="50475026_marker-274047"></A>open_device and<A NAME="50475026_marker-274048"></A> <A NAME="50475026_marker-274049"></A>close_device
+
+
+</H1>
+<P>
+<A NAME="50475026_pgfId-274051"></A>In general it is not necessary to change the default settings for a particular graphics device. If these defaults are to be changed, the function <CODE>
+enquire</CODE>
+ gives information on these settings. The graphics functions <CODE>
+open_device</CODE>
+ and <CODE>
+close_device</CODE>
+ are used with an argument, to initialise or change the device type.</P>
+<P>
+<A NAME="50475026_pgfId-274061"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-279745"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-279747"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-279749"></A>graphics</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-279762"></A>open_device, close_device</P>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475026_pgfId-279775"></A>&gt; ( graphics enquire )           --&gt; information
+&gt; ( graphics open_device &acute;x )
+                       -- initialise device setting to Xwindow
+&gt; ( graphics close_device &acute;x ) --&gt; unset current device setting</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475026_pgfId-274063"></A>The available devices are: cifer, new_cifer, plotter, laser, vt240_regis, vt240_tek, postscript, Xwindow, Xcolor, Xcolour, nt, ntcolor, ntcolour, interleaf, framemaker and null.</P>
+<P>
+<A NAME="50475026_pgfId-274064"></A>A null device is sometimes useful to ensure that a device is open even if the output is not to be viewed.</P>
+<P>
+<A NAME="50475026_pgfId-274065"></A>The shade function is only available with X devices, not on NT.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475026_pgfId-274066"></A>F.3	Which key for pick?
+
+
+</H1>
+<P>
+<A NAME="50475026_pgfId-274067"></A>The <CODE>
+pick</CODE>
+ command  belonging to the <CODE>
+entity</CODE>
+ and <CODE>
+p_points</CODE>
+ classes enables the cursor when used without argument. To pick an object or screen coordinate pressing any key achieves the pick.</P>
+<P>
+<A NAME="50475026_pgfId-279780"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475026_pgfId-279795"></A>&gt; ( define p1 p_points )
+&gt; ( define b0 p_cone )
+&gt; ( define f1 face )
+&gt; ( b0 lrad 10; urad 0; height 30; create )
+&gt; ( graphics sketch &acute;b0 )
+&gt; ( f1 pick )      -- cursor enabled for face pick
+&gt; ( p1 pick )
+           -- cursor enabled for image plane coordinate pick(s)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475026_pgfId-274071"></A>F.4	<A NAME="50475026_marker-274069"></A><A NAME="50475026_marker-274070"></A>KID interrupts
+
+
+</H1>
+<P>
+<A NAME="50475026_pgfId-274072"></A>KID contains an error handler which allows the user to interrupt the execution of a KID or FLICK command without exiting from the KID session. On most machines this responds to ctrl-C.</P>
+<P>
+<A NAME="50475026_pgfId-274098"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-279812"></A>&nbsp;</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-279814"></A>user-interrupt</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-279816"></A>exit KID</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-279818"></A>kill KID</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-274083"></A>NT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-274085"></A>ctrl-C</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-274087"></A>ctrl-Z</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-274089"></A>-</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-274091"></A>UNIX</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-274093"></A>ctrl-C</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-274095"></A>ctrl-D</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475026_pgfId-274097"></A>-</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475026_pgfId-273605"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.21.html">KID Examples</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.24.html">Index</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_REGION_embed_lattices_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_REGION_embed_lattices_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_REGION_embed_lattices_o_s
+    {
+    int                     o_t_version;     --- Version number of options
+                                             --- structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>            want_frames;     --- Whether frames created by
+                                             --- embedding should be
+                                             --- returned. (PK_LOGICAL_false)
+    <A HREF=../headers/pk_attrib_transfer_t.html>PK_ATTRIB_transfer_t</A>    attr_transfer;   --- Whether to transfer
+                                             --- attributes to the frame
+                                             --- (PK_ATTRIB_transfer_no_c)
+    int                     n_attdefs;       --- Number of attdefs (0)
+    const <A HREF=../headers/pk_attdef_t.html>PK_ATTDEF_t</A>      *attdefs;         --- List of attdefs specifying set
+                                             --- of attributes to transfer
+                                             --- (NULL)
+    <A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_t</A>  group_transfer;  --- Whether to transfer the frame
+                                             --- to the groups which contain
+                                             --- the region
+                                             --- (<A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_no_c</A>).
+    };
+
+typedef struct PK_REGION_embed_lattices_o_s PK_REGION_embed_lattices_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls for embedding lattices in the region.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_region_embed_lattices.html>PK_REGION_embed_lattices</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+
+<B>'want_frames'</B>      Controls whether an array of frames created by the
+                   lattice embedding operation is returned.
+
+<B>'attr_transfer'</B>    Determines whether selected attributes are to be moved
+                   or copied to the frame. It can take the following values:
+
+                   PK_ATTRIB_transfer_no_c
+                       Move no attributes to the frame upon lattice embedding.
+                       This is the default.
+
+                   PK_ATTRIB_transfer_copy_c
+                       Copy the selected attributes from the
+                       region to the frame upon lattice embedding.
+
+                   PK_ATTRIB_transfer_move_c
+                       Move the selected attributes from the
+                       region to the frame upon lattice embedding.
+
+                   A copy operation means that independent instances of
+                   the attribute will exist on both the region and the frame
+                   after embedding the lattice.
+
+                   A move operation means that the attribute is
+                   first copied to the frame and then the instance remaining
+                   on the region is deleted.
+
+                   Transfer of selected attributes is subject to the following
+                   eligibility criteria:
+                     o The attributes must be ownable by both regions and
+                       frames
+                     o The attributes must be of class 1, 4, 6 or 7. These are
+                       the attribute classes which are not deleted upon change
+                       events.
+                   If either of these criteria is not met then
+                   PK_ERROR_wrong_entity will be returned.
+
+                   If <B>'attr_transfer'</B> is set to PK_ATTRIB_transfer_copy_c
+                   or PK_ATTRIB_transfer_move_c and <B>'n_attdefs'</B> = 0 then
+                   all attributes on the region which are eligible (see above)
+                   for transfer to the frame will be transferred.
+
+                   This control does not affect the density system attributes.
+
+<B>'n_attdefs'</B>        Length of <B>'attdefs'</B>. This value is only meaningful when
+                   <B>'attr_transfer'</B> is set to either PK_ATTRIB_transfer_copy_c
+                   or PK_ATTRIB_transfer_move_c.
+
+<B>'attdefs'</B>          List of attribute definitions specifying the set of
+                   attributes to copy or move to the frame. This value is only
+                   meaningful when <B>'attr_transfer'</B> is set to either
+                   PK_ATTRIB_transfer_copy_c or PK_ATTRIB_transfer_move_c.
+
+<B>'group_transfer'</B>   Determines whether the frame created as part of lattice
+                   embedding is added to all eligible groups where the region
+                   is a member. A group is eligible if it may contain both
+                   frames and regions. It may take the following values:
+
+                   <A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_no_c</A>
+                       No additional processing is performed for groups.
+                       This is the default behaviour.
+
+                   <A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_add_c</A>
+                       Add the frame to all eligible groups (see above) where
+                       the region is a member.
+
+                   <A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_replace_c</A>
+                       Replace the region with the frame in all
+                       eligible groups (see above) where the region is a
+                       member.
+
+                   <A HREF=../headers/pk_embed_frame_group_t.html>PK_embed_frame_group_remove_c</A>
+                       Remove the region from all groups where it is a
+                       member.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

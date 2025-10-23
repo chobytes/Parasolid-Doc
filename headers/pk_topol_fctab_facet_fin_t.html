@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_fctab_facet_fin_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_fctab_facet_fin_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct  PK_TOPOL_fcstr_facet_fin_s
+       {
+       int     facet;
+       int       fin;
+       };
+typedef struct PK_TOPOL_fcstr_facet_fin_s
+               PK_TOPOL_fcstr_facet_fin_t;
+struct PK_TOPOL_fctab_facet_fin_s
+       {
+       PK_TOPOL_fcstr_facet_fin_t *data;
+       int   length;
+       };
+typedef struct PK_TOPOL_fctab_facet_fin_s
+               PK_TOPOL_fctab_facet_fin_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_r_t.html>PK_TOPOL_facet_r_t</A><br>
+    <A HREF=../headers/pk_topol_facet_table_t.html>PK_TOPOL_facet_table_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is a support structure for <A HREF=../headers/pk_topol_facet_r_t.html>PK_TOPOL_facet_r_t</A> and <A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A>.
+It is a lookup table which 'groups' sets of fins owned by the same facet
+together.
+
+The outside of a facet is represented by an ordered sequence of 3 or more fins.
+The fin sequence follows an anti-clockwise order when viewed down the facet
+normal (i.e. from 'above' the facet).
+
+The anti-clockwise ordering of fins and connected vertex entities is described
+later as their 'conventional order'. The following diagram illustrates the
+ordering of fins, viewed from above a quadrilateral facet mesh.
+
+                ^   |             ^   |
+          F     |   |      F      |   |     F
+                |   v             |   v
+      ---------&gt;     ------------&gt;     --------&gt;         ---------------
+                  V                 V                   |  Key          |
+      &lt;---------     &lt;------------     &lt;-------         | ------------- |
+                ^   |             ^   |                 |               |
+          F     |   |      F      |   |     F           |   F    facet  |
+                |   |             |   |                 |   V    vertex |
+                |   v             |   v                 |  --&gt;   fin    |
+      ---------&gt;     ------------&gt;     -------&gt;         |               |
+                  V                 V                    ---------------
+      &lt;---------     &lt;------------     &lt;------
+                ^   |             ^   |
+          F     |   |      F      |   |     F
+                |   v             |   v
+
+If a facet contains holes (having been created with the <B>'shape'</B> mesh option
+set to <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_any_c</A>), it is represented by an ordered sequence of
+exterior fins, followed by one or more sequences of interior fins,
+representing holes in the facet. The exterior and interior sub-sequences of
+fins are separated from each other by a 'null fin' value of -1.
+
+The fin sequence of each interior hole in a face follows a clockwise order
+when viewed from above the facet. The relative ordering of each interior fin
+sub-sequence is arbitrary (other than following the exterior sequence).
+
+Example
+
+        f1
+   v1---&lt;--------------------------------------------------------------v4
+    |         v5                     v8                       v11       |
+    |      f5/ \                  f8/ \                   f11/ \        ^ f4
+    |       /   \                  /   \                    /   \       |
+    |      /     \f6              /     \f9                /     \f12   |
+ f2 v       -&lt;----                 -&lt;----                   -&lt;----      |
+    |   v7  f7    v6         v10  f10    v9           v13  f13   v12    |
+   v2---------------------------------------------------------------&gt;---v3
+                                                                    f3
+This facet may be represented by the sequence
+
+    f1  f2  f3  f4  -1  f5   f6   f7  -1  f8   f9  f10   -1  f11  f12  f13
+
+    \__exterior__/   ^   \_interior_/  ^   \_interior_/   ^    \_interior_/
+                     |                 |                  |
+                 separator         separator          separator
+
+The relative ordering of the interior sub-sequences "f5 f6 f7", "f8 f9 f10"
+and "f11 f12 f13" is arbitrary.
+
+Facets will not contain holes (and fin sequences will not contain 'null fin'
+separators) if the <B>'shape'</B> option has been set to <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_cut_c</A> or
+<A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_convex_c</A>.
+
+Each facet is assigned an integer value from  0 to (<B>'number_of_facets'</B> - 1).
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

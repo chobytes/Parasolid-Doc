@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_section_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_section_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_FACE_section_o_s
+    {
+    int                       o_t_version;      --- version number
+    <A HREF=../headers/pk_section_fence_t.html>PK_section_fence_t</A>        fence;            --- (<A HREF=../headers/pk_section_fence_t.html>PK_section_fence_both_c</A>)
+    const <A HREF=../headers/pk_boolean_config_o_t.html>PK_boolean_config_o_t</A>
+                             *configuration;    --- (NULL)
+    const <A HREF=../headers/pk_boolean_region_select_o_t.html>PK_boolean_region_select_o_t</A>
+                             *select_region;    --- (NULL)
+    const <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A>
+                             *matched_region;   --- (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              extend_face_list; --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              merge_imprinted;  --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              merge_new_faces;  --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              selective_merge;  --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_section_check_fa_t.html>PK_section_check_fa_t</A>     check_fa;         --- (<A HREF=../headers/pk_section_check_fa_t.html>PK_section_check_fa_yes_c</A>)
+    double                    default_tol;      --- (1.0E-5)
+    double                    max_tol;          --- (0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              tracking;         --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              keep_target_edges;  --- (PK_LOGICAL_false)
+    };
+typedef struct PK_FACE_section_o_s PK_FACE_section_o_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is supplied to a section operation for bodies.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_section_with_sheet.html>PK_FACE_section_with_sheet</A><br>
+    <A HREF=../headers/pk_face_section_with_sheet_2.html>PK_FACE_section_with_sheet_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'fence'</B>                  To determine which resultant bodies or faces are
+                         returned when performing a sectioning
+                         operation. Permitted values are :
+                             <A HREF=../headers/pk_section_fence_t.html>PK_section_fence_front_c</A>
+                             <A HREF=../headers/pk_section_fence_t.html>PK_section_fence_back_c</A>
+                             <A HREF=../headers/pk_section_fence_t.html>PK_section_fence_both_c</A>
+
+
+<B>'configuration'</B>          Describes the configuration of target and tool
+                         bodies.
+
+
+<B>'select_region'</B>          Used to identify regions of the tool and/or target to
+                         include or exclude in the result.
+
+
+<B>'matched_region'</B>         Describes matched regions between the target face and
+                         the tool sheet.
+                         See <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A> and <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-394571">here</A> for more
+                         information.
+
+
+<B>'extend_face_list'</B>       A face section receives a subset of the faces of a
+                         target body. If the imprinting phase of the section
+                         results in incomplete loops of imprinted edges, then
+                         additional target faces will be used.
+
+
+<B>'merge_imprinted'</B>        Merge all mergeable imprinted edges created and/or
+                         located by the section operation.
+                         Note the following :
+                          o an existing edge can be considered an imprinted
+                            edge if it forms part of the intersection between
+                            faces from the target and tool.
+                          o mergeable edges which are adjacent to new section
+                            faces are not merged (this behaviour is particular
+                            to sectioning).
+
+
+
+<B>'merge_new_faces'</B>        Merge all mergeable imprinted edges created by
+                         the section operation including edges which are
+                         adjacent to new section faces. This flag has no
+                         effect if the <B>'merge_imprinted'</B> field is not set
+                         to PK_LOGICAL_true.
+
+
+
+<B>'selective_merge'</B>        If this is set to PK_LOGICAL_true, the merge phase
+                         will avoid mergeing imprinted edges that existed
+                         and were mergeable before the start of the section.
+                         This flag has no effect if <B>'merge_imprinted'</B> is not
+                         set to PK_LOGICAL_true.
+
+
+<B>'check_fa'</B>               The value of this determines if face checking is
+                         performed during the operation, permitted values
+                         are :
+
+                         <A HREF=../headers/pk_section_check_fa_t.html>PK_section_check_fa_no_c</A>
+                         <A HREF=../headers/pk_section_check_fa_t.html>PK_section_check_fa_yes_c</A>
+
+                         The default is set to <B>'<A HREF=../headers/pk_section_check_fa_t.html>PK_section_check_fa_yes_c</A>'</B>
+                         and it is strongly advised not to change this value.
+                         If the face checking is switched off, the section
+                         operation may produce an invalid body without
+                         raising an error.
+
+
+<B>'default_tol'</B>            The default tolerance to which the sectioning
+                         operation, if it has to, may approximate entities
+                         or assume that entities are coincident. This value
+                         should be set to a value that is related to the
+                         tolerance to which the application is creating
+                         approximations.
+                         If this field is set to zero (0.0), it is assumed
+                         that the decision to set tolerances on entities is
+                         being left to the modeller.
+
+
+<B>'max_tol'</B>                This value specifies the maximum tolerance which may
+                         be applied to any entity involved in the sectioning
+                         operation.
+                         If this field is set to zero (0.0), the default, then
+                         it assumed that no upper limit has been set on the
+                         tolerance of any entity.
+                         If the field is not set to zero (0.0), then it must be
+                         set to a value that is greater than the value of the
+                         <B>'default_tol'</B> field.
+
+
+<B>'tracking'</B>               Not currently in use.
+
+
+<B>'keep_target_edges'</B>      This option controls which edge survives when a
+                         target edge and a tool edge coincide in a boolean. If
+                         both faces adjacent to the tool edge survive, then the
+                         tool edge will also survive. Otherwise, the result
+                         depends on the setting of the option:
+
+                         PK_LOGICAL_true:
+                             The target edge survives, unless the target edge
+                             is a new edge imprinted during the boolean, and
+                             the tool edge is an original edge - in this case,
+                             the tool edge survives.
+
+                         PK_LOGICAL_false (the default):
+                             The older edge (i.e. the one with the smaller tag)
+                             survives.
+
+                         This option only has an effect if general topology
+                         is disabled. If it is enabled, then the target edge
+                         will always survive, even if it is a newly imprinted
+                         edge.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Introduction and Summary</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Introduction and Summary</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD><A HREF="../fg_index.html">Chapters</A></TD>
+  <TD><A HREF="fg_chap.03.html">Implementing an FG System</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fg_chap.02.html#50462725_pgfId-273839">1.1	Document overview</A>
+<LI> <A HREF="fg_chap.02.html#50462725_pgfId-273848">1.2	Summary: implementing and modeling with foreign geometry</A>
+<UL>
+<LI> <A HREF="fg_chap.02.html#50462725_pgfId-273849">1.2.1	Foreign geometry</A>
+<LI> <A HREF="fg_chap.02.html#50462725_pgfId-273852">1.2.2	FG curve and surface definitions</A>
+<LI> <A HREF="fg_chap.02.html#50462725_pgfId-273868">1.2.3	The FG module</A>
+<LI> <A HREF="fg_chap.02.html#50462725_pgfId-273897">1.2.4	Modeling with foreign geometry</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462725_pgfId-273839"></A>1.1	Document overview
+
+
+</H1>
+<P>
+<A NAME="50462725_pgfId-273840"></A>This document provides a complete guide to enable the user to implement in-house curves and surfaces for modeling with within Parasolid. Parasolid terms such externally defined geometry as <STRONG>
+Foreign Geometry</STRONG> (FG) or simply <STRONG>
+foreign</STRONG>. The contents of the chapters and appendices are as follows:</P>
+<UL>
+<LI>
+<A NAME="50462725_pgfId-273841"></A>Chapter 1 provides an overview of this document and a summary of how the user can implement Foreign Geometry.</LI>
+<LI>
+<A NAME="50462725_pgfId-273842"></A>Chapter 2 gives complete details for implementing a Foreign Geometry system and linking it into Parasolid.</LI>
+<LI>
+<A NAME="50462725_pgfId-273843"></A>Chapter 3 provides details of modeling using Foreign Geometry, of interface and KID functions, and of modeling operations not yet supported for Foreign Geometry.</LI>
+</UL>
+<P>
+<A NAME="50462725_pgfId-273845"></A>The appendices are as follows:</P>
+<UL>
+<LI>
+<A NAME="50462725_pgfId-273846"></A>Appendix A provides details of geometric restrictions required by Parasolid of FG.</LI>
+<LI>
+<A NAME="50462725_pgfId-273847"></A>Appendix B gives details of the FG module interface functions.</LI>
+</UL>
+<P>
+<A NAME="50462725_pgfId-282762"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462725_pgfId-282775"></A>Note: You are advised to consult with Parasolid Support before you use Foreign Geometry as there may be a better solution for your modelling needs.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462725_pgfId-273848"></A>1.2	Summary: implementing and modeling with foreign geometry
+
+
+</H1>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-273849"></A>	1.2.1 	Foreign geometry</H2>
+<P>
+<A NAME="50462725_pgfId-273851"></A><A NAME="50462725_marker-273850"></A>Parasolid terms externally defined curves and surfaces as Foreign Geometry (FG) or foreign. FG functionality allows Parasolid to access user defined surfaces and curves via the FG module interface. Consequently, the users are able to use in-house surfaces and curves for Parasolid modeling alongside the standard Parasolid curves and surface types.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-273852"></A>	1.2.2 	FG curve and surface definitions</H2>
+<P>
+<A NAME="50462725_pgfId-273853"></A>FG objects (i.e. curves and surfaces) are identified by a key. In addition, the user is able to provide numerical data (reals and integers) when an FG object is initialized, enabling a single evaluator to define a family of geometries. Parasolid requires that the foreign curve or surface is defined parametrically and is able to supply (via the FG module interface) position and derivatives at specific parameter values.</P>
+<P>
+<A NAME="50462725_pgfId-273855"></A><A NAME="50462725_marker-273854"></A>Specifically, a curve evaluator must be parametrised over a finite interval <IMG SRC="../graphics/fg_chap-4.gif">
+ and be able to supply position, first and second derivatives over this interval.</P>
+<P>
+<A NAME="50462725_pgfId-273860"></A><A NAME="50462725_marker-273859"></A>A surface evaluator must be parametrised over a finite region <IMG SRC="../graphics/fg_chap-5.gif">
+ and <IMG SRC="../graphics/fg_chap-6.gif">
+ and must be able to supply position, first and all second derivatives over this region.</P>
+<P>
+<A NAME="50462725_pgfId-273867"></A>Both curves and surfaces are subject to geometric restrictions as detailed in Appendix A.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-273868"></A>	1.2.3 	The FG module</H2>
+<P>
+<A NAME="50462725_pgfId-273870"></A><A NAME="50462725_marker-273869"></A>The user must write their own FG module, based upon the supplied example and on the details given in Chapter 2. This module is where requests from Parasolid for details of externally evaluated curves and surfaces are resolved. Once this module has been linked into Parasolid the user may model with their own in-house curves and surfaces using the standard Parasolid interface functions.</P>
+
+<H4>
+<A NAME="50462725_pgfId-273871"></A><A NAME="50462725_27459"></A>FG module functions </H4>
+<P>
+<A NAME="50462725_pgfId-273873"></A><A NAME="50462725_marker-273872"></A>There are six functions exported by the FG module. The user must provide definitions for each of these functions, and use <A HREF=../headers/pk_session_register_frustrum.html>PK_SESSION_register_frustrum</A> to register them with Parasolid, along with the standard frustrum functions. Parasolid obtains all details of externally evaluated geometry via calls to these functions. The functions are:</P>
+<UL>
+<LI>
+<A NAME="50462725_pgfId-273876"></A><A NAME="50462725_marker-273874"></A>FGCRCU, <A NAME="50462725_marker-273875"></A>FGCRSU		for curve/surface evaluator initialization;</LI>
+<LI>
+<A NAME="50462725_pgfId-273879"></A><A NAME="50462725_marker-273877"></A>FGPRCU,<A NAME="50462725_marker-273878"></A> FGPRSU		for defining curve/surface evaluator parameter ranges;</LI>
+<LI>
+<A NAME="50462725_pgfId-273882"></A><A NAME="50462725_marker-273880"></A>FGEVCU, <A NAME="50462725_marker-273881"></A>FGEVSU		for evaluating curves/surfaces.</LI>
+</UL>
+<P>
+<A NAME="50462725_pgfId-273885"></A><A NAME="50462725_marker-273883"></A><A NAME="50462725_marker-273884"></A>The creation functions, FGCRCU and FGCRSU receive a <STRONG>
+key</STRONG> (character string) identifying the evaluator function along with numerical data required for evaluator initialization. In addition a block of space, <STRONG>
+fg_data</STRONG>, is supplied, in which sufficient details for future identification of the evaluator are stored. These received arguments are passed directly through to the FG module by the functions, <A HREF=../headers/pk_fcurve_create.html><A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A></A> and <A HREF=../headers/pk_fsurf_create.html><A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A></A>. The functions FGCRCU and FGCRSU may be called as a result of the user creating new foreign curves or surfaces using the functions <A HREF=../headers/pk_fcurve_create.html><A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A></A> and <A HREF=../headers/pk_fsurf_create.html><A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A></A>, or indirectly to re-initialize any foreign geometry present on an archived part that is loaded into Parasolid using <A HREF=../headers/pk_part_receive.html>PK_PART_receive</A>.</P>
+<P>
+<A NAME="50462725_pgfId-273888"></A><A NAME="50462725_marker-273886"></A><A NAME="50462725_marker-273887"></A>The parameter properties functions, FGPRCU, FGPRSU are called once the evaluator has been successfully initialized as above. They are passed the fg_data block along with the numerical data <A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A>, <A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A> and supply the parameter range of the evaluator concerned. A simple status return from the parameter properties functions ensures Parasolid uses default parameter ranges of the unit interval (for curves) or unit square (for surfaces).</P>
+<P>
+<A NAME="50462725_pgfId-273891"></A><A NAME="50462725_marker-273889"></A><A NAME="50462725_marker-273890"></A>The evaluation functions, FGEVCU, FGEVSU are called by Parasolid to request position and derivatives of Foreign Geometry objects. These functions are passed the fg_data block to identify the evaluator function along with the further numerical data supplied through the interface by <A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A>, <A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A>. They are also passed details of the specific position and derivatives required and an array in which these evaluations are to be placed.</P>
+
+
+<H4>
+<A NAME="50462725_pgfId-273892"></A>Linking the FG module</H4>
+<P>
+<A NAME="50462725_pgfId-273894"></A><A NAME="50462725_marker-273893"></A>The FG module must be linked into Parasolid to allow the user access to their curves and surfaces defined therein. The details of how to do this are machine specific but the principle is straightforward.</P>
+<P>
+<A NAME="50462725_pgfId-273895"></A>Command scripts are provided with the Parasolid release enabling the user to link the supplied example FG module together with Parasolid to form a customized version of KID.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50462725_pgfId-273897"></A>	1.2.4 	<A NAME="50462725_marker-273896"></A>Modeling with foreign geometry</H2>
+<P>
+<A NAME="50462725_pgfId-273898"></A>Once the FG module has been successfully implemented and connected in to Parasolid, the user is able to proceed with solid modeling using FG curves and surfaces. Modeling requests are submitted, as usual, via the interface. The user  sees Foreign Geometry objects alongside the standard Parasolid geometry types, and is able to use the same modeling commands upon them.</P>
+<P>
+<A NAME="50462725_pgfId-273899"></A>There are in addition, four functions specific to FG. These are:</P>
+<UL>
+<LI>
+<A NAME="50462725_pgfId-273902"></A><A NAME="50462725_marker-273900"></A><A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A>, <A NAME="50462725_marker-273901"></A><A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A> for creation of FG curves/surfaces;</LI>
+<LI>
+<A NAME="50462725_pgfId-273905"></A><A NAME="50462725_marker-273903"></A><A HREF=../headers/pk_fcurve_ask.html>PK_FCURVE_ask</A>, <A NAME="50462725_marker-273904"></A><A HREF=../headers/pk_fsurf_ask.html>PK_FSURF_ask</A> for output of FG curves/surfaces.</LI>
+</UL>
+<P>
+<A NAME="50462725_pgfId-273906"></A>The exact specification of these functions is given in the <A HREF=../pk_index.html>PK Interface Programming Reference</A> Manual and full details of their use is given in Chapter 3 of this document.</P>
+<P>
+<A NAME="50462725_pgfId-273909"></A><A NAME="50462725_marker-273907"></A><A NAME="50462725_marker-273908"></A>The creation functions, <A HREF=../headers/pk_fcurve_create.html>PK_FCURVE_create</A> and <A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A>, are called when an evaluator is to be initialized for modeling with. Supplied arguments are the evaluator key and the length of this key, together with extra numerical data required by the evaluator, and the length of the fg_data block which is used to store information to identify the evaluator in future. These arguments are passed on to the FG module in calls to FGCRCU, FGCRSU (see previous section, <A HREF="fg_chap.02.html#50462725_27459">&#8220;FG module functions&#8221;</A>).</P>
+<P>
+<A NAME="50462725_pgfId-273912"></A><A NAME="50462725_marker-273910"></A><A NAME="50462725_marker-273911"></A>The FG output functions, <A HREF=../headers/pk_fcurve_ask.html>PK_FCURVE_ask</A>, <A HREF=../headers/pk_fsurf_create.html>PK_FSURF_create</A> receive the curve, surface respectively and an array into which the returned key string is written. Details of the curve, surface are returned: i.e. the key, key length, lists of numerical data used to initialize the curve/surface, along with the curve/surface sense and any transformation applied.</P>
+<P>
+<A NAME="50462725_pgfId-110680"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD><A HREF="../fg_index.html">Chapters</A></TD>
+  <TD><A HREF="fg_chap.03.html">Implementing an FG System</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

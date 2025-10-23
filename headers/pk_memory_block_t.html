@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MEMORY_block_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MEMORY_block_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MEMORY_block_s
+    {
+    struct PK_MEMORY_block_s *next;
+    size_t                    n_bytes;
+    const char               *bytes;
+    };
+typedef struct PK_MEMORY_block_s PK_MEMORY_block_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds XT data.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_memory_block_f.html>PK_MEMORY_block_f</A><br>
+    <A HREF=../headers/pk_part_receive_b.html>PK_PART_receive_b</A><br>
+    <A HREF=../headers/pk_part_receive_version_b.html>PK_PART_receive_version_b</A><br>
+    <A HREF=../headers/pk_part_transmit_b.html>PK_PART_transmit_b</A><br>
+    <A HREF=../headers/pk_partition_receive_b.html>PK_PARTITION_receive_b</A><br>
+    <A HREF=../headers/pk_partition_receive_o_t.html>PK_PARTITION_receive_o_t</A><br>
+    <A HREF=../headers/pk_partition_receive_version_b.html>PK_PARTITION_receive_version_b</A><br>
+    <A HREF=../headers/pk_partition_transmit_b.html>PK_PARTITION_transmit_b</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Memory blocks and in-memory I/O
+
+Parasolid's archive model does not specify how XT data is preserved by
+applications, though physical disk files are often used, with names
+related to the key referred to by Parasolid. This implementation may not
+be appropriate, e.g. an application may wish to keep its XT data as a
+segment of a larger file, interleaved with non-Parasolid information, or,
+over a network, XT data may be visible only as a chapter of an XML
+document. Applications may use copies in temporary files, or replace the
+registered Frustrum read/write routines (see <A HREF=../headers/pk_session_register_frustrum.html>PK_SESSION_register_frustrum</A>),
+but Parasolid's explicit in-memory routines remove the need for this.
+
+The input routines <A HREF=../headers/pk_part_receive_b.html>PK_PART_receive_b</A> and <A HREF=../headers/pk_partition_receive_b.html>PK_PARTITION_receive_b</A> take a
+block of data, followed by more blocks if the XT data is in more than one
+segment. Storage management is the application's responsibility.
+
+The output routines <A HREF=../headers/pk_part_transmit_b.html>PK_PART_transmit_b</A> and <A HREF=../headers/pk_partition_transmit_b.html>PK_PARTITION_transmit_b</A>
+generate chains of blocks, using the PK memory allocators (see
+<A HREF=../headers/pk_memory_register_callbacks.html>PK_MEMORY_register_callbacks</A>). As Parasolid uses a standard-sized memory
+block (see <A HREF=../headers/pk_memory_set_block_size.html>PK_MEMORY_set_block_size</A>) as a buffer to generate the XT data,
+the size of individual blocks will approach, but not exceed, that size.
+After processing, the application should use <A HREF=../headers/pk_memory_block_f.html>PK_MEMORY_block_f</A> to free the
+XT chains.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

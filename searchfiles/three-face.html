@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.075.html#50409862_pgfId-309452", " Chapter 79, <B>Three-Face</B> Blending describes Parasolids support for blending between three sets", "Functional Description - Introduction To Blending");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-302970", " <B>Three-face</B> blending ", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-514070", " partial support for facet geometry. Face-face blending and <B>three-face</B> blending do not support facet geometry. ", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-302996", " 75.1.3 <B>Three-face</B> blending ", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.076.html#50409863_pgfId-440798", " two. <B>Three-face</B> blends are described in Chapter 79, <B>Three-Face</B> Blending .", "Functional Description - Edge Blending Overview");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-956791", " Chapter 79, <B>Three-Face</B> Blending ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-294737", " to standard face-face blending, Parasolid lets you create <B>three-face</B> blends (also known as ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-294745", " number of ribs, each of which has a <B>three-face</B> blend along the top. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295000", " <B>Three-face</B> blending differs from face-face blending in the following ways:", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295003", " <B>Three-face</B> blends are either rolling-ball blends or circular disc blends.", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295009", " gives an overview of the components of a <B>three-face</B> blend, together with information about how to create", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295013", " how you can set the cross-section of a <B>three-face</B> blend, and how you can further control the", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295017", " describes how to set the orientation of a <B>three-face</B> blend with respect to its walls. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295021", " explains how you can set tolerance values for <B>three-face</B> blend operations. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295025", " Section 79.6, Propagating blends , explains how <B>three-face</B> blends can be propagated across smoothly adjoining edges.", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295029", " Trimming <B>three-face</B> blends , explains how to trim <B>three-face</B> blends.", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295033", " Section 79.9, Checking <B>three-face</B> blends , explains how to control face-face inconsistency", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295037", " , explains the controls available for repairing self-intersecting <B>three-face</B> blends. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295045", " , explains the update switch available when creating <B>three-face</B> blends. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295049", " Section 79.13, <B>Three-face</B> blending summary , provides a summary of the whole", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295054", " 79.2 <B>Three-face</B> blending concepts ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295055", " how to create one using the PK interface. <B>three-face</B> blending shares many concepts with face-face blending. Whenever", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295059", " 79.2.1 Components of a <B>three-face</B> blend ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295063", "Figure 79-2 illustrates the components of a general <B>three-face</B> blend. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295161", " Figure 79-2 General definition of a <B>three-face</B> blend ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295162", " The three walls of faces supplied in a <B>three-face</B> blend are referred to as the ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295168", " As for face-face blends, <B>three-face</B> blends are defined using a set of cross-sectional", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-464608", " given wall is the master face, and a <B>three-face</B> blend must pass through at least one of", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295185", " 79.2.2 Creating a <B>three-face</B> blend ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295186", " <B>Three-face</B> blends are created using PK_FACE_make_3_face_blend , which receives and", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295210", " For <B>three-face</B> disc blends, a wire body that defines the", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295239", " with face-face blends, the cross-sectional planes of a <B>three-face</B> blend are the notional set of planes that", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295240", " You specify the cross-sectional plane of a <B>three-face</B> blend via the ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295704", " different orientation on the centre wall of a <B>three-face</B> blend. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295840", " do not set the orientation options appropriately, the <B>three-face</B> blend will fail. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295851", " controls for specifying how tolerances are used in <B>three-face</B> blends: ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295853", " a tolerance that PK_FACE_make_3_face_blend uses when propagating general <B>three-face</B> blends. See Section 79.6, Propagating blends , for", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295862", " As with face-face blends, <B>three-face</B> blends can propagate to adjoining faces in a", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295866", " <B>Three-face</B> blends can automatically propagate across sharp edges between the", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295906", " In addition, <B>three-face</B> blends can propagate across smooth edges between the", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295926", " is ignored, and the <B>three-face</B> blend will not propagate across sharp edges unless", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295930", " 79.7 Trimming <B>three-face</B> blends ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295931", " Once a <B>three-face</B> blend has been created, it needs to be", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-295958", " The functionality Parasolid offers for trimming <B>three-face</B> blends is very similar to the functionality it", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-323289", " option has when creating a <B>three-face</B> blend between three sheet bodies. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296044", " the blend. For example, if your application creates <B>three-face</B> blends by introducing an artificial sheet as a", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296083", " artificial sheet as the centre wall in a <B>three-face</B> blend ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296139", " Figure 79-10 Ignoring the centre wall when trimming <B>three-face</B> blends ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296149", " whether the left and right walls of a <B>three-face</B> blend should be trimmed back to where they", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296197", " Because of the nature of <B>three-face</B> blending, the centre wall cannot be trimmed. It", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296208", " Parasolid can trim a <B>three-face</B> blend to a specified limiting entity: either a", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296228", " must come from the same body as the <B>three-face</B> blend. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296237", " Figure 79-13 Trimming a <B>three-face</B> blend using a capping face ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296324", " 79.9 Checking <B>three-face</B> blends ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296328", " body, Parasolid checks for face-face inconsistencies when creating <B>three-face</B> blends. You can turn this behaviour off using", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296538", " 79.13 <B>Three-face</B> blending summary ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296543", " <B>Three-face</B> blending functionality is provided via PK_FACE_make_3_face_blend . This contains", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296546", " Specify how tolerance is used in a <B>three-face</B> blend. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.080.html#50409867_pgfId-296547", " Specify the propagation behaviour of a <B>three-face</B> blend specified with a guide wire. ", "Functional Description - Three-Face Blending");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203989", " concepts, <B>three-face</B> 1306 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204011", " creating <B>three-face</B> 1308 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204017", " cross-section planes, <B>three-face</B> 1308 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204064", " master faces, <B>three-face</B> 1307 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204074", " orientation of <B>three-face</B> 1309 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204095", " propagating <B>three-face</B> 1311 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204129", " summary, <B>three-face</B> 1323 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204134", " <B>three-face</B> 1139, 1305 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204144", " tolerances, <B>three-face</B> 1310 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204150", " trimming <B>three-face</B> 1316 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204855", " <B>three-face</B> blends 1306 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205080", " <B>three-face</B> blends 1308 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205109", " <B>three-face</B> blends 1308 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207845", " <B>three-face</B> blends 1307 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208342", " <B>three-face</B> blends 1309 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208931", " <B>three-face</B> blends 1311 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209888", " <B>three-face</B> blends 1323 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210207", " <B>three-face</B> blends 1139, 1305 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210278", " <B>three-face</B> blends 1310 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210453", " <B>three-face</B> blends 1316 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-280005", " <B>Three-face</B> blending ", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-284163", " 10.4 <B>Three-face</B> blending", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-289249", " addition to standard face-face blending, you can create <B>three-face</B> blends (sometimes known as ", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-289257", " number of ribs, each of which has a <B>three-face</B> blend along the top. ", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-289380", " When creating <B>three-face</B> blends, three sets of walls are provided, rather", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-681226", " <B>Three-face</B> blending shares many options with face-face blending, as illustrated", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.11.html#50442244_pgfId-681312", " Figure 10-17 Options when creating <B>three-face</B> blends ", "Overview of Parasolid - Blending");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437563", "See <B>three-face</B> blends ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437999", " See also <B>three-face</B> blending ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5439018", " <B>three-face</B> blends ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " different bodies. Note that in the case of <B>three-face</B> blends the centre wall is either left untouched", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " different bodies. Note that in the case of <B>three-face</B> blends the centre wall is either left untouched", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_blend_walls_t.html#documentation", "blend faces in both face-face blends and <B>three-face</B> blends. It has the values:", "PK Reference - PK_blend_walls_t");
+top.note("headers/pk_face_make_3_face_blend.html#description", " This function makes a <B>three-face</B> blend from the given faces.", "PK Reference - PK_FACE_make_3_face_blend");
+top.note("headers/pk_face_make_3_face_blend.html#documentation", "provided. For further details see <B>Three-face</B> Blending in the", "PK Reference - PK_FACE_make_3_face_blend");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

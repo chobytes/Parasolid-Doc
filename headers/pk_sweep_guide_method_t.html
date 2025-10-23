@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_sweep_guide_method_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_sweep_guide_method_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_sweep_guide_method_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_swept_body_2_o_t.html>PK_BODY_make_swept_body_2_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype is used to control the method used when sweeping with two guides.
+
+It has the values:
+
+    PK_sweep_guide_point_c      The sweep cross section is rotated and scaled
+                                such that points located at the
+                                <B>'profile_matches'</B> vertices of both guide wires
+                                remain in contact with each guide wire.
+
+    PK_sweep_guide_chord_c      The sweep cross section is rotated, but not
+                                scaled, such that the point located at one of
+                                the <B>'profile_matches'</B> vertices will always
+                                remain in contact with that guide wire, and the
+                                chord between the <B>'profile_matches'</B> vertices of
+                                the two guides will always intersect the two
+                                guide wires. The guide which remains in contact
+                                with the swept surface is specified with
+                                <B>'fixed_guide_index'</B>. <B>'guide_scale'</B> must be set
+                                to PK_sweep_guide_uniform_c if this option is
+                                used.
+
+    PK_sweep_guide_curve_c      The sweep cross section is rotated, but not
+                                scaled, such that the profile remains in
+                                contact with both guide wires, but only the
+                                point in contact with one guide wire
+                                (specified with <B>'fixed_guide_index'</B>) is fixed.
+                                This option requires that the profile must
+                                intersect with the guides at their
+                                <B>'profile_matches'</B> vertices. If this option is
+                                used, then:
+                                 o <B>'guide_scale'</B> must be set to
+                                   PK_sweep_guide_uniform_c
+                                 o Only one profile may be supplied
+                                 o A <B>'clamp_type'</B> of
+                                   PK_sweep_guide_clamp_fixed_c may not be used
+                                 o Either <B>'have_lock_direction'</B> must be
+                                   PK_LOGICAL_false, or <B>'lock_type'</B> must be set
+                                   to <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_c</A>
+
+    PK_sweep_guide_project_c    The sweep cross section orientation is fixed
+                                with respect to the lock direction, and scaled
+                                such that for the guide specified by
+                                <B>'fixed_guide_index'</B>, a point located at the
+                                guide's <B>'profile_matches'</B> vertex remains in
+                                contact with the guide. For the other guide, a
+                                point located at this guide's <B>'profile_matches'</B>
+                                vertex remains in contact with a line in the
+                                lock direction passing through the guide. A
+                                lock direction must be supplied for this
+                                option, and <B>'lock_type'</B> must be set to
+                                <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_and_dir_c</A>. Note that this
+                                option differs from PK_sweep_guide_point_c and
+                                PK_sweep_guide_chord_c in that a lock direction
+                                with lock type <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_and_dir_c</A>
+                                does not cause a shearing effect in the sweep
+                                transformation.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

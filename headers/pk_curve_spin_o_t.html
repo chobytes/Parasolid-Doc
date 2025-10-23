@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_CURVE_spin_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_CURVE_spin_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_CURVE_spin_o_s
+    {
+    int                      o_t_version;
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             simplify;             --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             confine;              --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>            interval;             --- ((0,0))
+    };
+
+typedef struct PK_CURVE_spin_o_s PK_CURVE_spin_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Holds optional controls on spinning a curve around an axis.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_curve_spin_2.html>PK_CURVE_spin_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+See <A HREF="../chapters/fd_chap.072.html#50409858_pgfId-296493">Local Ops: Spinning or Sweeping an Entity</A> for more information.
+
+The structure has the following user fields:
+
+    <B>'simplify'</B>  If this is set to PK_LOGICAL_false then <A HREF=../headers/pk_curve_spin_2.html>PK_CURVE_spin_2</A>
+                will always return a surface of class PK_CLASS_spun.
+
+                If its value is PK_LOGICAL_true then, if possible,
+                <A HREF=../headers/pk_curve_spin_2.html>PK_CURVE_spin_2</A> will return a simpler surface which is
+                equivalent to the surface of revolution. Normally the
+                simpler surface is analytic; for example, a spun line
+                which intersects the axis is equivalent to a
+                cone. Sometimes the simpler surface is a spun surface
+                with a profile different to the curve being spun. This can
+                occur when the whole of the received curve would sweep the
+                spun surface twice, i.e. the surface would be self
+                intersecting at all its points. For example, this
+                occurs when the curve to be spun is a circle which lies in
+                a plane perpendicular to the plane containing its centre and
+                the spin axis. In this case, the profile of the
+                resulting surface is a B-curve equivalent to the part
+                of the curve specified using the option field 'interval'
+                (although the  parameterisation of the new profile will, in
+                general, be different to that of the received curve).
+
+    <B>'confine'</B>   Where the whole of the curve supplied is to be spun, this
+                field should be set to PK_LOGICAL_false.
+
+                If set to PK_LOGICAL_true this indicates that only a subset
+                of the curve supplied is to be spun. Which subset of the
+                curve is indicated by the interval specified in the option
+                field 'interval'.
+
+   <B>'interval'</B>   This field is used only where 'confine' is set to
+                PK_LOGICAL_true. The interval specifies the parameter range
+                of the part of the curve that is to be spun.
+
+                A parameter range may be specified for any case but
+                will only be important in cases where the curve
+                intersects the axis. In these cases, it is ambiguous
+                as to which part of the curve should be spun and this
+                option provides a way of choosing one part to be
+                spun. The parameters must be given in ascending
+                order. The curve is extended from the given parameter
+                range until it meets the spin axis, and this becomes
+                the portion of curve to be spun. If the interval
+                supplied specifies a section of curve that crosses the
+                axis and <A HREF=../headers/pk_session_set_check_self_int.html>PK_SESSION_set_check_self_int</A> has been called
+                with value PK_LOGICAL_true, then an error is
+                signalled, otherwise ( <A HREF=../headers/pk_session_set_check_self_int.html>PK_SESSION_set_check_self_int</A>
+                was called with PK_LOGICAL_false ) the part of
+                the curve used is undefined.
+
+                If an interval is specified for cases where the curve
+                does not intersect the axis, the interval is ignored and the
+                whole curve is spun.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_clash_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_clash_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_TOPOL_clash_o_s
+    {
+    int          o_t_version;   --- Version of this PK option structure
+    int          n_op_ex;       --- Number of body pairs that may be ignored
+                                --- ( 0 )
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>  *op_ex1;        --- First half of body pairs that may be
+                                --- ignored ( NULL )
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>  *op_ex2;        --- Second half of body pairs that may be
+                                --- ignored ( NULL )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> find_all;      --- Find all clashes, not just the first
+                                --- ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> find_intersect;--- Examine clashes for true interference
+                                --- ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> mul_target_tf; --- There is one transform in tf1 for each
+                                --- target entity. Otherwise, the first
+                                --- transform is used for all targets.
+                                --- ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> mul_tool_tf;   --- One transform in tf2 for each tool, as
+                                --- per target transforms (above).
+                                --- ( PK_LOGICAL_false )
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>   target_owner;  --- Owning topology of target entities
+                                --- ( PK_ENTITY_null )
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>   tool_owner;    --- Owning topology of tool entities
+                                --- ( PK_ENTITY_null )
+    int          n_parts_with_scales;
+                                --- number of parts for which a scale factor
+                                --- is specified (0)
+    <A HREF=../headers/pk_part_t.html>PK_PART_t</A>   *parts_with_scales;
+                                --- array of parts for which a scale factor
+                                --- is specified (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>
+                *scale_factors; --- scale factor associated with the
+                                --- corresponding part in <B>'parts_with_scales'</B>
+                                --- (NULL)
+    };
+
+typedef struct PK_TOPOL_clash_o_s PK_TOPOL_clash_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This option structure holds optional controls for <A HREF=../headers/pk_topol_clash.html>PK_TOPOL_clash</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_clash.html>PK_TOPOL_clash</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The fields are as follows:
+
+<B>'n_op_ex'</B>               Number of topology exclusion body pairs.
+<B>'op_ex1'</B>                Array of first bodies of topology exclusion body pairs.
+<B>'op_ex2'</B>                Array of second bodies of topology exclusion body
+                        pairs.
+
+                        For each pair of bodies specified by these options
+                        <A HREF=../headers/pk_topol_clash.html>PK_TOPOL_clash</A> will not clash any target topology
+                        of the first body of the pair with any tool topology
+                        of the second body of the pair.
+
+<B>'find_all'</B>              If <B>'find_all'</B> has the value PK_LOGICAL_false, then the
+                        function will return only a single clash (or none, if
+                        none exist). It returns the first one that it finds.
+                        If <B>'find_all'</B> has the value PK_LOGICAL_true, it will
+                        find and return all the valid clashes that exist.
+
+<B>'find_intersect'</B>        If <B>'find_intersect'</B> has the value PK_LOGICAL_true, then
+                        for each clash returned, <B>'clash_type'</B> gives its
+                        classification. This allows interference to be
+                        distinguished from abutment.
+
+<B>'mul_target_tf'</B>         If <B>'mul_target_tf'</B> has the value PK_LOGICAL_true, then
+                        <A HREF=../headers/pk_topol_clash.html>PK_TOPOL_clash</A> assumes that one transform entity has
+                        been provided in <B>'tf1'</B> for each entity in <B>'targets'</B>.
+                        Otherwise, <B>'tf1'</B> holds only a single transform, which
+                        will be applied to all the entities in <B>'targets'</B>.
+
+<B>'mul_tool_tf'</B>           <B>'mul_tool_tf'</B> has exactly the same effect as
+                        <B>'mul_target_tf'</B> with respect to <B>'tools'</B> and <B>'tf2'</B>.
+
+<B>'target_owner'</B>          Topological owner of <B>'target'</B> topologies.
+<B>'tool_owner'</B>            Topological owner of <B>'tool'</B> topologies.
+
+                        In the case of two clashing faces, if <B>'target_owner'</B>
+                        and <B>'tool_owner'</B> are chosen to be the owning bodies of
+                        the respective target and tool faces, then the clash
+                        classifications of any clashes will be based on the
+                        interaction of the owning bodies, rather than the
+                        chosen faces.
+
+<B>'n_parts_with_scales'</B>   The number of parts with supplied scale factors.
+                        Is length of <B>'parts_with_scales'</B> and <B>'scale_factors'</B>.
+                        If set to 0 then no scale factors are applied.
+
+<B>'parts_with_scales'</B>     This array, of length <B>'n_parts_with_scales'</B>, contains
+                        unique parts which are to be considered at the scale
+                        factors provided in <B>'scale_factors'</B>. If this array
+                        is NULL, no scale factors are applied.
+
+<B>'scale_factors'</B>         This array should match the length of
+                        <B>'parts_with_scales'</B>. Each element of the array should
+                        be a <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A> corresponding to each part
+                        specified in <B>'parts_with_scales'</B>.
+
+Scale Factors
+-------------
+It is possible to associate a scale factor with a part so that any topology
+in <B>'targets'</B> and <B>'tools'</B> that is provided from such a part is treated at the
+scale factor of that part. The centre of scaling is the origin.
+
+In order to supply scale factors for parts it is necessary to fill in the
+following fields: <B>'parts_with_scales'</B> and <B>'scale_factors'</B>. Additionally,
+<B>'n_parts_with_scales'</B> must be non-zero.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

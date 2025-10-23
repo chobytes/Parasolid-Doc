@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_range_result_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_range_result_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_range_result_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_entity_range_r_t.html>PK_ENTITY_range_r_t</A><br>
+    <A HREF=../headers/pk_entity_range_vector_r_t.html>PK_ENTITY_range_vector_r_t</A><br>
+    <A HREF=../headers/pk_geom_range.html>PK_GEOM_range</A><br>
+    <A HREF=../headers/pk_geom_range_array.html>PK_GEOM_range_array</A><br>
+    <A HREF=../headers/pk_geom_range_array_vector.html>PK_GEOM_range_array_vector</A><br>
+    <A HREF=../headers/pk_geom_range_vector.html>PK_GEOM_range_vector</A><br>
+    <A HREF=../headers/pk_geom_range_vector_many.html>PK_GEOM_range_vector_many</A><br>
+    <A HREF=../headers/pk_topol_range.html>PK_TOPOL_range</A><br>
+    <A HREF=../headers/pk_topol_range_array.html>PK_TOPOL_range_array</A><br>
+    <A HREF=../headers/pk_topol_range_array_vector.html>PK_TOPOL_range_array_vector</A><br>
+    <A HREF=../headers/pk_topol_range_geom.html>PK_TOPOL_range_geom</A><br>
+    <A HREF=../headers/pk_topol_range_geom_array.html>PK_TOPOL_range_geom_array</A><br>
+    <A HREF=../headers/pk_topol_range_vector.html>PK_TOPOL_range_vector</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+PK_range_result_t has four values:
+    PK_range_result_found_c          separation successfully found
+    PK_range_result_lower_c          minimum separation less than provided
+                                     lower bound
+    PK_range_result_upper_c          no separation discovered less than
+                                     provided upper bound
+    PK_range_result_not_found_c      the identification of the separation
+                                     failed
+
+In cases where a range function's option structure allows bounds to be set on
+the separation distance, this datatype is used to indicate whether an
+allowed solution has been found. The result PK_range_result_not_found_c is
+used in those PK functions calculating multiple closest approach queries to
+indicate which queries were not successfully completed.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_topology_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_topology_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_BODY_topology_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_lofted_body_o_t.html>PK_BODY_make_lofted_body_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_body_2_o_t.html>PK_BODY_make_swept_body_2_o_t</A><br>
+    <A HREF=../headers/pk_body_make_swept_body_o_t.html>PK_BODY_make_swept_body_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype specifies how bodies created by lofting and sweeping will
+be divided into faces. See the documentation for the relevant PK function for
+more specific details on how each value affects the resultant topology.
+
+It has three values:
+    PK_BODY_topology_minimal_c  Produce the minimum number of faces (default).
+
+    PK_BODY_topology_columns_c  Produces columns of faces corresponding to the
+                                profile edges. For a single profile, the result
+                                is a column of faces for each edge in the
+                                profile. For multiple profiles, the result is a
+                                column of faces for each set of corresponding
+                                edges in the profiles. Each column of faces
+                                will contain the minimum number of faces.
+
+    PK_BODY_topology_grid_c     Produces a grid of faces. Additional edges may
+                                be created, so that the number of faces in each
+                                column of faces is equal to or greater than the
+                                number produced with
+                                PK_BODY_topology_columns_c.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

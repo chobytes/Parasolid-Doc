@@ -1,0 +1,234 @@
+<HTML>
+<HEAD>
+<TITLE>RRHIDL</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>RRHIDL</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_topol_render_line.html>PK_TOPOL_render_line</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+RRHIDL ( nopts, iopts, optdta, entys, transf, vmatrx, ifail )
+=============================================================
+
+  Generate hidden line data.
+
+Receives:
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options in 'iopts'
+  KI_cod_rrop               iopts[nopts]   --- rendering options
+ &lt;KI_tag_list_dbl&gt;          optdta[nopts]  --- option data lists
+  KI_tag_list_entity       *entys          --- entities to render
+ &lt;KI_tag_list_&lt;transform&gt;&gt; *transf         --- entity transforms
+  KI_dbl_view_mx            vmatrx[16]     --- viewing transform matrix
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_missing_geom           A topological entity has no associated geometry
+  KI_abort_from_go          Rendering aborted by GO
+  KI_bad_view_mx            Invalid view matrix
+  KI_wrong_transf           Unsuitable transform
+  KI_not_same_length        Entity and transform lists are of different lengths
+  KI_wrong_entity_in_list   Entity is not a part
+  KI_bad_option_data        Option data incorrect for specified options
+
+Description:
+  RRHIDL outputs, through the Graphical Output interface (GO), data for a
+  picture of the entities, distinguishing visible from invisible portions.
+
+  RRHIDL can only render assemblies and complete bodies; it cannot render
+  individual faces or edges. Visible edges and silhouette lines are always
+  output.
+
+  Transforms may only contain translation and rotation components.  Reflections,
+  scales and shears are not allowed.
+
+  Other data output is selected by options in 'iopts'. For some options the
+  output is further controlled by data in a real list whose tag is passed in
+  the corresponding entry in 'optdta'. If no data is required for an option a
+  null tag should be passed.
+
+  Options accepted are:-
+
+      Option                   Contents of option data
+      ===================================================================
+      RROPIV: InVisible         none
+      RROPDR: DRafting          none
+      RROPTR: TRansform         none
+      RROPIS: Image Smoothness  none
+      RROPDS: Drafting / Smooth none
+              edges behaviour
+      RROPIN: INternal edges    none
+      RROPPC: B-Curve (Bezier)  none
+      RROPNC: B-Curve (Nurbs)   none
+      RROPPS: PerSpective       none
+      RROPRG: ReGional-data     none
+      RROPRA: Regional-Attrib   none
+      RROPPH: Planar-Hatch      (1) Planar hatch spacing in model units
+                                (2,3,4) Normal direction of hatch planes
+                                (5,6,7) Plane coordinate (omissible)
+      RROPRH: Radial-Hatch      (1) Hatch spacing in radians around 'spine'
+                                (2) Hatch spacing in model units along 'spine'
+                                (3) Hatch spacing in radians about centre
+      RROPPA: PAra-Hatch        (1) Hatch spacing along u
+                                (2) Hatch spacing along v
+      RROPCT: Curve Tolerance   (1) Chord tolerance in model units
+                                (2) Maximum chord length in model units
+                                (3) Angular tolerance in radians
+      RROPHR: Hierarchical      none
+      RROPHN: Hierarchical,
+              no geometry       none
+      RROPHP: Hierarchical,
+              parametrised      none
+      RROPVP: ViewPort         (1,2,3) Centre of viewport in model coordinates
+                               (4,5,6)    1st axis of viewport in model
+                                          coordinates
+                               (7,8,9)    2nd axis
+                               (10,11,12) 3rd axis
+                               (13) Length of viewport along 1st axis in model
+                                    units
+                               (14) Length along 2nd axis
+                               (15) Length along 3rd axis
+
+  Option RROPIV causes data to be output for 'hidden' lines, so that for
+  example, they can be rendered in a dotted linestyle. By default, data is
+  only output for visible lines.
+
+  Option RROPDR also causes data to be output for 'hidden' lines, but it
+  distinguishes between lines which are hidden by other lines and those which
+  are just obscured by other faces of the body, so that, for example, a plot of
+  the image can be made in which no lines are drawn over the top of other
+  lines. This option is not available for perspective views (i.e. it cannot be
+  used with the option RROPPS).
+  The performance will be degraded if this option is turned on.
+
+  Option RROPTR is required if any of the entities is to be rendered in a
+  transformed position (e.g. as part of an assembly). If it is not specified,
+  the contents of 'transf' are ignored, and entities are rendered in their
+  local coordinate system.
+
+  Option RROPIS causes the output data for an edge to specify whether or not
+  the edge is smooth (i.e. the faces have the same tangent surface at the edge)
+  or smooth but coincident with a silhouette line (which is not output). The
+  calling program may then choose to omit smooth edges from the final drawing.
+  If RROPIS is not specified, the smoothness parameter will be "unknown" for
+  all edges.
+
+
+  Option RROPDS controls the behaviour of smooth edges in drafting mode. The
+  calling program should select this option if it is intending to omit smooth
+  edges which are not coincident with silhouettes (those tagged CODSMO) from the
+  image. When the option is selected, lines hidden by such edges will be
+  considered to be obscured by the faces of the smooth edge rather than by the
+  edge itself, i.e. they will be tagged as CODDRV. If this option is not
+  selected, then CODSMO lines will obscure other lines in the picture, leading
+  to apparent errors in the image if the CODSMO lines are not drawn. It is
+  assumed that smooth edges coincident with silhouettes (those tagged CODSMS)
+  are always included in the image, hence they will obscure other lines
+  regardless of whether this option is selected.
+
+  Option RROPIN causes the output data for an edge to specify whether or not
+  the edge is internal to a surface; i.e. the faces on either side of the edge
+  lie on the same surface. This will be the case if the edge is an internal one
+  between patches on a B-surface, or is mergeable. The output data
+  will also specify whether the edge is coincident with a silhouette line
+  (which is not output), or whether the edge is part of the body silhouette.
+  The calling program may then choose to omit internal edges from the final
+  drawing.
+  If RROPIN is not specified, the internal edge parameter will be "unknown"
+  for all edges.
+
+  Option RROPPC causes the data for a B-Curve (type TYCUPA) to be
+  output in Bezier form.
+
+  Option RROPNC causes the data for a B-Curve (type TYCUPA) to be
+  output in NURBS format.
+
+  The default, if neither RROPPC or RROPNC is supplied, is to output
+  the data for B-Curves as a poly-line.
+
+  Note that at most one of RROPPC and RROPNC may be selected.
+
+  Option RROPPS should be specified if a perspective view is required; by
+  default the system will produce a view from infinity, taking only the
+  view direction from 'vmatrx'.
+
+  Option RROPRG causes regional data to be produced for all visible edges and
+  silhouettes.
+
+  Option RROPRA causes regional data to be produced for all visible edges and
+  silhouettes adjacent to any face with the regional-data (TYSARG) attribute
+  attached.
+
+  Options RROPPH, RROPRH and RROPPA cause hatch lines to be produced for various
+  types of face as defined in the documentation for RRVIND.
+
+  Option RROPCT controls the representation of curves as polylines. A curved
+  edge is approximated by a number of straight lines called chords. The first
+  value in the option data is a chord tolerance. This is an upper bound on
+  the distance from each chord to the curve it is approximating. The second
+  value is a chord limit. This is an upper bound on the length of a chord
+  used in the approximation of a curved edge. The third value is an angular
+  tolerance. This limits the angular error between a curve and a chord used
+  in its approximation. This is an upper bound on the sum of the two angles
+  formed between the chord and the curve tangent at each chord end. If this
+  option is not specified a default angular tolerance is used.
+
+  Bodies are always output hierarchically: for each body to be processed a
+  hierarchical segment of type body is opened, all the segments in that body
+  are output, then the hierarchical segment is closed.
+
+  If the option RROPHR is specified then edges, silhouettes and hatch-lines of
+  each body will also be output hierarchically. Hierarchical segments of type
+  edge, silhouette and hatchline are opened/closed by GOOPSG/GOCLSG
+  respectively. The non-hierarchical segments enclosed by GOOPSG and GOCLSG
+  comprise a geometry segment which gives the geometry of the entire
+  edge/silhouette/hatch-line, and a visibility segment which gives the points
+  at which the visibility changes and the visibility codes for the
+  edge/silhouette/hatch-line between these points.
+
+  If the option RROPHN is specified then the output will be the same as for
+  RROPHR but the geometry segment will not be output.
+
+  If the option RROPHP is specified then the output will be the same as for
+  RROPHR but visibility segments will parametrised (i.e. of type SGTPVP) when
+  the geometry segment is a polyline. See the Downward Interfaces and Functional
+  Description manuals for more information on parametrised visibility segments.
+
+  If the option RROPVP is supplied then the system will attempt only to render
+  those bodies/faces which are inside or partly inside the viewport supplied.
+
+  The viewport is a cuboid region of model space and should be supplied in the
+  option data as a real list consisting of a centre, three axes, and lengths in
+  model units along these axes. The axes must be orthogonal but need not be
+  normalised.
+
+  While all faces that are inside or partly inside the viewport will be
+  rendered, no attempt is made to trim the output to the boundaries of the
+  viewport, and bodies or faces lying entirely outside, but close to it may be
+  rendered.
+
+  Note that when this option is used with RRHIDL, it is possible to make visible
+  faces that would not otherwise be so by excluding from the viewport the parts
+  that would obscure them.
+
+
+</PRE>
+</BODY>
+</HTML>

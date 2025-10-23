@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.030.html#50409810_pgfId-297157", " The following <B>tables</B> provides a summary of the data returned by", "Functional Description - Calculating Minimum And Maximum Distance ");
+top.note("chapters/fd_chap.077.html#50409864_pgfId-617665", " option. The following <B>tables</B> describes the effect of ", "Functional Description - Edge Blending Options");
+top.note("chapters/fd_chap.078.html#50409865_pgfId-296057", " The tokens listed in the following <B>tables</B> each have the prefix PK_blend_ov_ (e.g. PK_blend_ov_smooth_no_c ).", "Functional Description - Edge Blend Overflows");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-851514", " The following <B>tables</B> show which combinations of values are allowed and", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298870", " types of faceting data your application requires, defining <B>tables</B> through which the facet topology, geometry and associated", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-294761", " See Section 110.2.2, Choosing which <B>tables</B> to return , for more information. ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295085", " can return, and what the information in those <B>tables</B> represents. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295098", " Indexed <B>tables</B> are simple two-column <B>tables</B> used to represent one-to-one mappings in the returned", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295099", " Indexed <B>tables</B> are implemented as one-dimensional arrays: the array index", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295103", " <B>tables</B> are more complex two or more column <B>tables</B> that can represent one-to-one, one-to-many, or many-to-one relationships", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295104", " Lookup <B>tables</B> are implemented as an array of structures, in", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295111", " 110.2.2 Choosing which <B>tables</B> to return ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295152", " /* Set specific choice of <B>tables</B> to output */ ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295166", " The number of data <B>tables</B> requested. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295167", " The data <B>tables</B> themselves are returned in a PK_TOPOL_facet_table_t sub-structure, which", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-390598", " transform) are output in the same set of <B>tables</B>. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-387875", " . In this situation, returning multiple sets of <B>tables</B> can reduce memory requirements for faceting, because the", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-377022", " you need to define a callback function. Facet <B>tables</B> are then returned via the supplied arguments of", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-387447", " being faceted and the corresponding facet <B>tables</B>, the associated transform is also returned via the", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-378037", " <B>tables</B> ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-378039", " The faceting <B>tables</B> that are returned. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-379488", " Parasolid does not free the memory for the <B>tables</B> itself. You should therefore call PK_TOPOL_facet_2_r_f for the", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296151", " <B>tables</B>. Between them, these <B>tables</B> contain all the information required to let you", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296154", " the series. Both <B>tables</B> are implemented as lookup <B>tables</B> that contain a single column of connected fins.", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296824", " You can return this information in <B>tables</B> of geometric data, as described in Section 110.5,", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296826", " any geometric data, you also need to return <B>tables</B> that associate topological entities from the facet mesh", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296828", " Return one or more intermediate <B>tables</B> to point the data container to the appropriate", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296829", " Return the <B>tables</B> of geometric data themselves. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297132", " that refer to entries in the corresponding geometric <B>tables</B> as shown. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297756", " Parasolid offers some control over the way that <B>tables</B> of topological data are returned by PK_TOPOL_facet_2 ,", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297814", " original model using PK_TOPOL_facet_2 . Each of the <B>tables</B> described in this section is implemented as an", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297856", " <B>tables</B> is obtained from the ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297863", " that they were based on. You can return <B>tables</B> that associate: ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206437", " facet <B>tables</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207068", " in facet <B>tables</B>, representing 1558 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207476", " information, facet <B>tables</B> tracking 1560 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209212", " geometry in facet <B>tables</B> 1558 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209244", " facet <B>tables</B> 1543 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210083", " <B>tables</B>, facet 1543 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210365", " facet <B>tables</B> 1560 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437414", " array <B>tables</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_bad_combination 5145 PK_TOPOL_facet_choice_2_o_t (MILD) A bad combination of <B>tables</B> has been", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 PK_TOPOL_facet_choice_2_o_t (MILD) A bad combination of <B>tables</B> has been", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_TOPOL_facet_choice_2_o_t 5145 PK_ERROR_bad_combination (MILD) A bad combination of <B>tables</B> has been", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_blend_delete_unders_data_t.html#errors", " of the configuration <B>tables</B> given below.", "PK Reference - PK_blend_delete_unders_data_t");
+top.note("headers/pk_curve_project_o_t.html#documentation", "The <B>tables</B> below show which options are available for each", "PK Reference - PK_CURVE_project_o_t");
+top.note("headers/pk_topol_facet.html#declaration", " PK_TOPOL_facet_r_t *const <B>tables</B> --- addr of tabular structure", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet_2.html#declaration", " PK_TOPOL_facet_2_r_t *const <B>tables</B> --- returned <B>tables</B>", "PK Reference - PK_TOPOL_facet_2");
+top.note("headers/pk_topol_facet_2_o_t.html#documentation", " and select the <B>tables</B> to be returned", "PK Reference - PK_TOPOL_facet_2_o_t");
+top.note("headers/pk_topol_facet_2_r_f.html#declaration", " PK_TOPOL_facet_2_r_t *const <B>tables</B> --- facet <B>tables</B> to free", "PK Reference - PK_TOPOL_facet_2_r_f");
+top.note("headers/pk_topol_facet_2_r_t.html#declaration", " PK_TOPOL_facet_table_t *<B>tables</B>;", "PK Reference - PK_TOPOL_facet_2_r_t");
+top.note("headers/pk_topol_facet_2_r_t.html#description", " facet mesh. It also returns the number of <B>tables</B> being", "PK Reference - PK_TOPOL_facet_2_r_t");
+top.note("headers/pk_topol_facet_2_r_t.html#documentation", " all of the memory allocated for the return <B>tables</B>, the function", "PK Reference - PK_TOPOL_facet_2_r_t");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#declaration", " facet_tables_cb; --- facet <B>tables</B> (NULL)", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#description", " the facets are to be output and which <B>tables</B> are to", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#errors", " PK_ERROR_bad_combination (MILD) A bad combination of <B>tables</B> has been", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#documentation", " PK_TOPOL_facet_2 to return the facets generated and which <B>tables</B> should be", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_choice_o_t.html#description", " Selection of which <B>tables</B> are returned. See here for more", "PK Reference - PK_TOPOL_facet_choice_o_t");
+top.note("headers/pk_topol_facet_choice_o_t.html#documentation", "The PK_TOPOL_facet_choice_o_t structure specifies which <B>tables</B> the", "PK Reference - PK_TOPOL_facet_choice_o_t");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", " and param_uv <B>tables</B> in the PK_facet_sing_topol_default_c case unless a", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#documentation", " returned though the <B>tables</B> in PK_TOPOL_facet , it does not have any", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_facet_r_f.html#declaration", " PK_TOPOL_facet_r_t *const <B>tables</B> --- facet <B>tables</B> to free", "PK Reference - PK_TOPOL_facet_r_f");
+top.note("headers/pk_topol_facet_r_t.html#description", "vertices in the facet mesh, with <B>tables</B> representing facet topology, geometry,", "PK Reference - PK_TOPOL_facet_r_t");
+top.note("headers/pk_topol_facet_r_t.html#documentation", " all of the memory allocated for the return <B>tables</B>, the function", "PK Reference - PK_TOPOL_facet_r_t");
+top.note("headers/pk_topol_facet_table_t.html#documentation", "TYPES OF <B>TABLES</B>", "PK Reference - PK_TOPOL_facet_table_t");
+top.note("headers/pk_topol_facet_tables_cb_f_t.html#declaration", " PK_TOPOL_facet_2_r_t *const <B>tables</B>, --- returned facet <B>tables</B>", "PK Reference - PK_TOPOL_facet_tables_cb_f_t");
+top.note("headers/pk_topol_facet_tables_cb_f_t.html#documentation", "This is the datatype for a facet <B>tables</B> callback function.", "PK Reference - PK_TOPOL_facet_tables_cb_f_t");
+top.note("headers/pk_topol_fctab_fin_data_t.html#documentation", " be used as a subscript into the following <B>tables</B> :", "PK Reference - PK_TOPOL_fctab_fin_data_t");
+top.note("headers/pk_topol_fctab_vertex_point_t.html#documentation", "The facet topology <B>tables</B> are defined using separate vertex indices for", "PK Reference - PK_TOPOL_fctab_vertex_point_t");
+top.note("chapters/in_chap.08.html#50520101_pgfId-278359", " instruction produces a special result, listed in the <B>tables</B> in Section A.6, &#8220;Types of floating-point trap&#8221; for", "Installation Notes - Floating-Point Traps");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

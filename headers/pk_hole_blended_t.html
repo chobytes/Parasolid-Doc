@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_hole_blended_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_hole_blended_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_hole_blended_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_identify_details_o_t.html>PK_BODY_identify_details_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype determines whether blend faces may be included in hole details.
+
+It has the values:
+
+    PK_hole_blended_no_c            blend faces are excluded in hole details
+    PK_hole_blended_in_c            blend faces are included in hole details as
+                                    long as the blend faces satisfy the hole's
+                                    radius constraint.
+    PK_hole_blended_out_c           blend faces are included in hole details
+                                    regardless of whether they satisfy the
+                                    hole's radius constraint.
+    PK_hole_blended_trimmed_in_c    same as PK_hole_blended_in_c but include
+                                    trimmed blend faces
+    PK_hole_blended_trimmed_out_c   same as PK_hole_blended_out_c but include
+                                    trimmed blend faces
+
+Note: in the case of convex blends, the blend face is deemed to satisfy the
+hole's radius constraint either if the entire face satisfies the constraint or
+if the blend face's spine satisfies the constraint.
+
+Trimmed blend faces have toroidal or spherical surfaces coaxial with the
+hole, and do not smoothly meet their underlying faces.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

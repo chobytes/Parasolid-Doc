@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_sf_s
+    {
+    int degree;                             --- The degree = order-1.
+    int n_vertices;                         --- The number of vertices.
+    int vertex_dim;                         --- The dimension of each vertex.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> is_rational;               --- True if the curve is rational.
+    double *vertex;                         --- The vertices.
+    <A HREF=../headers/pk_bcurve_form_t.html>PK_BCURVE_form_t</A> form;                  --- The curve shape.
+    int n_knots;                            --- The number of distinct knot
+                                            --- values.
+    int *knot_mult;                         --- The multiplicity of each knot.
+    double *knot;                           --- The distinct knot values.
+    <A HREF=../headers/pk_knot_type_t.html>PK_knot_type_t</A> knot_type;               --- Enum describing the knot set.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> is_periodic;               --- True if the curve is periodic.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> is_closed;                 --- True if the curve is closed.
+    <A HREF=../headers/pk_self_intersect_t.html>PK_self_intersect_t</A> self_intersecting;  --- Yes no or maybe.
+    };
+typedef struct PK_BCURVE_sf_s PK_BCURVE_sf_t;
+</B>
+<A NAME="description"></A>
+<I>This data structure is the standard form for a b-curve.  See the documentation
+below for the relationship between this data structure and STEP.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+PK_ERROR_bad_value              unreadable value
+PK_ERROR_bad_knots              illegal knot multiplicity
+                                or knot set not monotonic increasing
+PK_ERROR_wrong_number_knots     knots inconsistent with vertices
+PK_ERROR_bad_dimension          illegal <B>'vertex_dim'</B>
+PK_ERROR_weight_le_0            one of the weights is zero or negative
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_ask.html>PK_BCURVE_ask</A><br>
+    <A HREF=../headers/pk_bcurve_create.html>PK_BCURVE_create</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Converting between PK_BCURVE_sf_t and STEP:
+
+    This form is easily convertible to the STEP standard, but there are a
+    number of important differences, designed to make its use simpler and more
+    efficient.
+
+
+`vertex dim':
+
+    This field gives the number of doubles per vertex in the array
+    <B>'vertex'</B>. Allowable values are 2, 3, 4. A value of 2 implies a
+    parameter space (SP) curve. A value of 3 implies a 3-d polynomial curve or
+    a rational parameter space curve.  A value of 4 implies a 3-d rational
+    curve. The STEP "cartesian_point" entity allows 1, 2 or 3.
+
+
+<B>'is_rational'</B>:
+
+    This field is set to true if the curve is rational. In this case the
+    vertex_dim field must be one greater than the dimensionality of the curve,
+    and the weights must be included in the <B>'vertex'</B> array. The STEP standard
+    uses a distinct entity subtype "rational_b_spline_curve".
+
+
+<B>'vertex'</B>:
+
+    If the curve is polynomial, dimension 2 or 3, then the values in this field
+    represent the vertices explicitly, in the order [u1, v1, u2, v2, ...], or
+    [x1, y1, z1, x2, y2, ...] respectively.  If it is rational, dimension 4,
+    then the cartesian points are multiplied by the weights, so that the values
+    in this field represent [x1w1, y1w1, z1w1, w1, x2w2, y2w2, ...].  The STEP
+    standard uses a separate array of weights, and does not multiply the
+    cartesian points by the weights.
+
+
+<B>'form'</B>:
+
+    See the documentation of <B>'<A HREF=../headers/pk_bcurve_form_t.html>PK_BCURVE_form_t</A>'</B>.
+    This field corresponds to the field of the same name in the STEP
+    "b_spline_curve" entity, except for the <B>'PK_BCURVE_form_unset_c'</B> value
+    which does not exist in the STEP standard.
+
+
+<B>'knot_mult'</B> and <B>'knot'</B>:
+
+    <B>'knot_mult'</B> is an array of length <B>'n_knots'</B> giving the number of times each
+    knot is to be repeated. The minimum multiplicity allowed for any knot is 1.
+    The maximum multiplicity allowed other than for the first and last knot is
+    <B>'degree'</B>.  The maximum allowed for the first or last knot is <B>'degree'</B>+1.
+
+    <B>'knot'</B> is an array of length <B>'n_knots'</B>. The values must be distinct and
+    form a strictly increasing set.
+
+    See the documentation below for an explanation of the required total
+    number of knots.
+
+    These arrays correspond exactly to the fields "knot_multiplicities" and
+    "knots" in the STEP entity sub-type "b_spline_curve_with_knots".
+
+
+<B>'knot_type'</B>:
+
+    See the documentation for <B>'<A HREF=../headers/pk_knot_type_t.html>PK_knot_type_t</A>'</B>.
+    The STEP standard does not contain a field corresponding to this.  The
+    information described is conveyed by the use of entity subtypes, such as
+    "bezier_curve".  The values <B>'PK_knot_bezier_ends_c'</B> and
+    <B>'PK_knot_non_uniform_c'</B> have no corresponding subtype. A curve of one of
+    these types would be translated to STEP as a "bspline_curve_with_knots".
+
+
+<B>'is_periodic'</B>:
+
+    If this field is set to true, the parametrisation of the curve "wraps
+    around".  It implies that the curve is closed, with G1 continuity at the
+    seam.  This field does not exist in the STEP standard.
+
+    See the documentation below for additional requirements for the knot set
+    of a periodic b-curve.
+
+
+<B>'is_closed'</B>:
+
+    This field being set to true does not necessarily imply that the
+    parametrisation is periodic. It corresponds to the field of the
+    same name in the STEP entity "b_spline_curve".
+
+
+<B>'self_intersecting'</B>:
+
+    See the documentation of <A HREF=../headers/pk_self_intersect_t.html>PK_self_intersect_t</A>.
+    This corresponds to the field "self_intersect" in the STEP entity
+    "b_spline_curve", except that the STEP standard does not provide for an
+    unset value.
+
+
+The number of knots:
+
+The knot set referred to here is the "expanded knot set" obtained by repeating
+each value in the array <B>'knot'</B> the number of times given by the corresponding
+element in <B>'knot_mult'</B>.
+
+A NURBS curve of degree n defined over k parameters (k-1 parameter intervals)
+requires a further n parameters at either end of its knot set in order for the
+necessary k+n-1 b-spline basis functions to be fully defined.  These
+additional parameters  are commonly known as the "imaginary knots".  Thus the
+total number of knots p is related to the total number of basis functions and
+hence the number m of control vertices by the expression p = m+n+1.
+
+
+Periodic Curves:
+
+A periodic curve must be so constructed as to preserve G1 continuity
+(of tangent direction) at the join.
+
+In addition, it is recommended that a periodic curve be constructed
+with C(n-1) continuity at the join (where n is the degree). This
+would give C2 continuity for a cubic. This most easily achieved by
+making the "expanded knot set" "wrap around" in the sense that the
+intervals between the first n+1 knots (n "imaginary" knots and one
+"real" knot) should be the same as the corresponding intervals between
+the last n+1 "real" knots, and the intervals between the last n+1
+knots (one "real" knot and n "imaginary" knots) should be the same
+as those between the first n+1 "real" knots.
+
+The "period" of such a curve is the parameter interval separating the
+first and last "real" knots.
+
+if indices begin at 0:
+    period = t      - t
+              k+n-1    n
+
+for i = 0 to n:
+    t -     period = t
+     k+n+i-1          n+i
+
+    t + period = t
+     i            k+i-1
+
+If the knot_type "PK_knot_smooth_seam_c" is set, the "expanded knot set"
+is generated to achieve the conditions stated above. If <B>'is_periodic'</B>
+is set to PK_LOGICAL_false, "PK_knot_smooth_seam_c" is equivalent to
+"PK_knot_unset_c".
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

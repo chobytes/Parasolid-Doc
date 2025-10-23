@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_replace_patch_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_replace_patch_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_replace_patch_data_s
+    {
+    <A HREF=../headers/pk_replace_patch_t.html>PK_replace_patch_t</A>  patch_type;     --- whether target faces are replaced
+                                        --- by the corresponding tool faces
+                                        --- with matching boundaries
+                                        --- (<A HREF=../headers/pk_replace_patch_t.html>PK_replace_patch_no_c</A>)
+    int                 n_matches;      --- number of matched faces (0)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>    *tool_patches;   --- the tool faces to replace the
+                                        --- corresponding target faces (NULL)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>    *target_patches; --- the target faces to be replaced by
+                                        --- the corresponding tool faces (NULL)
+    int                 n_patch_edges;  --- number of patch edges (0)
+    const <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>    *patch_edges;    --- boundary edges of patch tool
+                                        --- to be imprinted on target body
+                                        --- (NULL)
+    };
+
+typedef struct PK_replace_patch_data_s PK_replace_patch_data_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure is part of the <A HREF=../headers/pk_face_replace_with_sheet_o_t.html>PK_FACE_replace_with_sheet_o_t</A> options structure.
+It contains the patch data.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_patch_o_t.html>PK_FACE_change_patch_o_t</A><br>
+    <A HREF=../headers/pk_face_replace_with_sheet_o_t.html>PK_FACE_replace_with_sheet_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'patch_type'</B>        Indicates whether each face in <B>'target_patches'</B> array will
+                    be replaced by the corresponding face in <B>'tool_patches'</B>
+                    array with matching boundary.
+
+                    The permitted values are:
+
+                    <A HREF=../headers/pk_replace_patch_t.html>PK_replace_patch_no_c</A>   do not require to match any face
+                                            boundaries
+
+                    <A HREF=../headers/pk_replace_patch_t.html>PK_replace_patch_yes_c</A>  require to match the sheet boundary
+                                            of each face in <B>'tool_patches'</B>
+                                            array to the corresponding face
+                                            in <B>'target_patches'</B> array
+
+                    The default value is <A HREF=../headers/pk_replace_patch_t.html>PK_replace_patch_no_c</A>
+                    See <A HREF="../chapters/fd_chap.070.html#50409856_pgfId-357530">here</A> for more information.
+
+
+<B>'n_matches'</B>         Number of matched faces, i.e. the length of <B>'tool_patches'</B>
+                    and <B>'target_patches'</B>.
+                    The default value is 0.
+
+
+<B>'tool_patches'</B>      Array of the faces along the boundary of the tool body
+                    whose laminar edges lie on the corresponding faces in
+                    <B>'target_patches'</B> array.
+                    The array default value is NULL.
+
+
+<B>'target_patches'</B>    Array of the faces of the target body that are replaced by
+                    the faces in <B>'tool_patches'</B> array in corresponding order.
+                    The array default value is NULL.
+
+
+<B>'n_patch_edges'</B>     Number of patch edges.
+
+
+<B>'patch_edges'</B>       Boundary edges of the patch tool to be explicitly
+                    imprinted on to the target body.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

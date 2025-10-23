@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<TITLE>OUTATT</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUTATT</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_attrib_ask_axes.html>PK_ATTRIB_ask_axes</A><BR>
+<A HREF=../headers/pk_attrib_ask_doubles.html>PK_ATTRIB_ask_doubles</A><BR>
+<A HREF=../headers/pk_attrib_ask_ints.html>PK_ATTRIB_ask_ints</A><BR>
+<A HREF=../headers/pk_attrib_ask_nth_axis.html>PK_ATTRIB_ask_nth_axis</A><BR>
+<A HREF=../headers/pk_attrib_ask_nth_double.html>PK_ATTRIB_ask_nth_double</A><BR>
+<A HREF=../headers/pk_attrib_ask_nth_int.html>PK_ATTRIB_ask_nth_int</A><BR>
+<A HREF=../headers/pk_attrib_ask_nth_vector.html>PK_ATTRIB_ask_nth_vector</A><BR>
+<A HREF=../headers/pk_attrib_ask_owner.html>PK_ATTRIB_ask_owner</A><BR>
+<A HREF=../headers/pk_attrib_ask_string.html>PK_ATTRIB_ask_string</A><BR>
+<A HREF=../headers/pk_attrib_ask_vectors.html>PK_ATTRIB_ask_vectors</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUTATT ( attrib, bufsiz, owner, ivals, rvals, slens, chars, ifail )
+===================================================================
+
+  Output an attribute.
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_attribute         *attrib         --- attribute
+ &lt;KI_int_nitems&gt;           *bufsiz         --- amount of space available in
+                                           --- chars
+
+Returns:
+  KI_tag_entity            *owner          --- entity to which attribute is
+                                           --- attached
+ &lt;KI_tag_list_int&gt;         *ivals          --- list of integer values
+ &lt;KI_tag_list_dbl&gt;         *rvals          --- list of real values
+ &lt;KI_tag_list_int&gt;         *slens          --- list of string lengths
+  KI_chr_string             chars[bufsiz]  --- array of data for string fields
+  KI_cod_error             *ifail          --- error code
+
+
+Description:
+   The owner and contents of an attribute are output.  To find the type,
+  and hence any other information dependent only on the type, use ENDFAT.
+
+   The integer fields are returned in the integer list ivals.
+
+   The real values for the fields of types real, axis, vector, coordinate and
+  direction are returned in rvals, in the order of the fields (which may be
+  obtained by calling OUATDF with the type of the attribute, obtained from
+  ENDFAT).  Thus the real values held in the first field of any of the above
+  types appear first, followed by the real values held in the next field of
+  any of these types.  Each real field yields one real value, each axis six and
+  each field of type coordinate, vector or direction three.
+
+   The string fields are returned, concatenated, in the array 'chars'; the
+  lengths of the strings are returned in the list 'slens'.  Thus if we denote
+  the first entry in 'slens' by 'slens\1' and so on, the first string field is
+  given by the first 'slens\1' values in 'chars', the second by the next
+  'slens\2' and so on.  OUTATT does not attempt to write more than 'bufsiz'
+  characters to 'chars', nor does it fail on account of there being more than
+  this to write; if there is too little space, it returns 'ifail' as zero so
+  that it can return the lengths of the strings in 'slens'.  As many string
+  fields as fit into less than 'bufsiz' are also returned in 'chars'.  Thus
+  the values in 'slens' should be compared with 'bufsiz' after a call to
+  OUTATT; if the sum of the lengths of the string fields up to the last one
+  required is greater than 'bufsiz', then a second call to the function, using
+  more space (how much more being computed from the values in 'slens') in
+  'chars', will return all the required data.
+
+
+</PRE>
+</BODY>
+</HTML>

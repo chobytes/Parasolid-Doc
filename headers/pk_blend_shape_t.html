@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_shape_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_shape_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_blend_shape_s
+    {
+    <A HREF=../headers/pk_blend_xs_plane_t.html>PK_blend_xs_plane_t</A> xsection;     --- cross section plane
+                                      --- (PK_blend_xs_rolling_ball_c)
+    double              radius;       --- constant radius
+                                      --- (0.0)
+    <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>          parameter;    --- 3D parameter curve
+                                      --- (PK_ENTITY_null)
+    <A HREF=../headers/pk_law_sf_t.html>PK_LAW_sf_t</A>         range1;       --- 1D law function;
+                                      --- Variable ranges off left wall
+    <A HREF=../headers/pk_law_sf_t.html>PK_LAW_sf_t</A>         range2;       --- 1D law function;
+                                      --- Variable ranges off right wall
+    <A HREF=../headers/pk_law_sf_t.html>PK_LAW_sf_t</A>         rho;          --- 1D law function;
+                                      --- Variable rho for general conics
+    <A HREF=../headers/pk_bcurve_t.html>PK_BCURVE_t</A>         depth;        --- 2D law curve; curvature cts blends
+                                      --- (PK_ENTITY_null)
+    double              width;        --- width of blend for Constant Width
+                                      --- blends (0.0)
+    double              ratio;        --- ratio of blend ranges for Constant
+                                      --- Width blends (1.0)
+    <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_t</A> xs_shape;     --- cross section shape
+                                      --- (<A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_unset_c</A>)
+    double              softness;     --- controls softness of curvature
+                                      --- continuous blends (1.0)
+    <A HREF=../headers/pk_blend_rho_t.html>PK_blend_rho_t</A>      rho_type;     --- whether to use absolute, relative or
+                                      --- centre rho
+                                      --- (<A HREF=../headers/pk_blend_rho_t.html>PK_blend_rho_absolute_c</A>)
+    double              range1_const; --- Constant range off left wall (0.0)
+    double              range2_const; --- Constant range off right wall (0.0)
+    double              rho_const;    --- Constant rho for general conics (0.0)
+    <A HREF=../headers/pk_law_sf_t.html>PK_LAW_sf_t</A>         var_width;    --- 1D law function;
+                                      --- Variable width of blend chord
+    <A HREF=../headers/pk_law_sf_t.html>PK_LAW_sf_t</A>         var_ratio;    --- 1D law function;
+                                      --- variable ratio of blend ranges for
+                                      --- variable width blend
+    double              depth_const;  --- Constant depth for curvature
+                                      --- continuous blends (0.0)
+    double              skew_const;   --- Constant skew for curvature
+                                      --- continuous blends (0.5)
+    <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_t</A>    range1_type;  --- interpretation of range1_const
+                                      --- (<A HREF=../headers/pk_blend_range_t.html>PK_blend_range_face_offset_c</A>)
+    <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_t</A>    range2_type;  --- interpretation of range2_const
+                                      --- (<A HREF=../headers/pk_blend_range_t.html>PK_blend_range_face_offset_c</A>)
+    };
+typedef struct PK_blend_shape_s PK_blend_shape_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure defines the shape of a blend.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_blend_o_t.html>PK_FACE_make_blend_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+                        Blend Shape Options:
+
+ <B>'xsection'</B>     Cross section plane, may be one of:
+                PK_blend_xs_rolling_ball_c (default) or
+                PK_blend_xs_disc_c or
+                PK_blend_xs_isoparameter_c
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-698592">Defining the cross-section plane</A> for more
+                information.
+
+ <B>'radius'</B>       Radius of blend for defining a constant radius blend (0.0).
+                A value of 0.0 will be taken to mean that this field is unset.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-298758">Specifying the size of the blend</A> for more
+                information.
+
+ <B>'parameter'</B>    3D parameter curve. (NULL)
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-298260">Supplying a suitable parameter spine</A> for
+                more information.
+
+ <B>'range1'</B>       1D law function: variable range off left wall.
+                If this is supplied a parameter curve must be provided in
+                <B>'parameter'</B>.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-298758">Specifying the size of the blend</A> for more
+                information.
+
+ <B>'range2'</B>       1D law function: variable range off right wall.
+                If this is supplied a parameter curve must be provided in
+                <B>'parameter'</B>.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-298758">Specifying the size of the blend</A> for more
+                information.
+
+ <B>'rho'</B>          1D law function: variable rho for general conics.
+                If this is supplied a parameter curve must be provided in
+                <B>'parameter'</B>.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-892772">here</A> for more information on user-defined
+                conic cross-sections.
+
+ <B>'depth'</B>        2D law curve for curvature continuous blends.  (NULL)
+                This is used to determine the maximum depth, depth point,
+                at each parameter value along the blend.
+                The X coordinate is used as the curve skew, the distance
+                along the chord between the contact points which corresponds
+                to the depth point. It must be a value between 0 and 1.
+                The Y coordinate is used as the curve depth, the distance
+                of the depth point between the chord between the contact
+                points and the intersection of the tangents of the walls.
+                It must be a value between 0 and 1.
+                If this is supplied a parameter curve must be provided in
+                <B>'parameter'</B>.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-305602">here</A> for more information on user-defined
+                curvature continuous cross-sections.
+
+ <B>'width'</B>        Width of blend for defining constant width blends. (0.0)
+                A value of 0.0 will be taken to mean that this field is unset.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-298758">Specifying the size of the blend</A> for more
+                information.
+
+ <B>'ratio'</B>        Ratio of blend ranges for constant width blends. (1.0)
+                The ratio is defined as "range off left" / "range off right".
+                The default is 1.0 i.e. equal ranges.  This field will be
+                ignored unless the <B>'width'</B> field is set.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-298758">Specifying the size of the blend</A> for more
+                information.
+
+ <B>'xs_shape'</B>     Cross section shape, may be one of:
+                <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_unset_c</A> (default)
+                <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_conic_c</A>
+                <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_g2_c</A>
+                <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A>
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-305008">Defining the cross-section shape</A> for more
+                information.
+
+ <B>'softness'</B>     Modifies the softness for curvature continuous blends. (1.0)
+                It takes values above 0.0 and although theoretically has no
+                upper limit, a value of 10.0 is likely to be the highest
+                value used for practical purposes. Values of <B>'softness'</B>
+                less than 1.0 make the blend less soft, while those values
+                greater than 1.0 make the blend more soft.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-305783">Controlling curvature continuous softness</A> for an
+                explanation of the softness of a curvature continuous blend.
+
+ <B>'rho_type'</B>     Controls how the <B>'rho'</B> and <B>'rho_const'</B> options in
+                PK_blend_shape_t are interpreted when creating conic shaped
+                blends. (<A HREF=../headers/pk_blend_rho_t.html>PK_blend_rho_absolute_c</A>)
+                If <B>'rho_type'</B> is set to <A HREF=../headers/pk_blend_rho_t.html>PK_blend_rho_absolute_c</A>, the rho is
+                independent of the angle subtended by the blend.
+                If <B>'rho_type'</B> is set to <A HREF=../headers/pk_blend_rho_t.html>PK_blend_rho_relative_c</A>, the rho is
+                relative to the angle subtended by the blend. For example,
+                a relative rho value of 0.5 will produce a circular or
+                least tension elliptical conic, while an absolute rho value
+                of 0.5 will produce a parabola.
+                If <B>'rho_type'</B> is set to <A HREF=../headers/pk_blend_rho_t.html>PK_blend_rho_centre_c</A>, the rho is
+                the radius of curvature at the centre of the blend
+                cross-section.
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-892772">here</A> for more information on user-defined
+                conic cross-sections.
+
+ <B>'range1_const'</B> Constant range off left wall. (0.0)
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-298758">Specifying the size of the blend</A> for more
+                information.
+
+ <B>'range2_const'</B> Constant range off right wall. (0.0)
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-298758">Specifying the size of the blend</A> for more
+                information.
+
+ <B>'rho_const'</B>    Constant rho for general conics. (0.0)
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-892772">here</A> for more information on user-defined
+                conic cross-sections.
+
+ <B>'var_width'</B>    1D law function: variable width of blend chord.
+                If this is supplied a parameter curve must be provided in
+                <B>'parameter'</B>.
+
+ <B>'var_ratio'</B>    1D law function: variable ratio of blend ranges for variable
+                width blends.
+                If this is supplied a parameter curve must be provided in
+                <B>'parameter'</B>.
+
+ <B>'depth_const'</B>  Constant depth for curvature continuous blends. (0.0)
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-305602">here</A> for more information on user-defined
+                curvature continuous cross-sections.
+
+ <B>'skew_const'</B>   Constant skew for curvature continuous blends. (0.5)
+                See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-305602">here</A> for more information on user-defined
+                curvature continuous cross-sections.
+
+ <B>'range1_type'</B>
+ <B>'range2_type'</B>
+                These options control how values given in <B>'range1_const'</B> and
+                <B>'range2_const'</B> are interpreted. For non-default values, these
+                options control the interpretation of chamfer blends.
+
+                If set to <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_face_offset_c</A> then the range
+                represents the blend's offset range from the underlying
+                surface on that side.
+
+                If set to <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_apex_range_c</A> then the range
+                represents the range between the contact point on that side
+                and the blend's apex and has to be positive.
+
+                If set to <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_angle_c</A> then the range represents
+                the angle made by the chord between the contact points and
+                the tangent plane of the contact point on the other side.
+                The angle must be between 0 and pi.
+
+                Valid combinations of <B>'range1_type'</B> and <B>'range2_type'</B> can
+                be found in the below table.
+
+                ------------------------------------------------------------
+                      <B>'range1_type'</B>          |        <B>'range2_type'</B>
+                ------------------------------------------------------------
+                <A HREF=../headers/pk_blend_range_t.html><A HREF=../headers/pk_blend_range_t.html>PK_blend_range_face_offset_c</A></A> | <A HREF=../headers/pk_blend_range_t.html><A HREF=../headers/pk_blend_range_t.html>PK_blend_range_face_offset_c</A></A>
+                <A HREF=../headers/pk_blend_range_t.html><A HREF=../headers/pk_blend_range_t.html>PK_blend_range_apex_range_c</A></A>  | <A HREF=../headers/pk_blend_range_t.html><A HREF=../headers/pk_blend_range_t.html>PK_blend_range_apex_range_c</A></A>
+                <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_apex_range_c</A>  | <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_angle_c</A>
+                <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_angle_c</A>       | <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_apex_range_c</A>
+                ------------------------------------------------------------
+
+                If these options are set to any value other than
+                <A HREF=../headers/pk_blend_range_t.html>PK_blend_range_face_offset_c</A> then <B>'xs_shape'</B> must be set to
+                <A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_chamfer_c</A>, <B>'xsection'</B> must be set to
+                PK_blend_xs_rolling_ball_c and <B>'run_out'</B> must be set to
+                <A HREF=../headers/pk_blend_run_out_t.html>PK_blend_run_out_no_c</A> and <B>'parameter'</B> must be provided.
+
+                See #here#DOCXXXX# for more information.
+
+
+
+
+If no radius, width or range options are defined then the blend will be
+assumed to be determined by its constraints, for example tangent-holdline
+blends.
+
+If the <B>'width'</B> field is set to a non-zero value or the <B>'var_width'</B> field is
+set, then <B>'xsection'</B> can be set to PK_blend_xs_rolling_ball_c or
+PK_blend_xs_disc_c.
+
+<B>'width'</B> and <B>'var_width'</B> may not be both set. If <B>'var_width'</B> is set and
+<B>'var_ratio'</B> is not set then <B>'ratio'</B> will be used.
+
+If <B>'softness'</B> is set to a non-default value then <B>'xs_shape'</B> must be
+<A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_g2_c</A>.
+
+If <B>'radius'</B> is set neither <B>'range1'</B>, <B>'range2'</B>, <B>'range1_const'</B>, <B>'range2_const'</B>,
+<B>'width'</B> or <B>'ratio'</B> may be set.
+
+<B>'range1_const'</B> and <B>'range1'</B> may not both be set.  Similarly, neither may
+<B>'range2_const'</B> and <B>'range2'</B>, and <B>'rho_const'</B> and <B>'rho'</B>.
+
+When more than one of the <B>'range1'</B>, <B>'range2'</B> and <B>'rho'</B> functions are set,
+they must have equal degree, periodicity, closure and knot set.  The <B>'depth'</B>
+option or <B>'depth_const'</B> and <B>'skew_const'</B> options are incompatible with the
+<B>'rho'</B> and <B>'rho_const'</B> options.
+
+If <B>'depth_const'</B> is set to a non-zero value then <B>'xs_shape'</B> must be
+<A HREF=../headers/pk_blend_xs_shape_t.html>PK_blend_xs_shape_g2_c</A> and <B>'skew_const'</B> must have a value between 0 and 1.
+The <B>'depth_const'</B> and <B>'skew_const'</B> options should not be used with the <B>'depth'</B>
+option.
+The <B>'depth_const'</B> and <B>'skew_const'</B> options should not be used with the
+<B>'softness'</B> option.
+See <A HREF="../chapters/fd_chap.079.html#50409866_pgfId-305602">here</A> for more information on user-defined curvature continuous
+cross-sections.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

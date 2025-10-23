@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>COMENT</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>COMENT</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_session_comment.html>PK_SESSION_comment</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+COMENT ( nchars, coment, ifail )
+================================
+
+  Comment the journal file.
+
+    Can be called from the GO.
+
+Receives:
+ &lt;KI_int_nitems&gt;           *nchars         --- number of chars in 'coment'
+  KI_chr_string             coment[nchars] --- comment string
+
+Returns:
+  KI_cod_error             *ifail          --- failure code
+
+
+Description:
+  If journalling is on then 'coment' is journalled as a comment.
+
+</PRE>
+</BODY>
+</HTML>

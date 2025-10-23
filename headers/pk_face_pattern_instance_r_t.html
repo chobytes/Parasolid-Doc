@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_pattern_instance_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_pattern_instance_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_pattern_instance_r_s
+    {
+    <A HREF=../headers/pk_pattern_status_t.html>PK_pattern_status_t</A>        status;          --- state of this instance of
+                                                --- the patterning operation
+    int                        n_result_faces;  --- number of result faces
+    <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>                 *result_faces;    --- result faces for this
+                                                --- instance of the pattern
+    int                       *original_faces;  --- original pattern faces
+                                                --- corresponding to result
+                                                --- faces
+    <A HREF=../headers/pk_transf_t.html>PK_TRANSF_t</A>                transform;       --- transform which produced
+                                                --- this instance
+    int                        n_error_topols;  --- number of topological
+                                                --- entities associated with
+                                                --- pattern failure in this
+                                                --- instance
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>                *error_topols;    --- topological entities
+                                                --- associated with pattern
+                                                --- failure in this instance
+    };
+typedef struct PK_FACE_pattern_instance_r_s PK_FACE_pattern_instance_r_t;
+
+</B>
+<A NAME="description"></A>
+<I>This data structure contains the status and the patterning information
+for a single instance of the pattern.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_pattern_2_r_t.html>PK_FACE_pattern_2_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'status'</B>            This status field indicates the state of this
+                    instance of the pattern. Permitted values are :
+
+                     <A HREF=../headers/pk_pattern_status_t.html>PK_pattern_status_ok_c</A>
+                     <A HREF=../headers/pk_pattern_status_t.html>PK_pattern_status_fail_c</A>
+                     <A HREF=../headers/pk_pattern_status_t.html>PK_pattern_status_outside_fa_c</A>
+                     <A HREF=../headers/pk_pattern_status_t.html>PK_pattern_status_outside_reg_c</A>
+                     <A HREF=../headers/pk_pattern_status_t.html>PK_pattern_status_tf_failed_c</A>
+                     <A HREF=../headers/pk_pattern_status_t.html>PK_pattern_status_face_clash_c</A>
+
+
+
+<B>'n_result_faces'</B>    The length of the <B>'result_faces'</B> array.
+
+
+<B>'result_faces'</B>      The faces of this instance of the pattern which originated
+                    from the input pattern faces. In general there will not be
+                    a one-to-one correspondence between the <B>'result_faces'</B>
+                    array and the <B>'pattern_faces'</B> array passed to
+                    <A HREF=../headers/pk_face_pattern_2.html>PK_FACE_pattern_2</A> as faces in the new instances may have
+                    resulted from splitting or merging the images of original
+                    pattern faces. For more detailed information about the
+                    result faces, see the documentation accompanying
+                    <A HREF=../headers/pk_face_pattern_2.html>PK_FACE_pattern_2</A>.
+
+
+<B>'original_faces'</B>    The original pattern faces that produced the faces of the
+                    new pattern instance in the <B>'result_faces'</B> array. There is
+                    a one-to-one correspondence between the <B>'original_faces'</B>
+                    array and the <B>'result_faces'</B> array.
+
+
+<B>'transform'</B>         The transform passed to <A HREF=../headers/pk_face_pattern_2.html>PK_FACE_pattern_2</A> that produced
+                    this instance of the pattern.
+
+
+<B>'n_error_topols'</B>    The number of topological entities in the <B>'error_topols'</B>
+                    array.
+
+
+<B>'error_topols'</B>      If the <B>'status'</B> field of this return structure indicates a
+                    failure, this array may contain topological entities which
+                    are associated with the failure.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

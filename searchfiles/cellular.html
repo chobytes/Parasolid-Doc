@@ -1,0 +1,115 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.015.html#50409796_pgfId-1003105", " Section 15.7.1, <B>Cellular</B> bodies ", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-392644", " generalized topology that allows any combination of non-manifold, <B>cellular</B>, or mixed-dimension parts in a single, valid body.", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-295954", " generalized topology that allows any combination of non-manifold, <B>cellular</B>, or mixed-dimension parts in a single, valid body.", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-295965", " 15.7.1 <B>Cellular</B> bodies ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989504", " 15.7.1.1 Definition of a <B>cellular</B> body ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989508", " In Parasolid, a body is said to be <B>cellular</B> if it meets all of the following criteria:", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989512", " to query if a given body is a <B>cellular</B> body. ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989516", " solid faces that are used to define a <B>cellular</B> body. For more information on the region types", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989558", " using the PK_SESSION_set_cellular_guise function. See Section 15.10, Treating <B>cellular</B> bodies as manifold bodies for more information on", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989563", " 15.10 Treating <B>cellular</B> bodies as manifold bodies ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989564", " you to present a manifold representation of a <B>cellular</B> body depending on which of the face types", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989586", " Note: When treating a <B>cellular</B> body as a manifold body, all geometric and", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989627", " separated by an internal partition face. When the <B>cellular</B> guise is set to: ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989668", " Figure 15-17 Illustrating the different <B>cellular</B> guises ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-995433", " 15.10.2 An example of how to use <B>cellular</B> guises ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-995441", " The following describes how to use PK_SESSION_set_cellular_guise_c with <B>cellular</B> bodies. ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-995445", " When the Parasolid session starts the <B>cellular</B> guise is set to the default value of", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-995457", " to show the internal non-manifold structure of the <B>cellular</B> body. ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-995458", " continue to appear non-manifold under both of these <B>cellular</B> guise values. ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-992478", " the values at any time and the selected <B>cellular</B> guise will apply to all bodies in the", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989705", " function does not support a manifold view of <B>cellular</B> bodies, one of the following errors is returned:", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989707", " receives topology that is hidden by the current <B>cellular</B> guise value (ie if PK_SESSION_set_cellular_guise is set to", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-989708", " function does not support a manifold view of <B>cellular</B> bodies. ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-459544", " be used, for example, if you have a <B>cellular</B> model where distinct regions share the same lattice", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-564934", " to have different material properties. See Section 15.7.1, <B>Cellular</B> bodies , for more information. ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-568182", " using the PK_SESSION_set_cellular_guise function. See Section 15.10, Treating <B>cellular</B> bodies as manifold bodies for more information. ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-578353", " Section 15.7.1, <B>Cellular</B> bodies ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-570582", " Section 15.7.1, <B>Cellular</B> bodies ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-310134", " can help you to clean up any non-manifold, <B>cellular</B>, or mixed-dimension entities in a general body, prior", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.038.html#50409820_pgfId-657330", " on the <B>cellular</B> guise, see Section 15.10, Treating <B>cellular</B> bodies as", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-1397874", " of its values, basic boolean operations will treat <B>cellular</B> bodies as manifold bodies as follows: ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-1397921", " without enabling general topology. The results preserve the <B>cellular</B> nature of the input bodies. ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-1397875", " general boolean, and would not necessarily maintain the <B>cellular</B> nature of the target body. ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-1399309", " basic boolean operations on all general bodes, including <B>cellular</B> bodies, will fail with PK_ERROR_general_body. ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204184", " <B>cellular</B> 197 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204593", " <B>cellular</B> bodies 197 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.02.html#50442241_pgfId-274430", " exact boundary-representation geometric modeler supporting solid modelling, generalized <B>cellular</B> modelling and integrated free-form surface/sheet modelling. ", "Overview of Parasolid - Introduction");
+top.note("chapters/ov_chap.04.html#50442254_pgfId-422068", " to subdivide solids for use in, for example, <B>cellular</B> modelling applications. Your application can also model bodies", "Overview of Parasolid - Model Structure");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " the operation which are hidden by the current <B>cellular</B> guise. ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_cellular_guise_general_c 27110 The <B>cellular</B> body will be treated as a regular general", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " nor <B>cellular</B> (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " non-manifold under the <B>cellular</B> guise (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " identifier is hidden by the <B>cellular</B>", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " duplicate identifier and the <B>cellular</B> guise", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " non-manifold under the <B>cellular</B> guise (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " nor <B>cellular</B> (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " nor <B>cellular</B> (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " non-manifold under the <B>cellular</B> guise (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_3", " duplicate identifier and the <B>cellular</B> guise", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " PK_TOPOL_find_frames 5299 PK_ERROR_guise_not_supported Only general <B>cellular</B> guise is supported.", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_is_cellular.html#documentation", "A body is <B>cellular</B> if:", "PK Reference - PK_BODY_is_cellular");
+top.note("headers/pk_body_is_cellular_r_t.html#declaration", " PK_BODY_cellular_t is_cellular; --- whether body is <B>cellular</B>", "PK Reference - PK_BODY_is_cellular_r_t");
+top.note("headers/pk_body_is_cellular_r_t.html#documentation", " This value indicates the type of the given body. <B>Cellular</B> bodies", "PK Reference - PK_BODY_is_cellular_r_t");
+top.note("headers/pk_body_make_curves_outline.html#documentation", "For general bodies that are <B>cellular</B>, their outlines are created from the faces", "PK Reference - PK_BODY_make_curves_outline");
+top.note("headers/pk_body_make_persp_outline.html#documentation", " function produces outlines for viewing solid, sheet, or <B>cellular</B> bodies", "PK Reference - PK_BODY_make_persp_outline");
+top.note("headers/pk_body_make_spun_outline.html#errors", " nor <B>cellular</B> (MILD)", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_body_make_spun_outline.html#documentation", "The function is only implemented for solid and <B>cellular</B> bodies.", "PK Reference - PK_BODY_make_spun_outline");
+top.note("headers/pk_cellular_guise_t.html#documentation", "This datatype specifies how a <B>cellular</B> body is treated by Parasolid.", "PK Reference - PK_cellular_guise_t");
+top.note("headers/pk_curve_find_surfs_common.html#errors", " non-manifold under the <B>cellular</B> guise (MILD)", "PK Reference - PK_CURVE_find_surfs_common");
+top.note("headers/pk_curve_find_surfs_common.html#documentation", " the <B>cellular</B> guise, must be manifold under the <B>cellular</B>", "PK Reference - PK_CURVE_find_surfs_common");
+top.note("headers/pk_face_ask_type_r_t.html#documentation", " A face will be visible under the <B>cellular</B> guise", "PK Reference - PK_FACE_ask_type_r_t");
+top.note("headers/pk_face_reparameterise_surf.html#documentation", "are hidden by the current <B>cellular</B> guise will be returned via the Parasolid", "PK Reference - PK_FACE_reparameterise_surf");
+top.note("headers/pk_find_reparam_record_r_t.html#documentation", " `topols that are hidden by the <B>cellular</B> guise", "PK Reference - PK_find_reparam_record_r_t");
+top.note("headers/pk_part_ask_all_attribs.html#documentation", "If the function is called under a non-general <B>cellular</B> guise only visible", "PK Reference - PK_PART_ask_all_attribs");
+top.note("headers/pk_part_ask_attribs_cb.html#documentation", "If the function is called under a non-general <B>cellular</B> guise only visible", "PK Reference - PK_PART_ask_attribs_cb");
+top.note("headers/pk_part_receive_meshes.html#documentation", " received. Only entities that are visible under the <B>cellular</B> guise", "PK Reference - PK_PART_receive_meshes");
+top.note("headers/pk_part_receive_meshes_o_t.html#declaration", " --- entities visible under the <B>cellular</B>", "PK Reference - PK_PART_receive_meshes_o_t");
+top.note("headers/pk_part_rectify_identifiers.html#errors", " identifier is hidden by the <B>cellular</B>", "PK Reference - PK_PART_rectify_identifiers");
+top.note("headers/pk_partition_receive_meshes.html#documentation", " received. Only entities that are visible under the <B>cellular</B> guise", "PK Reference - PK_PARTITION_receive_meshes");
+top.note("headers/pk_partition_receive_meshes_o_t.html#declaration", " --- entities visible under the <B>cellular</B>", "PK Reference - PK_PARTITION_receive_meshes_o_t");
+top.note("headers/pk_report_1_t.html#documentation", " are hidden by the current <B>cellular</B> guise.", "PK Reference - PK_REPORT_1_t");
+top.note("headers/pk_report_record_1_t.html#documentation", " hidden by the current <B>cellular</B>", "PK Reference - PK_REPORT_record_1_t");
+top.note("headers/pk_session_ask_cellular_guise.html#declaration", " PK_cellular_guise_t *const cellular_guise --- the <B>cellular</B> guise", "PK Reference - PK_SESSION_ask_cellular_guise");
+top.note("headers/pk_session_ask_cellular_guise.html#description", " This function returns the session <B>cellular</B> guise.", "PK Reference - PK_SESSION_ask_cellular_guise");
+top.note("headers/pk_session_set_cellular_guise.html#declaration", " PK_cellular_guise_t cellular_guise --- <B>cellular</B> guise to set", "PK Reference - PK_SESSION_set_cellular_guise");
+top.note("headers/pk_session_set_cellular_guise.html#description", " This function sets how <B>cellular</B> bodies are treated by Parasolid.", "PK Reference - PK_SESSION_set_cellular_guise");
+top.note("headers/pk_topol_ask_entities_by_attdef.html#documentation", "If the function is called under a non-general <B>cellular</B> guise only visible", "PK Reference - PK_TOPOL_ask_entities_by_attdef");
+top.note("headers/pk_topol_categorise_geom.html#documentation", "If the function is called under a <B>cellular</B> guise that is not", "PK Reference - PK_TOPOL_categorise_geom");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#errors", " the <B>cellular</B> guise is not", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#errors", " the <B>cellular</B> guise is not", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_find_frames.html#errors", " PK_ERROR_guise_not_supported Only general <B>cellular</B> guise is supported.", "PK Reference - PK_TOPOL_find_frames");
+top.note("headers/pk_topol_find_frames.html#documentation", "This function is only supported when the <B>cellular</B> guise is", "PK Reference - PK_TOPOL_find_frames");
+top.note("headers/pk_topol_render_volume.html#documentation", "This function will ignore the <B>cellular</B> guise.", "PK Reference - PK_TOPOL_render_volume");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7745767", " 1.3 <B>Cellular</B> body support", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7745803", " describes improvements that have been made to Parasolid&#8217;s <B>cellular</B> body support functionality for Parasolid V36.0. Further details", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7744588", " 1.3.1 Enquiring if a general body is a <B>cellular</B> body ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7744595", " to query if a given body is a <B>cellular</B> body. ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7735305", " Figure 1-4 <B>Cellular</B> body ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7840200", " For more information, Section 15.7.1, &#8220;<B>Cellular</B> bodies&#8221; in the Parasolid Functional Description . ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7742384", " 1.3.2 Treating <B>cellular</B> bodies as manifold bodies ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7742277", " by allowing your application to choose to treat <B>cellular</B> bodies either as general bodies or as manifold", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7767625", " When treating a <B>cellular</B> body as manifold, all geometric and many topological", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7834830", " information on <B>cellular</B> guises, see Section 15.10, &#8220;Treating <B>cellular</B> bodies as manifold bodies&#8221; in the Parasolid Functional", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7774075", " region and shell may not be called when <B>cellular</B> bodies are being treated as manifold. Operations that", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7882044", " 1.3.3 Functional areas that support <B>cellular</B> bodies ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7753471", " Parasolid V36.0 has improved its support for <B>cellular</B> bodies in the following areas: ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7743236", " Simple boolean operations are allowed on <B>cellular</B> bodies with a manifold guise ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7743324", " You can create outlines from faces of <B>cellular</B> bodies selected by the guise ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7743543", " Improved support for locally manifold blending on <B>cellular</B> bodies ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7794475", " associated with attributes and groups operate appropriately with <B>cellular</B> bodies ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7792862", " has been added for enlarging general bodies including <B>cellular</B> bodies ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7793302", " V36.0 you can now enlarge general bodies (including <B>cellular</B>) as well as wireframe bodies and minimal bodies.", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

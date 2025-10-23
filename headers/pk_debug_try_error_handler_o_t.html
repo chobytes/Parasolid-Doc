@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_DEBUG_try_error_handler_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_DEBUG_try_error_handler_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_DEBUG_try_error_handler_o_s
+    {
+    int                         o_t_version;       --- version number
+                                                   --- of options structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                use_protected;     --- Call from protected code
+                                                   --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_debug_try_smp_t.html>PK_DEBUG_try_smp_t</A>          smp;               --- SMP style
+                                                   --- (<A HREF=../headers/pk_debug_try_smp_t.html>PK_DEBUG_try_smp_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                call_from_one;     --- Call from just one SMP
+                                                   --- thread (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                use_locks;         --- With SMP lock(s) on
+                                                   --- (PK_LOGICAL_false)
+    };
+
+typedef struct PK_DEBUG_try_error_handler_o_s PK_DEBUG_try_error_handler_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This option structure contains the optional controls for
+<A HREF=../headers/pk_debug_try_error_handler.html>PK_DEBUG_try_error_handler</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_debug_try_error_handler.html>PK_DEBUG_try_error_handler</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'use_protected'</B>     If this is PK_LOGICAL_true, the call will be made from
+                    "protected" code. See the <A HREF="../chapters/fd_chap.123.html#50409916_pgfId-318697">Signal Handling</A>
+                    chapter of the Functional Description for the differences
+                    between protected and unprotected code. If the call is made
+                    from unprotected code and no application error handler has
+                    been registered via <A HREF=../headers/pk_error_register_callbacks.html>PK_ERROR_register_callbacks</A>, then
+                    Parasolid will return PK_ERROR_unhandleable_condition.
+
+
+<B>'smp'</B>               The kind of SMP to use. If this is <A HREF=../headers/pk_debug_try_smp_t.html>PK_DEBUG_try_smp_no_c</A>,
+                    the function passed to <A HREF=../headers/pk_debug_try_error_handler.html>PK_DEBUG_try_error_handler</A> is
+                    called from the same thread as the application used to call
+                    <A HREF=../headers/pk_debug_try_error_handler.html>PK_DEBUG_try_error_handler</A>. If SMP has been enabled with
+                    <A HREF=../headers/pk_session_set_smp.html>PK_SESSION_set_smp</A> and this value is <A HREF=../headers/pk_debug_try_smp_t.html>PK_DEBUG_try_smp_A_c</A>
+                    or <A HREF=../headers/pk_debug_try_smp_t.html>PK_DEBUG_try_smp_B_c</A>, the function passed to
+                    <A HREF=../headers/pk_debug_try_error_handler.html>PK_DEBUG_try_error_handler</A> is called from one or more (see
+                    <B>'call_from_one'</B>) of the threads used by that SMP method.
+                    The timing of the calls is influenced by the <B>'use_locks'</B>
+                    value, described below.
+
+
+<B>'call_from_one'</B>     This value is only considered if the <B>'smp'</B> argument is
+                    not <A HREF=../headers/pk_debug_try_smp_t.html>PK_DEBUG_try_smp_no_c</A>. If that is the case, and
+                    <B>'call_from_one'</B> is PK_LOGICAL_true, then the call will
+                    be made from only one of the SMP worker threads, randomly
+                    selected. If <B>'call_from_one'</B> is PK_LOGICAL_false,
+                    then the call will be made from all of the SMP worker
+                    threads, with timing controlled by the <B>'use_locks'</B> value,
+                    described below. The former case is more representative
+                    of "typical" run-time error situations; the latter is
+                    a stricter test of the error handler.
+
+
+<B>'use_locks'</B>         This value is only considered if the <B>'smp'</B> argument is
+                    not <A HREF=../headers/pk_debug_try_smp_t.html>PK_DEBUG_try_smp_no_c</A>. If that is the case, and
+                    <B>'use_locks'</B> is PK_LOGICAL_true, then the SMP worker
+                    threads will acquire one of Parasolid's internal SMP
+                    locks before they call the function passed to
+                    <A HREF=../headers/pk_debug_try_error_handler.html>PK_DEBUG_try_error_handler</A>. Since only one thread at
+                    a time can hold a lock, the threads will call the
+                    function one at a time: once the function has been
+                    called, there will not be a subsequent call to it
+                    until the function has returned, called <A HREF=../headers/pk_session_abort.html>PK_SESSION_abort</A>,
+                    or generated a run-time error, any of which will cause
+                    the lock to be released. If <B>'use_locks'</B> is
+                    PK_LOGICAL_false, the worker threads will call the
+                    function approximately simultaneously, with no
+                    coordination between them.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

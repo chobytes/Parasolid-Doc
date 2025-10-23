@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_fix_defects_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_fix_defects_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_fix_defects_o_s
+    {
+    int                         o_t_version;
+                                            --- version number of option
+                                            --- structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>                have_tolerance;
+                                            --- whether a tolerance is provided
+                                            --- (PK_LOGICAL_false)
+    double                      tolerance;
+                                            --- tolerance to which linear
+                                            --- defects are found
+    <A HREF=../headers/pk_mesh_defect_tolerances_t.html>PK_MESH_defect_tolerances_t</A> defect_tolerances;
+                                            --- tolerance structure which can
+                                            --- assign a different tolerance
+                                            --- to each defect type
+    <A HREF=../headers/pk_mfacet_fix_defect_t.html>PK_MFACET_fix_defect_t</A>      mfacet_fix_defects;
+                                            --- level of geometric repair to be
+                                            --- performed on the mesh
+                                            --- (<A HREF=../headers/pk_mfacet_fix_defect_t.html>PK_MFACET_fix_defect_degen_c</A>)
+    <A HREF=../headers/pk_mesh_fix_self_int_t.html>PK_MESH_fix_self_int_t</A>      mesh_fix_self_ints;
+                                            --- level of self intersection
+                                            --- repair to be performed on the
+                                            --- mesh
+                                            --- (<A HREF=../headers/pk_mesh_fix_self_int_t.html>PK_MESH_fix_self_int_all_c</A>)
+    <A HREF=../headers/pk_mesh_fix_foldover_t.html>PK_MESH_fix_foldover_t</A>      mesh_fix_foldovers;
+                                            --- level of foldover repair to be
+                                            --- performed on the mesh
+                                            --- (<A HREF=../headers/pk_mesh_fix_foldover_t.html>PK_MESH_fix_foldover_none_c</A>)
+    double                      max_foldover_angle;
+                                            --- angle (in radians) used to
+                                            --- define a foldover (0.2)
+    <A HREF=../headers/pk_mesh_fix_disjoint_t.html>PK_MESH_fix_disjoint_t</A>      mesh_fix_disjoint;
+                                            --- method to use to fix a disjoint
+                                            --- mesh
+                                            --- (<A HREF=../headers/pk_mesh_fix_disjoint_t.html>PK_MESH_fix_disjoint_no_c</A>)
+    };
+typedef struct PK_MESH_fix_defects_o_s PK_MESH_fix_defects_o_t;
+</B>
+<A NAME="description"></A>
+<I>Holds optional data for the function <A HREF=../headers/pk_mesh_fix_defects.html>PK_MESH_fix_defects</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_tolerance          both <B>'tolerance'</B> and <B>'defect_tolerances'</B>
+                                    have been provided (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_fix_defects.html>PK_MESH_fix_defects</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure defines options applicable to fixing defects in the mesh.
+It includes the following fields:
+
+    <B>'have_tolerance'</B>
+        Whether the parameter <B>'tolerance'</B> is supplied.
+
+    <B>'tolerance'</B>
+        If <B>'have_tolerance'</B> is set to PK_LOGICAL_true then the values of
+        <B>'tolerance'</B> will be used for determining when points should be
+        considered equal. The default accuracy will be the linear precision of
+        the modeller.
+
+    <B>'defect_tolerances'</B>
+        A structure to specify different tolerances for different types
+        of defects. If <B>'have_tolerance'</B> is set to PK_LOGICAL_true, this
+        structure should not be specified.
+
+    <B>'mfacet_fix_defects'</B>
+        What level of repair is to be performed on the geometry of the mesh.
+
+    <B>'mesh_fix_self_ints'</B>
+        What level of repair is to be performed on the self intersections of
+        the mesh.
+
+    <B>'mesh_fix_foldovers'</B>
+        What level of repair is to be performed on the foldovers of the mesh.
+
+    <B>'max_foldover_angle'</B>
+        If <B>'mesh_fix_foldovers'</B> is set to <A HREF=../headers/pk_mesh_fix_foldover_t.html>PK_MESH_fix_foldover_all_c</A> then
+        <B>'max_foldover_angle'</B> will be used for identifying foldovers. A fold
+        is where the smaller of the two angles between two mfin-adjacent
+        mfacets is less than or equal to <B>'max_foldover_angle'</B>. From this, a
+        foldover is formed from chains of folded or laminar mfins which bound
+        a region of facets whose normals are opposed to those of their
+        neighbouring regions and which are within <B>'tolerance'</B> of those
+        neighbours.
+
+    <B>'mesh_fix_disjoint'</B>
+        What method is to be used to fix a disjoint mesh.
+        If <B>'mesh_fix_disjoint'</B> is set to <A HREF=../headers/pk_mesh_fix_disjoint_t.html>PK_MESH_fix_disjoint_split_c</A> and the
+        mesh is disjoint, then it will be split into distinct meshes, where
+        each resultant mesh is mfin connected.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

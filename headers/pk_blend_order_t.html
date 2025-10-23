@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_order_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_order_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_blend_order_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_blend_vx_order_data_t.html>PK_blend_vx_order_data_t</A><br>
+    <A HREF=../headers/pk_body_fix_blends_o_t.html>PK_BODY_fix_blends_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype indicates the order in which blends will be applied when
+blends on edges with different convexity meet.
+
+It has the values:
+    PK_blend_order_unset_c:            Parasolid decides the order in which
+                                       blends are applied.
+
+    PK_blend_order_concave_convex_c:   Apply concave blends first
+
+    PK_blend_order_convex_concave_c:   Apply convex blends first
+
+    PK_blend_order_min_convexity_c:    Apply blends on edges of minority
+                                       convexity first
+
+    PK_blend_order_maj_convexity_c:    Apply blends on edges of majority
+                                       convexity first
+
+The terms minority and majority convexity refers to the convexity of all edges
+at a vertex, regardless of whether the edge is being blended.  For example, at
+a three-edge vertex with 2 concave edges and 1 convex edge, the majority
+convexity will be concave and the minority convexity convex.  In this case,
+setting the blend order type to PK_blend_order_maj_convexity_c will result in
+the blend(s) on the concave edge(s) being applied first.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

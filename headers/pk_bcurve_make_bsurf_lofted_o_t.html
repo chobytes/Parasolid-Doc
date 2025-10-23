@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BCURVE_make_bsurf_lofted_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BCURVE_make_bsurf_lofted_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BCURVE_make_bsurf_lofted_o_s
+    {
+    int              o_t_version;     --- version number of option structure(1)
+    <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_t</A>   v_end;           --- end condition at lower v end
+                                      --- (<A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_natural_c</A>)
+    <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_t</A>   V_end;           --- end condition at upper V end
+                                      --- (<A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_natural_c</A>)
+    int              n_v_derivs;      --- number of doubles in v_derivs (0)
+    int              n_V_derivs;      --- number of doubles in V_derivs (0)
+    double          *v_derivs;        --- derivative data at lower v (NULL)
+    double          *V_derivs;        --- derivative data at upper V (NULL)
+    <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_t</A> u_v;             --- how lower u lower v twist vector
+                                      --- defined (<A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_no_c</A>)
+    <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_t</A> u_V;             --- how lower u upper V twist vector
+                                      --- defined (<A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_no_c</A>)
+    <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_t</A> U_v;             --- how upper U lower v twist vector
+                                      --- defined (<A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_no_c</A>)
+    <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_t</A> U_V;             --- how upper U upper V twist vector
+                                      --- defined (<A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_no_c</A>)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>      u_v_twist;       --- lower u lower v twist vector (0,0,0)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>      u_V_twist;       --- lower u upper V twist vector (0,0,0)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>      U_v_twist;       --- upper U lower v twist vector (0,0,0)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>      U_V_twist;       --- upper U upper V twist vector (0,0,0)
+    <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_t</A> v_degen;         --- degeneracy beyond lower v
+                                      --- (<A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_no_c</A>)
+    <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_t</A> V_degen;         --- degeneracy beyond upper V
+                                      --- (<A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_no_c</A>)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>      v_degen_vector;  --- position vector of point degeneracy
+                                      --- (0,0,0)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>      V_degen_vector;  --- position vector of point degeneracy
+                                      --- (0,0,0)
+    int              n_v_degen_bcurve;--- number of doubles in v_degen_bcurve
+                                      --- (0)
+    int              n_V_degen_bcurve;--- number of doubles in V_degen_bcurve
+                                      --- (0)
+    double          *v_degen_bcurve;  --- vertices of degenerate bcurve (NULL)
+    double          *V_degen_bcurve;  --- vertices of degenerate bcurve (NULL)
+    <A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_t</A>  how_knot;        --- how knot vector defined
+                                      --- (<A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_auto_c</A>)
+    double          *knot;            --- knot vector (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>     amalgamate;      --- whether to amalgamate knot vectors
+                                      --- (PK_LOGICAL_false)
+    int              n_v_degen_segs;  --- number of degenerate segments to add
+                                      --- to lower v curve (0)
+    int              n_V_degen_segs;  --- number of degenerate segments to add
+                                      --- to upper V curve (0)
+    int             *v_degen_segs;    --- degenerate segment positions on lower
+                                      --- v curve (NULL)
+    int             *V_degen_segs;    --- degenerate segment positions on upper
+                                      --- V curve (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>     force_cubic;     --- make result cubic in v even if it is
+                                      --- a ruled surface
+                                      --- (PK_LOGICAL_false)
+    };
+
+typedef struct PK_BCURVE_make_bsurf_lofted_o_s PK_BCURVE_make_bsurf_lofted_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This data structure is the options structure for <A HREF=../headers/pk_bcurve_make_bsurf_lofted.html>PK_BCURVE_make_bsurf_lofted</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_derivative         derivative or twist vector too large
+    PK_ERROR_wrong_number_derivs    wrong number of derivatives
+    PK_ERROR_bad_deriv_vertices     wrong number of vertices of derivative
+                                    bcurve
+    PK_ERROR_bad_degen_vertices     wrong number of vertices of degenerate
+                                    bcurve
+    PK_ERROR_incompatible_props     only one of <B>'v_end'</B> and <B>'V_end'</B> is
+                                    <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_periodic_c</A>,
+                                    <B>'v_end'</B> is <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_periodic_c</A> and
+                                    <B>'v_degen'</B> or <B>'V_degen'</B> is not
+                                    <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_no_c</A>,
+                                    one end is <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_natural_c</A> and a
+                                    twist vector has been supplied,
+                                    <B>'amalgamate'</B> is PK_LOGICAL_true and
+                                    <B>'n_v_degen_segs'</B> or <B>'n_V_degen_segs'</B> is
+                                    not 0,
+                                    an end has both degen_segs and degeneracy
+                                    beyond the edge.
+    PK_ERROR_bad_index              index for degenerate segment out of range
+    PK_ERROR_bad_knots              curve knot vectors are incompatible,
+                                    bad supplied knot vector
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bcurve_make_bsurf_lofted.html>PK_BCURVE_make_bsurf_lofted</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+The lofted surface has its lower u edge along the start points of the supplied
+bcurves and its upper U edge along the end points of the supplied bcurves.
+It has its lower v edge along the first supplied bcurve and its upper V edge
+along the last supplied bcurve.
+
+<B>'v_end'</B>            end condition at lower v (ie at first bcurve) edge of
+                   surface.  If this is set to <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_periodic_c</A> then
+                   <B>'V_end'</B> must also be set to <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_periodic_c</A>.
+                   If it is set to <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A> then
+                   derivatives across the lower v edge must be provided in
+                   <B>'v_derivs'</B>.  If it is set to <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_bcurve_c</A>
+                   then the vertices of a derivative bcurve must be supplied in
+                   <B>'v_derivs'</B>.
+
+<B>'V_end'</B>            end condition at upper V (ie at last bcurve) edge of
+                   surface.  If this is set to <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_periodic_c</A> then
+                   <B>'v_end'</B> must also be set to <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_periodic_c</A>.
+                   If it is set to <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_vector_c</A> then
+                   derivatives across the upper V edge must be provided in
+                   <B>'V_derivs'</B>.  If it is set to <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_clamped_bcurve_c</A>
+                   then the vertices of a derivative bcurve must be supplied
+                   in <B>'V_derivs'</B>.
+
+<B>'n_v_derivs'</B>       number of doubles in <B>'v_derivs'</B>
+
+<B>'n_V_derivs'</B>       number of doubles in 'V_derivs'
+
+<B>'v_derivs'</B>         if derivatives are supplied at the lower v edge this either
+                   contains a derivative for each spline point (1) of the
+                   first bcurve or the vertices of a derivative bcurve.
+
+<B>'V_derivs'</B>         if derivatives are supplied at the upper V edge this either
+                   contains a derivative for each spline point (1) of the
+                   last bcurve or the vertices of a derivative bcurve.
+
+<B>'u_v'</B>              whether a twist vector for the lower u lower v corner
+                   is supplied
+
+<B>'u_V'</B>              whether a twist vector for the lower u upper V corner
+                   is supplied
+
+<B>'U_v'</B>              whether a twist vector for the upper U lower v corner
+                   is supplied
+
+<B>'U_V'</B>              whether a twist vector for the upper U upper V corner
+                   is supplied
+
+<B>'u_v_twist'</B>        lower u lower v twist vector if <B>'u_v'</B> is
+                   <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_yes_c</A>
+
+<B>'u_V_twist'</B>        lower u upper V twist vector if <B>'u_V'</B> is
+                   <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_yes_c</A>
+
+<B>'U_v_twist'</B>        upper U lower v twist vector if <B>'U_v'</B> is
+                   <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_yes_c</A>
+
+<B>'U_V_twist'</B>        upper U upper V twist vector if <B>'U_V'</B> is
+                   <A HREF=../headers/pk_param_twist_t.html>PK_PARAM_twist_yes_c</A>
+
+<B>'v_degen'</B>          whether the surface degenerates to a point beyond the
+                   lower v bcurve.  If this is set to <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_vector_c</A>
+                   then a degenerate position vector is supplied in
+                   <B>'v_degen_vector'</B>.  If this is set to <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_bcurve_c</A>
+                   then the control vertices of a degenerate bcurve are
+                   supplied in v_degen_bcurve.
+
+<B>'V_degen'</B>          whether the surface degenerates to a point beyond the
+                   upper V bcurve.  If this is set to <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_vector_c</A>
+                   then a degenerate position vector is supplied in
+                   <B>'V_degen_vector'</B>.  If this is set to <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_bcurve_c</A>
+                   then the control vertices of a degenerate bcurve are
+                   supplied in V_degen_bcurve.
+
+<B>'v_degen_vector'</B>   degenerate position vector if <B>'v_degen'</B> is
+                   <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_vector_c</A>.
+
+<B>'V_degen_vector'</B>   degenerate position vector if <B>'V_degen'</B> is
+                   <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_vector_c</A>.
+
+<B>'n_v_degen_bcurve'</B> number of doubles in v_degen_bcurve
+
+<B>'n_V_degen_bcurve'</B> number of doubles in V_degen_bcurve
+
+<B>'v_degen_bcurve'</B>   vertices of degenerate bcurve if 'v_degen' is
+                   <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_bcurve_c</A>.
+
+<B>'V_degen_bcurve'</B>   vertices of degenerate bcurve if 'v_degen' is
+                   <A HREF=../headers/pk_param_degen_t.html>PK_PARAM_degen_bcurve_c</A>.
+
+<B>'how_knot'</B>         whether a knot vector is supplied
+
+<B>'knot'</B>             if <B>'how_knot'</B> is <A HREF=../headers/pk_param_knot_t.html>PK_PARAM_knot_defined_c</A> this contains the
+                   knot vector.  The number of values in the knot vector is
+                   equal to the number of lofted curves  for a non-periodic
+                   lofting or one greater than the number of lofted curves
+                   for a periodic lofting.
+
+<B>'amalgamate'</B>       if this is set to PK_LOGICAL_true then the knot vectors
+                   of the supplied curves will be amalgamated to produce
+                   a surface which is continuous to the same order as the
+                   curves.  This option may not be used in conjunction with
+                   inserted degenerated segements.
+
+<B>'n_v_degen_segs'</B>   number of degenerate segments added to lower v (ie first)
+                   bcurve.
+
+<B>'n_V_degen_segs'</B>   number of degenerate segments added to upper V (ie last)
+                   bcurve.
+
+<B>'v_degen_segs'</B>     if the first bcurve has fewer segments then the other curves
+                   then this may be used to add the required number of
+                   degenerate segments.  Each integer value given here
+                   identifies the segment preceding a required additional
+                   degenerate segment.  Values must be given in ascending
+                   order.  Previously inserted degenerate segments affect
+                   the segment numbers of subsequent ones.
+
+<B>'V_degen_segs'</B>     as for <B>'v_degen_segs'</B> for the upper V (ie last) bcurve.
+
+<B>'force_cubic'</B>      in general, the lofted surface will be cubic in the loft
+                   ( v ) direction. However if only two curves are given and
+                   both <B>'v_end'</B> and <B>'V_end'</B> are <A HREF=../headers/pk_param_end_t.html>PK_PARAM_end_natural_c</A> then a
+                   ruled surface which is linear in v will be produced if
+                   <B>'force_cubic'</B> is PK_LOGICAL_false.  If <B>'force_cubic'</B> is
+                   set to PK_LOGICAL_true such a surface will be made cubic
+                   in the v direction.
+
+(1) a 'spline point' of a bcurve is a point between adjacent segments of
+    of the bcurve or the start or end of the curve.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.018.html#50409799_pgfId-500769", " of an SP-curve is the parameterisation of the 2D <B>B-spline</B> curve used to create it. Evaluating this curve at", "Functional Description - Geometry");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294762", " rational polynomial geometry which is represented in Parasolid as <B>B-spline</B> (NURBS) curves and surfaces. ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294771", " curves or surfaces to the kernel interface, e.g. as <B>B-spline</B> data, or to create curves or surfaces by splining", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294798", " From <B>B-spline</B> control points ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294809", " 18.4.1 <B>B-spline</B> data ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294812", " be created this way. The diagram below shows a <B>B-spline</B> curve with its control polygon. ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-294891", " Figure 18-1 <B>B-spline</B> curve ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-301919", " a degenerate <B>b-spline</B> curve. By using a degenerate <B>b-spline</B> curve you retain greater control when lofting curves", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-302756", " clamp the surface using a derivative <B>B-spline</B> curve. ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295605", " than the session angular precision; see Section 18.4.1, <B>B-spline</B> data for more details. ", "Functional Description - Checking");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-297057", " A description of the twist as a <B>B-spline</B> function, in the form of a PK_LAW_sf_t , parameterised", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-297716", " A description of the scale as a <B>B-spline</B> function, in the form of a PK_LAW_sf_t , parameterised", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-297736", " C2 continuity would result in an excessive number of <B>B-spline</B> vertices. ", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-294818", " you supply 2D analytic curves as well as 2D <B>B-spline</B> curves. ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-294831", " To create an SP-curve from surface and uv-space <B>B-spline</B> data call PK_SPCURVE_create . The surface given to PK_SPCURVE_create", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308638", " be the surface attached to the face, or a <B>B-spline</B> representation of that face. ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308647", " the surface attached to the face (default), or a <B>B-spline</B> approximation. ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308653", " When the surface to use is a <B>B-spline</B> approximation further options that can be set are: ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308662", " where the tolerance is the maximum distance between the <B>B-spline</B> and the surface it represents (Default: 0.00001). ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308666", " force output of <B>B-spline</B> of degree 3. ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-308670", " force output of non-rational <B>B-spline</B> ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310232", " other cases are points in 3d space, the 2d <B>B-spline</B> vertices of SP-curves represent points in the parameter space", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-310233", " vertices to lie out of parameter range if the <B>B-spline</B> curve so defined lies within the range. ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378213", " Self-intersection checking in <B>B-spline</B> surfaces ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-306183", " so degree three is recommended. Internally to Parasolid, the <B>B-spline</B> form is used exclusively for modelling with B-surfaces. This", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287018", " B.2 <B>B-spline</B> curve definition ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287023", " The <B>B-spline</B> is one of many ways of describing a spline", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287040", " are the <B>B-spline</B> vertices ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287048", ", for i=0 ... n-1 are the <B>B-spline</B> basis functions ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287052", " B.2.1 <B>B-spline</B> basis functions ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287056", " The <B>B-spline</B> basis functions are generated recursively. Users are advised to", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-320701", " point than is formally required for a spline. A <B>B-spline</B> curve is infinitely differentiable, except possibly at knot positions.", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287087", " It is a property of the <B>B-spline</B> basis functions that, for a given value of t,", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287088", " convex hull of its <B>B-spline</B> vertices. In fact the <B>B-spline</B> curve obeys a stronger hull property: any point P(t)", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287138", " Figure B-1 <B>B-spline</B> curve in its composite hull ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287139", " line, in the case of planar curves) intersects a <B>B-spline</B> curve more times than it intersects the control polyline.", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287186", " <B>B-spline</B> ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287190", " <B>B-spline</B> curves were discussed in Section B.2 . This section", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287395", " B.4 <B>B-spline</B> surface definition ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287396", " vectors control how a curve is segmented, and for <B>B-spline</B> surfaces the knot vectors control how a surface is", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287399", " The description of <B>B-spline</B> curves and knots applies to surfaces as well. ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287402", " the <B>B-spline</B> vertices, and in this case the corner <B>B-spline</B> vertices", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287404", " A <B>B-spline</B> surface is said to be G1-continuous if it has", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287405", " The equation of a non-uniform rational <B>B-spline</B> surface of orders ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287422", " are the <B>B-spline</B> vertices ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287430", " are the <B>B-spline</B> coefficients ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287601", " <B>B-spline</B> ", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287605", " <B>B-spline</B> surfaces were described in Section B.4 . This section", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.125.html#50409919_pgfId-287757", " GORDON, William J., and RIESENFELD, Richard F. 1974. <B>B-spline</B> Curves and Surfaces in Computer Aided Geometric Design, ed.", "Functional Description - The Mathematical Form Of B-Geometry");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275443", " set takes a predefined form. In this case the <B>B-spline</B> basis functions are the Bernstein polynomials of the given", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275463", " <B>B-spline</B> Curve ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275464", " a composite B-curve is represented by an array of <B>B-spline</B> vertices, and a knot vector. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-290482", " Analytic, <B>B-spline</B> and procedural curves and surfaces. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275660", " order, the knot vector uniquely defines a set of <B>B-spline</B> basis functions. ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.128.html#50409922_pgfId-275718", " <B>B-spline</B> (NURB) is a spline defined with respect to <B>B-spline</B> basis functions. The coefficients assigned to these basis functions", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203721", " basis functions, <B>B-spline</B> 1666 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204480", " <B>B-spline</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205146", " <B>B-spline</B>, defined 1665 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205217", " <B>B-spline</B> 252 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205298", " <B>B-spline</B> curves 1665 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205300", " <B>B-spline</B> surfaces 1673 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206801", " <B>B-spline</B> basis 1666 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208936", " <B>B-spline</B> 1667 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209960", " defined, <B>B-spline</B> 1673 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.02.html#50442241_pgfId-276481", " Chapter 7, &#8220;<B>B-Spline</B> Curves and Surfaces&#8221; , describes Parasolid&#8217;s functionality for curves", "Overview of Parasolid - Introduction");
+top.note("chapters/ov_chap.08.html#50442268_pgfId-377095", " Supplying <B>B-spline</B> data ", "Overview of Parasolid - B-Spline Curves and Surfaces");
+top.note("chapters/ov_chap.08.html#50442268_pgfId-377482", " B-geometry with data that is not as rich as <B>B-spline</B> or piecewise data by using Parasolid&#8217;s general splining functionality.", "Overview of Parasolid - B-Spline Curves and Surfaces");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437676", " <B>B-spline</B> curves and surfaces ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437796", " <B>B-spline</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438941", " <B>B-spline</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_BSURF_form_revolved_c 8707 The surface is a <B>b-spline</B> curve revolved. ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " scalar valued function. It is specified by a 1-dimensional <B>B-spline</B> curve parameterised to the values of the scalar law.", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_bcurve_add_knot.html#documentation", "affects the <B>B-spline</B> representation (it duplicates a knot).", "PK Reference - PK_BCURVE_add_knot");
+top.note("headers/pk_bcurve_ask_knots_o_t.html#documentation", "The option structure defines options applicable to <B>b-spline</B> knot queries.", "PK Reference - PK_BCURVE_ask_knots_o_t");
+top.note("headers/pk_bcurve_make_bsurf_lofted.html#documentation", " PK_PARAM_end_clamped_bcurve_c when a derivative <B>b-spline</B> is used to clamp", "PK Reference - PK_BCURVE_make_bsurf_lofted");
+top.note("headers/pk_bcurve_sf_t.html#documentation", "necessary k+n-1 <B>b-spline</B> basis functions to be fully defined. These", "PK Reference - PK_BCURVE_sf_t");
+top.note("headers/pk_body_make_lofted_body.html#documentation", " o PK_BODY_simplify_no_c: <B>B-spline</B> geometry will be used to represent", "PK Reference - PK_BODY_make_lofted_body");
+top.note("headers/pk_body_make_swept_body.html#documentation", " o PK_BODY_simplify_no_c: <B>B-spline</B> geometry will be used to represent", "PK Reference - PK_BODY_make_swept_body");
+top.note("headers/pk_body_make_swept_body_2.html#documentation", " o PK_BODY_simplify_no_c: <B>B-spline</B> geometry will be used to represent", "PK Reference - PK_BODY_make_swept_body_2");
+top.note("headers/pk_body_sweep_law_type_t.html#documentation", " 1-dimensional <B>B-spline</B> curve parameterised", "PK Reference - PK_BODY_sweep_law_type_t");
+top.note("headers/pk_bsurf_add_u_knot.html#documentation", "Adding a null segment to a surface only affects the <B>B-spline</B>", "PK Reference - PK_BSURF_add_u_knot");
+top.note("headers/pk_bsurf_add_v_knot.html#documentation", "Adding a null segment to a surface only affects the <B>B-spline</B>", "PK Reference - PK_BSURF_add_v_knot");
+top.note("headers/pk_bsurf_ask_knots_o_t.html#documentation", "The option structure defines options applicable to <B>b-spline</B> knot queries.", "PK Reference - PK_BSURF_ask_knots_o_t");
+top.note("headers/pk_bsurf_form_t.html#documentation", " PK_BSURF_form_revolved_c : The surface is a <B>b-spline</B> curve revolved.", "PK Reference - PK_BSURF_form_t");
+top.note("headers/pk_bsurf_sf_t.html#documentation", " knot set in order for the necessary k+n-1 <B>b-spline</B> basis functions to be", "PK Reference - PK_BSURF_sf_t");
+top.note("headers/pk_curve_embed_in_surf_2.html#description", " creates one or more spcurves by embedding a <B>b-spline</B>", "PK Reference - PK_CURVE_embed_in_surf_2");
+top.note("headers/pk_curve_embed_in_surf_2.html#documentation", " 1 by contructing the exact 2D <B>b-spline</B> representation of the path", "PK Reference - PK_CURVE_embed_in_surf_2");
+top.note("headers/pk_face_output_surf_trimmed.html#documentation", "curve with <B>B-spline</B> surface parameter space curves (i.e. <B>B-spline</B> curves with", "PK Reference - PK_FACE_output_surf_trimmed");
+top.note("headers/pk_face_output_surf_trimmed_o_t.html#documentation", "attached to the face, or a <B>B-spline</B> representation of that surface.", "PK Reference - PK_FACE_output_surf_trimmed_o_t");
+top.note("headers/pk_face_trim_surf_t.html#documentation", " PK_FACE_trim_surf_bsurf_c use <B>B-spline</B> approximation of faces", "PK Reference - PK_FACE_trim_surf_t");
+top.note("headers/pk_gosgmt_f_t.html#documentation", " lntp[9] is the number of <B>b-spline</B> vertices", "PK Reference - PK_GOSGMT_f_t");
+top.note("headers/pk_law_sf_t.html#documentation", "<B>b-spline</B> basis functions to be fully defined. These additional", "PK Reference - PK_LAW_sf_t");
+top.note("headers/pk_param_end_t.html#documentation", " PK_PARAM_end_clamped_bcurve_c <B>b-spline</B> vertices of derivative", "PK Reference - PK_PARAM_end_t");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274715", " ngeom = 3 (number of <B>b-spline</B> vertices) + number of knots ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274721", " first <B>b-spline</B> vertex ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274725", " second <B>b-spline</B> vertex ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274729", " last <B>b-spline</B> vertex, where i = 3(nvertices-1) ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274743", " The number of <B>b-spline</B> vertices is supplied in the 9th element of", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274754", " first <B>b-spline</B> vertex ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274762", " second <B>b-spline</B> vertex ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274770", " last <B>b-spline</B> vertex, where i = 4(nvertices-1) ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274788", " The number of <B>b-spline</B> vertices is supplied in the 9th element of", "Downward Interfaces - Graphical Output");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-274564", " data to be presented to the Graphical Output in <B>B-spline</B> form. ", "KID Manual - KID Rendering");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

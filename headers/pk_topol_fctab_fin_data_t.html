@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_fctab_fin_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_fctab_fin_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_fctab_fin_data_s
+        {
+        int  *data;
+        int   length;
+        };
+ typedef struct PK_TOPOL_fctab_fin_data_s
+                PK_TOPOL_fctab_fin_data_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_table_t.html>PK_TOPOL_facet_table_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is a support structure for <A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A>.  It is an indexed table
+which maps fins into data indices.  The data index is used to reference into
+the <B>'data_point_idx'</B>, <B>'data_normal_idx'</B>, <B>'data_param_idx'</B>, <B>'data_deriv_idx'</B> and
+<B>'data_curv_idx'</B> tables.  The data index is provided as a means of grouping
+together the point, normal, parameter, derivative and curvature information at
+a fin's head vertex (where the 'head' vertex is the vertex pointed to by the
+fin).
+
+In general, fins which share the same head vertex and for which the geometry
+data (i.e. the point, normal, parameter, derivative and curvature data) is also
+shared will reference the same data index.  If any piece of geometry data is
+not common multiple data indices will be created.
+
+
+USING THE RETURNED SUBSCRIPT:
+Each data index can be used as a subscript into the following tables :
+
+    data_point_idx           (for the index of its point value)
+    data_normal_idx          (for the index of its face normal vector)
+    data_param_idx           (for the index of its surface parameter values)
+    data_deriv_idx           (for the index of its surface derivative values)
+    data_curv_idx            (for the index of its face curvature values)
+
+
+FACET VERTICES:
+Facet vertices are of three types: those at original model vertices, those
+on original model edges and those representing interior points in a face.
+
+FINS AT INTERIOR VERTICES:
+With interior facet vertices, it is generally the case that all the data (i.e.
+the point, normal, parameter, derivatives and curvatures) will be common to all
+fins at the vertex.  In this case all fins at the vertex will refer to the same
+data integer value, which is the index into the <B>'data_point_idx'</B>,
+<B>'data_normal_idx'</B>, <B>'data_param_idx'</B>, <B>'data_deriv_idx'</B> and <B>'data_curv_idx'</B>
+tables.
+
+If the interior vertex lies at a singularity all the fins at this vertex will
+reference the same point but will have different normals, parameters,
+derivatives and curvatures.  Thus each fin will refer to a different integer
+value, but when these indices are used to reference into the <B>'data_point_idx'</B>
+table the same point index will be returned.
+
+In a similar way, if the interior vertex lies on a periodic surface and
+consistent parameters have been requested, all the fins at this vertex will
+reference the same point, normal, derivatives and curvatures but may have
+different parameters.  If there are different parameters the fins cannot all
+reference the same data index.
+
+FINS AT EXTERIOR VERTICES ALONG MODEL EDGES:
+With exterior facet vertices part-way along model edges, there are two cases to
+consider: the facet vertex lies in only one face, the facet vertex lies in
+multiple faces that meet along the model edge.
+
+If the facet vertex lies in only one face it will behave in exactly the same
+way as an internal facet vertex (as described above).
+
+If the facet vertex lies in multiple faces, say n faces (where n will be at
+most 2 for manifold parts), there will in general be n face normals and n
+sets of parameter, derivative and curvature data at the vertex.  All fins at
+the vertex will have the same point and in many cases, the normal, parameters,
+derivatives and curvatures can be shared by fins in the same face that point at
+this vertex. Thus the fins at such a vertex will in general all refer to one of
+n integer values.
+
+As in the case of interior vertices, if the vertex lies on a periodic surface
+and consistent parameters have been requested, it is not always the case that
+all fins in a particular face will have the same parameter data so it may be
+necessary to have more than n data indices, where n is the number of faces
+that share the model edge.
+
+FINS AT EXTERIOR VERTICES AT MODEL VERTICES:
+Exterior vertices at original model vertices are similar to exterior vertices
+at model edges only in this case we are interested in how many faces meet at
+the vertex rather than how many meet along the model edge.
+
+As in the case of interior vertices, if the vertex lies at a singularity in a
+particular face, the fins in this face pointing at this vertex will have
+different parameter data, so it will be necessary to have more than n data
+indices, where n is the number of faces that share the model vertex.
+
+EXAMPLE:
+The diagram shows the top, front and right hand side faces of a cube with
+one four sided facet on each face (shown in an 'exploded' schematic form).
+                             v4--f4---v3
+                            /         /   v11
+                           f1       f3   / |
+                          /         /  f12 |
+                         v1--f2---v2   /   f11
+                                      v12  |
+                         v5--f5---v8  |    v10
+                         |         |  f9  /
+                         |         |  |  f10
+                        f6        f8  | /
+                         |         |  v9
+                         v6--f7---v7
+
+  f1  is the fin pointing at v1
+  f2  is the fin pointing at v2
+  .                          .
+  .                          .
+  .                          .
+  f12 is the fin pointing at v12
+
+SHARED GEOMETRY:
+In the example above v2, v8 and v12 all lie at the same point, but their
+normals, parameters, derivatives and curvatures are different.  Thus fins f2,
+f8 and f12 will have different data indices.  When this data index is used to
+reference into the <B>'data_point_idx'</B> table it will be found that each of these
+data indices will give the same integer value - an index into the <B>'point_vec'</B>
+vector table.  This reduces the volume of geometric data output.
+
+The <B>'data_normal_idx'</B> table is provided because the number of vertex normals
+is different from the number of vertex point coordinates (there being more
+than one normal across a model edge, at a singularity,  or at a model vertex).
+This level of indirection allows Parasolid to identify cases where vertices of
+planar facets refer to the same face normal value and construct the
+<B>'data_normal_idx'</B> table so that it refers to the same vector entry in the
+<B>'normal_vec'</B> table.
+
+The <B>'data_param_idx'</B> table is provided as an index to the parameter table.
+Parasolid does not identify common entries in these tables and so these have
+the same number of entries as there are distinct fin data.
+
+The <B>'data_deriv_idx'</B> table is provided as an index to the derivative data
+tables.  Once again, this level of indirection allows Parasolid to identify
+cases where vertices of planar facets refer to the same surface derivatives and
+construct the <B>'data_deriv'</B> table so that it refers to the same first and
+second derivative entries in the <B>'deriv_dp'</B> and <B>'deriv_d2p'</B> tables.
+
+The <B>'data_curv_idx'</B> table is provided as an index to the curvature data
+table.  Once again, this level of indirection allows Parasolid to identify
+cases where vertices of planar facets refer to the same face curvatures and
+construct the <B>'data_curv'</B> table so that it refers to the same curvature entry
+in the <B>'curv_dirs'</B> table.
+
+For more details see <A HREF="../chapters/fd_chap.111.html#50409902_pgfId-296816">associating fins with facet geometry</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

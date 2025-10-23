@@ -1,0 +1,136 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.004.html#50409783_pgfId-301527", " including support for deleting redundant topology, and for <B>splitting</B> topological entities. See Chapter 32, Introduction To Manipulating", "Functional Description - Overview Of This Manual");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-296289", " 15.8.4 <B>Splitting</B> a disjoint body ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-296352", " keeping connected faces in the same body, while <B>splitting</B> non-manifold edges. ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-296353", " keeping connected edges in the same body, while <B>splitting</B> non-manifold vertices. ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.017.html#50409798_pgfId-295222", " Figure 16-7 Involving edge <B>splitting</B> ", "Functional Description - Session And Local Precision");
+top.note("chapters/fd_chap.033.html#50409814_pgfId-294763", " Chapter 35, <B>Splitting</B> Topology describes how to split topology. ", "Functional Description - Introduction To Manipulating Topology");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-294850", " edge, or delete an edge from a loop, <B>splitting</B> it in two. ", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-295090", " Figure 33-3 <B>Splitting</B> an edge ", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-295449", " Figure 33-9 <B>Splitting</B> an edge into two lengthwise ", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-295677", " This function deletes an edge from a loop <B>splitting</B> it into two loops. The logical ", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-295883", " is similar to PK_LOOP_euler_make_edge_face , but instead of <B>splitting</B> the face in two, it creates a new", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-295941", " Figure 33-17 <B>Splitting</B> a face by adding a ring edge ", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.034.html#50409815_pgfId-296010", " similar to PK_FACE_euler_make_ring_face , except that instead of <B>splitting</B> the face in two, it creates a new", "Functional Description - Euler Operations");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-337800", " Vertices <B>splitting</B> two edges that share the same curve. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.035.html#50409816_pgfId-337802", " Edges <B>splitting</B> two faces that share the same surface. ", "Functional Description - Controlling Redundant Topology");
+top.note("chapters/fd_chap.036.html#50409817_pgfId-314653", " Figure 35-1 <B>Splitting</B> a periodic face in order to produce a seam", "Functional Description - Splitting Topology");
+top.note("chapters/fd_chap.036.html#50409817_pgfId-320964", " 35.2 <B>Splitting</B> an edge at a specified parameter ", "Functional Description - Splitting Topology");
+top.note("chapters/fd_chap.036.html#50409817_pgfId-330848", " The new vertex created by <B>splitting</B> ", "Functional Description - Splitting Topology");
+top.note("chapters/fd_chap.036.html#50409817_pgfId-330852", " The new edge created by <B>splitting</B> ", "Functional Description - Splitting Topology");
+top.note("chapters/fd_chap.036.html#50409817_pgfId-321103", " 35.3 <B>Splitting</B> a face along a constant parameter line ", "Functional Description - Splitting Topology");
+top.note("chapters/fd_chap.036.html#50409817_89275", " edges, that are created as a result of <B>splitting</B> existing edges, are not returned in ", "Functional Description - Splitting Topology");
+top.note("chapters/fd_chap.038.html#50409820_marker-516826", " of bodies when viewed from a specific direction, <B>splitting</B> the bodies into visible and invisible areas when", "Functional Description - Creating Profiles");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-294920", " repair the body and removes the intersection by <B>splitting</B> the faces involved. See Section 39.2.17, Self-intersection repair", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-298433", " to produce a valid solid. This may involve <B>splitting</B> faces; however, the tracking information returned reflects the", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-294746", " <B>Splitting</B> wire bodies: see Section 45.6 ", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-294885", " and any gaps created as a result of <B>splitting</B> vertices are filled. PK_BODY_offset_planar_wire provides the following options", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-295052", " 45.6 <B>Splitting</B> a wire body ", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-295590", " four bounding curves for a rectangular sheet), or <B>splitting</B> the edges, where necessary, using PK_EDGE_imprint_point . ", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-367192", " of applying PK_BODY_sew_bodies . In practice, matching and <B>splitting</B> edges, together with progressive application of local precisions,", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.050.html#50409833_pgfId-294827", " Whether to create new topology, or extend by <B>splitting</B> existing topology. See Section 49.1.6, Changes to topology", "Functional Description - Extending Sheets And Surfaces");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-362497", " and intersections (Default: PK_proj_split_clash_all_c ). See Section 51.2.10, <B>Splitting</B> output curves , for more information. ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-523953", " 51.2.10 <B>Splitting</B> output curves ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-467020", " Figure 52-32 <B>Splitting</B> large sheet targets using imprint completion ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.053.html#50409837_pgfId-467061", " Figure 52-33 <B>Splitting</B> large sheet targets using imprint completion ", "Functional Description - Introduction to Booleans");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296113", " sectioning functions may break the geometry sharing by <B>splitting</B> a body into two with the result that", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-296124", " the target body, either destroying it completely or <B>splitting</B> it up into several components and returning only", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-294863", " 63.4.1 Vertex <B>splitting</B> ", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-353162", " is able to resolve this type of clash, <B>splitting</B> faces or creating new faces as required. ", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-294784", " 67.1.3.2 Example 1: <B>Splitting</B> a single face and tapering to the resulting faces", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-294826", " Figure 67-3 <B>Splitting</B> a single face and tapering two of the resulting", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-296252", " 67.1.3.5 Example 4: <B>Splitting</B> a single face into multiple taper surfaces using reference", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.068.html#50409854_pgfId-1395020", " for face f0. Tapering the body results in <B>splitting</B> f0 at the common vertex of e0 and", "Functional Description - Face Tapering");
+top.note("chapters/fd_chap.069.html#50409855_pgfId-1603221", " the self-shadowing parts of the isocline curves by <B>splitting</B> them at points where the draw convexity changes", "Functional Description - Body Tapering");
+top.note("chapters/fd_chap.073.html#50409859_pgfId-316763", " Figure 72-2 <B>Splitting</B> a body when disjoint bodies are not allowed. ", "Functional Description - Creating New Bodies From Existing Entities");
+top.note("chapters/fd_chap.073.html#50409859_pgfId-316802", " Figure 72-3 <B>Splitting</B> a body when disjoint bodies are allowed. ", "Functional Description - Creating New Bodies From Existing Entities");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-307724", " A new edge is derived from <B>splitting</B> or merging existing edges on the body. ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-307728", " A new edge is derived from <B>splitting</B> an existing vertex. ", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-354803", " two SP-curves. When required, PK_SPCURVE_create optionally handles this <B>splitting</B> though it can only be done for surfaces", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-924783", " regions of surface self-intersection from the face, by <B>splitting</B> the face. ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-924791", " that cross surface degeneracies will be fixed by <B>splitting</B> if possible. To repair surface degeneracies, additional calls", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-302741", " 92.3 <B>Splitting</B> topology ", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.093.html#50409882_pgfId-294768", " See Chapter 35, <B>Splitting</B> Topology , for information on how Parasolid can split", "Functional Description - Exporting Data");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295128", " a new face is created, in preference to <B>splitting</B> adjacent faces, therefore there is no propagation. ", "Functional Description - Attributes");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295134", " Alternatively, <B>splitting</B> an entity may invoke a callback function for", "Functional Description - Attributes");
+top.note("chapters/fd_chap.100.html#50409890_pgfId-294842", " 99.6.2 <B>Splitting</B> entities ", "Functional Description - Groups");
+top.note("chapters/fd_chap.100.html#50409890_pgfId-294845", " group in which the original entity occurs. After <B>splitting</B>, the new entities have the same entity label", "Functional Description - Groups");
+top.note("chapters/fd_chap.100.html#50409890_pgfId-294858", " a new entity is created other than by <B>splitting</B> an existing entity, the new entity does not", "Functional Description - Groups");
+top.note("chapters/fd_chap.100.html#50409890_pgfId-294877", " 99.6.6 <B>Splitting</B> bodies ", "Functional Description - Groups");
+top.note("chapters/fd_chap.101.html#50409891_pgfId-294755", " <B>Splitting</B> of an entity into two entities ", "Functional Description - Bulletin Board");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-295133", " vertices on the boundaries of neighboring meshes (possibly <B>splitting</B> facets in the neighboring facet mesh in order", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-342878", " the superior effects that can be achieved when <B>splitting</B> facets around the point of inflection. ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378333", " Vertex <B>splitting</B> during local operations ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.118.html#50409910_pgfId-378549", " Vertex <B>splitting</B> during local operations ", "Functional Description - Version Controls");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204206", " disjoint, <B>splitting</B> 200 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204335", " <B>splitting</B>, and groups 1423 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204366", " wire, <B>splitting</B> 581 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205506", " <B>splitting</B> 200 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205889", " <B>splitting</B>, in groups 1422 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206355", " <B>splitting</B> into visible and invisible areas 429, 549 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206436", " <B>splitting</B> 1540 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207212", " and <B>splitting</B> bodies 1423 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207214", " and <B>splitting</B> entities 1422 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207561", " into visible and invisible areas, <B>splitting</B> faces 429, 549 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207578", " invisible areas, <B>splitting</B> faces into visible and 429, 549 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209797", " <B>splitting</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210334", " <B>splitting</B> 410 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210590", " vertex <B>splitting</B> 905 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210639", " visible and invisible areas, <B>splitting</B> faces into 429, 549 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210677", " <B>splitting</B> 581 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.07.html#50442276_pgfId-317647", " <B>Splitting</B> wire bodies. ", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.07.html#50442276_marker-340639", " of bodies when viewed from a specific direction, <B>splitting</B> the bodies into visible and invisible areas when", "Overview of Parasolid - Working with Sheets and Wires");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438885", " <B>splitting</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5439138", " <B>splitting</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " creation of topology by combination of merging and <B>splitting</B> ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " creation of entities by combination of merging and <B>splitting</B> ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " <B>splitting</B> (SERIOUS)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " <B>splitting</B> (SERIOUS)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>splitting</B> (SERIOUS)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_extend_o_t.html#documentation", " by created by <B>splitting</B> vertices.", "PK Reference - PK_BODY_extend_o_t");
+top.note("headers/pk_body_extrude_o_t.html#declaration", " --- <B>splitting</B> of the resulting", "PK Reference - PK_BODY_extrude_o_t");
+top.note("headers/pk_body_find_knit_pattern.html#description", " function constructs a knitting pattern by matching and <B>splitting</B>", "PK Reference - PK_BODY_find_knit_pattern");
+top.note("headers/pk_body_hollow_2.html#documentation", " through any combination of <B>splitting</B> and merging.", "PK Reference - PK_BODY_hollow_2");
+top.note("headers/pk_body_imprint_cus_shadow.html#documentation", " edges returns the new edges created by <B>splitting</B> the original face into", "PK Reference - PK_BODY_imprint_cus_shadow");
+top.note("headers/pk_body_make_swept_body_2.html#documentation", " o for each edge that is created by <B>splitting</B> faces during self intersection", "PK Reference - PK_BODY_make_swept_body_2");
+top.note("headers/pk_body_make_swept_tool.html#documentation", " o for each edge that is created by <B>splitting</B> faces during self intersection", "PK Reference - PK_BODY_make_swept_tool");
+top.note("headers/pk_body_section_with_sheet_2.html#documentation", " derived edges from the <B>splitting</B> of this edge.", "PK Reference - PK_BODY_section_with_sheet_2");
+top.note("headers/pk_body_thicken_3.html#documentation", " through any combination of <B>splitting</B> and merging.", "PK Reference - PK_BODY_thicken_3");
+top.note("headers/pk_curve_fix_degens.html#errors", " <B>splitting</B> (SERIOUS)", "PK Reference - PK_CURVE_fix_degens");
+top.note("headers/pk_curve_project.html#documentation", "<B>splitting</B> of projected curves is controlled by the split_clash", "PK Reference - PK_CURVE_project");
+top.note("headers/pk_edge_euler_delete_make_loop.html#description", " This function deletes an edge from a loop <B>splitting</B> it into two loops.", "PK Reference - PK_EDGE_euler_delete_make_loop");
+top.note("headers/pk_entity_track_record_r_t.html#documentation", " <B>splitting</B> operation.", "PK Reference - PK_ENTITY_track_record_r_t");
+top.note("headers/pk_entity_track_t.html#documentation", " of merging and <B>splitting</B>", "PK Reference - PK_ENTITY_track_t");
+top.note("headers/pk_face_delete_facesets_o_t.html#documentation", " <B>Splitting</B> a body into disjoint components is only possible when", "PK Reference - PK_FACE_delete_facesets_o_t");
+top.note("headers/pk_face_delete_from_sheet.html#documentation", "The options structure allows control over whether <B>splitting</B> the body is", "PK Reference - PK_FACE_delete_from_sheet");
+top.note("headers/pk_face_hollow_2.html#documentation", " n_new_faces is returned equal to n_faces then no <B>splitting</B> has occurred.", "PK Reference - PK_FACE_hollow_2");
+top.note("headers/pk_face_hollow_3.html#documentation", " through any combination of <B>splitting</B> and merging.", "PK Reference - PK_FACE_hollow_3");
+top.note("headers/pk_face_imprint_curves_2.html#documentation", "<B>Splitting</B> the existing face will produce a record of type", "PK Reference - PK_FACE_imprint_curves_2");
+top.note("headers/pk_face_pattern.html#documentation", "created due to <B>splitting</B> non-pattern faces; applications must not", "PK Reference - PK_FACE_pattern");
+top.note("headers/pk_face_pattern_2.html#documentation", " face resulting from the <B>splitting</B> will appear in the result_faces ", "PK Reference - PK_FACE_pattern_2");
+top.note("headers/pk_face_pattern_2_r_t.html#documentation", " produced by a combination of merging and <B>splitting</B> of two", "PK Reference - PK_FACE_pattern_2_r_t");
+top.note("headers/pk_face_pattern_instance_r_t.html#documentation", " resulted from <B>splitting</B> or merging the images of original", "PK Reference - PK_FACE_pattern_instance_r_t");
+top.note("headers/pk_face_repair.html#documentation", " present there are two types of repair provided: <B>splitting</B> the face to remove", "PK Reference - PK_FACE_repair");
+top.note("headers/pk_face_split_at_param.html#documentation", " edges that are created as a result of <B>splitting</B>", "PK Reference - PK_FACE_split_at_param");
+top.note("headers/pk_face_taper.html#documentation", " through any combination of <B>splitting</B> and merging.", "PK Reference - PK_FACE_taper");
+top.note("headers/pk_fill_hole_topol_t.html#documentation", " faces, <B>splitting</B> where necessary to ensure", "PK Reference - PK_fill_hole_topol_t");
+top.note("headers/pk_mtopol_map_t.html#documentation", " PK_MTOPOL_map_derive_c MTOPOLs result from a combination of <B>splitting</B>", "PK Reference - PK_MTOPOL_map_t");
+top.note("headers/pk_surf_fix_self_int_o_t.html#declaration", " PK_SURF_split_t split; --- whether to prefer <B>splitting</B> the", "PK Reference - PK_SURF_fix_self_int_o_t");
+top.note("headers/pk_surf_fix_self_int_o_t.html#documentation", " This option controls which directions to allow <B>splitting</B>,", "PK Reference - PK_SURF_fix_self_int_o_t");
+top.note("headers/pk_surf_split_t.html#documentation", "This datatype indicates which direction to prefer <B>splitting</B> surfaces when", "PK Reference - PK_SURF_split_t");
+top.note("headers/pk_topol_imprint_frames_r_t.html#documentation", " product_entities of any creation or <B>splitting</B> records, and the", "PK Reference - PK_TOPOL_imprint_frames_r_t");
+top.note("headers/pk_topol_make_new.html#documentation", "created, no topol <B>splitting</B> or merging will occur and the new topol", "PK Reference - PK_TOPOL_make_new");
+top.note("headers/pk_topol_track_record_r_t.html#documentation", " <B>splitting</B> operation.", "PK Reference - PK_TOPOL_track_record_r_t");
+top.note("headers/pk_topol_track_t.html#documentation", " of merging and <B>splitting</B>", "PK Reference - PK_TOPOL_track_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

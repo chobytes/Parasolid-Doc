@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<TITLE>CRCYSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRCYSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_cyl_create.html>PK_CYL_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRCYSU ( posn, axis, radius, cylind, ifail )
+============================================
+
+  Create a cylindrical surface.
+
+Receives:
+  KI_vec_position           posn           --- position on axis
+  KI_vec_axis               axis           --- axis direction
+  KI_dbl_radius            *radius         --- cylinder radius
+
+Returns:
+  KI_tag_surface           *cylind         --- cylindrical surface
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_radius_too_large       radius too large
+
+Description:
+  An unbounded cylindrical surface of radius 'radius' is created with an
+  axis 'axis' which passes through 'posn'.
+
+  The surface normal points away from the axis.
+
+</PRE>
+</BODY>
+</HTML>

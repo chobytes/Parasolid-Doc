@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_change_deform_eval_f_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_change_deform_eval_f_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A>(*PK_FACE_change_deform_eval_f_t)
+(
+<I>--- received arguments ---
+</I><A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>              position,         --- input position
+<A HREF=../headers/pk_face_t.html>PK_FACE_t</A>                face,             --- face for this operation
+<A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             have_params,      --- whether surface parameters are
+                                           --- supplied
+<A HREF=../headers/pk_uv_t.html>PK_UV_t</A>                  params,           --- parameters on the surface of the
+                                           --- input position
+<A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>             external_data,    --- external application data
+<I>--- returned arguments ---
+</I><A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>       *const deformed_position --- deformed position
+);
+
+</B>
+<A NAME="description"></A>
+<I>This is the type definition for the external evaluator functions expected
+by the deform operation in <A HREF=../headers/pk_face_change.html>PK_FACE_change</A>. The functions themselves are to be
+provided by the application.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_data_deform_t.html>PK_FACE_change_data_deform_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A function of type <B>'PK_FACE_change_deform_eval_f_t'</B> defines how the original
+face should be deformed. The function will receive an input position located on
+the surface of the original <B>'face'</B>, and should return the corresponding
+deformed position.
+
+The corresponding surface parameters of the input position may be supplied to
+the function in <B>'params'</B>. The function should check the flag <B>'have_params'</B> to
+see if the parameters are available.
+
+The function must return the same result for a given input position,
+irrespective of the face supplied. The face and surface parameters are supplied
+to potentially help performance, rather than to affect the result of the
+function.
+
+The <B>'external_data'</B> should be supplied to Parasolid via the
+<B>'<A HREF=../headers/pk_face_change_data_deform_t.html>PK_FACE_change_data_deform_t</A>'</B> structure.
+
+Functions of this type should return <B>'PK_ERROR_no_errors'</B> on success. Any other
+return value will be taken to be an evaluation failure and the return arguments
+will not be examined.
+
+Deform operators should have at least G1 continuity, and operators that are G1
+but non-G2 may result in surfaces of lower quality.
+
+When the option <B>'deform_uv'</B> is set to <A HREF=../headers/pk_deform_uv_t.html>PK_deform_uv_all_c</A>, the algorithm will,
+where possible, preserve geometry sharing, so that a resultant surface will be
+shared between multiple faces. In this case, the evaluator function will
+receive only one of the owning faces via <B>'face'</B>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

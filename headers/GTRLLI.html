@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE>GTRLLI</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>GTRLLI</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+GTRLLI ( list, startx, nvals, rvals, ifail )
+============================================
+
+  Get values from a list of reals
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_list_dbl          *list           --- list from which to extract items
+  KI_int_index             *startx         --- position in list from which first
+                                           --- value is to be extracted
+  KI_int_nitems            *nvals          --- number of values to extract
+                                           --- from list
+
+Returns:
+  double                    rvals[nvals]   --- values extracted from list
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_list_too_short         'startx' + 'nvals' - 1 is more than list length
+  KI_bad_index              'startx' not in range 1 to list length + 1
+
+Description:
+  The given values are extracted from the list. The first value is taken from
+  the 'startx' position, the second from 'startx' + 1 and so on. The first
+  element in the list is number 1.
+
+</PRE>
+</BODY>
+</HTML>

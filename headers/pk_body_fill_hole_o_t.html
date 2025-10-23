@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_fill_hole_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_fill_hole_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_fill_hole_o_s
+    {
+    int                       o_t_version;
+                                         --- version number
+    <A HREF=../headers/pk_fill_hole_method_t.html>PK_fill_hole_method_t</A>     method;    --- method to use to fill hole
+                                         --- ( PK_fill_hole_trim_to_hole_c )
+                                         --- [PF]
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>                 fill_sheet;--- sheet body to patch hole
+                                         --- ( PK_ENTITY_null ) [NF]
+    <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_t</A>          check_fa_fa;
+                                         --- check for face-face
+                                         --- inconsistencies
+                                         --- ( <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A> )
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              attach_sheet;
+                                         --- attach created sheet
+                                         --- ( PK_LOGICAL_true )
+    <A HREF=../headers/pk_fill_hole_preference_t.html>PK_fill_hole_preference_t</A> fill_preference;
+                                         --- preferred way of filling hole
+                                         --- ( PK_fill_hole_smooth_c ) [PF]
+    <A HREF=../headers/pk_continuity_t.html>PK_continuity_t</A>           smoothness;--- allows control over the level of
+                                         --- continuity with adjacent faces
+                                         --- that is required by fill hole
+                                         --- (<A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>)
+    <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>           non_smooth_edges;
+                                         --- array of boundary edges that do
+                                         --- not have to be G1 smooth
+                                         --- ( NULL, 0 )
+    <A HREF=../headers/pk_fill_hole_non_smooth_t.html>PK_fill_hole_non_smooth_t</A> non_g1_behaviour;
+                                         --- behaviour if boundary faces do not
+                                         --- meet necessary G1 smoothness
+                                         --- conditions
+                                         --- ( <A HREF=../headers/pk_fill_hole_non_smooth_t.html>PK_fill_hole_non_smooth_fail_c</A> )
+    <A HREF=../headers/pk_edge_array_t.html>PK_EDGE_array_t</A>           non_g2_smooth_edges;
+                                         --- array of boundary edges that do
+                                         --- not have to be G2 smooth
+                                         --- ( NULL, 0 )
+    <A HREF=../headers/pk_fill_hole_non_smooth_t.html>PK_fill_hole_non_smooth_t</A> non_g2_behaviour;
+                                         --- behaviour if boundary faces do not
+                                         --- meet necessary G2 smoothness
+                                         --- conditions
+                                         --- ( <A HREF=../headers/pk_fill_hole_non_smooth_t.html>PK_fill_hole_non_smooth_fail_c</A> )
+    <A HREF=../headers/pk_fill_hole_update_t.html>PK_fill_hole_update_t</A>     update;    --- update version
+                                         --- ( <A HREF=../headers/pk_fill_hole_update_t.html>PK_fill_hole_update_default_c</A> )
+    <A HREF=../headers/pk_fill_hole_topol_t.html>PK_fill_hole_topol_t</A>      patch_topology;
+                                         --- provides control over how to
+                                         --- split the resultant patch into
+                                         --- faces
+                                         --- ( <A HREF=../headers/pk_fill_hole_topol_t.html>PK_fill_hole_topol_multiple_c</A> )
+                                         --- [NF]
+    <A HREF=../headers/pk_fill_hole_body_type_t.html>PK_fill_hole_body_type_t</A>  body_type; --- preferred type of resulting body
+                                         --- ( <A HREF=../headers/pk_fill_hole_body_type_t.html>PK_fill_hole_body_type_orig_c</A> )
+    <A HREF=../headers/pk_body_array_t.html>PK_BODY_array_t</A>           supporting_bodies;
+                                         --- array of bodies which are used to
+                                         --- either split the hole into smaller
+                                         --- component holes, or control the
+                                         --- shape of the patch
+                                         --- ( NULL, 0 ) [NF]
+    <A HREF=../headers/pk_fill_hole_imprint_t.html>PK_fill_hole_imprint_t</A>    imprint_supporting_bodies;
+                                         --- whether to always imprint the
+                                         --- supporting bodies
+                                         --- ( <A HREF=../headers/pk_fill_hole_imprint_t.html>PK_fill_hole_imprint_sharp_c</A> )
+                                         --- [NF]
+    int                       n_clamps;  --- number of clamps to be applied to
+                                         --- the supporting bodies.
+                                         --- ( 0 ) [NF]
+    const <A HREF=../headers/pk_fill_hole_deriv_conds_t.html>PK_fill_hole_deriv_conds_t</A>
+                             *clamps;    --- array of clamps to be applied to
+                                         --- the supporting bodies.
+                                         --- ( NULL ) [NF]
+    const int                *clamp_indices;
+                                         --- array of clamp indices
+                                         --- ( NULL ) [NF]
+    <A HREF=../headers/pk_fill_hole_patch_eds_t.html>PK_fill_hole_patch_eds_t</A>  internal_smoothness;
+                                         --- whether the internal edges of the
+                                         --- created patch are required to be
+                                         --- G1 smooth or not.
+                                         --- ( <A HREF=../headers/pk_fill_hole_patch_eds_t.html>PK_fill_hole_patch_eds_sharp_c</A> )
+                                         --- [NF]
+    <A HREF=../headers/pk_fill_hole_opt_t.html>PK_fill_hole_opt_t</A>        optimise;  --- how to optimise the algorithm
+                                         --- ( <A HREF=../headers/pk_fill_hole_opt_t.html>PK_fill_hole_opt_quality_c</A> )
+                                         --- [NF]
+    int                       n_supporting_point_sets;
+                                         --- Number of sets of point data
+                                         --- supplied to control the shape
+                                         --- of the patch
+                                         --- ( 0 ) [NF]
+    <A HREF=../headers/pk_fill_hole_point_data_t.html>PK_fill_hole_point_data_t</A>
+                             *supporting_point_sets;
+                                         --- Array of point data sets supplied
+                                         --- to control the shape of the patch.
+                                         --- ( NULL ) [NF]
+    <A HREF=../headers/pk_fill_hole_track_t.html>PK_fill_hole_track_t</A>      tracking_control;
+                                         --- Controls the tracking returned.
+                                         --- ( <A HREF=../headers/pk_fill_hole_track_t.html>PK_fill_hole_track_default_c</A> )
+    };
+typedef struct PK_BODY_fill_hole_o_s PK_BODY_fill_hole_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_body_fill_hole.html>PK_BODY_fill_hole</A>
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_fill_hole.html>PK_BODY_fill_hole</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The fields are as follows:
+
+<B>'method'</B>           Method to use to fill the hole. Permitted values are:
+                   PK_fill_hole_trim_to_hole_c      trim <B>'fill_sheet'</B> to the
+                                                    boundary of the hole
+                   PK_fill_hole_trim_to_sheet_c     trim target bodies to the
+                                                    laminar edges of
+                                                    <B>'fill_sheet'</B>
+                   PK_fill_hole_create_patch_c      create a fill sheet to
+                                                    match the boundary of the
+                                                    hole
+                   PK_fill_hole_extend_adjacent_c   patch hole by growing
+                                                    neighbouring faces to cover
+                                                    the hole
+
+                   Note that the values PK_fill_hole_trim_to_sheet_c and
+                   PK_fill_hole_trim_to_hole_c are not supported for
+                   facet geometry.
+
+                   The default value is PK_fill_hole_trim_to_hole_c.
+                   If a general body is supplied then <B>'method'</B> cannot be set to
+                   PK_fill_hole_trim_to_sheet_c.
+
+<B>'fill_sheet'</B>       Sheet body to patch over the hole. Not required for method
+                   PK_fill_hole_create_patch_c.
+
+<B>'check_fa_fa'</B>      Whether to check for face-face inconsistencies. Permitted
+                   values are:
+                   <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>  perform face-face checking
+                   <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_no_c</A>   do not perform any face-face checking
+                   The default value is <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>.
+
+<B>'attach_sheet'</B>     Whether to attach the fill sheet to the body or not.
+                   The default value is PK_LOGICAL_true.
+                   This may only be set to PK_LOGICAL_false if the <B>'method'</B>
+                   option is set to PK_fill_hole_create_patch_c;
+                   with any other method the error PK_ERROR_bad_option_data
+                   is returned.
+
+<B>'fill_preference'</B>  Preferences for a fill solution. Permitted values are
+                   from <A HREF=../headers/pk_fill_hole_preference_t.html>PK_fill_hole_preference_t</A> (see separate documentation).
+
+                   Note that the values PK_fill_hole_prefer_plane_c and
+                   PK_fill_hole_plane_only_c are not supported for facet
+                   geometry.
+
+                   The default value is PK_fill_hole_smooth_c.
+
+<B>'smoothness'</B>       Where smoothness to adjacent faces is required (as specified
+                   by the <B>'fill_preference'</B> option), this controls the level of
+                   smoothness. Allowed values are <A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A> and
+                   <A HREF=../headers/pk_continuity_t.html>PK_continuity_g2_c</A>. This option may only be set to
+                   <A HREF=../headers/pk_continuity_t.html>PK_continuity_g2_c</A> if:
+                     o <B>'method'</B> is set to PK_fill_hole_create_patch_c,
+                     o <B>'optimise'</B> is set to <A HREF=../headers/pk_fill_hole_opt_t.html>PK_fill_hole_opt_quality_c</A>, and
+                     o <B>'fill_preference'</B> is set to PK_fill_hole_smooth_c or
+                       PK_fill_hole_prefer_plane_c.
+                   The default value is <A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>.
+
+<B>'non_smooth_edges'</B> Array of boundary edges for which G1 smoothness to adjoining
+                   faces is not required. If <B>'non_smooth_edges'</B> is not empty,
+                   then <B>'fill_preference'</B> must be set to PK_fill_hole_smooth_c
+                   and <B>'method'</B> must be PK_fill_hole_create_patch_c.
+
+<B>'non_g1_behaviour'</B> If <B>'smoothness'</B> is set to <A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>, then this
+                   option controls what happens if the boundary edges, faces
+                   and supporting bodies do not meet visibly G1 smoothly.
+                   The default value is <A HREF=../headers/pk_fill_hole_non_smooth_t.html>PK_fill_hole_non_smooth_fail_c</A>.
+
+<B>'non_g2_smooth_edges'</B>
+                   Array of boundary edges for which G2 smoothness to adjoining
+                   faces is not required. Instead these edges will be
+                   constrained to be G1 smooth to adjoining faces. If
+                   <B>'non_g2_smooth_edges'</B> is not empty, then <B>'fill_preference'</B>
+                   must be set to PK_fill_hole_smooth_c, <B>'smoothness'</B> must be
+                   set to <A HREF=../headers/pk_continuity_t.html>PK_continuity_g2_c</A> and <B>'method'</B> must be
+                   PK_fill_hole_create_patch_c. An edge may not be supplied in
+                   both <B>'non_smooth_edges'</B> and <B>'non_g2_smooth_edges'</B>.
+
+<B>'non_g2_behaviour'</B> If <B>'smoothness'</B> is set to <A HREF=../headers/pk_continuity_t.html>PK_continuity_g2_c</A>, then this
+                   option controls what happens if the boundary edges, faces
+                   and supporting bodies do not meet visibly G2 smoothly.
+                   The default value is <A HREF=../headers/pk_fill_hole_non_smooth_t.html>PK_fill_hole_non_smooth_fail_c</A>.
+
+<B>'update'</B>           The default value allows applications to take advantage of
+                   the latest enhancements to the hole filling algorithm. To
+                   maintain consistency when rebuilding models created in a
+                   previous version of Parasolid, a non-default value should
+                   be specified.
+
+<B>'patch_topology'</B>   If <B>'method'</B> is PK_fill_hole_create_patch_c then this option
+                   provides some control over how the sheet body that is
+                   created will be divided into faces. If <B>'method'</B> is not
+                   PK_fill_hole_create_patch_c then this option has no effect.
+                   The default value is <A HREF=../headers/pk_fill_hole_topol_t.html>PK_fill_hole_topol_multiple_c</A>.
+
+<B>'body_type'</B>        This option controls the body type of the resulting body in
+                   successful fill hole operations. If possible, the body type
+                   will be changed to the specified type. If the supplied body
+                   is a general body this option must be set to its default
+                   value of <A HREF=../headers/pk_fill_hole_body_type_t.html>PK_fill_hole_body_type_orig_c</A>.
+                   The default value is <A HREF=../headers/pk_fill_hole_body_type_t.html>PK_fill_hole_body_type_orig_c</A>.
+
+<B>'supporting_bodies'</B>
+                   If <B>'method'</B> is PK_fill_hole_create_patch_c then this option
+                   enables the user to provide an array of supporting bodies
+                   that are used to control the shape of the created patch.
+
+                   The supporting bodies remain unchanged after the operation.
+
+                   <B>'Supporting_bodies'</B> must be one of:
+                     - an array of wire bodies;
+                     - a single acorn body; or
+                     - a general wire body.
+                   Supporting bodies will affect the function in the
+                   following ways:
+
+                   - Wire Bodies
+                     If <B>'supporting_bodies'</B> consists entirely of wire bodies,
+                     these wire bodies are used to split the hole into smaller
+                     component holes which are easier to fill. The wire bodies
+                     must not intersect each other and each wire body must be
+                     composed of a single chain of edges with the start and
+                     end vertices of the chain coincident within tolerance to
+                     existing vertices of the boundary edges of the hole. For
+                     supporting body vertices on the hole boundary, if a
+                     boundary edge at that vertex is laminar, and the boundary
+                     edge is required to be G1 smooth to the adjacent face,
+                     then the tangent of the supporting body's edge must lie in
+                     the tangent plane of that face at the vertex. If G2
+                     smoothness is required, then the supporting body edge
+                     should also be G2 smooth with the adjacent face.
+
+                   - Acorn Body
+                     If <B>'supporting_bodies'</B> comprises a single acorn body,
+                     then the surface of the created patch will pass through
+                     the location of the acorn body. There must be one, and
+                     only one, vertex in the acorn body. In this case, a planar
+                     clamp may be applied to the surface of the patch at the
+                     location of the acorn body by using the <B>'clamps'</B> option.
+
+                   - General Wire Body
+                     If <B>'supporting_bodies'</B> consists of a single general wire
+                     body, the created patch will be a single face that lies
+                     within tolerance of the supporting body. The supporting
+                     body must have the following properties:
+                       - it must not be disjoint; and
+                       - a vertex of the supporting body must tolerantly
+                         coincide with a vertex on the hole boundary.
+                     The supporting body and the hole boundary together
+                     describe a "grid" that defines the shape of the patch.
+                     Each vertex of this grid must meet the following
+                     smoothness requirements:
+                       - at each grid vertex with two edges, the tangents of
+                         the two edges must be collinear;
+                       - at each grid vertex with more than two edges, the
+                         tangents of all the edges must be coplanar; and
+                       - at each grid vertex on the hole boundary, if a
+                         boundary edge at that vertex is laminar, and the
+                         boundary edge is required to be G1 smooth to the
+                         adjacent face, then the tangents of all the supporting
+                         body edges must lie in the tangent plane of that face
+                         at the vertex. If G2 smoothness is required, then the
+                         supporting body edges should also be G2 smooth with
+                         the adjacent face.
+
+ See <A HREF="../chapters/fd_chap.071.html#50409857_pgfId-295712">Using supporting bodies to control the shape of a patch</A>.
+
+<B>'imprint_supporting_bodies'</B>
+                   If <B>'supporting_bodies'</B> are supplied, then this option
+                   controls when the supporting bodies should be imprinted onto
+                   the resultant faces.
+                   The returned <B>'tracking'</B> structure will contain topology
+                   tracking information for each edge that is imprinted:
+                     o The <B>'original_topols'</B> will contain an edge from the
+                       supporting body.
+                     o The <B>'product_topols'</B> will contain the corresponding
+                       imprinted edge on the resultant body.
+                   Note that if <B>'supporting_bodies'</B> consists of a single acorn
+                   body, the acorn body will always be imprinted.
+                   The default value is <A HREF=../headers/pk_fill_hole_imprint_t.html>PK_fill_hole_imprint_sharp_c</A>.
+
+ See <A HREF="../chapters/fd_chap.071.html#50409857_pgfId-296207">Tracking imprinted edges</A>.
+
+<B>'n_clamps'</B>         The number of supporting bodies for which clamping should
+                   be attempted. (0)
+
+<B>'clamps'</B>           An array of length equal to <B>'n_clamps'</B> giving details of the
+                   clamp to be applied to the supporting body given by
+                   <B>'clamp_indices'</B>.
+
+                   Currently, only acorn supporting bodies can have clamps
+                   applied, and they must be planar clamps.
+                   (NULL)
+
+<B>'clamp_indices'</B>    An array of length equal to <B>'n_clamps'</B> giving the index of
+                   the supporting body (as given in <B>'supporting_bodies'</B>) that
+                   has the clamp condition given by the corresponding entry in
+                   <B>'clamps'</B>.
+
+                   Currently, only the index of an acorn supporting body
+                   may be supplied. (NULL)
+
+<B>'internal_smoothness'</B>
+                   This option controls whether those edges internal to the
+                   created patch (i.e. not on the boundary) are required to be
+                   G1 smooth or not.
+                   The default value is <A HREF=../headers/pk_fill_hole_patch_eds_t.html>PK_fill_hole_patch_eds_sharp_c</A>.
+
+<B>'optimise'</B>         Whether the algorithm should be optimised for performance or
+                   improved quality.
+                   The default value is <A HREF=../headers/pk_fill_hole_opt_t.html>PK_fill_hole_opt_quality_c</A>.
+
+<B>'n_supporting_point_sets'</B>
+                   The number of supporting point sets to be supplied.
+                   The default value is 0.
+
+<B>'supporting_point_sets'</B>
+                   If <B>'method'</B> is PK_fill_hole_create_patch_c then this option
+                   is used to supply an array of point data sets to control the
+                   shape of the patch created to fill the hole.
+                   A patch created will go through the given sets of points
+                   within the supplied tolerance with surface normals
+                   constrained to a given set of normals if such normals are
+                   supplied.
+                   The default value represent no point data set being
+                   supplied.
+
+`tracking_control  If <B>'tracking_control'</B> is set to <A HREF=../headers/pk_fill_hole_track_t.html>PK_fill_hole_track_default_c</A>
+                   then the tracking returned consists of
+                     1) A single track record of type PK_TOPOL_track_create_c
+                        with no originating topologies and product topologies
+                        consisting of all faces of a created patch (whether
+                        attached or not).
+                     2) A track record for each edge of a supporting body that
+                        is imprinted on the created patch (whether attached or
+                        not). This record is of type PK_TOPOL_track_create_c,
+                        has originating topologies consisting of the supporting
+                        body edge and product topologies consisting of the
+                        corresponding imprinted edge.
+
+                   If <B>'tracking_control'</B> is set to
+                   <A HREF=../headers/pk_fill_hole_track_t.html>PK_fill_hole_track_bdry_edges_c</A> then additional tracking
+                   records are returned. These records map the user supplied
+                   boundary edges to the corresponding topologies on the
+                   unattached created patch. These records are of type
+                   PK_TOPOL_track_create_c. For this value <B>'attach_sheet'</B> must
+                   be set to PK_LOGICAL_false and <B>'method'</B> must be set to
+                   PK_fill_hole_create_patch_c.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

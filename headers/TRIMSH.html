@@ -1,0 +1,153 @@
+<HTML>
+<HEAD>
+<TITLE>TRIMSH</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>TRIMSH</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_trim.html>PK_BODY_trim</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+TRIMSH ( sheet, ncurvs, curvs, nopts, opts, optdata, ifail )
+============================================================
+
+  Trims the sheet body to the curves
+
+Receives:
+  KI_tag_body              *sheet          --- Sheet body to trim
+  KI_int_nitems            *ncurvs         --- number of curves supplied
+  KI_tag_curve              curvs[ncurvs]  --- curves to trim sheet
+  KI_int_nitems            *nopts          --- no of trimming options supplied
+  KI_cod_sltr               opts[nopts]    --- trimming options
+  KI_tag_list               optdata[nopts] --- trimming option data
+
+Returns:
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_bad_sharing            trim would give illegal sharing
+  KI_sheet_untrimmed        curves didn't trim sheet
+  KI_failed_to_trim         unable to trim sheet
+  KI_unsuitable_entity      sheet has more than one non-rubber face
+  KI_invalid_geometry       invalid trimming curve supplied
+  KI_fragment               trim would either fragment or delete the sheet
+  KI_missing_geom           sheet has no surface attached
+  KI_not_sheet              body is not a sheet
+  KI_contradictory_request  invalid option combination
+  KI_bad_selection_code     inappropriate property
+  KI_bad_option_data        inappropriate option data
+  KI_duplicate_list_item    curve geometry duplicated in lists
+  KI_not_in_same_partition  Sheet and surf are in different partitions
+
+Description:
+
+  This function trims a sheet body with a list of curves. It will not
+  allow the sheet to be broken into two or more parts and will not allow
+  the sheet to be extended or deleted.
+
+  The sheet must have only one face which must have a surface
+  attached. If the sheet has more than one face then the error
+  `KI_unsuitable_entity' will be returned.
+
+  Each of the trimming curves must lie on the face of the sheet. If any
+  of the curves do not lie on the face then that curve will be ignored.
+
+  If any of the curves are of type 'TYCUSP' (SP_curve) then they must
+  reference the surface of the sheet or a copy of this surface.
+  If this is not the case the error 'KI_invalid_geometry' will be returned.
+
+  Any curves of type TYCUTR (trimmed curve) will be deleted and their
+  underlying curves attached to the new inscribed edges of the sheet.
+  It is illegal to supply the same trimmed curve more than once in 'curvs';
+  this will result in the error `KI_duplicate_list_item'.
+  This is because it is impossible to share the same trimmed curve between edges
+  (or fins).
+
+  The trimming curves will be scribed onto the the sheet creating
+  a number of regions on the face. One of the selection options should then
+  be used to identify which regions will survive and which will be deleted.
+
+  TRIMSH has three options: two 'SLTRKE', and 'SLTRRE' are mutually exclusive
+  with use of one or the other compulsory, the third 'SLTRTL' is optional.
+
+       -------------------------------------------------------------------
+      |   TOKEN   |   DATA     |             MEANING                      |
+      |           |            |                                          |
+       -------------------------------------------------------------------
+      |  'SLTRKE' |   List of  | Keep all regions on the sheet containing |
+      |           |  'points'  | at least one of these points.            |
+      |           | ( each 3   |                                          |
+      |           |   doubles )|                                          |
+      |           |            |                                          |
+      |  'SLTRRE' |   List of  | Remove all regions on the sheet          |
+      |           |  'points'  | containing at least one of these points  |
+      |           | ( each 3   |                                          |
+      |           |   doubles )|                                          |
+      |           |            |                                          |
+       -------------------------------------------------------------------
+      |  'SLTRTL' |  Single    | Attempt to remove gaps between SP-curves |
+      |           |  double    | in the trimming set that are smaller     |
+      |           |  tolerance | than the supplied tolerance              |
+      |           |            |                                          |
+       -------------------------------------------------------------------
+
+  The option 'SLTRKE' may be used to supply a list of points identifying
+  the regions to remain on the trimmed sheet. With this option all the
+  regions not identified by a point will be deleted.
+
+  Alternatively the option 'SLTRRE' may be used to supply a list of points
+  identifying the regions to be deleted from the sheet. With this option all
+  the regions not identified by a point will survive.
+
+  One of these options must be supplied although it is not possible to
+  supply both together.
+
+  The points should be supplied in 'optdata' as a list of doubles of length
+  3*npoints, where npoints is the number of selection points.
+
+  If a supplied point lies on an edge or vertex of the sheet, or on one of
+  the trimming curves, then all the regions adjacent to that point will be
+  selected to be either kept or removed.
+
+  If any of the supplied points do not lie on the face then no regions will
+  be selected by that point.
+
+  In some cases the trimming curves and points will be such that no region of
+  the sheet will have been removed. In these cases TRIMSH will return the
+  ifail 'KI_sheet_untrimmed'. An example of this would be an attempt to cut a
+  sheet in half with a trimming curve that is too short to divide it.
+
+  Contiguous trimming curves should join to within modeller resolution. In the
+  case of gaps larger than this, around SP-curves only, the option 'SLTRTL' is
+  available to force TRIMSH to try to close them by modifying the SP-curve
+  geometry. However an attempt to close gaps crossing a degeneracy or
+  seamline of the surface parameterisation should be avoided.
+
+  'SLTRTL' has a single optional double as associated data. This double, if
+  provided, states the maximum size of gap to be closed. Where gaps smaller than
+  this are found, the SP-curves will be modified so that the trimming curves
+  meet to within modeller resolution. Larger gaps will be left alone. If the
+  optional double is not provided, then the maximum size of gap closed will
+  default to 100 times the default resolution of the modeller.
+
+  Where the 'SLTRTL' option is not requested, TRIMSH will not make any attempt
+  to close gaps between the trimming curves.
+
+</PRE>
+</BODY>
+</HTML>

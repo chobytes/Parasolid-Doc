@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.011.html#50409791_pgfId-311830", " You need to use <B>PK_CURVE_make_wire_body_2</B> to create a wire body from which the sheet", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-312827", " To make a wire body, call <B>PK_CURVE_make_wire_body_2</B> , handing in the set of ", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-317634", " <B>PK_CURVE_make_wire_body_2</B> creates an edge for each curve received, and returns", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.011.html#50409791_pgfId-317663", " returned by <B>PK_CURVE_make_wire_body_2</B> should be passed in. In the more general case,", "Functional Description - Tracking And Labelling");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-295124", " <B>PK_CURVE_make_wire_body_2</B> ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-314702", " be made into a wire or sheet body by <B>PK_CURVE_make_wire_body_2</B> and PK_SURF_make_sheet_body . The form of the resulting body", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-316552", " If the B-curve does not obey these restrictions then <B>PK_CURVE_make_wire_body_2</B> splits it into two or more curves. ", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-318893", " a one or more general curves use PK_SURF_make_sheet_body and <B>PK_CURVE_make_wire_body_2</B> . Parametric limits may be supplied to enable the", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-295063", " <B>PK_CURVE_make_wire_body_2</B> creates a wire body from an array of curves.", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-295215", " bodies can be created. If this is PK_LOGICAL_false, then <B>PK_CURVE_make_wire_body_2</B> fails with error PK_ERROR_not_connected if you pass a set", "Functional Description - Wire Modeling");
+top.note("chapters/fd_chap.046.html#50409829_pgfId-295231", " have been supplied to <B>PK_CURVE_make_wire_body_2</B> in the correct sequence. If PK_CURVE_sequential_yes_c, the function assumes", "Functional Description - Wire Modeling");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_not_connected 20 <B>PK_CURVE_make_wire_body_2</B> body is disjoint, and allow_disjoint set", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_bad_parameter 120 <B>PK_CURVE_make_wire_body_2</B> bad parameters supplied (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_cant_extract_geom 1044 <B>PK_CURVE_make_wire_body_2</B> failed to extract geometry (SERIOUS)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_bad_combination 5145 <B>PK_CURVE_make_wire_body_2</B> bad combination of options (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 <B>PK_CURVE_make_wire_body_2</B> bad combination of options (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_cant_extract_geom 1044 <B>PK_CURVE_make_wire_body_2</B> failed to extract geometry (SERIOUS)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_invalid_geometry 999 <B>PK_CURVE_make_wire_body_2</B> invalid geometry supplied (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_unsuitable_entity 914 <B>PK_CURVE_make_wire_body_2</B> unsuitable curve(s) supplied (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>PK_CURVE_make_wire_body_2</B> 5145 PK_ERROR_bad_combination bad combination of options (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_t.html#description", " <B>PK_CURVE_make_wire_body_2</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_curve_make_wire_body.html#description", " <B>PK_CURVE_make_wire_body_2</B> .", "PK Reference - PK_CURVE_make_wire_body");
+top.note("headers/pk_curve_make_wire_body_2.html#declaration", " PK_ERROR_code_t <B>PK_CURVE_make_wire_body_2</B>", "PK Reference - PK_CURVE_make_wire_body_2");
+top.note("headers/pk_curve_make_wire_body_o_t.html#description", " This options structure holds optional controls for <B>PK_CURVE_make_wire_body_2</B> .", "PK Reference - PK_CURVE_make_wire_body_o_t");
+top.note("headers/pk_curve_t.html#description", " <B>PK_CURVE_make_wire_body_2</B> ", "PK Reference - PK_CURVE_t");
+top.note("headers/pk_edge_t.html#description", " <B>PK_CURVE_make_wire_body_2</B> ", "PK Reference - PK_EDGE_t");
+top.note("headers/pk_error_code_t.html#description", " <B>PK_CURVE_make_wire_body_2</B> ", "PK Reference - PK_ERROR_code_t");
+top.note("headers/pk_interval_t.html#errors", " <B>PK_CURVE_make_wire_body_2</B> ", "PK Reference - PK_INTERVAL_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

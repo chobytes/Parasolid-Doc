@@ -1,0 +1,1696 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Operations on Bodies, Curves, Surfaces, etc.</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Operations on Bodies, Curves, Surfaces, etc.</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.06.html">Creation of Primitives</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.08.html">Local Operation Functions</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273839">6.1	Introduction</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273841">6.2	Booleans</A>
+<UL>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273907">6.2.1	Multiple bodies</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273911">6.2.2	Sectioning primitives</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273922">6.2.3	Operations on the single class</A>
+</UL>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273935">6.3	Sewing</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273952">6.4	Transforming bodies</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273984">6.5	Blends</A>
+<UL>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-273992">6.5.1	Creating unfixed blends</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274090">6.5.2	Checking, enquiring and removing unfixed blends, and picking blends</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274125">6.5.3	Fixing blends</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274142">6.5.4	Extracting blend information from a blended body</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274159">6.5.5	Creating a cliff-edge blend</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274166">6.5.6	Defining and fixing a blend in a single operation</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274179">6.5.7	Blending on vertices</A>
+</UL>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274184">6.6	Sweeping and swinging</A>
+<UL>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274230">6.6.1	Sweeping faces</A>
+</UL>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274233">6.7	Hollowing, offsetting and imprinting</A>
+<UL>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274246">6.7.1	Hollowing</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274299">6.7.2	Offsetting</A>
+<LI> <A HREF="kd_chap.07.html#50475033_pgfId-274337">6.7.3	Imprinting</A>
+</UL>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475033_pgfId-273839"></A>6.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475033_pgfId-273840"></A>This section covers the operations which can be performed on bodies etc. which have been created as primitives or, in the case of bodies, have been received.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475033_pgfId-273841"></A>6.2	Booleans
+
+
+</H1>
+<P>
+<A NAME="50475033_pgfId-273842"></A>A number of functions exist for operations which are only possible on bodies, such as the <A NAME="50475033_marker-273843"></A><A NAME="50475033_marker-273844"></A>boolean functions unite and subtract. A list and a few examples of these functions appear below.</P>
+<P>
+<A NAME="50475033_pgfId-273875"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-283866"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-283868"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-283870"></A>body</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-283917"></A> <A NAME="50475033_marker-283899"></A><A NAME="50475033_marker-283900"></A><A NAME="50475033_marker-283901"></A>check, <A NAME="50475033_marker-283902"></A><A NAME="50475033_marker-283903"></A><A NAME="50475033_marker-283904"></A>unite, <A NAME="50475033_marker-283905"></A><A NAME="50475033_marker-283906"></A><A NAME="50475033_marker-283907"></A>subtract, <A NAME="50475033_marker-283908"></A><A NAME="50475033_marker-283909"></A><A NAME="50475033_marker-283910"></A>intersect, <A NAME="50475033_marker-283911"></A><A NAME="50475033_marker-283912"></A><A NAME="50475033_marker-283913"></A>section, <A NAME="50475033_marker-283914"></A><A NAME="50475033_marker-283915"></A><A NAME="50475033_marker-283916"></A>merge, <A NAME="50475033_marker-283918"></A><A NAME="50475033_marker-283919"></A><A NAME="50475033_marker-283920"></A>unfix</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-273876"></A>Assume two overlapping bodies b1 and b2 are created or received prior to each of the following examples. In these examples b1 is the target and b2 is the tool body. These commands preserve the tag of the target body and also return an appropriately named object of type body containing the complete body set of the resulting boolean operation (i.e. its tag property is a list of tag values):</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-273878"></A><A NAME="50475033_marker-273877"></A>subtract_temp - for subtract</LI>
+<LI>
+<A NAME="50475033_pgfId-273880"></A><A NAME="50475033_marker-273879"></A>unite_temp  - for unite</LI>
+<LI>
+<A NAME="50475033_pgfId-273882"></A><A NAME="50475033_marker-273881"></A>intersect_temp - for intersect</LI>
+<LI>
+<A NAME="50475033_pgfId-273883"></A>section_temp - for section</LI>
+</UL>
+<P>
+<A NAME="50475033_pgfId-273884"></A>One of the resultant bodies has the same tag as the target body and this is the item that the target object refers to, it is not in general defined which of the result bodies this is. The <CODE>
+section</CODE>
+ operation is slightly different: the tool object must be a surface, not a body, and the target object, on completion, refers to the set of items which lie on the front (i.e. in the direction of the sectioning surface normal) of the sectioning surface, while <CODE>
+section_temp</CODE>
+ refers to the set of objects at the back.</P>
+<P>
+<A NAME="50475033_pgfId-273885"></A>As a side effect of the boolean operation the tool body is deleted from the kernel, its tag is dead and attempts to refer to it again produce an error.</P>
+<P>
+<A NAME="50475033_pgfId-273886"></A>When intersecting a sheet (target) with a solid (tool) body, the result is another sheet. The result of an <CODE>
+intersect</CODE>
+ must be the same as the target body.</P>
+
+<H4>
+<A NAME="50475033_pgfId-273890"></A><A NAME="50475033_marker-273887"></A><A NAME="50475033_marker-273888"></A><A NAME="50475033_marker-273889"></A>check function</H4>
+<P>
+<A NAME="50475033_pgfId-273891"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283816"></A>&gt; (b1 check)       -- check the body is valid</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-273895"></A><A NAME="50475033_marker-273892"></A><A NAME="50475033_marker-273893"></A><A NAME="50475033_marker-273894"></A>unite function</H4>
+<P>
+<A NAME="50475033_pgfId-282024"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283800"></A>&gt; (b1 unite &acute;b2)  -- b1 is now b1 + b2
+                     (if required, b2 can be a list of bodies)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-273900"></A><A NAME="50475033_marker-273897"></A><A NAME="50475033_marker-273898"></A><A NAME="50475033_marker-273899"></A>subtract function</H4>
+<P>
+<A NAME="50475033_pgfId-282047"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283773"></A>&gt; (b3 subtract &acute;b4)    -- b3 is now b3 - b4</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-273905"></A><A NAME="50475033_marker-273902"></A><A NAME="50475033_marker-273903"></A><A NAME="50475033_marker-273904"></A>intersect function</H4>
+<P>
+<A NAME="50475033_pgfId-282058"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283765"></A>&gt; (b5 intersect &acute;b6)   -- b5 is now the intersecting volume</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-273907"></A>	6.2.1 	Multiple bodies</H2>
+<P>
+<A NAME="50475033_pgfId-273909"></A><A NAME="50475033_marker-273908"></A>Multiple tool bodies are supported in KID Booleans using:</P>
+<P>
+<A NAME="50475033_pgfId-282072"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283671"></A>&gt; (b0 unite &acute;( b1 b2 ))
+&gt; (b0 intersect &acute;( b1 b2 b3 ))
+&gt; (b0 subtract &acute;( b1 b2 ))</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-273911"></A>	6.2.2 	Sectioning primitives</H2>
+
+<H4>
+<A NAME="50475033_pgfId-273918"></A><A NAME="50475033_marker-273912"></A><A NAME="50475033_marker-273913"></A><A NAME="50475033_marker-273914"></A><A NAME="50475033_marker-273915"></A><A NAME="50475033_marker-273916"></A><A NAME="50475033_marker-273917"></A>halve and quarter functions</H4>
+<P>
+<A NAME="50475033_pgfId-273919"></A>Two additional sectioning functions that assist the rapid shaping of primitives are:</P>
+<P>
+<A NAME="50475033_pgfId-282097"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283603"></A>&gt; (body halve &lt;body axis&gt; )
+&gt; (body quarter &lt;body axis&gt; )     -- think of cutting a cake</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-273921"></A>These functions section symmetric bodies with respect to the given axis, through their center of gravity. If the axis direction is missed out it defaults to <CODE>
+'( 0 0 1 )</CODE>
+.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-273922"></A>	6.2.3 	Operations on the single class</H2>
+<P>
+<A NAME="50475033_pgfId-273924"></A><A NAME="50475033_marker-273923"></A>The single class consists of the topological items face, edge and vertex. The functions <CODE>
+merge</CODE>
+ and <CODE>
+unfix</CODE>
+ are inherited by these topological items. </P>
+
+<H4>
+<A NAME="50475033_pgfId-273925"></A>merge function</H4>
+<P>
+<A NAME="50475033_pgfId-273929"></A><CODE>
+merge</CODE>
+<A NAME="50475033_marker-273926"></A><A NAME="50475033_marker-273927"></A><A NAME="50475033_marker-273928"></A> removes redundant faces, edges and vertices. </P>
+
+
+<H4>
+<A NAME="50475033_pgfId-273930"></A>unfix function</H4>
+<P>
+<A NAME="50475033_pgfId-273934"></A><CODE>
+unfix</CODE>
+<A NAME="50475033_marker-273931"></A><A NAME="50475033_marker-273932"></A><A NAME="50475033_marker-273933"></A> detaches, geometry from a face, edge or vertex.</P>
+
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475033_pgfId-273935"></A>6.3	Sewing
+
+
+</H1>
+<P>
+<A NAME="50475033_pgfId-273938"></A><A NAME="50475033_marker-273936"></A><A NAME="50475033_marker-273937"></A>When an object of class <CODE>
+body</CODE>
+ tag list contains a set of sheet bodies, these sheet bodies can, wherever possible, be knitted together to form a single sheet or solid body using the function <CODE>
+sew</CODE>
+.</P>
+
+<H4>
+<A NAME="50475033_pgfId-273942"></A><A NAME="50475033_marker-273939"></A><A NAME="50475033_marker-273940"></A><A NAME="50475033_marker-273941"></A>sew function</H4>
+<P>
+<A NAME="50475033_pgfId-282108"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283595"></A>&gt; (b0 sew &acute;solid)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-273944"></A>As real parts often need manual intervention to set their edge tolerances before the sewing operation completes successfully, the function <CODE>
+tolerance</CODE>
+ supplied.</P>
+
+
+<H4>
+<A NAME="50475033_pgfId-273948"></A><A NAME="50475033_marker-273945"></A><A NAME="50475033_marker-273946"></A><A NAME="50475033_marker-273947"></A>tolerance function</H4>
+<P>
+<A NAME="50475033_pgfId-273949"></A><CODE>
+tolerance</CODE>
+ operates on edges and can be used to either set the tolerance on a Parasolid edge or to enquire its tolerance.</P>
+<P>
+<A NAME="50475033_pgfId-282137"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283586"></A>&gt; (e0 tolerance 0.000254) 
+                   -- set the tolerance of edge e0 to 0.000254</PRE>
+<PRE><A NAME="50475033_pgfId-283587"></A>&gt; (e0 tolerance)   -- enquire the tolerance of edge e0</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475033_pgfId-273952"></A>6.4	Transforming bodies
+
+
+</H1>
+<P>
+<A NAME="50475033_pgfId-273953"></A>All subclasses of the transformable class (body, surface, face etc.) can be moved and rotated. The functions require that the objects have properties which define the transformation.</P>
+
+<H4>
+<A NAME="50475033_pgfId-273957"></A><A NAME="50475033_marker-273954"></A><A NAME="50475033_marker-273955"></A><A NAME="50475033_marker-273956"></A>move function</H4>
+<P>
+<A NAME="50475033_pgfId-273958"></A><CODE>
+move</CODE>
+ has two properties; a vector (direction), which is required and a scalar (distance), which is optional. The object is moved in the direction given by the direction vector, through a distance given by the distance property if it is set, or by the magnitude of the direction vector if the distance property is not set.</P>
+
+
+<H4>
+<A NAME="50475033_pgfId-273962"></A><A NAME="50475033_marker-273959"></A><A NAME="50475033_marker-273960"></A><A NAME="50475033_marker-273961"></A>rotate function</H4>
+<P>
+<A NAME="50475033_pgfId-273963"></A>Properties for <CODE>
+rotate</CODE>
+ are direction, point and angle, all are required.</P>
+<P>
+<A NAME="50475033_pgfId-273975"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-283953"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-283955"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-283972"></A><A NAME="50475033_marker-283970"></A><A NAME="50475033_marker-283971"></A>transformable</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-283959"></A>move, rotate</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-273976"></A>Move a body a specified distance and direction:</P>
+<P>
+<A NAME="50475033_pgfId-282148"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283578"></A>&gt; (define b0 p_block)
+&gt; (b0 help create)
+&gt; (b0 x 10; y 10; z 10; create)
+&gt; (b0 help move)                         --&gt; information
+&gt; (b0 direction &acute;(0 1 0); distance 12)    -- b0 is a body
+&gt; (b0 move)        -- this moves b0 12 units in the Y direction</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-273978"></A><CODE>
+rotate</CODE>
+ a body about the X axis by a specified angle:</P>
+<P>
+<A NAME="50475033_pgfId-282158"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283568"></A>&gt; (b3 point &acute;(0 0 0); direction &acute;(1 0 0) ; angle 45)
+&gt; (b3 rotate)       -- rotate b3 about the X axis by 45 degrees</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-273980"></A><CODE>
+move</CODE>
+ a face(set) a specified distance and direction:</P>
+<P>
+<A NAME="50475033_pgfId-282185"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283560"></A>&gt; (f1 direction &acute;(0 0 1); distance 2)
+&gt; (f1 move)          -- move f1 2 units in the Z direction</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-273982"></A><CODE>
+move</CODE>
+ a face(set) by the supplied direction vector:</P>
+<P>
+<A NAME="50475033_pgfId-282204"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283494"></A>&gt; (f2 direction &acute;(3 4 5))
+&gt; (f2 move)        -- if no distance is supplied then the item
+                       will be moved by the direction vector</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475033_pgfId-273984"></A>6.5	Blends
+
+
+</H1>
+<P>
+<A NAME="50475033_pgfId-273988"></A><A NAME="50475033_marker-273985"></A><A NAME="50475033_marker-273986"></A>It is possible to<A NAME="50475033_marker-273987"></A> create unfixed blends. The primitive for a general blend class <CODE>
+p_blend</CODE>
+<A NAME="50475033_marker-273989"></A><A NAME="50475033_marker-273990"></A> is set by <CODE>
+itype</CODE>
+ to a default of a true rolling ball blend. The class <CODE>
+p_chamfer</CODE>
+ has local properties of <CODE>
+type</CODE>
+ corresponding to true chamfer blends while <CODE>
+p_fillet</CODE>
+ duplicates the <CODE>
+p_blend</CODE>
+ default to true rolling ball blends. Defaults for properties such as <CODE>
+range</CODE>
+ and <CODE>
+type</CODE>
+ can be found with the help facility.</P>
+<P>
+<A NAME="50475033_pgfId-273991"></A>p_vrb and p_ff_blend are instances of p_blend. (p_vrb help) and (p_ff_blend help) give the properties specific to these instances; anything else relevant they inherit from p_blend.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-273992"></A>	6.5.1 	Creating unfixed blends</H2>
+
+<H4>
+<A NAME="50475033_pgfId-273993"></A>p_blend, p_fillet, p_chamfer</H4>
+<P>
+<A NAME="50475033_pgfId-273996"></A><A NAME="50475033_marker-273994"></A><A NAME="50475033_marker-273995"></A>The first steps in attaching a blend are:</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-273997"></A>to define a primitive of the correct type to hold the blend data, and</LI>
+<LI>
+<A NAME="50475033_pgfId-273998"></A>set the appropriate properties for the blend primitive, which are:</LI>
+<P>
+<A NAME="50475033_pgfId-274004"></A><A NAME="50475033_marker-273999"></A>r1 and r2, <A NAME="50475033_marker-274000"></A>rib,<A NAME="50475033_marker-274001"></A> type, <A NAME="50475033_marker-274002"></A>idraw and <A NAME="50475033_marker-274003"></A>irib</P>
+</UL>
+<P>
+<A NAME="50475033_pgfId-274005"></A>All of these properties have default values, except for r1 and r2, which are the ranges of the blend on the two faces adjacent to the edge the blend is to be applied to. Only r1 is appropriate for a <CODE>
+p_fillet</CODE>
+.</P>
+<P>
+<A NAME="50475033_pgfId-274006"></A>If it is required to reverse the sense of the blend, a property of the primitive blend named rev can be set to true before using the function <CODE>
+apply</CODE>
+ to attach the blend to the edge.</P>
+<P>
+<A NAME="50475033_pgfId-274007"></A>Having defined a <CODE>
+p_blend</CODE>
+, <CODE>
+p_fillet</CODE>
+ or <CODE>
+p_chamfer</CODE>
+ the values to be used for the blend parameters can be set or changed. Only a single value of the range properties r1 and r2 needs to be given in order to define the blend, in this case the blend is symmetric. The <A NAME="50475033_marker-274008"></A>thumbweight value for all blends is set to 1.0 and cannot be changed. Although it is possible to change the type this could lead to confusion as it does not change the type of the KID object concerned, so it is not recommended.</P>
+
+
+<H4>
+<A NAME="50475033_pgfId-274009"></A>blending properties</H4>
+<P>
+<A NAME="50475033_pgfId-274010"></A>Blending properties, when required, must be set before the blend is applied:</P>
+<P>
+<A NAME="50475033_pgfId-274036"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274013"></A>Property</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274015"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274017"></A>smooth</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274019"></A>t =&gt; BLECSM option</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274021"></A>propagate</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274023"></A>t =&gt; BLECPR option</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274025"></A>cliff_edge</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274027"></A>takes edge object and passes it in with the BLECCL option</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274029"></A>irib</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274031"></A>t =&gt; pass rib value in with BLECRI option</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274033"></A>draw</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274035"></A>t =&gt; BLECDF option</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274037"></A>p_vrb</H4>
+<P>
+<A NAME="50475033_pgfId-274038"></A>This allows you to specify a <CODE>
+positions</CODE>
+ property (either a list of values or the string <CODE>
+'ends</CODE>
+) and a <CODE>
+ranges</CODE>
+ property of the same length (except for <CODE>
+'ends</CODE>
+ for which it should be of length 2) which is passed into variable radius blend creation. For example:</P>
+<P>
+<A NAME="50475033_pgfId-282225"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283427"></A>(undefine b0 e0 bl0)
+((define b0 p_block) create)
+((define e0 edge) pick_from &acute;b0; 
+ pick_using &acute;(e0 clash &acute;(5 0 10)))
+((define bl0 p_vrb) ranges &acute;(1 4); positions &acute;ends; apply &acute;e0)
+(b0 blend_fix; check)</PRE>
+<PRE><A NAME="50475033_pgfId-283428"></A>(undefine b0 e0 bl0)
+((define b0 p_block) create)
+((define e0 edge) pick_from &acute;b0; 
+ pick_using &acute;(e0 clash &acute;(5 0 10)))
+((define bl0 p_vrb)
+   ranges &acute;(1 3 4);
+   positions &acute;((5 5 10)(5 0 10)(5 -5 10));
+   apply &acute;e0)
+(b0 blend_fix; check)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274041"></A>p_ff_blend</H4>
+<P>
+<A NAME="50475033_pgfId-274042"></A>This requires the specification of the two walls of faces to be blended, then the blending options if changes from the default values are required. The face sets are defined as</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-274043"></A>left wall of faces</LI>
+<LI>
+<A NAME="50475033_pgfId-274044"></A>right wall of faces</LI>
+<LI>
+<A NAME="50475033_pgfId-274045"></A>if reversed, then set the sense flag to true</LI>
+</UL>
+<P>
+<A NAME="50475033_pgfId-282273"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283361"></A>((define ff0 p_ff_blend)
+left_wall &acute;f0;
+left_sense t;
+right_wall &acute;f1;
+)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274047"></A>The options settings can be examined by:</P>
+<P>
+<A NAME="50475033_pgfId-282232"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283313"></A>(ff0 options)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274049"></A>There is then a simple way to set up all the relevant properties using KI tokens and the function convert_ki_options:</P>
+<P>
+<A NAME="50475033_pgfId-282253"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283287"></A>((define ff0 p_ff_blend)
+  convert_ki_options
+    (list
+      &acute;(FXFTCB 0.005)
+      &acute;(FXFTTL 0.00003)
+      &acute;(FXFTPR)
+      &acute;(FXFTMS)
+      &acute;(FXFTAT)
+      (list &acute;FXFTCE (list (e0 tag)(e1 tag)))
+    )
+)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274051"></A>Alternatively, each property required can be specified by name:</P>
+<P>
+<A NAME="50475033_pgfId-282260"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283211"></A>(ff0 cliff_edges &acute;e0; --- FXFTCE
+r1 0.005;             --- FXFTCB
+tolerance 0.00003;    --- FXFTTL
+propagate t;          --- FXFTPR
+multiple_sheets t;    --- FXFTMS
+walls &acute;attach;        --- FXFTAT
+create)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274053"></A>The <CODE>
+create</CODE>
+ reports an error if one occurs, and raises a LISP error if <CODE>
+(option raise_blending_errors t)</CODE>
+ has been set.</P>
+<P>
+<A NAME="50475033_pgfId-274054"></A>The functions which require 1D curve data extract the relevant data (x, y and z components) from the given curve. For example, if c0 is a 3D B-curve with tag 28:</P>
+<P>
+<A NAME="50475033_pgfId-282280"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283133"></A>((define ff0 p_ff_blend)
+  range1_curve &acute;c0; --- extract the x component
+  range2_curve &acute;c0; --- extract the y component
+  rho_curve &acute;c0; --- extract the z component
+  ...
+  create)</PRE>
+<PRE><A NAME="50475033_pgfId-283134"></A>((define ff0 p_ff_blend)
+  range1_curve c0; --- extract the x component
+  range2_curve c0; --- extract the y component
+  rho_curve c0; --- extract the z component
+  ...
+  create)</PRE>
+<PRE><A NAME="50475033_pgfId-283135"></A>((define ff0 p_ff_blend)
+  range1_curve 28; --- extract the x component
+  range2_curve 28; --- extract the y component
+  rho_curve 28; --- extract the z component
+  ...
+  create)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274058"></A>If c0, c1 and c2 are 1D B-curves (tags 29, 30, 31):</P>
+<P>
+<A NAME="50475033_pgfId-282297"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-283051"></A>((define ff0 p_ff_blend)
+  range1_curve &acute;c0;
+  range2_curve &acute;c1;
+  rho_curve &acute;c2;
+  ...
+  create)</PRE>
+<PRE><A NAME="50475033_pgfId-283052"></A>((define ff0 p_ff_blend)
+  range1_curve c0;
+  range2_curve c1;
+  rho_curve c2;
+  ...
+  create)</PRE>
+<PRE><A NAME="50475033_pgfId-283053"></A>((define ff0 p_ff_blend)
+  range1_curve 29;
+  range2_curve 30;
+  rho_curve 31;
+  ...
+  create)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274062"></A>The data can also be input explicitly:</P>
+<P>
+<A NAME="50475033_pgfId-282311"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282985"></A>((define ff0 p_ff_blend)
+  range1_curve &acute;( 3 1 nil ( 7.0 8.0 9.0 9.0 9.0 8.0 7.0 )
+  ( 4 3 4 ) ( -10.0  0.0 10.0 )
+  PK_knot_piecewise_bezier_c nil t );
+  ...
+  create)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274064"></A>apply function</H4>
+<P>
+<A NAME="50475033_pgfId-274068"></A><A NAME="50475033_marker-274065"></A><A NAME="50475033_marker-274066"></A><A NAME="50475033_marker-274067"></A>To attach the blend attribute to the model, the function apply is used.</P>
+<P>
+<A NAME="50475033_pgfId-274088"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475033_pgfId-281881"></A>Note: The name of the edge to attach the blend to must be quoted. The default setting of <CODE>
+itype</CODE>
+ for <CODE>
+p_blend</CODE>
+ is 3, the value for a true rolling ball blend.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284002"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284004"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284034"></A><A NAME="50475033_marker-284025"></A><A NAME="50475033_marker-284026"></A><A NAME="50475033_marker-284027"></A>p_blend, <A NAME="50475033_marker-284028"></A><A NAME="50475033_marker-284029"></A><A NAME="50475033_marker-284030"></A>p_fillet, <A NAME="50475033_marker-284031"></A><A NAME="50475033_marker-284032"></A><A NAME="50475033_marker-284033"></A>p_chamfer, p_vrb, p_ff_blend</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284008"></A>apply</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-282318"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282965"></A>&gt; (p_blend help apply)    --&gt; information
+&gt; (define f1 p_blend)
+&gt; (f1 r1 3.2)              -- reset range values
+&gt; (f1 apply &acute;e0)   -- apply offset blend to edge e0
+                       (e0 has already been defined and picked)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274090"></A>	6.5.2 	Checking, enquiring and removing unfixed blends, and picking blends</H2>
+<P>
+<A NAME="50475033_pgfId-274100"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284064"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284066"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284068"></A>edge</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284108"></A>pick_blends, blend_remove, blend_check, blend_enquire</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475033_pgfId-274101"></A>blend_check function</H4>
+<P>
+<A NAME="50475033_pgfId-274105"></A><CODE>
+blend_check</CODE>
+<A NAME="50475033_marker-274102"></A><A NAME="50475033_marker-274103"></A><A NAME="50475033_marker-274104"></A> checks the validity of a blend on a particular edge, or set of edges.</P>
+<P>
+<A NAME="50475033_pgfId-282325"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282950"></A>&gt; (e0 blend_check)      -- check unfixed blend on edge(s) e0</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274107"></A>blend_enquire function</H4>
+<P>
+<A NAME="50475033_pgfId-274111"></A><CODE>
+blend_enquire</CODE>
+<A NAME="50475033_marker-274108"></A><A NAME="50475033_marker-274109"></A><A NAME="50475033_marker-274110"></A> returns blend information.</P>
+<P>
+<A NAME="50475033_pgfId-282347"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282892"></A>&gt; (e0 blend_enquire)   -- information on unfixed blends on 
+                          edge(s) e0</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274113"></A>blend_remove</H4>
+<P>
+<A NAME="50475033_pgfId-274117"></A><A NAME="50475033_marker-274114"></A><A NAME="50475033_marker-274115"></A><A NAME="50475033_marker-274116"></A>The function <CODE>
+blend_remove</CODE>
+ can be used to remove any unfixed blend attribute from an edge. Once blends have been fixed, <CODE>
+blend_remove</CODE>
+ can not remove a blend from an edge. </P>
+<P>
+<A NAME="50475033_pgfId-282354"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282838"></A>&gt; (e0 blend_remove)    -- remove unfixed blend from edge(s) e0</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274119"></A>pick_blends function</H4>
+<P>
+<A NAME="50475033_pgfId-274123"></A><CODE>
+pick_blends</CODE>
+<A NAME="50475033_marker-274120"></A><A NAME="50475033_marker-274121"></A><A NAME="50475033_marker-274122"></A> identifies the edge(s) of a body which has unfixed blends attached.</P>
+<P>
+<A NAME="50475033_pgfId-282375"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282798"></A>&gt; (e0 pick_blends &acute;b0) -- pick unfixed blend on edge(s) e0 from
+                          body b0</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274125"></A>	6.5.3 	Fixing blends</H2>
+
+<H4>
+<A NAME="50475033_pgfId-274126"></A>blend_fix function</H4>
+<P>
+<A NAME="50475033_pgfId-274130"></A><A NAME="50475033_marker-274127"></A><A NAME="50475033_marker-274128"></A><A NAME="50475033_marker-274129"></A>The <CODE>
+blend_fix</CODE>
+ function fixes all unfixed blends on a specified body.</P>
+<P>
+<A NAME="50475033_pgfId-274140"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284185"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284187"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284189"></A>body</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284191"></A>blend_fix</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-282390"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282766"></A>&gt; (b0 blend_fix)     -- all unfixed blends are fixed in body b0</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274142"></A>	6.5.4 	Extracting blend information from a blended body</H2>
+
+<H4>
+<A NAME="50475033_pgfId-274143"></A>extract function</H4>
+<P>
+<A NAME="50475033_pgfId-274147"></A><A NAME="50475033_marker-274144"></A><A NAME="50475033_marker-274145"></A><A NAME="50475033_marker-274146"></A>The function <CODE>
+extract</CODE>
+ extracts the blend information from a blended edge into the properties of a <CODE>
+p_blend</CODE>
+ primitive. This leaves the edge without a blend. Blend extraction is from one edge only, and returns <CODE>
+t</CODE>
+ if the extraction has been successful.</P>
+<P>
+<A NAME="50475033_pgfId-282424"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284217"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284219"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284221"></A>p_blend</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284223"></A>extract</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-282449"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282750"></A>&gt; (define bl1 p_fillet)   -- define blend
+&gt; (bl1 r1 5; apply &acute;e1)   -- and apply to edge e1
+&gt; (define bl2 p_blend)    -- define bl2 as a p_blend
+&gt; (bl2 extract &acute;e1)
+               -- extract blend information from e1 into bl2
+&gt; (bl2 r1 1;apply &acute;e1)   -- change parameter and re-apply to e1</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274159"></A>	6.5.5 	Creating a cliff-edge blend</H2>
+
+<H4>
+<A NAME="50475033_pgfId-274160"></A>cliff_edge blend function</H4>
+<P>
+<A NAME="50475033_pgfId-274164"></A><A NAME="50475033_marker-274161"></A><A NAME="50475033_marker-274162"></A><A NAME="50475033_marker-274163"></A>The function <CODE>
+cliff_edge</CODE>
+ creates a cliff edge, but does require that the edge that is the &quot;cliff to&quot; edge is specified. </P>
+<P>
+<A NAME="50475033_pgfId-282467"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282731"></A>&gt; (define bl1 p_fillet)           -- define blend
+&gt; (bl1 r1 5)                      -- set range values
+&gt; (bl1 cliff_edge &acute;e0; apply &acute;e1) -- apply blend, `cliff to&acute; e0</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274166"></A>	6.5.6 	Defining and fixing a blend in a single operation</H2>
+<P>
+<A NAME="50475033_pgfId-274169"></A><A NAME="50475033_marker-274167"></A><A NAME="50475033_marker-274168"></A>To define and fix a blend in a single operation use either of the relevant <CODE>
+fillet</CODE>
+ or <CODE>
+chamfer</CODE>
+ functions.</P>
+<P>
+<A NAME="50475033_pgfId-282474"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282715"></A>&gt; ( topology fillet &lt;radius&gt; )
+&gt; ( topology chamfer &lt;radius&gt; )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274171"></A>Fillet and chamfer work :</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-274172"></A>on a solid body - all edges are blended</LI>
+<LI>
+<A NAME="50475033_pgfId-274173"></A>on a solid face - all the edges of the face</LI>
+<LI>
+<A NAME="50475033_pgfId-274174"></A>at a solid vertex - all the edges at the vertex</LI>
+</UL>
+<P>
+<A NAME="50475033_pgfId-274175"></A>Fillet also works on sheet and wire bodies :</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-274176"></A>on a non-solid body - all vertices are blended</LI>
+<LI>
+<A NAME="50475033_pgfId-274177"></A>on a sheet face - all the vertices of the face</LI>
+<LI>
+<A NAME="50475033_pgfId-274178"></A>at a non-solid vertex - the list of vertex tags</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274179"></A>	6.5.7 	Blending on vertices</H2>
+<P>
+<A NAME="50475033_pgfId-274182"></A>Support for <A NAME="50475033_marker-274180"></A><A NAME="50475033_marker-274181"></A>variable radius blends is by filleting a vertex object with two tags and 2 radii.</P>
+<P>
+<A NAME="50475033_pgfId-282490"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282699"></A>&gt; ( define v0 vertex )
+&gt; ( v0 pick )
+&gt; ( v0 pick )                -- two vertices on a single edge
+&gt; ( v0 fillet &acute;( 1.5 5.5 ))  -- varying radii</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475033_pgfId-274184"></A>6.6	Sweeping and swinging
+
+
+</H1>
+<P>
+<A NAME="50475033_pgfId-274189"></A><A NAME="50475033_marker-274185"></A><A NAME="50475033_marker-274186"></A><A NAME="50475033_marker-274187"></A><A NAME="50475033_marker-274188"></A>Many subclasses of the topology class can be modified with the functions <CODE>
+sweep</CODE>
+ and <CODE>
+swing</CODE>
+.</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-274190"></A>minimum bodies can be swept/swung into wire bodies;</LI>
+<LI>
+<A NAME="50475033_pgfId-274191"></A>wire bodies can be swept/swung into sheet bodies;</LI>
+<LI>
+<A NAME="50475033_pgfId-274192"></A>sheet bodies can be swept/swung into solid bodies.</LI>
+</UL>
+
+<H4>
+<A NAME="50475033_pgfId-274193"></A>sweep function</H4>
+<P>
+<A NAME="50475033_pgfId-274197"></A><A NAME="50475033_marker-274194"></A><A NAME="50475033_marker-274195"></A><A NAME="50475033_marker-274196"></A>The <CODE>
+sweep</CODE>
+ function takes a vector as its argument.</P>
+
+
+<H4>
+<A NAME="50475033_pgfId-274198"></A>swing function</H4>
+<P>
+<A NAME="50475033_pgfId-274202"></A><A NAME="50475033_marker-274199"></A><A NAME="50475033_marker-274200"></A><A NAME="50475033_marker-274201"></A>The <CODE>
+swing</CODE>
+ function takes as its arguments:</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-274203"></A>the direction of the rotation axis,</LI>
+<LI>
+<A NAME="50475033_pgfId-274204"></A>a point on the direction axis, and</LI>
+<LI>
+<A NAME="50475033_pgfId-274205"></A>an angle through which the body is to be swung</LI>
+</UL>
+<P>
+<A NAME="50475033_pgfId-274215"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284249"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284251"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284253"></A>topology</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284255"></A>sweep, swing</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274216"></A>Using sweep to create a solid body from a minimum body:</P>
+<P>
+<A NAME="50475033_pgfId-282503"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282683"></A>&gt; (define b1 p_acorn)
+&gt; (b1 create)              -- b1 is an acorn at the origin
+&gt; (b1 help sweep)          -- for information on sweeping b1
+&gt; (b1 sweep &acute;(10 0 0))     -- b1 is now a wire body
+&gt; (b1 sweep &acute;(0 20 0))     -- b1 is now a sheet body
+&gt; (b1 sweep &acute;(0 0 30))     -- b1 is now a solid body</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274218"></A>Using <CODE>
+sweep</CODE>
+ and <CODE>
+swing</CODE>
+ to create a semi-circular sheet body from a minimum body which is then subsequently swung to form a hemisphere:</P>
+<P>
+<A NAME="50475033_pgfId-282510"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282665"></A>&gt; (define b2 p_acorn)
+&gt; (b2 create)
+&gt; (b2 sweep &acute;(10 0 0))
+&gt; (b2 point &acute;(0 0 0); direction &acute;(0 0 1); angle 180)
+&gt; (b2 swing)         -- b2 is now a semi-circular sheet body
+                     -- center at the origin, radius 10, arcing
+                     -- from (10 0 0) to (-10 0 0)
+
+&gt; (b2 point &acute;(0 0 0); direction &acute;(1 0 0); angle 180)
+&gt; (b2 swing)
+                     -- b2 is now a hemisphere, center at
+                      -- the origin, radius 10 in positive Z</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274220"></A>Some care has to be taken when creating a sheet body using <CODE>
+sweep</CODE>
+ and <CODE>
+swing</CODE>
+ on wire vertices. The example below has the same effect as the method shown above for creating a semi-circular sheet.</P>
+<P>
+<A NAME="50475033_pgfId-281901"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475033_pgfId-281926"></A>Note: Scribe must be the last function used, if the wire is to be closed, creating a body without geometry on the faces. </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274225"></A>The function<A NAME="50475033_marker-274222"></A><A NAME="50475033_marker-274223"></A> <CODE>
+fix</CODE>
+<A NAME="50475033_marker-274224"></A> is finally used to attach a planar surface to one of the faces consisting of surfaces geometry.</P>
+<P>
+<A NAME="50475033_pgfId-282517"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282642"></A>&gt; (define b3 p_acorn)
+&gt; (b3 create; direction &acute;(10 0 0); move)
+&gt; (b3 point &acute;(0 0 0 ); direction &acute;(0 0 1); angle 180; swing)
+&gt; (define n1 p_line)
+&gt; (n1 point &acute;(0 0 0 ); direction &acute;(-1 0 0); create)
+
+&gt; (define b4 <A NAME="50475033_marker-282643"></A><A NAME="50475033_marker-282644"></A>p_bounded_curve)
+&gt; (b4 body &acute;b3; curve &acute;n1)
+&gt; (b4 startp &acute;(10 0 0 ); endp &acute;(-10 0 0 ))
+&gt; (b4 <A NAME="50475033_marker-282645"></A>scribe)
+
+&gt; (define f1 face)
+&gt; (f1 pick_from &acute;b3)
+&gt; (f1 fix )                 -- planar surface fitted to face</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274230"></A>	6.6.1 	Sweeping faces</H2>
+<P>
+<A NAME="50475033_pgfId-274231"></A>Faces of sheet and solid bodies can both be swept.</P>
+<P>
+<A NAME="50475033_pgfId-282524"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282629"></A>&gt; ( f0 sweep &acute;( 0 0 10 ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475033_pgfId-274233"></A>6.7	Hollowing, offsetting and imprinting
+
+
+</H1>
+<P>
+<A NAME="50475033_pgfId-274243"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284269"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284271"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284273"></A>body</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284291"></A>hollow, offset, imprint</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274246"></A>	6.7.1 	<A NAME="50475033_marker-274244"></A><A NAME="50475033_marker-274245"></A>Hollowing</H2>
+
+<H4>
+<A NAME="50475033_pgfId-274247"></A>hollow function</H4>
+<P>
+<A NAME="50475033_pgfId-274251"></A><A NAME="50475033_marker-274248"></A><A NAME="50475033_marker-274249"></A><A NAME="50475033_marker-274250"></A>The function <CODE>
+hollow</CODE>
+ creates a hollowed part from a solid body taking the single argument of the required wall thickness, (passing a negative distance causes the hollow to work outwards):</P>
+<P>
+<A NAME="50475033_pgfId-282531"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282621"></A>&gt; ( b0 hollow 1 )         -- thickness of walls</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274255"></A><A NAME="50475033_marker-274253"></A><A NAME="50475033_marker-274254"></A>This operation does not necessarily return a non-zero ifail in the event of a failure, it tries to return diagnostic information. Therefore, to make the <CODE>
+hollow</CODE>
+ function fail when hollowing is unsuccessful, set the following option before attempting the operation:</P>
+<P>
+<A NAME="50475033_pgfId-282538"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282613"></A>&gt; ( option raise_hollowing_errors t )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274257"></A>hollowing properties</H4>
+<P>
+<A NAME="50475033_pgfId-274258"></A>Hollowing properties, when required, must be set on the body before the hollowing operation:</P>
+<P>
+<A NAME="50475033_pgfId-274284"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274261"></A>Property</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274263"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274265"></A>check_hollow</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274267"></A><CODE>
+t</CODE>
+ or <CODE>
+nil</CODE>
+:</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-284321"></A>off and face checking translates to <CODE>
+nil</CODE>
+,</LI>
+<LI>
+<A NAME="50475033_pgfId-284322"></A>full checking translates to <CODE>
+t</CODE>
+</LI>
+</UL>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274269"></A>pierce_faces</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274271"></A>list of faces not to be offset</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274273"></A>offset_faces</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274275"></A>list of faces with specific offsets</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274277"></A>tolerance</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274279"></A>maximum applied tolerance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274281"></A>max_faults</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274283"></A>maximum number of entities on badtaglist</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274285"></A>pierce_faces function</H4>
+<P>
+<A NAME="50475033_pgfId-274289"></A><A NAME="50475033_marker-274286"></A><A NAME="50475033_marker-274287"></A><A NAME="50475033_marker-274288"></A>An option parameter may be set to pierce some of the faces of the resulting body opening up the interior void.</P>
+<P>
+<A NAME="50475033_pgfId-274290"></A>Hollowing a body and opening up two faces:</P>
+<P>
+<A NAME="50475033_pgfId-282545"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282593"></A>&gt; ( b0 pierce_faces ( f0 tag ))       -- faces to remove
+&gt; ( b0 hollow 0.1 )                   -- hollow &amp; pierce</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274292"></A>In the above example:</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-274293"></A>first the body is copied,</LI>
+<LI>
+<A NAME="50475033_pgfId-274294"></A>offset surfaces are then created from the faces which are NOT to be opened up,</LI>
+<LI>
+<A NAME="50475033_pgfId-274295"></A>the corresponding faces on the copied body are tweaked to these offset surfaces,</LI>
+<LI>
+<A NAME="50475033_pgfId-274296"></A>and finally the copy is subtracted from the original, leaving the hollow body.</LI>
+</UL>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274299"></A>	6.7.2 	<A NAME="50475033_marker-274297"></A><A NAME="50475033_marker-274298"></A>Offsetting</H2>
+
+<H4>
+<A NAME="50475033_pgfId-274300"></A>offset function</H4>
+<P>
+<A NAME="50475033_pgfId-274304"></A><A NAME="50475033_marker-274301"></A><A NAME="50475033_marker-274302"></A><A NAME="50475033_marker-274303"></A>The <CODE>
+offset</CODE>
+ function offsets the faces in a body by a specified distance:</P>
+<P>
+<A NAME="50475033_pgfId-282557"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282578"></A>&gt; ( b0 offset 1 )       -- makes a bigger body
+&gt; ( b0 offset -1.5 )    -- makes a smaller body
+&gt; ( f0 offset 10 )      -- just do a faceset</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-281954"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475033_pgfId-281982"></A>Note: Since this exploits local operations, the offset distance must be small enough so that the topology of the body is not changed.  </ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475033_pgfId-274307"></A>offsetting properties</H4>
+<P>
+<A NAME="50475033_pgfId-274308"></A>Offsetting properties, when required, must be set on the body before the offsetting operation:</P>
+<P>
+<A NAME="50475033_pgfId-274334"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274311"></A>Property</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274313"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274315"></A>check_offset</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-284344"></A><CODE>
+t</CODE>
+ or <CODE>
+nil</CODE>
+:</P>
+<UL>
+<LI>
+<A NAME="50475033_pgfId-284345"></A>off and face checking translates to <CODE>
+nil</CODE>
+,</LI>
+<LI>
+<A NAME="50475033_pgfId-284346"></A>full checking translates to <CODE>
+t</CODE>
+</LI>
+</UL>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274319"></A>pierce_faces</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274321"></A>list of faces not to be offset</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274323"></A>offset_faces</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274325"></A>list of faces with specific offsets</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274327"></A>tolerance</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274329"></A>maximum applied tolerance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274331"></A>max_faults</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475033_pgfId-274333"></A>maximum number of entities on badtaglist</P>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475033_pgfId-274337"></A>	6.7.3 	<A NAME="50475033_marker-274335"></A><A NAME="50475033_marker-274336"></A>Imprinting</H2>
+
+<H4>
+<A NAME="50475033_pgfId-274338"></A>imprint function</H4>
+<P>
+<A NAME="50475033_pgfId-274342"></A><A NAME="50475033_marker-274339"></A><A NAME="50475033_marker-274340"></A><A NAME="50475033_marker-274341"></A>The <CODE>
+imprint</CODE>
+ function</P>
+<P>
+<A NAME="50475033_pgfId-282564"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475033_pgfId-282570"></A>&gt; ( a imprint b)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475033_pgfId-274344"></A>works, where either of a or b are a faceset or a body.</P>
+<P>
+<A NAME="50475033_pgfId-110680"></A>&nbsp;</P>
+
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.06.html">Creation of Primitives</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.08.html">Local Operation Functions</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

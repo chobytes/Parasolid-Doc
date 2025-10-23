@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_find_laminar_mfins_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_find_laminar_mfins_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_find_laminar_mfins_r_s
+    {
+    int                   n_components;    --- number of components
+                                           --- returned (&gt;= 0)
+    <A HREF=../headers/pk_mfin_array_t.html>PK_MFIN_array_t</A>      *components;      --- components
+    <A HREF=../headers/pk_pline_t.html>PK_PLINE_t</A>           *plines;          --- pline of each component
+    int                  *help_indices;    --- if help_positions is supplied,
+                                           --- the index of the help position
+                                           --- closest to the component,
+                                           --- otherwise NULL
+    };
+typedef struct PK_MESH_find_laminar_mfins_r_s PK_MESH_find_laminar_mfins_r_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains the result of finding laminar mfins.
+The PK memory associated with this structure may be freed by calling
+<A HREF=../headers/pk_mesh_find_laminar_mfins_r_f.html>PK_MESH_find_laminar_mfins_r_f</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_find_laminar_mfins.html>PK_MESH_find_laminar_mfins</A><br>
+    <A HREF=../headers/pk_mesh_find_laminar_mfins_r_f.html>PK_MESH_find_laminar_mfins_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The structure has the following fields :
+
+<B>'n_components'</B>      The number of components returned.
+
+<B>'components'</B>        The connected sets of laminar mfins. All of the components
+                    will be closed if the <B>'open_comps'</B> option is set to
+                    <A HREF=../headers/pk_mesh_open_comps_t.html>PK_MESH_open_comps_no_c</A> (default). Open components can be
+                    distinguished from closed components by checking the
+                    PK_REPORT produced when the <B>'open_comps'</B> option is set
+                    to <A HREF=../headers/pk_mesh_open_comps_t.html>PK_MESH_open_comps_report_c</A>.
+
+<B>'plines'</B>            The polyline representation of each component. This will be
+                    set to NULL if <B>'want_plines'</B> is set to PK_LOGICAL_false.
+
+<B>'help_indices'</B>      If <B>'help_positions'</B> is supplied, this field will be of
+                    length <B>'n_components'</B> with values corresponding to indices
+                    into the <B>'help_positions'</B> array. For each component in
+                    <B>'components'</B>, the corresponding entry in <B>'help_indices'</B> is
+                    the index of the help position closest to that component.
+                    If several help positions are equidistant to that component
+                    then the lowest index will be returned. This is set to NULL
+                    if no help positions were supplied.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

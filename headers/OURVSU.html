@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>OURVSU</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OURVSU</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_spun_ask.html>PK_SPUN_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OURVSU ( surf, profil, point, direct, sense, nsings, parms, ifail )
+===================================================================
+
+  Output surface of revolution
+
+Receives:
+  KI_tag_surface           *surf           --- spun surface to output
+
+Returns:
+  KI_tag_curve             *profil         --- curve revolved
+  KI_vec_position           point          --- point on revolution axis
+  KI_vec_axis               direct         --- direction of revolution axis
+  KI_cod_logical           *sense          --- surface sense
+ &lt;KI_int_nitems&gt;           *nsings         --- number of singularities
+ &lt;KI_tag_list_dbl&gt;         *parms          --- parameter range on profile
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_unsuitable_entity      Entity is not a surface of revolution
+
+Description:
+
+  The details of a surface of revolution (type TYSUSU) are returned.
+
+  The return argument 'nsings' is the number of singularities present on
+  the surface and can be 0, 1, or 2. If 'nsings' is 1 or 2 then a list
+  of two doubles is also returned which is the parameter range of the
+  part of the profile curve which was used to create the surface.
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>The Joust Outliner - Menu Controls</TITLE>
+<!-- <META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW"> -->
+<script language="JavaScript">
+<!--
+if ((self.name != 'menuCntrl') & (self.location.protocol != "file:")) {
+	self.location = "index.htm";
+}
+if (parent.theBrowser) {
+	if (parent.theBrowser.canOnError) {window.onerror = parent.defOnError;}
+}
+//-->
+</script>
+</HEAD>
+<BODY BGCOLOR=#003366 marginwidth="0" marginheight="0">
+<IMG SRC="images/menucntrl.gif" WIDTH=205 HEIGHT=45 BORDER=0 ALT="Menu Control Imagemap" USEMAP="#menucntrl"> 
+<MAP NAME="menucntrl"> 
+  <AREA SHAPE=RECT COORDS="0,3,68,23" HREF="javascript:parent.opensearch();" ALT="Search the documentation set" TITLE="Search the documentation set">
+  <AREA SHAPE=RECT COORDS="0,25,51,43" HREF="help.htm" TARGET="text" ALT="How to use the documentation"
+	onMouseOver="return parent.setStatus('Click to get help on using this site.');" 
+	onMouseOut="return parent.clearStatus();" TITLE="How to use the documentation">
+  <AREA SHAPE=RECT COORDS="81,25,206,42" HREF="javascript:parent.setMode('Frames', self);" ALT="Dock menu in main window"
+	onMouseOver="return parent.setStatus('Click to display the menu in the standard \'Frames\' layout.');" 
+	onMouseOut="return parent.clearStatus();" TITLE="Dock menu in main window">
+  <area SHAPE="RECT" COORDS="78,2,204,25" HREF="javascript:parent.setMode('Floating', self);" ALT="Undock menu (use separate window)" onMouseOver="return parent.setStatus('Click to display the menu in a floating window.');" onMouseOut="return parent.clearStatus();" TITLE="Undock menu (use separate window)">
+</MAP>
+</BODY>
+</HTML>
+
+

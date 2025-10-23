@@ -1,0 +1,1137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_facet_mesh_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_facet_mesh_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_facet_mesh_o_s
+    {
+    int                o_t_version;      --- version of this PK option struct
+    <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_t</A>   shape;            --- constraints on facet generation
+                                         --- (<A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_convex_c</A>)
+    <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_t</A>   match;            --- vertex matching strategy at edges
+                                         --- (<A HREF=../headers/pk_facet_match_t.html>PK_facet_match_topol_c</A>)
+    <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_t</A> density;          --- increased facet density
+                                         --- (<A HREF=../headers/pk_facet_density_t.html>PK_facet_density_no_view_c</A>)
+    <A HREF=../headers/pk_facet_cull_t.html>PK_facet_cull_t</A>    cull;             --- culling of view dependent facets
+                                         --- (<A HREF=../headers/pk_facet_cull_t.html>PK_facet_cull_none_c</A>)
+    int                n_loops;          --- array of loops in sheet bodies to
+    <A HREF=../headers/pk_loop_t.html>PK_LOOP_t</A>         *loops;            --- be ignored when facetting(0,NULL)
+    int                max_facet_sides;  --- max number of sides on a facet (3)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_min_facet_width;  --- whether min_facet_width is set
+                                         --- (PK_LOGICAL_false) [PF]
+    double             min_facet_width;  --- minimum facet width [PF]
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_max_facet_width;  --- whether max_facet_width is set
+                                         --- (PK_LOGICAL_false)
+    double             max_facet_width;  --- maximum facet width
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_curve_chord_tol;  --- whether curve_chord_tol is set
+                                         --- (PK_LOGICAL_false)
+    double             curve_chord_tol;  --- chordal tolerance between a curve
+                                         --- and its facet edges in model units
+                                         --- i.e. upper bound on distance from
+                                         --- chord to the curve it approximates
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_curve_chord_max;  --- whether curve_chord_max is set
+                                         --- (PK_LOGICAL_false)
+    double             curve_chord_max;  --- max length of chord in model units
+                                         --- i.e upper bound on length of chord
+                                         ---  used to approximate a curved edge
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_curve_chord_ang;  --- whether curve_chord_ang is set
+                                         --- (PK_LOGICAL_false)
+    double             curve_chord_ang;  --- max angle between curve and chord
+                                         --- used to approximate it, in radians
+                                         --- i.e. upper bound on sum of angles
+                                         ---  between chord and curve tangents
+                                         ---  measured at the chord ends.
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_surface_plane_tol;--- whether surface_plane_tol is set
+                                         --- (PK_LOGICAL_false)
+    double             surface_plane_tol;--- distance tolerance between surface
+                                         --- and its facet, in model units
+                                         --- i.e upper bound on distance from a
+                                         --- position on a facet to the surface
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_surface_plane_ang;--- whether surface_plane_ang is set
+                                         --- (PK_LOGICAL_false)
+    double             surface_plane_ang;--- angular tolerance between surface
+                                         --- and its facet, in radians.
+                                         --- i.e upper bound on the angular
+                                         --- deviation between surface normals
+                                         --- at any 2 positions under the facet
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_facet_plane_tol;  --- whether facet_plane_tol is set
+                                         --- (PK_LOGICAL_false)
+    double             facet_plane_tol;  --- max dist from facet to mid-plane
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>    is_facet_plane_ang;  --- whether facet_plane_ang is set
+                                         --- (PK_LOGICAL_false)
+    double             facet_plane_ang;  --- facet_plane_tol : max_facet_width
+                                         --- (max permitted ratio between them)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>   is_local_density_tol; --- whether local_density_tol is set
+                                         --- (PK_LOGICAL_false)
+    double            local_density_tol; --- local value of surface_plane_tol
+                                         --- (for increased facet density)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>   is_local_density_ang; --- whether local_density_ang is set
+                                         --- (PK_LOGICAL_false)
+    double            local_density_ang; --- local value of surface_plane_ang
+                                         --- (for increased facet density)
+    <A HREF=../headers/pk_facet_degen_t.html>PK_facet_degen_t</A>  degen;             --- whether to output multiple
+                                         --- vertices at degeneracies and
+                                         --- how the singular parameter at the
+                                         --- degeneracy is calculated
+                                         --- (<A HREF=../headers/pk_facet_degen_t.html>PK_facet_degen_multiple_vxs_c</A>)
+    int               n_view_directions; --- array of view directions used
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>                         --- when increasing the facet density
+                     *view_directions;   --- (0, NULL)
+    int               n_local_tols;      --- array of sets of local tolerances
+    <A HREF=../headers/pk_facet_local_tolerances_t.html>PK_facet_local_tolerances_t</A>
+                     *local_tols;        --- (0, NULL)
+    int               n_topols_with_local_tols;
+                                         --- array of topological entities for
+                                         --- which local tolerances are
+                                         --- specified
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>       *topols_with_local_tols;
+                                         --- (0, NULL)
+    int              *local_tols_for_topols;
+                                         --- index into <B>'local_tols'</B>
+                                         --- picking out the local tolerances
+                                         --- to be attached to the
+                                         --- corresponding entity in
+                                         --- <B>'topols_with_local_tols'</B>
+    <A HREF=../headers/pk_facet_ignore_t.html>PK_facet_ignore_t</A> ignore;            --- whether to ignore small features
+                                         --- when facetting.  Small features
+                                         --- can be ignored by inputting an
+                                         --- absolute value or a ratio value
+                                         --- (<A HREF=../headers/pk_facet_ignore_t.html>PK_facet_ignore_no_c</A>)
+    double            ignore_value;      --- features smaller than this will be
+                                         --- considered for ignoring (0.0)
+    <A HREF=../headers/pk_facet_ignore_scope_t.html>PK_facet_ignore_scope_t</A>
+                      ignore_scope;      --- whether to treat a face
+                                         --- individually or as part of the
+                                         --- face's owning body when looking
+                                         --- for ignorable features and
+                                         --- facetting an array of faces
+                                         --- (<A HREF=../headers/pk_facet_ignore_scope_t.html>PK_facet_ignore_scope_global_c</A>)
+    <A HREF=../headers/pk_facet_wire_edges_t.html>PK_facet_wire_edges_t</A>
+                      wire_edges;        --- whether to take wire edges into
+                                         --- account faces when facetting
+                                         --- (<A HREF=../headers/pk_facet_wire_edges_t.html>PK_facet_wire_edges_no_c</A>)
+    <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_t</A>
+                      incremental_facetting;
+                                         --- Whether to make use of
+                                         --- incremental facetting data
+                                         --- (<A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_no_c</A>)
+    <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_t</A>
+                      incremental_method;
+                                         --- Whether to only facet faces
+                                         --- without incremental facetting data
+                                         --- or to automatically facet any
+                                         --- other faces that need to be
+                                         --- refacetted
+                                         --- (<A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_attrib_c</A>)
+    <A HREF=../headers/pk_facet_incr_prop_t.html>PK_facet_incr_prop_t</A>
+                      incremental_propagation;
+                                         --- For future use
+                                         --- (<A HREF=../headers/pk_facet_incr_prop_t.html>PK_facet_incr_prop_allow_c</A>)
+    <A HREF=../headers/pk_facet_incr_tf_t.html>PK_facet_incr_tf_t</A>
+                      incremental_transformation;
+                                         --- Whether incremental facetting
+                                         --- data can be used on bodies which
+                                         --- have been transformed since the
+                                         --- last incremental facetting call.
+                                         --- (<A HREF=../headers/pk_facet_incr_tf_t.html>PK_facet_incr_tf_no_c</A>)
+    <A HREF=../headers/pk_facet_incr_refine_t.html>PK_facet_incr_refine_t</A>
+                      incremental_refinement;
+                                         --- Whether to allow refinement
+                                         --- during incremental facetting
+                                         --- This option only applies if
+                                         --- <B>'incremental_method'</B> is set to
+                                         --- <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_attrib_c</A>.
+                                         --- (<A HREF=../headers/pk_facet_incr_refine_t.html>PK_facet_incr_refine_no_c</A>)
+    <A HREF=../headers/pk_facet_incr_report_t.html>PK_facet_incr_report_t</A>
+                      incremental_report;
+                                         --- Whether to report problem faces
+                                         --- during incremental facetting
+                                         --- This option only applies if
+                                         --- <B>'incremental_method'</B> is set to
+                                         --- <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_attrib_c</A>.
+                                         --- (<A HREF=../headers/pk_facet_incr_report_t.html>PK_facet_incr_report_no_c</A>)
+    <A HREF=../headers/pk_facet_inflect_t.html>PK_facet_inflect_t</A>
+                      inflect;           --- Whether facets around points of
+                                         --- inflection may be further refined
+                                         --- (<A HREF=../headers/pk_facet_inflect_t.html>PK_facet_inflect_no_c</A>)
+    <A HREF=../headers/pk_facet_quality_t.html>PK_facet_quality_t</A>
+                      quality;           --- Whether to perform extra checks
+                                         --- to improve the quality of the
+                                         --- facets
+                                         --- (<A HREF=../headers/pk_facet_quality_t.html>PK_facet_quality_standard_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>      vertices_on_planar;
+                                         --- Whether to force facet vertices
+                                         --- along tolerant edges to lie on a
+                                         --- planar face adjacent to the
+                                         --- tolerant edge if a planar face
+                                         --- exists
+                                         --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_facet_respect_t.html>PK_facet_respect_t</A>
+                      respect_offset;    --- Whether to take into account faces
+                                         --- that are offsets of one another
+                                         --- when producing facets
+                                         --- (<A HREF=../headers/pk_facet_respect_t.html>PK_facet_respect_no_c</A>)
+    int               n_bodies_with_scales;
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>        *bodies_with_scales;
+                                         --- array of bodies for which a scale
+                                         --- factor is specified
+                                         --- (0, NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>
+                     *scale_factors;     --- scale factor associated with the
+                                         --- corresponding body in
+                                         --- <B>'bodies_with_scales'</B>
+                                         --- (NULL)
+    <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A> output_scale_factor;
+                                         --- scale by which to shrink the
+                                         --- returned facets
+                                         --- (<A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>)
+    int               n_viewports;       --- number of viewports (0)
+    const <A HREF=../headers/pk_nabox_sf_t.html>PK_NABOX_sf_t</A>
+                     *viewports;         --- array of viewports (NULL)
+    };
+typedef struct PK_TOPOL_facet_mesh_o_s PK_TOPOL_facet_mesh_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Facet mesh generation controls. See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-957012">here</A> for more information.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_nitems_lt_0            negative number of items in loop array.
+                                    (MILD)
+
+    PK_ERROR_lt_3_sides             max_facet_sides too small. (MILD)
+
+    PK_ERROR_distance_too_small     min/max_facet_width too small. (MILD)
+
+    PK_ERROR_distance_too_large     min/max_facet_width too large. (MILD)
+
+    PK_ERROR_bad_tolerance          is_&lt;tol&gt; is true but used with a bad &lt;tol&gt;
+                                    or negative number supplied for local
+                                    tolerance. (MILD)
+
+    PK_ERROR_unsuitable_topology    entity is not face or body in
+                                    topols_with_local_tols array (MILD)
+
+    PK_ERROR_bad_value              integer value in local_tols_for_topols
+                                    array does not lie between 0 and
+                                    n_local_tols. (MILD)
+
+    PK_ERROR_bad_combination        a bad combination of options has been
+                                    requested. (MILD)
+
+    PK_ERROR_not_implemented        <B>'incremental_method'</B> is set to
+                                    <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_auto_c</A> under
+                                    <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A>. (MILD)
+
+                                    <B>'incremental_method'</B> is set to
+                                    <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_auto_c</A> and <B>'topols'</B>
+                                    contains faces. (MILD)
+
+                                    <B>'incremental_method'</B> is set to
+                                    <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_auto_c</A> and either
+                                    <B>'cull'</B> is set to <A HREF=../headers/pk_facet_cull_t.html>PK_facet_cull_back_c</A> or
+                                    <B>'density'</B> is not set to
+                                    <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_no_view_c</A>. (MILD)
+
+                                    <B>'incremental_method'</B> is set to
+                                    <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_auto_c</A>, <B>'match'</B> is
+                                    set to <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_topol_c</A> and <B>'ignore'</B>
+                                    is not set to <A HREF=../headers/pk_facet_ignore_t.html>PK_facet_ignore_no_c</A>. (MILD)
+
+                                    <B>'n_viewports'</B> is set to a value &gt; 1. (MILD)
+
+                                    <B>'n_viewports'</B> is not zero and
+                                    <B>'incremental_facetting'</B> is set to a value
+                                    other than <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_no_c</A>. (MILD)
+
+                                    the cellular guise is not
+                                    <A HREF=../headers/pk_cellular_guise_t.html>PK_cellular_guise_general_c</A> and
+                                    <B>'incremental_facetting'</B> is set to a value
+                                    other than <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_no_c</A>. (MILD)
+
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_o_t.html>PK_TOPOL_facet_o_t</A><br>
+    <A HREF=../headers/pk_topol_render_facet_o_t.html>PK_TOPOL_render_facet_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The PK_TOPOL_facet_mesh_o_t structure provides the following controls :
+
+  - facet constraints (i.e. whether holes are permitted in facets or
+                            if the generated facets may be concave).
+  - which edge matching strategy to use when matching adjacent facetted faces
+  - specifying view dependent options (face culling & increased facet density)
+  - capping specified loops within a sheet body
+  - setting tolerance values to be used in the facetted approximation
+
+
+Setting tolerance values
+
+  The tolerance values are defined by pair of <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> and double values,
+  the former indicating whether the double value has been set explicitly.
+  PK uses the convention that if no explicit tolerance value is provided,
+  Parasolid is free to calculate its own internal tolerance values. These
+  are generally case specific, rather than using specific fixed values.
+
+Defining a viewing matrix
+
+  A number of the mesh options require a viewing matrix to be specified.
+  Parasolid has a number of requirements on such matrices.
+
+  In general a viewing matrix shall be of the form M
+      | R(11)  R(12)  R(13)  Px |
+      |                         |
+  M = | R(21)  R(22)  R(23)  Py |
+      |                         |
+      | R(31)  R(32)  R(33)  Pz |
+      |                         |
+      | Tx     Ty     Tz     S  |
+
+  The vector T represents a translation
+  The vector P represents perspective
+  S is the inverse global scale vector
+  The rotation submatrix R defines an orthonormal set of vectors H, V, D
+      | Hx  Vx  Dx  |
+  R = | Hy  Vy  Dy  |
+      | Hz  Vz  Dz  |
+
+  M must satisfy the following constraints:
+
+  (i)   The rotation matrix R must be orthonormal
+  (ii)  The determinant on R is +1
+  (iii) D and P must be parallel if P is not a zero vector
+  (iv)  S = 1 - Tz * w (where w = -( D DOT P )
+
+
+SHAPE
+  This field controls whether generated facets can contain holes
+  or concave interior angles. The possible settings are one of :
+
+  <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_any_c</A>    : allow creation of holed or concave facets
+  <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_cut_c</A>    : cut facets with holes into concave facets
+  <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_convex_c</A> : divide concave facets into convex facets  (default)
+
+     ---------------          ---------------            ---------------
+    |               |        |               |          |     |         |
+    |     /\        |        |     /\        |          |     /\        |
+    |    /  \       |        |    /  \       |          |    /  \       |
+    |   /    \      |        |   /    \      |          |   /    \      |
+    |  /______\     |        |__/______\_____|          |__/______\_____|
+    |               |        |               |          |               |
+    |_______________|        |_______________|          |_______________|
+
+  <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_any_c</A>     <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_cut_c</A>       <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_convex_c</A>
+  --------------------     --------------------       -----------------------
+
+  The diagram above illustrates a (contrived) example of a facet containing an
+  interior hole which can be generated using the <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_any_c</A> option.
+
+  The constraint <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_cut_c</A> indicates that Parasolid must cut any
+  facets containing interior holes before output. This can sometimes generate
+  cases where the modified facets have concave interior angles.
+
+  The constraint <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_convex_c</A> indicates that Parasolid must cut
+  any facets containing holes and further divide any concave facets into convex
+  facets before output.
+
+  The convexity test is made by projecting the facet fins onto the <B>'mid_plane'</B>
+  of the facet and testing the interior angles.  The <B>'mid_plane'</B> is defined as
+  the plane passing through the centre of gravity of the facet vertices whose
+  normal is in the direction of the facet plane normal, where the facet plane
+  normal N is defined as follows:
+     N = normalise((v[0]Xv[1])+(v[1]Xv[2])+ ...+(v[n-2]Xv[n-1])+(v[n-1]Xv[0]))
+  where v[0], ..., v[n-1] are the facet vertices.
+
+  The <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_cut_c</A> and <A HREF=../headers/pk_facet_shape_t.html>PK_facet_shape_convex_c</A> constraints are only
+  relevant when max_facet_sides &gt; 3.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-294789">here</A> for more information.
+
+MATCH
+  This field controls how facets between adjacent faces are matched.
+
+  The options are
+
+  <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_geom_c</A>   : clip facet boundaries to a common edge
+  <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_topol_c</A>  : match facet vertices across a common edge (default)
+  <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_trimmed_c</A>: clip facet boundaries to model edge curve
+
+  |   |    |   |       |   |   |    |   |   | | |     |      | |           |
+  |...|....|...|.......|   |...|....|...|...|.|.|     |......|.|...........|
+  |   |    |   |       |   |   |    |   |   | | |     |      B |           |
+  |   |    |   |       |   |   |    |   |   | | |     |     / \|           |
+  |   |    |   |       |   |   |    |   |   | | |     |    /   C-----------Y
+  X---x----x---x---x-x-Y   X---x----x---x---x-x-Y     X---A---------D     /|
+  |   |            | | |   |   |    |   |   | | |     |   |         |\   / |
+  |   |            | | |   |   |    |   |   | | |     |   |         | \ /  |
+  |   |            | | |   |   |    |   |   | | |     |   |         |  E   |
+  |...|............|.|.|   |...|....|...|...|.|.|     |...|.........|..|...|
+  |   |            | | |   |   |    |   |   | | |     |   |         |  |   |
+
+  <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_geom_c</A>    <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_topol_c</A>     <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_trimmed_c</A>
+  ---------------------    ----------------------     ------------------------
+
+  The above diagram illustrates a (contrived) example of the facets created
+  along an edge XY between two adjacent faces with the various matching
+  options.  The dotted lines indicate the curve chord tolerance of the curve on
+  edge XY.
+
+  Actual examples of facets created using various matching options can be
+  found <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-294828">here</A>.
+
+  The <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_trimmed_c</A> option clips exterior facets to within
+  <B>'curve_chord_tol'</B> of the appropriate model edge but does no matching. If this
+  option is selected, facets will, in general, overlap or leave gaps at the
+  boundaries of adjacent faces.  In the above example a gap defined by ABCYEDA
+  exists at the boundary of the two faces.
+
+  The <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_geom_c</A> option modifies the geometry of such facet meshes
+  by clipping (and possibly extending) exterior facets to meet at the common
+  edge formed by the intersection of the underlying facet planes.
+
+  There are certain special cases in which facet meshes may not match see
+  <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-294862">here</A>.
+
+  The <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_topol_c</A> option further modifies the facet mesh so that
+  facet vertices are matched across common edges. The algorithm identifies
+  cases where an exterior vertex on one facet mesh lies between a connected
+  pair of exterior vertices on the other facet mesh and inserts a matching
+  vertex.
+
+  If the application inputs an array of faces, Parasolid recognises faces that
+  belong to the same body and have identical transform entities.  For edges
+  between such faces the requested matching will be applied unless the option
+  <B>'ignore_scope'</B> is set to <A HREF=../headers/pk_facet_ignore_scope_t.html>PK_facet_ignore_scope_local_c</A> (see <B>'ignore_scope'</B>
+  option under IGNORING SMALL FEATURES below).
+
+NOTE: When this structure is used in the input to <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A> then general
+bodies can only be facetted if <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_geom_c</A> or
+<A HREF=../headers/pk_facet_match_t.html>PK_facet_match_trimmed_c</A> is requested.
+
+DENSITY
+  The facet density option allows the density of the facet mesh to be increased
+  locally either in regions where the facet normals change from being front
+  facing to back facing relative to the view directions or in regions where
+  the facet normals are close to being parallel to the view directions.
+
+  If <B>'view_directions'</B> are specified then these are the view directions used,
+  otherwise the view direction specified in <B>'view_transf'</B> is used.
+
+  This option can be used when generating view specific facet meshes for use
+  by rendering packages when creating high quality images (containing
+  enhanced detail where the facet surfaces form silhouettes with the view
+  direction).
+
+  This field can take the following values :
+
+  <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_no_view_c</A>    : facet density is independent of view
+                                  (default)
+  <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_use_view_c</A>   : increase facet density at view silhouettes
+  <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_parallel_c</A>   : increase facet density in regions where the
+                                  facet normals are close to parallel to the
+                                  view directions
+  <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_sil_and_par_c</A>: increase facet density at view silhouettes
+                                  and in regions where the facet normals are
+                                  close to parallel to the view directions
+
+  The <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_no_view_c</A> refers to no other arguments.
+
+  The <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_use_view_c</A>, <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_parallel_c</A> and
+  <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_sil_and_par_c</A> arguments require the following values
+
+      - the <B>'view_transf'</B> argument and <B>'view_directions'</B> argument.  If
+        <B>'view_directions'</B> have been specified these directions will override
+        the single direction specified in the <B>'view_transf'</B>.
+
+      - the <B>'local_density_tol'</B> tolerance value,
+
+  and optionally,
+
+      - the <B>'local_density_ang'</B> tolerance value
+
+  The <B>'view_transf'</B> may contain perspective but only the direction component
+  will be used.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-960851">here</A> for more information.
+
+CULL
+  This is a performance enhancement option for use when creating view
+  specific images from facet data (possibly in conjunction with the
+  the <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_use_view_c</A> option).
+
+  It can also be used to reduce the amount of facet data which are output.
+
+  This field can take the following values :
+
+  <A HREF=../headers/pk_facet_cull_t.html>PK_facet_cull_none_c</A> : do not cull any facets; output them all      (default)
+  <A HREF=../headers/pk_facet_cull_t.html>PK_facet_cull_back_c</A> : cull back facing facets
+
+  The <A HREF=../headers/pk_facet_cull_t.html>PK_facet_cull_none_c</A> outputs all faces (and refers to no other arguments)
+
+  The <A HREF=../headers/pk_facet_cull_t.html>PK_facet_cull_back_c</A> argument requires the <B>'view_transf'</B> to be set to a
+  viewing transformation which may contain perspective.
+
+  It is not possible to request (the default) topology matching with this
+  option, <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_geom_c</A> or <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_trimmed_c</A> must be specified.
+
+  This option reduces the size of the generated facet mesh (and consequently
+  the amount of topological and geometric data which are output) by not
+  facetting back facing faces.  A back facing face is one whose normal at
+  every point is backwards facing.  If a face cannot quickly be identified as
+  back facing it will be facetted.
+
+  This option has no effect on sheet bodies.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-313250">here</A> for more information.
+
+
+LOOPS
+  The <B>'loops'</B> option allows specific holes in a sheet body to be capped.
+  These are specified as an array of interior loops (being ones owned
+  by sheet bodies or faces which are included in the <B>'topol'</B> array').
+
+  These interior loops are ignored during facetting; the effect is
+  to extend the surface geometry of the surrounding sheet face across
+  the loop.
+
+  The PK_TOPOL_facet_mesh_m macro initialises the loops array to be empty
+
+        n_loops = 0
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-313292">here</A> for more information.
+
+
+FACET SIZE AND NUMBER OF SIDES
+  The <B>'max_facet_sides'</B> option controls the maximum number sides that any facet
+  can have and must take a value of 3 or more.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-313302">here</A> for more information.
+
+  The options <B>'is_min_facet_width'</B> and <B>'is_max_facet_width'</B> control the minimum
+  and maximum lengths of any of the facets' sides.  To set an explicit value
+  for such constraints, the associated field
+                        min_facet_width
+                     or max_facet_width
+  is set to a positive value (specified in model units) and the associated flag
+  is set to PK_LOGICAL_true.
+
+  In cases where refinement results in a facet being created that has a width
+  smaller than <B>'min_facet_width'</B> Parasolid will disregard the supplied curve,
+  surface and planarity tolerances so that the new facet will not be refined
+  any further.  Therefore facets may exist with dimensions smaller than
+  <B>'min_facet_width'</B>.
+
+  If both a <B>'min_facet_width'</B> and <B>'max_facet_width'</B> are supplied the
+  <B>'min_facet_width'</B> must be less than the <B>'max_facet_width'</B> otherwise
+  PK_ERROR_bad_combination will be returned.
+
+  Note: The <B>'min_facet_width'</B> is ignored on topologies with facet geometry.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-313454">here</A> for more information.
+
+CURVE TOLERANCE
+
+  The following arguments control curve tolerance values, measuring how closely
+  a curved edge entity is approximated by a number of straight line chords.
+
+  Three curve tolerance controls are provided :
+
+        curve_chord_tol   : the maximum chordal distance between a
+                            facet edge and its original edge entity
+
+        curve_chord_max   : the maximum length of any facet edge which
+                            represents part of an original edge entity
+
+        curve_chord_ang   : the maximum angle which is permitted between
+                            a facet chord and its original edge entity,
+                            measured as the sum of the two angles formed
+                            between the chord and the curve tangents at
+                            each chord end.
+
+  To set one or more of these constraints, the associated flag must be set to
+  PK_LOGICAL_true and the value set to a positive value.  In the case of the
+  <B>'curve_chord_ang'</B> the value must be no greater than pi/2 radians.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-314965">here</A> for more information.
+
+SURFACE TOLERANCE
+  The following arguments control surface tolerance values, measuring
+  how closely any curved surface attached to a face is approximated
+  by a facet mesh.
+
+  Two surface tolerance controls are provided :
+
+        surface_plane_tol : the maximum distance between the mid-plane
+                            of a facet and its original face entity
+
+        surface_plane_ang : the maximum angle (in radians) which is permitted
+                            between the surface normals at any two positions
+                            on the surface which lie within the facet boundary
+                            (this is usually met but it is not guaranteed).
+
+  To set one or both of these constraints, the associated flag must be set to
+  PK_LOGICAL_true and the value set to a positive value.  In the case of the
+  <B>'surface_plane_ang'</B> the value must be no greater than pi/2 radians.
+
+ See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-315001">here</A> for more information.
+
+PLANARITY TOLERANCE
+  The "facet to mid-plane" tolerances control how closely vertices lie on
+  a common plane.
+
+  Two planarity tolerance controls are provided :
+
+        facet_plane_tol :   the maximum distance between the mid-plane
+                            of a facet and its facet vertices
+
+        facet_plane_ang :   the maximum ratio permitted between :
+
+                            1) the maximum distance from the mid-plane
+                               of a facet to any of its facet vertices
+
+                            2) the maximum width of a facet.
+
+  To set one of more of these constraints, the associated flag must be set to
+  PK_LOGICAL_true and the value set to a positive value.  In the case of the
+  <B>'facet_plane_ang'</B> the value must be no greater than pi/2 radians.
+
+
+LOCAL FACET DENSITY TOLERANCE
+  The "increased_density" tolerance values are used in conjunction
+  with the <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_use_view_c</A>, <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_parallel_c</A> and
+  <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_sil_and_par_c</A> density options. These define local surface
+  tolerance values to be used when generating facets in the region of view
+  dependent facet silhouettes and/or in regions where the facet normals are
+  close to being parallel to the specified view directions.
+
+  Two local facet density tolerance controls are provided:
+
+        local_density_tol :  the maximum distance between the mid_plane of a
+                             facet and its original face entity.
+
+        local_density_ang :  the maximum angle (in radians) which is permitted
+                             between the surface normals at any two positions
+                             on the surface which lie within the facet boundary
+                             (this is ususally met but it is not guaranteed).
+
+  If the <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_use_view_c</A>, <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_parallel_c</A> or
+  <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_sil_and_par_c</A> options are requested the
+  <B>'is_local_density_tol'</B> flag and its associated value must be set (to a
+  positive value) otherwise the option is ignored.
+
+  It is also possible (although not compulsory) to set the
+  <B>'is_local_density_ang'</B> flag.  The associated value must be positive and must
+  be no greater than pi/2 radians.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-313228">here</A> for more information.
+
+
+OUTPUT AT DEGENERACIES
+  The behaviour of the facetting operation at degenerate vertices can be
+  modified via the <B>'degen'</B> option if facetting is being called from either
+  <A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A> or <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A>.
+
+  The permitted values for this option:
+
+  <A HREF=../headers/pk_facet_degen_t.html>PK_facet_degen_multiple_vxs_c</A>: (default)
+  The function will create multiple vertices at degeneracies.  Each facet that
+  is adjacent to a degeneracy will have a unique vertex at the degeneracy.
+  This ensures the correct parameters, normals and derivatives will be
+  returned for the facet at the degeneracy. All of the vertices at the
+  degeneracy will reference the same point.
+
+  <A HREF=../headers/pk_facet_degen_t.html>PK_facet_degen_single_vx_c</A>:
+  The function will create single vertices at degeneracies, this vertex can
+  only have one parameter, normal and derivative associated with it, thus all
+  facets adjacent to a degeneracy will have the same value for the parameter,
+  normal and derivative for the vertex at the degeneracy. In this case the
+  facet topology is correct.  This option only has an effect on the output
+  returned though the tables in <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A>, it does not have any effect
+  if used in conjunction with <A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A>.
+
+  <A HREF=../headers/pk_facet_degen_t.html>PK_facet_degen_average_parms_c</A>:
+  The function will create multiple vertices at degeneracies in the same way
+  as the <A HREF=../headers/pk_facet_degen_t.html>PK_facet_degen_multiple_vxs_c</A> option, in this case when a facet
+  vertex occurs at a degeneracy, the value of the degenerate parameter at the
+  degenerate vertex will be the average of the values of that parameter at the
+  two facet vertices on either side of the degenerate vertex.  The normals and
+  derivatives at the degenerate vertex will be evaluated using this average
+  value for the degenerate parameter.
+
+  More details and a diagram can be found <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-333107">here</A>.
+
+
+INCREASING FACET DENSITY IN MULTIPLE DIRECTIONS
+  The <B>'view_directions'</B> option allows the facet density to be increased in
+  multiple view directions.  These view directions are specified as an array of
+  unit vectors.
+
+  These view directions override the direction given in <B>'view_transf'</B> as far as
+  increasing the facet density is concerned, that is, the facet density will
+  be increased in all the directions specified in <B>'view_directions'</B>.
+
+  The PK_TOPOL_facet_mesh_m macro initialises the view_directions array to be
+  empty
+        n_view_directions = 0
+
+  in this case facet density will be increased in the direction specified in
+  the option <B>'view_transf'</B>.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-960851">here</A> for more information.
+
+
+FACETTING TOPOLOGICAL ENTITIES WITH LOCAL TOLERANCES
+
+  It is possible to attach local tolerances to individual or groups of
+  topological entities (either faces or bodies), these local tolerances will
+  then override the facetting tolerances for the particular face/body.
+
+  In order to facet certain entities with local tolerances it is necessary
+  to fill in the following fields:
+
+  <B>'local_tols'</B>
+  This field is an array of <A HREF=../headers/pk_facet_local_tolerances_t.html>PK_facet_local_tolerances_t</A>.  This array contains
+  all local tolerance sets to be attached to topological entities.
+
+  <B>'topols_with_local_tols'</B>
+  This field takes an array of unique topological entities (faces or bodies)
+  which are to be facetted using local tolerances.  If this is empty all
+  entities will be facetted to the tolerances previously specified in the
+  options structure.  If this is not empty the parallel array
+  <B>'local_tols_for_topols'</B> must be filled in.
+
+  <B>'local_tols_for_topols'</B>
+  This field must be of length <B>'n_topols_with_local_tols'</B>, and takes integer
+  values corresponding to indexes into the <B>'local_tols'</B> array.  For
+  each topological entity in <B>'topols_with_local_tols'</B>, the corresponding entry
+  in <B>'local_tols_for_topols'</B> is the index into <B>'local_tols'</B> corresponding to
+  the PK_facet_local_tolerances with which the entity is to be facetted.
+
+  When finding the tolerances to use when facetting a paticular face, the
+  tolerances are initially set to the default tolerances.  If any tolerances
+  were specified in the options structure these tolerances overwrite the
+  default tolerances.  If the face's owning body has local facet tolerances
+  specified these tolerances (provided they are not set to 0.0) override any
+  existing tolerances for this face.  If the face itself has local facet
+  tolerances specified these tolerances will override any existing tolerances
+  for this face (provided they are not 0.0).
+
+  The curve tolerance along an edge will be the minimum local curve tolerance
+  of the edge's faces.
+
+  The PK_TOPOL_facet_mesh_o_m initialises the <B>'local_tols'</B> array to be empty
+        n_local_tols = 0,
+
+  <B>'topols_with_local_tols'</B> is also initialised to be empty
+       n_topols_with_local_tols = 0,
+
+  in this case all entities will be facetted using the facetting tolerances
+  given above.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-333073">here</A> for more information.
+
+
+IGNORING SMALL FEATURES
+  The <B>'ignore'</B> option allows 'small' features to be ignored when facetting.
+  The value specified in <B>'ignore_value'</B> defines which features are classed as
+  small.  The overall box is the box containing all entities to be facetted,
+  taking into account associated <B>'topol_transfs'</B> and <B>'scale_factors'</B>.
+
+  The permitted values for this option:
+
+  <A HREF=../headers/pk_facet_ignore_t.html>PK_facet_ignore_no_c</A>: (default)
+  All features will be facetted regardless of size.
+
+  <A HREF=../headers/pk_facet_ignore_t.html>PK_facet_ignore_absolute_c</A>:
+  Any feature with a box size smaller than the value specified in
+  <B>'ignore_value'</B> may be ignored.  If the feature belongs to a body that is
+  being scaled, i.e. if the body is supplied in <B>'bodies_with_scales'</B>, then the
+  scale will be taken into account.  The feature with the scale applied would
+  need to have a box size smaller than the <B>'ignore_value'</B>.
+
+  <A HREF=../headers/pk_facet_ignore_t.html>PK_facet_ignore_ratio_c</A>:
+  Here <B>'ignore_value'</B> corresponds to the ratio of box size of the feature to
+  the size of the overall box i.e. if this value is set to 0.01 then features
+  smaller than 1% of the overall box may be ignored. If facetting bodies the
+  overall box will be the union of all the <B>'topols'</B> boxes (with <B>'topol_transfs'</B>
+  and <B>'scale_factors'</B> applied), if faces are being facetted the overall box
+  will depend on <B>'local_scope'</B> as described below.
+  If a feature belongs to a body that is being scaled the <B>'ignore_value'</B>
+  corresponds to the ratio of the box size of the scaled feature to the size of
+  the overall box.
+
+  <A HREF=../headers/pk_facet_ignore_t.html>PK_facet_ignore_body_ratio_c</A>:
+  <B>'ignore_value'</B> corresponds to the ratio of the box size of the feature to
+  the size of the box of the body containing the feature.
+
+  Note that if the option <B>'loops'</B> has been specified, facetting will ignore the
+  given loops regardless of the value of the <B>'ignore'</B> option.
+
+  The option <B>'ignore_scope'</B> only has an effect when facetting an array of
+  faces, the permitted values for this option:
+
+  <A HREF=../headers/pk_facet_ignore_scope_t.html>PK_facet_ignore_scope_global_c</A>: (default)
+  Ensures that the only loops ignored on a face when facetting an array of
+  faces are the loops that would have been ignored had the face's owning body
+  been facetted, thus small holes in the face will not be ignored if the loop
+  defining the hole is adjacent to faces that are not classed as small.  In
+  this case the overall box will be the union of all of the <B>'topols'</B> owning
+  bodies boxes (with <B>'topol_transfs'</B> and <B>'scale_factors'</B> applied).
+
+  <A HREF=../headers/pk_facet_ignore_scope_t.html>PK_facet_ignore_scope_local_c</A>:
+  When looking for ignorable features the faces in the array of faces will be
+  facetted as separate entities, hence there will be no matching between
+  adjacent faces.  If the face contains holes defined by loops which can be
+  classed as small these will be ignored.  In this case the overall box will be
+  the union of all the <B>'topols'</B> boxes (with <B>'topol_transfs'</B> and <B>'scale_factors'</B>
+  applied).
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-342164">here</A> for more information.
+
+
+
+WIRE EDGES
+  The behaviour of the facetting operation on faces which contain wire edges
+  can be modified via the <B>'wire_edges'</B> option.
+
+  The permitted values for this option:
+
+  <A HREF=../headers/pk_facet_wire_edges_t.html>PK_facet_wire_edges_no_c</A>: (default)
+  Any wire edge in a face will be facetted over as long as that edge is
+  manifold.
+
+  <A HREF=../headers/pk_facet_wire_edges_t.html>PK_facet_wire_edges_yes_c</A>:
+  Facetting will take wire edges in faces into account and will facet the face
+  in such a way that no facet is intersected by a wire edge.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-342078">here</A> for more information.
+
+
+INCREMENTAL FACETTING
+  The <B>'incremental_facetting'</B> option allows a trade off between memory usage
+  and performance.
+
+  Geometry matching supports incremental facetting.  Topology matching supports
+  incremental facetting only if the <B>'incremental_method'</B> is set to
+  <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_auto_c</A> and the <B>'quality'</B> is set to
+  <A HREF=../headers/pk_facet_quality_t.html>PK_facet_quality_improved_c</A>.  Trimmed matching does not support incremental
+  facetting.  If incremental facetting is requested but not supported,
+  PK_ERROR_bad_combination will be returned.
+
+  This option must be set to <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_no_c</A> when the function is running
+  concurrently in a thread without locked partitions.
+
+  Incremental facetting is achieved by attaching incremental facetting data to
+  faces, edges and fins. Positional information is attached to edges and
+  fins and a flag is attached to each face which has been facetted.  When any
+  portion of the model changes the incremental facetting data associated with
+  the changed region will be deleted.
+
+  The <B>'incremental_facetting'</B> option can be set to one of the following values:
+
+    <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_no_c</A>
+    Incremental facetting off, any incremental facetting data present will be
+    ignored.
+    All values of <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_t</A> are valid with this setting.
+
+    <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_clear_c</A>
+    Incremental facetting off, any incremental facetting data present will be
+    deleted.
+    All values of <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_t</A> are valid with this setting.
+
+    <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_refresh_c</A>
+    Incremental facetting on, any incremental facetting data present will be
+    deleted and new incremental facetting data generated.
+    <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_trimmed_c</A> is not supported with this setting.
+
+    <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_yes_c</A>
+    Incremental facetting on, any existing incremental facetting data will be
+    used and new incremental facetting data generated as appropriate.
+    <A HREF=../headers/pk_facet_match_t.html>PK_facet_match_trimmed_c</A> is not supported with this setting.
+
+  The incremental facetting data will only be made use of if the option
+  takes the last value, <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_yes_c</A>.
+
+  The incremental facetting data associated with the edges and fins is used
+  to regenerate the positions of facet vertices, allowing the newly created
+  facets to meet the existing facets on neighbouring faces preserving geometry
+  or topology matching.  There will be cases where it might not be possible to
+  honour the matching from a previous facetting operation, for instance, the
+  addition of a small feature between a facet edge and a model edge, in such
+  cases refinement is said to be required and the behaviour will depend on the
+  incremental facetting options detailed below.
+
+  The behaviour of incremental facetting depends on the <B>'incremental_method'</B>
+  selected:
+     <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_auto_c</A>:
+     If a body or array of bodies is being facetted then any faces that need to
+     be refacetted in order to honour the requested matching will be
+     refacetted.  Faces without incremental facetting data will be facetted,
+     and any faces that need refinement of their edges will be refacetted.
+
+     Note: If topology matching has been requested this method must be used.
+
+     Note: This method is not implemented for cases where <B>'topols'</B> is an array
+           of faces.
+
+     By default if a body is transformed and then subsequently handed into
+     incremental facetting all faces of the body will be refacetted.  If
+     however the application is able to transform the facets displayed the
+     <B>'incremental_transformation'</B> option may be used to limit the faces that
+     need to be refacetted to those that have been modified rather than just
+     transformed.  The <B>'incremental_transformation'</B> option can take one of the
+     following values:
+
+        <A HREF=../headers/pk_facet_incr_tf_t.html>PK_facet_incr_tf_no_c</A>:
+        Incremental data on faces whose owning body has been transformed
+        since the last call to incremental facetting will be ignored.  All
+        faces of body will all be refacetted in their transformed position
+        during the incremental facetting call.
+
+        <A HREF=../headers/pk_facet_incr_tf_t.html>PK_facet_incr_tf_rigid_c</A>:
+        Incremental data on faces whose owning body had a rigid body transform
+        applied will be taken into account.  Only faces that have been modified
+        (excluding being transformed) since the last call to incremental
+        facetting will be refacetted.  The new facets created for these faces
+        will match the facets in the transformed position.
+
+        <A HREF=../headers/pk_facet_incr_tf_t.html>PK_facet_incr_tf_rigid_ref_c</A>:
+        Like <A HREF=../headers/pk_facet_incr_tf_t.html>PK_facet_incr_tf_rigid_c</A> but the transform applied to the body
+        may also contain reflection components as well as the rigid body
+        transform.
+
+     Note: <B>'incremental_transformation'</B> should only be set to
+           <A HREF=../headers/pk_facet_incr_tf_t.html>PK_facet_incr_tf_rigid_c</A> or <A HREF=../headers/pk_facet_incr_tf_t.html>PK_facet_incr_tf_rigid_ref_c</A> if the
+           displayed facets have been transformed.
+
+     Note: If the <B>'incremental_method'</B> is set to <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_auto_c</A>
+           the <B>'incremental_report'</B> and <B>'incremental_refinement'</B> options are
+           ignored.
+
+     Note: <B>'incremental_method'</B> cannot be set to <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_auto_c</A>
+           under <A HREF=../headers/pk_topol_facet.html>PK_TOPOL_facet</A>.
+
+
+     <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_attrib_c</A>
+     Facet only those faces which do not have incremental facetting data,
+     whether facetting an array of faces or bodies.
+
+     If facetting an array of faces then a face will fail to facet if any of
+     its edges which do not have incremental facetting data are shared by a
+     face which is unmarked and does not occur in the array. This is because
+     such edges will be refacetted and it cannot be guaranteed that geometry
+     matching will be honoured.
+
+     The <B>'incremental_refinement'</B> option can be used to control the behaviour
+     in cases where refinement is required. This option can take any one of the
+     following values:
+
+        <A HREF=../headers/pk_facet_incr_refine_t.html>PK_facet_incr_refine_no_c</A>
+        Refinement is not allowed, if an edge requires refinement then an error
+        will be reported for those faces which share that edge and are not
+        marked as already facetted. If facetting an array of faces then only
+        faces from the array will be reported.
+
+        <A HREF=../headers/pk_facet_incr_refine_t.html>PK_facet_incr_refine_yes_c</A>
+        If refinement is required for an edge then new incremental facetting
+        data will be generated for that edge and its fins, these will replace
+        any existing incremental facetting data. Any face which shares the edge
+        but is not being refacetted, either because it has incremental
+        facetting data or because an array of faces is being facetted which
+        does not include this face, will not be refacetted and the geometry
+        matching may not be honoured.
+
+    The <B>'incremental_report'</B> option controls which faces are reported through
+    the error mechanism. This option can take any one of the following values:
+
+        <A HREF=../headers/pk_facet_incr_report_t.html>PK_facet_incr_report_no_c</A>
+        No extra details reported.
+
+        <A HREF=../headers/pk_facet_incr_report_t.html>PK_facet_incr_report_missing_c</A>
+        If facetting an array of faces then those faces which need to be
+        included to define facetted perimeters will be reported through the
+        error mechanism.
+
+        <A HREF=../headers/pk_facet_incr_report_t.html>PK_facet_incr_report_refine_c</A>
+        If an edge requires refinement then all those faces which share that
+        edge that have not been refacetted will be reported through the error
+        mechanism. This option should only be set if <B>'incremental_refinement'</B>
+        is set to <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_yes_c</A>.
+
+        <A HREF=../headers/pk_facet_incr_report_t.html>PK_facet_incr_report_yes_c</A>
+        All reporting mechanisms will be selected.  This option should only be
+        set if <B>'incremental_refinement'</B> is set to <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_yes_c</A>.
+
+     Note: The <B>'incremental_method'</B> <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_attrib_c</A> is not
+           supported for topology matching.
+
+     Note: If the <B>'incremental_method'</B> is set to <A HREF=../headers/pk_facet_incr_method_t.html>PK_facet_incr_method_attrib_c</A>
+           the <B>'incremental_propagation'</B> and <B>'incremental_transformation'</B>
+           options are ignored.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-342259">here</A>.
+
+FACETS AROUND POINTS OF INFLECTION
+  The <B>'inflect'</B> option may be used to refine facets around points of
+  inflection.
+
+  The permitted values for this option are:
+
+  <A HREF=../headers/pk_facet_inflect_t.html>PK_facet_inflect_no_c</A>: (default)
+  Facets around points of inflection are not refined.
+
+  <A HREF=../headers/pk_facet_inflect_t.html>PK_facet_inflect_split_near_c</A>:
+  Facets around points of inflection may be further refined to better
+  represent the change in curvature of the surface.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-342857">here</A> for more information.
+
+
+IMPROVING FACET QUALITY
+  The <B>'quality'</B> option may be used to control the quality of facets produced.
+  There is a trade off between the quality of the facets and the performance of
+  the facetting algorithm.
+
+  The permitted values for this option are:
+
+  <A HREF=../headers/pk_facet_quality_t.html>PK_facet_quality_standard_c</A>: (default)
+  No extra checks are carried out to improve the quality of facets.
+
+  <A HREF=../headers/pk_facet_quality_t.html>PK_facet_quality_improved_c</A>:
+  Extra checks are performed during facetting in order to improve the quality
+  of facets.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-342999">here</A> for more information.
+
+
+FACET VERTICES ALONG TOLERANT MODEL EDGES
+  The <B>'vertices_on_planar'</B> option may be used to force facet vertices along
+  tolerant model edges to lie on a planar face adjacent to the tolerant edge,
+  if such a face exists.
+
+  The permitted values for this option are:
+
+  PK_LOGICAL_false: (default)
+  Facet vertices can lie on any of the faces adjacent to the tolerant edge.
+
+  PK_LOGICAL_true:
+  If there is one planar face adjacent to the tolerant edge, the facet vertices
+  will be forced to lie on this face.  If there are multiple planar faces
+  adjacent to the tolerant edge the facet vertices will lie on one of the
+  planar faces.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-343017">here</A> for more information.
+
+
+FACET GENERATION FOR OFFSET FACES
+  The <B>'respect_offset'</B> option may be used to control the facets produced on
+  faces that are offsets of one another.
+
+  The permitted values for this option are:
+
+  <A HREF=../headers/pk_facet_respect_t.html>PK_facet_respect_no_c</A>: (default)
+  Facets are created based on the supplied tolerances but if the
+  <B>'surface_plane_tol'</B> is larger than the separation between faces in thin
+  walled regions of the part it is possible that facets may clash.
+
+  <A HREF=../headers/pk_facet_respect_t.html>PK_facet_respect_yes_c</A>:
+  Facetting takes into account faces that are offsets of one another and tries
+  to reduce the likelihood that facets on these faces clash.
+  Note: this may result in more facets being created.
+
+  Note: If <B>'respect_offset'</B> is set to <A HREF=../headers/pk_facet_respect_t.html>PK_facet_respect_yes_c</A>, the <B>'density'</B>
+  option must be set to <A HREF=../headers/pk_facet_density_t.html>PK_facet_density_no_view_c</A>, the <B>'incremental_facetting'</B>
+  option must be set to <A HREF=../headers/pk_facet_incr_t.html>PK_facet_incr_no_c</A> and the <B>'cull'</B> option must be set to
+  <A HREF=../headers/pk_facet_cull_t.html>PK_facet_cull_none_c</A>, otherwise the error PK_ERROR_bad_combination will be
+  returned.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-947484">here</A> for more information.
+
+
+SCALING
+  It is possible to associate a scale factor with a body so that any facets
+  produced for such a body, or faces of that body, are then enlarged by the
+  supplied scale factor.  The centre of scaling is the origin.
+
+  In order to supply scale factors for bodies it is necessary to fill in the
+  following fields:
+
+  <B>'bodies_with_scales'</B>
+  This field, of length <B>'n_bodies_with_scales'</B>, is an array of unique bodies
+  which are to have a scale factor applied.  If this is empty no scaling will
+  occur.  If this is not empty the parallel array <B>'scale_factors'</B> must be
+  filled in.
+
+  <B>'scale_factors'</B>
+  This field must be of length <B>'n_bodies_with_scales'</B>.  Each <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_t</A>
+  in this array is the scale associated with the corresponding body in
+  <B>'bodies_with_scales'</B>.
+
+  Note: If <B>'topol_transfs'</B> are supplied any translation component of the
+        transform will be applied to the facets after they have been scaled.
+
+  It is possible to shrink all the facets returned by providing an
+  <B>'output_scale_factor'</B> which will be used to scale all the facets returned
+  with the scaling centre at the origin.  No scaling is applied when the value
+  is <A HREF=../headers/pk_scale_factor_t.html>PK_scale_factor_1x_c</A>.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-1365121">here</A> for more information.
+
+LIMITING FACETS OUTPUT USING VIEWPORTS
+  The <B>'viewports'</B> and <B>'n_viewports'</B> options may be used to limit the facets
+  returned to those which lie on faces that overlap with at least one of the
+  specified viewports.  To do this an array of <B>'viewports'</B> should be supplied.
+
+  Any <B>'topol_transfs'</B> and <B>'scale_factors'</B> associated with the face or its body
+  are taken into account when overlapping the face with the viewport.
+
+  If <B>'n_viewports'</B> is 0 all facets will be returned.
+
+  Note: if more than one viewport is supplied PK_ERROR_not_implemented will be
+  returned.
+
+  See <A HREF="../chapters/fd_chap.109.html#50409900_pgfId-1365121">here</A> for more information.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

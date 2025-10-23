@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.049.html#50409832_pgfId-358863", " the <B>facesets</B>, This method will fail if the <B>facesets</B> are", "Functional Description - Mid-Surface Generation");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321811", " <B>facesets</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321813", "<B>facesets</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-1003647", "<B>facesets</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-321860", "<B>facesets</B> ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-356012", " Finding <B>facesets</B> bounded by specified edges in a body. See", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294790", " Deleting <B>facesets</B> from a body. See Section 65.8 . ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294855", " 65.3 Finding <B>facesets</B> ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-435253", " given set of edges in a body. These <B>facesets</B> can then be deleted from the body, if", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294874", " together with the array of edges bounding the <B>facesets</B>. ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-427629", " A structure containing the identified <B>facesets</B>, together with, optionally, the sets of edges that", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294898", " Specifies which <B>facesets</B> to return if one or more ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294905", " Whether or not to return alternating <B>facesets</B>, starting with the supplied ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294909", " See Section 65.3.2, Returning alternating <B>facesets</B> , for more information. ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294914", " number of elements in the array. The precise <B>facesets</B> that are returned depends on the value of", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294918", " is empty (default), then all found <B>facesets</B> are returned. ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294928", " 65.3.1 Choosing which <B>facesets</B> to return ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294929", " options to choose exactly which <B>facesets</B> are returned by PK_BODY_find_facesets . ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294939", " Return all <B>facesets</B> defined by the supplied edges, regardless of the", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294943", " Return only those <B>facesets</B> that include one or more of the topologies", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-294947", " Return only those <B>facesets</B> that do not include any of the topologies", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295071", " Figure 65-1 Choosing which <B>facesets</B> to return ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295072", " belongs to several <B>facesets</B>, then they are all selected or not selected,", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295075", " is PK_LOGICAL_false (the default). Section 65.3.2, Returning alternating <B>facesets</B> , describes the behaviour of ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295084", " 65.3.2 Returning alternating <B>facesets</B> ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295085", " option is PK_LOGICAL_true, you can return alternate <B>facesets</B> in a body. The behaviour of this option", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295092", " is PK_boolean_off_c, all <B>facesets</B> are returned, regardless of the value of ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295187", " Figure 65-2 Returning alternating <B>facesets</B> ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-432444", " The <B>facesets</B> identified, together with their detail types. ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-295236", "<B>facesets</B> ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-420801", " A return structure containing details about the blend <B>facesets</B> identified from the supplied ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296897", " You can use PK_FACE_classify_details to classify <B>facesets</B> according to the type of detail they represent.", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296905", " <B>facesets</B> ", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.066.html#50409852_pgfId-296907", " An array of <B>facesets</B> that you want to classify in terms of", "Functional Description - Identifying And Simplifying Model Details");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203472", " alternating <B>facesets</B>, finding 939 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205386", " <B>facesets</B> 961 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206362", " <B>facesets</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206618", " alternating <B>facesets</B> 939 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206634", " <B>facesets</B> 937 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207340", " identified <B>facesets</B>, returning 938 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208273", " deleting <B>facesets</B> 927 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209246", " identified <B>facesets</B> 938 ", "Functional Description - ZGlossary");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " double. PK_blend_orientation_t to indicate whether the corresponding underlying <B>facesets</B> are before or behind the blend face. and", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " double. PK_blend_orientation_t to indicate whether the corresponding underlying <B>facesets</B> are before or behind the blend face. and", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " <B>facesets</B> ", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_inconsistent_facesets 1020 PK_BODY_identify_facesets failure to identify <B>facesets</B>", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " <B>facesets</B> ", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_general_body 1071 PK_FACE_delete_facesets (MILD) <B>facesets</B> come from general body", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_1", " PK_BODY_identify_facesets 1020 PK_ERROR_inconsistent_facesets failure to identify <B>facesets</B>", "PK Reference - PK Error Codes (Functional)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " <B>facesets</B> ", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_boolean.html#documentation", " into <B>facesets</B> which are either inside, outside, or on", "PK Reference - PK_BODY_boolean");
+top.note("headers/pk_body_boolean_2.html#documentation", " into <B>facesets</B> which are either inside, outside, or on", "PK Reference - PK_BODY_boolean_2");
+top.note("headers/pk_body_find_facesets.html#description", "This function finds all the <B>facesets</B> on the body and splits those that are", "PK Reference - PK_BODY_find_facesets");
+top.note("headers/pk_body_find_facesets.html#documentation", "This function finds all the <B>facesets</B> made up of back faces of the given", "PK Reference - PK_BODY_find_facesets");
+top.note("headers/pk_body_find_facesets_o_t.html#declaration", " --- <B>facesets</B> (PK_LOGICAL_false)", "PK Reference - PK_BODY_find_facesets_o_t");
+top.note("headers/pk_body_find_facesets_o_t.html#documentation", " selector Used to specify which <B>facesets</B> are returned when one or", "PK Reference - PK_BODY_find_facesets_o_t");
+top.note("headers/pk_body_find_facesets_r_f.html#declaration", " PK_BODY_find_facesets_r_t *const <B>facesets</B> --- <B>facesets</B> to be deleted", "PK Reference - PK_BODY_find_facesets_r_f");
+top.note("headers/pk_body_find_facesets_r_f.html#documentation", " free all the PK memory referenced by the <B>facesets</B> ", "PK Reference - PK_BODY_find_facesets_r_f");
+top.note("headers/pk_body_find_facesets_r_t.html#declaration", " int n_selected_facesets; --- number of returned <B>facesets</B>", "PK Reference - PK_BODY_find_facesets_r_t");
+top.note("headers/pk_body_find_facesets_r_t.html#documentation", " n_selected_facesets The number of returned <B>facesets</B> in the body,", "PK Reference - PK_BODY_find_facesets_r_t");
+top.note("headers/pk_body_identify_details.html#documentation", "The function identifies classic or rubber, connected <B>facesets</B> of the body which", "PK Reference - PK_BODY_identify_details");
+top.note("headers/pk_body_identify_details_o_t.html#documentation", " depth <B>facesets</B> that are not closed rings.", "PK Reference - PK_BODY_identify_details_o_t");
+top.note("headers/pk_body_identify_facesets.html#description", "This function identifies surviving <B>facesets</B>, given matching edges on", "PK Reference - PK_BODY_identify_facesets");
+top.note("headers/pk_body_identify_facesets.html#errors", " PK_ERROR_inconsistent_facesets failure to identify <B>facesets</B>", "PK Reference - PK_BODY_identify_facesets");
+top.note("headers/pk_body_identify_facesets.html#documentation", "of contact, identifies the <B>facesets</B> that would survive a boolean", "PK Reference - PK_BODY_identify_facesets");
+top.note("headers/pk_body_identify_facesets_o_t.html#description", " This option structure is supplied to the identifying <B>facesets</B> operation.", "PK Reference - PK_BODY_identify_facesets_o_t");
+top.note("headers/pk_body_identify_facesets_o_t.html#documentation", " <B>facesets</B> contain a non-manifold condition. If its", "PK Reference - PK_BODY_identify_facesets_o_t");
+top.note("headers/pk_body_trim_neutral_sheets.html#documentation", " pairs . All the faces in the <B>facesets</B> must belong to body , which", "PK Reference - PK_BODY_trim_neutral_sheets");
+top.note("headers/pk_body_trim_neutral_sheets_2.html#documentation", " pairs . All the faces in the <B>facesets</B> must belong to body , which", "PK Reference - PK_BODY_trim_neutral_sheets_2");
+top.note("headers/pk_detail_t.html#documentation", "This datatype is used to classify connected <B>facesets</B> as details of a particular", "PK Reference - PK_detail_t");
+top.note("headers/pk_face_boolean.html#documentation", "For a body boolean all the <B>facesets</B> of the tool bodies lie", "PK Reference - PK_FACE_boolean");
+top.note("headers/pk_face_boolean_2.html#documentation", "For a body boolean all the <B>facesets</B> of the tool bodies lie", "PK Reference - PK_FACE_boolean_2");
+top.note("headers/pk_face_classify_details.html#declaration", " int n_facesets, --- number of <B>facesets</B>", "PK Reference - PK_FACE_classify_details");
+top.note("headers/pk_face_classify_details.html#documentation", " function attempts to recognize each of the given <B>facesets</B> as comprising", "PK Reference - PK_FACE_classify_details");
+top.note("headers/pk_face_delete_facesets.html#declaration", " int n_facesets, --- number of <B>facesets</B>", "PK Reference - PK_FACE_delete_facesets");
+top.note("headers/pk_face_delete_facesets.html#description", " This function deletes a collection of <B>facesets</B> from a body.", "PK Reference - PK_FACE_delete_facesets");
+top.note("headers/pk_face_delete_facesets.html#errors", " <B>facesets</B> ", "PK Reference - PK_FACE_delete_facesets");
+top.note("headers/pk_face_delete_facesets.html#documentation", "function returns the index in the <B>facesets</B> array of that faceset.", "PK Reference - PK_FACE_delete_facesets");
+top.note("headers/pk_face_delete_facesets_o_t.html#documentation", " is an array parallel to the <B>facesets</B> given to", "PK Reference - PK_FACE_delete_facesets_o_t");
+top.note("headers/pk_face_find_blend_unders.html#documentation", " faces are required. The function will only return <B>facesets</B> for", "PK Reference - PK_FACE_find_blend_unders");
+top.note("headers/pk_face_find_blend_unders_r_t.html#declaration", " --- <B>facesets</B> found", "PK Reference - PK_FACE_find_blend_unders_r_t");
+top.note("headers/pk_face_find_blend_unders_r_t.html#documentation", " n_unders The number of underlying <B>facesets</B> found.", "PK Reference - PK_FACE_find_blend_unders_r_t");
+top.note("headers/pk_face_identify_blends_r_t.html#declaration", " int n_blend_facesets; --- number of blend <B>facesets</B>", "PK Reference - PK_FACE_identify_blends_r_t");
+top.note("headers/pk_face_identify_blends_r_t.html#documentation", " n_blend_facesets The number of blend <B>facesets</B> found.", "PK Reference - PK_FACE_identify_blends_r_t");
+top.note("headers/pk_identify_details_r_f.html#declaration", " PK_identify_details_r_t *const <B>facesets</B>", "PK Reference - PK_identify_details_r_f");
+top.note("headers/pk_identify_details_r_t.html#declaration", " int n_facesets; --- number of <B>facesets</B>", "PK Reference - PK_identify_details_r_t");
+top.note("headers/pk_identify_details_r_t.html#documentation", " n_facesets The number of <B>facesets</B> found", "PK Reference - PK_identify_details_r_t");
+top.note("headers/pk_identify_facesets_r_f.html#declaration", " PK_identify_facesets_r_t *const <B>facesets</B>", "PK Reference - PK_identify_facesets_r_f");
+top.note("headers/pk_identify_facesets_r_t.html#declaration", " --- <B>facesets</B> on target", "PK Reference - PK_identify_facesets_r_t");
+top.note("headers/pk_identify_facesets_r_t.html#description", "This structure contains the results of an identify <B>facesets</B> operation.", "PK Reference - PK_identify_facesets_r_t");
+top.note("headers/pk_identify_facesets_r_t.html#documentation", " n_survive_target_faces The number of surviving <B>facesets</B> on the", "PK Reference - PK_identify_facesets_r_t");
+top.note("headers/pk_report_3_t.html#documentation", " <B>facesets</B> of the blend.", "PK Reference - PK_REPORT_3_t");
+top.note("chapters/kd_chap.09.html#50475023_pgfId-273915", " second is just a logical which controls whether <B>facesets</B> are considered as a single solid or not.", "KID Manual - Miscellaneous Useful Functions");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_change_partition</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_change_partition</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B><A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A>  PK_BODY_change_partition
+(
+<I>--- received arguments ---
+</I><A HREF=../headers/pk_body_t.html>PK_BODY_t</A>        body,         --- body to move
+<A HREF=../headers/pk_partition_t.html>PK_PARTITION_t</A>   partition     --- partition to move into
+)
+</B>
+<A NAME="description"></A>
+<I>This function moves the given <B>'body'</B> and the entities within it into the given
+<B>'partition'</B>, without changing their tags.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+
+    PK_ERROR_rollback_not_started Partitioned rollback is not active
+    PK_ERROR_instanced_body       The body is instanced
+    PK_ERROR_entity_not_new       Some entity in the body was created before
+                                  the last roll operation
+
+<A NAME="documentation"></A>
+If the <B>'body'</B> is already in the given <B>'partition'</B>, nothing is done.
+
+Otherwise, the <B>'body'</B> and the entities within it must all have been created
+since the last pmark was made, or rolled to, in the original partition of the
+<B>'body'</B>.
+
+If the <B>'body'</B> and the entities within it were created since the last pmark but
+before a guard was set in the original partition of the <B>'body'</B>, then the
+original partition will have its guard set to its current state.
+
+The <B>'body'</B> must not be instanced.
+
+This function should only be called when partitioned rollback has been started
+with <A HREF=../headers/pk_delta_register_callbacks.html>PK_DELTA_register_callbacks</A>.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

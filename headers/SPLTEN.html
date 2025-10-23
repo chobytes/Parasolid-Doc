@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<TITLE>SPLTEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>SPLTEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+SPLTEN ( body, nfaces, faces, new_faces, ifail )
+================================================
+
+  Split topology and geometry of body at any G1 discontinuities.
+
+Receives:
+  KI_tag_body              *body           --- body
+
+Returns:
+ &lt;KI_int_nitems&gt;           *nfaces         --- number of faces that have been split
+ &lt;KI_tag_list_face&gt;        *faces          --- list of original faces that were split
+ &lt;KI_tag_list_list&gt;        *new_faces      --- list for each new set of faces,
+                                           --- corresponding to each of the old faces
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cant_extract_geom      failed to extract geom
+
+Description:
+
+  Receives a body ('body'), that maybe invalid due to geometry allocated to
+  topology that is not G1 continuous. The faces and edges will be split
+  at places where the continuity is G0. Existing geometry will be modified,
+  new topology will be created - faces, edges and vertices.
+
+  A curve that is not G1, and lies on a surface that is G1 will be split,
+  and the surface left intact.
+
+  'faces' is a list of the original faces on the body that have been split.
+
+  'new_faces' is a list of face lists. Each of the face lists corresponds
+  to one of the original faces. For example if a face has discontinuities,
+  it will be split and new faces created. The 'face' list will contain the
+  tag of the original face, and the element in the 'new_faces' list will
+  contain a list of the new face's corresponding tags.
+
+
+</PRE>
+</BODY>
+</HTML>

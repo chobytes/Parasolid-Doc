@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_boolean_select_topolset_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_boolean_select_topolset_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_boolean_select_topolset_o_s
+    {
+    int                         o_t_version;   --- version number
+    int                         n_selectors;   --- (0)
+    const <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>           *selectors;     --- (NULL)
+    int                         n_help_points; --- (0)
+    const <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>          *help_points;   --- (NULL)
+    <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_t</A>          target_select; --- (<A HREF=../headers/pk_selector_type_t.html>PK_selector_type_off_c</A>)
+    <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_t</A>          tool_select;   --- (<A HREF=../headers/pk_selector_type_t.html>PK_selector_type_off_c</A>)
+    <A HREF=../headers/pk_selector_split_t.html>PK_selector_split_t</A>         split_action;  --- (<A HREF=../headers/pk_selector_split_t.html>PK_selector_split_fail_c</A>)
+    };
+typedef struct PK_boolean_select_topolset_o_s
+    PK_boolean_select_topolset_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is used in body boolean operations to identify
+topolsets in the tool and/or target body to be excluded from or included in
+the operation.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_boolean_o_t.html>PK_BODY_boolean_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+A topolset is a connected set of solid regions and boundary regions which lies
+wholly inside or outside the other body. (Tool faces which intersect the
+target body are split by the boolean; the resultant faces lie wholly inside
+or outside the target body. The same is true of the target with respect to
+the tool.)
+
+Each topolset is identified by a single solid region, face, edge, or vertex
+which is a member of it; these identifying topologies are known as <B>'selectors'</B>.
+In cases where a selector is split by the boolean, a help point may be given
+to specify which portion of the selector is intended.
+
+Topolsets from the target and/or tool bodies may be excluded or included as
+specified by the <B>'select_type'</B>. The following restrictions are imposed:
+
+ o The selected topolsets from the target are either all excluded or all
+   included. It is not possible to exclude some selected topolsets from the
+   target and include others. The same also applies to the tool(s): the
+   selected topolsets from (all) the tool(s) are either all excluded or all
+   included. However since the selector types for the target and tool(s) are
+   independent of each other, it is possible to exclude all the selected
+   topolsets from the target and include all the selected topolsets from the
+   tool(s), or vice versa.
+
+ o Excluding a topolset means that it will be ignored for the purposes of the
+   Boolean operation. The Boolean will proceed as though the excluded topolset
+   did not exist. Other non-selected topolsets of the same type will be
+   treated as normal; they will be included in the Boolean operation. The same
+   is also true in reverse; including a topolset means automatically
+   excluding all non-selected topolsets of the same type from the Boolean. For
+   example, if there are several topolsets derived only from the target, and
+   only one of them is selected, and target_select is set to
+   <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_include_c</A>, then the other non-selected topolsets derived
+   only from the target will automatically be excluded from the Boolean
+   operation.
+
+ o Each selector must unambiguously identify a topolset. Where this is not
+   possible (i.e. where a selector topology is split by the imprint), there
+   are two options. Setting the <B>'split_action'</B> to
+   <A HREF=../headers/pk_selector_split_t.html>PK_selector_split_propagate_c</A> will select all the topological entities
+   derived from the selector topology. Alternatively, an associated help point
+   for the ambiguous selector may be provided in <B>'help_points'</B>. The help point
+   must lie within the interior and not on the boundary of its selector
+   topology and, if the Boolean splits the selector topology, the help point
+   must lie within the interior and not on the boundary of one of the
+   selector topology's offspring.  If these conditions are not met the function
+   will fail with the error PK_ERROR_bad_position. The value of <B>'split_action'</B>
+   will be ignored for a selector if a help point is set for that selector.
+
+ o Depending on which Boolean function is being called, only certain topolsets
+   may be selected to exclude or include.
+
+   o For a unite operation, a selector determines whether a topolset derived
+     only from the target or only from the tool will survive, and an error
+     will be returned if it does not define such a topolset. The topolset will
+     not survive if excluded.
+
+   o For an intersect operation, a selector determines whether a topolset
+     derived from both the target and the tool will survive, and an error will
+     be returned if it does not define such a topolset. The same topolset
+     could be indicated by a selector on either the target or the tool. The
+     topolset will not survive if excluded.
+
+   o For a subtract operation, a selector on the target determines whether a
+     topolset derived from only the target will survive, and an error will be
+     returned if it does not define such a topolset. The topolset will not
+     survive if excluded. A selector on the tool determines whether a topolset
+     derived from both the target and tool will be deleted, and an error will
+     be returned if it does not define such a topolset. The topolset will not
+     be removed from the target if excluded.
+
+   If a selector is chosen that corresponds to an unsuitable topolset for the
+   Boolean function being called, a PK_ERROR_unsuitable_topology error will be
+   returned, with the tag of the unsuitable selector as the error entity.
+   This tag may be dead, i.e. the selector topology may have been deleted
+   during the operation. However the Parasolid session must be rolled back
+   after a serious error such as this one, so the tag will be live again after
+   the rollback has been performed.
+
+Description of fields:
+
+
+
+<B>'n_selectors'</B>        The number of selector topologies supplied.
+
+
+<B>'selectors'</B>          Topological entities which each uniquely identify a
+                     topolset. The array may contain a mixture of solid
+                     regions, faces, edges, and vertices, but no other types.
+                     The first <B>'n_help_points'</B> entries in the array are
+                     associated with their corresponding entries in
+                     <B>'help_points'</B>.
+
+
+<B>'n_help_points'</B>      The number of help points supplied. This may be any
+                     number between zero and <B>'n_selectors'</B>.
+
+
+<B>'help_points'</B>        Help points (vectors) which, when combined with the
+                     appropriate topological entity from the <B>'selectors'</B> array,
+                     each unambiguously identify a unique topolset. If no
+                     help points are required, this array may be NULL. Up
+                     to <B>'n_selectors'</B> help points may be supplied, one for
+                     each selector that requires a help point.
+
+
+<B>'target_select'</B>      Indicates whether to exclude or include the selected
+                     topolsets from the target body. Permitted values are
+
+                     <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_exclude_c</A>
+                     <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_include_c</A>
+                     <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_off_c</A>
+
+
+<B>'tool_select'</B>        Indicates whether to exclude or include the selected
+                     topolsets from the tool body. Permitted values are
+
+                     <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_exclude_c</A>
+                     <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_include_c</A>
+                     <A HREF=../headers/pk_selector_type_t.html>PK_selector_type_off_c</A>
+
+
+<B>'split_action'</B>       Indicates what action should be taken if a selector
+                     with no associated help point is split by the boolean.
+                     Permitted values are
+
+                     <A HREF=../headers/pk_selector_split_t.html>PK_selector_split_fail_c</A>
+                     <A HREF=../headers/pk_selector_split_t.html>PK_selector_split_propagate_c</A>
+
+                     Propagate means that all topological entities derived
+                     from the selector after the split are selected.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

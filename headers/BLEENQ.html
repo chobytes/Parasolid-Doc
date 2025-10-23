@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<TITLE>BLEENQ</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>BLEENQ</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_ask_blend.html>PK_EDGE_ask_blend</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+BLEENQ ( edge, face1, face2, type, range1, range2, nprops, props, pvals, 
+=========================================================================
+         ifail )
+         =======
+
+  Enquire blend parameters.
+
+Receives:
+  KI_tag_edge              *edge           --- edge whose blend is required
+
+Returns:
+  KI_tag_face              *face1          --- face to left of edge
+  KI_tag_face              *face2          --- face to right of edge
+  int                      *type           --- type of blend
+  double                   *range1         --- range of blend on face1
+  double                   *range2         --- range of blend on face2
+ &lt;KI_int_nitems&gt;           *nprops         --- number of blend properties
+ &lt;KI_tag_list_int&gt;         *props          --- blend properties
+ &lt;KI_tag_list_list&gt;        *pvals          --- blend property values
+  KI_cod_error             *ifail          --- failure code
+
+
+Description:
+  The parameters of the blending surface defined on 'edge' are returned by this
+  routine.  It can also be used to find if an edge is blended.
+
+   The returned arguments are as follows:
+
+      'face1'   The face to the left of the edge.
+      'face2'   The face to the right of the edge.
+
+      'type'   0 => no blend on the edge
+                1 => exact rolling ball blend
+                2 => exact chamfer
+                3 => variable radius rolling ball
+
+      'range1'  The range of the blend associated with 'face1'.
+
+      'range2'  The other range of the blend
+
+
+  In the case of a variable radius blend, this function will only return the end
+  radii of the blend. 'range1' will refer to the range at the start of the edge
+  'range2' will refer to the range at the end of the edge.
+  The arguments 'props' and 'pvals' consist of two parallel lists of blend
+  properties and associated data, each of length 'nprops', such as would
+  be passed to BLECRB or BLECVR.
+
+
+
+</PRE>
+</BODY>
+</HTML>

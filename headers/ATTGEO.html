@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+<TITLE>ATTGEO</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ATTGEO</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_attach_surfs.html>PK_FACE_attach_surfs</A><BR>
+<A HREF=../headers/pk_edge_attach_curves.html>PK_EDGE_attach_curves</A><BR>
+<A HREF=../headers/pk_fin_attach_curves.html>PK_FIN_attach_curves</A><BR>
+<A HREF=../headers/pk_vertex_attach_points.html>PK_VERTEX_attach_points</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ATTGEO ( topol, geom, sense, ifail )
+====================================
+
+  Attach geometry to topology
+
+Receives:
+  KI_tag_topology          *topol          --- topological entity
+  KI_tag_geometry          *geom           --- geometric entity
+  KI_cod_logical           *sense          --- face sense
+
+Returns:
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_has_parent             'geom' is already attached
+  KI_bad_shared_dep         attempt to illegally share a dependent of 'geom'
+  KI_bad_shared_entity      attempt to illegally share 'geom'
+  KI_geom_not_needed        'topol' already owns geometry
+  KI_geom_topol_mismatch    geometry/topology mismatch
+  KI_inconsistent_geom      inconsistent geometry
+  KI_wrong_entity           type of 'topol' incorrect
+  KI_invalid_geometry       geometry does not pass checks
+  KI_not_in_same_partition  Topol and geom are in different partitions
+
+Description:
+
+  The geometric entity is connected to the topological entity if their types
+  permit. The combinations of topology and geometry allowed are:
+
+
+       geometry       |   topology
+      ----------------|------------
+       surface        |   face
+       curve          |   edge
+       curve          |   fin
+       point          |   vertex
+       transform      |   instance
+
+  ATTGEO will not copy any geometric entity, thus attachments are further
+  restricted by constraints on the sharing of geometry:
+
+     o A point or transform cannot be attached to more than one topological
+       entity. A curve or surface may be shared by more than one topological
+       entity, so long as they are in the same body.
+
+     o Orphan geometry may be attached to a face, edge or vertex if neither the
+       entity nor any of its dependents are attached to topology and neither
+       the entity nor any of its dependents are shared with any other
+       orphan entity.
+
+     o Construction geometry in a body may be attached to a face, edge or vertex
+       so long as it is in the same body.
+
+  There are also restrictions on the types of curve that may be attached to
+  edges and fins. Only trimmed curves with SP curve basis curves may be attached
+  to fins and the corresponding edge must have a user defined tolerance.
+  No curve may be attached to a toleranced edge and no curves may be
+  attached to the fins of a non-toleranced edge.
+
+  If a transform is being attached to an instance it may only contain
+  translation and rotation components. Reflections, scales and shears are not
+  allowed.
+
+  If data checking is on, (see SEINTP and OUINTP ), simple checks are made
+  that geometry to be attached to a face, edge or vertex is geometrically
+  consistent with any geometry attached to neighbouring topological entities,
+  but the checks do not guarantee that the body is valid. For example, if a
+  surface is attached to a face, a check is made that the curves of the edges
+  of the face lie on the surface, but no check is made that the surface does
+  not intersect other faces of the body. If the checks fail, attachment will
+  not take place.
+
+  If data checking is off, the only checks that will be performed are that
+  the entity to be attached is of the correct type.
+
+
+  When surfaces are attached to faces, 'sense' specifies the value to which
+  the face sense is set. If 'sense' is true, the face normal is parallel
+  to the surface normal. For all other combinations of geometry and
+  topology the 'sense' is ignored.
+
+  The curve or surface must be capable of passing the checks imposed by CHCKEN.
+
+  The composite geometry checks are only performed if SLIPCO (see SEINTP) is
+  set to 0.
+
+  The self intersection check is only performed if SLIPSI (see SEINTP) is set
+  to a non zero value.
+
+
+  Note: ATTGEO may not be used to attach construction geometry to a body or
+  assembly: use DEFCON for this.
+
+</PRE>
+</BODY>
+</HTML>

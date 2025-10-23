@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298818", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-957014", " This chapter describes how the fields of the <B>PK_TOPOL_facet_mesh_o_t</B> and PK_TOPOL_facet_mesh_2_o_t options structures control the generation of the", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-957026", " <B>PK_TOPOL_facet_mesh_o_t</B> is used by PK_TOPOL_render_facet , which outputs the geometry", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-294752", " The default values in <B>PK_TOPOL_facet_mesh_o_t</B> and PK_TOPOL_facet_mesh_2_o_t demonstrate how to return basic topological data", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-294786", " The following sections describe the fields in the <B>PK_TOPOL_facet_mesh_o_t</B> and PK_TOPOL_facet_mesh_2_o_t options structures. ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-333110", " Note: This option is only available in <B>PK_TOPOL_facet_mesh_o_t</B> . ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-342170", " options in PK_TOPOL_facet_mesh_2_o_t or <B>PK_TOPOL_facet_mesh_o_t</B> to control whether, and how, small features are ignored.", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-1226042", " Incremental faceting is controlled by the following options in <B>PK_TOPOL_facet_mesh_o_t</B> and PK_TOPOL_facet_mesh_2_o_t : ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-947485", " option in PK_TOPOL_facet_mesh_2_o_t or <B>PK_TOPOL_facet_mesh_o_t</B> . It takes the following values: ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.110.html#50409901_pgfId-294781", " <B>PK_TOPOL_facet_mesh_o_t</B> controls generation of the facet mesh, as described in", "Functional Description - Faceting Output Via GO ");
+top.note("chapters/p2_chap.07.html#sec_f_1_1", " PK_ERROR_lt_3_sides 33 <B>PK_TOPOL_facet_mesh_o_t</B> max_facet_sides too small. (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " PK_ERROR_nitems_lt_0 902 <B>PK_TOPOL_facet_mesh_o_t</B> negative number of items in loop array.", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_3", " PK_ERROR_unsuitable_topology 1033 <B>PK_TOPOL_facet_mesh_o_t</B> entity is not face or body in", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.07.html#sec_f_1_4", " PK_ERROR_not_implemented 5000 <B>PK_TOPOL_facet_mesh_o_t</B> incremental_method is set to", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_1", " PK_ERROR_bad_combination 5145 <B>PK_TOPOL_facet_mesh_o_t</B> a bad combination of options has been", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_2", " PK_ERROR_distance_too_large 927 <B>PK_TOPOL_facet_mesh_o_t</B> min/max_facet_width too large. (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " PK_ERROR_lt_3_sides 33 <B>PK_TOPOL_facet_mesh_o_t</B> max_facet_sides too small. (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.09.html#sec_h_1_4", " PK_ERROR_unsuitable_topology 1033 <B>PK_TOPOL_facet_mesh_o_t</B> entity is not face or body in", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_4", " <B>PK_TOPOL_facet_mesh_o_t</B> 5145 PK_ERROR_bad_combination a bad combination of options has been", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_body_t.html#description", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_BODY_t");
+top.note("headers/pk_facet_cull_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_cull_t");
+top.note("headers/pk_facet_degen_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_degen_t");
+top.note("headers/pk_facet_density_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_density_t");
+top.note("headers/pk_facet_ignore_scope_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_ignore_scope_t");
+top.note("headers/pk_facet_ignore_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_ignore_t");
+top.note("headers/pk_facet_incr_method_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_incr_method_t");
+top.note("headers/pk_facet_incr_prop_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_incr_prop_t");
+top.note("headers/pk_facet_incr_refine_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_incr_refine_t");
+top.note("headers/pk_facet_incr_report_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_incr_report_t");
+top.note("headers/pk_facet_incr_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_incr_t");
+top.note("headers/pk_facet_incr_tf_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_incr_tf_t");
+top.note("headers/pk_facet_inflect_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_inflect_t");
+top.note("headers/pk_facet_local_tolerances_t.html#description", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_local_tolerances_t");
+top.note("headers/pk_facet_local_tolerances_t.html#documentation", " constraint previously supplied in the <B>PK_TOPOL_facet_mesh_o_t</B> . If a", "PK Reference - PK_facet_local_tolerances_t");
+top.note("headers/pk_facet_match_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_match_t");
+top.note("headers/pk_facet_quality_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_quality_t");
+top.note("headers/pk_facet_respect_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_respect_t");
+top.note("headers/pk_facet_shape_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_shape_t");
+top.note("headers/pk_facet_wire_edges_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_facet_wire_edges_t");
+top.note("headers/pk_logical_t.html#description", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_LOGICAL_t");
+top.note("headers/pk_loop_t.html#description", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_LOOP_t");
+top.note("headers/pk_nabox_sf_t.html#description", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_NABOX_sf_t");
+top.note("headers/pk_scale_factor_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_scale_factor_t");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#documentation", " max_facet_sides in <B>PK_TOPOL_facet_mesh_o_t</B> is ignored when facet strips are", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_mesh_2_o_t.html#documentation", "The <B>PK_TOPOL_facet_mesh_o_t</B> structure provides the following controls :", "PK Reference - PK_TOPOL_facet_mesh_2_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#declaration", "typedef struct PK_TOPOL_facet_mesh_o_s <B>PK_TOPOL_facet_mesh_o_t</B>;", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_facet_mesh_o_t.html#documentation", "The <B>PK_TOPOL_facet_mesh_o_t</B> structure provides the following controls :", "PK Reference - PK_TOPOL_facet_mesh_o_t");
+top.note("headers/pk_topol_facet_o_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> control;", "PK Reference - PK_TOPOL_facet_o_t");
+top.note("headers/pk_topol_render_facet_o_t.html#declaration", " <B>PK_TOPOL_facet_mesh_o_t</B> control; --- [PF]", "PK Reference - PK_TOPOL_render_facet_o_t");
+top.note("headers/pk_topol_t.html#description", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_TOPOL_t");
+top.note("headers/pk_vector1_t.html#errors", " <B>PK_TOPOL_facet_mesh_o_t</B> ", "PK Reference - PK_VECTOR1_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

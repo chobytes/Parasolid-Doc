@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>FIXIDS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>FIXIDS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_part_rectify_identifiers.html>PK_PART_rectify_identifiers</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+FIXIDS ( part, nfault, entys, oldids, newids, ifail )
+=====================================================
+
+  Fix identifiers in part.
+
+Receives:
+  KI_tag_part              *part           --- part in which to fix identifiers
+
+Returns:
+ &lt;KI_int_nitems&gt;           *nfault         --- number of entries in lists
+ &lt;KI_tag_list_entity&gt;      *entys          --- entities with new identifiers
+ &lt;KI_tag_list_int&gt;         *oldids         --- previous identifiers
+ &lt;KI_tag_list_int&gt;         *newids         --- new identifiers
+  KI_cod_error             *ifail          --- error code
+
+
+Description:
+  FIXIDS searches 'part' for entities with invalid or duplicate identifiers, and
+  assigns new unique identifiers to all such entities it finds.
+
+  If there are no faults found, 'nfault' is zero, and no other information is
+  returned; otherwise the lists 'entys', 'oldids' and 'newids' are each of
+  length 'nfault'.
+
+  'entys' contains the tags of entities to which new identifiers have been
+  assigned; the old and new identifiers are returned in corresponding entries in
+  'oldids' and 'newids' respectively.
+
+  See IDENID and OUIDEN for further explanation about identifiers.
+
+</PRE>
+</BODY>
+</HTML>

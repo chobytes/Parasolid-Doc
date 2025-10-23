@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_GEOM_render_line_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_GEOM_render_line_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_GEOM_render_line_o_s
+    {
+    int                    o_t_version;  --- version of this PK option struct
+    <A HREF=../headers/pk_render_param_t.html>PK_render_param_t</A>      param;        --- whether to draw parametric hatch
+                                         --- lines (<A HREF=../headers/pk_render_param_t.html>PK_render_param_no_c</A>)
+    <A HREF=../headers/pk_render_boundary_t.html>PK_render_boundary_t</A>   boundary;     --- whether to draw surface boundaries
+                                         --- (<A HREF=../headers/pk_render_boundary_t.html>PK_render_boundary_yes_c</A>)
+    <A HREF=../headers/pk_render_bcurve_t.html>PK_render_bcurve_t</A>     bcurve;       --- method for rendering bcurves
+                                         --- (<A HREF=../headers/pk_render_bcurve_t.html>PK_render_bcurve_polyline_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_curve_chord_tol;
+                                         --- whether curve_chord_tol is set
+                                         --- (PK_LOGICAL_false)
+    double                   curve_chord_tol;
+                                         --- chordal tolerance between curve
+                                         --- and chord edges in model units
+                                         --- (0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_curve_chord_max;
+                                         --- whether curve_chord_max is set
+                                         --- (PK_LOGICAL_false)
+    double                   curve_chord_max;
+                                         --- max length of chord in model units
+                                         --- (0.0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>             is_curve_chord_ang;
+                                         --- whether curve_chord_ang is set
+                                         --- (PK_LOGICAL_false)
+    double                   curve_chord_ang;
+                                         --- max angle between adjacent chords
+                                         --- in radians (0.0)
+    double                 param_u;      --- hatch spacing in U direction (0.0)
+    double                 param_v;      --- hatch spacing in V direction (0.0)
+    };
+typedef struct PK_GEOM_render_line_o_s PK_GEOM_render_line_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Controls for the <A HREF=../headers/pk_geom_render_line.html>PK_GEOM_render_line</A> options structure.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_o_t_version_incorrect  option structure not initialised correctly
+    PK_ERROR_bad_tolerance          is_&lt;tol&gt; is true but used with a bad &lt;tol&gt;
+    PK_ERROR_bad_parameter          <A HREF=../headers/pk_render_param_t.html>PK_render_param_yes_c</A> needs param_u/v vals
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_geom_render_line.html>PK_GEOM_render_line</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The following PK option structure provides controls for <A HREF=../headers/pk_geom_render_line.html>PK_GEOM_render_line</A>
+when generating view-independent drawings of geometric entities through the
+Graphics Output (GO) interface.
+
+The options specify whether surface boundary and hatch lines are required
+and the method to be used when outputting bcurves through GO.
+
+
+tolerance values
+Each control tolerance is passed as a pair of values, consisting of a
+<A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> flag and a double precision value. If a specific tolerance
+is required, the variable is set to a strictly positive value and the
+associated flag set to PK_LOGICAL_true.
+
+If Parasolid is to use its internal tolerance defaults, the associated flag is
+set to PK_LOGICAL_false (and no use made of the associated tolerance argument).
+This is the default state set by the PK_GEOM_render_line_o_m macro.
+
+This convention has changed since Parasolid 8.0. Control tolerances were
+formerly passed as doubles, using the convention that a value of exactly
+0.0 implied that Parasolid should choose a suitable tolerance value.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_make_surf_trimmed_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_make_surf_trimmed_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_make_surf_trimmed_o_s
+    {
+    int                 o_t_version;    --- version number of
+                                        --- option structure
+    double              fitting_tolerance;
+                                        --- distance tolerance to use when
+                                        --- fitting to mesh (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        have_bdry_tolerance;
+                                        --- whether boundary tolerance is
+                                        --- supplied (PK_LOGICAL_false)
+    double              bdry_tolerance; --- optional distance tolerance to use
+                                        --- when fitting to the mesh boundary
+    double              bdry_mvertex_angle;
+                                        --- angle in radians above which any
+                                        --- laminar boundary will be split
+                                        --- into separate trimming curves (0.3)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        fit_normals;    --- whether to fit the surface
+                                        --- to the mesh vertex normals
+                                        --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        have_normal_tolerance;
+                                        --- whether normal tolerance is
+                                        --- supplied (PK_LOGICAL_false)
+    double              normal_tolerance;
+                                        --- optional angular tolerance to use
+                                        --- when fitting to the normal vectors
+                                        --- at mesh vertices
+    };
+typedef struct PK_MESH_make_surf_trimmed_o_s PK_MESH_make_surf_trimmed_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_mesh_make_surf_trimmed.html>PK_MESH_make_surf_trimmed</A>.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_tolerance          (MILD)  A bad combination of tolerances
+                                            has been given.
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_make_surf_trimmed.html>PK_MESH_make_surf_trimmed</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+<B>'fitting_tolerance'</B>     The distance tolerance used to approximate the
+                        input mesh. If <B>'have_bdry_tolerance'</B> is set to
+                        PK_LOGICAL_true, then this should be larger than
+                        the <B>'bdry_tolerance'</B>. (1.0e-5)
+<B>'have_bdry_tolerance'</B>   Whether a <B>'bdry_tolerance'</B> is supplied.
+                        (PK_LOGICAL_false)
+<B>'bdry_tolerance'</B>        If <B>'have_bdry_tolerance'</B> is set to
+                        PK_LOGICAL_true, this specifies the distance
+                        tolerance to be used for the boundary of the
+                        supplied mesh. The value should be smaller
+                        than the <B>'fitting_tolerance'</B>.
+<B>'bdry_mvertex_angle'</B>    This option controls how the laminar boundary of the
+                        <B>'mesh'</B> is approximated by trimming curves.
+                        Separate trimming curves will be created either side
+                        of an mvertex where the angle between adjacent
+                        laminar mfins exceeds the <B>'bdry_mvertex_angle'</B>. (0.3)
+<B>'fit_normals'</B>           Whether the resulting surface should have
+                        normals which conform to the vertex normals of
+                        the input mesh. (PK_LOGICAL_false)
+<B>'have_normal_tolerance'</B> Whether a <B>'normal_tolerance'</B> is supplied for
+                        conforming to mesh vertex normals. If
+                        <B>'have_normal_tolerance'</B> is set to
+                        PK_LOGICAL_false, Parasolid will choose an
+                        appropriate value.
+                        (PK_LOGICAL_false)
+<B>'normal_tolerance'</B>      If <B>'have_normal_tolerance'</B> is set to
+                        PK_LOGICAL_true, this specifies the angular
+                        tolerance to use for fitting to mesh
+                        vertex normals.
+                        If <B>'have_normal_tolerance'</B> is set to
+                        PK_LOGICAL_true, <B>'normal_tolerance'</B> must be
+                        set to a positive value.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

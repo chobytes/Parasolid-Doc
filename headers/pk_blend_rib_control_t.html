@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_blend_rib_control_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_blend_rib_control_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_blend_rib_control_s
+    {
+    <A HREF=../headers/pk_blend_output_rib_t.html>PK_blend_output_rib_t</A> output_rib;       --- whether and how ribs are made
+                                            --- (<A HREF=../headers/pk_blend_output_rib_t.html>PK_blend_output_rib_no_c</A>)
+    <A HREF=../headers/pk_blend_group_rib_t.html>PK_blend_group_rib_t</A>  group_rib;        --- how to group ribs
+                                            --- (<A HREF=../headers/pk_blend_group_rib_t.html>PK_blend_group_rib_no_c</A>)
+    int                   max_n_ribs;       --- limit ribs made per group (0)
+    int                   n_interval_parms; --- number of parameters (0)
+    double               *interval_parms;   --- parameters dividing the spine
+                                            --- into intervals (NULL)
+    };
+typedef struct PK_blend_rib_control_s PK_blend_rib_control_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure controls how blend ribs are output.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_make_blend_o_t.html>PK_FACE_make_blend_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+                    Blend Rib Controls.
+
+ <B>'output_rib'</B>       Control how ribs are produced.
+                    This token controls under what circumstances face-face
+                    blending will produce ribs.  The default is to not
+                    output ribs.
+
+ <B>'group_rib'</B>        Control how to group the ribs produced.
+                    Grouping controls how the limit on the number of ribs
+                    is applied.  This token defines whether the ribs are
+                    grouped by blend face, or by the intervals along the
+                    <B>'parameter'</B> curve defined by <B>'interval_parms'</B>,
+                    or not at all (default).
+
+ <B>'max_n_ribs'</B>       Limit on number of ribs produced per group.
+                    The number of ribs produced in each group will be no
+                    greater than this number. The default value is zero,
+                    for which no ribs will be produced.
+
+ <B>'n_interval_parms'</B> Number of <B>'interval_parms'</B> supplied.
+                    Default is zero.
+
+ <B>'interval_parms'</B>   Interval parameters.
+                    These are used to divide the <B>'parameter'</B> curve into
+                    intervals for grouping ribs.  They should have values
+                    in the parameter range of the curve.
+
+If <B>'output_rib'</B> is not set to <A HREF=../headers/pk_blend_output_rib_t.html>PK_blend_output_rib_no_c</A> or to
+<A HREF=../headers/pk_blend_output_rib_t.html>PK_blend_output_rib_at_help_c</A> then a curve must be supplied in the `
+parameter' field of the <B>'shape'</B> structure.
+If <B>'output_rib'</B> is set to <A HREF=../headers/pk_blend_output_rib_t.html>PK_blend_output_rib_at_help_c</A> then <B>'group_rib'</B>
+must be set to <A HREF=../headers/pk_blend_group_rib_t.html>PK_blend_group_rib_no_c</A>, <B>'n_interval_parms'</B> to zero and
+<B>'interval_parms'</B> to null. The help point at which the rib is evaluated
+is that in the <B>'help_point'</B> field of the <A HREF=../headers/pk_face_make_blend_o_t.html>PK_FACE_make_blend_o_t</A> structure
+containing the PK_blend_rib_control_t structure.
+
+If <B>'group_rib'</B> is set to <A HREF=../headers/pk_blend_group_rib_t.html>PK_blend_group_rib_by_parms_c</A> and <B>'n_interval_parms'</B>
+is zero, or either zero or one for closed blends, then the effect of
+<B>'max_n_ribs'</B> will be identical to having no grouping.
+If <B>'group_rib'</B> is set to another value the <B>'interval_parms'</B> will have
+no effect.
+
+If a user-supplied partition has been specified via the <B>'partition'</B> field of
+a <A HREF=../headers/pk_face_make_blend_o_t.html>PK_FACE_make_blend_o_t</A> option structure any resulting ribs will be placed
+in that partition.
+
+For further details on the use of these options please refer to the Face-Face
+Blending Chapter of the Parasolid Functional Description.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

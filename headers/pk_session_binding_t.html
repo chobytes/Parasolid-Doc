@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_SESSION_binding_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_SESSION_binding_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_SESSION_binding_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_binding.html>PK_SESSION_ask_binding</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+PK_SESSION_binding_t has the values:
+
+  PK_SESSION_binding_unknown_c      The caller wishes to know which
+                                    programming language binding is
+                                    in use.
+
+  PK_SESSION_binding_C_native_c     The binding is a native code C
+                                    interface, which is built into
+                                    the product
+
+  PK_SESSION_binding_net_unsafe_c   The binding is a Microsoft .NET
+                                    wrapper around the native code C
+                                    interface. The binding requires
+                                    the use of "unsafe" .NET code.
+
+  PK_SESSION_binding_net_safe_c     The binding is a Microsoft .NET
+                                    wrapper around the native code C
+                                    interface. The binding does not
+                                    require the use of "unsafe" .NET
+                                    code. This binding does not
+                                    currently exist, but the value is
+                                    reserved for possible future use.
+
+Note that bindings other than the native code C interface are
+not necessarily provided on all supported platforms, and that
+the existence of a value for a particular binding does not
+necessarily imply that the binding will be provided.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

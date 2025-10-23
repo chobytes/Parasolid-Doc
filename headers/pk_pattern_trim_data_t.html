@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_pattern_trim_data_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_pattern_trim_data_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_pattern_trim_data_s
+    {
+    int                n_curves;            --- number of trimming curves
+    <A HREF=../headers/pk_curve_t.html>PK_CURVE_t</A>        *curves;              --- trim curves
+    <A HREF=../headers/pk_interval_t.html>PK_INTERVAL_t</A>     *intervals;           --- trim curve intervals
+    int               *trim_loop;           --- which trim loop
+    int               *trim_set;            --- not used
+    int                n_trim_directions;   --- number of loops
+    <A HREF=../headers/pk_hand_t.html>PK_HAND_t</A>         *trim_directions;     --- which direction to trim
+    };
+typedef struct PK_pattern_trim_data_s PK_pattern_trim_data_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure records trimming data
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_loop_config        Bad configuration of loops specified as
+                                    follows:
+                                    - Intersecting trim loops have been
+                                      provided.
+                                    - A bad combination of loops has been
+                                      provided because one or more loops are
+                                      excluding others.
+                                    - The trim loops are not coplanar.
+                                    (MILD)
+    PK_ERROR_bad_value              Trim set value is not NULL. (MILD)
+    PK_ERROR_bad_loop               Trim loops do not form closed loops.
+                                    (MILD)
+    PK_ERROR_bad_interval           Intervals are not equal to the extent
+                                    of their curves. (MILD)
+    PK_ERROR_wrong_entity           The curves are not polylines. (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_pattern_bound_t.html>PK_pattern_bound_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Trim data consists of zero or more trim loops. Each trim loop is made up
+of bounded curves.  Each bounded curve is represented by a curve and a
+parametric interval.
+
+The trim loops are coplanar and their bound is taken to extend infinitely in
+the normal of that plane. If applied to a rectilinear or original pattern, that
+plane spans the ith and jth pattern directions. If applied to an axial pattern,
+that plane is taken to be the parameter space formed by the axial pattern's
+<B>'axis'</B> and <B>'origin'</B> (see documentation of <A HREF=../headers/pk_pattern_axial_o_t.html>PK_pattern_axial_o_t</A> for more
+detail).
+
+If applied to an axial pattern, each segment of a trim loop is taken to be the
+shortest projection when considering the pattern's periodicity.
+
+<B>'curves'</B> consists of an array of bounded curves which describe the boundary
+loops. The bounded curves must be polylines.
+
+<B>'intervals'</B> is an array of each curve's bounding interval. Intervals must be
+equal to the extent of their associated curve.
+
+<B>'trim_loop'</B> is an array of integers identifying which loop each curve
+belongs to. The loop identifiers must be sequential and continuous. The highest
+identifier must be equal to <B>'n_trim_directions'</B> - 1.
+
+<B>'trim_set'</B> is not used. Its value should be set to NULL.
+
+<B>'trim_directions'</B> is an array of <A HREF=../headers/pk_hand_t.html>PK_HAND_t</A> which determines the handedness
+convention for each loop. The convention is taken with respect to the first
+curve in that loop, and applied to the remaining curves in the loop. The
+normal is taken to be positive in the kth pattern direction. The provided
+direction is taken to be pointing to the exterior of the loop (i.e. what will
+be removed). For example, when considering looking down the normal, if the
+curve is forming an anti-clockwise loop, assigning <A HREF=../headers/pk_hand_t.html>PK_HAND_right_c</A> will
+result in the loop bounding a finite area, in an infinite void. Conversely,
+if assigning <A HREF=../headers/pk_hand_t.html>PK_HAND_left_c</A>, the loop bounds a finite void in an infinite
+area. Alternatively, in the example of applying to an axial pattern a loop that
+forms a complete period, if the curve is forming an anti-clockwise loop when
+looking down the axis direction, assigning <A HREF=../headers/pk_hand_t.html>PK_HAND_right_c</A> will result in
+a semi-infinite void below the loop and semi-infinite area above the loop, with
+regards to the axis direction.
+
+As an example, if there are three trim_loops, then the fields may be as
+follows:
+
+           curves            trim_loop
+
+              1                    0
+              2                    0
+              3                    0
+              4                    0
+              5                    1
+              6                    1
+              7                    1
+              8                    2
+              9                    2
+             10                    2
+             11                    2
+
+trim_loop 0 has curves 1 to 4, trim_loop 1 has curves 5 to 7 and trim_loop
+2 has curves 8 to 11.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

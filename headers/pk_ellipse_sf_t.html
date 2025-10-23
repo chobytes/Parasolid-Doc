@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_ELLIPSE_sf_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_ELLIPSE_sf_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>
+struct PK_ELLIPSE_sf_s
+    {
+    <A HREF=../headers/pk_axis2_sf_t.html>PK_AXIS2_sf_t</A> basis_set;    --- centre, plane normal, major axis
+    double        R1;           --- the larger radius of the ellipse(&gt;0)
+    double        R2;           --- the smaller radius of the ellipse(&gt;0)
+    };
+
+typedef struct PK_ELLIPSE_sf_s PK_ELLIPSE_sf_t;
+
+</B>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+PK_ERROR_radius_le_0            radius less than or equal to zero
+PK_ERROR_R1_R2_mismatch         R1 less than or equal to R2
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_ellipse_ask.html>PK_ELLIPSE_ask</A><br>
+    <A HREF=../headers/pk_ellipse_create.html>PK_ELLIPSE_create</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+The parameterisation of the ellipse is as follows:
+
+    C = basis_set.location
+    x = basis_set.ref_direction                  ( major axis )
+    y = basis_set.axis X basis_set.ref_direction ( cross product )
+    z = basis_set.axis
+    R = R1
+    r = R2
+
+    P( t ) = C + (R cos t)x + (r sin t)y
+
+                               where  ( 0 &lt;= t &lt; 2PI )
+
+R1 MUST be larger than R2.  Both R1 and R2 must be larger than zero.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

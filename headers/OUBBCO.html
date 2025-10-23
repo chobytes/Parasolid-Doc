@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<TITLE>OUBBCO</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUBBCO</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bb_ask.html>PK_BB_ask</A><BR>
+<A HREF=../headers/pk_bb_ask_status.html>PK_BB_ask_status</A><BR>
+<A HREF=../headers/pk_bb_is.html>PK_BB_is</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUBBCO ( ents, events, nents, opts, nopts, ifail )
+==================================================
+
+  Output bulletin board controls.
+
+Returns:
+  KI_tag_list_int          *ents           --- entity types being bulletined
+  KI_tag_list_list         *events         --- their bulletinning events
+  KI_int_nitems            *nents          --- length of the above lists
+  KI_tag_list_int          *opts           --- current control options
+ &lt;KI_int_nitems&gt;           *nopts          --- no of control options
+  KI_cod_error             *ifail          --- error code
+
+
+Description:
+  OUBBCO outputs the state of the bulletin board's controls in the same form as
+  data is supplied to SEBBCO to set the state, except that arrays are replaced
+  by lists. See SEBBCO for more information.
+
+  Thus each list in the list 'events' indicates which events are being recorded
+  for entities of the type whose code is given in the corresponding position in
+  the list 'ents'.
+
+  The list 'opts' contains option codes which indicate further information
+  about the state of the bulletin board.  The presence of a code in 'opts'
+  indicates that the current state of the bulletin board is the state that the
+  board would be in after a successful call to SEBBCO supplying the given code
+  in 'opts'. In particular, precisely one of BBOPOF (indicating that the
+  bulletin board is off), BBOPON (bulletin board will record tags but not any
+  user field data) and BBOPUF (bulletin board will record tags and user field
+  data) will be present in 'opts'.
+
+
+</PRE>
+</BODY>
+</HTML>

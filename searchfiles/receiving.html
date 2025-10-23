@@ -1,0 +1,99 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.003.html#50409782_pgfId-298271", " Warning: <B>Receiving</B> DELTAs from one version of Parasolid into another carries", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.004.html#50409783_pgfId-301515", " design of the PK interface, tracking changes and <B>receiving</B> feedback during modelling operations, and calling Parasolid functionality", "Functional Description - Overview Of This Manual");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-297534", " 15.13.1.4 <B>Receiving</B> compound bodies into a session ", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-297536", " When <B>receiving</B> a compound body, you can control whether to", "Functional Description - Body Types");
+top.note("chapters/fd_chap.016.html#50409797_pgfId-297606", " the part. To receive selected child bodies, the <B>receiving</B> application must then specify the appropriate number for", "Functional Description - Body Types");
+top.note("chapters/fd_chap.025.html#50409805_pgfId-336255", " <B>Receiving</B> one or more parts where the key string does", "Functional Description - Reading and Writing Parasolid Data");
+top.note("chapters/fd_chap.025.html#50409805_pgfId-336259", " <B>Receiving</B> one or more parts where the key string does", "Functional Description - Reading and Writing Parasolid Data");
+top.note("chapters/fd_chap.025.html#50409805_pgfId-336263", " <B>Receiving</B> one or more parts from the application memory ", "Functional Description - Reading and Writing Parasolid Data");
+top.note("chapters/fd_chap.025.html#50409805_pgfId-336267", " <B>Receiving</B> a partition from a logical file through the frustrum", "Functional Description - Reading and Writing Parasolid Data");
+top.note("chapters/fd_chap.025.html#50409805_pgfId-336271", " <B>Receiving</B> a partition from a Unicode file key ", "Functional Description - Reading and Writing Parasolid Data");
+top.note("chapters/fd_chap.025.html#50409805_pgfId-336275", " <B>Receiving</B> a partition from application memory ", "Functional Description - Reading and Writing Parasolid Data");
+top.note("chapters/fd_chap.025.html#50409805_pgfId-336280", " information on <B>receiving</B> a partition see Section 101.5, <B>receiving</B> a partition", "Functional Description - Reading and Writing Parasolid Data");
+top.note("chapters/fd_chap.084.html#50409872_pgfId-638388", " to receive mixed bodies in your application. On <B>receiving</B> any data into a Parasolid session, you can", "Functional Description - Overview Of Convergent Modeling");
+top.note("chapters/fd_chap.084.html#50409872_pgfId-642180", " To enable <B>receiving</B> mixed geometry, you need to set ", "Functional Description - Overview Of Convergent Modeling");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-425562", " the same key as the XT file. When <B>receiving</B> facet parts, these files will be required to", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.085.html#50409873_pgfId-437289", " either PK_PART_receive_meshes or PK_PARTITION_receive_meshes . See Section 101.5.1.1, <B>Receiving</B> mesh data and deltas in a partition for more", "Functional Description - Facet Model Structure");
+top.note("chapters/fd_chap.087.html#50409875_pgfId-409466", " deltas in a partition for more information on <B>receiving</B> meshes. ", "Functional Description - Creating PSM Data From Foreign Facet Data");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-294880", " 95.2.3.2 Saving and <B>receiving</B> attribute definitions ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-294893", " When <B>receiving</B> a part file, parts can only be loaded", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.097.html#50409887_pgfId-295222", " <B>Receiving</B> an entity may invoke a callback function for attributes", "Functional Description - Attributes");
+top.note("chapters/fd_chap.098.html#50409888_pgfId-294844", " <B>Receiving</B> a part creates bodies in the current partition. ", "Functional Description - Partitions");
+top.note("chapters/fd_chap.098.html#50409888_pgfId-370340", " unchanged. This can be used, for example, when <B>receiving</B> a transmit file with a number of bodies", "Functional Description - Partitions");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-328547", "<B>receiving</B> information. ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-294874", " of received nodes will be deleted immediately after <B>receiving</B> the part. ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-294881", " Section 101.3.3, <B>Receiving</B> specific faces from a part , describes how you", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-383872", " option in PK_PART_receive . See Section 101.3.5, <B>Receiving</B> mesh data for more information. ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-294910", " When <B>receiving</B> the part in a new session, you need", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-294952", " 101.3 <B>Receiving</B> a part ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295023", " 101.3.3 <B>Receiving</B> specific faces from a part ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295028", " you need to specify the following options when <B>receiving</B> the part. These are all available in the", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295037", " When <B>receiving</B> specific faces, this should be set to PK_transmit_indexio_c.", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295041", " For use only when <B>receiving</B> an XT file that contains several part files,", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295063", " 101.3.4 <B>Receiving</B> compound bodies in part files ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295064", " PK_PART_receive_u , or PK_PART_receive_b . See Section 15.13.1.4, <B>Receiving</B> compound bodies into a session . ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-378249", " 101.3.5 <B>Receiving</B> mesh data ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-464739", " 101.3.6 <B>Receiving</B> parts with mixed geometry ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-467089", " classic and facet geometry in your application. On <B>receiving</B> data into a Parasolid session, you can choose", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295089", " details. To receive such data, see Section 101.3.3, <B>Receiving</B> specific faces from a part . ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295271", " 101.5 <B>Receiving</B> a partition ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295292", " You can specify a number of options when <B>receiving</B> partitions, including the following: ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-397918", " partition immediately. For more information, see Section 101.5.1.1, <B>Receiving</B> mesh data and deltas in a partition . ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295327", " new partition cannot be on that pmark after <B>receiving</B> the partition. ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-380449", " it is not immediately needed. See Section 101.3.5, <B>Receiving</B> mesh data for more information. ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-471876", " PK_PARTITION_receive_u , and PK_PARTITION_receive_b . See Section 15.13.1.4, <B>Receiving</B> compound bodies into a session . ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-465428", " facet geometry in your application. See Section 101.3.6, <B>Receiving</B> parts with mixed geometry for more information. ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295332", " 101.5.1 <B>Receiving</B> a partitions pmarks and deltas ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-295346", " and pmarks created, between <B>receiving</B> the partition and <B>receiving</B> its deltas. This is", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-395611", " 101.5.1.1 <B>Receiving</B> mesh data and deltas in a partition ", "Functional Description - Archives");
+top.note("chapters/fd_chap.102.html#50409892_pgfId-396429", " Section 101.3.5, <B>Receiving</B> mesh data ", "Functional Description - Archives");
+top.note("chapters/fd_chap.126.html#50409920_pgfId-308661", " C.6.6.2 <B>Receiving</B> a .NET string from Parasolid ", "Functional Description - How the C# Binding is Implemented");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203604", " <B>receiving</B> 1380 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-203606", " <B>receiving</B> with partitions and deltas 1452 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205407", " absent when <B>receiving</B> partitions 1452 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205411", " <B>receiving</B> 1453 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205413", " <B>receiving</B> attribute definitions in 1452 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206553", " <B>receiving</B> user 1445 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208656", " <B>receiving</B> 1451 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208658", " <B>receiving</B> attribute definitions in 1452 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208660", " <B>receiving</B> with absent delta files 1452 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208671", " <B>receiving</B> 1445 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208998", " <B>receiving</B> ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210521", " <B>receiving</B> 1445 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.13.html#50442270_marker-276833", "<B>receiving</B> a part. ", "Overview of Parasolid - Storing Data");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5437839", " <B>receiving</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438697", " <B>receiving</B> data ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " Information on compound bodies that were split when <B>receiving</B> a part or partition file. ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " Information on compound bodies that were split when <B>receiving</B> a part or partition file. ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_ffskxt_f_t.html#documentation", " <B>Receiving</B> only data needed for individual pieces of the model", "PK Reference - PK_FFSKXT_f_t");
+top.note("headers/pk_part_receive.html#documentation", "See <B>Receiving</B> a part for more information.", "PK Reference - PK_PART_receive");
+top.note("headers/pk_part_receive_b.html#documentation", "See <B>Receiving</B> a part for more information.", "PK Reference - PK_PART_receive_b");
+top.note("headers/pk_part_receive_o_t.html#description", " This option structure contains options pertinent to <B>receiving</B> parts.", "PK Reference - PK_PART_receive_o_t");
+top.note("headers/pk_part_receive_o_t.html#documentation", " receive_compound Controls <B>receiving</B> transmit files containing", "PK Reference - PK_PART_receive_o_t");
+top.note("headers/pk_part_receive_u.html#documentation", "See <B>Receiving</B> a part for more information.", "PK Reference - PK_PART_receive_u");
+top.note("headers/pk_partition_receive_deltas_o_t.html#documentation", " receive_compound Controls <B>receiving</B> delta files containing", "PK Reference - PK_PARTITION_receive_deltas_o_t");
+top.note("headers/pk_partition_receive_o_t.html#documentation", " receive_deltas Whether to receive no deltas, delay <B>receiving</B> deltas", "PK Reference - PK_PARTITION_receive_o_t");
+top.note("headers/pk_receive_compound_t.html#documentation", "This datatype controls <B>receiving</B> transmit files containing compound bodies.", "PK Reference - PK_receive_compound_t");
+top.note("headers/pk_receive_mixed_t.html#documentation", "This datatype controls <B>receiving</B> transmitted files containing mixed parts", "PK Reference - PK_receive_mixed_t");
+top.note("headers/pk_report_3_t.html#documentation", " split when <B>receiving</B> a part or partition", "PK Reference - PK_REPORT_3_t");
+top.note("headers/pk_session_indexio_t.html#description", " This structure contains functions pertinent to <B>receiving</B> and writing", "PK Reference - PK_SESSION_indexio_t");
+top.note("chapters/di_chap.02.html#50511934_pgfId-274153", " after any modification to his Frustrum, and after <B>receiving</B> any new version of Parasolid. ", "Downward Interfaces - Introduction to the Frustrum");
+top.note("chapters/di_chap.03.html#50511935_pgfId-285407", " is characteristic of <B>receiving</B> a Parasolid transmit file, <B>receiving</B> a snapshot file or reading an archived schema", "Downward Interfaces - File Handling");
+top.note("chapters/di_chap.06.html#50511938_pgfId-288661", " This frustrum allows for the optimised transmitting and <B>receiving</B> of binary XT files that contain embedded meshes.", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/fg_chap.03.html#50462724_pgfId-281885", " function FGCRCU performs the initialization of curve evaluators, <B>receiving</B> the same arguments and performing the same tasks.", "FG Manual - Implementing an FG System");
+top.note("chapters/in_chap.05.html#50520098_pgfId-303982", " The appropriate schema file must be present when <B>receiving</B> a part file created in an older version", "Installation Notes - Parasolid Release Area");
+top.note("chapters/in_chap.06.html#50520099_pgfId-291779", " When <B>receiving</B> part files: ", "Installation Notes - Using Parasolid");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7842452", " 1.9.1 <B>Receiving</B> a partition as locked to the calling thread ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.104.html#50409895_pgfId-309543", " Faceting describes how to return facet data in <B>tabular</B> format ", "Functional Description - Introduction To Graphic Support");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298841", " 104.3.2 Outputting facet information in <B>tabular</B> format ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298842", " PK_TOPOL_facet_2 returns a <B>tabular</B> representation of the facet topology of a part,", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298863", " what data is output in <B>tabular</B> form ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298867", " Chapter 110, <B>Tabular</B> Output Of Faceting ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-370866", " application in the PK_TOPOL_facet_2_r_t . See Chapter 110, <B>Tabular</B> Output Of Faceting for more information. ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-398809", " Section 110.3, <B>Tabular</B> faceting and threads ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-957030", " together with associated geometric information (see Chapter 110, <B>tabular</B> Output Of Faceting ). ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-985488", " Chapter 110, <B>Tabular</B> Output Of Faceting ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-294818", " If PK_TOPOL_facet_2 is being used to return <B>tabular</B> facet data with the ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-962720", " disjoint. If PK_TOPOL_facet_2 is being used to return <B>tabular</B> facet data, the ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-901199", " If PK_TOPOL_facet_2 is being used to return <B>tabular</B> facet data, the ", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-333135", " <B>tabular</B> faceting via PK_TOPOL_facet_2 . See Chapter 110, <B>tabular</B>", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.110.html#50409901_pgfId-294760", " information on Parasolids alternative method of faceting: the <B>tabular</B> output of facet geometry. ", "Functional Description - Faceting Output Via GO ");
+top.note("chapters/fd_chap.110.html#50409901_pgfId-294771", " If using <B>tabular</B> faceting, then you need to use the ", "Functional Description - Faceting Output Via GO ");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294753", " can return facet data to your application in <B>tabular</B> format using PK_TOPOL_facet_2 , and how you can", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294757", " is returned in <B>tabular</B> form , explains what <B>tabular</B> facet data is, and how you can control", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294761", " you can take advantage of symmetric multi-processing in <B>tabular</B> faceting. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294787", " 110.2 How facet data is returned in <B>tabular</B> form ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295040", " point to. You can describe this information in <B>tabular</B> form as follows (for facets f0 and f1):", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295089", " <B>Tabular</B> data is returned by PK_TOPOL_facet_2 in one of two", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295098", " used to represent one-to-one mappings in the returned <B>tabular</B> data. The first column of the table represents", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295103", " one-to-one, one-to-many, or many-to-one relationships in the returned <B>tabular</B> data (that is, data in any of the", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295135", " for a facet mesh. In order to return <B>tabular</B> data, you need to set the options you", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295162", " <B>Tabular</B> data is returned in the PK_TOPOL_facet_2_r_t structure. It contains", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-387875", " improve faceting performance, as described in Section 110.3, <B>Tabular</B> faceting and threads . In this situation, returning multiple", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295170", " 110.3 <B>Tabular</B> faceting and threads ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-541331", " to PK_facet_smp_body_c . By default ( PK_facet_smp_no_c ), <B>tabular</B> faceting does not take advantage of Parasolid SMP,", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296151", " PK_TOPOL_facet_2 creates <B>tabular</B> output in terms of facet strips whenever you", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-313700", " to PK_facet_smp_body_c (see Section 110.3, <B>Tabular</B> faceting and threads ). For specific details on a", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-204459", " <B>tabular</B> output of facet 1546 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205229", " generating <B>tabular</B> facet 1541 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-205997", " <B>tabular</B> facet 1566 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206375", " <B>tabular</B> output of 1546 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206382", " generating <B>tabular</B> 1541 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206392", " facet errors, <B>tabular</B> 1566 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206394", " facet features using ratios, <B>tabular</B> output of small 1526 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206405", " facet information in <B>tabular</B> format, outputting 1465 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206471", " <B>tabular</B> output of 1541 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206679", " outputting facets in <B>tabular</B> 1465 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206991", " <B>tabular</B> facet data 1541 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207462", " information in <B>tabular</B> format, outputting facet 1465 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208373", " facet boundaries, <B>tabular</B> 1546 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208377", " facet information in <B>tabular</B> format 1465 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208381", " faceting, <B>tabular</B> 1541 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208390", " small facet features using ratios, <B>tabular</B> 1526 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208991", " ratios, <B>tabular</B> output of small facet features using 1526 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209692", " facet data, <B>tabular</B> output of 1526 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210085", " <B>tabular</B> facet data, generating 1541 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210087", " <B>tabular</B> facet errors 1566 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210088", " <B>tabular</B> format ", "Functional Description - ZGlossary");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " PK_facet_smp_no_c 24110 do not multi-thread <B>tabular</B> facetting ", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_facet_smp_body_c 24111 multi-thread <B>tabular</B> facetting at the body level ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_facet_smp_t.html#documentation", " PK_facet_smp_no_c : do not multi-thread <B>tabular</B> facetting", "PK Reference - PK_facet_smp_t");
+top.note("headers/pk_topol_facet.html#declaration", " PK_TOPOL_facet_r_t *const tables --- addr of <B>tabular</B> structure", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet.html#description", " Generate a facetted representation of topological entities in <B>tabular</B> form", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet.html#documentation", " return the following data to the application in <B>tabular</B> form :", "PK Reference - PK_TOPOL_facet");
+top.note("headers/pk_topol_facet_2.html#description", " Generate a facetted representation of topological entities in <B>tabular</B> form", "PK Reference - PK_TOPOL_facet_2");
+top.note("headers/pk_topol_facet_2.html#documentation", " return the following data to the application in <B>tabular</B> form :", "PK Reference - PK_TOPOL_facet_2");
+top.note("headers/pk_topol_facet_choice_o_t.html#documentation", "The array length is returned explicitly, with the <B>tabular</B> data.", "PK Reference - PK_TOPOL_facet_choice_o_t");
+top.note("headers/pk_topol_facet_o_t.html#documentation", " options which select which data are returned in <B>tabular</B> form", "PK Reference - PK_TOPOL_facet_o_t");
+top.note("headers/pk_topol_facet_table_t.html#documentation", "The array length is returned explicitly, with the <B>tabular</B> data.", "PK Reference - PK_TOPOL_facet_table_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

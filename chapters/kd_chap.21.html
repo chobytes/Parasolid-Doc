@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>KID Examples</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>KID Examples</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.20.html">List of Parasolid LISP Functions</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.22.html">Machine Dependency in KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.21.html#50475022_pgfId-274043">E.1	Introduction</A>
+<LI> <A HREF="kd_chap.21.html#50475022_pgfId-274045">E.2	Example 1</A>
+<LI> <A HREF="kd_chap.21.html#50475022_pgfId-274048">E.3	Example 2</A>
+<LI> <A HREF="kd_chap.21.html#50475022_pgfId-274058">E.4	Example 3</A>
+<LI> <A HREF="kd_chap.21.html#50475022_pgfId-274065">E.5	Example 4</A>
+<LI> <A HREF="kd_chap.21.html#50475022_pgfId-274074">E.6	Example 5</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475022_pgfId-274043"></A>E.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50475022_pgfId-274044"></A>These examples are intended to demonstrate a range of modeling activities using KID.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475022_pgfId-274045"></A>E.2	Example 1
+
+
+</H1>
+<P>
+<A NAME="50475022_pgfId-274046"></A>Create a simple parametric curve wire.</P>
+<P>
+<A NAME="50475022_pgfId-279779"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475022_pgfId-279789"></A>(modeller start)
+(undefine pcurve1)
+(define pcurve1 p_paracurve)
+(pcurve1 help create)
+(pcurve1 dim 4;
+         ord 4;
+         nseg 1;
+         verts&acute;(0  0 0 1
+                1  1 0 2
+                3 -1 0 2
+                4  0 0 1);
+         create)
+(modeller stop)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475022_pgfId-274048"></A>E.3	Example 2
+
+
+</H1>
+<P>
+<A NAME="50475022_pgfId-274049"></A>A cube and a parametric sheet body are created. The top planar face of the cube is selected and tweaked to the parametric surface of the sheet using <CODE>
+ntweak</CODE>
+ as the surface normal must be reversed.</P>
+<P>
+<A NAME="50475022_pgfId-279794"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475022_pgfId-279824"></A>(modeller start)
+(undefine blatt_4 f1 blo s1 tf3)</PRE>
+<PRE><A NAME="50475022_pgfId-279825"></A>-- create a parametric sheet body
+
+(define blatt_4 p_parasurf)
+(blatt_4 dim 3;
+         uord 3;
+         vord 4;
+         nuseg 1;
+         nvseg 1;
+         verts &acute;(0.0 20.0  0.0
+                 0.0 30.0 10.0
+                 0.0 40.0  0.0
+                10.0 20.0  0.0
+                10.0 30.0 10.0
+                10.0 40.0  0.0
+
+                20.0 20.0  0.0
+                20.0 30.0 10.0
+                20.0 40.0  0.0
+
+                30.0 20.0  0.0
+                30.0 30.0 10.0
+                30.0 40.0  0.0);
+         create)</PRE>
+<PRE><A NAME="50475022_pgfId-279826"></A>-- select the parametric face from the sheet body
+
+(define f1 face)
+(define s1 surface)
+(f1 pick_from &acute;blatt_4)
+(f1 pick_using &acute;(eq (f1 enquire &acute;type) &quot;B-surface&quot;))</PRE>
+<PRE><A NAME="50475022_pgfId-279827"></A>-- create a B-surface from the parametric face of the sheet
+
+(s1 pick_from &acute;f1)
+(s1 enquire)</PRE>
+<PRE><A NAME="50475022_pgfId-279828"></A>-- create a copy of the surface to avoid trying to share 
+   across two bodies
+
+( (define s2 surface) replicate &acute;s1)</PRE>
+<PRE><A NAME="50475022_pgfId-279829"></A>-- create a cube, centred under the parametric sheet
+
+(define blo p_block)
+(blo x 5; y 5 ; z 5; point &acute;(15 30 -15); create)
+(define tf3 face)</PRE>
+<PRE><A NAME="50475022_pgfId-279830"></A>-- select the top face of blo
+
+(tf3 pick_from &acute;blo)
+(tf3 pick_using &acute;(tf3 clash &acute;(15 30 -10)))
+(modeller mark)</PRE>
+<PRE><A NAME="50475022_pgfId-279831"></A>-- tweak top face of cube to the reverse of s1
+
+(tf3 ntweak &acute;s2)
+(modeller stop)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475022_pgfId-274058"></A>E.4	Example 3
+
+
+</H1>
+<P>
+<A NAME="50475022_pgfId-274059"></A>Two identical cylinders are united and the intersection edges are blended using a rolling ball blend.</P>
+<P>
+<A NAME="50475022_pgfId-279853"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475022_pgfId-279871"></A>(modeller start)
+(undefine c1 c2 e1 b1)
+(define c1 p_cylinder)
+(define c2 p_cylinder)
+(c1 help create)
+(c1 radius 10; height 80; point &acute;(-40 0 0); direction &acute;(1 0 0); create)
+(c2 radius 10; height 80; point &acute;(0 -40 0); direction &acute;(0 1 0); create)
+(c1 unite &acute;c2)</PRE>
+<PRE><A NAME="50475022_pgfId-279872"></A>(define e1 edge)
+
+-- collect all edges from the resulting body
+
+(e1 pick_from &acute;c1)
+
+-- only those which are elliptical
+
+(e1 pick_using &acute;(eq (e1 enquire &acute;type) &acute;ellipse))</PRE>
+<PRE><A NAME="50475022_pgfId-279873"></A>-- make rolling ball blend
+
+(define b1 p_fillet)
+(b1 help apply)
+(b1 r1 2)                        </PRE>
+<PRE><A NAME="50475022_pgfId-279874"></A>-- apply blend to edges and fix
+
+(b1 apply &acute;e1)</PRE>
+<PRE><A NAME="50475022_pgfId-279875"></A>-- make sure it&acute;s ok
+
+(e1 blend_check) 
+(c1 blend_fix)
+(graphics open_device &acute;xwindow)
+(graphics sketch &acute;c1)
+(graphics autowindow; clear; hidden)
+(modeller stop)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475022_pgfId-274065"></A>E.5	Example 4
+
+
+</H1>
+<P>
+<A NAME="50475022_pgfId-274066"></A>This next example can be used to demonstrate the differing results of varying combinations of arguments for the local operations <CODE>
+crsofa</CODE>
+ and <CODE>
+rmfaso</CODE>
+.</P>
+<P>
+<A NAME="50475022_pgfId-279880"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475022_pgfId-279973"></A>(modeller start)
+
+-- create cube and two spheres
+
+(undefine s1 s2 b0 fred)
+(define b0 p_block)
+(b0 x 10; y 10; z 10; create)
+(define s1 p_sphere)
+(define s2 p_sphere)
+(s1 radius 2; point &acute;(5 5 10); create)
+(s2 radius 2; point &acute;(0 0 10); create)</PRE>
+<PRE><A NAME="50475022_pgfId-279974"></A>-- unite cube and two spheres, renaming the resulting body
+
+(b0 unite &acute;s1)
+(b0 unite &acute;s2)
+(define fred body)
+(fred tag (unite_temp tag))
+(graphics open_device &acute;xwindow)
+(graphics hidden &acute;fred)</PRE>
+<PRE><A NAME="50475022_pgfId-279975"></A>-- pick the two spherical faces into f1
+
+(undefine f1)
+(define f1 face)
+(f1 pick_from &acute;fred)
+(f1 pick_using &acute;(eq( f1 enquire &acute;type) &acute;spherical))</PRE>
+<PRE><A NAME="50475022_pgfId-279976"></A>-- set modeller roll point
+
+(modeller mark)</PRE>
+<PRE><A NAME="50475022_pgfId-279977"></A>-- copy the two spherical surfaces and create two new bodies
+   using the argument &acute;grow&acute;, leaving the parent body
+   unaltered.
+
+(f1 crsofa &acute;grow)
+(graphics clear)
+(graphics sketch &acute;fred)
+(graphics clear)
+(graphics hidden &acute;( crsofa_c1 crsofa_c2))</PRE>
+<PRE><A NAME="50475022_pgfId-279978"></A>-- rollback to last set mark and use rmfaso to remove the two
+   spherical surfaces and create new bodies.
+
+(modeller roll)
+(modeller mark)
+(f1 rmfaso &acute;grow &acute;growp)
+(graphics clear)
+(graphics hidden &acute;rmfaso_p1 )
+(graphics clear)
+(graphics hidden &acute;(rmfaso_c1 rmfaso_c2))</PRE>
+<PRE><A NAME="50475022_pgfId-279979"></A>-- rollback for another combination
+
+(modeller roll)
+(modeller mark)
+(f1 rmfaso &acute;cap)
+(modeller stop)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475022_pgfId-274074"></A>E.6	Example 5
+
+
+</H1>
+<P>
+<A NAME="50475022_pgfId-274075"></A>A cube is created, and two lines scribed onto the top face creating 3 new faces in place of the original. Two of these new faces are swept in opposite directions, changing the geometry and topology of the cube.</P>
+<P>
+<A NAME="50475022_pgfId-279922"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50475022_pgfId-279934"></A>Note: This example produces an invalid body.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475022_pgfId-279945"></A>(modeller start)
+(undefine b0 plin1 plin2 f1 f2 pbc1 pbc2)
+(define b0 p_block)
+(b0 x 20; y 20; z 20; create) 
+(modeller mark)</PRE>
+<PRE><A NAME="50475022_pgfId-279946"></A>-- the next sections scribe two bounded curves onto the top
+   face of the cube, then sweep two of the newly created faces.
+
+(define plin1 p_line)
+(plin1 point &acute;(0 0 20); direction &acute;(1 0 0); create)
+(define pbc1 p_bounded_curve)   
+(define f1 face)
+(f1 pick_from &acute;b0)
+(f1 pick_using &acute;(f1 clash &acute;(0 0 20)))
+(pbc1 startp &acute;(-10 0 20); endp &acute;(10 0 20))
+(pbc1 face &acute;f1; curve &acute;plin1; scribe )
+(define plin2 p_line )
+(plin2 point &acute;(0 0 20); direction &acute;(0 -1 0); create) 
+(define pbc2 p_bounded_curve)  
+(define f2 face)
+(f2 pick_from &acute;b0)
+(f2 pick_using &acute;(f2 clash &acute;(0 -5 20)))
+(pbc2 startp &acute;(0 0 20); endp &acute;(0 -10 20))
+(pbc2 face &acute;f2; curve &acute;plin2; scribe ) </PRE>
+<PRE><A NAME="50475022_pgfId-279947"></A>-- use f1 and f2 to define the faces to be swept
+
+(f1 pick_from &acute;b0)
+(f2 replicate &acute;f1)
+(f1 pick_using &acute;(f1 clash &acute;(0 5 20)))
+(f2 pick_using &acute;(f2 clash &acute;(5 -5 20)))
+(f1 sweep &acute;(0 0 10))                    --&gt; valid
+(f2 sweep &acute;(0 0 -10))                   --&gt; self_intersecting
+(graphics open_device &acute;xwindow)
+(graphics sketch &acute;b0)
+(b0 check)                              --&gt; invalid body
+(modeller roll)
+(modeller stop)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.20.html">List of Parasolid LISP Functions</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.22.html">Machine Dependency in KID</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

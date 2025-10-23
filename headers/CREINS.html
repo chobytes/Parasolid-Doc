@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<TITLE>CREINS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CREINS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_instance_create.html>PK_INSTANCE_create</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CREINS ( owner, part, transf, type, instnc, ifail )
+===================================================
+
+  Create instance.
+
+Receives:
+  KI_tag_assembly          *owner          --- owning assembly of new instance
+  KI_tag_part              *part           --- part to be instanced
+ &lt;KI_tag_transform&gt;        *transf         --- transform of instance
+  KI_cod_tyin              *type           --- type of instance
+
+Returns:
+  KI_tag_instance          *instnc         --- new instance
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_wrong_transf           transform contains scale or reflection
+  KI_anon_sub_part          instance of anonymous sub-part of stored part
+  KI_cyclic_assy            instance would cause cyclic reference
+  KI_not_in_same_partition  Owner and part are in different partitions
+
+Description:
+  CREINS creates a new instance of 'part' and attaches it to the assembly
+  'owner'.
+
+  If the new instance would cause the assembly graph to become cyclic (i.e. when
+  creating an instance of P in A, and P or a sub-part of P is A) KI_cyclic_assy
+  will be returned in 'ifail'.
+
+  The part may not be unloaded (ENSTUN).
+
+  We define the true-sub-parts of a stored (ENSTST) part S as those anonymous
+  (ENSTAN) sub-parts of S reachable from S without encountering other stored
+  parts (see OUPART for a description of all part states).
+
+  If P is anonymous and is a true-sub-part of some stored part S then P may only
+  be instanced from S or a true-sub-part of S. If this condition is not met
+  KI_anon_sub_part is returned in 'ifail'.
+
+  A copy of 'transf' is attached to the new instance.
+
+  If a null tag is given for the transform, the transform field of the instance
+  is left null and the system will act as if the instance has an identity
+  transform attached.
+
+  The transform must consist of translation and rotation only: if scaling,
+  reflection or shearing is present KI_wrong_transf is returned in 'ifail'.
+
+  The type given must a token in the range TYINxx. At present the only valid
+  value is positive (TYINPS).
+
+  Creating an instance is regarded as changing the owning assembly of the new
+  instance but not the part that is instanced. If the assembly is new or
+  modified no change of states will take place. If it is anonymous or stored its
+  state will be changed to new and modified respectively. The effect of this
+  change will be rippled up the parts graph.
+
+
+</PRE>
+</BODY>
+</HTML>

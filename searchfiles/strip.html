@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.032.html#50409812_pgfId-378684", " The returned face is a Moebius <B>strip</B>: the orientation of the fins of the returned", "Functional Description - Checking");
+top.note("chapters/fd_chap.048.html#50409831_pgfId-296524", " example shows how you can form a Moebius <B>strip</B> by sewing two faces together to produce a", "Functional Description - Sewing and Knitting");
+top.note("chapters/fd_chap.087.html#50409875_pgfId-344061", " blocks can be one of four types; index, <B>strip</B>, fan and vector. See Section 86.4.1, Facet types", "Functional Description - Creating PSM Data From Foreign Facet Data");
+top.note("chapters/fd_chap.087.html#50409875_pgfId-344069", " data can be one of four types; index, <B>strip</B>, fan, and vector or a mix of these", "Functional Description - Creating PSM Data From Foreign Facet Data");
+top.note("chapters/fd_chap.087.html#50409875_pgfId-332997", " describes the four types of data blocks (index, <B>strip</B>, fan, and vector) that can be returned by", "Functional Description - Creating PSM Data From Foreign Facet Data");
+top.note("chapters/fd_chap.087.html#50409875_pgfId-339630", " 86.4.1.2 <B>Strip</B> mesh ", "Functional Description - Creating PSM Data From Foreign Facet Data");
+top.note("chapters/fd_chap.087.html#50409875_pgfId-338257", " PK_MESH_facet_strip_t to transmit a block of facet triangle <B>strip</B> data. ", "Functional Description - Creating PSM Data From Foreign Facet Data");
+top.note("chapters/fd_chap.087.html#50409875_pgfId-333066", " Figure 86-2 Example of a triangle <B>strip</B> mesh ", "Functional Description - Creating PSM Data From Foreign Facet Data");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298842", " facet mesh in terms of connected facet, facet <B>strip</B>, fin and data indices. ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-947482", " singularity to be output as a single facet <B>strip</B>, if you wish. This is not possible by", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294753", " the facet mesh in terms of connected facet <B>strip</B>, facet, fin and vertex indices. Unlike facet output", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-294788", " of fins that join vertices together. A facet <B>strip</B> is an ordered sequence of connected facets. A", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-295197", " between any two types of topological entity (facet/facet <B>strip</B>/fin/vertex). ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296150", " 110.4.3 Facet <B>strip</B> information ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296152", " order that they can be found in the <B>strip</B> boundary. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296153", " they form a zig-zag pattern along the facet <B>strip</B>. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296154", " connected fins that lie in a given facet <B>strip</B>, such that each fin in the table points", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296158", " always points anti-clockwise when viewed from above the <B>strip</B>, and the first two entries in the table", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296377", " Figure 110-6 Describing the boundary of a facet <B>strip</B> ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296378", " is one that actually lies in the facet <B>strip</B>, strips of even and odd numbers of facets", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-296382", " table is constructed for a facet <B>strip</B> that contains an odd number of facets. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-408524", " points to the last vertex in the facet <B>strip</B> is one which does not have as its", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297769", " strips on periodic surfaces, so that no facet <B>strip</B> spans more than a single period on the", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297791", " the vertices in any given facet (or facet <B>strip</B>, if generating strips) on a periodic surface have", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297797", " the vertices in any given facet or facet <B>strip</B> on a periodic surface have surface parameters that", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-297803", " triangular facets. All triplets of vertices within the <B>strip</B> have consistent surface parameters values. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-298008", " in which the index points to a facet <B>strip</B>, and the value points to the originating model", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/fd_chap.111.html#50409902_pgfId-298711", " fault, or the index of the facet, facet <B>strip</B>, or data container at fault. ", "Functional Description - Tabular Output Of Faceting");
+top.note("chapters/ov_chap.04.html#50442254_pgfId-546906", " mesh data in one of four forms; index, <B>strip</B>, fan, and vector, which are shown in ", "Overview of Parasolid - Model Structure");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " facet mesh, in the region of the specified <B>strip</B> (whose index is given), may not satisfy the", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_FACE_state_edge_moebius_c 24643 face is a moebius <B>strip</B>, the orientation of the edges two fins are", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("headers/pk_check_state_t.html#documentation", " PK_FACE_state_edge_moebius_c face is a moebius <B>strip</B>, the orientation", "PK Reference - PK_check_state_t");
+top.note("headers/pk_facet_consistent_parms_t.html#documentation", " being output as strips, the vertices within the <B>strip</B> are said to", "PK Reference - PK_facet_consistent_parms_t");
+top.note("headers/pk_facet_split_strip_t.html#documentation", " <B>strip</B> spans more than a single period on", "PK Reference - PK_facet_split_strip_t");
+top.note("headers/pk_gosgmt_f_t.html#documentation", " SGTPTS = 2024; --- Facet <B>strip</B>", "PK Reference - PK_GOSGMT_f_t");
+top.note("headers/pk_mesh_facet_strip_t.html#documentation", "of the <B>strip</B> are {a,b,c},{c,b,d}, and {c,d,e}. See here for more", "PK Reference - PK_MESH_facet_strip_t");
+top.note("headers/pk_mesh_facet_t.html#declaration", " PK_MESH_facet_strip_t *<B>strip</B>;", "PK Reference - PK_MESH_facet_t");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#declaration", " split_strips; --- no <B>strip</B> spans more than a", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_facet_choice_2_o_t.html#documentation", " may be output individually or as strips. A <B>strip</B> is a sequence of", "PK Reference - PK_TOPOL_facet_choice_2_o_t");
+top.note("headers/pk_topol_fctab_error_object_t.html#documentation", " <B>strip</B> (whose index is given), may not satisfy", "PK Reference - PK_TOPOL_fctab_error_object_t");
+top.note("headers/pk_topol_fctab_fin_fin_t.html#documentation", "or facet <B>strip</B>). In this case, the co-fin will have a", "PK Reference - PK_TOPOL_fctab_fin_fin_t");
+top.note("headers/pk_topol_fctab_strip_boundary_t.html#declaration", " int <B>strip</B>;", "PK Reference - PK_TOPOL_fctab_strip_boundary_t");
+top.note("headers/pk_topol_fctab_strip_boundary_t.html#documentation", " of fins on the boundary of the facet <B>strip</B> together.", "PK Reference - PK_TOPOL_fctab_strip_boundary_t");
+top.note("headers/pk_topol_fctab_strip_face_t.html#documentation", " into face entity values (i.e. it defines which <B>strip</B> is", "PK Reference - PK_TOPOL_fctab_strip_face_t");
+top.note("headers/pk_topol_fctab_strip_zigzag_t.html#declaration", " int <B>strip</B>;", "PK Reference - PK_TOPOL_fctab_strip_zigzag_t");
+top.note("headers/pk_topol_fctab_strip_zigzag_t.html#documentation", "table which groups the fins in the facet <B>strip</B> together so that their head", "PK Reference - PK_TOPOL_fctab_strip_zigzag_t");
+top.note("headers/pk_topol_render_facet.html#documentation", " it should output facets individually or in facet <B>strip</B> form.", "PK Reference - PK_TOPOL_render_facet");
+top.note("headers/pk_topol_render_facet_go_o_t.html#documentation", " The control of the parameterisation of the <B>strip</B> can be obtained via the", "PK Reference - PK_TOPOL_render_facet_go_o_t");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274299", " Facet <B>strip</B> vertices ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274301", " Facet <B>strip</B> vertices + surface normals ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274303", " Facet <B>strip</B> vertices + parameters ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274305", " Facet <B>strip</B> vertices + normals + parameters ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274311", " Facet <B>strip</B> vertices + normals + parameters + 1st derivatives", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274313", " Facet <B>strip</B> vertices + normals + parameters + all derivatives", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274552", " L3TPFV and facet <B>strip</B> vertices - L3TPTS ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274572", " L3TPFN; and facet <B>strip</B> vertices plus surface normals - L3TPTN ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274604", " L3TPFP; and facet <B>strip</B> vertices plus parameters - L3TPTP ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274628", " L3TPFI; and facet <B>strip</B> vertices plus normal plus parameters - L3TPTI ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274790", " L3TPF1; and facet <B>strip</B> vertices + normals + parameters + 1st derivatives", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274838", " L3TPF2; and facet <B>strip</B> vertices + normals + parameters + all derivatives", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275130", " 4.4.4.20 Facet <B>Strip</B>: SGTPTS ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275131", " data being output in the form of a <B>strip</B> or ribbon consisting of triangular facets. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275132", " The number of facets in each <B>strip</B> must be specified in the option data list", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275133", " in a particular order. For example, in a <B>strip</B> consisting of eight triangular facets the order of", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275186", " 4-4 The ordering of vertices in a facet <B>strip</B> ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-275187", " can be seen from the above example, triangular <B>strip</B> geometry only stores n + 2 vertices, whereas", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274227", " Facet <B>strip</B> vertices ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274233", " Facet <B>strip</B> vertices plus surface normals ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274263", " Facet <B>strip</B> vertices plus parameters ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274269", " Facet <B>strip</B> vertices plus normal plus parameters ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274287", " Facet <B>strip</B> vertices + norms + params + 1st derivs", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274293", " Facet <B>strip</B> vertices + norms + params + all derivs", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-302570", " Facet <B>strip</B> vertices + norms + curvatures ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-302580", " Facet <B>strip</B> vertices + norms + params + curvatures ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.15.html#50511947_pgfId-274398", " Facet <B>strip</B> ", "Downward Interfaces - Go Tokens and Error Codes");
+top.note("chapters/di_chap.18.html#50511950_pgfId-731290", " facet <B>strip</B> 49 ", "Downward Interfaces - ZIndex");
+top.note("chapters/di_chap.18.html#50511950_pgfId-731340", " facet <B>strip</B> 49 ", "Downward Interfaces - ZIndex");
+top.note("chapters/kd_chap.14.html#50475018_pgfId-274254", " the given maximum number of facets in a <B>strip</B> ", "KID Manual - KID Rendering");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

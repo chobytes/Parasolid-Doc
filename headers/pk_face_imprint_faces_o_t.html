@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_imprint_faces_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_imprint_faces_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_imprint_faces_o_s
+    {
+    int           o_t_version;           --- version number of option structure
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>  imprint_tool;          --- whether to imprint on tool
+                                         --- (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>  imprint_overlapping;   --- whether to imprint boundaries of
+                                         --- overlapping areas
+                                         --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_imprint_face_list_t.html>PK_imprint_face_list_t</A>
+                  extend_face_list;      --- whether to extend list of faces
+                                         --- for imprinting
+                                         --- (<A HREF=../headers/pk_imprint_face_list_t.html>PK_imprint_face_list_no_c</A>)
+    const <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A>
+                  *matched_region;       --- regions to match (NULL)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A>
+                  imprint_complete_targ; --- whether to complete imprint on
+                                         --- target faces
+                                         --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_t</A>
+                  imprint_extend_targ;   --- direction in which to complete
+                                         --- imprint on target faces
+                                         --- (<A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_tangent_c</A>)
+    <A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_t</A>
+                  imprint_complete_tool; --- whether to complete imprint on
+                                         --- tool faces
+                                         --- (<A HREF=../headers/pk_imprint_complete_t.html>PK_imprint_complete_no_c</A>)
+    <A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_t</A>
+                  imprint_extend_tool;   --- direction in which to complete
+                                         --- imprint on tool faces
+                                         --- (<A HREF=../headers/pk_imprint_extend_t.html>PK_imprint_extend_tangent_c</A>)
+    <A HREF=../headers/pk_complete_bound_t.html>PK_complete_bound_t</A>
+                  complete_bound;        --- how to bound imprint completion
+                                         --- (<A HREF=../headers/pk_complete_bound_t.html>PK_complete_bound_none_c</A>)
+    double        complete_bound_distance;
+                                         --- distance bound for imprint
+                                         --- completion (0.0)
+    <A HREF=../headers/pk_imprint_dir_t.html>PK_imprint_dir_t</A>
+                  imprint_dir;           --- whether imprinted edges should
+                                         --- have consistent direction
+                                         --- (<A HREF=../headers/pk_imprint_dir_t.html>PK_imprint_dir_no_check_c</A>)
+    <A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_t</A>
+                  update;                --- update switch
+                                         --- (<A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_default_c</A>)
+
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>  have_tolerance;        --- whether a tolerance is provided
+                                         --- (PK_LOGICAL_false) [NF]
+
+    double        tolerance;             --- tolerance to which the imprint
+                                         --- operation may assume that entities
+                                         --- are coincident (0.0) [NF]
+    };
+
+typedef struct PK_FACE_imprint_faces_o_s PK_FACE_imprint_faces_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This option structure is supplied to the face imprinting operation.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_tolerance            proposed tolerance is too small (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_imprint_faces_2.html>PK_FACE_imprint_faces_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Description of fields:
+
+<B>'imprint_tool'</B>           Imprint edges and vertices on the tool faces.
+                         If this flag is set to PK_LOGICAL_false,
+                         edges and vertices are imprinted on the
+                         target only. The arrays of edges and
+                         vertices on the tool, returned in the results
+                         structure, will be set to null.
+
+<B>'imprint_overlapping'</B>    Imprint the boundaries of overlapping areas.
+                         This is only necessary when the target and
+                         tool are faces or sheet bodies. If a face
+                         from the target and a face from the tool are
+                         on the same surface, the boundaries of the
+                         overlapping area will be imprinted. If this
+                         flag is not set, faces on a common surface
+                         will not imprint on each other.
+
+<B>'extend_face_list'</B>       When imprinting results in incomplete loops
+                         of imprinted edges, the face list of the
+                         target or tool may be extended so that
+                         additional faces will be intersected with the
+                         tool or target or both the tool and the target.
+                         Additional faces can be added on to the tool or
+                         the target or on to both the tool and the
+                         target face lists as specified.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526914">here</A> for more information.
+
+<B>'matched_region'</B>         Describes matched regions between the target and tool.
+                         See <A HREF=../headers/pk_boolean_match_o_t.html>PK_boolean_match_o_t</A> and <A HREF="../chapters/fd_chap.053.html#50409837_pgfId-394571">here</A> for more
+                         information.
+
+<B>'imprint_complete_targ'</B>  Complete the imprint on the target faces so
+                         that the end vertices of the imprint lie on
+                         any edge or any laminar edge of the target
+                         faces. The incomplete imprint is completed by
+                         intersecting the target faces with a plane
+                         orthogonal to the target at the end vertices
+                         of the incomplete imprint. Depending on the
+                         value of this option, the imprint will be
+                         completed along the direction of this plane
+                         until either:
+
+                         o it meets any edge belonging to the target faces
+                         o it meets any laminar edge belonging to the
+                           target faces.
+
+                         Tool faces must belong to sheet bodies. Target faces
+                         must belong to sheet bodies if completion is to a
+                         laminar edge, otherwise they may also belong to solid
+                         bodies. A completed imprint that self-intersects
+                         will be trimmed at the point of self-intersection.
+                         Imprint completion on the target will only occur
+                         from laminar edges of the tool.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526837">here</A> for more
+                         information.
+
+<B>'imprint_extend_targ'</B>    Choose the orientation of the plane when
+                         completing an imprint with
+                         <B>'imprint_complete_targ'</B>. The plane may lie
+                         tangential or orthogonal to the end of the
+                         imprint. The orthogonal direction may lie
+                         along the forward or backward direction of the
+                         tool face normal at that point.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526837">here</A> for more
+                         information.
+
+<B>'imprint_complete_tool'</B>  Complete the imprint on the tool faces. The
+                         incomplete imprint will be completed on the
+                         tool faces in a manner similar to that described
+                         for <B>'imprint_complete_targ'</B> above.  However unlike
+                         <B>'imprint_complete_targ'</B> it is not possible for the
+                         tool faces to belong to solid bodies.
+                         <B>'imprint_tool'</B> must be set to PK_LOGICAL_true
+                         when completing an imprint on the tool.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526837">here</A> for more
+                         information.
+
+<B>'imprint_extend_tool'</B>    Choose the orientation of the plane when
+                         completing an imprint with
+                         <B>'imprint_complete_tool'</B>. This option behaves
+                         in a similar manner to that described in
+                         <B>'imprint_extend_targ'</B>.
+                         See <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-526837">here</A> for more
+                         information.
+
+<B>'complete_bound'</B>         How to bound imprint completion. The default
+                         (<A HREF=../headers/pk_complete_bound_t.html>PK_complete_bound_none_c</A>) is unbounded.
+
+<B>'complete_bound_distance'</B>
+                         The distance used to bound imprint completion, as
+                         determined by <B>'complete_bound'</B>. If <B>'complete_bound'</B>
+                         and <B>'have_tolerance'</B> both have non-default values,
+                         then <B>'complete_bound_distance'</B> must be greater than
+                         <B>'tolerance'</B>.
+
+<B>'imprint_dir'</B>            If enabled, the directions of imprinted edges are
+                         made consistent where possible. Parasolid's definition
+                         of consistency is described <A HREF="../chapters/fd_chap.052.html#50409836_pgfId-527411">here</A> . Edges for
+                         which a consistent direction cannot be determined will
+                         be reported with a <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_imp_dir_undef_c</A> record.
+
+<B>'update'</B>                 The default value allows applications to take
+                         advantage of the latest enhancements to the boolean
+                         algorithm. To maintain consistency when rebuilding
+                         models created in a previous version of Parasolid, a
+                         non-default value should be specified.
+                         (<A HREF=../headers/pk_boolean_update_t.html>PK_boolean_update_default_c</A>)
+
+<B>'have_tolerance'</B>         Indicates whether an operation tolerance is being
+                         passed in through the <B>'tolerance'</B> parameter.
+
+<B>'tolerance'</B>              The tolerance to which the imprint operation may
+                         assume that entities are coincident. This field should
+                         be set to a value that is related to the tolerance to
+                         which the application is creating approximations.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

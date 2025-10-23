@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_bend_merge_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_bend_merge_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_bend_merge_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_bend_o_t.html>PK_FACE_change_bend_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Adjacent faces may become mergeable after a bend operation has taken place.
+This datatype specifies the level of merging that should be performed where
+feasible.
+
+It has the values:
+
+PK_bend_merge_no_c             No bend-specific merging will be performed.
+                               Merging may still occur when healing is
+                               required to ensure integrity of the final part.
+
+PK_bend_merge_in_c             Faces in the given set of faces with operation
+                               type PK_FACE_change_type_bend_c will be merged
+                               together if feasible.
+
+                               Vertices on the boundary of the merged face will
+                               be merged if feasible, additional faces will
+                               not be merged to achieve this.
+
+PK_bend_merge_out_c            Faces included in the given set of faces with
+                               operation type PK_FACE_change_type_bend_c, and
+                               faces that are not, but share at least one
+                               common edge with those faces, will be merged if
+                               feasible.
+
+                               Faces not in the given set and sharing only a
+                               vertex with faces in the given set will not be
+                               merged.
+
+                               Vertices on the boundary of the merged face will
+                               be merged if feasible, additional faces will
+                               not be merged to achieve this.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

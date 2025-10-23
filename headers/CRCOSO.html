@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<TITLE>CRCOSO</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRCOSO</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_create_solid_cone.html>PK_BODY_create_solid_cone</A><BR>
+<A HREF=../headers/pk_cone_make_solid_body.html>PK_CONE_make_solid_body</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRCOSO ( centre, axis, basrad, toprad, height, cone, ifail )
+============================================================
+
+  Create conical solid
+
+Receives:
+  KI_vec_position           centre         --- centre of base of cone
+  KI_vec_axis               axis           --- axis of cone
+ &lt;KI_dbl_radius&gt;           *basrad         --- radius of base of cone
+ &lt;KI_dbl_radius&gt;           *toprad         --- radius of top of cone
+  KI_dbl_distance          *height         --- height of cone
+
+Returns:
+  KI_tag_body              *cone           --- cone
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_cone_too_sharp         Cone cannot be distinguished from a cylinder
+  KI_radii_both_0           Both radii are zero
+  KI_radius_too_large       Top radius too large
+                            Base radius too large
+
+Description:
+  A (truncated) cone of the given dimensions is created, its base centred at the
+  given point and aligned along the given axis. The cone will be truncated
+  unless one of the radii is zero.
+
+</PRE>
+</BODY>
+</HTML>

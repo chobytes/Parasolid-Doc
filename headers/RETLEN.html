@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<TITLE>RETLEN</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>RETLEN</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_edge_reset_precision.html>PK_EDGE_reset_precision</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+RETLEN ( entity, retcod, ifail )
+================================
+
+  Restores Parasolid tolerance to the supplied edge.
+
+Receives:
+  KI_tag_entity            *entity         --- edge
+
+Returns:
+  KI_cod_rttl              *retcod         --- status of operation
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_wrong_entity           unsuitable entity type
+
+Description:
+  RETLEN attempts to remove the tolerance value associated with the given
+  edge, restoring Parasolid default and replacing fin curves by a single
+  3-space curve attached to the edge. This operation may not always be
+  possible - the level of success is indicated by the status code 'retcod'
+  which can take the following values:
+
+       retcod value   |          status of operation
+     ----------------------------------------------------------------
+          RTTLOK      |  successfully replaced tolerance and geometry
+                      |
+          RTTLNT      |  neither tolerance nor geometry replaced as
+                      |  surfaces are approximately tangent at edge
+                      |
+          RTTLMG      |  not enough geometry present on edge or
+                      |  adjacent faces to recompute edge geometry
+                      |
+          RTTLRF      |  recomputation of edge geometry failed
+
+  RETLEN attempts to replace geometry and tolerance as follows:
+
+  . if all adjacent faces of the edge have surface geometry attached, a
+    3-space curve of intersection will be derived by re-intersection of
+    these surfaces. Extensive pre-checks will be made to ensure that
+    tangent or near-tangent configurations (such as boundaries of
+    Variable Radius Blends) are not attempted in this way. In these cases
+    the token RTTLNT will be returned, and the edge geometry and tolerance
+    will be unchanged. There will also be cases where the edge is not a near
+    tangency, but nevertheless a new curve of intersection could not be
+    computed (for example, the adjacent surfaces may simply not intersect to
+    Parasolid default resolution); in such cases RTTLRF will be returned.
+    Otherwise, if RETLEN is successful, 'retcod' will be set to RTTLOK.
+
+    The particular simple case where one of the SP-curves lies within
+    Parasolid default tolerance of the adjacent surface will be dealt
+    with by either simplifying this SP-curve to its 3-space equivalent,
+    of failing this, by transferring the SP-curve to the edge.
+
+  . if not all face geometries are present, as at the boundary of a
+    sheet body, the SP-curve present on the relevant fin will be first
+    simplified to its 3-space equivalent (if it was a constant parameter
+    curve) and this new curve attached to the edge. If no simplification
+    was possible, the SP-curve itself will be transferred to the edge.
+    In either case RTTLOK will be returned in 'retcod' if the geometry was
+    successfully recomputed.
+
+  If insufficient geometry was present to successfully replace the tolerance
+  of the edge, RTTLMG (missing geometry) will be returned.
+
+  RETLEN will also attempt to set the tolerance of each vertex of the edge
+  to Parasolid default. It will only be able to do this if all the other
+  edges meeting at the vertex in question have Parasolid default tolerance
+  associated with them, and the new 3-space curve intersects at a unique
+  point with all the other edge curves meeting there. Note that if both
+  vertex tolerances are reset, the curve attached to the edge will no
+  longer be a trimmed curve (type TYCUTR).
+
+</PRE>
+</BODY>
+</HTML>

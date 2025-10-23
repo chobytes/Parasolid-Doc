@@ -1,0 +1,420 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 6.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Parasolid v14.1: Special Kernel Interface Routines</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Special Kernel Interface Routines</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="ki_chap.06.html">Flick Function Descriptions</A></TD>
+  <TD><A HREF="../ki_index.html">Chapters</A></TD>
+</TR></TABLE>
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="ki_chap.07.html#pgfId-274043">E.1	Introduction</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="pgfId-274043"></A>E.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="pgfId-274044"></A>This chapter contains the specifications of all the Special Kernel Interface routines in alphabetical order. These special routines are supplied only to provide access to pre-v9 behaviour in their specific area of functionality. Their use is not encouraged other than in the particular instance as they will be withdrawn in a future version. </P>
+<P>
+<A NAME="pgfId-280229"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="pgfId-280237"></A>Warning: Do not use these functions unless you know exactly why you need them and the equivalent standard routine does not provide the desired functionality, the correct way to obtain it is through the PK.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="pgfId-274046"></A>BOPOLD - Global or local boolean operation on bodies</H4>
+
+<H4>
+<A NAME="pgfId-274047"></A>Receives</H4>
+<P>
+<A NAME="pgfId-274079"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274050"></A>KI_tag_list_entity</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274052"></A>*target</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274054"></A>target body or list of faces</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274056"></A>KI_tag_list_entity</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274058"></A>*tools</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274060"></A>tool bodies or faces of tool body</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274062"></A>&lt;KI_int_nitems&gt;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274064"></A>*nopts</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274066"></A>number of boolean options</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274068"></A>KI_cod_boop</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274070"></A> opts[nopts]</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274072"></A>boolean option codes</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274074"></A>&lt;KI_tag_list_entity&gt;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274076"></A> optdta[nopts]</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274078"></A>boolean option data lists</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="pgfId-274080"></A>Returns</H4>
+<P>
+<A NAME="pgfId-274100"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274083"></A>KI_tag_list_body</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274085"></A>*bodys</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274087"></A>resulting bodies</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274089"></A>KI_int_nitems</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274091"></A>*nbodys</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274093"></A>number of bodies</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274095"></A>KI_cod_error</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274097"></A>*ifail</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274099"></A>failure code</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="pgfId-274101"></A>Specific Errors</H4>
+<P>
+<A NAME="pgfId-274213"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274104"></A>KI_partial_no_intersect</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274106"></A>No imprinting in local boolean</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274108"></A>KI_boolean_failure</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274110"></A>Unrecognized result; Invalid matched region; </PRE>
+<PRE><A NAME="pgfId-274111"></A>Inconsistent arguments, or internal error</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274113"></A>KI_non_manifold</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274115"></A>Non-manifold result</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274117"></A>KI_t_sheet</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274119"></A>T-sheet</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274121"></A>KI_partial_coi_found</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274123"></A>Boolean failure due to partial coincidence</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274125"></A>KI_cant_intsc_solid_sheet</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274127"></A>Cant intersect solid target with sheet tool </PRE>
+<PRE><A NAME="pgfId-274128"></A>bodies</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274130"></A>KI_solid_has_void</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274132"></A>Illegal void</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274134"></A>KI_not_solid</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274136"></A>Body is not solid</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274138"></A>KI_not_sheet</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274140"></A>Body is not sheet</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274142"></A>KI_opposed_sheets</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274144"></A>Attempt to unite opposed sheets</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274146"></A>KI_cant_unite_solid_sheet</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274148"></A>Attempt to unite solid and sheet</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274150"></A>KI_unsuitable_topology</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274152"></A>A faceset selector is from boundary or wrong </PRE>
+<PRE><A NAME="pgfId-274153"></A>body</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274155"></A>KI_tool_faces_many_bodies</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274157"></A>Tool faces are from more than one body</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274159"></A>KI_targ_faces_many_bodies</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274161"></A>Target faces are from more than one body</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274163"></A>KI_mixed_sheets_solids</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274165"></A>Mixture of sheet and solid tool bodies</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274167"></A>KI_instanced_tools</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274169"></A>Instanced tool bodies</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274171"></A>KI_duplicate_targets</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274173"></A>Duplication in list of target faces</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274175"></A>KI_duplicate_tools</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274177"></A>Duplication in list of tool bodies</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274179"></A>KI_too_many_targets</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274181"></A>Too many target bodies</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274183"></A>KI_unsuitable_entity</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274185"></A>Target or tool not a face or body</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274187"></A>KI_wire_body</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274189"></A>Target or tool has wireframe or acorn </PRE>
+<PRE><A NAME="pgfId-274190"></A>components</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274192"></A>KI_missing_geom</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274194"></A>Target or tool has incomplete geometry</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274196"></A>KI_same_tool_and_target</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274198"></A>Tool body is also target body</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274200"></A>KI_contradictory_request</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274202"></A>Bad combination of options or data for type </PRE>
+<PRE><A NAME="pgfId-274203"></A>of boolean</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274205"></A>KI_not_in_same_partition</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274207"></A>Target and tools are not all in the same </PRE>
+<PRE><A NAME="pgfId-274208"></A>partition</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274210"></A>KI_general_body</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="pgfId-274212"></A>Target or tool is general body</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="pgfId-274214"></A>Description</H4>
+<P>
+<A NAME="pgfId-274215"></A>This function takes the same arguments as BOPBYS. Its only purpose is to provide access to pre-v9 behaviour in partial booleans with excluded faces. As such, its use is STRONGLY DEPRECATED and it will be withdrawn in a future version. Do not use this unless you know exactly why you need it: if BOPBYS does not provide the desired functionality, the correct way to obtain it is through the PK.</P>
+<P>
+<A NAME="pgfId-273605"></A>&nbsp;</P>
+
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="ki_chap.06.html">Flick Function Descriptions</A></TD>
+  <TD><A HREF="../ki_index.html">Chapters</A></TD>
+</TR></TABLE>
+</BODY>
+</HTML>

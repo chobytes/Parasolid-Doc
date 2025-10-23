@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FGPRSU_f_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FGPRSU_f_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef void (*PK_FGPRSU_f_t)
+(
+<I>--- received arguments ---
+</I>int      ki_ints[],
+double   ki_reals[],
+double   fg_data[],
+<I>--- returned arguments ---
+</I>double   range[4],
+int      period[2],
+int     *ifail
+);
+</B>
+<A NAME="description"></A>
+<I>Return foreign surface parameterisation properties.
+
+Note: You are advised to consult with Parasolid Support before using Foreign
+Geometry.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_session_ask_fru_o_t.html>PK_SESSION_ask_fru_o_t</A><br>
+    <A HREF=../headers/pk_session_frustrum_t.html>PK_SESSION_frustrum_t</A><br>
+    <A HREF=../headers/pk_session_register_fru_o_t.html>PK_SESSION_register_fru_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+This function is called, after FGCRSU has initialised the surface, to
+indicate to Parasolid some of the parametric properties of the surface. The
+function can specify the parameter ranges of the surface and indicate whether
+it is to be treated as periodic in u and/or v.
+
+If the ifail value is set to FGPROP then Parasolid uses default
+properties for the surface evaluator: there is no need to set the range and
+periodicity flag. Default properties are parameter ranges [0, 1] for both
+u and v parameters and periodicity flags FGPRBD for both parameters
+(i.e. non-periodic parameterisation).
+
+If the ifail value is set to FGOPOK then this function must set the range
+array and the periodicity flags array.
+
+     range[0], range[1] are lower and upper u parameter values
+     range[2], range[3] are lower and upper v parameter values
+     period[0] is the u parameter periodicity flag (must be FGPRBD)
+     period[0] is the v parameter periodicity flag (must be FGPRBD)
+
+Note : Closed and periodic surfaces are NOT permitted in the current
+       version of Parasolid. This function includes the periodic argument for
+       upwards compatibility with future planned enhancements to FG
+       capability.
+
+Specific ifail values:
+  FGOPFA              Operation failed
+  FGPROP              Use default parameter properties
+( FGOPOK              Operation successful )
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

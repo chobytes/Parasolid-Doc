@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_bound_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_bound_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_bound_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_bound_def_t.html>PK_bound_def_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype specifies how an extruded body or feature is to be bounded.
+
+    PK_bound_distance_c       the extrusion is bounded by a copy of the
+                              <B>'profile'</B> at a given distance from the given
+                              <B>'profile'</B>.  The distance must be
+                              non-negative.  Putting the bound in the
+                              opposite direction to the <B>'path'</B> vector is
+                              achieved by setting <B>'forward'</B> in the
+                              <A HREF=../headers/pk_bound_def_t.html>PK_bound_def_t</A> structure to PK_LOGICAL_false.
+                              This may only be used when <B>'extruded_body'</B> is
+                              PK_ENTITY_null.
+
+    PK_bound_surf_c           the extrusion is bounded by a given surface.
+                              The surface may be given explicitly, or a face
+                              may be given, in which case the face's surface
+                              will be used. The division may extend beyond the
+                              face on the face's surface. The surface is not
+                              affected by the operation.
+
+    PK_bound_face_c           the extrusion is bounded by the given face,
+                              and, if necessary, whatever adjacent faces are
+                              required to complete a division.  The face and
+                              any necessary adjacent faces are not affected by
+                              the operation.
+
+    PK_bound_body_c           the extrusion is bounded by its intersection
+                              with the given body.  The body is not affected by
+                              the operation.  The body must be a sheet body or
+                              solid body.
+
+    PK_bound_sheet_c          the extrusion is bounded by its intersection
+                              with the given sheet body.  When the profile is
+                              a wire or sheet body, the bounding sheet body
+                              is destroyed by the operation.
+
+    PK_bound_none_c           the corresponding end of <B>'extruded_body'</B> is not
+                              altered by this operation.  Can only be used when
+                              <B>'extruded_body'</B> is not PK_ENTITY_null.
+
+Note on differences between PK_bound_body_c and PK_bound_sheet_c:  When the
+PK_bound_body_c option is given then Parasolid will find candidate faces on
+the sheet or solid body which may form a division; ie only some faces
+of the given body may be involved in the boolean operation to find the
+division.  With the PK_bound_sheet_c option, all faces of the accompanying
+sheet body will be used to find divisions.  Hence the difference is largely
+one of performance: if the application knows the relevant set of faces then
+it is best to use these to create a sheet body (<A HREF=../headers/pk_face_make_sheet_body.html>PK_FACE_make_sheet_body</A>) and
+to use the PK_bound_sheet_c option.  If the application does not know which
+faces are likely to form the division then the PK_bound_body_c option should
+be used.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

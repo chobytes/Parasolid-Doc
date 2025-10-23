@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_outline_status_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_outline_status_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_outline_status_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_persp_outline_r_t.html>PK_BODY_make_persp_outline_r_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype indicates the status of PK_BODY_makes_curves_outline,
+<A HREF=../headers/pk_body_make_spun_outline.html>PK_BODY_make_spun_outline</A> and <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A> operations.
+It has the values:
+
+    PK_outline_status_ok_c           Operation succeeded with outline curves
+
+    PK_outline_status_no_outline_c   Operation succeeded without any outline
+                                     curves as the <B>'eye_position'</B> is blocked by
+                                     the bodies
+
+    PK_outline_status_non_manifold_c Operation succeeded with outlines
+                                     including non-manifold loops
+
+    PK_outline_status_fail_c         Operation failed to produce outline
+
+    PK_outline_status_behind_c       <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A> operation
+                                     failed because a supplied body is behind
+                                     the projection surface when viewing from
+                                     the <B>'eye_position'</B>
+
+    PK_outline_status_cant_facet_c   Operation failed to facet the input bodies
+
+    PK_outline_status_in_solid_c     <A HREF=../headers/pk_body_make_persp_outline.html>PK_BODY_make_persp_outline</A> operation
+                                     failed because the<B>'eye_position'</B> is inside
+                                     a solid body
+
+    PK_outline_status_cant_project_c Operation failed to project some of the
+                                     outline curves onto the surface(s)
+
+    PK_outline_status_cant_convert_c Operation failed to convert some of the
+                                     polylines to outline curves
+
+    PK_outline_status_cant_heal_c    Operation failed to heal outline wound
+                                     caused by <B>'exclude_faces'</B>
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

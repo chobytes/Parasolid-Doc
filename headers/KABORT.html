@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+<TITLE>KABORT</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>KABORT</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_session_abort.html>PK_SESSION_abort</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+KABORT ( reason, ifail )
+========================
+
+  Aborts a previously interrupted Kernel operation
+
+Receives:
+  KI_cod_slab              *reason         --- specifies reason for abort :
+                                           ---   SLABUI for user-interrupt
+                                           ---   SLABRE for run-time error
+                                           ---   SLABFE for Frustrum error
+
+Returns:
+  KI_cod_error             *ifail          --- error code
+
+Specific errors:
+  KI_cant_be_aborted        operation cannot be aborted
+
+Description:
+
+  KABORT should only be called from the application's interrupt-handler when
+  it has trapped an interrupt. KABORT is used to abort the interrupted Kernel
+  operation so-as to avoid irrecoverably corrupting the Kernel datastructures,
+  and must be called whenever an interrupt is trapped (except where the
+  interrupted operation is allowed to resume to completion, which of course
+  is not legitimate for interrupts caused by run-time errors).
+
+  After aborting a Kernel operation by use of KABORT, the application should
+  call ROLBLM to rollback the Kernel to the most recent roll-mark; otherwise
+  the Kernel will be left in an uncertain (and possibly inconsistent) state.
+
+  KABORT is the only KI routine which may be called from an interrupt handler
+  whilst a Kernel operation is in an interrupted-state; any other routine
+  called under these cirumstances will return error KI_recursive_call.
+
+  If KABORT is called when the Kernel has not been interrupted (for example, if
+  the interrupt happened within the application's code), it will simply return
+  (having done nothing) with error KI_not_interrupted.
+
+  Assuming that the Kernel has indeed been interrupted, what happens next
+  depends on the nature of the interrupt, as specified by the value of
+  'reason' and whether the Kernel was executing an unprotected PK function
+  call or a protected PK or KI function call :-
+
+  value of   nature of     what happens
+  'reason'   interrupt
+
+   SLABUI    user-         KABORT sets an abort flag in the Kernel, then returns
+               interrupt   to the interrupt handler, which must then allow the
+                           original Kernel operation to resume execution.
+                           When the Kernel reaches a consistent state, it will
+                           abort the operation and call the application's
+                           FABORT routine (see the Frustrum Reference Manual)
+                           if a KI function was executing, or registered error
+                           handler if a PK function was executing. FABORT or
+                           the error handler can do a longjump to a "safe-point"
+                           within the application, alternatively, it may
+                           simply return to the Kernel, which will return
+                           through the original Kernel call with the error-code
+                           KI_aborted (for a KI function) or PK_ERROR_aborted
+                           (for a PK function).
+
+   SLABRE    run-time      This indicates that some run-time error has occurred
+               error       within the Kernel. In this case, KABORT will not
+                           return to the interrupt-handler; for a KI or
+                           protected PK function call it will do a longjump
+                           back to the original Kernel routine, which will
+                           return to the calling routine, normally giving error
+                           code KI_run_time_error or PK_ERROR_run_time_error
+                           respectively. Very occasionally, error code
+                           KI_fatal_error/PK_ERROR_fatal_error may be returned;
+                           this indicates that the Kernel has been left in a bad
+                           state, and the application should abort the program
+                           run without making further calls to the Kernel.
+                           FABORT is not called for a run-time error inside a KI
+                           function. The user supplied PK error handler will be
+                           called for a run-time error in a protected PK
+                           function.
+
+                           For an unprotected PK function, a run-time error will
+                           lead to the user-supplied error handler being called
+                           with the error code PK_ERROR_unhandleable_condition
+                           and the error handler MUST longjump over the kernel to
+                           a safe-point in the applications code. If there is no
+                           error handler registered, or if it returns, Parasolid
+                           will exit the program.
+
+   SLABFE    Frustrum      This behaves like SLABRE, but the error has occured
+               error       in the Frustrum, an error code of KI_fru_error is
+                           returned.
+
+
+  It is not possible to abort operations invoked by calls to STAMOD, STOMOD,
+  ROLBLM, ROLBFN or ROLSMK, or the corresponding PK functions <A HREF=../headers/pk_session_start.html>PK_SESSION_start</A>,
+  <A HREF=../headers/pk_session_stop.html>PK_SESSION_stop</A>, or any PK_MARK_*, PK_PMARK_* or PK_DELTA_* function.
+  If KABORT is called for a user interrupt within
+  the scope of one of these operations, it will return (having done nothing)
+  with error KI_cant_be_aborted; the interrupt handler must then allow the
+  Kernel to continue the operation to completion. If KABORT is called for a
+  run-time error during one of these operations, it will cause the original KI
+  routine to return with error code KI_fatal_error.
+
+  Whilst a call to KABORT for a run-time error will force an immediate exit from
+  the KI, a call for a user-interrupt involves a short delay before the
+  operation is aborted. In the unlikely event that a program fault causes
+  Parasolid to go into an infinite loop, it is possible that a call to KABORT
+  requesting a user-interrupt will be ignored. It is therefore suggested that
+  the application's interrupt-handler should incorporate a timer such that any
+  subsequent interrupt more than (say) five cpu-seconds after the original
+  interrupt is treated as if it were a run-time error (by calling KABORT with
+  token SLABRE) in order to force exit from the KI. The timer should be reset by
+  FABORT or the user-supplied PK error handler (which is called after a
+  successfully aborted KI call) and by the interrupt-handler when it decides to
+  treat an interrupt as a run-time error.
+
+
+
+</PRE>
+</BODY>
+</HTML>

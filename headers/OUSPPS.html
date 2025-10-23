@@ -1,0 +1,189 @@
+<HTML>
+<HEAD>
+<TITLE>OUSPPS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUSPPS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bsurf_ask_splinewise.html>PK_BSURF_ask_splinewise</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUSPPS ( bs, pts, ncol, nrow, props, pdata, nprops, sense, ifail )
+==================================================================
+
+  Output B-surface as spline points
+
+Receives:
+  KI_tag_b_surface         *bs             --- B-surface
+
+Returns:
+  KI_tag_list_dbl          *pts            --- mesh of spline points
+  KI_int_nitems            *ncol           --- number of columns of points
+  KI_int_nitems            *nrow           --- number of rows of points
+  KI_tag_list_int          *props          --- surface properties
+  KI_tag_list_&lt;list&gt;       *pdata          --- list of data lists
+  KI_int_nitems            *nprops         --- number of surface properties
+  KI_cod_logical           *sense          --- surface sense
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_bad_knots              surface has unsuitable knot vector
+  KI_unsuitable_entity      more than one patch in linear or quadratic direction
+                            order of surface is greater than four
+
+Description:
+  This function outputs a B-surface as spline points, boundary conditions and
+  knot vectors. This constitutes sufficient information to recreate the surface
+  (via CRSPPS).
+
+  Restrictions
+    . The surface must be bicubic (or lower degree), non-rational and have
+      continuous first and second derivatives. If a surface is linear or
+      quadratic the u direction then to satisfy these conditions it must
+      consist of a single column of patches (similarly for v direction and rows
+      of patches).
+    . If the surface is periodic in a particular direction the corresponding
+      knot vector must not contain any repeated knots.
+    . If the surface is non-periodic in a particular direction the
+      corresponding knot vector can only contain repeated knots at the start
+      and end. Surfaces
+    . Any surface created using CRSPPS and not subsequently modified will
+      satisfy these conditions.
+
+  Spline points 'pts', 'npts':
+    The spline points are returned in the list of real data 'pts', in order
+    along the rows, row by row. 'ncol' * 'nrow' points are returned. They
+    correspond to corners of the patches in the surface.
+
+  Surface properties 'props', 'pdata', 'nprops':
+    The 'props' array contains 'nprops' tokens from the sequence PAPR00. A
+    particular property may be associated with additional data; if so, this
+    is returned in a list. The tag of the list is returned in the 'pdata' list,
+    in the position corresponding to the token in 'props'.
+
+    The table shows which tokens may be present, and the data associated with
+    them. Some tokens are always present, whereas others are only present if the
+    surface has a particular property.
+
+    In explaining the various properties of splined surfaces the following
+    notation is used
+
+        o  bottom boundary  - first row of points
+        o  top boundary     - last row of points
+        o  left boundary    - first col of points
+        o  right boundary   - last col of points
+
+
+      token   |       meaning         |     real data     | always present?
+      ---------------------------------------------------------------------
+              |                       |                   |
+      PAPRPU  |   rows are periodic   |       none        | NO - the default is
+              |                       |                   |      non-periodic
+              |                       |                   |
+      PAPRPV  | columns are periodic  |       none        | NO - the default is
+              |                       |                   |      non-periodic
+              |                       |                   |
+      PAPRCB  | derivatives returned  | 'ncol' derivative | present unless
+              | at start of columns   |       vectors     | columns are periodic
+              |  (clamped boundary    |                   |
+              |      condition)       |                   |
+              |                       |                   |
+      PAPRCT  | derivatives returned  | 'ncol' derivative | present unless
+              |   at end of columns   |       vectors     | columns are periodic
+              |  (clamped boundary    |                   |
+              |      condition)       |                   |
+              |                       |                   |
+      PAPRCL  | derivatives returned  | 'nrow' derivative | present unless
+              |   at start of rows    |       vectors     | rows are periodic
+              |  (clamped boundary    |                   |
+              |      condition)       |                   |
+              |                       |                   |
+      PAPRCR  | derivatives returned  | 'nrow' derivative | present unless
+              |    at end of rows     |       vectors     | rows are periodic
+              |  (clamped boundary    |                   |
+              |      condition)       |                   |
+              |                       |                   |
+      PAPRBL  |   bottom left twist   |   twist vector    | present unless rows
+              |    vector returned    |                   | or cols are periodic
+              |                       |                   |
+      PAPRBR  |   bottom right twist  |   twist vector    | present unless rows
+              |    vector returned    |                   | or cols are periodic
+              |                       |                   |
+      PAPRTL  |    top left twist     |   twist vector    | present unless rows
+              |    vector returned    |                   | or cols are periodic
+              |                       |                   |
+      PAPRTR  |    top right twist    |   twist vector    | present unless rows
+              |    vector returned    |                   | or cols are periodic
+              |                       |                   |
+      PAPRKU  |   knot vector in u    |   knot vector     |   YES
+              |                       |                   |
+      PAPRKV  |   knot vector in v    |   knot vector     |   YES
+              |                       |                   |
+      PAPRCU  |  surface is bicubic   |       none        |   NO
+              |                       |                   |
+
+
+  Boundary conditions PAPRPU, PAPRPV, PAPRCB, PAPRCT, PAPRCL, PAPRCR:
+    Either clamped or periodic boundary conditions may be returned. These apply
+    to u and v directions (rows and columns) independently. Clamped boundary
+    conditions refer to either the start or end of the rows or columns.
+    Periodic boundary conditions apply to both the start and end of rows or
+    columns simultaneously.
+
+  . Clamped boundary conditions return the first derivatives, with respect to a
+    parameter varying between 0 and 1 over the first or last interval, across
+    some boundary of the surface.  The derivatives are returned in a real list.
+
+  . Periodic boundary conditions imply that the rows or columns are closed, so
+    that the surface meets itself with continuity of tangent and curvature.
+
+  Twist vectors PAPRBL, PAPRBR, PAPRTL, PAPRTR:
+    A twist vector is a derivative with respect to both u and v; i.e. it
+    is the rate of change of the u derivatives in the v direction, and also
+    the rate of change of the v derivatives in the u direction (these two
+    quantities are always equal). The twist vectors are returned at all four
+    corners, but only if neither the rows nor the columns are periodic.
+
+  Knot vector PAPRKU, PAPRKV:
+    Knot vectors are always returned. They have the following properties:
+    . The knot values form strictly increasing sequences.
+    . If the rows are not periodic there will be 'ncol' knot values in the
+      u knot vector.
+    . If the rows are periodic there will be ('ncol'+1) knot values in the
+      u knot vector.
+    . If the columns are not periodic there will be 'nrow' knot values in
+      the v knot vector.
+    . If the columns are periodic there will be ('nrow'+1) knot values in
+      the v knot vector.
+
+  Bicubic surface PAPRCU:
+    This token indicates that the surface is bicubic.
+
+  Surface sense 'sense'
+  . If 'sense' is KI_true the surface normal is given by the cross product of
+    the first derivatives of the surface with respect the u and v parameters.
+    i.e.
+             normal = Pu X Pv
+
+  . If 'sense' is KI_false the surface normal is in opposite to that described
+    for 'sense' == KI_true.
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MTOPOL_select_cb_f_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MTOPOL_select_cb_f_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef void             (*PK_MTOPOL_select_cb_f_t)
+(
+<I>--- received arguments ---
+</I>const <A HREF=../headers/pk_mtopol_t.html>PK_MTOPOL_t</A>          mtopol,       --- mfacet or mfin
+void                      *data,         --- external data
+<I>--- returned arguments ---
+</I><A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>              *select,       --- mtopol select decision
+<A HREF=../headers/pk_mesh_cb_status_t.html>PK_MESH_cb_status_t</A>       *status        --- callback status
+);
+</B>
+<A NAME="description"></A>
+<I>This is a type definition for an external evaluator function to be
+used by Parasolid to select a specific set of mesh topology from a
+given mesh. The function itself is provided by the application.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mfacet_find_perimeters_o_t.html>PK_MFACET_find_perimeters_o_t</A><br>
+    <A HREF=../headers/pk_mtopol_make_meshes_o_t.html>PK_MTOPOL_make_meshes_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The void* <B>'data'</B> argument is used to communicate between the application and
+its supplied callback function. The returned argument <B>'select'</B> determines
+whether the mtopol is selected or not according to the callback operation. The
+returned argument <B>'status'</B> gives the user some control over the error handling.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

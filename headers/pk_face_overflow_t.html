@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_overflow_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_overflow_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_FACE_overflow_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_overflow_data_o_t.html>PK_FACE_overflow_data_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype controls the method for creating the overflow from tool or
+target as they overflow each other.
+
+In the case of overflow when imprinting, the extent of laminar overflows on
+the target or tool is controlled by the options <B>'imprint_complete_targ'</B> and
+<B>'imprint_complete_tool'</B> respectively.
+
+Available values:
+
+    PK_FACE_overflow_tangent_c   Overflow by extending tangentially onto
+                                 the body.
+    PK_FACE_overflow_ruled_c     Overflow by extending onto the body by
+                                 intersection with a ruled sheet from the
+                                 laminar overflow boundary.
+    PK_FACE_overflow_swept_c     Overflow by extending onto the body by
+                                 intersection with a swept sheet from the
+                                 laminar overflow boundary.
+    PK_FACE_overflow_added_c     Overflow an interior edge by including
+                                 other faces of the body as additional
+                                 faces onto which to imprint.
+    PK_FACE_overflow_mixed_c     Overflow interior edges by a mixture of
+                                 adding and extending other faces across the
+                                 overflow boundary, based on local convexity
+                                 of the boundary.
+    PK_FACE_overflow_none_c      Do not attempt to overflow.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_render_facet_go_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_render_facet_go_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_TOPOL_render_facet_go_o_s
+    {
+    int                       o_t_version;  --- version of PK option struct
+    <A HREF=../headers/pk_facet_go_normals_t.html>PK_facet_go_normals_t</A>     go_normals;   --- whether to output GO face
+                                            --- normals
+                                            --- (<A HREF=../headers/pk_facet_go_normals_t.html>PK_facet_go_normals_no_c</A>)
+    <A HREF=../headers/pk_facet_go_parameters_t.html>PK_facet_go_parameters_t</A>  go_parameters;
+                                            --- whether to output GO surf
+                                            --- parameters [PF]
+                                            --- (<A HREF=../headers/pk_facet_go_parameters_t.html>PK_facet_go_parameters_no_c</A>)
+    <A HREF=../headers/pk_facet_go_curvatures_t.html>PK_facet_go_curvatures_t</A>  go_curvatures;
+                                            --- whether to output GO
+                                            --- principal directions and
+                                            --- curvatures of the face
+                                            --- (<A HREF=../headers/pk_facet_go_curvatures_t.html>PK_facet_go_curvatures_no_c</A>)
+    <A HREF=../headers/pk_facet_go_edges_t.html>PK_facet_go_edges_t</A>       go_edges;     --- whether to output GO edge
+                                            --- entities
+                                            --- (<A HREF=../headers/pk_facet_go_edges_t.html>PK_facet_go_edges_no_c</A>)
+    <A HREF=../headers/pk_facet_go_strips_t.html>PK_facet_go_strips_t</A>      go_strips;    --- whether to output facets in
+                                            --- strips
+                                            --- (<A HREF=../headers/pk_facet_go_strips_t.html>PK_facet_go_strips_no_c</A>)
+    int                       go_max_facets_per_strip;
+                                            --- associated max value (0)
+    <A HREF=../headers/pk_facet_go_interleaved_t.html>PK_facet_go_interleaved_t</A> go_interleaved;
+                                            --- whether to interleave the
+                                            --- output of faces from
+                                            --- different bodies
+                                            --- (<A HREF=../headers/pk_facet_go_interleaved_t.html>PK_facet_go_interleaved_no_c</A>)
+    <A HREF=../headers/pk_facet_split_strip_t.html>PK_facet_split_strip_t</A>    split_strips; --- whether to split facet strips
+                                            ---(<A HREF=../headers/pk_facet_split_strip_t.html>PK_facet_split_strip_no_c</A>)
+    <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_t</A>
+                              consistent_parms;
+                                            --- whether to force parameters at
+                                            --- vertices in each facet to lie
+                                            --- within half a period of each
+                                            --- other
+                                            ---(<A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_no_c</A>)
+
+    };
+typedef struct PK_TOPOL_render_facet_go_o_s PK_TOPOL_render_facet_go_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Selection of graphics output (GO) options for <A HREF=../headers/pk_topol_render_facet_o_t.html>PK_TOPOL_render_facet_o_t</A>
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_value            <A HREF=../headers/pk_facet_go_strips_t.html>PK_facet_go_strips_yes_c</A> needs value &gt; 1
+                                  (MILD)
+    PK_ERROR_bad_combination      <B>'consistent_parms'</B> set to
+                                  <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_fa_c</A> and <B>'degen'</B>
+                                  set to <A HREF=../headers/pk_facet_degen_t.html>PK_facet_degen_single_vx_c</A> (MILD)
+                                  <B>'go_curvatures'</B> set to
+                                  <A HREF=../headers/pk_facet_go_curvatures_t.html>PK_facet_go_curvatures_yes_c</A> and <B>'go_normals'</B>
+                                  set to <A HREF=../headers/pk_facet_go_normals_t.html>PK_facet_go_normals_no_c</A> (MILD)
+                                  <B>'go_curvatures'</B> set to
+                                  <A HREF=../headers/pk_facet_go_curvatures_t.html>PK_facet_go_curvatures_yes_c</A> and
+                                  <B>'go_parameters'</B> set to either
+                                  <A HREF=../headers/pk_facet_go_parameters_t.html>PK_facet_go_parameters_d1_c</A> or
+                                  <A HREF=../headers/pk_facet_go_parameters_t.html>PK_facet_go_parameters_d2_c</A> (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_render_facet_o_t.html>PK_TOPOL_render_facet_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+  This selects which additional data are output through GO
+
+    - face normals
+    - surface parameters
+    - first and second order derivatives of the surface parameterisation
+    - principal directions and curvatures of the face
+    - model edge entities
+
+  and how these are output.
+
+  See <A HREF="../chapters/fd_chap.110.html#50409901_pgfId-294798">here</A> for more information.
+
+
+  GO_PARAMETERS:
+  If derivatives are requested, the cross product dPdu X dPdv points in the
+  same direction as the surface normal. This is true except in the case where
+  a transform is supplied for which <A HREF=../headers/pk_transf_classify.html>PK_TRANSF_classify</A> on the transform returns
+  a matrix_type of <A HREF=../headers/pk_matrix_type_t.html>PK_matrix_type_reflection_c</A>. In this case, each dPdu X dPdv
+  points in the opposite direction to the corresponding surface normal.
+  
+  Note: First and second derivatives are only returned for members of <B>'topols'</B>
+        with classic geometry.
+
+  GO_CURVATURES:
+  Maximum and minimum curvatures are returned as the principal curvature
+  values.  The principal curvature with the smallest absolute value is always
+  returned as the first principal curvature, irrespective of whether it
+  represents the maximum or minimum curvature. Likewise the principal curvature
+  with the largest absolute value is returned as the second principal
+  curvature.
+  
+  The sign of the curvature is positive if the face curves away from the face
+  normal direction.
+  
+  If the principal curvatures are equal (in both sign and magnitude) then the
+  principal directions are not significant.
+  
+  At singularities the principal curvature directions returned will be (0,0,0)
+  and the principal curvatures will be zero.
+  
+  Note: If <B>'go_curvatures'</B> is set to <A HREF=../headers/pk_facet_go_curvatures_t.html>PK_facet_go_curvatures_yes_c</A> then
+        <B>'go_normals'</B> must be set to <A HREF=../headers/pk_facet_go_normals_t.html>PK_facet_go_normals_yes_c</A> and
+        <B>'go_parameters'</B> must be set to either <A HREF=../headers/pk_facet_go_parameters_t.html>PK_facet_go_parameters_no_c</A> or
+        <A HREF=../headers/pk_facet_go_parameters_t.html>PK_facet_go_parameters_d0_c</A>.
+
+  INTERLEAVED FACETS:
+  Facets may be output in one of two ways: all facets for a particular body are
+  output before facets belonging to any other body are output, or, the facets
+  of faces of the bodies being facetted can be interleaved.
+  
+  Setting the <B>'go_interleaved'</B> option to <A HREF=../headers/pk_facet_go_interleaved_t.html>PK_facet_go_interleaved_yes_c</A> allows
+  facets from any one of the bodies for which a body segment is open to be
+  output.  Facets are output on a face by face basis rather than a body by
+  body basis: in cases where there are multiple instances selecting this
+  option should reduce the peak memory of facetting.
+  
+  Interleaved facetting has the additional advantage of being multi-threaded.
+  
+  When the function is running concurrently, facets may also be interleaved
+  with facets from calls to <A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A> in other threads that are
+  also facetting concurrently.
+
+  FACET STRIPS:
+  Setting the <B>'go_strips'</B> option to <A HREF=../headers/pk_facet_go_strips_t.html>PK_facet_go_strips_yes_c</A> will result in
+  facets being output through the GO in strips where possible (some individual
+  facets may also be output).  The <B>'go_max_facets_per_strip'</B> option can be used
+  to limit the number of facets per strip.
+  
+  The <B>'split_strips'</B> option allows facet strips on periodic surfaces to be
+  split so that the strips do not span more than a single period on the
+  surface.  The permitted values for the <B>'split_strips'</B> option are:
+                  PK_facet_split_strips_no_c  (default)
+                  PK_facet_split_strips_yes_c
+  
+  The control of the parameterisation of the strip can be obtained via the
+  <B>'consistent_parms'</B> option described below.
+  
+
+  CONSISTENT PARAMETERS:
+  The <B>'consistent_parms'</B> option only has an effect on periodic surfaces,
+  setting this to either <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_su_c</A> or
+  <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_fa_c</A> ensures surface parameters for facet vertices
+  within a given facet lie within half a period of each other.
+  
+  If facets are being output as strips each strip will be composed of
+  consistently parameterised triangular facets.  All triplets of vertices
+  within the strip will have surface parameters that lie within half a period
+  of each other.
+  
+  If the <B>'consistent_parms'</B> option is set to <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_su_c</A>
+  then one facet vertex within the facet or strip will have parameters in the
+  first period and all other vertices within the facet or strip will be made
+  consistent with this.
+  
+  Setting <B>'consistent_parms'</B> to <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_fa_c</A> only produces
+  different results from <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_su_c</A> if the facets do not
+  cover the whole of the period.  In this case each facet vertex is given a
+  unique parameter value. Facet vertices that fall within the face uvbox, as
+  returned from <A HREF=../headers/pk_face_find_uvbox.html>PK_FACE_find_uvbox</A>, will have parameters lying inside this box.
+  All other facet vertices will be made consistent with those inside the
+  face's uvbox.  In cases where the facets do not span the whole of the period
+  but the face uvbox is the whole period, some facet vertices may not lie
+  inside the face's uvbox.
+  
+  The permitted values for the <B>'consistent_parms'</B> option are:
+                  <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_no_c</A>  (default)
+                  <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_su_c</A>
+                  <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_fa_c</A>
+  
+  If <B>'degen'</B> in the <B>'control'</B> options supplied to <A HREF=../headers/pk_topol_render_facet.html>PK_TOPOL_render_facet</A> is set
+  to <A HREF=../headers/pk_facet_degen_t.html>PK_facet_degen_single_vx_c</A> and <B>'consistent_parms'</B> is set
+  to <A HREF=../headers/pk_facet_consistent_parms_t.html>PK_facet_consistent_parms_fa_c</A> PK_ERROR_bad_combination will be returned.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

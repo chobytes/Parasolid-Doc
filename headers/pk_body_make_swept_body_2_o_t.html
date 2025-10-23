@@ -1,0 +1,605 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_make_swept_body_2_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_make_swept_body_2_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_make_swept_body_2_o_s
+    {
+    int                        o_t_version;
+    <A HREF=../headers/pk_body_sweep_alignment_t.html>PK_BODY_sweep_alignment_t</A>  alignment;  --- alignment of profile
+                                           --- (PK_BODY_sweep_align_normal_c)
+    <A HREF=../headers/pk_body_simplify_t.html>PK_BODY_simplify_t</A>         simplify;   --- simplify swept surfaces
+                                           --- (PK_BODY_simplify_analytic_c)
+    <A HREF=../headers/pk_body_topology_t.html>PK_BODY_topology_t</A>         topology_form;
+                                           --- topology of resultant body
+                                           --- (PK_BODY_topology_minimal_c)
+    int                        n_ignorable_vertices;
+                                           --- number of path vertices that may
+                                           --- be ignored (0)
+    const <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>         *ignorable_vertices;
+                                           --- array of path vertices to ignore
+                                           --- (NULL)
+    <A HREF=../headers/pk_body_vertex_matches_t.html>PK_BODY_vertex_matches_t</A>   matches;    --- how to match vertices on
+                                           --- different profiles
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A>        twist;      --- twist of sweep path
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               have_twist_direction;
+                                           --- whether a direction is supplied
+                                           --- for twist in parallel sweeping
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>               twist_direction;
+                                           --- direction for twist in parallel
+                                           --- sweeping
+    <A HREF=../headers/pk_body_sweep_law_t.html>PK_BODY_sweep_law_t</A>        scale;      --- scale of sweep path
+    <A HREF=../headers/pk_body_sweep_scale_type_t.html>PK_BODY_sweep_scale_type_t</A> scale_type; --- how any scaling should be
+                                           --- applied
+                                           --- (PK_BODY_sweep_scale_both_c)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>                scale_point;--- defining point for scale laws of
+                                           --- types PK_BODY_sweep_scale_posn_c
+                                           --- or PK_BODY_sweep_scale_size_c
+                                           --- (0,0,0)
+    <A HREF=../headers/pk_sweep_profile_law_t.html>PK_sweep_profile_law_t</A>     profile_law;--- whether profiles should be
+                                           --- assumed to have twist and scale
+                                           --- laws already supplied
+                                           --- (<A HREF=../headers/pk_sweep_profile_law_t.html>PK_sweep_profile_law_no_c</A>)
+    double                     tolerance;  --- tolerance (1.0e-5)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               minimise_tolerance;
+                                           --- minimise tolerances where
+                                           --- possible (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               allow_rationals;
+                                           --- allow bodies with rational
+                                           --- surfaces (PK_LOGICAL_true)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               want_edge_tracking;
+                                           --- whether to return tracking
+                                           --- information for edges
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               have_lock_direction;
+                                           --- whether to lock the direction
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>               lock_direction;
+                                           --- lock direction
+    <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_t</A>            lock_type;  --- behaviour of the
+                                           --- <B>'lock_direction'</B>, if
+                                           --- <B>'have_lock_direction'</B> is
+                                           --- PK_LOGICAL_true
+                                           --- (<A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_and_dir_c</A>)
+    int                        n_lock_faces;
+                                           --- the number of lock faces (0)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>           *lock_faces; --- the lock faces (NULL)
+    <A HREF=../headers/pk_continuity_t.html>PK_continuity_t</A>            preferred_continuity;
+                                           --- the level of continuity along
+                                           --- the path direction to aim for
+                                           --- when generating the sweep
+                                           --- (<A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A>)
+    int                        n_guides;   --- the number of guides (0)
+    const <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>           *guides;     --- the guides (NULL)
+    const <A HREF=../headers/pk_sweep_guide_control_t.html>PK_sweep_guide_control_t</A>
+                              *guide_controls;
+                                           --- guide controls (NULL)
+    <A HREF=../headers/pk_sweep_guide_method_t.html>PK_sweep_guide_method_t</A>    guide_method;
+                                           --- method for sweeping with guides
+                                           --- (PK_sweep_guide_point_c)
+    <A HREF=../headers/pk_sweep_guide_scale_t.html>PK_sweep_guide_scale_t</A>     guide_scale;--- scaling for sweep with guides
+                                           --- (PK_sweep_guide_uniform_c)
+    <A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_t</A>     guide_scope;--- the amount of the sweep affected
+                                           --- by each guide
+                                           --- (<A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_global_c</A>)
+    <A HREF=../headers/pk_continuity_t.html>PK_continuity_t</A>            profile_continuity;
+                                           --- the level of continuity to be
+                                           --- preserved across the sweep
+                                           --- (<A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>)
+    int                        fixed_guide_index;
+                                           --- which guide is to be fixed, if
+                                           --- relevant (0)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               trim_to_guides;
+                                           --- whether to trim the resultant
+                                           --- body to the guide wires
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>               have_trim_point;
+                                           --- whether a trim point has been
+                                           --- specified (PK_LOGICAL_false)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>                trim_point; --- a point used to control how
+                                           --- the resultant body should be
+                                           --- trimmed (0,0,0)
+    int                        n_profile_derivs;
+                                           --- the number of profiles that have
+                                           --- derivative conditions
+                                           --- specified (0)
+    const <A HREF=../headers/pk_sweep_deriv_conds_t.html>PK_sweep_deriv_conds_t</A>
+                              *profile_derivs;
+                                           --- array of derivative conditions
+                                           --- (NULL)
+    const int                 *profile_indices;
+                                           --- array of profile indices
+                                           --- (NULL)
+    <A HREF=../headers/pk_sweep_output_xsect_t.html>PK_sweep_output_xsect_t</A>    output_xsect;
+                                           --- whether to output cross-sections
+                                           --- (<A HREF=../headers/pk_sweep_output_xsect_t.html>PK_sweep_output_xsect_no_c</A>)
+    <A HREF=../headers/pk_sweep_group_xsect_t.html>PK_sweep_group_xsect_t</A>     group_xsect;--- how to group cross-sections
+                                           --- (<A HREF=../headers/pk_sweep_group_xsect_t.html>PK_sweep_group_xsect_per_vx_c</A>)
+    int                        n_xsects;   --- the number of cross-sections per
+                                           --- group (0)
+    <A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_t</A>          repair;     --- whether to attempt self-
+                                           --- intersection repair
+                                           --- (<A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_no_c</A>)
+    <A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_t</A>     corner_type;--- whether to produce mitred or
+                                           --- spun corners at non-G1 path
+                                           --- discontinuities
+                                           --- (<A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_mitre_c</A>)
+    <A HREF=../headers/pk_sweep_deriv_mag_t.html>PK_sweep_deriv_mag_t</A>       deriv_mag;  --- method used for calculating
+                                           --- derivative magnitudes
+                                           --- (<A HREF=../headers/pk_sweep_deriv_mag_t.html>PK_sweep_deriv_mag_smooth_c</A>)
+    <A HREF=../headers/pk_body_sweep_update_t.html>PK_BODY_sweep_update_t</A>     update;     --- update flag
+                                           --- (PK_BODY_sweep_update_default_c)
+    };
+
+typedef struct PK_BODY_make_swept_body_2_o_s PK_BODY_make_swept_body_2_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure holds optional controls on the construction of a swept body.
+</I>
+<A NAME="errors"></A>
+<B>Specific Errors:</B>
+    PK_ERROR_bad_combination  Bad combination of options specified as
+                              follows:
+                              - Multiple profiles have been supplied and
+                                <B>'simplify'</B> is set to a value other than
+                                PK_BODY_simplify_no_c.
+                              - The <B>'guide_scope'</B> is
+                                <A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_local_c</A> and either fewer
+                                than three guides are being used, one or more
+                                <B>'clamp_type'</B> values have been supplied in the
+                                <B>'guide_controls'</B>, <B>'guide_method'</B> is not set to
+                                PK_guide_point_c, or <B>'n_profile_derivs'</B> is not
+                                set to zero.
+                              - <B>'guide_scope'</B> is <A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_global_c</A>
+                                and three guide wires are being used, and
+                                either <B>'guide_method'</B>, <B>'guide_scale'</B>, a
+                                <B>'lock_direction'</B>, or guide clamps have been
+                                supplied.
+                              (MILD)
+
+    PK_ERROR_bad_twist_law    The data handed in for the twist law could not be
+                              made to represent a valid twist law.
+                              (MILD/SERIOUS)
+
+    PK_ERROR_bad_scale_law    The data handed in for the scale law could not be
+                              made to represent a valid scale law.
+                              (MILD/SERIOUS)
+
+    PK_ERROR_bad_tolerance    The value of tolerance is invalid. (MILD)
+
+    PK_ERROR_bad_value        Bad value specified as follows:
+                              - The value passed to specify the level of
+                                <B>'alignment'</B> of the profile with respect to the
+                                path was incompatible with the number of
+                                guides.
+                              - <B>'n_guides'</B> was set to a non-zero value without
+                                passing the corresponding <B>'guide_controls'</B>.
+                              - An unsupported level of continuity was
+                                requested.
+                              (MILD)
+
+    PK_ERROR_bad_index        The <B>'fixed_guide_index'</B> or a member of
+                              <B>'profile_indices'</B> was not a valid index of its
+                              corresponding array. (MILD)
+
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_make_swept_body_2.html>PK_BODY_make_swept_body_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The option structure for making a swept body has the following fields :
+
+<B>'alignment'</B>            If set to PK_BODY_sweep_align_parallel_c, the sweep
+                       direction is a fixed vector.
+                       If set to PK_BODY_sweep_align_normal_c, the sweep
+                       direction will equal the path tangent (projected into
+                       the plane perpendicular to the <B>'lock_direction'</B>, if one
+                       is supplied and <B>'lock_type'</B> equals
+                       <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_and_dir_c</A> or <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_c</A>).
+                       Otherwise, the sweep direction will be perpendicular to
+                       a plane containing the corresponding path and guide
+                       points (if two guides are supplied), or a plane
+                       containing the corresponding guide points (if three
+                       guides are supplied and <B>'guide_scope'</B> is
+                       <A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_global_c</A>). If <B>'guide_scope'</B> is
+                       <A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_local_c</A>, this must be either
+                       PK_sweep_align_normal_c or PK_sweep_align_parallel_c.
+                       The profiles will maintain a constant angle to the sweep
+                       direction. This option also controls how points on the
+                       path are matched to corresponding points on any guides
+                       that are supplied.
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-296683">Controlling the profile alignment</A> for more
+                       information.
+
+<B>'simplify'</B>             A token used to indicate the level of simplification
+                       to be attempted on the swept surfaces generated to
+                       form the faces of the swept body. For a sweep of
+                       multiple profiles this option must be set to
+                       PK_BODY_simplify_no_c.
+
+                       If set to PK_BODY_simplify_no_c, no simplification will
+                       be attempted.
+                       If set to PK_BODY_simplify_analytic_c, the function will
+                       attempt to generate analytic surfaces that are within
+                       session precision of the surface defined by the sweep.
+                       If set to PK_BODY_simplify_swept_spun_c, the function
+                       will attempt to generate analytic surfaces that are
+                       within session precision of the surface defined by the
+                       sweep. If no such analytic surface can be found, the
+                       function will attempt to generate a swept or spun
+                       surface that is within session precision of the surface
+                       defined by the sweep.
+
+                       (PK_BODY_simplify_analytic_c)
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-298230">Simplifying the final body</A> for more
+                       information.
+
+<B>'topology_form'</B>        A token used to indicate how the resultant body should
+                       be divided into faces.
+                       (PK_BODY_topology_minimal_c)
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-297741">Specifying final topology</A> for more
+                       information.
+
+<B>'n_ignorable_vertices'</B> The number of vertices that may be ignored, for the
+                       purposes of building topology.
+                       (0)
+
+<B>'ignorable_vertices'</B>   An array of path and guide vertices that may be
+                       ignored, for the purposes of building topology.
+                       (NULL)
+
+                       Edges in the profile direction corresponding to path
+                       or guide vertices in this array will not be created,
+                       where possible. It is an error to supply a vertex at the
+                       start or end of an open path or guide, or where two
+                       edges do not meet with G1-continuity.
+
+<B>'matches'</B>              A structure containing the profile vertex matching
+                       information. The structure provides a map between the
+                       vertices on one profile with those on the next.
+
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-298055">Matching</A>.
+
+<B>'twist'</B>                A 1-dimensional LAW standard form or a discrete set
+                       of values to be interpolated at vertices along the path.
+                       For a sweep of a single profile, the values specify the
+                       amount of rotation undergone by the profile as it moves
+                       along the sweep path.
+
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-297046">Specifying twist</A> for more information.
+
+<B>'have_twist_direction'</B> This option may only be set to PK_LOGICAL_true if a
+                       twist is specified, and <B>'alignment'</B> is set to
+                       PK_BODY_sweep_align_parallel_c.
+                       In such cases, if set to PK_LOGICAL_true then the twist
+                       rotation is about the fixed direction <B>'twist_direction'</B>.
+                       If set to PK_LOGICAL_false, then the twist rotation is
+                       about the fixed direction that is the path tangent at
+                       the first path vertex in <B>'path_vertices'</B>.
+                       (PK_LOGICAL_false)
+
+<B>'twist_direction'</B>      The direction to rotate the profile about, if
+                       <B>'have_twist_direction'</B> is set to PK_LOGICAL_true.
+
+<B>'scale'</B>                A 1-dimensional LAW standard form or a discrete set
+                       of values to be interpolated at vertices along the path.
+                       For a sweep of a single profile, the values specify the
+                       amount of magnification of the profile as it moves along
+                       the sweep path. It is an error to specify a scale for a
+                       sweep of multiple profiles.
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-297380">Specifying scale</A> for more information.
+
+<B>'scale_type'</B>           Specifies how any scale law supplied in the <B>'scale'</B>
+                       option should be applied.
+                       (PK_BODY_sweep_scale_both_c)
+
+                       If <B>'scale_type'</B> is <B>'PK_BODY_sweep_scale_posn_c'</B>, the
+                       distance between the supplied <B>'scale_point'</B> and the path
+                       is modified according to the <B>'scale'</B>. The profile is
+                       translated to maintain a constant relationship with the
+                       scaled image of the <B>'scale_point'</B>, but is not itself
+                       scaled.
+
+                       If <B>'scale_type'</B> is <B>'PK_BODY_sweep_scale_size_c'</B>, the
+                       size of the profile is modified according to the
+                       <B>'scale'</B> about the <B>'scale_point'</B>. The distance between
+                       the <B>'scale_point'</B> and the path remains constant.
+
+                       If <B>'scale_type'</B> is <B>'PK_BODY_sweep_scale_both_c'</B>, both
+                       the size of the profile and its distance from the path
+                       is modified according to the <B>'scale'</B>. No <B>'scale_point'</B>
+                       should be provided. This is the default.
+
+<B>'scale_point'</B>          A position vector indicating the defining point for a
+                       scale law. Its purpose depends on the specified
+                       <B>'scale_type'</B>: see <B>'scale_type'</B> for details.
+
+                       If no scale law is provided or the <B>'scale_type'</B> is
+                       <B>'PK_BODY_sweep_scale_both_c'</B> this option will be
+                       ignored.
+
+<B>'profile_law'</B>          Whether or not profiles should be assumed to have twist
+                       and scale laws already supplied. If set to
+                       <A HREF=../headers/pk_sweep_profile_law_t.html>PK_sweep_profile_law_no_c</A>, then each profile will be
+                       transformed according to the corresponding twist and
+                       scale values at that profile, and the resultant sweep
+                       will pass through the transformed profile. If set to
+                       <A HREF=../headers/pk_sweep_profile_law_t.html>PK_sweep_profile_law_yes_c</A>, then the profiles are
+                       assumed to be supplied with the corresponding twist and
+                       scale already applied, and the resultant sweep will pass
+                       through the supplied profiles.
+                       (<A HREF=../headers/pk_sweep_profile_law_t.html>PK_sweep_profile_law_no_c</A>)
+
+<B>'tolerance'</B>            The tolerance to which the sweeping operation may
+                       approximate entities or assume that entities are
+                       coincident.
+                       (1.0e-5)
+
+<B>'minimise_tolerance'</B>   If set to PK_LOGICAL_true, topology will be created
+                       with smaller tolerances than <B>'tolerance'</B> if possible.
+                       (PK_LOGICAL_true)
+                       See <A HREF="../chapters/fd_chap.040.html#50409822_pgfId-298395">Minimising sweep tolerances</A> for more
+                       information.
+
+<B>'allow_rationals'</B>      If set to PK_LOGICAL_false, rational B-surfaces will
+                       never be used in the resultant body.
+                       (PK_LOGICAL_true)
+
+<B>'want_edge_tracking'</B>   If set to PK_LOGICAL_true, then the returned
+                       <B>'tracking_info'</B> will contain information about the
+                       edges in the resultant body, as well as the faces. If
+                       set to PK_LOGICAL_false, then only information about
+                       the faces will be returned.
+                       (PK_LOGICAL_false)
+
+<B>'have_lock_direction'</B>  If set to PK_LOGICAL_true, then the sweep direction will
+                       be projected into the plane perpendicular to the
+                       <B>'lock_direction'</B>. Further behaviour is controlled by the
+                       option <B>'lock_type'</B>. This option may not be set to
+                       PK_LOGICAL_true when sweeping with three guide wires if
+                       <B>'guide_scope'</B> is <A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_global_c</A>.
+                       (PK_LOGICAL_false)
+
+<B>'lock_direction'</B>       The lock direction, used if <B>'have_lock_direction'</B> is set
+                       to PK_LOGICAL_true. It is an error to supply a direction
+                       that is parallel to the path tangent at any point.
+
+<B>'lock_type'</B>            If <B>'have_lock_direction'</B> is set to PK_LOGICAL_false,
+                       this option has no effect and must be left at the
+                       default.
+                       If <B>'have_lock_direction'</B> is set to PK_LOGICAL_true, then
+                       this option controls the behaviour of the lock
+                       direction.
+                       <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_and_dir_c</A> and
+                       <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_rotation_c</A> may not be used if two guides
+                       are supplied and <B>'guide_method'</B> is set to
+                       PK_sweep_guide_curve_c. <A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_c</A> may not be
+                       used if less than two guides are supplied, or
+                       <B>'guide_method'</B> is set to PK_sweep_guide_project_c.
+                       (<A HREF=../headers/pk_sweep_lock_t.html>PK_sweep_lock_path_and_dir_c</A>)
+
+<B>'n_lock_faces'</B>         The number of lock faces.
+                       (0)
+
+<B>'lock_faces'</B>           Array of lock faces, of length <B>'n_lock_faces'</B>. If lock
+                       faces are supplied, then at each point along the path,
+                       the swept cross-section will maintain a fixed
+                       relationship to the sweep direction, and the normal of
+                       whichever face that path point is coincident with.
+                       (NULL)
+
+<B>'preferred_continuity'</B> This option specifies the level of continuity along the
+                       path direction to aim for when generating the sweep.
+                       The allowed values are
+                       <A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A> and <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A>.
+                       Discontinuities may still occur where being continuous
+                       at that point would be inappropriate given the geometry
+                       of the supplied path or profiles. If set to
+                       <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A>, in cases where there are c2
+                       discontinuities in the result when the path is c2 at the
+                       corresponding point, a status of PK_BODY_sweep_non_c2_c
+                       will be returned. The positions on the path
+                       corresponding to these c2 discontinuities will be
+                       returned in the <B>'fault_locations'</B> array, and the
+                       corresponding edges or vertices will be returned in the
+                       <B>'fault_entities'</B> array.
+                       Note that if <B>'repair'</B> is set to
+                       <A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_report_c</A>, c2 discontinuities may be
+                       indicated under a status of PK_BODY_sweep_repaired_c
+                       (see below).
+                       (<A HREF=../headers/pk_continuity_t.html>PK_continuity_c1_c</A>)
+
+<B>'n_guides'</B>             The number of guides.
+                       (0)
+
+<B>'guides'</B>               Array of guides, of length <B>'n_guides'</B>. One of the guides
+                       may be set equal to the path, if desired.
+                       (NULL)
+
+<B>'guide_controls'</B>       An array of length <B>'n_guides'</B>. This option provides
+                       control over options specific to each guide.
+                       (NULL)
+
+<B>'guide_method'</B>         This option controls the method to use, in the case of
+                       sweeping with two guides. In other cases, this option
+                       should be left at the default.
+                       (PK_sweep_guide_point_c)
+
+<B>'guide_scale'</B>          This option controls in which directions the swept
+                       cross-section should be scaled, in the case of sweeping
+                       with two guides. In other cases, this option should be
+                       left at the default.
+                       (PK_sweep_guide_uniform_c)
+
+<B>'guide_scope'</B>          How the guides should act upon the sweep. By default,
+                       the guides act in unison and may influence the entire
+                       cross-section. If this option is instead set to
+                       <A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_local_c</A>, each guide acts only on
+                       the portions of the sweep bounded by it and its
+                       neighbours. Each value introduces a set of restrictions
+                       as listed in the documentation of
+                       <A HREF=../headers/pk_body_make_swept_body_2.html>PK_BODY_make_swept_body_2</A>.
+                       (<A HREF=../headers/pk_sweep_guide_scope_t.html>PK_sweep_guide_scope_global_c</A>)
+
+<B>'profile_continuity'</B>   The level of continuity to preserve across the sweep
+                       (i.e., in the profile direction) when using guides with
+                       local <B>'guide_scope'</B>. In other cases, this option should
+                       be left at the default.
+                       Supported values are <A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A> and
+                       <A HREF=../headers/pk_continuity_t.html>PK_continuity_g0_c</A>.
+                       (<A HREF=../headers/pk_continuity_t.html>PK_continuity_g1_c</A>)
+
+<B>'fixed_guide_index'</B>    For two guides, if the <B>'guide_method'</B> is such that the
+                       swept profile cannot remain in a fixed contact
+                       relationship with both guides, this chooses the guide
+                       that remains fixed.
+                       (0)
+
+<B>'trim_to_guides'</B>       This option may only be set to PK_LOGICAL_true if all of
+                       the following are true:
+                        o <B>'n_guides'</B> is equal to 2 and <B>'guide_method'</B> is set to
+                          PK_sweep_guide_curve_c,
+                        o the profile is not disjoint,
+                        o and <B>'output_xsect'</B> is set to
+                          <A HREF=../headers/pk_sweep_output_xsect_t.html>PK_sweep_output_xsect_no_c</A>.
+                       If set to PK_LOGICAL_true, then the resultant body will
+                       be trimmed - only the region between the two guide wires
+                       will be returned. The resultant swept body in such cases
+                       will always be a sheet body. The options
+                       <B>'have_trim_point'</B> and <B>'trim_point'</B> must be specified in
+                       the ambiguous case where the profile is a closed body,
+                       in order to specify which set of faces to return.
+                       (PK_LOGICAL_false)
+
+<B>'have_trim_point'</B>      Indicates that a <B>'trim_point'</B> has been specified. This
+                       must be set to PK_LOGICAL_true if <B>'trim_to_guides'</B> is
+                       PK_LOGICAL_true, and the profile is a closed body.
+                       If <B>'trim_to_guides'</B> is set to PK_LOGICAL_false, then
+                       this option must be left at PK_LOGICAL_false.
+                       (PK_LOGICAL_false)
+
+<B>'trim_point'</B>           If <B>'have_trim_point'</B> is set to PK_LOGICAL_true, then the
+                       resultant trimmed body will contain the face closest to
+                       the <B>'trim_point'</B>.
+
+<B>'n_profile_derivs'</B>     The number of profiles that have derivative conditions
+                       specified.
+                       (0)
+
+<B>'profile_derivs'</B>       An array of length equal to <B>'n_profile_derivs'</B>
+                       specifying derivative conditions for each profile as
+                       given in <B>'profile_indices'</B>.
+                       (NULL)
+
+<B>'profile_indices'</B>      An array of length equal to <B>'n_profile_derivs'</B> giving
+                       the index of the profile that has the derivative
+                       conditions given by the corresponding entry in
+                       <B>'profile_derivs'</B>.
+                       (NULL)
+
+<B>'output_xsect'</B>         Whether to output a swept body, or a body representing
+                       the cross-sections of the sweep.
+                       (<A HREF=../headers/pk_sweep_output_xsect_t.html>PK_sweep_output_xsect_no_c</A>)
+
+<B>'group_xsect'</B>          If <B>'output_xsect'</B> is set to <A HREF=../headers/pk_sweep_output_xsect_t.html>PK_sweep_output_xsect_yes_c</A>
+                       or <A HREF=../headers/pk_sweep_output_xsect_t.html>PK_sweep_output_xsect_on_fail_c</A>, then this option
+                       controls how the cross-sections should be grouped.
+                       If <B>'output_xsect'</B> is set to <A HREF=../headers/pk_sweep_output_xsect_t.html>PK_sweep_output_xsect_no_c</A>,
+                       then this option must be left at the default.
+                       (<A HREF=../headers/pk_sweep_group_xsect_t.html>PK_sweep_group_xsect_per_vx_c</A>)
+
+<B>'n_xsects'</B>             If <B>'group_xsect'</B> is set to
+                       <A HREF=../headers/pk_sweep_group_xsect_t.html>PK_sweep_group_xsect_per_edge_c</A> or
+                       <A HREF=../headers/pk_sweep_group_xsect_t.html>PK_sweep_group_xsect_no_c</A>, then this value is the number
+                       of cross-sections produced per group, and must be set to
+                       a minimum value of 2.
+                       Otherwise this must be left equal to 0.
+                       (0)
+
+<B>'repair'</B>               Whether to attempt repair of self-intersecting swept
+                       bodies. If set to <A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_no_c</A>, the sweep
+                       operation may fail if the path is too tightly curved for
+                       the profiles. If set to <A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_yes_c</A> or
+                       <A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_report_c</A>, the self-intersecting regions
+                       will be replaced by valid surfaces. This option may
+                       result in faces being split in the region of any self-
+                       intersections.
+                       Note that repaired surfaces will not in general be c2
+                       even if <B>'preferred_continuity'</B> is set to
+                       <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A>.
+                       If set to <A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_report_c</A>, then if any faces
+                       are repaired, a status of PK_BODY_sweep_repaired_c will
+                       be returned, and the repaired faces will be returned in
+                       the <B>'fault_entities'</B> array. If <B>'preferred_continuity'</B> is
+                       set to <A HREF=../headers/pk_continuity_t.html>PK_continuity_c2_c</A>, then any c2-discontinuities
+                       on non-repaired surfaces will also be indicated as
+                       follows: the positions on the path corresponding to
+                       these c2 discontinuities will also be returned in the
+                       <B>'fault_locations'</B> array, and the corresponding edges or
+                       vertices will be returned in the corresponding entries
+                       of the <B>'fault_entities'</B> array.
+                       (<A HREF=../headers/pk_sweep_repair_t.html>PK_sweep_repair_no_c</A>)
+
+<B>'corner_type'</B>          Which type of corner to produce at non-G1
+                       discontinuities in the path. The default value is
+                       <A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_mitre_c</A>. If set to
+                       <A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_spin_c</A>, the convex side of the
+                       corner is produced by spinning the profile through the
+                       angle between path sections.
+                       (<A HREF=../headers/pk_sweep_corner_type_t.html>PK_sweep_corner_type_mitre_c</A>)
+
+<B>'deriv_mag'</B>            This option specifies the algorithm used to calculate
+                       derivative magnitudes when derivative conditions have
+                       been specified. It is recommended that this is always
+                       set to <A HREF=../headers/pk_sweep_deriv_mag_t.html>PK_sweep_deriv_mag_round_c</A>, unless updating old
+                       models. (<A HREF=../headers/pk_sweep_deriv_mag_t.html>PK_sweep_deriv_mag_smooth_c</A>)
+
+<B>'update'</B>               The default value allows applications to take advantage
+                       of the latest enhancements to the sweeping algorithm. To
+                       maintain consistency when rebuilding models created in a
+                       previous version of Parasolid, a non-default value
+                       should be specified.
+                       (PK_BODY_sweep_update_default_c)
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

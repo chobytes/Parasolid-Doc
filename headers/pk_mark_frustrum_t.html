@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MARK_frustrum_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MARK_frustrum_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_MARK_open_f_t)(<A HREF=../headers/pk_mark_t.html>PK_MARK_t</A>, <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_MARK_close_f_t)(<A HREF=../headers/pk_mark_t.html>PK_MARK_t</A>);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_MARK_write_f_t)(<A HREF=../headers/pk_mark_t.html>PK_MARK_t</A>, int, const char*);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_MARK_read_f_t)(<A HREF=../headers/pk_mark_t.html>PK_MARK_t</A>, int, char*);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_MARK_check_f_t)(<A HREF=../headers/pk_mark_t.html>PK_MARK_t</A>, <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A> *);
+typedef <A HREF=../headers/pk_error_code_t.html>PK_ERROR_code_t</A> (*PK_MARK_delete_f_t)(<A HREF=../headers/pk_mark_t.html>PK_MARK_t</A>);
+
+struct PK_MARK_frustrum_s
+    {
+    PK_MARK_open_f_t   open_fn;     --- open a rollmark for read or write
+    PK_MARK_close_f_t  close_fn;    --- close a rollmark
+    PK_MARK_write_f_t  write_fn;    --- write data to a rollmark
+    PK_MARK_read_f_t   read_fn;     --- read data from a rollmark
+    PK_MARK_check_f_t  check_fn;    --- check if mark is still valid
+    PK_MARK_delete_f_t delete_fn;   --- delete a rollmark
+    };
+typedef struct PK_MARK_frustrum_s PK_MARK_frustrum_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This data structure holds pointers to six rollmark functions that the
+application wishes to register with the PK using <A HREF=../headers/pk_mark_start.html>PK_MARK_start</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mark_ask_frustrum.html>PK_MARK_ask_frustrum</A><br>
+    <A HREF=../headers/pk_mark_start.html>PK_MARK_start</A><br>
+  </p>
+</blockquote>
+<PRE>
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

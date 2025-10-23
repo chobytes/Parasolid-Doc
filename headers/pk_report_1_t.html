@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_REPORT_1_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_REPORT_1_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_REPORT_1_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_report_record_1_t.html>PK_REPORT_record_1_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This datatype indicates the status of a <A HREF=../headers/pk_report_record_1_t.html>PK_REPORT_record_1_t</A>.
+
+It has the values:
+
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fail_c</A>              operation failed
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cant_get_pt_c</A>       failed to locate geometry for vertex
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cant_get_cu_c</A>       failed to locate geometry for edge
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cant_get_su_c</A>       failed to locate geometry for face
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cant_offset_c</A>       (1) failed to offset the face or the face
+                                        is only partially offset. Likely causes
+                                        are self intersection or regions of
+                                        tight curvature on offset surfaces.
+                                    (2) unable to offset the entities to
+                                        provide the geometry for the supplied
+                                        edges.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_side_cu_fail_c</A>      failed to create a side curve
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_side_su_fail_c</A>      failed to create a side surface
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_not_same_by_c</A>       entities are not from the same body
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fa_fail_c</A>           face check fails
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fa_fa_fail_c</A>        face/face check fails
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_ed_remains_c</A>        edge could not be deleted
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_point_contact_c</A>     point contact found in sheet body
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_bad_reference_c</A>     taper reference entity is not valid
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_not_supported_c</A>     given combination of reference entities
+                                    currently not supported
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cant_extend_c</A>       geometry could not be extended
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_sheet_small_c</A>       given sheet body too small
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cant_use_cu_c</A>       supplied/existing curve cannot be used
+                                    for edge
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_eds_unconnected_c</A>   boundary edges are not simply connected
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_non_laminar_c</A>       boundary edges are not laminar
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_reference_loop_c</A>    taper references don't bound consistent
+                                    regions of body
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_lp_outside_fa_c</A>     loop is outside face
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_target_missed_c</A>     target entity cannot bound the regions
+                                    that originate from these boundary edges
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_wrong_side_c</A>        the boundary of the sheet lies on the
+                                    opposite side of the target to the one
+                                    specified
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_ed_vxs_touch_c</A>      edge has touching vertices
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_ed_large_tol_c</A>      The tolerance set on the edge is
+                                    considered too large for the operation
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_vx_large_tol_c</A>      The tolerance set on the vertex is
+                                    considered too large for the operation
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_negated_c</A>           the entities were negated
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_check_fail_c</A>        the entities failed to check
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fa_overlap_c</A>        faces overlap after mid-surface trimming
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_osthread_fail_c</A>     The operating system has started failing
+                                    to create worker threads for Parasolid SMP.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_osthread_ok_c</A>       The operating system has resumed creating
+                                    worker threads for Parasolid SMP.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_imp_dir_undef_c</A>     A consistent direction could not be
+                                    determined for these imprinted edges.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fa_fix_degens_c</A>     faces with degenerate surfaces were
+                                    modified during the operation in order to
+                                    improve reliability of offsetting the
+                                    surfaces
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fa_sx_repair_c</A>      self-intersections were removed on the
+                                    faces
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fa_not_offset_c</A>     faces are not offsets of a face in the
+                                    other faceset to within supplied tolerance.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fa_fa_repair_c</A>      Edges indicating where face-face
+                                    inconsistencies have been repaired.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_rep_sx_faces_c</A>      Faces indicating where blend faces are
+                                    modified to avoid self-intersection.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_rep_G2_faces_c</A>      Faces indicating where G2 blend faces are
+                                    modified.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_deform_surf_c</A>       A face change operation failed, report
+                                    contains any prior successfully constructed
+                                    deform surfaces.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_blend_too_tight_c</A>   blend created would be too tightly curved.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cant_make_blend_c</A>   blend surface cannot be created.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_bad_chamfer_c</A>       chamfer surface cannot be created.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_bad_blend_c</A>         blend cannot be processed.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_not_blend_surf_c</A>    surface of face is not a blend surface.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cut_no_clash_c</A>      body does not clash with sectioning tool.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cut_incomplete_c</A>    body is not fully cut through by the
+                                    sectioning tool.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cut_unclassed_c</A>     body cannot be uniquely classified as front
+                                    or back of section.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_inconsistent_geom_c</A> inconsistent geometry.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_region_type_undef_c</A> Regions of general body do not have
+                                    a well-defined type.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_blend_faces_sx_c</A>    Blend faces created whose surfaces are
+                                    self-intersecting.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_on_target_c</A>         edges are coincident with target and don't
+                                    require extension.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_not_extended_c</A>      edges are not coincident with target but
+                                    don't require extension.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_negated_body_c</A>      the body was negated during processing.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_miter_fail_c</A>        mitering has failed during body tapering.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_self_shadowing_c</A>    reference edges are self-shadowing.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_no_roll_diff_c</A>      a no-roll attribute has had field values
+                                    changed by rolling over a delta where it
+                                    was changed when not a no-roll attribute.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_region_fail_c</A>       Consistency checks on regions have failed.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_large_transf_c</A>      <A HREF=../headers/pk_transf_create.html>PK_TRANSF_create</A> created a transform with
+                                    rotation, reflection, non-uniform scaling
+                                    or shearing components, together with a
+                                    translation component outside the size box.
+                                    It is recommended that for creating
+                                    transforms in a distant modelling context,
+                                    the functions <A HREF=../headers/pk_transf_create_rotation.html>PK_TRANSF_create_rotation</A>,
+                                    <A HREF=../headers/pk_transf_create_reflection.html>PK_TRANSF_create_reflection</A>,
+                                    <A HREF=../headers/pk_transf_create_translation.html>PK_TRANSF_create_translation</A> are used for
+                                    creating rotations, reflections,
+                                    translations. This is required in order to
+                                    preserve accuracy when using transforms
+                                    with functions that support distant
+                                    modelling: <A HREF=../headers/pk_transf_transform_2.html>PK_TRANSF_transform_2</A>,
+                                    <A HREF=../headers/pk_entity_range.html>PK_ENTITY_range</A>.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_cant_get_geom_c</A>     Failed to generate geometry for topology
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_fa_unoriented_c</A>     Failed to determine face orientation for
+                                    one or more faces in
+                                    <A HREF=../headers/pk_face_make_neutral_sheet_2.html>PK_FACE_make_neutral_sheet_2</A>.
+    <A HREF=../headers/pk_report_t.html>PK_REPORT_1_hidden_by_guise_c</A>   Entities encountered by the operation which
+                                    are hidden by the current cellular guise.
+
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_hollow_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_hollow_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_hollow_o_s
+    {
+    int                o_t_version;    --- version number of option structure
+    int                n_pierce_faces; --- number of faces in <B>'pierce_faces'</B>
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>   *pierce_faces;   --- faces to be pierced (not offset)
+    <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_t</A>   check_fa_fa;    --- check for face-face inconsistencies
+                                       --- (<A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>)
+    int                n_offset_faces; --- number of elements in <B>'offset_faces'</B>
+                                       --- and <B>'offset_values'</B> (0)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>   *offset_faces;   --- faces to be offset by a different
+                                       --- value than the function value (NULL)
+    const double      *offset_values;  --- offset values for corresponding
+                                       --- faces in <B>'offset_faces'</B> array (NULL)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       pierce_tangent; --- DEPRECATED (PK_LOGICAL_false) [NF]
+    <A HREF=../headers/pk_offset_method_t.html>PK_offset_method_t</A> offset_method;  --- offset method
+                                       --- (PK_offset_method_sx_trim_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       report_sx;      --- whether to report faces that have
+                                       --- been repaired to remove
+                                       --- self-intersections
+                                       --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_fix_degens_t.html>PK_fix_degens_t</A>    fix_degens;     --- control on repairing surface
+                                       --- degeneracies (<A HREF=../headers/pk_fix_degens_t.html>PK_fix_degens_no_c</A>)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>       report_fix_degens;
+                                       --- whether to report faces that have
+                                       --- been modified by the <B>'fix_degens'</B>
+                                       --- option (PK_LOGICAL_false)
+    <A HREF=../headers/pk_offset_step_t.html>PK_offset_step_t</A>   offset_step;    --- whether to create a step offset
+                                       --- (PK_offset_step_no_c)
+    <A HREF=../headers/pk_hollow_local_t.html>PK_hollow_local_t</A>  hollow_local;   --- method of local hollowing
+                                       --- (<A HREF=../headers/pk_hollow_local_t.html>PK_hollow_local_none_c</A>)
+    int                n_local_faces;  --- number of faces for local hollowing
+                                       --- (0)
+    const <A HREF=../headers/pk_face_t.html>PK_FACE_t</A>   *local_faces;    --- faces for local hollowing
+                                       --- (NULL)
+    <A HREF=../headers/pk_edge_offset_blend_t.html>PK_EDGE_offset_blend_t</A>
+                       blend_edges;    --- Offset edges as blend faces
+                                       --- (PK_EDGE_offset_blend_no_c) [PF]
+    double             blend_radius;   --- Radius of blend faces created if
+                                       --- <B>'blend_edges'</B> is a non-default
+                                       --- value (0.0)
+    <A HREF=../headers/pk_face_grow_t.html>PK_FACE_grow_t</A>     grow;           --- controls which faces to grow
+                                       --- when repairing clashes
+                                       --- (PK_FACE_grow_update_c) [PF]
+    <A HREF=../headers/pk_face_grow_cb_f_t.html>PK_FACE_grow_cb_f_t</A>
+                       grow_cb;        --- user callback function for
+                                       --- control of faces to grow when
+                                       --- repairing clashes
+                                       --- ( NULL )
+    <A HREF=../headers/pk_pointer_t.html>PK_POINTER_t</A>       grow_data;      --- user data for callback function
+                                       --- ( NULL )
+    <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_t</A>
+                       update;         --- update flag
+                                       --- (<A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>)
+    };
+typedef struct PK_BODY_hollow_o_s PK_BODY_hollow_o_t;
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_body_hollow_2.html>PK_BODY_hollow_2</A>
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_hollow_2.html>PK_BODY_hollow_2</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+
+Description of fields:
+
+<B>'n_pierce_faces'</B>        Length of <B>'pierce_faces'</B> array. The default value
+                        is 0.
+
+<B>'pierce_faces'</B>          The array of faces which are not to be offset. Pierced
+                        faces remain only as a section through the hollowed
+                        body. For instance, hollowing a cylindrical solid with
+                        one end face pierced will result in a tube with one
+                        open and one closed end. The default value is NULL.
+                        See <A HREF="../chapters/fd_chap.061.html#50409846_pgfId-294921">Specifying pierce faces</A> for more
+                        information.
+
+<B>'check_fa_fa'</B>           Check for face-face inconsistencies. Permitted values
+                        are:
+                             <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>
+                             <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_no_c</A>
+                        The default value is <A HREF=../headers/pk_check_fa_fa_t.html>PK_check_fa_fa_yes_c</A>.
+
+<B>'n_offset_faces'</B>        Length of <B>'offset_faces'</B> and <B>'offset_values'</B> arrays.
+                        The default value is 0.
+
+<B>'offset_faces'</B>          The array of faces which are to be offset by a value
+                        different to that specified via the function arguments.
+                        Every face in this array must be matched with a
+                        corresponding value in the <B>'offset_value'</B> array.
+                        Faces listed in this array must not be listed within
+                        the <B>'pierce_faces'</B> array.
+                        The default value is NULL.
+
+<B>'offset_values'</B>         The array of specific face offset values. Every value
+                        in this array is associated with the corresponding
+                        face in the <B>'offset_faces'</B> array.
+                        The same rules apply to these offset values as the
+                        <B>'offset'</B> parameter specified in the function argument
+                        list. A zero value is allowed: the associated face
+                        will be treated as a pierce face.
+                        The default value is NULL.
+
+<B>'offset_method'</B>         The method used for repairing self-intersections
+                        caused by offsetting surfaces in the body.
+
+                        Note that, for facet geometry, there is only one
+                        method for repairing self-intersections, so this
+                        option is ignored for facet geometry.
+
+                        The default value is PK_offset_method_sx_trim_c.
+                        See <A HREF="../chapters/fd_chap.060.html#50409845_pgfId-294907">Removing self-intersections</A> for more
+                        information.
+
+<B>'report_sx'</B>             If this is set to PK_LOGICAL_true, then a report will
+                        be returned in the Parasolid report stream containing
+                        a record of type <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_1_c</A>. This record
+                        will have a status of <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_sx_repair_c</A> and
+                        will contain information on faces that have been
+                        repaired in order to remove self-intersections. The
+                        report will contain faces that have been repaired by
+                        the method of b-surface patching, as specified by
+                        setting <B>'offset_method'</B> to a value other than
+                        PK_offset_method_sx_trim_c. The faces will be returned
+                        as followed:
+                          o As <B>'old_items'</B>, a list of repaired faces that
+                            existed on the original body.
+                          o As <B>'new_items'</B>, a list of repaired faces that
+                            exist on the resultant hollowed body.
+                        If <B>'offset_method'</B> is set to
+                        PK_offset_method_sx_trim_c, then no report will be
+                        returned.
+                        The default value is PK_LOGICAL_false.
+
+<B>'fix_degens'</B>            Controls when to repair degeneracies on surfaces. If
+                        set to a value other than <A HREF=../headers/pk_fix_degens_t.html>PK_fix_degens_no_c</A>, this
+                        option improves the reliability when offsetting
+                        surfaces with degeneracies, by modifying the surfaces
+                        in the regions near the degeneracies.
+                        The default value is <A HREF=../headers/pk_fix_degens_t.html>PK_fix_degens_no_c</A>.
+
+<B>'report_fix_degens'</B>     If this is set to PK_LOGICAL_true, then information
+                        will be returned in the Parasolid report stream about
+                        surfaces that have been repaired in order to improve
+                        the reliability of offsetting degenerate surfaces, as
+                        specified by the option <B>'fix_degens'</B>. Each record will
+                        be of type <A HREF=../headers/pk_report_record_type_t.html>PK_REPORT_record_type_1_c</A> and will have a
+                        status of <A HREF=../headers/pk_report_1_t.html>PK_REPORT_1_fa_fix_degens_c</A>. It will contain:
+                          o As <B>'old_items'</B>, a set of faces on the original
+                            body, followed by the original surface that they
+                            share, which was repaired. In the case where the
+                            original surface was an offset surface, this is
+                            followed by the underlying b-surface.
+                          o As <B>'new_items'</B>, the corresponding repaired
+                            b-surface, followed by the corresponding offset
+                            surface, followed by the corresponding faces on the
+                            resultant hollowed body that the surfaces belong
+                            to.
+                        If <B>'fix_degens'</B> is set to <A HREF=../headers/pk_fix_degens_t.html>PK_fix_degens_no_c</A>, or no
+                        surfaces are repaired, then no reports of this type
+                        will be returned.
+                        The default value is PK_LOGICAL_false.
+
+<B>'offset_step'</B>           A "boundary edge" is an edge between a face which is
+                        being offset and one which is pierced or between two
+                        faces being offset different distances. If this option
+                        is set to PK_offset_step_pierce_c then side faces will
+                        be created along any smooth boundary edges between a
+                        face which is being offset and one which is pierced.
+                        If this option is set to PK_offset_step_all_c then
+                        side faces will be created along any smooth boundary
+                        edges.
+
+                        If this option is set to PK_offset_step_site_c
+                        then side faces will be created for all smooth
+                        boundary edges but side faces will not be created if
+                        site faces can be grown instead. Site faces with facet
+                        geometry will not be grown.
+
+                        This option has no effect on the result if
+                        there are no smooth boundary edges.
+
+                        The default value is PK_offset_step_no_c.
+                        See <A HREF="../chapters/fd_chap.061.html#50409846_pgfId-299000">here</A> for more information.
+
+<B>'hollow_local'</B>          The method used when hollowing only parts of a body.
+                        One method is to exclude faces in the body that are to
+                        be hollowed and the other is to add faces in the body
+                        to the hollowed body.
+                        The default is <A HREF=../headers/pk_hollow_local_t.html>PK_hollow_local_none_c</A>
+
+<B>'n_local_faces'</B>         Number of faces for local hollowing.
+                        The default value is 0.
+
+<B>'local_faces'</B>           The array of faces which are to be used to either add
+                        or exclude parts of the body from the hollowing
+                        operation. They are not excluded from the result, but
+                        rather from the parts that are to be hollowed. For
+                        instance, one can exclude the faces comprising the
+                        stem and base of a glass, while hollowing the vessel.
+                        The default value is NULL.
+
+<B>'blend_edges'</B>           Offset edge with blending method. The default
+                        value is: PK_EDGE_offset_blend_no_c indicating
+                        that no blending is to be performed.
+
+                        Offset edge blending effectively combines two
+                        operations in one, the result being the same as that
+                        obtained by first offsetting the edge and then blending
+                        the offset edge.
+
+                        Edges will be blended subject to the following
+                        conditions.
+
+                        o The edge lies between two non-rubber faces.
+                        o The offsets applied to each face are equal in
+                          magnitude and equal to the specified <B>'blend_radius'</B>
+                        o The faces are both offset to the same side of the
+                          original sheet.
+                        o The edge convexity matches the one indicated by
+                          <B>'blend_edges'</B>.
+
+                        For the purpose of this option 'convexity' refers to
+                        the 'visual' convexity  of the original edge when
+                        viewed from the side of the original faces on which the
+                        offset faces lie. There is no direct dependence on face
+                        normal direction but an indirect dependence in that the
+                        'side' of the original face on which an offset face
+                        lies depends on face normal direction and the sign of
+                        the offset distance applied to that face.
+
+                        Note that the value PK_EDGE_offset_blend_convex_c
+                        is not supported for mixed edges.
+
+<B>'blend_radius'</B>          The blend radius to use when <B>'blend_edges'</B> is a
+                        non-default value.
+
+<B>'grow'</B>                  While repairing clashing features, there are
+                        situations in which it is necessary for faces to be
+                        grown.  This option controls which feature's faces
+                        will be grown.
+
+                        Permitted values are:
+                             PK_FACE_grow_update_c
+                             PK_FACE_grow_auto_c
+                             PK_FACE_grow_moving_c
+                             PK_FACE_grow_fixed_c
+                             PK_FACE_grow_no_c
+                             PK_FACE_grow_fail_c
+
+                        Note that the value PK_FACE_grow_update_c is not
+                        supported for facet geometry.
+
+                        The default value is PK_FACE_grow_update_c, which
+                        should be used for updating v20.0 and earlier models.
+
+<B>'grow_cb'</B>               User callback function to allow control over
+                        individual feature clashes.  If supplied, this
+                        callback will be invoked for all values of <B>'grow'</B>.
+
+                        The default value is NULL.
+
+<B>'grow_data'</B>             Pointer to the user data for <B>'grow_cb'</B> function.
+                        The default value is NULL.
+
+<B>'update'</B>                The default value allows applications to take
+                        advantage of the latest enhancements of the generic
+                        algorithms supporting Parasolid local operations
+                        functions. To maintain consistency when rebuilding
+                        models created in a previous version of Parasolid,
+                        a non-default value should be specified.
+
+                        The default value is <A HREF=../headers/pk_local_ops_update_t.html>PK_local_ops_update_default_c</A>
+
+
+See <A HREF="../chapters/fd_chap.061.html#50409846_pgfId-294792">Hollowing options</A> for more information about any of these
+options.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<TITLE>OUBLSS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUBLSS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_blendsf_ask.html>PK_BLENDSF_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUBLSS ( surfac, bltype, ssurf1, ssurf2, ssurf3, iipa12, iipa23, iipa31, 
+=========================================================================
+         nipars, irpa12, irpa23, irpa31, nrpars, sense, ifail )
+         ======================================================
+
+  Output blending surface.
+
+Receives:
+  KI_tag_surface           *surfac         --- blending surface
+
+Returns:
+  KI_cod_tybl              *bltype         --- blend type
+  KI_tag_surface           *ssurf1         --- first supporting surface
+  KI_tag_surface           *ssurf2         --- second supporting surface
+ &lt;KI_tag_surface&gt;          *ssurf3         --- third supporting surface
+  KI_tag_list_int          *iipa12         --- integer parameters for ssurf1,2
+ &lt;KI_tag_list_int&gt;         *iipa23         --- integer parameters for ssurf2,3
+ &lt;KI_tag_list_int&gt;         *iipa31         --- integer parameters for ssurf3,1
+  KI_int_nitems            *nipars         --- length of int parameter lists
+  KI_tag_list_dbl          *irpa12         --- double parameters for ssurf1,2
+ &lt;KI_tag_list_dbl&gt;         *irpa23         --- double parameters for ssurf2,3
+ &lt;KI_tag_list_dbl&gt;         *irpa31         --- double parameters for ssurf3,1
+  KI_int_nitems            *nrpars         --- length of real parameter lists
+  KI_cod_logical           *sense          --- surface sense. explained below
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wrong_sub_type         surface is not a blend
+
+Description:
+
+  The blending surface definition is output with a type-code, 'bltype',
+  that enables it to be interpreted as follows:
+
+              TYBL1B      blended edge
+
+  The length of the lists 'iipa12', 'iipa23' and 'iipa31' is given by 'nipars'.
+  In the current version 'nipars' will always be 3. The length of the lists
+  'irpa12', 'irpa23', and 'irpa31' is given by 'nrpars'. In the current version
+  'nrpars' will always be 5.
+
+  As from version 3.0, offset blends ( ITYPE = 1 ) have been withdrawn.
+
+  Contents of the lists 'iipaXY'
+  ------------------------------
+      position      contents and its significance
+      in list
+         1          ITYPE 3 => rolling ball blend
+
+  Contents of the lists 'irpaXY'
+  ------------------------------
+
+  ITYPEs 3  - Rolling ball blends
+
+      position      value and its significance
+      in list
+         1      radiusX           The radii of the blend surface. RadiusX and
+         2      radiusY           radiusY always have the same magnitude but
+                                  may differ in sign.
+
+  The surface junction which is blended is indicated by the signs of the
+  radii. A positive value signifies that the blend lies on the same side
+  of the supporting surface as the supporting surface's normal. (The supporting
+  surface's normal direction is affected by the surface's sense).
+
+
+  Summary of the data returned
+  ----------------------------
+
+        Return:             ssurfX              iipXX,irpXX
+                       1      2    3         12      23     31
+        SSTYPE:      ==========================================
+        TYBL1B         S     S     -          L       -      -
+
+              S - Tag of surface
+              - - Null tag
+              L - List of length 'nipars' or 'nrpars'
+
+  The normal to a blending surface whose sense is KI_true is away from the
+  centre of curvature.
+
+</PRE>
+</BODY>
+</HTML>

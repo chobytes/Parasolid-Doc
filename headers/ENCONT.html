@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<TITLE>ENCONT</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENCONT</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_body_contains_vector.html>PK_BODY_contains_vector</A><BR>
+<A HREF=../headers/pk_edge_contains_vector.html>PK_EDGE_contains_vector</A><BR>
+<A HREF=../headers/pk_face_contains_vectors.html>PK_FACE_contains_vectors</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENCONT ( point, entity, enclos, ifail )
+=======================================
+
+  Enquire containment of point
+
+Receives:
+  KI_tag_point             *point          --- point
+  KI_tag_entity            *entity         --- entity
+
+Returns:
+  KI_cod_encl              *enclos         --- enclosure code
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_unsuitable_entity      can't do test on invalid entity
+  KI_wrong_entity           'entity' of wrong type
+  KI_general_body           general body
+
+Description:
+
+  Determines whether the point lies inside, outside or on the boundary of
+  the entity.
+
+  The point must be a geometric point, not a vertex. The entity must be a face,
+  edge, shell, body or assembly. The entity must check, if it doesn't the
+  result may be incorrect.
+
+  The enclosure code will be one of:
+
+      ENCLIN    inside
+      ENCLOU    outside
+      ENCLON    on (the limits of)
+
+  The meaning of the three possible returns is obvious in most cases, but note
+  the following:
+
+    o For an edge, a point that is outside may lie on the curve but outside the
+      limits of the edge, or may not lie on the curve at all. Similarly for a
+      face and its surface.
+
+    o For a face with holes, the interior of a hole is outside the face and the
+      boundary of a hole is part of the boundary of the face.
+
+    o For a shell, the inside is the portion of space that is full of material;
+      i.e. if the shell is the exterior of a body, any point within the body
+      is inside the shell, even if it lies in a void of the body. With respect
+      to a void (interior) shell, points within the void are outside the shell.
+
+    o For a solid body with voids, points within a void are outside the body and
+      the boundaries of the interior shells are part of the boundary of the body.
+
+    o For a sheet body, points are inside if they lie in the faces of the body,
+      and on if they lie on edges or vertices on the boundary of the sheet.
+
+    o For a wire body, points are inside if they lie on the wire, and on if they
+      lie on a terminating vertex of the wire.
+
+    o For an assembly, a point is inside if it is inside one or more of the
+      body occurences in the assembly; it is on the boundary if it is inside
+      no body occurence but is on the boundary of one or more body occurences;
+      otherwise it is outside.
+
+  This function is not supported for general bodies, shells in general
+  bodies, or assemblies which contain a general body.
+
+
+</PRE>
+</BODY>
+</HTML>

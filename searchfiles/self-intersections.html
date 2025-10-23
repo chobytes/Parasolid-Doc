@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.028.html#50409808_pgfId-310081", " return a structure that contains the number of <B>self-intersections</B> found, together with details about each self-intersection. ", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.028.html#50409808_pgfId-310099", " Note: <B>Self-intersections</B> in curves are always classified as general. ", "Functional Description - Enquiry And Output Functions");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-294803", " Check for face <B>self-intersections</B>, yes/no. ", "Functional Description - Checking");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-298477", " Figure 39-33 Fixing global <B>self-intersections</B>, where sweeping creates a self-intersecting body ", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-298484", " option. By default, local <B>self-intersections</B> are not repaired. ", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-298525", " Figure 39-34 Fixing local <B>self-intersections</B> using the ", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.040.html#50409822_pgfId-298528", " Note: Global <B>self-intersections</B> are always repaired by PK_BODY_make_swept_body_2 . Local-self intersections", "Functional Description - Sweeping");
+top.note("chapters/fd_chap.041.html#50409823_pgfId-299954", "closed sweep). It may also self-intersect: <B>self-intersections</B> in the resulting swept body are healed automatically.", "Functional Description - Sweeping Tool Bodies Along a Path");
+top.note("chapters/fd_chap.052.html#50409836_pgfId-685081", " how they are further split at clashes and <B>self-intersections</B> with the ", "Functional Description - Imprinting and Curve Projection");
+top.note("chapters/fd_chap.056.html#50409840_pgfId-294881", " Whether to prevent <B>self-intersections</B> in the result. After imprinting, tool faces that", "Functional Description - Instancing And Patterning ");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-500012", " must be capped with a new lball, unavoidable <B>self-intersections</B> can sometimes occur in the resulting lattice(s) where,", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.057.html#50409620_pgfId-500562", " if any unavoidable <B>self-intersections</B> are present in the result ", "Functional Description - Sectioning");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-294810", " in the resulting body. See Section 59.3, Removing <B>self-intersections</B> . Also available in all hollowing and thickening", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-294822", " in the Parasolid report. See Section 59.3, Removing <B>self-intersections</B> . Also available in all hollowing and thickening", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-294907", " 59.3 Removing <B>self-intersections</B> ", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-294908", " hollow, or thicken operation. Parasolid can remove such <B>self-intersections</B>, and heal any resulting holes. If ", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-294923", "Trim: <B>Self-intersections</B> are removed by trimming the offset surface. ", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-294924", "Repair: Any remaining <B>self-intersections</B> are healed by constructing a B-surface patch which", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-295298", " Figure 59-2 Removing <B>self-intersections</B> during offsetting operations ", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-295299", " can control which method is used to remove <B>self-intersections</B> using the ", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-295308", " <B>Self-intersections</B> are removed using the trim and extend methods described.", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-295312", " <B>Self-intersections</B> are removed using the trim, repair, and extend methods", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-295316", " <B>Self-intersections</B> are removed using methods similar to PK_offset_method_sx_repair_1_c, but with", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.060.html#50409845_pgfId-520421", " the method for repairing <B>self-intersections</B> is ignored, because <B>self-intersections</B> are automatically repaired or", "Functional Description - Offsetting");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294842", " in Parasolids offsetting functionality. See Section 59.3, Removing <B>self-intersections</B> for more details. ", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.061.html#50409846_pgfId-294857", " in the Parasolid report. See Section 59.3, Removing <B>self-intersections</B> . Also available in all offsetting and thickening", "Functional Description - Hollowing");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-297731", " The method by which <B>self-intersections</B> are removed when thickening. This is the same", "Functional Description - Thickening");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-297746", " Whether to report such <B>self-intersections</B> in the Parasolid report. See Section 61.6, Dealing", "Functional Description - Thickening");
+top.note("chapters/fd_chap.062.html#50409847_pgfId-298219", " Removing <B>self-intersections</B> , for information about removal of <B>self-intersections</B> in", "Functional Description - Thickening");
+top.note("chapters/fd_chap.064.html#50409850_pgfId-314376", " Figure 63-3 New edges replace <B>self-intersections</B> ", "Functional Description -  Overview of Editing Models");
+top.note("chapters/fd_chap.065.html#50409851_pgfId-301969", " Figure 64-12 Repairing <B>self-intersections</B> that remain after a face deletion ", "Functional Description - Deleting Entities ");
+top.note("chapters/fd_chap.074.html#50409860_pgfId-316773", " See Section 59.3, Removing <B>self-intersections</B> for information on the use of this option.", "Functional Description - Generic Face Editing");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311562", " Surface <B>self-intersections</B> for all blend surfaces except B-surfaces ", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.079.html#50409866_pgfId-311994", " that point. In particular, it does not repair <B>self-intersections</B> caused because the underlying surface of the blend", "Functional Description - Face-Face Blending");
+top.note("chapters/fd_chap.084.html#50409872_pgfId-311844", " until you need them, and clean up the <B>self-intersections</B> before you attempt to model with them. ", "Functional Description - Overview Of Convergent Modeling");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295581", " Whether to check for topological <B>self-intersections</B> in the sheet body. ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295921", " for checking continuity (defined using PK_SESSION_set_check_continuity ) and <B>self-intersections</B> (defined using PK_SESSION_set_check_self_int ), for the duration of", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295922", " can set the checking behaviour for continuity and <B>self-intersections</B> separately, dependent on the nature of your data,", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295950", " the following functions to find and repair any <B>self-intersections</B> in the geometry you have created: ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295960", " Find and repair <B>self-intersections</B> in curves. ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.092.html#50409881_pgfId-295965", " Find and repair <B>self-intersections</B> in surfaces. ", "Functional Description - Importing Data");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-208176", " <B>self-intersections</B>, removing 841 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209065", " removing offsetting <B>self-intersections</B> 841 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209172", " <B>self-intersections</B> in sweeping 485 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209174", " <B>self-intersections</B> in thickening 879 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-209388", " <B>self-intersections</B> 96 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210048", " repairing <B>self-intersections</B> in 485 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-210196", " repairing <B>self-intersections</B> in 879 ", "Functional Description - ZGlossary");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-395774", " 5.2.1.1 Removing <B>self-intersections</B> ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-395776", " the body to become invalid. Parasolid can remove <B>self-intersections</B> automatically, generating new surfaces wherever holes remain as", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-934518", " Figure 5-3 Removing <B>self-intersections</B> during offsetting operations ", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.06.html#50442273_pgfId-400441", " variety of topological changes, and Parasolid can remove <B>self-intersections</B> in either the side face that is created", "Overview of Parasolid - Local Operations");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438493", " removing <B>self-intersections</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438716", " removing <B>self-intersections</B> during offsetting ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/ov_chap.20.html#50442278_pgfId-5438770", " <B>self-intersections</B> ", "Overview of Parasolid - Multi-Processing Support");
+top.note("chapters/p2_chap.03.html#sec_b_1_1", " surfaces have been repaired or modified to avoid <B>self-intersections</B> or sharp edges. topols will contain the faces", "PK Reference - PK token Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.05.html#sec_d_1_app", " PK_check_mesh_yes_c 25942 check for <B>self-intersections</B> and slits in addition to basic checks ", "PK Reference - PK token Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.07.html#sec_f_1_2", " degeneracies or <B>self-intersections</B> (MILD)", "PK Reference - PK Error Codes with descriptions (Numeric)");
+top.note("chapters/p2_chap.09.html#sec_h_1_3", " degeneracies or <B>self-intersections</B> (MILD)", "PK Reference - PK Error Codes with descriptions (Alphabetic)");
+top.note("chapters/p2_chap.10.html#sec_i_1_2", " degeneracies or <B>self-intersections</B> (MILD)", "PK Reference - PK Error Codes (Functional)");
+top.note("headers/pk_blend_check_su_x_t.html#documentation", "<B>self-intersections</B> during the blending operation. It has three values:", "PK Reference - PK_blend_check_su_X_t");
+top.note("headers/pk_body_check_o_t.html#documentation", " PK_check_fa_X_yes_c check for face <B>self-intersections</B>", "PK Reference - PK_BODY_check_o_t");
+top.note("headers/pk_body_hollow_o_t.html#declaration", " --- <B>self-intersections</B>", "PK Reference - PK_BODY_hollow_o_t");
+top.note("headers/pk_body_hollow_o_t.html#documentation", " offset_method The method used for repairing <B>self-intersections</B>", "PK Reference - PK_BODY_hollow_o_t");
+top.note("headers/pk_body_offset_o_t.html#declaration", " --- <B>self-intersections</B>", "PK Reference - PK_BODY_offset_o_t");
+top.note("headers/pk_body_offset_o_t.html#documentation", " offset_method The method used for repairing <B>self-intersections</B>", "PK Reference - PK_BODY_offset_o_t");
+top.note("headers/pk_body_thicken_o_t.html#declaration", " --- <B>self-intersections</B>", "PK Reference - PK_BODY_thicken_o_t");
+top.note("headers/pk_body_thicken_o_t.html#documentation", " offset_method The method used for repairing <B>self-intersections</B>", "PK Reference - PK_BODY_thicken_o_t");
+top.note("headers/pk_check_mesh_t.html#documentation", " PK_check_mesh_yes_c check for <B>self-intersections</B> and slits", "PK Reference - PK_check_mesh_t");
+top.note("headers/pk_curve_find_degens.html#errors", " degeneracies or <B>self-intersections</B> (MILD)", "PK Reference - PK_CURVE_find_degens");
+top.note("headers/pk_curve_find_self_int.html#description", " This function finds <B>self-intersections</B> in the given curve.", "PK Reference - PK_CURVE_find_self_int");
+top.note("headers/pk_curve_find_self_int.html#errors", " <B>self-intersections</B> (PK_ERROR_mild)", "PK Reference - PK_CURVE_find_self_int");
+top.note("headers/pk_curve_find_self_int.html#documentation", "Note that <B>self-intersections</B> on a curve will always be of type", "PK Reference - PK_CURVE_find_self_int");
+top.note("headers/pk_curve_find_self_int_o_t.html#description", " This structure holds optional controls for finding <B>self-intersections</B> on a", "PK Reference - PK_CURVE_find_self_int_o_t");
+top.note("headers/pk_curve_fix_degens.html#errors", " degeneracies or <B>self-intersections</B> (MILD)", "PK Reference - PK_CURVE_fix_degens");
+top.note("headers/pk_curve_fix_self_int.html#description", " This function attempts to fix <B>self-intersections</B> in the given curve.", "PK Reference - PK_CURVE_fix_self_int");
+top.note("headers/pk_curve_fix_self_int.html#errors", " <B>self-intersections</B> (MILD)", "PK Reference - PK_CURVE_fix_self_int");
+top.note("headers/pk_curve_fix_self_int_o_t.html#description", " This structure holds optional controls for fixing <B>self-intersections</B> on a", "PK Reference - PK_CURVE_fix_self_int_o_t");
+top.note("headers/pk_curve_fix_self_int_o_t.html#documentation", "The option structure for fixing <B>self-intersections</B> on a curve has the", "PK Reference - PK_CURVE_fix_self_int_o_t");
+top.note("headers/pk_curve_project_o_t.html#documentation", " split_clash How to split output curves at <B>self-intersections</B> and", "PK Reference - PK_CURVE_project_o_t");
+top.note("headers/pk_curve_self_ints_t.html#declaration", " int n_self_int; --- number of <B>self-intersections</B>", "PK Reference - PK_CURVE_self_ints_t");
+top.note("headers/pk_curve_self_ints_t.html#description", " A structure packaging details of <B>self-intersections</B> on a curve.", "PK Reference - PK_CURVE_self_ints_t");
+top.note("headers/pk_curve_self_ints_t.html#documentation", " n_self_int The number of <B>self-intersections</B> on the curve.", "PK Reference - PK_CURVE_self_ints_t");
+top.note("headers/pk_face_change_offset_o_t.html#declaration", " --- <B>self-intersections</B>", "PK Reference - PK_FACE_change_offset_o_t");
+top.note("headers/pk_face_change_offset_o_t.html#documentation", " offset_method The method used for repairing <B>self-intersections</B>", "PK Reference - PK_FACE_change_offset_o_t");
+top.note("headers/pk_face_hollow_o_t.html#declaration", " --- <B>self-intersections</B>", "PK Reference - PK_FACE_hollow_o_t");
+top.note("headers/pk_face_hollow_o_t.html#documentation", " offset_method The method used for repairing <B>self-intersections</B>", "PK Reference - PK_FACE_hollow_o_t");
+top.note("headers/pk_face_offset_o_t.html#declaration", " --- <B>self-intersections</B>", "PK Reference - PK_FACE_offset_o_t");
+top.note("headers/pk_face_offset_o_t.html#documentation", " offset_method The method used for repairing <B>self-intersections</B>", "PK Reference - PK_FACE_offset_o_t");
+top.note("headers/pk_face_repair_o_t.html#declaration", " PK_LOGICAL_t split_self_int; --- split to avoid <B>self-intersections</B>", "PK Reference - PK_FACE_repair_o_t");
+top.note("headers/pk_fxf_fault_t.html#documentation", " <B>self-intersections</B> or sharp edges. topols ", "PK Reference - PK_fxf_fault_t");
+top.note("headers/pk_imprint_intersect_t.html#documentation", " PK_imprint_intersect_fail_c If in view <B>self-intersections</B> / intersections", "PK Reference - PK_imprint_intersect_t");
+top.note("headers/pk_local_check_su_x_t.html#documentation", "<B>self-intersections</B> during the local operation. It has two values:", "PK Reference - PK_local_check_su_X_t");
+top.note("headers/pk_offset_method_t.html#documentation", "constant parameter lines into regions that contain <B>self-intersections</B>,", "PK Reference - PK_offset_method_t");
+top.note("headers/pk_offset_sf_t.html#documentation", "checked for <B>self-intersections</B> caused by degeneracies on the underlying", "PK Reference - PK_OFFSET_sf_t");
+top.note("headers/pk_report_1_t.html#documentation", " PK_REPORT_1_fa_sx_repair_c <B>self-intersections</B> were removed on the", "PK Reference - PK_REPORT_1_t");
+top.note("headers/pk_surf_find_self_int.html#description", " This function finds <B>self-intersections</B> in the given surface.", "PK Reference - PK_SURF_find_self_int");
+top.note("headers/pk_surf_find_self_int.html#errors", " <B>self-intersections</B> (PK_ERROR_mild)", "PK Reference - PK_SURF_find_self_int");
+top.note("headers/pk_surf_find_self_int_o_t.html#description", " This structure holds optional controls for finding <B>self-intersections</B> on a", "PK Reference - PK_SURF_find_self_int_o_t");
+top.note("headers/pk_surf_fix_self_int.html#description", " This function attempts to fix <B>self-intersections</B> in the given surface.", "PK Reference - PK_SURF_fix_self_int");
+top.note("headers/pk_surf_fix_self_int.html#errors", " <B>self-intersections</B> (PK_ERROR_mild)", "PK Reference - PK_SURF_fix_self_int");
+top.note("headers/pk_surf_fix_self_int_o_t.html#description", " This structure holds optional controls for fixing <B>self-intersections</B> on a", "PK Reference - PK_SURF_fix_self_int_o_t");
+top.note("headers/pk_surf_fix_self_int_o_t.html#documentation", "The option structure for fixing <B>self-intersections</B> on a surface has the", "PK Reference - PK_SURF_fix_self_int_o_t");
+top.note("headers/pk_surf_self_ints_t.html#declaration", " int n_self_int; --- number of <B>self-intersections</B>", "PK Reference - PK_SURF_self_ints_t");
+top.note("headers/pk_surf_self_ints_t.html#description", " A structure packaging details of <B>self-intersections</B> on a surface.", "PK Reference - PK_SURF_self_ints_t");
+top.note("headers/pk_surf_self_ints_t.html#documentation", " n_self_int The number of <B>self-intersections</B> on the surface.", "PK Reference - PK_SURF_self_ints_t");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

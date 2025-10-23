@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<TITLE>OUTCUR</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUTCUR</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_circle_ask.html>PK_CIRCLE_ask</A><BR>
+<A HREF=../headers/pk_ellipse_ask.html>PK_ELLIPSE_ask</A><BR>
+<A HREF=../headers/pk_line_ask.html>PK_LINE_ask</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUTCUR ( curve, cutype, vec1, vec2, vec3, d1, d2, ifail )
+=========================================================
+
+  Output curve.
+
+    Can be called from the GO.
+
+Receives:
+  KI_tag_curve             *curve          --- curve to be output
+
+Returns:
+  KI_cod_tycu              *cutype         --- type of curve
+  KI_vec                    vec1           --- first vector defining curve
+  KI_vec                    vec2           --- second vector defining curve
+  KI_vec                    vec3           --- third vector defining curve
+  double                   *d1             --- first double defining curve
+  double                   *d2             --- second double defining curve
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_wrong_sub_type         not a curve supported by this routine
+
+Description:
+  The type-code of the curve, from the range TYCU00, indicates
+  how to interpret the remaining values as follows:
+
+  Type                     Argument     Definition
+  =======================================================
+  Straight line   (TYCUST) 'vec1'         position on line
+                           'vec2'         direction of line
+
+  Circle          (TYCUCI) 'vec1'         centre
+                           'vec2'         axis direction
+                           'd1'           radius
+
+  Ellipse         (TYCUEL) 'vec1'         centre
+                           'vec2'         major axis
+                           'vec3'         minor axis
+                           'd1'           major radius
+                           'd2'           minor radius
+
+  Intersection    (TYCUIN) 'vec1'         start of curve
+                           'vec2'         end of curve
+
+  For other curve types only the type-code is returned.  Use this code
+  to select the appropriate output routine.
+
+  Arguments surplus to an above curve definition are set to zero.
+
+</PRE>
+</BODY>
+</HTML>

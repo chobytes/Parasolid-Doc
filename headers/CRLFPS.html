@@ -1,0 +1,331 @@
+<HTML>
+<HEAD>
+<TITLE>CRLFPS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>CRLFPS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_bcurve_make_bsurf_lofted.html>PK_BCURVE_make_bsurf_lofted</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+CRLFPS ( nbcs, bcs, nprops, props, pdata, bs, ifail )
+=====================================================
+
+  Create B-surface by lofting
+
+Receives:
+  KI_int_nitems            *nbcs           --- number of curves supplied
+  KI_tag_b_curve            bcs[nbcs]      --- array of B-curves
+ &lt;KI_int_nitems&gt;           *nprops         --- number of surface properties
+  KI_cod_papr               props[nprops]  --- array of surface properties
+ &lt;KI_tag_list&gt;              pdata[nprops]  --- array of tags of data lists
+
+Returns:
+  KI_tag_b_surface         *bs             --- B-surface
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_wrong_number_knots     wrong number of knots in lofting knot vector
+  KI_bad_knots              curve knot vectors are incompatible
+                            bad lofting knot vector
+  KI_incompatible_curves    curves cannot be matched
+  KI_bad_curves             cannot loft coincident curves
+  KI_insufficient_curves    insufficient curves to loft
+  KI_bad_index              index for degenerate segment out of range
+  KI_bad_derivative         derivative too large
+                            twist vector too large
+                            wrong number of coordinates in twist vector
+  KI_wrong_number_derivs    wrong number of derivatives
+  KI_incompatible_props     incorrect use of degenerate segment property
+                            incorrect use of amalgamate property
+                            incompatible degenerate conditions
+                            incompatible clamping conditions
+                            incompatible boundary conditions
+  KI_bad_parametric_prop    inappropriate property
+  KI_bad_tag_in_list        invalid null tag in pdata list
+  KI_bad_degen_vertices     insufficient vertices for degenerate end curve
+                            insufficient vertices for degenerate start curve
+  KI_bad_deriv_vertices     wrong number of deriv vertices for clamped end
+                            wrong number of deriv vertices for clamped start
+
+Description:
+  This function creates a B-surface by lofting through a set of
+  B-curves.
+
+  Each curve shall lie along a constant v parameter line. The first curve
+  shall lie along the v = 0 parameter line and the last curve shall lie along
+  the v = 'nbcs'-1 parameter line.  The parametrisation in the u direction
+  is derived from the curves being lofted.
+
+  Continuity of lofted surface:
+    The surface is always continuous up to second order in the loft direction.
+    If the lofted curves were splined or created as B-splines and they all
+    share the same knot vector, then a surface is produced which is continuous
+    in the curve direction to the same order as the definition curves.
+    Otherwise the surface is, in general, only position continuous in the
+    curve direction.
+
+  Dimension of surface:
+    The surface will be rational if one or more of the B-curves is
+    rational, otherwise it is non-rational.
+
+  B-curves to loft 'nbcs', 'bcs':
+  . If the surface is to be periodic in the loft direction (see below), at
+    least three curves ('nbcs' >= 3) must be given.
+  . If the surface is to be non-periodic in the loft direction (see below), at
+    least two curves ('nbcs' >= 2), or one curve and a degenerate start or end
+    (see below) must be given.
+  . The curves must be in order in the list.
+  . The curves are unchanged by the operation.
+  . The curves must have the same number of segments, unless either the
+    amalgamate option (see below) is used or the number of segments are
+    equated by adding degenerate segments (see below).
+  . Consecutive curves must not be coincident.
+
+  Surface properties 'nprops', 'props', 'pdata':
+    There are several controls that may be applied to the lofting operation.
+    For example, the surface may be periodic in the loft direction; a knot
+    vector may be supplied, or the surface may degenerate to a point. Each
+    action has a default, and each default can be overridden by giving a token
+    in the 'props' array. 'nprops' is the number of tokens that have been
+    supplied in 'props'.
+
+    A particular action may require additional data; if so, this must be
+    supplied in a list. The tag of the list must be entered in the array
+    'pdata', in the position corresponding to the token in 'props'. If the
+    action does not require additional data, then the null tag should be
+    entered in the appropriate position in 'pdata'.
+
+  Property tokens:
+    The 'props' array contains 'nprops' tokens from the sequence PAPR00. The
+    table shows which tokens may be used, and the data associated with them.
+
+    There are some pairs (or sets) of tokens which are alternatives; if both
+    are supplied they may be contradictory, and in this case the last one to
+    be supplied is the one which is used.
+
+    There are also cases in which the presence of a token implies a particular
+    structure, and another implies a different structure. Use of both tokens
+    is inconsistent, and raises an error.
+
+    In explaining the various controls that may be applied to the lofting
+    operation the following notation is used :
+
+        o  bottom left   -  on the surface at the start of the first curve
+        o  bottom right  -  on the surface at the end of the first curve
+        o  top left      -  on the surface at the start of the last curve
+        o  top right     -  on the surface at the end of the last curve
+
+      token   |           meaning                 |       data
+      ---------------------------------------------------------------------
+              |                                   |
+      PAPRPE  |    surface is periodic in the     |       none
+              |          loft direction           |
+              |                                   |
+      PAPRNS  |  no curvature across start curve  |       none
+              |   i.e. natural boundary condition |
+              |                                   |
+      PAPRNE  |   no curvature across end curve   |       none
+              |   i.e. natural boundary condition |
+              |                                   |
+      PAPRCS  |       derivatives supplied        |   vector at each
+              |       across start curve          |   spline point
+              |   i.e. clamped boundary condition |
+              |                                   |
+      PAPRCE  |       derivatives supplied        |   vector at each
+              |       across end curve            |   spline point
+              |   i.e. clamped boundary condition |
+              |                                   |
+      PAPRSD  |  surface clamped with derivative  |   b-spline vertices
+              |          curve at start           |   of derivative curve
+              |                                   |
+      PAPRED  |  surface clamped with derivative  |   b-spline vertices
+              |           curve at end            |   of derivative curve
+              |                                   |
+      PAPRBL  | bottom left twist vector supplied |   twist vector
+              |                                   |
+      PAPRBR  | bottom right twist vector supplied|   twist vector
+              |                                   |
+      PAPRTL  | top left twist vector supplied    |   twist vector
+              |                                   |
+      PAPRTR  | top right twist vector supplied   |   twist vector
+              |                                   |
+      PAPRDS  |      surface is degenerate        |   degenerate point
+              |       before start curve          |
+              |                                   |
+      PAPRDE  |      surface is degenerate        |   degenerate point
+              |        after end curve            |
+              |                                   |
+      PAPRSW  |    degenerate curve supplied      |   b-spline vertices
+              |       before start curve          |   of degenerate curve
+              |                                   |
+      PAPREW  |    degenerate curve supplied      |   b-spline vertices
+              |        after end curve            |   of degenerate curve
+              |                                   |
+      PAPRKT  |       knot vector supplied        |   knot vector
+              |                                   |
+      PAPRAM  |       amalgamate option           |   none
+              |                                   |
+      PAPRIS  | insert degenerate segment in      |   segment position
+              | start curve                       |
+              |                                   |   segment position
+      PAPRIE  | insert degenerate segment in end  |
+              | curve                             |
+              |                                   |
+      PAPRCU  |       force cubic lofting         |   none
+              |                                   |
+
+  Boundary conditions PAPRPE, PAPRNS, PAPRNE, PAPRCS, PAPRCE:
+    There are three boundary conditions available to control the lofting:
+    natural, clamped and periodic. Natural and clamped conditions refer to
+    either the start or end of the lofted surface, whereas the periodic
+    boundary condition refers to both.
+
+  . Natural boundary conditions imply that the surface has no curvature in the
+    loft direction, across the start or end curve as appropriate. Natural
+    boundary conditions are the default.
+
+  . Clamped boundary conditions allow the user to specify derivatives across
+    the start and end curves. There are two methods of supplying these
+    derivatives. Options PAPRCS and PAPRCE may be used to clamp the surface
+    with a list of derivative vectors. Similarly, options PAPRSD and PAPRED
+    may be used to clamp the surface using a derivative b-spline curve.
+
+
+    . If derivative vectors are used then they must be supplied at every
+      spline point of the corresponding curve (a spline point is a point
+      between adjacent segments of the curve, or the start or end of the
+      curve). The derivative vectors must be stored in a real list of length
+      (3 * 'nsp'), where nsp is the number of spline points on each curve.
+
+      The derivatives should be supplied with respect to a parameter which
+      varies from 0 to 1 between the first or last two curves (as appropriate).
+      In other words, the derivatives should have dimensions of length. The
+      magnitude is significant, and supplying vectors which are too large may
+      cause the surface to loop or kink.
+
+    . When a derivative b-spline is used to clamp an end of the surface it is
+      only necessary to supply the control vertices. This is because the knot
+      vector of the derivative curve will be the same as the knot vector of
+      the corresponding start or end curve. The vertices should be supplied in
+      a real list of length :-
+                              ('dim' * 'ncrtl')
+      where,
+           dim   = dimension of vertices on corresponding start or end curve
+           nctrl = number of vertices on corresponding start or end curve
+
+      A derivative b-spline provides a more complete definition of the
+      start/end derivatives particularly when the curves to be lofted are
+      either rational or contain multiple knots.
+
+    If clamped boundary conditions are used with the insert degenerate segment
+    option PAPRIS or PAPRIE then it should be noted that for every extra
+    segment added the end curve will have one extra spline point and one extra
+    control vertex. This means that if the end is clamped with derivative
+    vectors one extra vector must be supplied for every segment added.
+    Similarly if the surface is clamped with a derivative curve one extra
+    control vertex is required for every segment added.
+
+  . Periodic boundary conditions imply that the surface is closed in the loft
+    direction, so that the surface will return to the first curve in the array
+    after the final one has been lofted. The surface will meet itself with
+    continuity of tangent and curvature. If periodic boundary conditions are
+    used, then at least three curves must be supplied ('nbcs' >= 3). Periodic
+    boundary conditions cannot be used if either the first or last curve is
+    degenerate.
+
+  Twist vectors PAPRBL, PAPRBR, PAPRTL, PAPRTR:
+    A twist vector is a derivative with respect to both u and v; i.e. it is
+    the rate of change of the cross boundary derivatives in the direction of
+    the curves. The twist vectors may be supplied at any of the four corners,
+    but only when clamped boundary conditions have been supplied across the
+    corresponding boundary. Each one should be supplied in a real list of
+    length 3. If the twist vectors are supplied when they are not required
+    then they are ignored. If the twist vectors are not supplied then a
+    suitable default value is used.
+
+  Degenerate surface PAPRDS, PAPRDE, PAPRSW, PAPREW:
+    The lofted surface may degenerate to a point at either the start or the
+    end of the loft. This degeneracy may be supplied either as a single point
+    using PAPRDS and PAPRED or as a degenerate b-spline curve using PAPRSW and
+    PAPREW. A degenerate b-spline curve will provide greater control when
+    lofting curves that are rational.
+
+    . If the degeneracy is supplied as a point then the degenerate point must
+      be given in a real list of length 3.
+
+    . When a degenerate b-spline curve is used to define the degeneracy it is
+      only necessary to supply the control vertices. This is because the knot
+      vector of the degenerate curve will be the same as the knot vector of
+      the corresponding start or end curve. The vertices should be supplied in
+      a real list of length :-
+                               ('dim' * 'ncrtl')
+       where,
+            dim   = dimension of vertices on corresponding start or end curve
+            nctrl = number of vertices on corresponding start or end curve
+
+    Periodic end conditions cannot be used if either end of the lofted
+    surface is degenerate, but it is possible to use clamped or natural end
+    conditions. The insert degenerate segment options PAPRIS and PAPRIE cannot
+    be used if the corresponding end of the surface is degenerate.
+
+  Knot vector PAPRKT:
+    If a knot vector is supplied then it must be given in a real list, and
+    must satisfy the following conditions:
+    . The knot values must form an increasing sequence; repeated knots are
+      not permitted.
+    . For non-periodic lofting there must be 'nbcs' knot values.
+    . For periodic lofting there must be ('nbcs'+1) knot values.
+
+    If the knot vector is not supplied then an averaged accumulated chord
+    length parametrisation is used.
+
+  Amalgamation of knot vectors PAPRAM:
+    An amalgamate property may be supplied for the surface, which will
+    amalgamate the various knot vectors for the curves, and produce a surface
+    which is continuous to the same order as the definition curves. However,
+    this may produce a surface with a large number of patches, and should
+    only be used on a small number of curves. The amalgamate option cannot
+    be used in conjunction with inserted degenerate segments.
+
+  Insertion of degenerate segments PAPRIS, PAPRIE:
+    If the first curve has fewer segments than the other curves PAPRIS may be
+    used add the required number of segments to the first curve. Similarly
+    PAPRIE may be used to add segments to the last curve. The segments added
+    using these properties are degenerate, that is they contain the order
+    of the curve coincident control points. Each degenerate segment added will
+    cause the lofting process to make a patch with a corresponding degenerate
+    boundary. Any number of degenerate segments may be added, by supplying the
+    appropriate token more than once. An integer list containing one value
+    must be supplied with each token; this specifies the segment preceding the
+    required degenerate segment. If more than one degenerate segments are
+    added they should be supplied in ascending order of segment number.
+    Previously inserted degenerate segments affect the segment number of
+    subsequent ones.
+
+  Degree of lofted surface PAPRCU:
+    In general, the surface will be cubic in the loft direction. However, if
+    only two non-rational curves are given and the boundary conditions are
+    natural, then a ruled surface which is linear in the loft direction will be
+    produced. The user may force the surface to be cubic in the loft direction
+    by giving the PAPRCU property.
+
+
+</PRE>
+</BODY>
+</HTML>

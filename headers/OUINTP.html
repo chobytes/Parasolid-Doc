@@ -1,0 +1,164 @@
+<HTML>
+<HEAD>
+<TITLE>OUINTP</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUINTP</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_mark_ask_forward.html>PK_MARK_ask_forward</A><BR>
+<A HREF=../headers/pk_session_ask_check_arguments.html>PK_SESSION_ask_check_arguments</A><BR>
+<A HREF=../headers/pk_session_ask_check_continuity.html>PK_SESSION_ask_check_continuity</A><BR>
+<A HREF=../headers/pk_session_ask_check_self_int.html>PK_SESSION_ask_check_self_int</A><BR>
+<A HREF=../headers/pk_session_ask_tag_limit.html>PK_SESSION_ask_tag_limit</A><BR>
+<A HREF=../headers/pk_session_ask_general_topology.html>PK_SESSION_ask_general_topology</A><BR>
+<A HREF=../headers/pk_session_ask_journalling.html>PK_SESSION_ask_journalling</A><BR>
+<A HREF=../headers/pk_session_ask_swept_spun_surfs.html>PK_SESSION_ask_swept_spun_surfs</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUINTP ( pnum, ival, rval, ifail )
+==================================
+
+  Output interface parameter
+
+Receives:
+  KI_cod_slip              *pnum           --- parameter code
+
+Returns:
+  int                      *ival           --- integer value of parameter
+  double                   *rval           --- real value of parameter
+  KI_cod_error             *ifail          --- failure indicator
+
+
+Description:
+  Outputs the value of an interface parameter.
+
+  'pnum' specifies which parameter is to be returned:
+  different parameters may be integer or real values and are returned in the
+  appropriate return argument. At present all parameters returned from this
+  routine are integers.
+
+  The valid values of 'pnum' and the corresponding parameters are:
+
+  'pnum'    return   significance
+
+  SLIPCH    'ival'   If non-zero, all KI routines will check that their
+                     parameters have acceptable values. If zero, KI routines
+                     may not check their parameters.
+
+  SLIPJO    'ival'   If non-zero, all KI routines will record their received
+                     and returned values in the journal file.
+
+  SLIPBB    'ival'   Flag indicating whether the Kernel maintains a bulletin
+                     board. The defined values of 'ival' are:
+                          0  no bulletin board maintained
+                          1  bulletin board is maintained for tags only
+                          2  bulletin board is maintained for tags and
+                             user fields
+
+
+  SLIPRB    'ival'   If non-zero the modeller will log all changes to the
+                     model. Only if this is done may rollback marks be set or
+                     used. The specific value of 'ival' is the size of the
+                     rollback file in bytes.
+
+  SLIPRF    'ival'   If 1 then ROLBFN can be used to roll forward.
+                     If 0 then roll forward will not be allowed but the
+                     amount of data stored in the rollback file will be
+                     reduced.
+
+  SLIPBT    'ival'  Controls the transmit and receive format, which can be
+                    either text, machine-dependent binary, neutral binary,
+                    or using application-registered i/o functions. The allowed
+                    values of 'ival' are:
+
+                          1      text  Receive,    text  Transmit
+                          2     binary Receive,    text  Transmit
+                          3      text  Receive,   binary Transmit
+                          4     binary Receive,   binary Transmit
+                          5      text  Receive,  neutral Transmit
+                          6     binary Receive,  neutral Transmit
+
+                          7     applio Receive,    text  Transmit
+                          8     applio Receive,   binary Transmit
+                          9     applio Receive,  neutral Transmit
+                         10     applio Receive,   applio Transmit
+                         11      text  Receive,   applio Transmit
+                         12     binary Receive,   applio Transmit
+
+  SLIPSN    'ival'   Shows the use of binary snapshots. The defined values
+                     of 'ival' are:
+                          1      text  get snapshot,    text  save snapshot
+                          2     binary get snapshot,    text  save snapshot
+                          3      text  get snapshot,   binary save snapshot
+                          4     binary get snapshot,   binary save snapshot
+
+  SLIPLC    'ival'   If non-zero, the Kernel will perform local checks of
+                     geometry and topology after a local modification is
+                     made to the model by CRFASU, CRSOFA, DELFAS, RMFASO,
+                     SWEENT, SWIENT, TWSUFA, TWEFAC, TAPFAS or BLEFIX.
+
+  SLIPDC    'ival'   If non-zero, limited checks on the consistency of
+                     geometry attached to a model with ATTGEO and
+                     neighbouring geometry will be made.
+
+  SLIPUF    'ival'   If non-zero user fields are received with archived parts.
+                     If SLIPUF is zero user-field values of received parts are
+                     set to zero.
+
+  SLIPSI    'ival'   If non-zero, the Kernel will perform self intersection
+                     checks on geometry during operations which require the
+                     geometry to pass the checks imposed by CHCKEN.
+
+  SLIPCO    'ival'   Flag indicating whether the Kernel will perform composite
+                     geometry checks on B-curves and B-surfaces when determining
+                     whether the geometry can be modeled as a single topological
+                     entity.
+
+                     The defined values of `ival are :
+
+                              0       Perform all composite geometry checks
+                              1       Perform no composite geometry checks
+
+                     Values outside this range return KI_bad_value.
+
+                     This flag is set to non-zero in STAMOD.
+
+  SLIPTL    'ival'   If non-zero, the modeller will check all tags allocated
+                     against an upper bound equal to the absolute value of
+                     'ival'. An operation that would otherwise result in the
+                     allocation of tags exceeding 'ival' will fail, returning
+                     KI_tag_limit_exceeded.
+
+
+  SLIPGS    'ival'   If non-zero, generated surfaces can be created during
+                     a call to SWEENT or SWIENT. If SLIPGS is zero, B-surfaces
+                     will be created instead.
+
+  SLIPGT    'ival'   Flag indicating whether general bodies are to be legally
+                     returned by KI functions - principally boolean operations.
+                     With SLIPGT set to zero, general bodies will not be
+                     returned and the operations will fail with the same ifail
+                     as at previous versions i.e. KI_non_manifold.
+                     With SLIPGT set to one, general bodies will be returned as
+                     valid results.
+
+
+
+</PRE>
+</BODY>
+</HTML>

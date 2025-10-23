@@ -1,0 +1,99 @@
+<HTML>
+<HEAD>
+<TITLE>ENPIFA</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>ENPIFA</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_face_contains_vectors.html>PK_FACE_contains_vectors</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+ENPIFA ( face, nparms, params, npvecs, pvecs, nopts, opts, optdata, enclos, 
+============================================================================
+         topol, ifail )
+         ==============
+
+  Enquire if points in face
+
+Receives:
+  KI_tag_face              *face           --- face
+ &lt;KI_int_nitems&gt;           *nparms         --- number of parameter pairs
+  double                    params[2*nparms] --- u v parameter pairs
+ &lt;KI_int_nitems&gt;           *npvecs         --- number of pvecs
+  double                    pvecs[3*npvecs] --- pvecs
+ &lt;KI_int_nitems&gt;           *nopts          --- number of options
+  KI_cod_pfop               opts[nopts]    --- options
+ &lt;KI_tag_list_entity&gt;       optdata[nopts] --- option data
+
+Returns:
+  KI_cod_encl               enclos[nparms==0?npvecs:nparms] --- enclosure
+  KI_tag_topology           topol[nparms==0?npvecs:nparms] --- sub topology
+  KI_cod_error             *ifail          --- failure code
+
+Specific errors:
+  KI_unsuitable_entity      can't do test on invalid entity
+  KI_no_geometry            no geometry on edge
+                            no geometry on face
+  KI_bad_option_data        bad option data
+  KI_duplicate_item         Duplicate item in option data
+  KI_not_same_length        arrays not the same length
+  KI_nitems_le_0            arrays both length zero
+
+Description:
+
+  Determines whether the points lie inside, outside or on the boundary of
+  the face.
+
+  The points must be given as either an array of parameter pairs ('params'), an
+  array of co-ordinates ('pvecs') or both where the parameter pairs correspond
+  to the co-ordinates in the same order (i.e. the number of parameter pairs
+  'nparms' and the number of pvecs 'npvecs' must be either equal or either
+  'nparms' or 'npvecs' = 0 ). It is the user's responsibility to ensure that if
+  both 'pvecs' and 'params' are given that they correspond, the function will not
+  detect if they don't and in this case the results are not guaranteed.
+
+  The option accepted is:
+
+  PFOPLO: enquire on loops of interest.
+
+  The option PFOPLO takes data of a list of one or more loops from the face and
+  considers the containment with respect only to these loops. I.e. if a face
+  has a periphery loop and several hole loops and the PFOPLO option is used with
+  only the periphery loop, points inside the holes will be regarded as inside
+  the face. It is up to the user to ensure that the loops bound a finite area for
+  meaningful results to be returned. The function will not detect if this has
+  happened.
+
+  For each point an enclosure code is returned to classify the point relative to
+  the face. The enclosure codes will be one of:
+
+      ENCLIN    the point lies inside the boundary
+      ENCLOU    the point lies outside the boundary
+      ENCLON    the point lies 'on' the boundary of the face (i.e. on an edge or
+                vertex )
+
+  The interior of a hole is outside the face and the boundary of a hole is part
+  of the boundary of the face.
+
+  If the enclosure code is ENCLON, the corresponding element in 'topol' will be
+  the vertex or edge that the point lies on, otherwise this will be null.
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_EDGE_curve_direction_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_EDGE_curve_direction_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_EDGE_curve_direction_s
+    {
+    <A HREF=../headers/pk_edge_curve_dir_t.html>PK_EDGE_curve_dir_t</A>       type;       --- type of method used
+                                          --- (PK_EDGE_curve_dir_none_c)
+    <A HREF=../headers/pk_edge_t.html>PK_EDGE_t</A>                 edge;       --- Edge we want to orient with
+                                          --- (PK_ENTITY_null)
+    <A HREF=../headers/pk_fin_t.html>PK_FIN_t</A>                  fin;        --- fin sets direction
+                                          --- (PK_ENTITY_null)
+    <A HREF=../headers/pk_vertex_t.html>PK_VERTEX_t</A>               end_vertex; --- vertex sets direction
+                                          --- (PK_ENTITY_null)
+    <A HREF=../headers/pk_vector_t.html>PK_VECTOR_t</A>               point;      --- point to be used with direction
+    <A HREF=../headers/pk_vector1_t.html>PK_VECTOR1_t</A>              direction;  --- direction to be used with point
+    };
+
+typedef struct PK_EDGE_curve_direction_s PK_EDGE_curve_direction_t;
+
+
+</B>
+<A NAME="description"></A>
+<I>This structure is used to explicitly set the direction for the generated curve.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_edge_make_curve_o_t.html>PK_EDGE_make_curve_o_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+<B>'type'</B>             : Type of direction method supplied.
+
+<B>'edge'</B>             : The edge that will be used with one of the three direction
+                     options.
+
+<B>'fin'</B>              : The curve will be in the direction of the supplied fin.
+
+<B>'end_vertex'</B>       : This is a vertex on the edge supplied. This can only
+                     be used with an edge with two vertices. The resulting
+                     curve direction will be towards the vertex.
+
+<B>'point'</B>            : <B>'point'</B> and <B>'direction'</B> are to be supplied together to
+<B>'direction'</B>        : determine the direction of the curve. The point must lie
+                     on the supplied edge and the direction must be
+                     near parallel or anti parallel to the edges curve tangent
+                     at the point given. The direction must be a unit vector.
+
+Only one form of direction information can be supplied. If more than one is
+supplied the error <B>'PK_ERROR_wrong_direction'</B> will be returned.
+
+<B>'edge'</B> must be an edge in the set of edges supplied.
+
+The valid forms of direction information are:
+
+A single fin from the supplied edge. This option will not be valid for wire
+edges.
+
+A single vertex from the supplied edge. The edge must have two vertices for
+this option to be valid.
+
+A point and direction. The point must lie on the edge supplied. The direction
+must be near parallel or anti parallel to the edge curve tangent at the point
+given. Both must be supplied for this option to be valid.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

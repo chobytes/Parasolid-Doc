@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.007.html#50409787_marker-313041", "<B>GOSGMT</B> ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295761", " <B>GOSGMT</B> ", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.007.html#50409787_pgfId-295303", " wish, or you can use third party libraries. The <B>GOSGMT</B> function calls the appropriate libraries in order to perform", "Functional Description - Supplying A Frustrum");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-298877", " the PK rendering functions call registered GO functions (GOOPSG, <B>GOSGMT</B> and GOCLSG). ", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.105.html#50409896_pgfId-350543", " The GOOPSG, <B>GOSGMT</B> and GOCLSG function header descriptions in Appendix B, Graphical", "Functional Description - Introduction To Rendering And Faceting");
+top.note("chapters/fd_chap.106.html#50409897_pgfId-295207", " array in calls to GOOPSG, <B>GOSGMT</B> and GOCLSG. The value is equal to the array", "Functional Description - Rendering Functions");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304387", " output through GO hierarchically, consisting of two calls to <B>GOSGMT</B>, enclosed by a pair calls to GOOPSG and", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304388", " The first call to <B>GOSGMT</B> defines the line segment type and its geometry. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304389", " The second call to <B>GOSGMT</B> defines a visibility segment (SGTPVP), specifying points at which", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295024", " The order of calls to the GO function <B>GOSGMT</B> to output a non-hierarchical data segment may vary depending", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.116.html#50409908_pgfId-295030", " <B>GOSGMT</B> is invoked for each line segment drawn (edges, hatching", "Functional Description - Symmetric Multi-Processing In Parasolid");
+top.note("chapters/fd_chap.123.html#50409916_pgfId-295290", " might lead to a call to the registered function <B>GOSGMT</B>, which in turn might call PK_ENTITY_ask_attribs : the", "Functional Description - Signal Handling");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-206873", " <B>gosgmt</B> 88, 92, 93, 101 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207172", " <B>gosgmt</B> function 88, 92, 93, 101 ", "Functional Description - ZGlossary");
+top.note("chapters/fd_chap.130.html#50409969_pgfId-207189", " <B>gosgmt</B> 88, 92, 93, 101 ", "Functional Description - ZGlossary");
+top.note("headers/pk_gosgmt_f_t.html#documentation", " hierarchically then <B>GOSGMT</B> is called to output the whole geometry of", "PK Reference - PK_GOSGMT_f_t");
+top.note("headers/pk_session_ask_fru_o_t.html#declaration", " PK_GOSGMT_f_t *<B>gosgmt</B>; --- (NULL)", "PK Reference - PK_SESSION_ask_fru_o_t");
+top.note("headers/pk_session_frustrum_t.html#declaration", " PK_GOSGMT_f_t <B>gosgmt</B>;", "PK Reference - PK_SESSION_frustrum_t");
+top.note("headers/pk_session_register_fru_o_t.html#declaration", " PK_GOSGMT_f_t *<B>gosgmt</B>; --- (NULL)", "PK Reference - PK_SESSION_register_fru_o_t");
+top.note("headers/pk_session_register_fru_o_t.html#documentation", " <B>gosgmt</B> , goopsg , and goclsg , should be", "PK Reference - PK_SESSION_register_fru_o_t");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274050", " . It is output through the GO functions GOOPSG, <B>GOSGMT</B> and GOCLSG. ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274258", " detailed descriptions of each function. The three functions (GOOPSG, <B>GOSGMT</B>, GOCLSG) all have the same arguments, but interpret", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274913", "hierarchical (they cannot be output by <B>GOSGMT</B>, only by GOOPSG and GOCLSG) ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274914", " is used (like bodies, they cannot be output by <B>GOSGMT</B>, only by GOOPSG and GOCLSG) ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274915", "single-level (and therefore are only output by <B>GOSGMT</B>) ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-341188", " all single-level segment types which may be output by <B>GOSGMT</B>: ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.05.html#50511937_pgfId-274938", " separate parts which are output by separate calls to <B>GOSGMT</B> (see Section 4.5 ). ", "Downward Interfaces - Graphical Output");
+top.note("chapters/di_chap.06.html#50511938_pgfId-280408", " GOOPSG <B>GOSGMT</B> GOCLSG ", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.06.html#50511938_pgfId-294216", " graphical output, you can indicate that the GO functions, <B>GOSGMT</B>, GOOPSG and GOCLSG, are thread-safe using the ", "Downward Interfaces - Registering the Frustrum");
+top.note("chapters/di_chap.08.html#50511940_pgfId-287022", " <B>gosgmt</B> ", "Downward Interfaces - Graphical Output Functions");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

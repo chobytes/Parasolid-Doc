@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_create_topology_2_r_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_create_topology_2_r_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_create_topology_2_r_s
+    {
+    <A HREF=../headers/pk_body_t.html>PK_BODY_t</A>          body;
+    int                n_topols;
+    <A HREF=../headers/pk_topol_t.html>PK_TOPOL_t</A>        *topols;
+    int                n_create_faults;
+    <A HREF=../headers/pk_create_fault_t.html>PK_create_fault_t</A> *create_faults;
+
+    int               *internal_indices;
+    };
+typedef struct PK_BODY_create_topology_2_r_s
+PK_BODY_create_topology_2_r_t;
+
+
+
+
+</B>
+<A NAME="description"></A>
+<I>This return structure contains the return from <A HREF=../headers/pk_body_create_topology_2.html>PK_BODY_create_topology_2</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_create_topology_2.html>PK_BODY_create_topology_2</A><br>
+    <A HREF=../headers/pk_body_create_topology_2_r_f.html>PK_BODY_create_topology_2_r_f</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+If <A HREF=../headers/pk_body_create_topology_2.html>PK_BODY_create_topology_2</A> successfully creates a body then:
+
+ -  the created body is returned in <B>'body'</B>
+ -  the entities corresponding to the entries in the <B>'classes'</B> array are
+    returned in the <B>'topols'</B> array.
+ -  the structure <B>'create_fault'</B> will hold the token PK_BODY_state_ok_c or
+    PK_BODY_state_ok_but_alt_type_c. The latter case only occurs if a required
+    <B>'body_type'</B> has been specified but the created body is not of that type.
+
+If the creation is unsuccessful but no PK error is returned:
+
+ -  no body is returned.
+ -  <B>'topols'</B> is empty.
+ -  the fault return structure <B>'create_fault'</B> is filled in. For each detected
+    fault the return structure holds one <A HREF=../headers/pk_check_state_t.html>PK_check_state_t</A> fault token and, if
+    possible, the indices (of the <B>'classes'</B> array) of the offending
+    topologies. If the body that <A HREF=../headers/pk_body_create_topology_2.html>PK_BODY_create_topology_2</A> attempted to
+    construct had more than than one fault then the function does not
+    guarantee to return all the faults.
+
+
+The fields are
+
+
+<B>'body'</B>              The created body.
+
+
+<B>'n_topols'</B>          The length of the array <B>'topols'</B>.
+
+
+
+<B>'topols'</B>            Array of entities corresponding to the entries in the
+                    <B>'classes'</B> array.
+
+
+<B>'n_create_faults'</B>   The length of the array <B>'create_fault'</B>
+
+
+<B>'create_fault'</B>      Structure which holds information about any fault which
+                    may have arisen.
+
+
+The following field is for internal use only and is not to be accessed
+by the application.
+
+<B>'internal_indices'</B>  Internal use only.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

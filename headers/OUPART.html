@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>OUPART</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>OUPART</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+OUPART ( part, buflen, keylen, key, state, ifail )
+==================================================
+
+  Output key and state of part.
+
+Receives:
+  KI_tag_part              *part           --- part to output
+  KI_int_nchars            *buflen         --- length of key array
+
+Returns:
+ &lt;KI_int_nchars&gt;           *keylen         --- length of key
+  KI_chr_key                key[keylen]    --- key of part
+  KI_cod_enst              *state          --- state of part
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_buffer_overflow        key too long for array
+
+Description:
+  OUPART returns the key (if any) and state of 'part'.
+
+  The state of the part will be one of:
+
+      1) new (ENSTNW) - the part has been created during this session or was
+         anonymous and has been changed.
+
+      2) stored (ENSTST) - the part has been transmitted to external storage or
+         has been received from the archive and has not been changed.
+
+      3) anonymous (ENSTAN) - the part is an unchanged version of a part
+         transmitted as an unkeyed sub-part into the archive.
+
+      4) modified (ENSTMD) - the part is a changed version of a part in
+         the archive.
+
+      5) unloaded (ENSTUN) - the part has not been received from the archive
+         but is instanced by another part in memory or the part has been
+         explicitly unloaded from memory with UNLDPA.
+
+  All stored, modified and unloaded parts have a key. New and anonymous parts
+  do not have a key and zero will be returned in 'keylen'.
+
+
+</PRE>
+</BODY>
+</HTML>

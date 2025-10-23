@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_TOPOL_fctab_strip_boundary_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_TOPOL_fctab_strip_boundary_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct  PK_TOPOL_fcstr_strip_boundary_s
+       {
+       int     strip;
+       int       fin;
+       };
+typedef struct PK_TOPOL_fcstr_strip_boundary_s
+               PK_TOPOL_fcstr_strip_boundary_t;
+
+struct PK_TOPOL_fctab_strip_boundary_s
+       {
+       PK_TOPOL_fcstr_strip_boundary_t *data;
+       int                              length;
+       };
+
+typedef struct PK_TOPOL_fctab_strip_boundary_s
+               PK_TOPOL_fctab_strip_boundary_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_topol_facet_table_t.html>PK_TOPOL_facet_table_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+This is a support structure for <A HREF=../headers/pk_topol_facet_2_r_t.html>PK_TOPOL_facet_2_r_t</A>.  It is a lookup table
+which 'groups' sets of fins on the boundary of the facet strip together.
+
+The boundary of a facet strip is represented by an ordered sequence of fins.
+The fin sequence follows an anti-clockwise order when viewed from above the
+facet.
+
+If facet strips have been requested all facets created will be triangular and
+so there cannot exist holes in the facets and hence there cannot exist holes
+in the facet strip.
+
+In the <B>'strip_boundary'</B> table a facet strip is essentially treated as a single
+many sided facet - all fins internal to the strip will be ignored and only the
+boundary fins of the strip output.
+
+Example:
+            &lt;---f0---&lt;---f11--&lt;---f10--&lt;---f9---&lt;---f8---
+            |       /|       /|       /|       /|       /|\
+            |facet0/ |facet2/ |facet4/ |facet6/ |facet8/ |
+            |     /  |     /  |     /  |     /  |     /  |
+            |    /   |    /   |    /   |    /   |    /   |
+           f1   /    |   /    |   /    |   /    |   /    f7
+            |  /     |  /     |  /     |  /     |  /     |
+            | /facet1| /facet3| /facet5| /facet7| /facet9|
+           \|/       |/       |/       |/       |/       |
+            ---f2----&gt;---f3---&gt;---f4---&gt;---f5---&gt;---f6---&gt;
+
+This facet strip has its <B>'strip_boundary'</B> represented by the sequence:
+
+            f0  f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  f11
+
+It is guaranteed that the first two fins in the <B>'strip_boundary'</B> table for a
+given facet strip will lie in the same facet (in the above example note that f0
+and f1 both lie in facet0).  This information can be used to determine the fins
+internal to the strip, alternatively the <B>'strip_zigzag'</B> table can be requested
+which returns this information.
+
+Each facet_strip is assigned an integer value from 0 to
+(<B>'number_of_strips'</B> - 1).
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

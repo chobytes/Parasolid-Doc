@@ -1,0 +1,1147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Object-Oriented KID</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Object-Oriented KID</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.03.html">LISP in KID</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.05.html">Calling the KI/PK Using KID (FLICK)</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273840">3.1	Object oriented programming</A>
+<UL>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273844">3.1.1	Objects and message passing</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273854">3.1.2	Parasolid PK functions and KI routines</A>
+</UL>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273857">3.2	KID journal file</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273862">3.3	Starting and stopping the kernel</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273887">3.4	Parasolid journal file</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273898">3.5	Rollback during a modeling session</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273930">3.6	Defining KID objects</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273950">3.7	Combining tags of KID objects</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273970">3.8	Receive and transmit</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-273992">3.9	Help</A>
+<LI> <A HREF="kd_chap.04.html#50475012_pgfId-274014">3.10	Options</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273840"></A>3.1	Object oriented programming
+
+
+</H1>
+<P>
+<A NAME="50475012_pgfId-273842"></A><A NAME="50475012_marker-273841"></A>In any object oriented programming environment, an object is used to represent a collection of data and functions. An object can be used to represent a real thing or an abstract idea.</P>
+<P>
+<A NAME="50475012_pgfId-273843"></A>All the information concerning an object, including the functions necessary to manipulate it, are kept within the object. The principles of object orientated programming have been exploited in many languages, PARASOLID LISP has been extended by the inclusion of object oriented functions and these are used extensively within KID.</P>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475012_pgfId-273844"></A>	3.1.1 	Objects and message passing</H2>
+<P>
+<A NAME="50475012_pgfId-273846"></A><A NAME="50475012_marker-273845"></A>Objects are LISP entities. They consist of some data and a set of operations. The nature of an object's operations depends on the nature of the component it represents. An object representing data structures might store and retrieve information, an object representing a solid body might answer enquiries about its relationships to its component faces and edges, or might perform operations on itself to modify its shape or position in space.</P>
+<P>
+<A NAME="50475012_pgfId-273847"></A>In KID objects are arranged in a predefined hierarchical class structure, see <A HREF="kd_chap.17.html#50475020_28490">Appendix A, &quot;KID Class Structure&quot;</A>.</P>
+<P>
+<A NAME="50475012_pgfId-273851"></A>A message is a request for an object to carry out one of its operations, it specifies which operation is desired, but not how that operation is carried out. The object to which the message was sent determines how that operation should be carried out. A crucial property of messages is that they are the only way to invoke an object's operations.</P>
+<P>
+<A NAME="50475012_pgfId-273852"></A>Operations in KID are generally carried out by passing to the command-line interface messages of the following form:</P>
+<P>
+<A NAME="50475012_pgfId-281162"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281484"></A>( object function argument1 argument2 ... )
+( object property argument )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<H2>
+<A NAME="50475012_pgfId-273854"></A>	3.1.2 	Parasolid PK functions and KI routines</H2>
+<P>
+<A NAME="50475012_pgfId-273855"></A>Many LISP functions and object operations call a Parasolid PK Function or KI Routine. This provides a convenient, version-independent method of using Parasolid in KID. If timing data is being output (the default action), the name of the function or routine is also output.</P>
+<UL>
+<LI>
+<A NAME="50475012_pgfId-273856"></A>As the Parasolid PK Interface is developed, many operations are being changed to use the PK function equivalent of the KI routine they previously called, but this change is transparent to the user.</LI>
+</UL>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273857"></A>3.2	KID journal file
+
+
+</H1>
+<P>
+<A NAME="50475012_pgfId-273859"></A><A NAME="50475012_marker-273858"></A>KID opens a journal file with the name <CODE>
+kid.jou</CODE>
+ and journals all KID commands in this file, which can be renamed before another session is started. It should be possible to reproduce the original operations by loading this file in a subsequent KID session. If the file extension is changed to .lsp then it is not necessary to specify it in the argument to load.</P>
+<P>
+<A NAME="50475012_pgfId-281200"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281532"></A>&gt; (load &quot;bug_27.jou&quot;)       -- file is bug_27.jou
+&gt; (load &acute;bug_27)            -- file is bug_27.lsp
+&gt; (load &quot;bug_27&quot; &acute;reflect)  -- commands used are shown
+&gt; (load &acute;bug_27 &acute;verify)    -- commands and returns are shown</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-273861"></A>When a graphical pick is made with the cursor, a point and a direction are recorded. These vectors are written to the journal file and are used when replaying the journal file so no user interaction is needed.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273862"></A>3.3	Starting and stopping the kernel
+
+
+</H1>
+<P>
+<A NAME="50475012_pgfId-273865"></A><A NAME="50475012_marker-273863"></A><A NAME="50475012_marker-273864"></A>The kernel is started and stopped using functions of the object modeller, which are pre-defined within the KID class structure. </P>
+<P>
+<A NAME="50475012_pgfId-273866"></A>In the following example, KID is instructed to perform the function <CODE>
+start</CODE>
+ (which requires no arguments) on the object <CODE>
+modeller</CODE>
+. This has the effect of calling the Parasolid KI routine STAMOD.</P>
+<P>
+<A NAME="50475012_pgfId-273867"></A>Normally the start function should be called before doing anything else.</P>
+<P>
+<A NAME="50475012_pgfId-282031"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282037"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282039"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282041"></A>modeller</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282043"></A>start, stop</P>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475012_pgfId-273880"></A><A NAME="50475012_marker-273878"></A><A NAME="50475012_marker-273879"></A>start function</H4>
+<P>
+<A NAME="50475012_pgfId-281211"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281540"></A>&gt; (modeller start)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-273882"></A>and to stop the modeller:</P>
+
+
+<H4>
+<A NAME="50475012_pgfId-273885"></A><A NAME="50475012_marker-273883"></A><A NAME="50475012_marker-273884"></A>stop function</H4>
+<P>
+<A NAME="50475012_pgfId-281232"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281548"></A>&gt; (modeller stop)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273887"></A>3.4	Parasolid journal file
+
+
+</H1>
+<P>
+<A NAME="50475012_pgfId-273888"></A>When the kernel is started using (modeller start), a Parasolid journal file is opened, with the default name kid.jnl_txt. This records all the Parasolid PK functions and KI routines called in a KID session, with their received and returned arguments.</P>
+<P>
+<A NAME="50475012_pgfId-273889"></A>The journal file is useful if unexpected errors occur, as it can be inspected to see what functions have been called and when the error occurred.</P>
+<P>
+<A NAME="50475012_pgfId-273890"></A>All GO (Graphical Output) functions are now logged in the journal file. It should be noted that this:</P>
+<UL>
+<LI>
+<A NAME="50475012_pgfId-273891"></A>generates very large files</LI>
+<LI>
+<A NAME="50475012_pgfId-273892"></A>increases the KID session elapsed time</LI>
+</UL>
+<P>
+<A NAME="50475012_pgfId-273893"></A>Therefore, it is recommended that Parasolid journalling is turned off unless it is required in a particular modeling session.</P>
+
+<H4>
+<A NAME="50475012_pgfId-273894"></A>Journalling options available before (modeller start)</H4>
+<P>
+<A NAME="50475012_pgfId-281239"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281579"></A>&gt; (option journal t)           -- enables journalling (default)
+&gt; (option journal_file &quot;f1_b0&quot;)  -- enables journalling, using
+                                    this journal file
+&gt; (option journal nil)           -- disables journalling
+
+&gt; (option journal)            --&gt; returns whether or not a
+                                 journal is being kept
+&gt; (option journal_file)       --&gt; returns the journal file name</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475012_pgfId-273896"></A>Journalling options available after (modeller start), if journalling is enabled</H4>
+<P>
+<A NAME="50475012_pgfId-281246"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281627"></A>&gt; (option journal t)          -- toggles journalling on
+&gt; (option journal nil)        -- toggles journalling off
+
+&gt; (option journal)            --&gt; returns whether or not a
+                                 journal is being kept
+&gt; (option journal_file)       --&gt; returns the journal file name</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273898"></A>3.5	Rollback during a modeling session
+
+
+</H1>
+<P>
+<A NAME="50475012_pgfId-273901"></A><A NAME="50475012_marker-273899"></A><A NAME="50475012_marker-273900"></A>The function <CODE>
+mark</CODE>
+ provides the means to set marker points in the modeling session, to which it is possible to:</P>
+<UL>
+<LI>
+<A NAME="50475012_pgfId-273902"></A>roll back using roll, thereby undoing everything performed since the last mark was set</LI>
+<LI>
+<A NAME="50475012_pgfId-273903"></A>roll forward, after you have previously rolled back, to retrace your steps between operations</LI>
+</UL>
+
+<H4>
+<A NAME="50475012_pgfId-273906"></A><A NAME="50475012_marker-273904"></A><A NAME="50475012_marker-273905"></A>mark</H4>
+<P>
+<A NAME="50475012_pgfId-281267"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281643"></A>&gt; (modeller mark) 
+     -- generates a mark name, e.g. mark5, mark6, etc.</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475012_pgfId-273910"></A><A NAME="50475012_marker-273908"></A><A NAME="50475012_marker-273909"></A>roll</H4>
+<P>
+<A NAME="50475012_pgfId-281282"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281649"></A>&gt; (modeller roll) -- returns to the most recent mark)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-273912"></A>When setting a <CODE>
+mark</CODE>
+ you can specify a name for it, and then you can roll to that specifically named mark (or a system defined name, e.g. mark6).</P>
+<P>
+<A NAME="50475012_pgfId-281293"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281664"></A>&gt; (modeller mark &acute;start_here )
+   ....
+&gt; ( modeller roll &acute;start_here )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-273914"></A>Live KID objects can be rolled back in synchrony with the kernel. Define body, face, edge to be types of KID objects you want managed as follows:</P>
+<P>
+<A NAME="50475012_pgfId-281305"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281682"></A>&gt; (modeller roll_class &acute;( body face edge ) )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-273916"></A>No KID object is created or undefined during a rollback, but those objects in the defined <CODE>
+roll_class</CODE>
+ have their tag values updated.</P>
+<P>
+<A NAME="50475012_pgfId-273917"></A>Graphics is kept in step by honoring the current tag values of the objects it is being asked to display.</P>
+<P>
+<A NAME="50475012_pgfId-273918"></A>Only the kernel (without affecting KID objects) is rolled backward/forward, therefore, when a rollback is to a state before the creation of a body in the kernel, KID still acknowledges its existence, while the kernel does not - an error results if any modeling operation referring to such a body is attempted. Conversely if a kernel item has been deleted since the rollmark was set and its corresponding KID object undefined, after a rollback the kernel acknowledges the item's existence, but KID does not.</P>
+<P>
+<A NAME="50475012_pgfId-273928"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282095"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282097"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282099"></A>modeller</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282101"></A>mark, roll</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-281314"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281698"></A>&gt; (modeller mark)
+&gt; (define b0 p_block)
+&gt; (b0 x 10; y 20; z 30; create)
+&gt; (b0 is)           --&gt; returns body
+&gt; (modeller roll)   --&gt; rolls back the kernel
+&gt; (b0 is)           --&gt; returns body
+&gt; (b0 enquire)      --&gt; returns an error from the kernel</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273930"></A>3.6	Defining KID objects
+
+
+</H1>
+
+<H4>
+<A NAME="50475012_pgfId-282644"></A>define</H4>
+<P>
+<A NAME="50475012_pgfId-282648"></A><A NAME="50475012_marker-282645"></A><A NAME="50475012_marker-282646"></A><A NAME="50475012_marker-282647"></A>In LISP an identifier has a value given it by <CODE>
+setq</CODE>
+ or <CODE>
+defun</CODE>
+. In object oriented LISP a special function, <CODE>
+defun</CODE>
+, is used to create an object which returns the identifier of the object.</P>
+<P>
+<A NAME="50475012_pgfId-281321"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281722"></A>&gt; ( define b0 body )  -- defines a KID object with the `b0&acute;
+                         which belongs to the class `body&acute;</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-273937"></A>In the above example, no Parasolid entity has been created, only a KID entity.</P>
+
+
+<H4>
+<A NAME="50475012_pgfId-273939"></A><A NAME="50475012_38413"></A>undefine</H4>
+<P>
+<A NAME="50475012_pgfId-273942"></A><A NAME="50475012_marker-273940"></A><A NAME="50475012_marker-273941"></A>To undefine a previously defined KID object:</P>
+<P>
+<A NAME="50475012_pgfId-281328"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281746"></A>&gt; ( undefine b0 )     -- undefines the KID object `b0&acute;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475012_pgfId-273944"></A>redefine</H4>
+<P>
+<A NAME="50475012_pgfId-273947"></A><A NAME="50475012_marker-273945"></A><A NAME="50475012_marker-273946"></A>To redefine a previously defined KID object as another class:</P>
+<P>
+<A NAME="50475012_pgfId-281347"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281778"></A>&gt; ( redefine b0 assembly )  -- redefines the KID object `b0&acute; in 
+                               the class `assembly&acute;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273950"></A>3.7	<A NAME="50475012_41997"></A>Combining tags of KID objects
+
+
+</H1>
+
+<H4>
+<A NAME="50475012_pgfId-273951"></A>include, remove</H4>
+<P>
+<A NAME="50475012_pgfId-273954"></A><A NAME="50475012_marker-273952"></A><A NAME="50475012_marker-273953"></A>The function <CODE>
+include</CODE>
+ combines the tags contained in the specified KID objects, so that the KID object refers to more Parasolid entities. The function <CODE>
+remove</CODE>
+ removes the specified entities from a KID object. The KID objects must be of the same type.</P>
+<P>
+<A NAME="50475012_pgfId-273968"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282135"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282137"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282139"></A>entity</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282156"></A><A NAME="50475012_marker-282152"></A><A NAME="50475012_marker-282153"></A>include, <A NAME="50475012_marker-282154"></A><A NAME="50475012_marker-282155"></A>remove</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-281363"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281806"></A>&gt; (e0 tag)
+( 46 50 54 )
+&gt; (e1 tag)
+( 83 80 )
+&gt; (e0 include e1)
+( 83 80 46 50 54 )
+&gt; (e0 remove e1)
+( 46 50 54 )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273970"></A>3.8	Receive and transmit
+
+
+</H1>
+
+<H4>
+<A NAME="50475012_pgfId-273971"></A>receive, transmit and state functions</H4>
+<P>
+<A NAME="50475012_pgfId-273974"></A><A NAME="50475012_marker-273972"></A><A NAME="50475012_marker-273973"></A>The part class and its subclasses, assembly and body, can be received and transmitted. Text files are used unless changed by the appropriate option setting.</P>
+<P>
+<A NAME="50475012_pgfId-273988"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282165"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282167"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282169"></A>part</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282186"></A><A NAME="50475012_marker-282182"></A><A NAME="50475012_marker-282183"></A>receive, <A NAME="50475012_marker-282184"></A><A NAME="50475012_marker-282185"></A>transmit</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-281828"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281873"></A>&gt; (define b0 body)      -- the object must be defined before
+                        -- before the function can be used
+&gt; (define b1 body)
+&gt; (b0 receive &quot;b0&quot;)          -- receives the file b0.xmt_txt
+&gt; (b1 receive &quot;flt4453.xmt&quot;) -- receives the file flt4453.xmt
+                  -- the extension must be given for .xmt files</PRE>
+<PRE><A NAME="50475012_pgfId-281874"></A>&gt; (b0 transmit &quot;b0&quot;)    -- transmits the object to the file 
+                     -- b0.xmt_txt,overwriting original version
+&gt; (b0 transmit &quot;file1&quot;) -- transmit body to new file
+&gt; (define pump body)
+&gt; (pump receive &quot;p9423&quot;) -- receives an existing body</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-273991"></A>Both the <CODE>
+receive</CODE>
+ and <CODE>
+transmit</CODE>
+ functions take a single argument, the key of the relevant part.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-273992"></A>3.9	Help
+
+
+</H1>
+
+<H4>
+<A NAME="50475012_pgfId-273993"></A>help function</H4>
+<P>
+<A NAME="50475012_pgfId-273997"></A><CODE>
+help</CODE>
+<A NAME="50475012_marker-273994"></A><A NAME="50475012_marker-273995"></A><A NAME="50475012_marker-273996"></A> returns useful information about an object and its functions.</P>
+<P>
+<A NAME="50475012_pgfId-274007"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282260"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282262"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282264"></A>modeller</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282266"></A>help</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-281395"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281921"></A>&gt; (modeller help resabs) --&gt; linear resolution in the modeller</PRE>
+<PRE><A NAME="50475012_pgfId-281922"></A>&gt; (body help) --&gt; list of valid messages and descriptions</PRE>
+<PRE><A NAME="50475012_pgfId-281923"></A>&gt; (b0 help) --&gt; list of valid messages and descriptions</PRE>
+<PRE><A NAME="50475012_pgfId-281924"></A>&gt; (p_cone help create) 
+            --&gt; create function properties for primitive p_cone</PRE>
+<PRE><A NAME="50475012_pgfId-281925"></A>&gt; (face help rmfaso ) 
+            --&gt; function rmfaso of object face and arguments</PRE>
+<PRE><A NAME="50475012_pgfId-281926"></A>&gt; (b1 help transmit) 
+            --&gt; how to use transmit function for body b1</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475012_pgfId-274014"></A>3.10	Options
+
+
+</H1>
+<P>
+<A NAME="50475012_pgfId-274017"></A><A NAME="50475012_marker-274015"></A><A NAME="50475012_marker-274016"></A>The option class contains functions which control the interface to the kernel. These functions:</P>
+<UL>
+<LI>
+<A NAME="50475012_pgfId-274018"></A>affect the options when the modeller is started;</LI>
+<LI>
+<A NAME="50475012_pgfId-274019"></A>change them (if it can) while the modeller is running or store them until they can be changed.</LI>
+</UL>
+<P>
+<A NAME="50475012_pgfId-274020"></A>The current setting of any option may be enquired by calling the function without any arguments. If the option has not been set then the default value is returned. Text files are the default for part files and binary files for snapshots. The use of these options is shown below.</P>
+<P>
+<A NAME="50475012_pgfId-274088"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282286"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282288"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="2" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282290"></A>option</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282331"></A><A NAME="50475012_marker-282317"></A><A NAME="50475012_marker-282318"></A>bb, <A NAME="50475012_marker-282319"></A><A NAME="50475012_marker-282320"></A>bb_user, <A NAME="50475012_marker-282321"></A><A NAME="50475012_marker-282322"></A>bspline_io, <A NAME="50475012_marker-282323"></A><A NAME="50475012_marker-282324"></A>bspline_geometry, <A NAME="50475012_marker-282325"></A><A NAME="50475012_marker-282326"></A>bspline_splitting,<A NAME="50475012_marker-282327"></A> <A NAME="50475012_marker-282328"></A>check,<A NAME="50475012_marker-282329"></A> <A NAME="50475012_marker-282330"></A>continuity_checking, <A NAME="50475012_marker-282332"></A><A NAME="50475012_marker-282333"></A>data_checking,<A NAME="50475012_marker-282334"></A> <A NAME="50475012_marker-282335"></A>enquire,<A NAME="50475012_marker-282336"></A><A NAME="50475012_marker-282337"></A> get_snapshot,<A NAME="50475012_marker-282338"></A><A NAME="50475012_marker-282339"></A> journal, <A NAME="50475012_marker-282340"></A><A NAME="50475012_marker-282341"></A>journal_file, <A NAME="50475012_marker-282342"></A><A NAME="50475012_marker-282343"></A>logging, <A NAME="50475012_marker-282344"></A><A NAME="50475012_marker-282345"></A>logging_size, <A NAME="50475012_marker-282346"></A><A NAME="50475012_marker-282347"></A>logging_number, <A NAME="50475012_marker-282348"></A><A NAME="50475012_marker-282349"></A>logging_forward,<A NAME="50475012_marker-282350"></A><A NAME="50475012_marker-282351"></A> parameter_checking, <A NAME="50475012_marker-282352"></A><A NAME="50475012_marker-282353"></A>receive, <A NAME="50475012_marker-282354"></A><A NAME="50475012_marker-282355"></A>rec_user<A NAME="50475012_marker-282356"></A>, <A NAME="50475012_marker-282357"></A>save_snapshot, <A NAME="50475012_marker-282358"></A><A NAME="50475012_marker-282359"></A>self_checking,<A NAME="50475012_marker-282360"></A> <A NAME="50475012_marker-282361"></A>transmit, <A NAME="50475012_marker-282362"></A><A NAME="50475012_marker-282363"></A>user_field</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282389"></A><A NAME="50475012_marker-282383"></A><A NAME="50475012_marker-282384"></A>pk_session_tolerance, <A NAME="50475012_marker-282385"></A><A NAME="50475012_marker-282386"></A>pk_session_receive, <A NAME="50475012_marker-282387"></A><A NAME="50475012_marker-282388"></A>pk_session_transmit, <A NAME="50475012_marker-282390"></A><A NAME="50475012_marker-282391"></A>pk_session_local_checking</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-281402"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281961"></A>&gt; (option journal &quot;f1_b0&quot;) -- if this is done before starting, 
+                   the kernel will start with this journal file</PRE>
+<PRE><A NAME="50475012_pgfId-281962"></A>&gt; (option journal) 
+             --&gt; returns whether or not a journal is being kept</PRE>
+<PRE><A NAME="50475012_pgfId-281963"></A>&gt; (option journal_file) --&gt; returns the journal file name</PRE>
+<PRE><A NAME="50475012_pgfId-281964"></A>&gt; (option logging [nil | &acute;ki | &acute;pk | +ve | -ve )
+             -- switch off/on logging with required options set</PRE>
+<PRE><A NAME="50475012_pgfId-281965"></A>&gt; (option enquire) --&gt; &lt;list of current settings&gt;</PRE>
+<PRE><A NAME="50475012_pgfId-281966"></A>&gt; (option check t) 
+       -- switch on local checking, this is the default setting</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50475012_pgfId-274095"></A>Options for receive and transmit</H4>
+<P>
+<A NAME="50475012_pgfId-274096"></A>Part receive and transmit use the values in the appropriate flags:</P>
+<P>
+<A NAME="50475012_pgfId-281409"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281982"></A>(option help receive) --&gt; information</PRE>
+<PRE><A NAME="50475012_pgfId-281983"></A>(option receive &acute;binary) -- binary receive</PRE>
+<PRE><A NAME="50475012_pgfId-282455"></A>(option transmit &acute;text) -- text transmit, default setting</PRE>
+<PRE><A NAME="50475012_pgfId-281984"></A>(option transmit &acute;neutral -- machine independent, binary format</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-274101"></A>These are initialized in (modeller start) to the global value set using (option receive) and (option transmit):</P>
+<P>
+<A NAME="50475012_pgfId-281420"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-281993"></A>&gt; (option pk_session_receive)</PRE>
+<PRE><A NAME="50475012_pgfId-281994"></A>&gt; (option pk_session_transmit &acute;binary)</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475012_pgfId-274104"></A>Option check for local operation</H4>
+<P>
+<A NAME="50475012_pgfId-274106"></A><A NAME="50475012_marker-274105"></A>When a local operation is performed, there are sometimes a number of possible solutions. When the option check is set to <CODE>
+t</CODE>
+, each solution is reviewed and checked in the resolution of ambiguous cases. If not set, the first solution is picked.</P>
+<P>
+<A NAME="50475012_pgfId-281428"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-282002"></A>&gt; (option check t)     -- default setting for local checking on
+&gt; (option check nil)   -- local checking off</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-274108"></A>If local checking has been turned off, an illegal solution is not detected until a complete body check is subsequently done, thus losing a possible legal solution for the local operation, and leaving the body in an invalid state.</P>
+<P>
+<A NAME="50475012_pgfId-281438"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-282010"></A>&gt; (option pk_session_local_checking)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-274110"></A>This local checking flag is initialized in (modeller start) to the global value set using (option check). It is used in various KID functions where the underlying PK function requires the local checking flag.</P>
+
+
+<H4>
+<A NAME="50475012_pgfId-274111"></A>Options for rollback</H4>
+<P>
+<A NAME="50475012_pgfId-274112"></A>The switching on/off of the roll mark facility is controlled by the logging properties. The logging properties that can be set when switching on the logging option are:</P>
+<UL>
+<LI>
+<A NAME="50475012_pgfId-274113"></A>ki or pk or proll (the default) - to select the appropriate rollback system.</LI>
+<LI>
+<A NAME="50475012_pgfId-274114"></A>+integer (+ve) - to select KI rollback with the given file size. The file size is specified using the option <CODE>
+logging_size</CODE>
+.</LI>
+<LI>
+<A NAME="50475012_pgfId-274115"></A>-integer (-ve) - to select the PK rollback with the given maximum number of live marks. The maximum number of live rollmarks can be set using the <CODE>
+logging_number</CODE>
+ option (default number is 20).</LI>
+</UL>
+<P>
+<A NAME="50475012_pgfId-274116"></A>The roll mark facility creates session marks only. To model in partitions and create partition marks, the appropriate PK functions must be called directly, using the PK FLICK interface. For further details on how to do this, see <A HREF="kd_chap.05.html#50475010_24716">Chapter 4, &quot;Calling the KI/PK Using KID (FLICK)&quot;</A>.</P>
+
+
+<H4>
+<A NAME="50475012_pgfId-274120"></A>option user_field</H4>
+<P>
+<A NAME="50475012_pgfId-274123"></A><A NAME="50475012_marker-274121"></A>The <CODE>
+option user_field</CODE>
+<A NAME="50475012_marker-274122"></A> function is used to set up the user field length which is passed to STAMOD via <CODE>
+modeller start</CODE>
+. The user field length can not be changed while the modeller is running, however, option <CODE>
+user_field</CODE>
+ does store the current setting</P>
+<P>
+<A NAME="50475012_pgfId-274137"></A>.</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282468"></A>Expression</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282470"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274126"></A>&gt; (option user_field 0)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274128"></A>default setting</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274130"></A>&gt; (option user_field 12)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274132"></A>set user field length to 12</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274134"></A>&gt; (option user_field)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274136"></A>current setting &lt;and pending change&gt;</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475012_pgfId-274138"></A>Options reset by new modeling session</H4>
+<P>
+<A NAME="50475012_pgfId-274139"></A>It is now possible to specify some options which only persist for a modeling session, i.e. they are reset by <CODE>
+(modeller stop;start)</CODE>
+. Currently there are only four such options:</P>
+<P>
+<A NAME="50475012_pgfId-281445"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-282020"></A>(option pk_session_tolerance)
+(option pk_session_receive)
+(option pk_session_tansmit)
+(option pk_session_local_checking)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475012_pgfId-274141"></A>If the general values are modified these changes are passed on to the session values immediately, for example:</P>
+<P>
+<A NAME="50475012_pgfId-274179"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282508"></A>Expression</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282510"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274144"></A>(option receive &acute;binary)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274146"></A>sets global binary receive</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274148"></A>(option pk_session_receive)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274150"></A>enquire receive type, binary</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274152"></A>(option pk_session_receive &acute;text)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274154"></A>resets receive to text for session</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274156"></A>(option pk_session_receive)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274158"></A>enquire receive type, text</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274160"></A>(option receive)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274162"></A>check that global setting unchanged</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274164"></A>(modeller stop;start)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274166"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274168"></A>(option pk_session_receive)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274170"></A>enquire receive type, now binary</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274172"></A>(option receive &acute;text)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274174"></A>sets global text receive</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274176"></A>(option pk_session_receive)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274178"></A>enquire receive type, now text</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475012_pgfId-274181"></A><A NAME="50475012_34222"></A>Tolerance setting</H4>
+<P>
+<A NAME="50475012_pgfId-274182"></A>The tolerance setting is required by various PK boolean and local operation functions and defaults to 0.000001.</P>
+<P>
+<A NAME="50475012_pgfId-274232"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282516"></A>Expression</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-282518"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274185"></A>(option pk_tolerance)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274187"></A>enquire tolerance setting</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274189"></A>(option pk_tolerance 0.001)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274191"></A>set PK tolerance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274193"></A>(option pk_tolerance)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274195"></A>enquire tolerance setting</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274197"></A>(option pk_tolerance nil)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274199"></A>reset to default value (0.000001)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274201"></A>(option pk_session_tolerance)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274203"></A>enquire session tolerance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274205"></A>(option pk_session_tolerance 0.1)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274207"></A>set session tolerance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274209"></A>(option pk_session_tolerance)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274211"></A>enquire session tolerance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274213"></A>(option pk_tolerance 0.001)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274215"></A>this also resets session value</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274217"></A>(option pk_session_tolerance)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274219"></A>enquire session tolerance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274221"></A>(option pk_session_tolerance nil)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274223"></A>reset to default value(0.000001)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274225"></A>(option pk_session_tolerance)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274227"></A>enquire session tolerance</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475012_pgfId-274229"></A>(option pk_tolerance)</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475012_pgfId-274231"></A>enquire tolerance setting</P>
+</TD>
+</TR>
+</TABLE>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.03.html">LISP in KID</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.05.html">Calling the KI/PK Using KID (FLICK)</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_heal_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_heal_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>typedef int PK_FACE_heal_t;
+</B>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_delete.html>PK_FACE_delete</A><br>
+    <A HREF=../headers/pk_face_delete_facesets_o_t.html>PK_FACE_delete_facesets_o_t</A><br>
+    <A HREF=../headers/pk_face_delete_o_t.html>PK_FACE_delete_o_t</A><br>
+    <A HREF=../headers/pk_face_make_solid_bodies.html>PK_FACE_make_solid_bodies</A><br>
+    <A HREF=../headers/pk_face_remove_to_solid_bodies.html>PK_FACE_remove_to_solid_bodies</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+    PK_FACE_heal_no_c               don't heal wounds - leave rubber faces
+    PK_FACE_heal_cap_c              find a surface in which all edges of a hole
+                                    lie and attach this to a face covering the
+                                    hole
+    PK_FACE_heal_grow_from_child_c  faces around the hole are extended until
+                                    they cover the hole
+    PK_FACE_heal_grow_from_parent_c grow the faces the parent had around the
+                                    hole until they cover it
+    PK_FACE_heal_shrink_c           if extending faces does not yield a
+                                    solution, then shrinking the faces is tried
+    PK_FACE_heal_yes_c              attempt healing by any appropriate means
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

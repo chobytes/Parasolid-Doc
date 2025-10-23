@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_FACE_change_data_bend_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_FACE_change_data_bend_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_FACE_change_data_bend_s
+    {
+    <A HREF=../headers/pk_face_change_bend_type_t.html>PK_FACE_change_bend_type_t</A> type;            --- the type of this bend face
+    <A HREF=../headers/pk_entity_t.html>PK_ENTITY_t</A>                tool_entity;     --- entity used to construct
+                                                --- resultant face
+    double                     offset;          --- forward offset distance
+    double                     backward_offset; --- backward offset distance
+    };
+typedef struct PK_FACE_change_data_bend_s PK_FACE_change_data_bend_t;
+</B>
+<A NAME="description"></A>
+<I>Parameters of change operation bend.
+
+For more details on bend parameters, see <A HREF="../chapters/fd_chap.074.html#50409860_pgfId-436831">here</A>.
+
+For more details on the options you can use to control bends, see
+<A HREF="../chapters/fd_chap.074.html#50409860_pgfId-305528">here</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_face_change_data_t.html>PK_FACE_change_data_t</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+Description of fields:
+
+
+
+<B>'type'</B>                   Whether the face is a side face, or an inner/outer
+                         face.
+
+
+<B>'tool_entity'</B>            If <B>'type'</B> is PK_FACE_change_bend_c, then this should
+                         be a face (referred to as the tool face), which is
+                         used to construct the offset face for this inner or
+                         outer face. Inner and outer faces come in pairs; two
+                         faces will be considered a pair if their geometry are
+                         offsets of each other, and there exists a side face
+                         (ie, with type PK_FACE_change_bend_side_c) that is
+                         adjacent to them both. The same value for
+                         <B>'tool_entity'</B> should be supplied for both the inner
+                         and outer face in a pair.
+
+                         If <B>'type'</B> is PK_FACE_change_bend_side_c, then this
+                         should be an edge, which is used to construct the
+                         ruled surface for this side face. The edge should
+                         belong to the tool face supplied for the inner and
+                         outer bend faces adjacent to this side face.
+
+
+<B>'offset'</B>                 If <B>'type'</B> is PK_FACE_change_bend_c, then this
+                         represents the signed distance that the tool face
+                         <B>'tool_entity'</B> should be offset by, in the direction
+                         of the tool face's normal, to obtain the face to be
+                         used in the resultant body.
+
+                         If <B>'type'</B> is PK_FACE_change_bend_side_c, then we
+                         require two offset distances representing how far the
+                         edge <B>'tool_entity'</B> should be offset by in the
+                         direction of the face normal of the tool face which
+                         is supplied for the adjacent inner/outer bend face.
+                         The distances are signed such that positive distance
+                         represents in the direction of the face normal. These
+                         two offsets are supplied as <B>'offset'</B> and
+                         <B>'backward_offset'</B>, with the restriction that <B>'offset'</B>
+                         should be greater than <B>'backward_offset'</B>.
+
+
+<B>'backward_offset'</B>        If <B>'type'</B> is PK_FACE_change_bend_c, then this field
+                         has no effect.
+
+                         If <B>'type'</B> is PK_FACE_change_bend_side_c, then this
+                         represents the backward offset distance for the edge.
+                         See <B>'offset'</B> for more information.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

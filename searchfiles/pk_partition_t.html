@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.003.html#50409782_pgfId-449387", " <B>PK_PARTITION_t</B> : The destination will either be the same partition", "Functional Description - Parasolid Concepts");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-1173418", " <B>PK_PARTITION_t</B> : The b-curves will be orphan geometry in that", "Functional Description - B-Curves And B-Surfaces");
+top.note("chapters/fd_chap.019.html#50409800_pgfId-1112042", " <B>PK_PARTITION_t</B> : The b-surfaces will be orphan geometry in that", "Functional Description - B-Curves And B-Surfaces");
+top.note("headers/pk_body_change_partition.html#declaration", " <B>PK_PARTITION_t</B> partition --- partition to move into", "PK Reference - PK_BODY_change_partition");
+top.note("headers/pk_body_fix_blends_o_t.html#declaration", " <B>PK_PARTITION_t</B> partition; --- a partition", "PK Reference - PK_BODY_fix_blends_o_t");
+top.note("headers/pk_curve_make_bcurve_array_o_t.html#documentation", " It can be a partition, <B>PK_PARTITION_t</B> , or a part,", "PK Reference - PK_CURVE_make_bcurve_array_o_t");
+top.note("headers/pk_debug_session_check_o_t.html#declaration", " const <B>PK_PARTITION_t</B> *partitions; --- list of partitions to check", "PK Reference - PK_DEBUG_SESSION_check_o_t");
+top.note("headers/pk_entity_ask_description.html#documentation", " PK_ENTITY_t , PK_MARK_t , <B>PK_PARTITION_t</B> , PK_PMARK_t ", "PK Reference - PK_ENTITY_ask_description");
+top.note("headers/pk_entity_ask_partition.html#declaration", " <B>PK_PARTITION_t</B> *const partition --- partition of entity", "PK Reference - PK_ENTITY_ask_partition");
+top.note("headers/pk_entity_copy_o_t.html#documentation", " destination can take a partition, <B>PK_PARTITION_t</B> , or a part, PK_PART_t , but", "PK Reference - PK_ENTITY_copy_o_t");
+top.note("headers/pk_face_make_3_face_blend_o_t.html#declaration", " <B>PK_PARTITION_t</B> partition; --- a partition", "PK Reference - PK_FACE_make_3_face_blend_o_t");
+top.note("headers/pk_face_make_blend_o_t.html#declaration", " <B>PK_PARTITION_t</B> partition; --- a partition", "PK Reference - PK_FACE_make_blend_o_t");
+top.note("headers/pk_geom_copy_o_t.html#documentation", " <B>PK_PARTITION_t</B> , or a part, PK_PART_t , but no other", "PK Reference - PK_GEOM_copy_o_t");
+top.note("headers/pk_geom_enlarge_o_t.html#documentation", " <B>PK_PARTITION_t</B> , or a part, PK_PART_t , but no other", "PK Reference - PK_GEOM_enlarge_o_t");
+top.note("headers/pk_item_t.html#documentation", " - <B>PK_PARTITION_t</B> ", "PK Reference - PK_ITEM_t");
+top.note("headers/pk_mark_goto_r_t.html#declaration", " <B>PK_PARTITION_t</B> *partitions; --- partitions", "PK Reference - PK_MARK_goto_r_t");
+top.note("headers/pk_mesh_imprint_vectors_o_t.html#documentation", " destination can take a partition, <B>PK_PARTITION_t</B> , or a part, PK_PART_t , but", "PK Reference - PK_MESH_imprint_vectors_o_t");
+top.note("headers/pk_partition_advance_pmark.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_advance_pmark");
+top.note("headers/pk_partition_ask.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_ask");
+top.note("headers/pk_partition_ask_appitems.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_ask_appitems");
+top.note("headers/pk_partition_ask_assemblies.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_ask_assemblies");
+top.note("headers/pk_partition_ask_bodies.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_ask_bodies");
+top.note("headers/pk_partition_ask_cloning.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_ask_cloning");
+top.note("headers/pk_partition_ask_facet_geom.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_ask_facet_geom");
+top.note("headers/pk_partition_ask_geoms.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_ask_geoms");
+top.note("headers/pk_partition_ask_initial_pmark.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_ask_initial_pmark");
+top.note("headers/pk_partition_ask_ki_lists.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_ask_ki_lists");
+top.note("headers/pk_partition_ask_pmark.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_ask_pmark");
+top.note("headers/pk_partition_ask_pmark_size.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_ask_pmark_size");
+top.note("headers/pk_partition_ask_pmarks.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_ask_pmarks");
+top.note("headers/pk_partition_ask_pmarks_2.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_ask_pmarks_2");
+top.note("headers/pk_partition_ask_transfs.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_ask_transfs");
+top.note("headers/pk_partition_ask_type.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_ask_type");
+top.note("headers/pk_partition_clone_pmark.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_clone_pmark");
+top.note("headers/pk_partition_copy.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_copy");
+top.note("headers/pk_partition_create_empty.html#declaration", " <B>PK_PARTITION_t</B> *const partition --- new partition", "PK Reference - PK_PARTITION_create_empty");
+top.note("headers/pk_partition_create_r_t.html#declaration", " <B>PK_PARTITION_t</B> partition; --- the new partition", "PK Reference - PK_PARTITION_create_r_t");
+top.note("headers/pk_partition_delete.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_delete");
+top.note("headers/pk_partition_find_pmark_by_id.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_find_pmark_by_id");
+top.note("headers/pk_partition_goto_guard.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_goto_guard");
+top.note("headers/pk_partition_has_guard.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_has_guard");
+top.note("headers/pk_partition_has_lattices.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_has_lattices");
+top.note("headers/pk_partition_is_clone.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_is_clone");
+top.note("headers/pk_partition_make_pmark.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_make_pmark");
+top.note("headers/pk_partition_make_pmark_2.html#declaration", " <B>PK_PARTITION_t</B> partition,", "PK Reference - PK_PARTITION_make_pmark_2");
+top.note("headers/pk_partition_merge.html#declaration", "const <B>PK_PARTITION_t</B> partitions[], --- partitions", "PK Reference - PK_PARTITION_merge");
+top.note("headers/pk_partition_receive.html#declaration", " <B>PK_PARTITION_t</B> *const partition --- partition", "PK Reference - PK_PARTITION_receive");
+top.note("headers/pk_partition_receive_b.html#declaration", " <B>PK_PARTITION_t</B> *const partition --- partition", "PK Reference - PK_PARTITION_receive_b");
+top.note("headers/pk_partition_receive_deltas.html#declaration", " <B>PK_PARTITION_t</B> partition --- partition", "PK Reference - PK_PARTITION_receive_deltas");
+top.note("headers/pk_partition_receive_deltas_2.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_receive_deltas_2");
+top.note("headers/pk_partition_receive_meshes.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_receive_meshes");
+top.note("headers/pk_partition_receive_u.html#declaration", " <B>PK_PARTITION_t</B> *const partition --- partition", "PK Reference - PK_PARTITION_receive_u");
+top.note("headers/pk_partition_reset_attribs.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_reset_attribs");
+top.note("headers/pk_partition_set_current.html#declaration", " <B>PK_PARTITION_t</B> partition --- partition", "PK Reference - PK_PARTITION_set_current");
+top.note("headers/pk_partition_set_guard.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_set_guard");
+top.note("headers/pk_partition_set_type.html#declaration", " <B>PK_PARTITION_t</B> partition, --- a partition", "PK Reference - PK_PARTITION_set_type");
+top.note("headers/pk_partition_start_cloning.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_start_cloning");
+top.note("headers/pk_partition_stop_cloning.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_stop_cloning");
+top.note("headers/pk_partition_transmit.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_transmit");
+top.note("headers/pk_partition_transmit_b.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_transmit_b");
+top.note("headers/pk_partition_transmit_delta.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_transmit_delta");
+top.note("headers/pk_partition_transmit_u.html#declaration", " <B>PK_PARTITION_t</B> partition, --- partition", "PK Reference - PK_PARTITION_transmit_u");
+top.note("headers/pk_pmark_ask_partition.html#declaration", " <B>PK_PARTITION_t</B> *const partition --- the partition of the pmark", "PK Reference - PK_PMARK_ask_partition");
+top.note("headers/pk_session_ask_curr_partition.html#declaration", " <B>PK_PARTITION_t</B> *const partition --- current partition", "PK Reference - PK_SESSION_ask_curr_partition");
+top.note("headers/pk_session_ask_partitions.html#declaration", " <B>PK_PARTITION_t</B> **const partitions --- partitions (optional)", "PK Reference - PK_SESSION_ask_partitions");
+top.note("headers/pk_surf_make_bsurf_array_o_t.html#documentation", " It can be a partition, <B>PK_PARTITION_t</B> , or a part,", "PK Reference - PK_SURF_make_bsurf_array_o_t");
+top.note("headers/pk_thread_ask_partitions.html#declaration", " <B>PK_PARTITION_t</B> **const partitions", "PK Reference - PK_THREAD_ask_partitions");
+top.note("headers/pk_thread_lock_partitions.html#declaration", "const <B>PK_PARTITION_t</B> partitions[],", "PK Reference - PK_THREAD_lock_partitions");
+top.note("headers/pk_thread_lock_partitions_r_t.html#declaration", " <B>PK_PARTITION_t</B> *locked_partitions;", "PK Reference - PK_THREAD_lock_partitions_r_t");
+top.note("headers/pk_thread_unlock_partitions.html#declaration", " <B>PK_PARTITION_t</B> **const partitions", "PK Reference - PK_THREAD_unlock_partitions");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

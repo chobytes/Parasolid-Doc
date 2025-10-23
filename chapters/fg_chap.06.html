@@ -1,0 +1,1806 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 2015/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>FG Module Interface Functions</TITLE></HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>FG Module Interface Functions</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fg_chap.05.html">Geometric Restrictions</A></TD>
+  <TD><A HREF="../fg_index.html">Chapters</A></TD>
+  <TD><A HREF="fg_chap.08.html">Index</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="fg_chap.06.html#50462723_pgfId-274043">B.1	Introduction</A>
+<LI> <A HREF="fg_chap.06.html#50462723_pgfId-274067">B.2	FGCRCU - Initialize a foreign curve</A>
+<LI> <A HREF="fg_chap.06.html#50462723_pgfId-274240">B.3	FGCRSU - Initialize a foreign surface</A>
+<LI> <A HREF="fg_chap.06.html#50462723_pgfId-274412">B.4	FGEVCU - Evaluate a foreign curve</A>
+<LI> <A HREF="fg_chap.06.html#50462723_pgfId-274553">B.5	FGEVSU - Evaluate a foreign surface</A>
+<LI> <A HREF="fg_chap.06.html#50462723_pgfId-274725">B.6	FGPRCU - Return foreign curve parametrization properties</A>
+<LI> <A HREF="fg_chap.06.html#50462723_pgfId-274861">B.7	FGPRSU - Return foreign surface parametrization properties</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-274043"></A>B.1	Introduction
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-274044"></A>This appendix provides details of the FG module interface functions designed for the management and evaluation of FG curves and surfaces. These functions are:</P>
+<UL>
+<LI>
+<A NAME="50462723_pgfId-274051"></A>FGCRCU (<A HREF="fg_chap.06.html#50462723_29113">See FGCRCU - Initialize a foreign curve.</A>), FGCRSU (<A HREF="fg_chap.06.html#50462723_34877">See FGCRSU - Initialize a foreign surface.</A>) - For initialization of FG curve and surface evaluators</LI>
+<LI>
+<A NAME="50462723_pgfId-274058"></A>FGEVCU (<A HREF="fg_chap.06.html#50462723_12236">See FGEVCU - Evaluate a foreign curve.</A>), FGEVSU (<A HREF="fg_chap.06.html#50462723_37821">See FGEVSU - Evaluate a foreign surface.</A>) - For evaluation of FG curves and surfaces</LI>
+<LI>
+<A NAME="50462723_pgfId-274065"></A>FGPRCU (<A HREF="fg_chap.06.html#50462723_21843">See FGPRCU - Return foreign curve parametrization properties.</A>), FGPRSU (<A HREF="fg_chap.06.html#50462723_11427">See FGPRSU - Return foreign surface parametrization properties.</A>) - For parametric properties of FG curves and surfaces</LI>
+</UL>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-274067"></A>B.2	<A NAME="50462723_29113"></A>FGCRCU - Initialize a foreign curve
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-274209"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274070"></A><STRONG>void</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274072"></A><STRONG>FGCRCU</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274074"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274076"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274078"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274080"></A><STRONG>(</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274082"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274084"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274086"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274088"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274090"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274092"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274094"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274096"></A><EM>received arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274098"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274100"></A><STRONG>const char</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274102"></A><STRONG>*key,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274104"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274106"></A><STRONG>Curve key</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274108"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274110"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274112"></A><STRONG>*keylen,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274114"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274116"></A><STRONG>Curve key length</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274118"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274120"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274122"></A><STRONG>*n_kii,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274124"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274126"></A><STRONG>Number of integers passed</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274128"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274130"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274132"></A><STRONG>ki_ints[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274134"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274136"></A><STRONG>KI integer array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274138"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274140"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274142"></A><STRONG>*n_kir,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274144"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274146"></A><STRONG>Number of reals passed</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274148"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274150"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274152"></A><STRONG>ki_reals[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274154"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274156"></A><STRONG>KI real array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274158"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274160"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274162"></A><STRONG>*n_data,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274164"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274166"></A><STRONG>FG data length</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274168"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274170"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274172"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274174"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274176"></A><EM>returned arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274178"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274180"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274182"></A><STRONG>fg_data[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274184"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274186"></A><STRONG>FG data array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274188"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274190"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274192"></A><STRONG>*ifail</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274194"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274196"></A><STRONG>Failure indicator</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274198"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274200"></A><STRONG>)</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274202"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274204"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274206"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274208"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50462723_pgfId-274210"></A>Specific errors</H4>
+<P>
+<A NAME="50462723_pgfId-274236"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274213"></A>FGGEOM</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274215"></A>Curve evaluator not available</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274217"></A>FGDATA</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274219"></A>Curve evaluator data not found</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274221"></A>FGFILE</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274223"></A>Curve evaluator data allocation fault</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274225"></A>FGIERR</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274227"></A>Curve evaluator integer data error</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274229"></A>FGRERR</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274231"></A>Curve evaluator real data error</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274233"></A>(FGOPOK</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274235"></A>Operation successful)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-274237"></A>This function is called when an FG curve is requested by the KI function CRFGCU. The purpose of this function is to initialize any FG data that is required by the evaluator and to check that the real and integer data items meet the requirements of the requested evaluator.</P>
+<P>
+<A NAME="50462723_pgfId-274238"></A>A successful call to this function indicates to Parasolid that evaluations of this curve may now be requested.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-274240"></A>B.3	<A NAME="50462723_34877"></A>FGCRSU - Initialize a foreign surface
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-274382"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274243"></A><STRONG>void</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274245"></A><STRONG>FGCRSU</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274247"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274249"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274251"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274253"></A><STRONG>(</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274255"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274257"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274259"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274261"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274263"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274265"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274267"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274269"></A><EM>received arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274271"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274273"></A><STRONG>const char</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274275"></A><STRONG>*key,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274277"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274279"></A><STRONG>Surface key</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274281"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274283"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274285"></A><STRONG>*keylen,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274287"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274289"></A><STRONG>Surface key length</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274291"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274293"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274295"></A><STRONG>*n_kii,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274297"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274299"></A><STRONG>Number of integers passed</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274301"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274303"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274305"></A><STRONG>ki_ints[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274307"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274309"></A><STRONG>KI integer array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274311"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274313"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274315"></A><STRONG>*n_kir,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274317"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274319"></A><STRONG>Number of reals passed</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274321"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274323"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274325"></A><STRONG>ki_reals[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274327"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274329"></A><STRONG>KI real array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274331"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274333"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274335"></A><STRONG>*n_data,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274337"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274339"></A><STRONG>FG data length</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274341"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274343"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274345"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274347"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274349"></A><EM>returned arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274351"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274353"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274355"></A><STRONG>fg_data[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274357"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274359"></A><STRONG>FG data array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274361"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274363"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274365"></A><STRONG>*ifail</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274367"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274369"></A><STRONG>Failure indicator</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274371"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274373"></A><STRONG>)</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274375"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274377"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274379"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274381"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50462723_pgfId-274383"></A>Specific errors</H4>
+<P>
+<A NAME="50462723_pgfId-274409"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274386"></A>FGGEOM</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274388"></A>Surface evaluator not available</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274390"></A>FGDATA</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274392"></A>Surface evaluator data not found</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274394"></A>FGFILE</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274396"></A>Surface evaluator data allocation fault</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274398"></A>FGIERR</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274400"></A>Surface evaluator integer data error</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274402"></A>FGRERR</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274404"></A>Surface evaluator real data error</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274406"></A>(FGOPOK</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274408"></A>Operation successful)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-274410"></A>This function is called when an FG surface is requested by the KI function CRFGSU. The purpose of this function is to initialize any FG data that is required by the evaluator. A successful call to this function indicates to Parasolid that evaluations of this surface may now be requested.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-274412"></A>B.4	<A NAME="50462723_12236"></A>FGEVCU - Evaluate a foreign curve
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-274534"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274415"></A><STRONG>void</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274417"></A><STRONG>FGEVCU</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274419"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274421"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274423"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274425"></A><STRONG>(</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274427"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274429"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274431"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274433"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274435"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274437"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274439"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274441"></A><EM>received arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274443"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274445"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274447"></A><STRONG>ki_ints[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274449"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274451"></A><STRONG>KI integer array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274453"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274455"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274457"></A><STRONG>ki_reals[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274459"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274461"></A><STRONG>KI real array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274463"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274465"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274467"></A><STRONG>fg_data[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274469"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274471"></A><STRONG>FG data array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274473"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274475"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274477"></A><STRONG>*t,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274479"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274481"></A><STRONG>Parameter value</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274483"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274485"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274487"></A><STRONG>*nderiv,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274489"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274491"></A><STRONG>No. of derivatives requested</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274493"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274495"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274497"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274499"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274501"></A><EM>returned arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274503"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274505"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274507"></A><STRONG>results[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274509"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274511"></A><STRONG>Evaluation results</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274513"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274515"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274517"></A><STRONG>*ifail</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274519"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274521"></A><STRONG>Failure indicator</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274523"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274525"></A><STRONG>)</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274527"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274529"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274531"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274533"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50462723_pgfId-274535"></A>Specific errors </H4>
+<P>
+<A NAME="50462723_pgfId-274549"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274538"></A>FGEVIN</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274540"></A>Evaluation incomplete (not all derivatives requested may be returned)</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274542"></A>FGOPFA</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274544"></A>Evaluation failed</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274546"></A>(FGOPOK</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274548"></A>Operation successful)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-274550"></A>This function is called when an evaluation of a foreign curve is required by Parasolid. The function should be capable of supplying position and up to second derivatives for a foreign curve which has previously been initialized by a call to FGCRCU.</P>
+<P>
+<A NAME="50462723_pgfId-274551"></A>The argument fg_data identifies the curve evaluator. The arguments ki_ints and ki_reals give the numerical data passed in through the KI when the curve was initialized.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-274553"></A>B.5	<A NAME="50462723_37821"></A>FGEVSU - Evaluate a foreign surface
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-274705"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274556"></A><STRONG>void</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274558"></A><STRONG>FGEVSU</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274560"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274562"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274564"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274566"></A><STRONG>(</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274568"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274570"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274572"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274574"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274576"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274578"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274580"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274582"></A><EM>received arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274584"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274586"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274588"></A><STRONG>ki_ints[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274590"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274592"></A><STRONG>KI integer array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274594"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274596"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274598"></A><STRONG>ki_reals[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274600"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274602"></A><STRONG>KI real array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274604"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274606"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274608"></A><STRONG>fg_data[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274610"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274612"></A><STRONG>FG data array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274614"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274616"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274618"></A><STRONG>*u,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274620"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274622"></A><STRONG>Parameter value</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274624"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274626"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274628"></A><STRONG>*v,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274630"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274632"></A><STRONG>Parameter value</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274634"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274636"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274638"></A><STRONG>*nu,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274640"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274642"></A><STRONG>No. of u derivatives requested</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274644"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274646"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274648"></A><STRONG>*nv,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274650"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274652"></A><STRONG>No. of v derivatives requested</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274654"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274656"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274658"></A><STRONG>*triang,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274660"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274662"></A><STRONG>Triangular array flag</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274664"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274666"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274668"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274670"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274672"></A><EM>returned arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274674"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274676"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274678"></A><STRONG>results[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274680"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274682"></A><STRONG>Evaluation results</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274684"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274686"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274688"></A><STRONG>*ifail</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274690"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274692"></A><STRONG>Failure indicator</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274694"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274696"></A><STRONG>)</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274698"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274700"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274702"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274704"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50462723_pgfId-274706"></A>Specific errors</H4>
+<P>
+<A NAME="50462723_pgfId-274720"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274709"></A>FGEVIN</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274711"></A>Evaluation incomplete (not all derivatives requested may be returned)</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274713"></A>FGOPFA</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274715"></A>Evaluation failed</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274717"></A>(FGOPOK</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274719"></A>Operation successful)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-274721"></A>This function is called when an evaluation of a foreign surface is required by Parasolid. The function should be capable of supplying position and up to second derivatives for a foreign surface which has previously been initialized by a call to FGCRSU.</P>
+<P>
+<A NAME="50462723_pgfId-274722"></A>The argument fg_data identifies the surface evaluator. The arguments ki_ints and ki_reals give the numerical data passed in through the KI at surface initialization.</P>
+<P>
+<A NAME="50462723_pgfId-274723"></A>The triangular flag, triang, may take the value FGEVSQ (indicating a request for a rectangular array of derivatives) or FGEVTR (indicating a triangular array of derivatives request). The arguments nu, nv specify the number of u an v derivatives requested.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-274725"></A>B.6	<A NAME="50462723_21843"></A>FGPRCU - Return foreign curve parametrization properties
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-274837"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283756"></A><STRONG>void</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283758"></A><STRONG>FGPRCU</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283760"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283762"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283764"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283766"></A><STRONG>(</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283768"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283770"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283772"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283774"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283776"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283778"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283780"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283782"></A><EM>received arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283784"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283786"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283788"></A><STRONG>ki_ints[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283790"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283792"></A><STRONG>KI integer array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283794"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283796"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283798"></A><STRONG>ki_reals[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283800"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283802"></A><STRONG>KI real array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283804"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283806"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283808"></A><STRONG>fg_data[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283810"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283812"></A><STRONG>FG data array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283814"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283816"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283818"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283820"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283822"></A><EM>returned arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283824"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283826"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283828"></A><STRONG>range[2],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283830"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283832"></A><STRONG>Parameter range</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283834"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283836"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283838"></A><STRONG>*period,</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283840"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283842"></A><STRONG>Periodicity flag:FGPRBD =&gt; bounded (non- periodic)FGPRPE =&gt; periodic (not currently allowed)</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283844"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283846"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283848"></A><STRONG>*ifail</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283850"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283852"></A><STRONG>Failure indicator</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283854"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283856"></A><STRONG>)</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283858"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283860"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283862"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283864"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50462723_pgfId-274838"></A>Specific errors</H4>
+<P>
+<A NAME="50462723_pgfId-274852"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274841"></A>FGOPFA</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274843"></A>Operation failed</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274845"></A>FGPROP</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274847"></A>Use default properties</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274849"></A>(FGOPOK</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274851"></A>Operation successful)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-274853"></A>This function is called, after FGCRCU has initialized the curve, to indicate to Parasolid some of the parametric properties of the curve. The function can specify the parameter range of the curve and indicate whether it is to be treated as periodic. If the ifail value is set to FGPROP then Parasolid uses default properties for the curve evaluator: there is no need to set the range and periodicity flag.</P>
+<P>
+<A NAME="50462723_pgfId-274854"></A>Default properties are parameter range [0, 1] and periodicity flag FGPRBD (i.e. non-periodic parametrization).</P>
+<P>
+<A NAME="50462723_pgfId-274855"></A>If the ifail value is set to FGOPOK then this function must set the parameter range and periodicity flag:</P>
+<UL>
+<LI>
+<A NAME="50462723_pgfId-274856"></A>range[0] = lowest parameter value</LI>
+<LI>
+<A NAME="50462723_pgfId-274857"></A>range[1] = highest parameter value</LI>
+<LI>
+<A NAME="50462723_pgfId-274858"></A>*period = FGPRBD (must have non-periodic parametrization)</LI>
+</UL>
+<ADDRESS>
+<A NAME="50462723_pgfId-274859"></A>Note: For the current Parasolid version closed and periodic curves are NOT permitted. This function includes the periodic argument for upwards compatibility with future planned enhancements to FG capability.</ADDRESS><BR>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50462723_pgfId-274861"></A>B.7	<A NAME="50462723_11427"></A>FGPRSU - Return foreign surface parametrization properties
+
+
+</H1>
+<P>
+<A NAME="50462723_pgfId-274973"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283646"></A><STRONG>void</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283648"></A><STRONG>FGPRSU</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283650"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283652"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283654"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283656"></A><STRONG>(</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283658"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283660"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283662"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283664"></A>&nbsp;</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283666"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283668"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283670"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283672"></A><EM>received arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283674"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283676"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283678"></A><STRONG>ki_ints[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283680"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283682"></A><STRONG>KI integer array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283684"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283686"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283688"></A><STRONG>ki_reals[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283690"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283692"></A><STRONG>KI real array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283694"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283696"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283698"></A><STRONG>fg_data[],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283700"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283702"></A><STRONG>FG data array</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283704"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283706"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283708"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283710"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283712"></A><EM>returned arguments</EM></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283714"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283716"></A><STRONG>double</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283718"></A><STRONG>range[4],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283720"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283722"></A><STRONG>Parameter ranges</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283724"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283726"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283728"></A><STRONG>period[2],</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283730"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283732"></A><STRONG>Periodicity flags - may take FGPRBD, FGPRPE for bounded and periodic parametrizations</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283734"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283736"></A><STRONG>int</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283738"></A><STRONG>*ifail</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283740"></A><STRONG>/*</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283742"></A><STRONG>Failure indicator</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283744"></A><STRONG>*/</STRONG></PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283746"></A><STRONG>)</STRONG></PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283748"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283750"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283752"></A>&nbsp;</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-283754"></A>&nbsp;</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<H4>
+<A NAME="50462723_pgfId-274974"></A>Specific errors</H4>
+<P>
+<A NAME="50462723_pgfId-274988"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274977"></A>FGOPFA</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274979"></A>Operation failed</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274981"></A>FGPROP</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274983"></A>Use default parameter properties</PRE>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274985"></A>(FGOPOK</PRE>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50462723_pgfId-274987"></A>Operation successful)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-274989"></A>This function is called, after FGCRSU has initialized the surface, to indicate to Parasolid some of the parametric properties of the surface. The function can specify the parameter ranges of the surface and indicate whether it is to be treated as periodic in u and/or v.</P>
+<P>
+<A NAME="50462723_pgfId-274990"></A>If the ifail value is set to FGPROP then Parasolid uses default properties for the surface evaluator: there is no need to set the range and periodicity flag. Default properties are parameter ranges [0, 1] for both u and v parameters and periodicity flags FGPRBD for both parameters (i.e. non-periodic parametrization).</P>
+<P>
+<A NAME="50462723_pgfId-274991"></A>If the ifail value is set to FGOPOK then this function must set the range array and the periodicity flags array.</P>
+<UL>
+<LI>
+<A NAME="50462723_pgfId-274992"></A>range[0], range[1] are lower and upper u parameter values</LI>
+<LI>
+<A NAME="50462723_pgfId-274993"></A>range[2], range[3] are lower and upper v parameter values</LI>
+<LI>
+<A NAME="50462723_pgfId-274994"></A>period[0] is the u parameter periodicity flag (must be FGPRBD)</LI>
+<LI>
+<A NAME="50462723_pgfId-274995"></A>period[1] is the v parameter periodicity flag (must be FGPRBD)</LI>
+</UL>
+<P>
+<A NAME="50462723_pgfId-283470"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<ADDRESS>
+<A NAME="50462723_pgfId-283478"></A>Note: For the current Parasolid version closed and periodic surfaces are NOT permitted. This function includes the periodic argument for upwards compatibility with future planned enhancements to FG capability.</ADDRESS><BR>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50462723_pgfId-273605"></A>&nbsp;</P>
+
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="fg_chap.05.html">Geometric Restrictions</A></TD>
+  <TD><A HREF="../fg_index.html">Chapters</A></TD>
+  <TD><A HREF="fg_chap.08.html">Index</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

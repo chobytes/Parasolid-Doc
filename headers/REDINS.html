@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<TITLE>REDINS</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc">
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>REDINS</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<HR>
+<TABLE><TR><TD VALIGN=TOP>Equivalent PK functions:</TD><TD>
+<A HREF=../headers/pk_instance_change_part.html>PK_INSTANCE_change_part</A><BR>
+</TD></TR></TABLE><HR>
+
+<A NAME="endofcontents">
+<PRE>
+REDINS ( instnc, part, ifail )
+==============================
+
+  Redirect instance.
+
+Receives:
+  KI_tag_instance          *instnc         --- instance to redirect
+  KI_tag_part              *part           --- part it should instance
+
+Returns:
+  KI_cod_error             *ifail          --- failure indicator
+
+Specific errors:
+  KI_anon_sub_part          instance of anonymous sub-part of stored part
+  KI_cyclic_assy            instance would cause cyclic reference
+  KI_not_in_same_partition  Instnc and part are in different partitions
+
+Description:
+  REDINS redirects 'instnc' so that it instances a different part. It is
+  equivalent to creating a new instance of 'part', with the same transform (i.e.
+  with the same tag) and attributes attached, and then deleting the 'instnc'.
+
+  If the redirected instance would cause the assembly graph to become cyclic
+  (i.e. when redirecting an instance in A to P, and P or a sub-part of P is A)
+  KI_cyclic_assy will be returned in 'ifail'.
+
+  We define the true-sub-parts of a stored (ENSTST) part S as those anonymous
+  (ENSTAN) sub-parts of S reachable from S without encountering other stored
+  parts.
+
+  If P is anonymous and is a true-sub-part of some stored part S then P may only
+  be instanced from S or a true-sub-part of S. If this condition is not met
+  KI_anon_sub_part is returned in 'ifail'.
+
+
+</PRE>
+</BODY>
+</HTML>

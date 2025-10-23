@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_BODY_offset_planar_wire_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_BODY_offset_planar_wire_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_BODY_offset_planar_wire_o_s
+    {
+    int                    o_t_version;    --- version number
+    <A HREF=../headers/pk_vertex_gap_fill_t.html>PK_VERTEX_gap_fill_t</A>   gap_fill;       --- how gaps at vertices are filled
+                                           --- (PK_VERTEX_gap_fill_round_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           local_check;    --- whether to perform local checks
+                                           --- (PK_LOGICAL_false)
+    double                 tolerance;      --- tolerance for curve conversion
+                                           --- (0)
+    <A HREF=../headers/pk_double_constraint_t.html>PK_double_constraint_t</A> gap_fill_angle; --- angular constraint to determine
+                                           --- if <B>'constrained_gap_fill'</B> is to
+                                           --- be used
+                                           --- ((<A HREF=../headers/pk_comparison_t.html>PK_comparison_never_c</A>, (0,0)))
+    <A HREF=../headers/pk_vertex_gap_fill_t.html>PK_VERTEX_gap_fill_t</A>   constrained_gap_fill;
+                                           --- how gaps are filled at vertices
+                                           --- that satisfy the
+                                           --- <B>'gap_fill_angle'</B> constraint
+                                           --- (PK_VERTEX_gap_fill_round_c)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           repair_self_int;--- whether to repair self
+                                           --- intersecting bodies
+                                           --- (PK_LOGICAL_false)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>           allow_disjoint; --- whether the returned body can
+                                           --- be disjoint (PK_LOGICAL_false)
+
+    };
+
+typedef struct PK_BODY_offset_planar_wire_o_s PK_BODY_offset_planar_wire_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>Options structure for offsetting planar wires.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_body_offset_planar_wire.html>PK_BODY_offset_planar_wire</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The fields are as follows:
+
+<B>'gap_fill'</B>               specifies how gaps at vertices produced by the
+                         offset operation should be filled. Permitted values
+                         are:
+                         PK_VERTEX_gap_fill_round_c
+                                               fill with round arc (default)
+                         PK_VERTEX_gap_fill_linear_c
+                                               fill with tangent extension
+                         PK_VERTEX_gap_fill_natural_c
+                                               fill with curve extension
+
+<B>'local_check'</B>            determines whether or not to perform local checking
+                         for validating the result. The default is not to.
+
+<B>'tolerance'</B>              tolerance for converting general curves to B-curves.
+                         If this field is set to zero, Parasolid will select
+                         a suitable tolerance.
+
+<B>'gap_fill_angle'</B>         This constraint determines which convex angles will
+                         use the <B>'constrained_gap_fill'</B>, instead of the
+                         normal <B>'gap_fill'</B>. The constraint(s) (in radians),
+                         if satisfied, will instruct the function to use the
+                         <B>'constrained_gap_fill'</B> in place of the <B>'gap_fill'</B> for
+                         the specified angle ranges. A convex angle is
+                         defined as the angle subtended by the wire body edges
+                         on the opposing side of the offset being less than pi.
+                         Default is ((<A HREF=../headers/pk_comparison_t.html>PK_comparison_never_c</A>, (0,0))). Valid
+                         ranges are between 0 and pi inclusive. Any values
+                         outside this range will return an error
+                         PK_ERROR_bad_angle.
+
+<B>'constrained_gap_fill'</B>   An alternative to <B>'gap_fill'</B> which is used when
+                         the <B>'gap_fill_angle'</B> constraint is
+                         satisfied. It has the same permitted values as
+                         <B>'gap_fill'</B>. Default is PK_VERTEX_gap_fill_round_c.
+
+<B>'repair_self_int'</B>        If this flag is set to PK_LOGICAL_true, the
+                         function will return a body with no self
+                         intersections. Default is PK_LOGICAL_false.
+
+<B>'allow_disjoint'</B>         If this flag is set to PK_LOGICAL_true the returned
+                         body may be disjoint. If set to PK_LOGICAL_false
+                         the returned body will not be disjoint and the
+                         function may return more than one wire body if
+                         necessary. Default is PK_LOGICAL_false.
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

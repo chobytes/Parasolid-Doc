@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<TITLE>PK_MESH_make_bodies_o_t</TITLE>
+<LINK rel="stylesheet" href="../ps_doc.css">
+</HEAD>
+<BODY bgcolor="#ffffff" link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" background="../images/background.gif">
+<A NAME="topofdoc"></A>
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>PK_MESH_make_bodies_o_t</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<A NAME="endofcontents"></A>
+<PRE>
+
+<A NAME="declaration"></A><B>struct PK_MESH_make_bodies_o_s
+    {
+    int                 o_t_version;            --- version number of
+                                                --- option structure
+    double              vertex_angle;           --- angle in radians above
+                                                --- which any laminar boundary
+                                                --- will be split into separate
+                                                --- edges (4)
+    <A HREF=../headers/pk_logical_t.html>PK_LOGICAL_t</A>        allow_disjoint;         --- whether result body may be
+                                                --- disjoint (PK_LOGICAL_true)
+    <A HREF=../headers/pk_body_type_t.html>PK_BODY_type_t</A>      preferred_body_type;    --- preferred type of
+                                                --- result body or bodies
+                                                --- (PK_BODY_type_sheet_c)
+    };
+typedef struct PK_MESH_make_bodies_o_s PK_MESH_make_bodies_o_t;
+
+</B>
+<A NAME="description"></A>
+<I>This structure contains optional controls for <A HREF=../headers/pk_mesh_make_bodies.html>PK_MESH_make_bodies</A>.
+</I>
+</PRE>
+<h4>Used in:</h4>
+<blockquote>
+  <p>
+    <A HREF=../headers/pk_mesh_make_bodies.html>PK_MESH_make_bodies</A><br>
+  </p>
+</blockquote>
+<PRE>
+<A NAME="documentation"></A>
+The options provided are:
+
+<B>'vertex_angle'</B>          This option controls when vertices will be created
+                        between laminar edges of the resultant body.
+                        A vertex will be inserted wherever the angle in radians
+                        between two laminar mfins exceeds <B>'vertex_angle'</B>.
+                        The default value is 4 radians, which means that
+                        simple boundary loops will consist of one ring edge.
+
+<B>'allow_disjoint'</B>        If this option is set to PK_LOGICAL_false, then
+                        each separate component in the result will become a
+                        separate body. Otherwise, the result will be a single
+                        body which may contain disjoint components.
+
+<B>'preferred_body_type'</B>   This option allows the preferred type of the
+                        resulting body or bodies to be indicated.
+
+                        Allowed values are:
+
+                        PK_BODY_type_solid_c:
+                            Where possible, the results of the operation will
+                            be solid bodies.
+                            If <B>'allow_disjoint'</B> is set to PK_LOGICAL_false then
+                            each individual result body will be made solid if
+                            possible. This means that a mixture of solid and
+                            sheet bodies may be returned if some can be made
+                            solid and some cannot.
+                            If <B>'allow_disjoint'</B> is set to PK_LOGICAL_true then
+                            the result will only be made solid if it is
+                            possible to make all of its components solid.
+
+                        PK_BODY_type_sheet_c:
+                            The result body or bodies will be left as sheet
+                            bodies.
+
+
+</PRE>
+
+<SCRIPT type="text/JavaScript" language="JavaScript">
+<!-- 
+// Change date to a readable format
+function to_utc(date)
+{var utc = date.toUTCString();return utc;}
+
+// get last modified date of the current document.
+function date_lastmodified()
+{var mod = document.lastModified, s = "Unknown", d1;
+ if(0 != (d1=Date.parse(mod)))
+  {s = to_utc(new Date(d1));}
+ return s;}	
+// display the last modified date
+document.write("<ADDRESS>Generated on: " + date_lastmodified() + "</ADDRESS>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

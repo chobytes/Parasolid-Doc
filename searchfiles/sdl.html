@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<LINK REL=STYLESHEET HREF=../ps_doc.css CHARSET=ISO-8859-1 TYPE=text/css>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+top.note("chapters/fd_chap.012.html#50409792_pgfId-294747", "<B>SDL</B>/TYRP00 ", "Functional Description - Using Reports");
+top.note("chapters/fd_chap.012.html#50409792_pgfId-294850", "<B>SDL</B>/TYRP00 ", "Functional Description - Using Reports");
+top.note("chapters/fd_chap.015.html#50409796_pgfId-895983", " Note: If a system attribute of type <B>SDL</B>/TYSA_SCALE_FACTOR is attached to the supplied body, the value", "Functional Description - Model Structure");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-547548", " is copied to a new frame density attribute (<B>SDL</B>/TYSA_FRAME_DENSITY) that is attached to the frame. (Region density", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-554955", " If the region has a density attribute (<B>SDL</B>/TYSA_REGION_DENSITY) before removal, this is unchanged. ", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.021.html#50409802_pgfId-549327", " and the frame has a frame density attribute (<B>SDL</B>/TYSA_FRAME_DENSITY), the frame density will be converted to a", "Functional Description - Lattice Geometry");
+top.note("chapters/fd_chap.023.html#50409804_pgfId-294782", " The system-defined name attribute (<B>SDL</B>/TYSA_NAME) may be used by applications wishing to attach", "Functional Description - Assemblies And Instances");
+top.note("chapters/fd_chap.024.html#50409622_pgfId-469286", " the supplied body has a system attribute of type <B>SDL</B>/TYSA_SCALE_FACTOR attached and a scale factor is supplied via", "Functional Description - Distant and Multi-scale Modelling");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295174", " check ensures that the real numerical field of the <B>SDL</B>/TYSA_DENSITY attribute is not negative. ", "Functional Description - Checking");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295179", " The real field of <B>SDL</B>/TYSA_DENSITY should have one value. ", "Functional Description - Checking");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295180", " The real field of <B>SDL</B>/TYSA_HATCHING should have four values. ", "Functional Description - Checking");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295181", " The real field of <B>SDL</B>/TYSA_PLANAR_HATCHING should have any multiple of seven values. ", "Functional Description - Checking");
+top.note("chapters/fd_chap.032.html#50409812_pgfId-295221", " All system attributes have names that start with <B>SDL</B>/TY. See Appendix A, System Attribute Definitions , for", "Functional Description - Checking");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-294851", " application - the density attribute definition is called <B>SDL</B>/TYSA_DENSITY. ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295125", " Parasolid, which have names beginning with the string <B>SDL</B>/TY. These attributes can be manipulated in the same", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295133", " <B>SDL</B>/TYSA_DENSITY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295137", " <B>SDL</B>/TYSA_REGION_DENSITY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295141", " <B>SDL</B>/TYSA_FACE_DENSITY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-360227", " <B>SDL</B>/TYSA_FRAME_DENSITY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295145", " <B>SDL</B>/TYSA_EDGE_DENSITY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295149", " <B>SDL</B>/TYSA_VERTEX_DENSITY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295153", " <B>SDL</B>/TYSA_HATCHING ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295157", " <B>SDL</B>/TYSA_PLANAR_HATCH ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295161", " <B>SDL</B>/TYSA_RADIAL_HATCH ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295165", " <B>SDL</B>/TYSA_PARAM_HATCH ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-354137", " <B>SDL</B>/TYSA_PARAM_NUM_HATCH ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295169", " <B>SDL</B>/TYSA_INCREMENTAL_faceting ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295173", " <B>SDL</B>/TYSA_REGION ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295177", " <B>SDL</B>/TYSA_COLOUR ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-310320", " <B>SDL</B>/TYSA_COLOUR_2 ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295181", " <B>SDL</B>/TYSA_REFLECTIVITY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295185", " <B>SDL</B>/TYSA_TRANSLUCENCY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-310375", " <B>SDL</B>/TYSA_TRANSLUCENCY_2 ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-310421", " <B>SDL</B>/TYSA_LAYER ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295189", " <B>SDL</B>/TYSA_NAME ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295193", " <B>SDL</B>/TYSA_UNAME ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295197", " <B>SDL</B>/TYSA_TRANSPARENCY ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-310458", " <B>SDL</B>/TYSA_INVISIBLE ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295201", " <B>SDL</B>/TYSA_EDGE_NO_MERGE ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-295205", " <B>SDL</B>/TYSA_GROUP_MERGE ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-310502", " <B>SDL</B>/TYSA_GROUP_CONTROL ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.096.html#50409886_pgfId-355999", " <B>SDL</B>/TYSA_SCALE_FACTOR ", "Functional Description - Attribute Definitions");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-303920", " Attach a system attribute of type <B>SDL</B>/TYSA_TRANSPARENCY to the body. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-303931", " transparent if it has an associated attribute of type <B>SDL</B>/TYSA_TRANSPARENCY, with a non-zero transparency coefficient. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304235", " regional data for lines bounding faces that have the <B>SDL</B>/TYSA_REGION system attribute set. See Section A.4.4, Region ,", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.107.html#50409898_pgfId-304382", " bounding regions that derive from faces that have a <B>SDL</B>/TYSA_REGION attribute attached. ", "Functional Description - Rendering Option Settings");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-342275", " A system attribute of type <B>SDL</B>/TYSA_INCREMENTAL_FACETTING is attached to every face in a model", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-342276", " A system attribute of type <B>SDL</B>/TYSA_FACET_VERTEX_DATA is attached to every edge in a model", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.109.html#50409900_pgfId-1248936", " attribute of type <B>SDL</B>/TYSA_INCREMENTAL_FACETTING are faceted. Attributes of type <B>SDL</B>/TYSA_FACET_VERTEX_DATA on a faces edges and fins are used", "Functional Description - Facet Mesh Generation");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285264", " which the attribute definition is identified. This begins <B>SDL</B>/TY and continues with the name of the attribute.", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-388719", " <B>SDL</B>/TYSA_GROUP_CONTROL ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-388794", " part. Identical here means having the same attributes (including <B>SDL</B>/TYSA_GROUP_CONTROL attributes). Identical empty groups in the same part", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-349327", " <B>SDL</B>/TYSA_COLOUR ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-349411", " <B>SDL</B>/TYSA_COLOUR_2 ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285287", " <B>SDL</B>/TYSA_DENSITY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-378896", " <B>SDL</B>/TYSA_EDGE_DENSITY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-378741", " <B>SDL</B>/TYSA_FACE_DENSITY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-479629", " <B>SDL</B>/TYSA_FRAME_DENSITY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285342", " <B>SDL</B>/TYSA_REGION_DENSITY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285498", " <B>SDL</B>/TYSA_VERTEX_DENSITY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285559", " <B>SDL</B>/TYSA_HATCHING ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-378493", " <B>SDL</B>/TYSA_PARAM_HATCH ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-378546", " this definition takes precedence over an attribute with the <B>SDL</B>/TYSA_HATCHING definition, if a face has both types of", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-466324", " <B>SDL</B>/TYSA_PARAM_NUM_HATCH ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-466375", " over an attribute with either the <B>SDL</B>/TYSA_HATCHING or the <B>SDL</B>/TYSA_PARAM_HATCH definition if a face has both types of", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285630", " <B>SDL</B>/TYSA_PLANAR_HATCH ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285725", " this definition takes precedence over an attribute with the <B>SDL</B>/TYSA_HATCHING definition, if a face has both types of", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285736", " <B>SDL</B>/TYSA_RADIAL_HATCH ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-285801", " this definition takes precedence over an attribute with the <B>SDL</B>/TYSA_HATCHING definition, if a face has both types of", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-338973", " <B>SDL</B>/TYSA_LAYER ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-339059", " <B>SDL</B>/TYSA_NAME ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-349065", " <B>SDL</B>/TYSA_REFLECTIVITY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-377664", " <B>SDL</B>/TYSA_TRANSLUCENCY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-377742", " <B>SDL</B>/TYSA_TRANSLUCENCY_2 ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-377809", " <B>SDL</B>/TYSA_TRANSPARENCY ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-378020", " <B>SDL</B>/TYSA_UNAME ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-470790", " <B>SDL</B>/TYSA_SCALE_FACTOR ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-350760", " <B>SDL</B>/TYSA_GROUP_MERGE ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-350339", " <B>SDL</B>/TYSA_INVISIBLE ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-350386", " <B>SDL</B>/TYSA_EDGE_NO_MERGE ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-393096", " <B>SDL</B>/TYSA_REGION ", "Functional Description - System Attribute Definitions");
+top.note("chapters/fd_chap.124.html#50409918_pgfId-393246", " <B>SDL</B>/TYSA_INCREMENTAL_facetting ", "Functional Description - System Attribute Definitions");
+top.note("chapters/ov_chap.02.html#50442241_pgfId-299548", " information see Section 6.6.2, &#8220;Microsoft Security Development Lifecycle (MS-<B>SDL</B>)&#8221; , in the Parasolid Installation Notes . ", "Overview of Parasolid - Introduction");
+top.note("headers/pk_attdef_sf_2_t.html#documentation", " printable characters. Names beginning with the string <B>SDL</B>/TY", "PK Reference - PK_ATTDEF_sf_2_t");
+top.note("headers/pk_attdef_sf_t.html#documentation", " characters. Names beginning with the string <B>SDL</B>/TY are reserved", "PK Reference - PK_ATTDEF_sf_t");
+top.note("headers/pk_body_enlarge.html#documentation", "If the input body has system attribute <B>SDL</B>/TYSA_SCALE_FACTOR attached, the", "PK Reference - PK_BODY_enlarge");
+top.note("headers/pk_entity_check_attribs.html#description", "attributes with definitions having names of the form \"<B>SDL</B>/TYSA_xxx\".", "PK Reference - PK_ENTITY_check_attribs");
+top.note("headers/pk_part_receive.html#documentation", "of type <B>SDL</B>/TYSA_BAD_FG attached. Parts containing such geometry must not be", "PK Reference - PK_PART_receive");
+top.note("headers/pk_part_receive_b.html#documentation", "of type <B>SDL</B>/TYSA_BAD_FG attached. Parts containing such geometry must not be", "PK Reference - PK_PART_receive_b");
+top.note("headers/pk_part_receive_u.html#documentation", "of type <B>SDL</B>/TYSA_BAD_FG attached. Parts containing such geometry must not be", "PK Reference - PK_PART_receive_u");
+top.note("headers/pk_region_embed_lattices.html#documentation", "If the region possesses a density attribute (<B>SDL</B>/TYSA_REGION_DENSITY), and a", "PK Reference - PK_REGION_embed_lattices");
+top.note("headers/pk_region_remove_lattice.html#documentation", "If the region has no density attribute (<B>SDL</B>/TYSA_REGION_DENSITY) prior to", "PK Reference - PK_REGION_remove_lattice");
+top.note("headers/pk_report_find.html#documentation", "The name of Parasolids own report is \"<B>SDL</B>/TYRP00\".", "PK Reference - PK_REPORT_find");
+top.note("headers/pk_report_t.html#documentation", "the name \"<B>SDL</B>/TYRP00\". This reports identifier may be obtained by calling", "PK Reference - PK_REPORT_t");
+top.note("headers/pk_topol_imprint_frames.html#documentation", "Every new region gains a density attribute (<B>SDL</B>/TYSA_REGION_DENSITY) with the", "PK Reference - PK_TOPOL_imprint_frames");
+top.note("headers/pk_topol_render_line_o_t.html#documentation", "1 - Attach a transparency system attribute <B>SDL</B>/TYSA_TRANSPARENCY", "PK Reference - PK_TOPOL_render_line_o_t");
+top.note("chapters/kd_chap.11.html#50475016_pgfId-273893", " already used for system_attributes which have a prefix of <B>SDL</B>/TYSA_. ", "KID Manual - Attributes in KID");
+top.note("chapters/fg_chap.03.html#50462724_pgfId-281575", " if( keycmpu( &#8220;<B>SDL</B>/corrugated&#8221;, key, keylen )){if (( *kir == 3 )", "FG Manual - Implementing an FG System");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7734792", " , PK_REGION_ask_type , PK_REGION_embed_lattices , PK_REGION_remove_lattice , PK_TOPOL_find_frames , <B>SDL</B>/TYSA_FRAME_DENSITY ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.note("chapters/wn_chap.02.html#50466820_pgfId-7796504", " <B>SDL</B>/TYSA_FRAME_DENSITY ", "What's New in Parasolid - What&#8217;s New in Parasolid V36.0");
+top.display();
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=#FFFFFF link=#0F3A68 vlink=#878787 alink=#FF7600 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+</BODY>
+</HTML>

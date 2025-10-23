@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+    var entryID = parent.theMenu.findEntry(location.pathname, "url", "right", 0);
+    if (entryID >= 0) {
+        parent.theMenu.selectEntry(entryID);
+        if (parent.theMenu.setEntry(entryID, true)) {
+            parent.theMenu.refresh();
+        }
+    }
+}
+//-->
+</SCRIPT>
+<LINK REL="STYLESHEET" HREF="../ps_doc.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<TITLE>Miscellaneous Useful Functions</TITLE>
+</HEAD>
+<BODY BACKGROUND=../images/background.gif link="#0F3A68" vlink="#878787" alink="#FF7600" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<A NAME="topofdoc"></A>
+
+
+<TABLE cellpadding=0 cellspacing=0 border=0 width=100%>
+  <TR>
+    <TD>&nbsp;<IMG src="../graphics/psbar_l.gif" border=0></TD>
+    <TD align=RIGHT valign=CENTER>
+        <FONT face="helvetica,arial" SIZE=5 class=NS28pt>
+        <B>Miscellaneous Useful Functions</B></FONT></TD>
+    <TD>&nbsp;&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.08.html">Local Operation Functions</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.10.html">Enquiries</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+<H1>Contents</H1>
+<UL>
+<LI> <A HREF="kd_chap.09.html#50475023_pgfId-273839">8.1	Replication of objects within the modeller</A>
+<LI> <A HREF="kd_chap.09.html#50475023_pgfId-273861">8.2	Renaming a modeller item</A>
+<LI> <A HREF="kd_chap.09.html#50475023_pgfId-273877">8.3	Selecting an entity using its identifier</A>
+<LI> <A HREF="kd_chap.09.html#50475023_pgfId-273888">8.4	Magnifying, reflecting and mirroring a body</A>
+<LI> <A HREF="kd_chap.09.html#50475023_pgfId-273906">8.5	Mass properties</A>
+<LI> <A HREF="kd_chap.09.html#50475023_pgfId-273921">8.6	KI/PK Functions</A>
+</UL>
+<A NAME="endofcontents"></A>
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475023_pgfId-273839"></A>8.1	Replication of objects within the modeller
+
+
+</H1>
+
+<H4>
+<A NAME="50475023_pgfId-273840"></A>replicate function</H4>
+<P>
+<A NAME="50475023_pgfId-280187"></A><A NAME="50475023_marker-280185"></A><A NAME="50475023_marker-280186"></A>The <CODE>
+replicate</CODE>
+ function can be used to make replicas of objects and copies of items within the modeller.</P>
+<P>
+<A NAME="50475023_pgfId-280197"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475023_pgfId-280210"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475023_pgfId-280212"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475023_pgfId-280214"></A>modeller</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475023_pgfId-280216"></A>replicate</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-280198"></A>The following example shows the effect upon objects which do not refer to a kernel item and those the kernel is not capable of copying, in this case before a primitive has been turned into a body.</P>
+<P>
+<A NAME="50475023_pgfId-279778"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280160"></A>&gt; (define b0 p_sphere)
+&gt; (b0 centre &acute;(0 0 1); radius 10 ; colour &acute;red )
+                            -- local properties of b0
+&gt; (define b1 p_sphere)      -- the object must be defined first
+&gt; (b1 replicate &acute;b0)        -- b0 is copied into b1
+&gt; (b1 colour)               --&gt; red
+&gt; (b0 create )              -- create sphere body b0
+&gt; (b1 create )              -- create sphere body b1</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-273856"></A>The function copies all the local properties of one object to another object, and overwrites any existing properties with the same names.</P>
+<P>
+<A NAME="50475023_pgfId-273857"></A>If the objects refer to an item in the kernel which can be copied:</P>
+<P>
+<A NAME="50475023_pgfId-279792"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280136"></A>&gt; (define b0 p_torus)
+&gt; (b0 majrad 20; minrad 5; colour &acute;blue; create)
+                          -- create torus b0, property blue
+&gt; (define b3 body)
+&gt; (b3 replicate &acute;b0)       -- copy b0 and property into b3</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-273859"></A>This also copies all local properties of b0 to b3, except for the <CODE>
+tag</CODE>
+ property. When the <CODE>
+replicate</CODE>
+ function encounters the tag property, it calls the KI routine COPYEN to create a copy of the kernel item. The tag of this new item is put into the <CODE>
+tag</CODE>
+ property of the copied object.</P>
+<P>
+<A NAME="50475023_pgfId-273860"></A>The kernel objects which cannot have their tags copied in this way are edges, faces, vertices, loops, shells and attributes; a call to <CODE>
+replicate</CODE>
+ for these objects creates a new object with the same tag value.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475023_pgfId-273861"></A>8.2	Renaming a modeller item
+
+
+</H1>
+
+<H4>
+<A NAME="50475023_pgfId-273862"></A>rename function</H4>
+<P>
+<A NAME="50475023_pgfId-273865"></A><A NAME="50475023_marker-273863"></A><A NAME="50475023_marker-273864"></A>The function <CODE>
+rename</CODE>
+ enables a name change of a modeller item.</P>
+<P>
+<A NAME="50475023_pgfId-273875"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475023_pgfId-280242"></A>Object</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475023_pgfId-280244"></A>Function</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475023_pgfId-280246"></A>modeller</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P>
+<A NAME="50475023_pgfId-280248"></A>rename</P>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-279799"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280116"></A>&gt; (define b0 p_block)
+&gt; (b0 x 10; y 20; z 30; create)
+&gt; (b0 rename &acute;p7112)           --&gt; renames b0 to p7112
+&gt; (p7112 is)                   --&gt; body
+&gt; (b0 is)                      --&gt; error as b0 is now undefined</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475023_pgfId-273877"></A>8.3	Selecting an entity using its identifier
+
+
+</H1>
+
+<H4>
+<A NAME="50475023_pgfId-273878"></A>identify function</H4>
+<P>
+<A NAME="50475023_pgfId-273881"></A><A NAME="50475023_marker-273879"></A><A NAME="50475023_marker-273880"></A>To uniquely select a face from a body in a way that is not session dependent you can use their identifiers.</P>
+<P>
+<A NAME="50475023_pgfId-279806"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280101"></A>&gt; ( f0 identify )           --&gt; ( FA2 FA33 FA100 )
+&gt; ( e0 identify )           --&gt; ( ED12 ED24 )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-273883"></A>Identifiers are the same after the body is transmitted or received, and they are the same in copies of the part also.</P>
+<P>
+<A NAME="50475023_pgfId-273884"></A>Getting to the tags again from the identifiers requires specifying which part the identifiers refer to:</P>
+<P>
+<A NAME="50475023_pgfId-279813"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280081"></A>&gt; ( f0 identify_in b0 )      -- mandatory parameter
+&gt; ( f0 identify  &acute;( FA2 FA33 F100 ))</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-273886"></A>This locates the tags of these faces and saves them in the object f0.</P>
+<P>
+<A NAME="50475023_pgfId-273887"></A>This method is much faster and more robust than doing a pick on a complex body. It may be useful to locate faces in test scripts.</P>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475023_pgfId-273888"></A>8.4	Magnifying, reflecting and mirroring a body
+
+
+</H1>
+
+<H4>
+<A NAME="50475023_pgfId-273889"></A>magnify function</H4>
+<P>
+<A NAME="50475023_pgfId-273892"></A><A NAME="50475023_marker-273890"></A><A NAME="50475023_marker-273891"></A>The function <CODE>
+magnify</CODE>
+ scales a body about it's center of gravity.</P>
+<P>
+<A NAME="50475023_pgfId-279820"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280061"></A>&gt; ( body magnify &lt;scale&gt; )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475023_pgfId-273894"></A>reflect function</H4>
+<P>
+<A NAME="50475023_pgfId-273897"></A><A NAME="50475023_marker-273895"></A><A NAME="50475023_marker-273896"></A>The function <CODE>
+reflect</CODE>
+ images the body in a plane.</P>
+<P>
+<A NAME="50475023_pgfId-279832"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280048"></A>&gt; (  body reflect &lt;plane&gt; )</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-273899"></A>A plane can conveniently be created by picking from the model. for example:</P>
+<P>
+<A NAME="50475023_pgfId-279843"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280028"></A>&gt; ( define s1 surface )
+&gt; ( s1 pick )              -- &amp; use graphics picking</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+<H4>
+<A NAME="50475023_pgfId-273901"></A>mirror function</H4>
+<P>
+<A NAME="50475023_pgfId-273904"></A><A NAME="50475023_marker-273902"></A><A NAME="50475023_marker-273903"></A>The <CODE>
+mirror</CODE>
+ function copies a body, reflects it and unites with the mirror image, merging out redundant topology.</P>
+<P>
+<A NAME="50475023_pgfId-279966"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-280001"></A>&gt; (  body mirror &lt;plane&gt; )</PRE>
+</TD>
+</TR>
+</TABLE>
+
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475023_pgfId-273906"></A>8.5	Mass properties
+
+
+</H1>
+<P>
+<A NAME="50475023_pgfId-273907"></A>Mass property enquiries are driven from general functions associated with the topology object:</P>
+<P>
+<A NAME="50475023_pgfId-279860"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-279949"></A>(topology mass_amount)
+(topology mass)
+(topology cofg)
+(topology mofi)
+(topology periphery)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-273909"></A>The interpretation of the mass_amount (&quot;amount&quot; in the PK documentation) and periphery depend upon the specific type of topology. Bodies, faces and edges have specific enquiries for some of this information:</P>
+<P>
+<A NAME="50475023_pgfId-279867"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-279919"></A>(body volume)
+(body area)</PRE>
+<PRE><A NAME="50475023_pgfId-279920"></A>(face volume)       --- Treating the face set as a single solid
+(face cofg 0.95 t)  --- Treating the face set as a single solid
+(face cofg)
+(face area)
+(face periphery)</PRE>
+<PRE><A NAME="50475023_pgfId-279921"></A>(edge length)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-273913"></A>All the above functions take two optional arguments. The first is used to control the accuracy of the calculations and defaults to 0.95 (this is not especially precise), for example:</P>
+<P>
+<A NAME="50475023_pgfId-273914"></A><CODE>
+(e0 length 0.9) </CODE>
+would provide a less accurate result.</P>
+<P>
+<A NAME="50475023_pgfId-273915"></A>The second is just a logical which controls whether facesets are considered as a single solid or not. This affects the meaning of the amount and periphery values, e.g.</P>
+<P>
+<A NAME="50475023_pgfId-273916"></A><CODE>
+(f0 mass_amount 0.95 t)</CODE>
+ returns the volume of the enclosed space, whereas</P>
+<P>
+<A NAME="50475023_pgfId-273917"></A><CODE>
+(f0 mass_amount 0.95) </CODE>
+returns the surface area of the faces.</P>
+
+
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<HR>
+
+<H1>
+<A NAME="50475023_pgfId-273921"></A>8.6	<A NAME="50475023_marker-273918"></A><A NAME="50475023_marker-273919"></A><A NAME="50475023_marker-273920"></A>KI/PK Functions
+
+
+</H1>
+<P>
+<A NAME="50475023_pgfId-273922"></A>It is possible to combine low level calls to individual KI/PK functions,</P>
+<P>
+<A NAME="50475023_pgfId-279898"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<PRE><A NAME="50475023_pgfId-279904"></A>&gt; ( &lt;KI routine name&gt; &lt;arguments separated by spaces&gt;)</PRE>
+</TD>
+</TR>
+</TABLE>
+<P>
+<A NAME="50475023_pgfId-273924"></A>with KID commands as have been described in this chapter. This may be necessary in cases where only a low level<A NAME="50475023_marker-273925"></A><A NAME="50475023_marker-273926"></A><A NAME="50475023_marker-273927"></A> call to a particular KI/PK routine is possible. This is described in <A HREF="kd_chap.05.html#50475010_24716">Chapter 4, &quot;Calling the KI/PK Using KID (FLICK)&quot;</A>.</P>
+<P>
+<A NAME="50475023_pgfId-110680"></A>&nbsp;</P>
+
+<A NAME="endofdoc"></A>
+
+<P ALIGN=RIGHT>
+<A HREF="#topofdoc"><I>[back to top]</I></A>
+</P>
+
+<P></P><TABLE BORDER ALIGN=CENTER><TR>
+  <TD>&lt;&lt;&lt; <A HREF="kd_chap.08.html">Local Operation Functions</A></TD>
+  <TD><A HREF="../kd_index.html">Chapters</A></TD>
+  <TD><A HREF="kd_chap.10.html">Enquiries</A> &gt;&gt;&gt;</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>
